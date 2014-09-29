@@ -56,8 +56,8 @@
 
     { "trigger": "Logical AND (&&)", "contents": "${0:expr1} && expr2" },
     { "trigger": "Logical OR (||)", "contents": "${0:expr1} || expr2" },
-    { "trigger": "Logical NOT (!)", "contents": "${0:expr1} == expr2" },
-    { "trigger": "Equal (==)", "contents": "!${0:expr}" },
+    { "trigger": "Logical NOT (!)", "contents": "!${0:expr}" },
+    { "trigger": "Equal (==)", "contents": "${0:expr1} == expr2" },
     { "trigger": "Not equal (!=)", "contents": "${0:expr1} != expr2" },
     { "trigger": "Strict equal (===)", "contents": "${0:expr1} === expr2" },
     { "trigger": "Strict not equal (!==)", "contents": "${0:expr1} !=== expr2" },
