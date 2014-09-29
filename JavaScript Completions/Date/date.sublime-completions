@@ -3,7 +3,7 @@
 
   "completions":
   [
-    "New Date()",
+    "new Date()",
     "now()",
     "parse(${0:dateString})",
     "UTC(${0:year}, month)",
