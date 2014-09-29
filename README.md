@@ -10,7 +10,7 @@ Version 0.5
 in Updating!
 
 ========================
+Usage
 
--syntax-Name_of_function shows to you the syntax of the function
-
--description-Name_of_function shows to you the description of the function
+syntax-Name_of_function shows to you the syntax of the function
+description-Name_of_function shows to you the description of the function
