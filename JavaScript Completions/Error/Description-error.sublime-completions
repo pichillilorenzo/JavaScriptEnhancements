@@ -1,0 +1,14 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    { "trigger": "-description-Error", "contents": "/*\n\tThe Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types.\n*/" },
+    { "trigger": "-description-EvalError", "contents": "/*\n\tThe EvalError object indicates an error regarding the global eval() function.\n*/" },
+    { "trigger": "-description-RangeError", "contents": "/*\n\tThe RangeError object indicates an error when a value is not in the set or range of allowed values.\n*/" },
+    { "trigger": "-description-ReferenceError", "contents": "/*\n\tThe ReferenceError object represents an error when a non-existent variable is referenced.\n*/" },
+    { "trigger": "-description-SyntaxError", "contents": "/*\n\tThe SyntaxError object represents an error when trying to interpret syntactically invalid code.\n*/" },
+    { "trigger": "-description-TypeError", "contents": "/*\n\tThe TypeError object represents an error when a value is not of the expected type.\n*/" },
+    { "trigger": "-description-URIError", "contents": "/*\n\tThe URIError object represents an error when a global URI handling function was used in a wrong way.\n*/" },
+  ]
+}

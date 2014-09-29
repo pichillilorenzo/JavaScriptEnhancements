@@ -1,0 +1,16 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    "new Number(${0:value})",
+    "Number.MAX_VALUE",
+    "Number.MIN_VALUE",
+    "Number.NaN",
+    "Number.NEGATIVE_INFINITY",
+    "Number.POSITIVE_INFINITY",
+    "toExponential(${0:fractionDigits})",
+    "toFixed(${0:digits})",
+    "toPrecision(${0:precision})",
+  ]
+}

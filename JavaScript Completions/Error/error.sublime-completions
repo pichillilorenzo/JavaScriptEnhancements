@@ -1,0 +1,14 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    "new Error(${0:message})",
+    "new EvalError(${0:message})",
+    "new RangeError(${0:message})",
+    "new ReferenceError(${0:message})",
+    "new SyntaxError(${0:message})",
+    "new TypeError(${0:message})",
+    "new URIError(${0:message})",
+  ]
+}

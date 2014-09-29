@@ -1,0 +1,8 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    { "trigger": "-description-", "contents": "/*\n\t\n*/" },
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    { "trigger": "-description-eval()", "contents": "/*\n\tThe eval() method evaluates JavaScript code represented as a string.\n*/" },
+    { "trigger": "-description-isFinite()", "contents": "/*\n\tThe global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number.\n*/" },
+    { "trigger": "-description-isNaN()", "contents": "/*\n\tThe isNaN() function determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in Number.isNaN() as defined in ECMAScript 6 or you can use typeof to determine if the value is Not-A-Number.\n*/" },
+    { "trigger": "-description-parseFloat()", "contents": "/*\n\tThe parseFloat() function parses a string argument and returns a floating point number.\n*/" },
+    { "trigger": "-description-parseInt()", "contents": "/*\n\tThe parseInt() function parses a string argument and returns an integer of the specified radix or base.\n*/" },
+    { "trigger": "-description-decodeURI()", "contents": "/*\n\tThe decodeURI() function decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine.\n*/" },
+    { "trigger": "-description-decodeURIComponent()", "contents": "/*\n\tThe decodeURIComponent() method decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine.\n*/" },
+    { "trigger": "-description-encodeURI()", "contents": "/*\n\tThe encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two \"surrogate\" characters).\n*/" },
+    { "trigger": "-description-encodeURIComponent()", "contents": "/*\n\tThe encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two \"surrogate\" characters).\n*/" },
+  ]
+}

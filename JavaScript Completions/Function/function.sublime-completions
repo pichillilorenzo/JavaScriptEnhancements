@@ -1,0 +1,11 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+  	"new Function();",
+    "apply(${0:thisArg})",
+    "bind(${0:thisArg})",
+    "call(${0:thisArg})",
+  ]
+}
