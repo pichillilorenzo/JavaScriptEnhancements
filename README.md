@@ -1,6 +1,6 @@
-JavaScript-Auto-Complete
+JavaScript-Completions
 ========================
 
-Javascript auto-complete for sublime text
+Javascript Completions for sublime text
 
 Version 0.1
