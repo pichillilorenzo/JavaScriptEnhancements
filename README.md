@@ -12,7 +12,7 @@ To try it, just write.
 
 Example:
 
-![ScreenShot]<img src="http://i57.tinypic.com/5v65ia.gif" alt="example of JavaScript Completions"/>
+<img src="http://i57.tinypic.com/5v65ia.gif" alt="example of JavaScript Completions"/>
 
 <code>syntax-Name_of_function</code> shows to you the syntax of the function
 
