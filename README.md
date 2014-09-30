@@ -1,6 +1,6 @@
 <h1>JavaScript Completions</h1>
 
-Javascript Completions for sublime text
+JavaScript Completions for sublime text
 
 It helps you to write your scripts more quickly with hints and completions.
 
@@ -9,6 +9,9 @@ in Updating!
 <h2>Usage</h2>
 
 To try it, just write.
+
+Example:
+<img src="http://i57.tinypic.com/5v65ia.gif" alt="example of JavaScript Completions"/>
 
 <code>syntax-Name_of_function</code> shows to you the syntax of the function
 
