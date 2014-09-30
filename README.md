@@ -15,3 +15,5 @@ To try it, just write.
 <code>description-Name_of_function</code> shows to you the description of the function
 
 Information about syntax and description has been taken on the site https://developer.mozilla.org
+
+<i>MIT License</i>
