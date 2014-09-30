@@ -1,0 +1,152 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    // Properties
+    "document",
+    "document.URL",
+    "document.activeElement",
+    "document.anchors",
+    "document.applets",
+    "document.body",
+    "document.defaultView",
+    "document.designMode",
+    "document.domain",
+    "document.embeds",
+    "document.forms",
+    "document.head",
+    "document.images",
+    "document.lastModified",
+    "document.location",
+    "document.plugins",
+    "document.readyState",
+    "document.referrer",
+    "document.scripts",
+    "document.styleSheets",
+    "document.title",
+    "document.characterSet",
+    "document.compatMode",
+    "document.contentType",
+    "document.currentScript",
+    "document.doctype",
+    "document.documentElement",
+    "document.documentURI",
+    "document.documentURIObject",
+    "document.implementation",
+    "document.lastStyleSheetSet",
+    "document.links",
+    "document.onoffline",
+    "document.pointerLockElement",
+    "document.preferredStyleSheetSet",
+    "document.selectedStyleSheetSet",
+    "document.styleSheetSets",
+    "document.tooltipNode",
+
+    // Methods
+    "document.caretPositionFromPoint(${0:x}, y)",
+    "caretPositionFromPoint(${0:x}, y)",
+
+    "document.close()",
+    "close()",
+
+    "document.createNodeIterator(${0:root}, whatToShow, filter)",
+    "createNodeIterator(${0:root}, whatToShow, filter)",
+
+    "document.createRange()",
+    "createRange()",
+
+    "document.createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)",
+    "createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)",
+
+    "document.elementFromPoint(${0:x}, y)",
+    "elementFromPoint(${0:x}, y)",
+
+    "document.getElementsByClassName(${0:names})",
+    "getElementsByClassName(${0:names})",
+
+    "document.getElementsByName(${0:name})",
+    "getElementsByName(${0:name})",
+
+    "document.releaseCapture()",
+    "releaseCapture()",
+
+    "document.adoptNode(${0:externalNode})",
+    "adoptNode(${0:externalNode})",
+
+    "document.createAttribute(${0:name})",
+    "createAttribute(${0:name})",
+
+    "document.createCDATASection(${0:data})",
+    "createCDATASection(${0:data})",
+
+    "document.createComment(${0:data})",
+    "createComment(${0:data})",
+
+    "document.createDocumentFragment()",
+    "createDocumentFragment()",
+
+    "document.createElement(${0:tagName})",
+    "createElement(${0:tagName})",
+
+    "document.createElementNS(${0:namespaceURI}, qualifiedName)",
+    "createElementNS(${0:namespaceURI}, qualifiedName)",
+
+    "document.createExpression(${0:xpathText}, namespaceURLMapper)",
+    "createExpression(${0:xpathText}, namespaceURLMapper)",
+
+    "document.createNSResolver(${0:node})",
+    "createNSResolver(${0:node})",
+
+    "document.createProcessingInstruction(${0:target}, data)",
+    "createProcessingInstruction(${0:target}, data)",
+
+    "document.createTextNode(${0:data})",
+    "createTextNode(${0:data})",
+
+    "document.enableStyleSheetsForSet(${0:name})",
+    "enableStyleSheetsForSet(${0:name})",
+
+    "document.evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);",
+    "evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);",
+
+    "document.execCommand(${0:String aCommandName}, Boolean aShowDefaultUI, String aValueArgument)",
+    "execCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)",
+
+    "document.getElementById(${0:id})",
+    "getElementById(${0:id})",
+
+    "document.getElementsByTagName(${0:name})",
+    "getElementsByTagName(${0:name})",
+
+    "document.getElementsByTagNameNS(${0:namespace}, name)",
+    "getElementsByTagNameNS(${0:namespace}, name)",
+
+    "document.hasFocus()",
+    "hasFocus()",
+
+    "document.importNode(${0:externalNode}, deep)",
+    "importNode(${0:externalNode}, deep)",
+
+    "document.loadOverlay(${0:url}, observer)",
+    "loadOverlay(${0:url}, observer)",
+
+    "document.open()",
+    "open()",
+
+    "document.queryCommandSupported(${0:command})",
+    "queryCommandSupported(${0:command})",
+
+    "document.querySelector(${0:selectors})",
+    "querySelector(${0:selectors})",
+
+    "document.querySelectorAll(${0:selectors})",
+    "querySelectorAll(${0:selectors})",
+
+    "document.write(${0:markup})",
+    "write(${0:markup})",
+
+    "document.writeln(${0:line})",
+    "writeln(${0:line})",
+  ]
+}

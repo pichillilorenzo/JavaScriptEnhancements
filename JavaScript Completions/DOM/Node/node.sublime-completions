@@ -1,0 +1,40 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    // Properties
+    "baseURI",
+    "childNodes",
+    "firstChild",
+    "lastChild",
+    "localName",
+    "namespaceURI",
+    "nextSibling",
+    "nodeName",
+    "nodeType",
+    "nodeValue",
+    "ownerDocument",
+    "parentElement",
+    "parentNode",
+    "prefix",
+    "previousSibling",
+    "textContent",
+
+    //Methods
+    "appendChild(${0:aChild})",
+    "cloneNode(${0:deep})",
+    "compareDocumentPosition(${0:otherNode})",
+    "contains(${0:otherNode})",
+    "hasAttributes()",
+    "hasChildNodes()",
+    "insertBefore(${0:newElement}, referenceElement)",
+    "isDefaultNamespace(${0:namespaceURI})",
+    "isEqualNode(${0:arg})",
+    "lookupNamespaceURI()",
+    "lookupPrefix()",
+    "normalize()",
+    "removeChild(${0:child})",
+    "replaceChild(${0:newChild}, oldChild)",
+  ]
+}

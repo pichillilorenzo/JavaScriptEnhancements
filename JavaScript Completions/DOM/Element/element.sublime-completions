@@ -1,0 +1,45 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    // Properties
+    "accessKey",
+    "attributes",
+    "classList",
+    "className",
+    "clientHeight",
+    "clientLeft",
+    "clientTop",
+    "clientWidth",
+    "id",
+    "innerHTML",
+    "name",
+    "onafterscriptexecute",
+    "onbeforescriptexecute",
+    "outerHTML",
+    "scrollHeight",
+    "scrollLeft",
+    "scrollTop",
+    "scrollWidth",
+    "tagName",
+
+    // Methods
+    "getAttribute(${0:attributeName})",
+    "getAttributeNS(${0:namespace}, name)",
+    "getAttributeNode(${0:attrName})",
+    "getAttributeNodeNS(${0:namespace}, nodeName)",
+    "getBoundingClientRect()",
+    "getClientRects()",
+    "hasAttribute(${0:attrName})",
+    "hasAttributeNS(${0:namespace}, localName)",
+    "insertAdjacentHTML(${0:position}, text)",
+    "removeAttribute(${0:attrName})",
+    "removeAttributeNS(${0:namespace}, attrName)",
+    "removeAttributeNode(${0:attributeNode})",
+    "setAttribute(${0:name}, value)",
+    "setAttributeNS(${0:namespace}, name, value)",
+    "setAttributeNode(${0:attribute})",
+    "setAttributeNodeNS(${0:attributeNode})",
+  ]
+}
