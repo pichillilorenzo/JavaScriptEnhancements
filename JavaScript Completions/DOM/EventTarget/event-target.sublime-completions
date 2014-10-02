@@ -3,6 +3,8 @@
 
   "completions":
   [
-    
+    "addEventListener(${0:type}, listener)",
+    "dispatchEvent(${0:event})",
+    "removeEventListener(${0:type}, listener)",
   ]
 }

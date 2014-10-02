@@ -3,6 +3,8 @@
 
   "completions":
   [
-    
+    { "trigger": "-description-EventTarget.addEventListener()", "contents": "/*\n\tThe EventTarget.addEventListener() method registers the specified listener on the EventTarget it's called on. The event target may be an Element in a document, the Document itself, a window, or any other object that supports events (such as XMLHttpRequest).\n*/" },
+    { "trigger": "-description-EventTarget.dispatchEvent()", "contents": "/*\n\tDispatches an Event at the specified EventTarget, invoking the affected EventListeners in the appropriate order. The normal event processing rules (including the capturing and optional bubbling phase) apply to events dispatched manually with dispatchEvent().\n*/" },
+    { "trigger": "-description-EventTarget.removeEventListener()", "contents": "/*\n\tRemoves the event listener previously registered with EventTarget.addEventListener.\n*/" },
   ]
 }
