@@ -14,10 +14,8 @@ Example:
 
 <img src="http://i57.tinypic.com/5v65ia.gif" alt="example of JavaScript Completions"/>
 
-<code>syntax-Name_of_function</code> shows to you the syntax of the function
+<code>description-Name_of_function/property/method</code> shows to you the explanation of the function/property/method and its syntax.
 
-<code>description-Name_of_function</code> shows to you the description of the function
-
-Information about syntax and description has been taken on the site https://developer.mozilla.org
+Information about the description of function/property/method has been taken on the site https://developer.mozilla.org
 
 <i>MIT License</i>

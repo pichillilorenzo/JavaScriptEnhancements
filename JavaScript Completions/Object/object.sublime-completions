@@ -33,7 +33,6 @@
     "toLocaleString()",
     "toSource()",
     "toString()",
-    "valueOf()",
     "isPrototypeOf(${0:Object})",
   ]
 }

@@ -1,13 +1,29 @@
 {
   "scope": "source.js",
-
-  "completions":
-  [
-  	{ "trigger": "-description-Function", "contents": "/*\n\tThe Function constructor creates a new Function object. In JavaScript every function is actually a Function object.\n*/" },
-    { "trigger": "-description-Function.length", "contents": "/*\n\tThe length property specifies the number of arguments expected by the function.\n*/" },
-    { "trigger": "-description-Function.prototype.apply()", "contents": "/*\n\tThe apply() method calls a function with a given this value and arguments provided as an array (or an array-like object).\n*/" },
-    { "trigger": "-description-Function.prototype.bind()", "contents": "/*\n\tThe bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.\n*/" },
-    { "trigger": "-description-Function.prototype.call()", "contents": "/*\n\tThe call() method calls a function with a given this value and arguments provided individually.\n*/" },
-    { "trigger": "-description-Function.prototype.toString()", "contents": "/*\n\tThe toString() method returns a string representing the source code of the function.\n*/" },
+  "completions": [
+    {
+      "trigger": "description-Function",
+      "contents": "/*\n\tDescription:\n\tThe Function constructor creates a new Function object. In JavaScript every function is actually a Function object.\n\n\tSyntax:\n\tnew Function ([arg1[, arg2[, ...argN]],] functionBody)\n*/"
+    },
+    {
+      "trigger": "description-Function.length",
+      "contents": "/*\n\tThe length property specifies the number of arguments expected by the function.\n*/"
+    },
+    {
+      "trigger": "description-Function.prototype.apply()",
+      "contents": "/*\n\tDescription:\n\tThe apply() method calls a function with a given this value and arguments provided as an array (or an array-like object).\n\n\tSyntax:\n\tfun.apply(thisArg, [argsArray])\n*/"
+    },
+    {
+      "trigger": "description-Function.prototype.bind()",
+      "contents": "/*\n\tDescription:\n\tThe bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.\n\n\tSyntax:\n\tfun.bind(thisArg[, arg1[, arg2[, ...]]])\n*/"
+    },
+    {
+      "trigger": "description-Function.prototype.call()",
+      "contents": "/*\n\tDescription:\n\tThe call() method calls a function with a given this value and arguments provided individually.\n\n\tSyntax:\n\tfun.call(thisArg[, arg1[, arg2[, ...]]])\n*/"
+    },
+    {
+      "trigger": "description-Function.prototype.toString()",
+      "contents": "/*\n\tDescription:\n\tThe toString() method returns a string representing the source code of the function.\n\n\tSyntax:\n\tfunction.toString(indentation)\n*/"
+    }
   ]
 }

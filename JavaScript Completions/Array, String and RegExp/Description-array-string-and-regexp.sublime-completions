@@ -1,62 +1,225 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    { "trigger": "-description-Array", "contents": "/*\n\tThe JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects.\n*/" },
-    { "trigger": "-description-String", "contents": "/*\n\tThe String global object is a constructor for strings, or a sequence of characters.\n*/" },
-  	{ "trigger": "-description-RegExp", "contents": "/*\n\tThe RegExp constructor creates a regular expression object for matching text with a pattern.\n*/" },
-    { "trigger": "-description-RegExp.prototype.exec()", "contents": "/*\n\tThe exec() method executes a search for a match in a specified string. Returns a result array, or null.\n*/" },
-    { "trigger": "-description-RegExp.prototype.test()", "contents": "/*\n\tThe test() method executes a search for a match between a regular expression and a specified string. Returns true or false.\n*/" },
-    { "trigger": "-description-RegExp.prototype.global", "contents": "/*\n\tThe global property indicates whether or not the \"g\" flag is used with the regular expression. global is a read-only property of an individual regular expression instance.\n*/" },
-    { "trigger": "-description-RegExp.prototype.ignoreCase", "contents": "/*\n\tThe ignoreCase property indicates whether or not the \"i\" flag is used with the regular expression. ignoreCase is a read-only property of an individual regular expression instance.\n*/" },
-    { "trigger": "-description-RegExp.lastIndex", "contents": "/*\n\tThe lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match.\n*/" },
-    { "trigger": "-description-RegExp.prototype.multiline", "contents": "/*\n\tThe multiline property indicates whether or not the \"m\" flag is used with the regular expression. multiline is a read-only property of an individual regular expression instance.\n*/" },
-    { "trigger": "-description-RegExp.prototype.source", "contents": "/*\n\tThe source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like \"g\", \"i\" or \"m\") of the regular expression.\n*/" },
-    { "trigger": "-description-RegExp.prototype.toString()", "contents": "/*\n\tThe toString() method returns a string representing the regular expression.\n*/" },
-    { "trigger": "-description-String.prototype.match()", "contents": "/*\n\tThe match() method retrieves the matches when matching a string against a regular expression.\n*/" },
-    { "trigger": "-description-String.prototype.replace()", "contents": "/*\n\tThe replace() method returns a new string with some or all matches of a pattern replaced by a replacement.  The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.\n*/" },
-    { "trigger": "-description-String.prototype.search()", "contents": "/*\n\tThe search() method executes a search for a match between a regular expression and this String object.\n*/" },
-    { "trigger": "-description-String.prototype.split()", "contents": "/*\n\tThe split() method splits a String object into an array of strings by separating the string into substrings.\n*/" },
-    { "trigger": "-description-String.fromCharCode()", "contents": "/*\n\tThe static String.fromCharCode() method returns a string created by using the specified sequence of Unicode values.\n*/" },
-    { "trigger": "-description-String.prototype.charAt()", "contents": "/*\n\tThe charAt() method returns the specified character from a string.\n*/" },
-    { "trigger": "-description-String.prototype.charCodeAt()", "contents": "/*\n\tThe charCodeAt() method returns the numeric Unicode value of the character at the given index (except for unicode codepoints > 0x10000).\n*/" },
-    { "trigger": "-description-String.prototype.concat()", "contents": "/*\n\tThe concat() method combines the text of two or more strings and returns a new string.\n*/" },
-    { "trigger": "-description-String.prototype.indexOf()", "contents": "/*\n\tThe indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found.\n*/" },
-    { "trigger": "-description-String.prototype.lastIndexOf()", "contents": "/*\n\tThe lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found. The calling string is searched backward, starting at fromIndex.\n*/" },
-    { "trigger": "-description-String.prototype.localeCompare()", "contents": "/*\n\tThe localeCompare() method returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order.\n*/" },
-    { "trigger": "-description-String.prototype.slice()", "contents": "/*\n\tThe slice() method extracts a section of a string and returns a new string.\n*/" },
-    { "trigger": "-description-String.prototype.substr()", "contents": "/*\n\tThe substr() method returns the characters in a string beginning at the specified location through the specified number of characters.\n*/" },
-    { "trigger": "-description-String.prototype.substring()", "contents": "/*\n\tThe substring() method returns a subset of a string between one index and another, or through the end of the string.\n*/" },
-    { "trigger": "-description-String.prototype.toLocaleLowerCase()", "contents": "/*\n\tThe toLocaleLowerCase() method returns the calling string value converted to lower case, according to any locale-specific case mappings.\n*/" },
-    { "trigger": "-description-String.prototype.toLocaleUpperCase()", "contents": "/*\n\tThe toLocaleUpperCase() method returns the calling string value converted to upper case, according to any locale-specific case mappings.\n*/" },
-    { "trigger": "-description-String.prototype.toString()", "contents": "/*\n\tThe toString() method returns a string representing the specified object.\n*/" },
-    { "trigger": "-description-String.prototype.toUpperCase()", "contents": "/*\n\tThe toUpperCase() method returns the calling string value converted to uppercase.\n*/" },
-    { "trigger": "-description-String.prototype.toLowerCase()", "contents": "/*\n\tThe toLowerCase() method returns the calling string value converted to lowercase.\n*/" },
-    { "trigger": "-description-String.prototype.trim()", "contents": "/*\n\tThe trim() method removes whitespace from both ends of the string.\n*/" },
-    { "trigger": "-description-String.prototype.valueOf()", "contents": "/*\n\tThe valueOf() method returns the primitive value of a String object.\n*/" },
-    { "trigger": "-description-Array.length", "contents": "/*\n\tThe length property represents an unsigned, 32-bit integer that specifies the number of elements in an array.\n*/" },
-    { "trigger": "-description-Array.isArray()", "contents": "/*\n\tThe Array.isArray() method returns true if an object is an array, false if it is not.\n*/" },
-    { "trigger": "-description-Array.prototype.pop()", "contents": "/*\n\tThe pop() method removes the last element from an array and returns that element.\n*/" },
-    { "trigger": "-description-Array.prototype.push()", "contents": "/*\n\tThe push() method adds one or more elements to the end of an array and returns the new length of the array.\n*/" },
-    { "trigger": "-description-Array.prototype.reverse()", "contents": "/*\n\tThe reverse() method reverses an array in place. The first array element becomes the last and the last becomes the first.\n*/" },
-    { "trigger": "-description-Array.prototype.shift()", "contents": "/*\n\tThe shift() method removes the first element from an array and returns that element. This method changes the length of the array.\n*/" },
-    { "trigger": "-description-Array.prototype.splice()", "contents": "/*\n\tThe splice() method changes the content of an array, adding new elements while removing old elements.\n*/" },
-    { "trigger": "-description-Array.prototype.unshift()", "contents": "/*\n\tThe unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.\n*/" },
-    { "trigger": "-description-Array.prototype.concat()", "contents": "/*\n\tThe concat() method returns a new array comprised of this array joined with the array(s) / value(s) provided as arguments.\n*/" },
-    { "trigger": "-description-Array.prototype.join()", "contents": "/*\n\tThe join() method joins all elements of an array into a string.\n*/" },
-    { "trigger": "-description-Array.prototype.slice()", "contents": "/*\n\tThe slice() method returns a shallow copy of a portion of an array into a new array object.\n*/" },
-    { "trigger": "-description-Array.prototype.toString()", "contents": "/*\n\tThe toString() method returns a string representing the specified array and its elements.\n*/" },
-    { "trigger": "-description-Array.prototype.toLocaleString()", "contents": "/*\n\tThe toLocaleString() method returns a string representing the elements of the array. The elements are converted to Strings using their toLocaleString methods and these Strings are separated by a locale-specific String (such as a comma “,”).\n*/" },
-    { "trigger": "-description-Array.prototype.indexOf()", "contents": "/*\n\tThe indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.\n*/" },
-    { "trigger": "-description-Array.prototype.lastIndexOf()", "contents": "/*\n\tThe lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.\n*/" },
-    { "trigger": "-description-Array.prototype.forEach()", "contents": "/*\n\tThe forEach() method executes a provided function once per array element.\n*/" },
-    { "trigger": "-description-Array.prototype.every()", "contents": "/*\n\tThe every() method tests whether all elements in the array pass the test implemented by the provided function.\n*/" },
-    { "trigger": "-description-Array.prototype.some()", "contents": "/*\n\tThe some() method tests whether some element in the array passes the test implemented by the provided function.\n*/" },
-    { "trigger": "-description-Array.prototype.filter()", "contents": "/*\n\tThe filter() method creates a new array with all elements that pass the test implemented by the provided function.\n*/" },
-    { "trigger": "-description-Array.prototype.map()", "contents": "/*\n\tThe map() method creates a new array with the results of calling a provided function on every element in this array.\n*/" },
-    { "trigger": "-description-Array.prototype.reduce()", "contents": "/*\n\tThe reduce() method applies a function against an accumulator and each value of the array (from left-to-right) has to reduce it to a single value.\n*/" },
-    { "trigger": "-description-Array.prototype.reduceRight()", "contents": "/*\n\tThe reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.\n*/" },
-    { "trigger": "-description-Array.prototype.sort()", "contents": "/*\n\tThe sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.\n*/" },
-  ]
+    "scope": "source.js",
+    "completions": [
+        {
+            "trigger": "description-Array",
+            "contents": "/*\n\tDescription:\n\tThe JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects.\n\n\tSyntax:\n\t[element0, element1, ..., elementN]\n\tnew Array(element0, element1[, ...[, elementN]])\n\tnew Array(arrayLength)\n*/"
+        },
+        {
+            "trigger": "description-String",
+            "contents": "/*\n\tDescription:\n\tThe String global object is a constructor for strings, or a sequence of characters.\n\n\tSyntax:\n\t'string text'\n*/"
+        },
+        {
+            "trigger": "description-RegExp",
+            "contents": "/*\n\tDescription:\n\tThe RegExp constructor creates a regular expression object for matching text with a pattern.\n\n\tSyntax:\n\t/pattern/flags; new RegExp(pattern [, flags]);\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.exec()",
+            "contents": "/*\n\tDescription:\n\tThe exec() method executes a search for a match in a specified string. Returns a result array, or null.\n\n\tSyntax:\n\tregexObj.exec(str)\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.test()",
+            "contents": "/*\n\tDescription:\n\tThe test() method executes a search for a match between a regular expression and a specified string. Returns true or false.\n\n\tSyntax:\n\tregexObj.test(str)\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.global",
+            "contents": "/*\n\tDescription:\n\tThe global property indicates whether or not the \"g\" flag is used with the regular expression. global is a read-only property of an individual regular expression instance.\n\n\tSyntax:\n\tvar regex = new RegExp(\"foo\", \"g\"); console.log(regex.global) // true\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.ignoreCase",
+            "contents": "/*\n\tDescription:\n\tThe ignoreCase property indicates whether or not the \"i\" flag is used with the regular expression. ignoreCase is a read-only property of an individual regular expression instance.\n\n\tSyntax:\n\tvar regex = new RegExp(\"foo\", \"i\"); console.log(regex.ignoreCase) // true\n*/"
+        },
+        {
+            "trigger": "description-RegExp.lastIndex",
+            "contents": "/*\n\tDescription:\n\tThe lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match.\n\n\tSyntax:\n\tlastIndex = regExpObj.lastIndex;\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.multiline",
+            "contents": "/*\n\tDescription:\n\tThe multiline property indicates whether or not the \"m\" flag is used with the regular expression. multiline is a read-only property of an individual regular expression instance.\n\n\tSyntax:\n\tvar regex = new RegExp(\"foo\", \"m\"); console.log(regex.multiline) // true\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.source",
+            "contents": "/*\n\tDescription:\n\tThe source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like \"g\", \"i\" or \"m\") of the regular expression.\n\n\tSyntax:\n\tvar regex = new RegExp(\"fooBar\", \"g\"); console.log(regex.source) // \"fooBar\"\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.toString()",
+            "contents": "/*\n\tDescription:\n\tThe toString() method returns a string representing the regular expression.\n\n\tSyntax:\n\tregexObj.toString()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.match()",
+            "contents": "/*\n\tDescription:\n\tThe match() method retrieves the matches when matching a string against a regular expression.\n\n\tSyntax:\n\tstr.match(regexp);\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.replace()",
+            "contents": "/*\n\tDescription:\n\tThe replace() method returns a new string with some or all matches of a pattern replaced by a replacement.  The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.\n\n\tSyntax:\n\tstr.replace(regexp|substr, newSubStr|function[,   flags]);\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.search()",
+            "contents": "/*\n\tDescription:\n\tThe search() method executes a search for a match between a regular expression and this String object.\n\n\tSyntax:\n\tstr.search(regexp)\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.split()",
+            "contents": "/*\n\tDescription:\n\tThe split() method splits a String object into an array of strings by separating the string into substrings.\n\n\tSyntax:\n\tstr.split([separator][, limit])\n*/"
+        },
+        {
+            "trigger": "description-String.fromCharCode()",
+            "contents": "/*\n\tDescription:\n\tThe static String.fromCharCode() method returns a string created by using the specified sequence of Unicode values.\n\n\tSyntax:\n\tString.fromCharCode(num1, ..., numN)\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.charAt()",
+            "contents": "/*\n\tDescription:\n\tThe charAt() method returns the specified character from a string.\n\n\tSyntax:\n\tstr.charAt(index)\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.charCodeAt()",
+            "contents": "/*\n\tDescription:\n\tThe charCodeAt() method returns the numeric Unicode value of the character at the given index (except for unicode codepoints > 0x10000).\n\n\tSyntax:\n\tstr.charCodeAt(index)\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.concat()",
+            "contents": "/*\n\tDescription:\n\tThe concat() method combines the text of two or more strings and returns a new string.\n\n\tSyntax:\n\tstr.concat(string2, string3[, ..., stringN])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.indexOf()",
+            "contents": "/*\n\tDescription:\n\tThe indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found.\n\n\tSyntax:\n\tstr.indexOf(searchValue[, fromIndex])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.lastIndexOf()",
+            "contents": "/*\n\tDescription:\n\tThe lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found. The calling string is searched backward, starting at fromIndex.\n\n\tSyntax:\n\tstr.lastIndexOf(searchValue[, fromIndex])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.localeCompare()",
+            "contents": "/*\n\tDescription:\n\tThe localeCompare() method returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order.\n\n\tSyntax:\n\tstr.localeCompare(compareString [, locales [, options]])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.slice()",
+            "contents": "/*\n\tDescription:\n\tThe slice() method extracts a section of a string and returns a new string.\n\n\tSyntax:\n\tstr.slice(beginSlice[, endSlice])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.substr()",
+            "contents": "/*\n\tDescription:\n\tThe substr() method returns the characters in a string beginning at the specified location through the specified number of characters.\n\n\tSyntax:\n\tstr.substr(start[, length])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.substring()",
+            "contents": "/*\n\tDescription:\n\tThe substring() method returns a subset of a string between one index and another, or through the end of the string.\n\n\tSyntax:\n\tstr.substring(indexA[, indexB])\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.toLocaleLowerCase()",
+            "contents": "/*\n\tDescription:\n\tThe toLocaleLowerCase() method returns the calling string value converted to lower case, according to any locale-specific case mappings.\n\n\tSyntax:\n\tstr.toLocaleLowerCase()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.toLocaleUpperCase()",
+            "contents": "/*\n\tDescription:\n\tThe toLocaleUpperCase() method returns the calling string value converted to upper case, according to any locale-specific case mappings.\n\n\tSyntax:\n\tstr.toLocaleUpperCase()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.toString()",
+            "contents": "/*\n\tDescription:\n\tThe toString() method returns a string representing the specified object.\n\n\tSyntax:\n\tstr.toString()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.toUpperCase()",
+            "contents": "/*\n\tDescription:\n\tThe toUpperCase() method returns the calling string value converted to uppercase.\n\n\tSyntax:\n\tstr.toUpperCase()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.toLowerCase()",
+            "contents": "/*\n\tDescription:\n\tThe toLowerCase() method returns the calling string value converted to lowercase.\n\n\tSyntax:\n\tstr.toLowerCase()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.trim()",
+            "contents": "/*\n\tDescription:\n\tThe trim() method removes whitespace from both ends of the string.\n\n\tSyntax:\n\tstr.trim()\n*/"
+        },
+        {
+            "trigger": "description-String.prototype.valueOf()",
+            "contents": "/*\n\tDescription:\n\tThe valueOf() method returns the primitive value of a String object.\n\n\tSyntax:\n\tstr.valueOf()\n*/"
+        },
+        {
+            "trigger": "description-Array.length",
+            "contents": "/*\n\tDescription:\n\tThe length property represents an unsigned, 32-bit integer that specifies the number of elements in an array.\n\n\tSyntax:\n\tarr.length\n*/"
+        },
+        {
+            "trigger": "description-Array.isArray()",
+            "contents": "/*\n\tDescription:\n\tThe Array.isArray() method returns true if an object is an array, false if it is not.\n\n\tSyntax:\n\tArray.isArray(obj)\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.pop()",
+            "contents": "/*\n\tDescription:\n\tThe pop() method removes the last element from an array and returns that element.\n\n\tSyntax:\n\tarr.pop()\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.push()",
+            "contents": "/*\n\tDescription:\n\tThe push() method adds one or more elements to the end of an array and returns the new length of the array.\n\n\tSyntax:\n\tarr.push(element1, ..., elementN)\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.reverse()",
+            "contents": "/*\n\tDescription:\n\tThe reverse() method reverses an array in place. The first array element becomes the last and the last becomes the first.\n\n\tSyntax:\n\tarr.reverse()\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.shift()",
+            "contents": "/*\n\tDescription:\n\tThe shift() method removes the first element from an array and returns that element. This method changes the length of the array.\n\n\tSyntax:\n\tarr.shift()\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.splice()",
+            "contents": "/*\n\tDescription:\n\tThe splice() method changes the content of an array, adding new elements while removing old elements.\n\n\tSyntax:\n\tarray.splice(index, howMany[, element1[, ...[, elementN]]])\narray.splice(index) // SpiderMonkey/Firefox extension\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.unshift()",
+            "contents": "/*\n\tDescription:\n\tThe unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.\n\n\tSyntax:\n\tarr.unshift([element1[, ...[, elementN]]])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.concat()",
+            "contents": "/*\n\tDescription:\n\tThe concat() method returns a new array comprised of this array joined with the array(s) / value(s) provided as arguments.\n\n\tSyntax:\n\tvar new_array = old_array.concat(value1[, value2[, ...[, valueN]]])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.join()",
+            "contents": "/*\n\tDescription:\n\tThe join() method joins all elements of an array into a string.\n\n\tSyntax:\n\tstr = arr.join([separator = ','])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.slice()",
+            "contents": "/*\n\tDescription:\n\tThe slice() method returns a shallow copy of a portion of an array into a new array object.\n\n\tSyntax:\n\tarr.slice([begin[, end]])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.toString()",
+            "contents": "/*\n\tDescription:\n\tThe toString() method returns a string representing the specified array and its elements.\n\n\tSyntax:\n\tarr.toString()\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.toLocaleString()",
+            "contents": "/*\n\tDescription:\n\tThe toLocaleString() method returns a string representing the elements of the array. The elements are converted to Strings using their toLocaleString methods and these Strings are separated by a locale-specific String (such as a comma “,”).\n\n\tSyntax:\n\tarr.toLocaleString();\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.indexOf()",
+            "contents": "/*\n\tDescription:\n\tThe indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.\n\n\tSyntax:\n\tarr.indexOf(searchElement[, fromIndex = 0])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.lastIndexOf()",
+            "contents": "/*\n\tDescription:\n\tThe lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.\n\n\tSyntax:\n\tarr.lastIndexOf(searchElement[, fromIndex = arr.length])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.forEach()",
+            "contents": "/*\n\tDescription:\n\tThe forEach() method executes a provided function once per array element.\n\n\tSyntax:\n\tarr.forEach(callback[, thisArg])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.every()",
+            "contents": "/*\n\tDescription:\n\tThe every() method tests whether all elements in the array pass the test implemented by the provided function.\n\n\tSyntax:\n\tarr.every(callback[, thisArg])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.some()",
+            "contents": "/*\n\tDescription:\n\tThe some() method tests whether some element in the array passes the test implemented by the provided function.\n\n\tSyntax:\n\tarr.some(callback[, thisArg])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.filter()",
+            "contents": "/*\n\tDescription:\n\tThe filter() method creates a new array with all elements that pass the test implemented by the provided function.\n\n\tSyntax:\n\tarr.filter(callback[, thisArg])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.map()",
+            "contents": "/*\n\tDescription:\n\tThe map() method creates a new array with the results of calling a provided function on every element in this array.\n\n\tSyntax:\n\tarr.map(callback[, thisArg])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.reduce()",
+            "contents": "/*\n\tDescription:\n\tThe reduce() method applies a function against an accumulator and each value of the array (from left-to-right) has to reduce it to a single value.\n\n\tSyntax:\n\tarr.reduce(callback[, initialValue])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.reduceRight()",
+            "contents": "/*\n\tDescription:\n\tThe reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.\n\n\tSyntax:\n\tarr.reduceRight(callback[, initialValue])\n*/"
+        },
+        {
+            "trigger": "description-Array.prototype.sort()",
+            "contents": "/*\n\tDescription:\n\tThe sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.\n\n\tSyntax:\n\tarr.sort([compareFunction])\n*/"
+        }
+    ]
 }

@@ -1,80 +1,297 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    { "trigger": "-description-document.URL", "contents": "/*\n\tReturns the string URL of the HTML document.\n*/" },
-    { "trigger": "-description-document.activeElement", "contents": "/*\n\tReturns the currently focused element, that is, the element that will get keystroke events if the user types any. This attribute is read only.\n*/" },
-    { "trigger": "-description-document.anchors", "contents": "/*\n\tanchors returns a list of all of the anchors in the document.\n*/" },
-    { "trigger": "-description-document.applets", "contents": "/*\n\tapplets returns an ordered list of the applets within a document.\n*/" },
-    { "trigger": "-description-document.body", "contents": "/*\n\tReturns the <body> or <frameset> node of the current document, or null if no such element exists.\n*/" },
-    { "trigger": "-description-document.defaultView", "contents": "/*\n\tIn browsers returns the window object associated with the document or null if none available.\n*/" },
-    { "trigger": "-description-document.designMode", "contents": "/*\n\tdocument.designMode controls whether the entire document is editable.\n*/" },
-    { "trigger": "-description-document.domain", "contents": "/*\n\tGets/sets the domain portion of the origin of the current document, as used by the same origin policy.\n*/" },
-    { "trigger": "-description-document.embeds", "contents": "/*\n\tembeds returns a list of the embedded OBJECTS within the current document.\n*/" },
-    { "trigger": "-description-document.forms", "contents": "/*\n\tforms returns a collection (an HTMLCollection) of the form elements within the current document.\n*/" },
-    { "trigger": "-description-document.head", "contents": "/*\n\tReturns the <head> element of the current document. If there are more than one <head> elements, the first one is returned.\n*/" },
-    { "trigger": "-description-document.images", "contents": "/*\n\tdocument.images returns a collection of the images in the current HTML document.\n*/" },
-    { "trigger": "-description-document.lastModified", "contents": "/*\n\tReturns a string containing the date and time on which the current document was last modified.\n*/" },
-    { "trigger": "-description-document.location", "contents": "/*\n\tThe document.location read-only property returns a Location object, which contains information about the URL of the document and provides methods for changing that URL and load another URL.\n*/" },
-    { "trigger": "-description-document.plugins", "contents": "/*\n\tReturns an HTMLCollection object containing one or more HTMLEmbedElements or null which represent the <embed> elements in the current document.\n*/" },
-    { "trigger": "-description-document.readyState", "contents": "/*\n\tReturns \"loading\" while the document is loading, \"interactive\" once it is finished parsing but still loading sub-resources, and \"complete\" once it has loaded.\n*/" },
-    { "trigger": "-description-document.referrer", "contents": "/*\n\tReturns the URI of the page that linked to this page.\n*/" },
-    { "trigger": "-description-document.scripts", "contents": "/*\n\tReturns a list of the <script> elements in the document. The returned object is an HTMLCollection.\n*/" },
-    { "trigger": "-description-document.styleSheets", "contents": "/*\n\tThe document.styleSheets read-only property returns a StyleSheetList of StyleSheet  objects for stylesheets explicitly linked into or embedded in a document.\n*/" },
-    { "trigger": "-description-document.title", "contents": "/*\n\tGets or sets the title of the document.\n*/" },
-    { "trigger": "-description-document.characterSet", "contents": "/*\n\tReturns the character encoding of the current document.\n*/" },
-    { "trigger": "-description-document.compatMode", "contents": "/*\n\tIndicates whether the document is rendered in Quirks mode or Standards mode.\n*/" },
-    { "trigger": "-description-document.contentType", "contents": "/*\n\tReturns the MIME type that the document is being rendered as.  This may come from HTTP headers or other sources of MIME information, and might be affected by automatic type conversions performed by either the browser or extensions.\n*/" },
-    { "trigger": "-description-document.currentScript", "contents": "/*\n\tReturns the <script> element whose script is currently being processed.\n*/" },
-    { "trigger": "-description-document.doctype", "contents": "/*\n\tReturns the document Type Declaration (DTD) associated with current document. The returned object implements the DocumentType interface. Use DOMImplementation.createDocumentType() to create a DocumentType.\n*/" },
-    { "trigger": "-description-document.documentElement", "contents": "/*\n\tReturns the Element that is the root element of the document (for example, the <html> element for HTML documents).\n*/" },
-    { "trigger": "-description-document.documentURI", "contents": "/*\n\tReturns the document location as string. It is read-only per DOM4 specification.\n*/" },
-    { "trigger": "-description-document.documentURIObject", "contents": "/*\n\tReturns an nsIURI object representing the URI of the document.\n*/" },
-    { "trigger": "-description-document.implementation", "contents": "/*\n\tReturns a DOMImplementation object associated with the current document.\n*/" },
-    { "trigger": "-description-document.lastStyleSheetSet", "contents": "/*\n\tReturns the last enabled style sheet set; this property's value changes whenever the document.selectedStyleSheetSet property is changed.\n*/" },
-    { "trigger": "-description-document.links", "contents": "/*\n\tThe links property returns a collection of all <area> elements and <a> elements in a document with a value for the href attribute.\n*/" },
-    { "trigger": "-description-document.onoffline", "contents": "/*\n\tThis event is fired on body and bubbles up when navigator.onLine property changes and becomes false.\n*/" },
-    { "trigger": "-description-document.ononline", "contents": "/*\n\t\"online\" event is fired on the <body> of each page when the browser switches between online and offline mode. Additionally, the events bubble up from document.body, to document, ending at window. Both events are non-cancellable (you can't prevent the user from coming online, or going offline).\nwindow.navigator.onLine returns boolean true if the browser is online and false if it is definitely offline (disconnected from the network). The online and offline events are fired when the value of this attribute changes.\n*/" },
-    { "trigger": "-description-document.pointerLockElement", "contents": "/*\n\tThe pointerLockElement property provides the element set as the target for mouse events while the pointer is locked. It is null if lock is pending, pointer is unlocked, or the target is in another document.\n*/" },
-    { "trigger": "-description-document.preferredStyleSheetSet", "contents": "/*\n\tReturns the preferred style sheet set as set by the page author.\n*/" },
-    { "trigger": "-description-document.selectedStyleSheetSet", "contents": "/*\n\tIndicates the name of the style sheet set that's currently in use.\n*/" },
-    { "trigger": "-description-document.styleSheetSets", "contents": "/*\n\tReturns a live list of all of the currently-available style sheet sets.\n*/" },
-    { "trigger": "-description-document.tooltipNode", "contents": "/*\n\tReturns the node which is the target of the current tooltip.\n*/" },
-    { "trigger": "-description-document.caretPositionFromPoint()", "contents": "/*\n\tThis method is used to retrieve the caret position in a document based on two coordinates. A CaretPosition is returned, containing the found DOM node and the character offset in that node.\n*/" },
-    { "trigger": "-description-document.close()", "contents": "/*\n\tThe document.close() method finishes writing to a document, opened with document.open().\n*/" },
-    { "trigger": "-description-document.createNodeIterator()", "contents": "/*\n\tReturns a new NodeIterator object.\n*/" },
-    { "trigger": "-description-document.createRange()", "contents": "/*\n\tReturns a new Range object.\n*/" },
-    { "trigger": "-description-document.createTreeWalker()", "contents": "/*\n\tThe document.createTreeWalker() creator method returns a newly created TreeWalker object.\n*/" },
-    { "trigger": "-description-document.elementFromPoint()", "contents": "/*\n\tReturns the element from the document whose elementFromPoint method is being called which is the topmost element which lies under the given point.  To get an element, specify the point via coordinates, in CSS pixels, relative to the upper-left-most point in the window or frame containing the document.\n*/" },
-    { "trigger": "-description-document.getElementsByClassName()", "contents": "/*\n\tReturns an array-like object of all child elements which have all of the given class names. When called on the document object, the complete document is searched, including the root node. You may also call getElementsByClassName() on any element; it will return only elements which are descendants of the specified root element with the given class names.\n*/" },
-    { "trigger": "-description-document.getElementsByName()", "contents": "/*\n\tReturns a nodelist collection with a given name in the (X)HTML document.\n*/" },
-    { "trigger": "-description-document.releaseCapture()", "contents": "/*\n\tReleases mouse capture if it's currently enabled on an element within this document. Enabling mouse capture on an element is done by calling element.setCapture().\n*/" },
-    { "trigger": "-description-document.adoptNode()", "contents": "/*\n\tAdopts a node from an external document. The node and its subtree is removed from the document it's in (if any), and its ownerdocument is changed to the current document. The node can then be inserted into the current document.\n*/" },
-    { "trigger": "-description-document.createAttribute()", "contents": "/*\n\tcreateAttribute creates a new attribute node, and returns it.\n*/" },
-    { "trigger": "-description-document.createCDATASection()", "contents": "/*\n\tcreateCDATASection() creates a new CDATA section node, and returns it.\n*/" },
-    { "trigger": "-description-document.createComment()", "contents": "/*\n\tcreateComment() creates a new comment node, and returns it.\n*/" },
-    { "trigger": "-description-document.createdocumentFragment()", "contents": "/*\n\tCreates a new empty documentFragment.\n*/" },
-    { "trigger": "-description-document.createElement()", "contents": "/*\n\tIn an HTML document creates the specified HTML element or HTMLUnknownElement if the element is not known. In a XUL document creates the specified XUL element. In other documents creates an element with a null namespaceURI.\n*/" },
-    { "trigger": "-description-document.createElementNS()", "contents": "/*\n\tCreates an element with the specified namespace URI and qualified name.\n*/" },
-    { "trigger": "-description-document.createExpression()", "contents": "/*\n\tThis method compiles an XPathExpression which can then be used for (repeated) evaluations.\n*/" },
-    { "trigger": "-description-document.createNSResolver()", "contents": "/*\n\tCreates an XPathNSResolver which resolves namespaces with respect to the definitions in scope for a specified node.\n*/" },
-    { "trigger": "-description-document.createProcessingInstruction()", "contents": "/*\n\tcreateProcessingInstruction() creates a new processing instruction node, and returns it.\n*/" },
-    { "trigger": "-description-document.createTextNode()", "contents": "/*\n\tCreates a new Text node.\n*/" },
-    { "trigger": "-description-document.enableStyleSheetsForSet()", "contents": "/*\n\tEnables the style sheets matching the specified name in the current style sheet set, and disables all other style sheets (except those without a title, which are always enabled).\n*/" },
-    { "trigger": "-description-document.evaluate()", "contents": "/*\n\tReturns an XPathResult based on an XPath expression and other given parameters.\n*/" },
-    { "trigger": "-description-document.execCommand()", "contents": "/*\n\tWhen an HTML document has been switched to designMode, the document object exposes the execCommand method which allows one to run commands to manipulate the contents of the editable region. Most commands affect the document's selection (bold, italics, etc), while others insert new elements (adding a link) or affect an entire line (indenting). When using contentEditable, calling execCommand will affect the currently active editable element.\n*/" },
-    { "trigger": "-description-document.getElementById()", "contents": "/*\n\tReturns a reference to the element by its ID.\n*/" },
-    { "trigger": "-description-document.getElementsByTagName()", "contents": "/*\n\tReturns an HTMLCollection of elements with the given tag name. The complete document is searched, including the root node. The returned HTMLCollection is live, meaning that it updates itself automatically to stay in sync with the DOM tree without having to call document.getElementsByTagName() again.\n*/" },
-    { "trigger": "-description-document.getElementsByTagNameNS()", "contents": "/*\n\tReturns a list of elements with the given tag name belonging to the given namespace. The complete document is searched, including the root node.\n*/" },
-    { "trigger": "-description-document.hasFocus()", "contents": "/*\n\tReturns a Boolean value indicating whether the document or any element inside the document has focus. This method can be used to determine whether the active element in a document has focus.\n*/" },
-    { "trigger": "-description-document.importNode()", "contents": "/*\n\tCreates a copy of a node from an external document that can be inserted into the current document.\n*/" },
-    { "trigger": "-description-document.loadOverlay()", "contents": "/*\n\tLoads a XUL overlay and merges it with the current document, notifying an observer when the merge is complete.\n*/" },
-    { "trigger": "-description-document.open()", "contents": "/*\n\tThe document.open() method opens a document for writing.\n*/" },
-    { "trigger": "-description-document.queryCommandSupported()", "contents": "/*\n\tReports whether or not the specified editor query command is supported by the browser.\n*/" },
-    { "trigger": "-description-document.querySelector()()", "contents": "/*\n\tReturns the first element within the document (using depth-first pre-order traversal of the document's nodes) that matches the specified group of selectors.\n*/" },
-    { "trigger": "-description-document.querySelectorAll()", "contents": "/*\n\tReturns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a NodeList.\n*/" },
-    { "trigger": "-description-document.write()", "contents": "/*\n\tWrites a string of text to a document stream opened by document.open().\n*/" },
-    { "trigger": "-description-document.writeln()", "contents": "/*\n\tWrites a string of text followed by a newline character to a document.\n*/" },
-  ]
+	"scope": "source.js",
+	"completions": [
+		{
+			"trigger": "description-document.URL",
+			"contents": "/*\n\tDescription:\n\tReturns the string URL of the HTML document.\n\n\tSyntax:\n\tstring = document.URL\n*/"
+		},
+		{
+			"trigger": "description-document.activeElement",
+			"contents": "/*\n\tDescription:\n\tReturns the currently focused element, that is, the element that will get keystroke events if the user types any. This attribute is read only.\n\n\tSyntax:\n\tvar curElement = document.activeElement;\n*/"
+		},
+		{
+			"trigger": "description-document.anchors",
+			"contents": "/*\n\tDescription:\n\tanchors returns a list of all of the anchors in the document.\n\n\tSyntax:\n\tnodeList = document.anchors;\n*/"
+		},
+		{
+			"trigger": "description-document.applets",
+			"contents": "/*\n\tDescription:\n\tapplets returns an ordered list of the applets within a document.\n\n\tSyntax:\n\tnodeList = document.applets\n*/"
+		},
+		{
+			"trigger": "description-document.body",
+			"contents": "/*\n\tDescription:\n\tReturns the <body> or <frameset> node of the current document, or null if no such element exists.\n\n\tSyntax:\n\tvar objRef = document.body; \ndocument.body = objRef;\n*/"
+		},
+		{
+			"trigger": "description-document.defaultView",
+			"contents": "/*\n\tDescription:\n\tIn browsers returns the window object associated with the document or null if none available.\n\n\tSyntax:\n\tvar win = document.defaultView;\n*/"
+		},
+		{
+			"trigger": "description-document.designMode",
+			"contents": "/*\n\tDescription:\n\tdocument.designMode controls whether the entire document is editable.\n\n\tSyntax:\n\tiframe_node.contentDocument.designMode = \"on\";\n*/"
+		},
+		{
+			"trigger": "description-document.domain",
+			"contents": "/*\n\tDescription:\n\tGets/sets the domain portion of the origin of the current document, as used by the same origin policy.\n\n\tSyntax:\n\tvar domainString = document.domain;\ndocument.domain = string;\n*/"
+		},
+		{
+			"trigger": "description-document.embeds",
+			"contents": "/*\n\tDescription:\n\tembeds returns a list of the embedded OBJECTS within the current document.\n\n\tSyntax:\n\tnodeList = document.embeds\n*/"
+		},
+		{
+			"trigger": "description-document.forms",
+			"contents": "/*\n\tDescription:\n\tforms returns a collection (an HTMLCollection) of the form elements within the current document.\n\n\tSyntax:\n\tcollection = document.forms;\n*/"
+		},
+		{
+			"trigger": "description-document.head",
+			"contents": "/*\n\tDescription:\n\tReturns the <head> element of the current document. If there are more than one <head> elements, the first one is returned.\n\n\tSyntax:\n\tvar objRef = document.head;\n*/"
+		},
+		{
+			"trigger": "description-document.images",
+			"contents": "/*\n\tDescription:\n\tdocument.images returns a collection of the images in the current HTML document.\n\n\tSyntax:\n\tvar htmlCollection = document.images;\n*/"
+		},
+		{
+			"trigger": "description-document.lastModified",
+			"contents": "/*\n\tDescription:\n\tReturns a string containing the date and time on which the current document was last modified.\n\n\tSyntax:\n\tstring = document.lastModified;\n*/"
+		},
+		{
+			"trigger": "description-document.location",
+			"contents": "/*\n\tDescription:\n\tThe document.location read-only property returns a Location object, which contains information about the URL of the document and provides methods for changing that URL and load another URL.\n\n\tSyntax:\n\tlocationObj = document.location\ndocument.location = 'http://www.mozilla.org' // Equivalent to document.location.href = 'http://www.mozilla.org'\n*/"
+		},
+		{
+			"trigger": "description-document.plugins",
+			"contents": "/*\n\tDescription:\n\tReturns an HTMLCollection object containing one or more HTMLEmbedElements or null which represent the <embed> elements in the current document.\n\n\tSyntax:\n\tembedArrayObj = document.plugins\n*/"
+		},
+		{
+			"trigger": "description-document.readyState",
+			"contents": "/*\n\tDescription:\n\tReturns \"loading\" while the document is loading, \"interactive\" once it is finished parsing but still loading sub-resources, and \"complete\" once it has loaded.\n\n\tSyntax:\n\tvar string = document.readyState;\n*/"
+		},
+		{
+			"trigger": "description-document.referrer",
+			"contents": "/*\n\tDescription:\n\tReturns the URI of the page that linked to this page.\n\n\tSyntax:\n\tstring = document.referrer;\n*/"
+		},
+		{
+			"trigger": "description-document.scripts",
+			"contents": "/*\n\tDescription:\n\tReturns a list of the <script> elements in the document. The returned object is an HTMLCollection.\n\n\tSyntax:\n\tvar scriptList = document.scripts;\n*/"
+		},
+		{
+			"trigger": "description-document.styleSheets",
+			"contents": "/*\n\tDescription:\n\tThe document.styleSheets read-only property returns a StyleSheetList of StyleSheet  objects for stylesheets explicitly linked into or embedded in a document.\n\n\tSyntax:\n\tvar styleSheetList = document.styleSheets;\n*/"
+		},
+		{
+			"trigger": "description-document.title",
+			"contents": "/*\n\tDescription:\n\tGets or sets the title of the document.\n\n\tSyntax:\n\tvar docTitle = document.title;\ndocument.title = newTitle;\n*/"
+		},
+		{
+			"trigger": "description-document.characterSet",
+			"contents": "/*\n\tDescription:\n\tReturns the character encoding of the current document.\n\n\tSyntax:\n\tdocument.characterSet\n*/"
+		},
+		{
+			"trigger": "description-document.compatMode",
+			"contents": "/*\n\tDescription:\n\tIndicates whether the document is rendered in Quirks mode or Standards mode.\n\n\tSyntax:\n\tmode = document.compatMode\n*/"
+		},
+		{
+			"trigger": "description-document.contentType",
+			"contents": "/*\n\tDescription:\n\tReturns the MIME type that the document is being rendered as.  This may come from HTTP headers or other sources of MIME information, and might be affected by automatic type conversions performed by either the browser or extensions.\n\n\tSyntax:\n\tcontentType = document.contentType;\n*/"
+		},
+		{
+			"trigger": "description-document.currentScript",
+			"contents": "/*\n\tDescription:\n\tReturns the <script> element whose script is currently being processed.\n\n\tSyntax:\n\tvar curScriptElement = document.currentScript;\n*/"
+		},
+		{
+			"trigger": "description-document.doctype",
+			"contents": "/*\n\tDescription:\n\tReturns the document Type Declaration (DTD) associated with current document. The returned object implements the DocumentType interface. Use DOMImplementation.createDocumentType() to create a DocumentType.\n\n\tSyntax:\n\tdoctype = document.doctype;\n*/"
+		},
+		{
+			"trigger": "description-document.documentElement",
+			"contents": "/*\n\tDescription:\n\tReturns the Element that is the root element of the document (for example, the <html> element for HTML documents).\n\n\tSyntax:\n\tvar element = document.documentElement;\n*/"
+		},
+		{
+			"trigger": "description-document.documentURI",
+			"contents": "/*\n\tDescription:\n\tReturns the document location as string. It is read-only per DOM4 specification.\n\n\tSyntax:\n\tvar string = document.documentURI;\n*/"
+		},
+		{
+			"trigger": "description-document.documentURIObject",
+			"contents": "/*\n\tDescription:\n\tReturns an nsIURI object representing the URI of the document.\n\n\tSyntax:\n\tvar uri = doc.documentURIObject;\n*/"
+		},
+		{
+			"trigger": "description-document.implementation",
+			"contents": "/*\n\tDescription:\n\tReturns a DOMImplementation object associated with the current document.\n\n\tSyntax:\n\tDOMImpObj = document.implementation;\n*/"
+		},
+		{
+			"trigger": "description-document.lastStyleSheetSet",
+			"contents": "/*\n\tDescription:\n\tReturns the last enabled style sheet set; this property's value changes whenever the document.selectedStyleSheetSet property is changed.\n\n\tSyntax:\n\tlastStyleSheetSet = document.lastStyleSheetSet\n*/"
+		},
+		{
+			"trigger": "description-document.links",
+			"contents": "/*\n\tDescription:\n\tThe links property returns a collection of all <area> elements and <a> elements in a document with a value for the href attribute.\n\n\tSyntax:\n\tnodeList = document.links\n*/"
+		},
+		{
+			"trigger": "description-document.onoffline",
+			"contents": "/*\n\tThis event is fired on body and bubbles up when navigator.onLine property changes and becomes false.\n*/"
+		},
+		{
+			"trigger": "description-document.ononline",
+			"contents": "/*\n\t\"online\" event is fired on the <body> of each page when the browser switches between online and offline mode. Additionally, the events bubble up from document.body, to document, ending at window. Both events are non-cancellable (you can't prevent the user from coming online, or going offline).\nwindow.navigator.onLine returns boolean true if the browser is online and false if it is definitely offline (disconnected from the network). The online and offline events are fired when the value of this attribute changes.\n*/"
+		},
+		{
+			"trigger": "description-document.pointerLockElement",
+			"contents": "/*\n\tDescription:\n\tThe pointerLockElement property provides the element set as the target for mouse events while the pointer is locked. It is null if lock is pending, pointer is unlocked, or the target is in another document.\n\n\tSyntax:\n\tvar element = document.pointerLockElement;\n*/"
+		},
+		{
+			"trigger": "description-document.preferredStyleSheetSet",
+			"contents": "/*\n\tDescription:\n\tReturns the preferred style sheet set as set by the page author.\n\n\tSyntax:\n\tpreferredStyleSheetSet = document.preferredStyleSheetSet\n*/"
+		},
+		{
+			"trigger": "description-document.selectedStyleSheetSet",
+			"contents": "/*\n\tDescription:\n\tIndicates the name of the style sheet set that's currently in use.\n\n\tSyntax:\n\tcurrentStyleSheetSet = document.selectedStyleSheetSet\n\ndocument.selectedStyleSheet = newStyleSheetSet\n*/"
+		},
+		{
+			"trigger": "description-document.styleSheetSets",
+			"contents": "/*\n\tDescription:\n\tReturns a live list of all of the currently-available style sheet sets.\n\n\tSyntax:\n\tsets = document.styleSheetSets\n*/"
+		},
+		{
+			"trigger": "description-document.tooltipNode",
+			"contents": "/*\n\tDescription:\n\tReturns the node which is the target of the current tooltip.\n\n\tSyntax:\n\tdocument.tooltipNode;\n*/"
+		},
+		{
+			"trigger": "description-document.caretPositionFromPoint()",
+			"contents": "/*\n\tDescription:\n\tThis method is used to retrieve the caret position in a document based on two coordinates. A CaretPosition is returned, containing the found DOM node and the character offset in that node.\n\n\tSyntax:\n\tvar cp = document.caretPositionFromPoint(float x, float y);\n*/"
+		},
+		{
+			"trigger": "description-document.close()",
+			"contents": "/*\n\tDescription:\n\tThe document.close() method finishes writing to a document, opened with document.open().\n\n\tSyntax:\n\tdocument.close();\n*/"
+		},
+		{
+			"trigger": "description-document.createNodeIterator()",
+			"contents": "/*\n\tDescription:\n\tReturns a new NodeIterator object.\n\n\tSyntax:\n\tvar nodeIterator = document.createNodeIterator(root, whatToShow, filter);\n*/"
+		},
+		{
+			"trigger": "description-document.createRange()",
+			"contents": "/*\n\tDescription:\n\tReturns a new Range object.\n\n\tSyntax:\n\trange = document.createRange();\n*/"
+		},
+		{
+			"trigger": "description-document.createTreeWalker()",
+			"contents": "/*\n\tDescription:\n\tThe document.createTreeWalker() creator method returns a newly created TreeWalker object.\n\n\tSyntax:\n\ttreeWalker = document.createTreeWalker(root, whatToShow, filter, entityReferenceExpansion);\n*/"
+		},
+		{
+			"trigger": "description-document.elementFromPoint()",
+			"contents": "/*\n\tDescription:\n\tReturns the element from the document whose elementFromPoint method is being called which is the topmost element which lies under the given point.  To get an element, specify the point via coordinates, in CSS pixels, relative to the upper-left-most point in the window or frame containing the document.\n\n\tSyntax:\n\tvar element = document.elementFromPoint(x, y);\n*/"
+		},
+		{
+			"trigger": "description-document.getElementsByClassName()",
+			"contents": "/*\n\tDescription:\n\tReturns an array-like object of all child elements which have all of the given class names. When called on the document object, the complete document is searched, including the root node. You may also call getElementsByClassName() on any element; it will return only elements which are descendants of the specified root element with the given class names.\n\n\tSyntax:\n\tvar elements = document.getElementsByClassName(names); // or:\nvar elements = rootElement.getElementsByClassName(names);\n*/"
+		},
+		{
+			"trigger": "description-document.getElementsByName()",
+			"contents": "/*\n\tDescription:\n\tReturns a nodelist collection with a given name in the (X)HTML document.\n\n\tSyntax:\n\telements = document.getElementsByName(name)\n*/"
+		},
+		{
+			"trigger": "description-document.releaseCapture()",
+			"contents": "/*\n\tDescription:\n\tReleases mouse capture if it's currently enabled on an element within this document. Enabling mouse capture on an element is done by calling element.setCapture().\n\n\tSyntax:\n\tdocument.releaseCapture()\n*/"
+		},
+		{
+			"trigger": "description-document.adoptNode()",
+			"contents": "/*\n\tDescription:\n\tAdopts a node from an external document. The node and its subtree is removed from the document it's in (if any), and its ownerdocument is changed to the current document. The node can then be inserted into the current document.\n\n\tSyntax:\n\tnode = document.adoptNode(externalNode);\n*/"
+		},
+		{
+			"trigger": "description-document.createAttribute()",
+			"contents": "/*\n\tDescription:\n\tcreateAttribute creates a new attribute node, and returns it.\n\n\tSyntax:\n\tattribute = document.createAttribute(name)\n*/"
+		},
+		{
+			"trigger": "description-document.createCDATASection()",
+			"contents": "/*\n\tDescription:\n\tcreateCDATASection() creates a new CDATA section node, and returns it.\n\n\tSyntax:\n\tCDATASectionNode = document.createCDATASection(data)\n*/"
+		},
+		{
+			"trigger": "description-document.createComment()",
+			"contents": "/*\n\tDescription:\n\tcreateComment() creates a new comment node, and returns it.\n\n\tSyntax:\n\tCommentNode = document.createComment(data)\n*/"
+		},
+		{
+			"trigger": "description-document.createdocumentFragment()",
+			"contents": "/*\n\tDescription:\n\tCreates a new empty documentFragment.\n\n\tSyntax:\n\tvar docFragment = document.createDocumentFragment();\n*/"
+		},
+		{
+			"trigger": "description-document.createElement()",
+			"contents": "/*\n\tDescription:\n\tIn an HTML document creates the specified HTML element or HTMLUnknownElement if the element is not known. In a XUL document creates the specified XUL element. In other documents creates an element with a null namespaceURI.\n\n\tSyntax:\n\tvar element = document.createElement(tagName);\n*/"
+		},
+		{
+			"trigger": "description-document.createElementNS()",
+			"contents": "/*\n\tDescription:\n\tCreates an element with the specified namespace URI and qualified name.\n\n\tSyntax:\n\telement = document.createElementNS(namespaceURI, qualifiedName);\n*/"
+		},
+		{
+			"trigger": "description-document.createExpression()",
+			"contents": "/*\n\tDescription:\n\tThis method compiles an XPathExpression which can then be used for (repeated) evaluations.\n\n\tSyntax:\n\txpathExpr = document.createExpression(xpathText, namespaceURLMapper);\n*/"
+		},
+		{
+			"trigger": "description-document.createNSResolver()",
+			"contents": "/*\n\tDescription:\n\tCreates an XPathNSResolver which resolves namespaces with respect to the definitions in scope for a specified node.\n\n\tSyntax:\n\tnsResolver = document.createNSResolver(node);\n*/"
+		},
+		{
+			"trigger": "description-document.createProcessingInstruction()",
+			"contents": "/*\n\tDescription:\n\tcreateProcessingInstruction() creates a new processing instruction node, and returns it.\n\n\tSyntax:\n\tProcessing instruction node = document.createProcessingInstruction(target, data)\n*/"
+		},
+		{
+			"trigger": "description-document.createTextNode()",
+			"contents": "/*\n\tDescription:\n\tCreates a new Text node.\n\n\tSyntax:\n\ttext = document.createTextNode(data);\n*/"
+		},
+		{
+			"trigger": "description-document.enableStyleSheetsForSet()",
+			"contents": "/*\n\tDescription:\n\tEnables the style sheets matching the specified name in the current style sheet set, and disables all other style sheets (except those without a title, which are always enabled).\n\n\tSyntax:\n\tdocument.enableStyleSheetsForSet(name)\n*/"
+		},
+		{
+			"trigger": "description-document.evaluate()",
+			"contents": "/*\n\tDescription:\n\tReturns an XPathResult based on an XPath expression and other given parameters.\n\n\tSyntax:\n\tvar xpathResult = document.evaluate(xpathExpression, contextNode, namespaceResolver, resultType, result);\n*/"
+		},
+		{
+			"trigger": "description-document.execCommand()",
+			"contents": "/*\n\tDescription:\n\tWhen an HTML document has been switched to designMode, the document object exposes the execCommand method which allows one to run commands to manipulate the contents of the editable region. Most commands affect the document's selection (bold, italics, etc), while others insert new elements (adding a link) or affect an entire line (indenting). When using contentEditable, calling execCommand will affect the currently active editable element.\n\n\tSyntax:\n\texecCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)\n*/"
+		},
+		{
+			"trigger": "description-document.getElementById()",
+			"contents": "/*\n\tDescription:\n\tReturns a reference to the element by its ID.\n\n\tSyntax:\n\telement = document.getElementById(id);\n*/"
+		},
+		{
+			"trigger": "description-document.getElementsByTagName()",
+			"contents": "/*\n\tDescription:\n\tReturns an HTMLCollection of elements with the given tag name. The complete document is searched, including the root node. The returned HTMLCollection is live, meaning that it updates itself automatically to stay in sync with the DOM tree without having to call document.getElementsByTagName() again.\n\n\tSyntax:\n\tvar elements = document.getElementsByTagName(name);\n*/"
+		},
+		{
+			"trigger": "description-document.getElementsByTagNameNS()",
+			"contents": "/*\n\tDescription:\n\tReturns a list of elements with the given tag name belonging to the given namespace. The complete document is searched, including the root node.\n\n\tSyntax:\n\telements = document.getElementsByTagNameNS(namespace, name)\n*/"
+		},
+		{
+			"trigger": "description-document.hasFocus()",
+			"contents": "/*\n\tDescription:\n\tReturns a Boolean value indicating whether the document or any element inside the document has focus. This method can be used to determine whether the active element in a document has focus.\n\n\tSyntax:\n\tfocused = document.hasFocus();\n*/"
+		},
+		{
+			"trigger": "description-document.importNode()",
+			"contents": "/*\n\tDescription:\n\tCreates a copy of a node from an external document that can be inserted into the current document.\n\n\tSyntax:\n\tvar node = document.importNode(externalNode, deep);\n*/"
+		},
+		{
+			"trigger": "description-document.loadOverlay()",
+			"contents": "/*\n\tDescription:\n\tLoads a XUL overlay and merges it with the current document, notifying an observer when the merge is complete.\n\n\tSyntax:\n\tdocument.loadOverlay(url, observer);\n*/"
+		},
+		{
+			"trigger": "description-document.open()",
+			"contents": "/*\n\tDescription:\n\tThe document.open() method opens a document for writing.\n\n\tSyntax:\n\tdocument.open();\n*/"
+		},
+		{
+			"trigger": "description-document.queryCommandSupported()",
+			"contents": "/*\n\tDescription:\n\tReports whether or not the specified editor query command is supported by the browser.\n\n\tSyntax:\n\tisSupported = document.queryCommandSupported(command);\n*/"
+		},
+		{
+			"trigger": "description-document.querySelector()",
+			"contents": "/*\n\tDescription:\n\tReturns the first element within the document (using depth-first pre-order traversal of the document's nodes) that matches the specified group of selectors.\n\n\tSyntax:\n\telement = document.querySelector(selectors);\n*/"
+		},
+		{
+			"trigger": "description-document.querySelectorAll()",
+			"contents": "/*\n\tDescription:\n\tReturns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a NodeList.\n\n\tSyntax:\n\telementList = document.querySelectorAll(selectors);\n*/"
+		},
+		{
+			"trigger": "description-document.write()",
+			"contents": "/*\n\tDescription:\n\tWrites a string of text to a document stream opened by document.open().\n\n\tSyntax:\n\tdocument.write(markup);\n*/"
+		},
+		{
+			"trigger": "description-document.writeln()",
+			"contents": "/*\n\tDescription:\n\tWrites a string of text followed by a newline character to a document.\n\n\tSyntax:\n\tdocument.writeln(line);\n*/"
+		}
+	]
 }
