@@ -14,14 +14,6 @@
             "contents": "/*\n\tDescription:\n\tThe RegExp constructor creates a regular expression object for matching text with a pattern.\n\n\tSyntax:\n\t/pattern/flags; new RegExp(pattern [, flags]);\n*/"
         },
         {
-            "trigger": "description-RegExp.prototype.exec()",
-            "contents": "/*\n\tDescription:\n\tThe exec() method executes a search for a match in a specified string. Returns a result array, or null.\n\n\tSyntax:\n\tregexObj.exec(str)\n*/"
-        },
-        {
-            "trigger": "description-RegExp.prototype.test()",
-            "contents": "/*\n\tDescription:\n\tThe test() method executes a search for a match between a regular expression and a specified string. Returns true or false.\n\n\tSyntax:\n\tregexObj.test(str)\n*/"
-        },
-        {
             "trigger": "description-RegExp.prototype.global",
             "contents": "/*\n\tDescription:\n\tThe global property indicates whether or not the \"g\" flag is used with the regular expression. global is a read-only property of an individual regular expression instance.\n\n\tSyntax:\n\tvar regex = new RegExp(\"foo\", \"g\"); console.log(regex.global) // true\n*/"
         },
@@ -40,6 +32,14 @@
         {
             "trigger": "description-RegExp.prototype.source",
             "contents": "/*\n\tDescription:\n\tThe source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like \"g\", \"i\" or \"m\") of the regular expression.\n\n\tSyntax:\n\tvar regex = new RegExp(\"fooBar\", \"g\"); console.log(regex.source) // \"fooBar\"\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.exec()",
+            "contents": "/*\n\tDescription:\n\tThe exec() method executes a search for a match in a specified string. Returns a result array, or null.\n\n\tSyntax:\n\tregexObj.exec(str)\n*/"
+        },
+        {
+            "trigger": "description-RegExp.prototype.test()",
+            "contents": "/*\n\tDescription:\n\tThe test() method executes a search for a match between a regular expression and a specified string. Returns true or false.\n\n\tSyntax:\n\tregexObj.test(str)\n*/"
         },
         {
             "trigger": "description-RegExp.prototype.toString()",

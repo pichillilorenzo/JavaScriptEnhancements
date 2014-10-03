@@ -4,42 +4,175 @@
   "completions":
   [
     // Properties
-    "accessKey",
-    "attributes",
-    "classList",
-    "className",
-    "clientHeight",
-    "clientLeft",
-    "clientTop",
-    "clientWidth",
-    "id",
-    "innerHTML",
-    "name",
-    "onafterscriptexecute",
-    "onbeforescriptexecute",
-    "outerHTML",
-    "scrollHeight",
-    "scrollLeft",
-    "scrollTop",
-    "scrollWidth",
-    "tagName",
+    {
+      "trigger": "accessKey\tElement",
+      "contents": "accessKey"
+    },
+    {
+      "trigger": "attributes\tElement",
+      "contents": "attributes"
+    },
+    {
+      "trigger": "classList\tElement",
+      "contents": "classList"
+    },
+    {
+      "trigger": "className\tElement",
+      "contents": "className"
+    },
+    {
+      "trigger": "clientHeight\tElement",
+      "contents": "clientHeight"
+    },
+    {
+      "trigger": "clientLeft\tElement",
+      "contents": "clientLeft"
+    },
+    {
+      "trigger": "clientTop\tElement",
+      "contents": "clientTop"
+    },
+    {
+      "trigger": "clientWidth\tElement",
+      "contents": "clientWidth"
+    },
+    {
+      "trigger": "id\tElement",
+      "contents": "id"
+    },
+    {
+      "trigger": "innerHTML\tElement",
+      "contents": "innerHTML"
+    },
+    {
+      "trigger": "name\tElement",
+      "contents": "name"
+    },
+    {
+      "trigger": "onafterscriptexecute\tElement",
+      "contents": "onafterscriptexecute"
+    },
+    {
+      "trigger": "onbeforescriptexecute\tElement",
+      "contents": "onbeforescriptexecute"
+    },
+    {
+      "trigger": "outerHTML\tElement",
+      "contents": "outerHTML"
+    },
+    {
+      "trigger": "scrollHeight\tElement",
+      "contents": "scrollHeight"
+    },
+    {
+      "trigger": "scrollLeft\tElement",
+      "contents": "scrollLeft"
+    },
+    {
+      "trigger": "scrollTop\tElement",
+      "contents": "scrollTop"
+    },
+    {
+      "trigger": "scrollWidth\tElement",
+      "contents": "scrollWidth"
+    },
+    {
+      "trigger": "tagName\tElement",
+      "contents": "tagName"
+    },
 
     // Methods
-    "getAttribute(${0:attributeName})",
-    "getAttributeNS(${0:namespace}, name)",
-    "getAttributeNode(${0:attrName})",
-    "getAttributeNodeNS(${0:namespace}, nodeName)",
-    "getBoundingClientRect()",
-    "getClientRects()",
-    "hasAttribute(${0:attrName})",
-    "hasAttributeNS(${0:namespace}, localName)",
-    "insertAdjacentHTML(${0:position}, text)",
-    "removeAttribute(${0:attrName})",
-    "removeAttributeNS(${0:namespace}, attrName)",
-    "removeAttributeNode(${0:attributeNode})",
-    "setAttribute(${0:name}, value)",
-    "setAttributeNS(${0:namespace}, name, value)",
-    "setAttributeNode(${0:attribute})",
-    "setAttributeNodeNS(${0:attributeNode})",
+    {
+      "trigger": "getElementsByClassName(${0:names})\tElement",
+      "contents": "getElementsByClassName(${0:names})"
+    },
+    {
+      "trigger": "getElementsByName(${0:name})\tElement",
+      "contents": "getElementsByName(${0:name})"
+    },
+    {
+      "trigger": "getElementById(${0:id})\tElement",
+      "contents": "getElementById(${0:id})"
+    },
+    {
+      "trigger": "getElementsByTagName(${0:name})\tElement",
+      "contents": "getElementsByTagName(${0:name})"
+    },
+    {
+      "trigger": "getElementsByTagNameNS(${0:namespace}, name)\tElement",
+      "contents": "getElementsByTagNameNS(${0:namespace}, name)"
+    },
+    {
+      "trigger": "querySelector(${0:selectors})\tElement",
+      "contents": "querySelector(${0:selectors})"
+    },
+    {
+      "trigger": "querySelectorAll(${0:selectors})\tElement",
+      "contents": "querySelectorAll(${0:selectors})"
+    },
+    {
+      "trigger": "getAttribute(${0:attributeName})\tElement",
+      "contents": "getAttribute(${0:attributeName})"
+    },
+    {
+      "trigger": "getAttributeNS(${0:namespace}, name)\tElement",
+      "contents": "getAttributeNS(${0:namespace}, name)"
+    },
+    {
+      "trigger": "getAttributeNode(${0:attrName})\tElement",
+      "contents": "getAttributeNode(${0:attrName})"
+    },
+    {
+      "trigger": "getAttributeNodeNS(${0:namespace}, nodeName)\tElement",
+      "contents": "getAttributeNodeNS(${0:namespace}, nodeName)"
+    },
+    {
+      "trigger": "getBoundingClientRect()\tElement",
+      "contents": "getBoundingClientRect()"
+    },
+    {
+      "trigger": "getClientRects()\tElement",
+      "contents": "getClientRects()"
+    },
+    {
+      "trigger": "hasAttribute(${0:attrName})\tElement",
+      "contents": "hasAttribute(${0:attrName})"
+    },
+    {
+      "trigger": "hasAttributeNS(${0:namespace}, localName)\tElement",
+      "contents": "hasAttributeNS(${0:namespace}, localName)"
+    },
+    {
+      "trigger": "insertAdjacentHTML(${0:position}, text)\tElement",
+      "contents": "insertAdjacentHTML(${0:position}, text)"
+    },
+    {
+      "trigger": "removeAttribute(${0:attrName})\tElement",
+      "contents": "removeAttribute(${0:attrName})"
+    },
+    {
+      "trigger": "removeAttributeNS(${0:namespace}, attrName)\tElement",
+      "contents": "removeAttributeNS(${0:namespace}, attrName)"
+    },
+    {
+      "trigger": "removeAttributeNode(${0:attributeNode})\tElement",
+      "contents": "removeAttributeNode(${0:attributeNode})"
+    },
+    {
+      "trigger": "setAttribute(${0:name}, value)\tElement",
+      "contents": "setAttribute(${0:name}, value)"
+    },
+    {
+      "trigger": "setAttributeNS(${0:namespace}, name, value)\tElement",
+      "contents": "setAttributeNS(${0:namespace}, name, value)"
+    },
+    {
+      "trigger": "setAttributeNode(${0:attribute})\tElement",
+      "contents": "setAttributeNode(${0:attribute})"
+    },
+    {
+      "trigger": "setAttributeNodeNS(${0:attributeNode})\tElement",
+      "contents": "setAttributeNodeNS(${0:attributeNode})"
+    },
   ]
 }

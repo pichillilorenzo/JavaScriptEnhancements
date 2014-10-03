@@ -3,12 +3,33 @@
 
   "completions":
   [
-    "new Error(${0:message})",
-    "new EvalError(${0:message})",
-    "new RangeError(${0:message})",
-    "new ReferenceError(${0:message})",
-    "new SyntaxError(${0:message})",
-    "new TypeError(${0:message})",
-    "new URIError(${0:message})",
+    {
+      "trigger": "new Error(${0:message})\tError",
+      "contents": "new Error(${0:message})"
+    },
+    {
+      "trigger": "new EvalError(${0:message})\tError",
+      "contents": "new EvalError(${0:message})"
+    },
+    {
+      "trigger": "new RangeError(${0:message})\tError",
+      "contents": "new RangeError(${0:message})"
+    },
+    {
+      "trigger": "new ReferenceError(${0:message})\tError",
+      "contents": "new ReferenceError(${0:message})"
+    },
+    {
+      "trigger": "new SyntaxError(${0:message})\tError",
+      "contents": "new SyntaxError(${0:message})"
+    },
+    {
+      "trigger": "new TypeError(${0:message})\tError",
+      "contents": "new TypeError(${0:message})"
+    },
+    {
+      "trigger": "new URIError(${0:message})\tError",
+      "contents": "new URIError(${0:message})"
+    },
   ]
 }

@@ -3,56 +3,198 @@
 
   "completions":
   [ 
-    "new Array();",
-    "new RegExp();",
-    "new String();",
-    "replace(${0:regexp|substr}, 'string')",
-    "exec(${0:string})",
-    "test(${0:string})",
-    "match(${0:regexp})",
-    "search(${0:regexp})",
-    "split(${0:separator})",
+    {
+      "trigger": "new Array()\tArray",
+      "contents": "new Array()"
+    },
+    {
+      "trigger": "new RegExp()\tRegExp",
+      "contents": "new RegExp()"
+    },
+    {
+      "trigger": "new String()\tString",
+      "contents": "new String()"
+    },
+
+    // Properties
+    // RegExp
+    {
+      "trigger": "global\tRegExp",
+      "contents": "global"
+    },
+    {
+      "trigger": "ignoreCase\tRegExp",
+      "contents": "ignoreCase"
+    },
+    {
+      "trigger": "lastIndex\tRegExp",
+      "contents": "lastIndex"
+    },
+    {
+      "trigger": "multiline\tRegExp",
+      "contents": "multiline"
+    },
+    {
+      "trigger": "source\tRegExp",
+      "contents": "source"
+    },
+
+    "length",
     "index",
     "input",
-    "lastIndex",
-    "source",
-    "global",
-    "ignoreCase",
-    "multiline",
-    "length",
-    "concat(${0:value1}, value2)",
-    "join(${0:separator})",
-    "push(${0:element1})",
-    "pop()",
-    "shift()",
-    "unshift(${0:element1})",
-    "slice(${0:begin})",
-    "splice(${0:index}, howMany)",
-    "reverse()",
-    "sort(${0:compareFunction})",
-    "indexOf(${0:search})",
-    "lastIndexOf(${0:search})",
-    "map(${0:callback})",
-    "filter(${0:callback})",
-    "every(${0:callback})",
-    "some(${0:callback})",
-    "reduce(${0:callback})",
-    "reduceRight(${0:callback})",
-    "charAt(${0:index})",
-    "charCodeAt(${0:index})",
-    "fromCharCode(${0:num1})",
-    "substring(${0:indexA})",
-    "substr(${0:start})",
-    "toLowerCase()",
-    "toLocaleLowerCase()",
-    "toUpperCase()",
-    "toLocaleUpperCase()",
-    "localeCompare(${0:compareString})",
+
+    //Methods
+    // RegExp
+    {
+      "trigger": "exec(${0:string})\tRegExp",
+      "contents": "exec(${0:string})"
+    },
+    {
+      "trigger": "test(${0:string})\tRegExp",
+      "contents": "test(${0:string})"
+    },
+    // String
+    {
+      "trigger": "replace(${0:regexp|substr}, 'string')\tString",
+      "contents": "replace(${0:regexp|substr}, 'string')"
+    },
+    {
+      "trigger": "match(${0:regexp})\tString",
+      "contents": "match(${0:regexp})"
+    },
+    {
+      "trigger": "search(${0:regexp})\tString",
+      "contents": "search(${0:regexp})"
+    },
+    {
+      "trigger": "split(${0:separator})\tString",
+      "contents": "split(${0:separator})"
+    },
+    {
+      "trigger": "fromCharCode(${0:num1})\tString",
+      "contents": "fromCharCode(${0:num1})"
+    },
+    {
+      "trigger": "charAt(${0:index})\tString",
+      "contents": "charAt(${0:index})"
+    },
+    {
+      "trigger": "charCodeAt(${0:index})\tString",
+      "contents": "charCodeAt(${0:index})"
+    },
+    {
+      "trigger": "concat(${0:value1}, value2)\tString",
+      "contents": "concat(${0:value1}, value2)"
+    },
+    {
+      "trigger": "localeCompare(${0:compareString})\tString",
+      "contents": "localeCompare(${0:compareString})"
+    },
+    {
+      "trigger": "substring(${0:indexA})\tString",
+      "contents": "substring(${0:indexA})"
+    },
+    {
+      "trigger": "substr(${0:start})\tString",
+      "contents": "substr(${0:start})"
+    },
+    {
+      "trigger": "toLowerCase()\tString",
+      "contents": "toLowerCase()"
+    },
+    {
+      "trigger": "toLocaleLowerCase()\tString",
+      "contents": "toLocaleLowerCase()"
+    },
+    {
+      "trigger": "toUpperCase()\tString",
+      "contents": "toUpperCase()"
+    },
+    {
+      "trigger": "toLocaleUpperCase()\tString",
+      "contents": "toLocaleUpperCase()"
+    },
+    {
+      "trigger": "trim()\tString",
+      "contents": "trim()"
+    },
+    {
+      "trigger": "valueOf()\tString",
+      "contents": "valueOf()"
+    },
+    // Array
+    {
+      "trigger": "join(${0:separator})\tArray",
+      "contents": "join(${0:separator})"
+    },
+    {
+      "trigger": "push(${0:element1})\tArray",
+      "contents": "push(${0:element1})"
+    },
+    {
+      "trigger": "pop()\tArray",
+      "contents": "pop()"
+    },
+    {
+      "trigger": "shift()\tArray",
+      "contents": "shift()"
+    },
+    {
+      "trigger": "unshift(${0:element1})\tArray",
+      "contents": "unshift(${0:element1})"
+    },
+    {
+      "trigger": "slice(${0:begin})\tArray",
+      "contents": "slice(${0:begin})"
+    },
+    {
+      "trigger": "splice(${0:index}, howMany)\tArray",
+      "contents": "splice(${0:index}, howMany)"
+    },
+    {
+      "trigger": "reverse()\tArray",
+      "contents": "reverse()"
+    },
+    {
+      "trigger": "sort(${0:compareFunction})\tArray",
+      "contents": "sort(${0:compareFunction})"
+    },
+    {
+      "trigger": "map(${0:callback})\tArray",
+      "contents": "map(${0:callback})"
+    },
+    {
+      "trigger": "filter(${0:callback})\tArray",
+      "contents": "filter(${0:callback})"
+    },
+    {
+      "trigger": "every(${0:callback})\tArray",
+      "contents": "every(${0:callback})"
+    },
+    {
+      "trigger": "some(${0:callback})\tArray",
+      "contents": "some(${0:callback})"
+    },
+    {
+      "trigger": "reduce(${0:callback})\tArray",
+      "contents": "reduce(${0:callback})"
+    },
+    {
+      "trigger": "reduceRight(${0:callback})\tArray",
+      "contents": "reduceRight(${0:callback})"
+    },
+    {
+      "trigger": "isArray(${0:Object})\tArray",
+      "contents": "isArray(${0:Object})"
+    },
+    {
+      "trigger": "forEach(${0:callback})\tArray",
+      "contents": "forEach(${0:callback})"
+    },
+
     "toString()",
     "toLocaleString()",
-    "trim()",
-    "valueOf()",
-    "isArray(${0:Object})",
-    "forEach(${0:callback})",
+    "indexOf(${0:search})",
+    "lastIndexOf(${0:search})",
   ]
 }

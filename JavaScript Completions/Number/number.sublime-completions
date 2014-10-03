@@ -3,14 +3,41 @@
 
   "completions":
   [
-    "new Number(${0:value})",
-    "Number.MAX_VALUE",
-    "Number.MIN_VALUE",
-    "Number.NaN",
-    "Number.NEGATIVE_INFINITY",
-    "Number.POSITIVE_INFINITY",
-    "toExponential(${0:fractionDigits})",
-    "toFixed(${0:digits})",
-    "toPrecision(${0:precision})",
+    {
+      "trigger": "new Number(${0:value})\tNumber",
+      "contents": "new Number(${0:value})"
+    },
+    {
+      "trigger": "Number.MAX_VALUE\tNumber",
+      "contents": "Number.MAX_VALUE"
+    },
+    {
+      "trigger": "Number.MIN_VALUE\tNumber",
+      "contents": "Number.MIN_VALUE"
+    },
+    {
+      "trigger": "Number.NaN\tNumber",
+      "contents": "Number.NaN"
+    },
+    {
+      "trigger": "Number.NEGATIVE_INFINITY\tNumber",
+      "contents": "Number.NEGATIVE_INFINITY"
+    },
+    {
+      "trigger": "Number.POSITIVE_INFINITY\tNumber",
+      "contents": "Number.POSITIVE_INFINITY"
+    },
+    {
+      "trigger": "toExponential(${0:fractionDigits})\tNumber",
+      "contents": "toExponential(${0:fractionDigits})"
+    },
+    {
+      "trigger": "toFixed(${0:digits})\tNumber",
+      "contents": "toFixed(${0:digits})"
+    },
+    {
+      "trigger": "toPrecision(${0:precision})\tNumber",
+      "contents": "toPrecision(${0:precision})"
+    },
   ]
 }

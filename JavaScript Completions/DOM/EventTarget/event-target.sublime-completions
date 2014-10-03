@@ -3,8 +3,18 @@
 
   "completions":
   [
-    "addEventListener(${0:type}, listener)",
-    "dispatchEvent(${0:event})",
-    "removeEventListener(${0:type}, listener)",
+  	// Methods
+    {
+      "trigger": "addEventListener(${0:type}, listener)\tEventTarget",
+      "contents": "addEventListener(${0:type}, listener)"
+    },
+    {
+      "trigger": "dispatchEvent(${0:event})\tEventTarget",
+      "contents": "dispatchEvent(${0:event})"
+    },
+    {
+      "trigger": "removeEventListener(${0:type}, listener)\tEventTarget",
+      "contents": "removeEventListener(${0:type}, listener)"
+    },
   ]
 }

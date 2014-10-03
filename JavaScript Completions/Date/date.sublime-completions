@@ -3,49 +3,177 @@
 
   "completions":
   [
-    "new Date()",
-    "now()",
-    "parse(${0:dateString})",
-    "UTC(${0:year}, month)",
-    "getDate()",
-    "getUTCDate()",
-    "getDay()",
-    "getUTCDay()",
-    "getFullYear()",
-    "getUTCFullYear()",
-    "getHours()",
-    "getUTCHours()",
-    "getMilliseconds()",
-    "getUTCMilliseconds()",
-    "getMinutes()",
-    "getUTCMinutes()",
-    "getMonth()",
-    "getUTCMonth()",
-    "getSeconds()",
-    "getUTCSeconds()",
-    "getTime()",
-    "getTimezoneOffset()",
-    "setDate(${0:dayValue})",
-    "setUTCDate(${0:dayValue})",
-    "setFullYear(${0:yearValue})",
-    "setUTCFullYear(${0:yearValue})",
-    "setHours(${0:hoursValue})",
-    "setUTCHours(${0:hoursValue})",
-    "setMilliseconds(${0:millisecondsValue})",
-    "setUTCMilliseconds(${0:millisecondsValue})",
-    "setMinutes(${0:minutesValue})",
-    "setUTCMinutes(${0:minutesValue})",
-    "setMonth(${0:monthValue})",
-    "setUTCMonth(${0:monthValue})",
-    "setSeconds(${0:secondsValue})",
-    "setUTCSeconds(${0:secondsValue})",
-    "setTime(${0:timeValue})",
-    "toDateString()",
-    "toISOString()",
-    "toJSON()",
-    "toLocaleDateString()",
-    "toLocaleString()",
-    "toLocaleTimeString()",
-    "toTimeString()",
+    {
+      "trigger": "new Date()\tDate",
+      "contents": "new Date()"
+    },
+    {
+      "trigger": "now()\tDate",
+      "contents": "now()"
+    },
+    {
+      "trigger": "parse(${0:dateString})\tDate",
+      "contents": "parse(${0:dateString})"
+    },
+    {
+      "trigger": "UTC(${0:year}, month)\tDate",
+      "contents": "UTC(${0:year}, month)"
+    },
+    {
+      "trigger": "getDate()\tDate",
+      "contents": "getDate()"
+    },
+    {
+      "trigger": "getUTCDate()\tDate",
+      "contents": "getUTCDate()"
+    },
+    {
+      "trigger": "getDay()\tDate",
+      "contents": "getDay()"
+    },
+    {
+      "trigger": "getUTCDay()\tDate",
+      "contents": "getUTCDay()"
+    },
+    {
+      "trigger": "getFullYear()\tDate",
+      "contents": "getFullYear()"
+    },
+    {
+      "trigger": "getUTCFullYear()\tDate",
+      "contents": "getUTCFullYear()"
+    },
+    {
+      "trigger": "getHours()\tDate",
+      "contents": "getHours()"
+    },
+    {
+      "trigger": "getUTCHours()\tDate",
+      "contents": "getUTCHours()"
+    },
+    {
+      "trigger": "getMilliseconds()\tDate",
+      "contents": "getMilliseconds()"
+    },
+    {
+      "trigger": "getUTCMilliseconds()\tDate",
+      "contents": "getUTCMilliseconds()"
+    },
+    {
+      "trigger": "getMinutes()\tDate",
+      "contents": "getMinutes()"
+    },
+    {
+      "trigger": "getUTCMinutes()\tDate",
+      "contents": "getUTCMinutes()"
+    },
+    {
+      "trigger": "getMonth()\tDate",
+      "contents": "getMonth()"
+    },
+    {
+      "trigger": "getUTCMonth()\tDate",
+      "contents": "getUTCMonth()"
+    },
+    {
+      "trigger": "getSeconds()\tDate",
+      "contents": "getSeconds()"
+    },
+    {
+      "trigger": "getUTCSeconds()\tDate",
+      "contents": "getUTCSeconds()"
+    },
+    {
+      "trigger": "getTime()\tDate",
+      "contents": "getTime()"
+    },
+    {
+      "trigger": "getTimezoneOffset()\tDate",
+      "contents": "getTimezoneOffset()"
+    },
+    {
+      "trigger": "setDate(${0:dayValue})\tDate",
+      "contents": "setDate(${0:dayValue})"
+    },
+    {
+      "trigger": "setUTCDate(${0:dayValue})\tDate",
+      "contents": "setUTCDate(${0:dayValue})"
+    },
+    {
+      "trigger": "setFullYear(${0:yearValue})\tDate",
+      "contents": "setFullYear(${0:yearValue})"
+    },
+    {
+      "trigger": "setUTCFullYear(${0:yearValue})\tDate",
+      "contents": "setUTCFullYear(${0:yearValue})"
+    },
+    {
+      "trigger": "setHours(${0:hoursValue})\tDate",
+      "contents": "setHours(${0:hoursValue})"
+    },
+    {
+      "trigger": "setUTCHours(${0:hoursValue})\tDate",
+      "contents": "setUTCHours(${0:hoursValue})"
+    },
+    {
+      "trigger": "setMilliseconds(${0:millisecondsValue})\tDate",
+      "contents": "setMilliseconds(${0:millisecondsValue})"
+    },
+    {
+      "trigger": "setUTCMilliseconds(${0:millisecondsValue})\tDate",
+      "contents": "setUTCMilliseconds(${0:millisecondsValue})"
+    },
+    {
+      "trigger": "setMinutes(${0:minutesValue})\tDate",
+      "contents": "setMinutes(${0:minutesValue})"
+    },
+    {
+      "trigger": "setUTCMinutes(${0:minutesValue})\tDate",
+      "contents": "setUTCMinutes(${0:minutesValue})"
+    },
+    {
+      "trigger": "setMonth(${0:monthValue})\tDate",
+      "contents": "setMonth(${0:monthValue})"
+    },
+    {
+      "trigger": "setUTCMonth(${0:monthValue})\tDate",
+      "contents": "setUTCMonth(${0:monthValue})"
+    },
+    {
+      "trigger": "setSeconds(${0:secondsValue})\tDate",
+      "contents": "setSeconds(${0:secondsValue})"
+    },
+    {
+      "trigger": "setUTCSeconds(${0:secondsValue})\tDate",
+      "contents": "setUTCSeconds(${0:secondsValue})"
+    },
+    {
+      "trigger": "setTime(${0:timeValue})\tDate",
+      "contents": "setTime(${0:timeValue})"
+    },
+    {
+      "trigger": "toDateString()\tDate",
+      "contents": "toDateString()"
+    },
+    {
+      "trigger": "toISOString()\tDate",
+      "contents": "toISOString()"
+    },
+    {
+      "trigger": "toJSON()\tDate",
+      "contents": "toJSON()"
+    },
+    {
+      "trigger": "toLocaleDateString()\tDate",
+      "contents": "toLocaleDateString()"
+    },
+    {
+      "trigger": "toLocaleTimeString()\tDate",
+      "contents": "toLocaleTimeString()"
+    },
+    {
+      "trigger": "toTimeString()\tDate",
+      "contents": "toTimeString()"
+    },
   ]
 }

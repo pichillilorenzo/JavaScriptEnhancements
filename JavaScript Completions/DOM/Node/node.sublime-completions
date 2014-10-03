@@ -4,37 +4,127 @@
   "completions":
   [
     // Properties
-    "baseURI",
-    "childNodes",
-    "firstChild",
-    "lastChild",
-    "localName",
-    "namespaceURI",
-    "nextSibling",
-    "nodeName",
-    "nodeType",
-    "nodeValue",
-    "ownerDocument",
-    "parentElement",
-    "parentNode",
-    "prefix",
-    "previousSibling",
-    "textContent",
+    {
+      "trigger": "baseURI\tNode",
+      "contents": "baseURI"
+    },
+    {
+      "trigger": "childNodes\tNode",
+      "contents": "childNodes"
+    },
+    {
+      "trigger": "firstChild\tNode",
+      "contents": "firstChild"
+    },
+    {
+      "trigger": "lastChild\tNode",
+      "contents": "lastChild"
+    },
+    {
+      "trigger": "localName\tNode",
+      "contents": "localName"
+    },
+    {
+      "trigger": "namespaceURI\tNode",
+      "contents": "namespaceURI"
+    },
+    {
+      "trigger": "nextSibling\tNode",
+      "contents": "nextSibling"
+    },
+    {
+      "trigger": "nodeName\tNode",
+      "contents": "nodeName"
+    },
+    {
+      "trigger": "nodeType\tNode",
+      "contents": "nodeType"
+    },
+    {
+      "trigger": "nodeValue\tNode",
+      "contents": "nodeValue"
+    },
+    {
+      "trigger": "ownerDocument\tNode",
+      "contents": "ownerDocument"
+    },
+    {
+      "trigger": "parentElement\tNode",
+      "contents": "parentElement"
+    },
+    {
+      "trigger": "parentNode\tNode",
+      "contents": "parentNode"
+    },
+    {
+      "trigger": "prefix\tNode",
+      "contents": "prefix"
+    },
+    {
+      "trigger": "previousSibling\tNode",
+      "contents": "previousSibling"
+    },
+    {
+      "trigger": "textContent\tNode",
+      "contents": "textContent"
+    },
 
     //Methods
-    "appendChild(${0:aChild})",
-    "cloneNode(${0:deep})",
-    "compareDocumentPosition(${0:otherNode})",
-    "contains(${0:otherNode})",
-    "hasAttributes()",
-    "hasChildNodes()",
-    "insertBefore(${0:newElement}, referenceElement)",
-    "isDefaultNamespace(${0:namespaceURI})",
-    "isEqualNode(${0:arg})",
-    "lookupNamespaceURI()",
-    "lookupPrefix()",
-    "normalize()",
-    "removeChild(${0:child})",
-    "replaceChild(${0:newChild}, oldChild)",
+    {
+      "trigger": "appendChild(${0:aChild})\tNode",
+      "contents": "appendChild(${0:aChild})"
+    },
+    {
+      "trigger": "cloneNode(${0:deep})\tNode",
+      "contents": "cloneNode(${0:deep})"
+    },
+    {
+      "trigger": "compareDocumentPosition(${0:otherNode})\tNode",
+      "contents": "compareDocumentPosition(${0:otherNode})"
+    },
+    {
+      "trigger": "contains(${0:otherNode})\tNode",
+      "contents": "contains(${0:otherNode})"
+    },
+    {
+      "trigger": "hasAttributes()\tNode",
+      "contents": "hasAttributes()"
+    },
+    {
+      "trigger": "hasChildNodes()\tNode",
+      "contents": "hasChildNodes()"
+    },
+    {
+      "trigger": "insertBefore(${0:newElement}, referenceElement)\tNode",
+      "contents": "insertBefore(${0:newElement}, referenceElement)"
+    },
+    {
+      "trigger": "isDefaultNamespace(${0:namespaceURI})\tNode",
+      "contents": "isDefaultNamespace(${0:namespaceURI})"
+    },
+    {
+      "trigger": "isEqualNode(${0:arg})\tNode",
+      "contents": "isEqualNode(${0:arg})"
+    },
+    {
+      "trigger": "lookupNamespaceURI()\tNode",
+      "contents": "lookupNamespaceURI()"
+    },
+    {
+      "trigger": "lookupPrefix()\tNode",
+      "contents": "lookupPrefix()"
+    },
+    {
+      "trigger": "normalize()\tNode",
+      "contents": "normalize()"
+    },
+    {
+      "trigger": "removeChild(${0:child})\tNode",
+      "contents": "removeChild(${0:child})"
+    },
+    {
+      "trigger": "replaceChild(${0:newChild}, oldChild)\tNode",
+      "contents": "replaceChild(${0:newChild}, oldChild)"
+    },
   ]
 }

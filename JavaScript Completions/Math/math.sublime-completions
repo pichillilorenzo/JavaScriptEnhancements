@@ -3,31 +3,109 @@
 
   "completions":
   [
-    "Math.abs($0)",
-    "Math.PI",
-    "Math.sin($0)",
-    "Math.cos($0)",
-    "Math.tan($0)",
-    "Math.acos($0)",
-    "Math.asin($0)",
-    "Math.atan($0)",
-    "Math.atan2(${0:y}, x)",
-    "Math.exp($0)",
-    "Math.log($0)",
-    "Math.ceil($0)",
-    "Math.floor($0)",
-    "Math.min(${0:value1}, value2)",
-    "Math.max(${0:value1}, value2)",
-    "Math.pow(${0:base}, exponent)",
-    "Math.random()",
-    "Math.round($0)",
-    "Math.sqrt($0)",
-    "Math.E",
-    "Math.LN2",
-    "Math.LN10",
-    "Math.LOG2E",
-    "Math.LOG10E",
-    "Math.SQRT1_2",
-    "Math.SQRT2",
+    {
+      "trigger": "Math.abs($0)\tMath",
+      "contents": "Math.abs($0)"
+    },
+    {
+      "trigger": "Math.PI\tMath",
+      "contents": "Math.PI"
+    },
+    {
+      "trigger": "Math.sin($0)\tMath",
+      "contents": "Math.sin($0)"
+    },
+    {
+      "trigger": "Math.cos($0)\tMath",
+      "contents": "Math.cos($0)"
+    },
+    {
+      "trigger": "Math.tan($0)\tMath",
+      "contents": "Math.tan($0)"
+    },
+    {
+      "trigger": "Math.acos($0)\tMath",
+      "contents": "Math.acos($0)"
+    },
+    {
+      "trigger": "Math.asin($0)\tMath",
+      "contents": "Math.asin($0)"
+    },
+    {
+      "trigger": "Math.atan($0)\tMath",
+      "contents": "Math.atan($0)"
+    },
+    {
+      "trigger": "Math.atan2(${0:y}, x)\tMath",
+      "contents": "Math.atan2(${0:y}, x)"
+    },
+    {
+      "trigger": "Math.exp($0)\tMath",
+      "contents": "Math.exp($0)"
+    },
+    {
+      "trigger": "Math.log($0)\tMath",
+      "contents": "Math.log($0)"
+    },
+    {
+      "trigger": "Math.ceil($0)\tMath",
+      "contents": "Math.ceil($0)"
+    },
+    {
+      "trigger": "Math.floor($0)\tMath",
+      "contents": "Math.floor($0)"
+    },
+    {
+      "trigger": "Math.min(${0:value1}, value2)\tMath",
+      "contents": "Math.min(${0:value1}, value2)"
+    },
+    {
+      "trigger": "Math.max(${0:value1}, value2)\tMath",
+      "contents": "Math.max(${0:value1}, value2)"
+    },
+    {
+      "trigger": "Math.pow(${0:base}, exponent)\tMath",
+      "contents": "Math.pow(${0:base}, exponent)"
+    },
+    {
+      "trigger": "Math.random()\tMath",
+      "contents": "Math.random()"
+    },
+    {
+      "trigger": "Math.round($0)\tMath",
+      "contents": "Math.round($0)"
+    },
+    {
+      "trigger": "Math.sqrt($0)\tMath",
+      "contents": "Math.sqrt($0)"
+    },
+    {
+      "trigger": "Math.E\tMath",
+      "contents": "Math.E"
+    },
+    {
+      "trigger": "Math.LN2\tMath",
+      "contents": "Math.LN2"
+    },
+    {
+      "trigger": "Math.LN10\tMath",
+      "contents": "Math.LN10"
+    },
+    {
+      "trigger": "Math.LOG2E\tMath",
+      "contents": "Math.LOG2E"
+    },
+    {
+      "trigger": "Math.LOG10E\tMath",
+      "contents": "Math.LOG10E"
+    },
+    {
+      "trigger": "Math.SQRT1_2\tMath",
+      "contents": "Math.SQRT1_2"
+    },
+    {
+      "trigger": "Math.SQRT2\tMath",
+      "contents": "Math.SQRT2"
+    },
   ]
 }

@@ -3,9 +3,21 @@
 
   "completions":
   [
-  	"new Function();",
-    "apply(${0:thisArg})",
-    "bind(${0:thisArg})",
-    "call(${0:thisArg})",
+  	{
+      "trigger": "new Function()\tFunction",
+      "contents": "new Function()"
+    },
+    {
+      "trigger": "apply(${0:thisArg})\tFunction",
+      "contents": "apply(${0:thisArg})"
+    },
+    {
+      "trigger": "bind(${0:thisArg})\tFunction",
+      "contents": "bind(${0:thisArg})"
+    },
+    {
+      "trigger": "call(${0:thisArg})\tFunction",
+      "contents": "call(${0:thisArg})"
+    },
   ]
 }

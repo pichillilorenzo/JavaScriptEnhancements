@@ -4,149 +4,411 @@
   "completions":
   [
     // Properties
-    "document",
-    "document.URL",
-    "document.activeElement",
-    "document.anchors",
-    "document.applets",
-    "document.body",
-    "document.defaultView",
-    "document.designMode",
-    "document.domain",
-    "document.embeds",
-    "document.forms",
-    "document.head",
-    "document.images",
-    "document.lastModified",
-    "document.location",
-    "document.plugins",
-    "document.readyState",
-    "document.referrer",
-    "document.scripts",
-    "document.styleSheets",
-    "document.title",
-    "document.characterSet",
-    "document.compatMode",
-    "document.contentType",
-    "document.currentScript",
-    "document.doctype",
-    "document.documentElement",
-    "document.documentURI",
-    "document.documentURIObject",
-    "document.implementation",
-    "document.lastStyleSheetSet",
-    "document.links",
-    "document.onoffline",
-    "document.pointerLockElement",
-    "document.preferredStyleSheetSet",
-    "document.selectedStyleSheetSet",
-    "document.styleSheetSets",
-    "document.tooltipNode",
+    {
+      "trigger": "document\tDocument",
+      "contents": "document"
+    },
+    {
+      "trigger": "document.URL\tDocument",
+      "contents": "document.URL"
+    },
+    {
+      "trigger": "document.activeElement\tDocument",
+      "contents": "document.activeElement"
+    },
+    {
+      "trigger": "document.anchors\tDocument",
+      "contents": "document.anchors"
+    },
+    {
+      "trigger": "document.applets\tDocument",
+      "contents": "document.applets"
+    },
+    {
+      "trigger": "document.body\tDocument",
+      "contents": "document.body"
+    },
+    {
+      "trigger": "document.defaultView\tDocument",
+      "contents": "document.defaultView"
+    },
+    {
+      "trigger": "document.designMode\tDocument",
+      "contents": "document.designMode"
+    },
+    {
+      "trigger": "document.domain\tDocument",
+      "contents": "document.domain"
+    },
+    {
+      "trigger": "document.embeds\tDocument",
+      "contents": "document.embeds"
+    },
+    {
+      "trigger": "document.forms\tDocument",
+      "contents": "document.forms"
+    },
+    {
+      "trigger": "document.head\tDocument",
+      "contents": "document.head"
+    },
+    {
+      "trigger": "document.images\tDocument",
+      "contents": "document.images"
+    },
+    {
+      "trigger": "document.lastModified\tDocument",
+      "contents": "document.lastModified"
+    },
+    {
+      "trigger": "document.location\tDocument",
+      "contents": "document.location"
+    },
+    {
+      "trigger": "document.plugins\tDocument",
+      "contents": "document.plugins"
+    },
+    {
+      "trigger": "document.readyState\tDocument",
+      "contents": "document.readyState"
+    },
+    {
+      "trigger": "document.referrer\tDocument",
+      "contents": "document.referrer"
+    },
+    {
+      "trigger": "document.scripts\tDocument",
+      "contents": "document.scripts"
+    },
+    {
+      "trigger": "document.styleSheets\tDocument",
+      "contents": "document.styleSheets"
+    },
+    {
+      "trigger": "document.title\tDocument",
+      "contents": "document.title"
+    },
+    {
+      "trigger": "document.characterSet\tDocument",
+      "contents": "document.characterSet"
+    },
+    {
+      "trigger": "document.compatMode\tDocument",
+      "contents": "document.compatMode"
+    },
+    {
+      "trigger": "document.contentType\tDocument",
+      "contents": "document.contentType"
+    },
+    {
+      "trigger": "document.currentScript\tDocument",
+      "contents": "document.currentScript"
+    },
+    {
+      "trigger": "document.doctype\tDocument",
+      "contents": "document.doctype"
+    },
+    {
+      "trigger": "document.documentElement\tDocument",
+      "contents": "document.documentElement"
+    },
+    {
+      "trigger": "document.documentURI\tDocument",
+      "contents": "document.documentURI"
+    },
+    {
+      "trigger": "document.documentURIObject\tDocument",
+      "contents": "document.documentURIObject"
+    },
+    {
+      "trigger": "document.implementation\tDocument",
+      "contents": "document.implementation"
+    },
+    {
+      "trigger": "document.lastStyleSheetSet\tDocument",
+      "contents": "document.lastStyleSheetSet"
+    },
+    {
+      "trigger": "document.links\tDocument",
+      "contents": "document.links"
+    },
+    {
+      "trigger": "document.onoffline\tDocument",
+      "contents": "document.onoffline"
+    },
+    {
+      "trigger": "document.pointerLockElement\tDocument",
+      "contents": "document.pointerLockElement"
+    },
+    {
+      "trigger": "document.preferredStyleSheetSet\tDocument",
+      "contents": "document.preferredStyleSheetSet"
+    },
+    {
+      "trigger": "document.selectedStyleSheetSet\tDocument",
+      "contents": "document.selectedStyleSheetSet"
+    },
+    {
+      "trigger": "document.styleSheetSets\tDocument",
+      "contents": "document.styleSheetSets"
+    },
+    {
+      "trigger": "document.tooltipNode\tDocument",
+      "contents": "document.tooltipNode"
+    },
 
     // Methods
-    "document.caretPositionFromPoint(${0:x}, y)",
-    "caretPositionFromPoint(${0:x}, y)",
-
-    "document.close()",
-    "close()",
-
-    "document.createNodeIterator(${0:root}, whatToShow, filter)",
-    "createNodeIterator(${0:root}, whatToShow, filter)",
-
-    "document.createRange()",
-    "createRange()",
-
-    "document.createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)",
-    "createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)",
-
-    "document.elementFromPoint(${0:x}, y)",
-    "elementFromPoint(${0:x}, y)",
-
-    "document.getElementsByClassName(${0:names})",
-    "getElementsByClassName(${0:names})",
-
-    "document.getElementsByName(${0:name})",
-    "getElementsByName(${0:name})",
-
-    "document.releaseCapture()",
-    "releaseCapture()",
-
-    "document.adoptNode(${0:externalNode})",
-    "adoptNode(${0:externalNode})",
-
-    "document.createAttribute(${0:name})",
-    "createAttribute(${0:name})",
-
-    "document.createCDATASection(${0:data})",
-    "createCDATASection(${0:data})",
-
-    "document.createComment(${0:data})",
-    "createComment(${0:data})",
-
-    "document.createDocumentFragment()",
-    "createDocumentFragment()",
-
-    "document.createElement(${0:tagName})",
-    "createElement(${0:tagName})",
-
-    "document.createElementNS(${0:namespaceURI}, qualifiedName)",
-    "createElementNS(${0:namespaceURI}, qualifiedName)",
-
-    "document.createExpression(${0:xpathText}, namespaceURLMapper)",
-    "createExpression(${0:xpathText}, namespaceURLMapper)",
-
-    "document.createNSResolver(${0:node})",
-    "createNSResolver(${0:node})",
-
-    "document.createProcessingInstruction(${0:target}, data)",
-    "createProcessingInstruction(${0:target}, data)",
-
-    "document.createTextNode(${0:data})",
-    "createTextNode(${0:data})",
-
-    "document.enableStyleSheetsForSet(${0:name})",
-    "enableStyleSheetsForSet(${0:name})",
-
-    "document.evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);",
-    "evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);",
-
-    "document.execCommand(${0:String aCommandName}, Boolean aShowDefaultUI, String aValueArgument)",
-    "execCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)",
-
-    "document.getElementById(${0:id})",
-    "getElementById(${0:id})",
-
-    "document.getElementsByTagName(${0:name})",
-    "getElementsByTagName(${0:name})",
-
-    "document.getElementsByTagNameNS(${0:namespace}, name)",
-    "getElementsByTagNameNS(${0:namespace}, name)",
-
-    "document.hasFocus()",
-    "hasFocus()",
-
-    "document.importNode(${0:externalNode}, deep)",
-    "importNode(${0:externalNode}, deep)",
-
-    "document.loadOverlay(${0:url}, observer)",
-    "loadOverlay(${0:url}, observer)",
-
-    "document.open()",
-    "open()",
-
-    "document.queryCommandSupported(${0:command})",
-    "queryCommandSupported(${0:command})",
-
-    "document.querySelector(${0:selectors})",
-    "querySelector(${0:selectors})",
-
-    "document.querySelectorAll(${0:selectors})",
-    "querySelectorAll(${0:selectors})",
-
-    "document.write(${0:markup})",
-    "write(${0:markup})",
-
-    "document.writeln(${0:line})",
-    "writeln(${0:line})",
+    {
+      "trigger": "document.caretPositionFromPoint(${0:x}, y)\tDocument",
+      "contents": "document.caretPositionFromPoint(${0:x}, y)"
+    },
+    {
+      "trigger": "caretPositionFromPoint(${0:x}, y)\tDocument",
+      "contents": "caretPositionFromPoint(${0:x}, y)"
+    },
+    {
+      "trigger": "document.close()\tDocument",
+      "contents": "document.close()"
+    },
+    {
+      "trigger": "close()\tDocument",
+      "contents": "close()"
+    },
+    {
+      "trigger": "document.createNodeIterator(${0:root}, whatToShow, filter)\tDocument",
+      "contents": "document.createNodeIterator(${0:root}, whatToShow, filter)"
+    },
+    {
+      "trigger": "createNodeIterator(${0:root}, whatToShow, filter)\tDocument",
+      "contents": "createNodeIterator(${0:root}, whatToShow, filter)"
+    },
+    {
+      "trigger": "document.createRange()\tDocument",
+      "contents": "document.createRange()"
+    },
+    {
+      "trigger": "createRange()\tDocument",
+      "contents": "createRange()"
+    },
+    {
+      "trigger": "document.createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)\tDocument",
+      "contents": "document.createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)"
+    },
+    {
+      "trigger": "createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)\tDocument",
+      "contents": "createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)"
+    },
+    {
+      "trigger": "document.elementFromPoint(${0:x}, y)\tDocument",
+      "contents": "document.elementFromPoint(${0:x}, y)"
+    },
+    {
+      "trigger": "elementFromPoint(${0:x}, y)\tDocument",
+      "contents": "elementFromPoint(${0:x}, y)"
+    },
+    {
+      "trigger": "document.getElementsByClassName(${0:names})\tDocument",
+      "contents": "document.getElementsByClassName(${0:names})"
+    },
+    {
+      "trigger": "document.getElementsByName(${0:name})\tDocument",
+      "contents": "document.getElementsByName(${0:name})"
+    },
+    {
+      "trigger": "document.releaseCapture()\tDocument",
+      "contents": "document.releaseCapture()"
+    },
+    {
+      "trigger": "releaseCapture()\tDocument",
+      "contents": "releaseCapture()"
+    },
+    {
+      "trigger": "document.adoptNode(${0:externalNode})\tDocument",
+      "contents": "document.adoptNode(${0:externalNode})"
+    },
+    {
+      "trigger": "adoptNode(${0:externalNode})\tDocument",
+      "contents": "adoptNode(${0:externalNode})"
+    },
+    {
+      "trigger": "document.createAttribute(${0:name})\tDocument",
+      "contents": "document.createAttribute(${0:name})"
+    },
+    {
+      "trigger": "createAttribute(${0:name})\tDocument",
+      "contents": "createAttribute(${0:name})"
+    },
+    {
+      "trigger": "document.createCDATASection(${0:data})\tDocument",
+      "contents": "document.createCDATASection(${0:data})"
+    },
+    {
+      "trigger": "createCDATASection(${0:data})\tDocument",
+      "contents": "createCDATASection(${0:data})"
+    },
+    {
+      "trigger": "document.createComment(${0:data})\tDocument",
+      "contents": "document.createComment(${0:data})"
+    },
+    {
+      "trigger": "createComment(${0:data})\tDocument",
+      "contents": "createComment(${0:data})"
+    },
+    {
+      "trigger": "document.createDocumentFragment()\tDocument",
+      "contents": "document.createDocumentFragment()"
+    },
+    {
+      "trigger": "createDocumentFragment()\tDocument",
+      "contents": "createDocumentFragment()"
+    },
+    {
+      "trigger": "document.createElement(${0:tagName})\tDocument",
+      "contents": "document.createElement(${0:tagName})"
+    },
+    {
+      "trigger": "createElement(${0:tagName})\tDocument",
+      "contents": "createElement(${0:tagName})"
+    },
+    {
+      "trigger": "document.createElementNS(${0:namespaceURI}, qualifiedName)\tDocument",
+      "contents": "document.createElementNS(${0:namespaceURI}, qualifiedName)"
+    },
+    {
+      "trigger": "createElementNS(${0:namespaceURI}, qualifiedName)\tDocument",
+      "contents": "createElementNS(${0:namespaceURI}, qualifiedName)"
+    },
+    {
+      "trigger": "document.createExpression(${0:xpathText}, namespaceURLMapper)\tDocument",
+      "contents": "document.createExpression(${0:xpathText}, namespaceURLMapper)"
+    },
+    {
+      "trigger": "createExpression(${0:xpathText}, namespaceURLMapper)\tDocument",
+      "contents": "createExpression(${0:xpathText}, namespaceURLMapper)"
+    },
+    {
+      "trigger": "document.createNSResolver(${0:node})\tDocument",
+      "contents": "document.createNSResolver(${0:node})"
+    },
+    {
+      "trigger": "createNSResolver(${0:node})\tDocument",
+      "contents": "createNSResolver(${0:node})"
+    },
+    {
+      "trigger": "document.createProcessingInstruction(${0:target}, data)\tDocument",
+      "contents": "document.createProcessingInstruction(${0:target}, data)"
+    },
+    {
+      "trigger": "createProcessingInstruction(${0:target}, data)\tDocument",
+      "contents": "createProcessingInstruction(${0:target}, data)"
+    },
+    {
+      "trigger": "document.createTextNode(${0:data})\tDocument",
+      "contents": "document.createTextNode(${0:data})"
+    },
+    {
+      "trigger": "createTextNode(${0:data})\tDocument",
+      "contents": "createTextNode(${0:data})"
+    },
+    {
+      "trigger": "document.enableStyleSheetsForSet(${0:name})\tDocument",
+      "contents": "document.enableStyleSheetsForSet(${0:name})"
+    },
+    {
+      "trigger": "enableStyleSheetsForSet(${0:name})\tDocument",
+      "contents": "enableStyleSheetsForSet(${0:name})"
+    },
+    {
+      "trigger": "document.evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);\tDocument",
+      "contents": "document.evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);"
+    },
+    {
+      "trigger": "evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);\tDocument",
+      "contents": "evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);"
+    },
+    {
+      "trigger": "document.execCommand(${0:String aCommandName}, Boolean aShowDefaultUI, String aValueArgument)\tDocument",
+      "contents": "document.execCommand(${0:String aCommandName}, Boolean aShowDefaultUI, String aValueArgument)"
+    },
+    {
+      "trigger": "execCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)\tDocument",
+      "contents": "execCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)"
+    },
+    {
+      "trigger": "document.getElementById(${0:id})\tDocument",
+      "contents": "document.getElementById(${0:id})"
+    },
+    {
+      "trigger": "document.getElementsByTagName(${0:name})\tDocument",
+      "contents": "document.getElementsByTagName(${0:name})"
+    },
+    {
+      "trigger": "document.getElementsByTagNameNS(${0:namespace}, name)\tDocument",
+      "contents": "document.getElementsByTagNameNS(${0:namespace}, name)"
+    },
+    {
+      "trigger": "document.hasFocus()\tDocument",
+      "contents": "document.hasFocus()"
+    },
+    {
+      "trigger": "hasFocus()\tDocument",
+      "contents": "hasFocus()"
+    },
+    {
+      "trigger": "document.importNode(${0:externalNode}, deep)\tDocument",
+      "contents": "document.importNode(${0:externalNode}, deep)"
+    },
+    {
+      "trigger": "importNode(${0:externalNode}, deep)\tDocument",
+      "contents": "importNode(${0:externalNode}, deep)"
+    },
+    {
+      "trigger": "document.loadOverlay(${0:url}, observer)\tDocument",
+      "contents": "document.loadOverlay(${0:url}, observer)"
+    },
+    {
+      "trigger": "loadOverlay(${0:url}, observer)\tDocument",
+      "contents": "loadOverlay(${0:url}, observer)"
+    },
+    {
+      "trigger": "document.open()\tDocument",
+      "contents": "document.open()"
+    },
+    {
+      "trigger": "open()\tDocument",
+      "contents": "open()"
+    },
+    {
+      "trigger": "document.queryCommandSupported(${0:command})\tDocument",
+      "contents": "document.queryCommandSupported(${0:command})"
+    },
+    {
+      "trigger": "queryCommandSupported(${0:command})\tDocument",
+      "contents": "queryCommandSupported(${0:command})"
+    },
+    {
+      "trigger": "document.querySelector(${0:selectors})\tDocument",
+      "contents": "document.querySelector(${0:selectors})"
+    },
+    {
+      "trigger": "document.querySelectorAll(${0:selectors})\tDocument",
+      "contents": "document.querySelectorAll(${0:selectors})"
+    },
+    {
+      "trigger": "document.write(${0:markup})\tDocument",
+      "contents": "document.write(${0:markup})"
+    },
+    {
+      "trigger": "write(${0:markup})\tDocument",
+      "contents": "write(${0:markup})"
+    },
+    {
+      "trigger": "document.writeln(${0:line})\tDocument",
+      "contents": "document.writeln(${0:line})"
+    },
+    {
+      "trigger": "writeln(${0:line})\tDocument",
+      "contents": "writeln(${0:line})"
+    },
   ]
 }
