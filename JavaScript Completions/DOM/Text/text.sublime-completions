@@ -3,6 +3,21 @@
 
   "completions":
   [
-    
+    {
+      "trigger": "new Text()\tText",
+      "contents": "new Text()"
+    },
+
+    // Properties
+    {
+      "trigger": "wholeText\tText",
+      "contents": "wholeText"
+    },
+
+    // Methods
+    {
+      "trigger": "splitText(${0:offset})\tText",
+      "contents": "splitText(${0:offset})"
+    },
   ]
 }

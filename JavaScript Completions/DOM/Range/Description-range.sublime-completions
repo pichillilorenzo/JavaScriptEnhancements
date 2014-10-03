@@ -3,6 +3,101 @@
 
   "completions":
   [
-    
+    {
+			"trigger": "description-Range.collapsed",
+			"contents": "/*\n\tDescription:\n\tThe Range.collapsed read-only property returns a Boolean flag indicating whether the start and end points of the Range are at the same position. It returns true if the start and end boundary points of the Range are the same point in the DOM, false if not.\n\n\tSyntax:\n\tisCollapsed = range.collapsed;\n*/"
+		},
+		{
+			"trigger": "description-Range.commonAncestorContainer",
+			"contents": "/*\n\tDescription:\n\tThe Range.commonAncestorContainer read-only property returns the deepest, or further down the document tree, Node that contains both the Range.startContainer and Range.endContainer nodes.\n\n\tSyntax:\n\trangeAncestor = range.commonAncestorContainer;\n*/"
+		},
+		{
+			"trigger": "description-Range.endContainer",
+			"contents": "/*\n\tDescription:\n\tThe Range.endContainer read-only property returns the Node within which the Range ends. To change the end position of a node, use the Range.setEnd() method or a similar one.\n\n\tSyntax:\n\tendRangeNode = range.endContainer;\n*/"
+		},
+		{
+			"trigger": "description-Range.endOffset",
+			"contents": "/*\n\tDescription:\n\tThe Range.endOffset read-only property returns a number representing where in the Range.endContainer the Range ends.\n\n\tSyntax:\n\tendRangeOffset = range.endOffset;\n*/"
+		},
+		{
+			"trigger": "description-Range.startContainer",
+			"contents": "/*\n\tDescription:\n\tThe Range.startContainer read-only property returns the Node within which the Range starts. To change the start position of a node, use one of the Range.setStart() methods.\n\n\tSyntax:\n\tstartRangeNode = range.startContainer;\n*/"
+		},
+		{
+			"trigger": "description-Range.startOffset",
+			"contents": "/*\n\tDescription:\n\tThe Range.startOffset read-only property returns a number representing where in the startContainer the Range starts.\n\n\tSyntax:\n\tstartRangeOffset = range.startOffset;\n*/"
+		},
+		{
+			"trigger": "description-Range.cloneContents()",
+			"contents": "/*\n\tDescription:\n\tThe Range.cloneContents() returns a DocumentFragment copying the objects of type Node included in the Range.\n\n\tSyntax:\n\tdocumentFragment = range.cloneContents();\n*/"
+		},
+		{
+			"trigger": "description-Range.cloneRange()",
+			"contents": "/*\n\tDescription:\n\tThe Range.cloneRange() method returns a Range object with boundary points identical to the cloned Range.\n\n\tSyntax:\n\tclone = range.cloneRange();\n*/"
+		},
+		{
+			"trigger": "description-Range.collapse()",
+			"contents": "/*\n\tDescription:\n\tThe Range.collapse() method collapses the Range to one of its boundary points.\n\n\tSyntax:\n\trange.collapse(toStart);\n*/"
+		},
+		{
+			"trigger": "description-Range.compareBoundaryPoints()",
+			"contents": "/*\n\tDescription:\n\tThe Range.compareBoundaryPoints() method compares the boundary points of the Range with another one.\n\n\tSyntax:\n\tcompare = range.compareBoundaryPoints(how, sourceRange);\n*/"
+		},
+		{
+			"trigger": "description-Range.deleteContents()",
+			"contents": "/*\n\tDescription:\n\tThe Range.deleteContents() removes the contents of the Range from the Document.\n\n\tSyntax:\n\trange.deleteContents()\n*/"
+		},
+		{
+			"trigger": "description-Range.detach()",
+			"contents": "/*\n\tDescription:\n\tThe Range.detach() method releases a Range from use. This lets the browser choose to release resources associated with this Range. Subsequent attempts to use the detached range will result in a DOMException being thrown with an error code of INVALID_STATE_ERR.\n\n\tSyntax:\n\trange.detach();\n*/"
+		},
+		{
+			"trigger": "description-Range.extractContents()",
+			"contents": "/*\n\tDescription:\n\tThe Range.extractContents() method moves contents of the Range from the document tree into a DocumentFragment.\n\n\tSyntax:\n\tdocumentFragment = range.extractContents();\n*/"
+		},
+		{
+			"trigger": "description-Range.insertNode()",
+			"contents": "/*\n\tDescription:\n\tThe Range.insertNode() method inserts a node at the start of the Range.\n\n\tSyntax:\n\trange.insertNode(newNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.selectNode()",
+			"contents": "/*\n\tDescription:\n\tThe Range.selectNode() method sets the Range to contain the Node and its contents. The parent Node of the start and end of the Range will be the same as the parent of the referenceNode.\n\n\tSyntax:\n\trange.selectNode(referenceNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.selectNodeContents()",
+			"contents": "/*\n\tDescription:\n\tThe Range.selectNodeContents() sets the Range to contain the contents of a Node.\n\n\tSyntax:\n\trange.selectNodeContents(referenceNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.setEnd()",
+			"contents": "/*\n\tDescription:\n\tThe Range.setEnd() method sets the end position of a Range.\n\n\tSyntax:\n\trange.setEnd(endNode, endOffset);\n*/"
+		},
+		{
+			"trigger": "description-Range.setEndAfter()",
+			"contents": "/*\n\tDescription:\n\tThe Range.setEndAfter() method sets the end position of a Range relative to another Node. The parent Node of end of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setEndAfter(referenceNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.setEndBefore()",
+			"contents": "/*\n\tDescription:\n\tThe Range.setEndBefore() method sets the end position of a Range relative to another Node. The parent Node of end of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setEndBefore(referenceNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.setStart()",
+			"contents": "/*\n\tDescription:\n\tThe Range.setStart() method sets the start position of a Range.\n\n\tSyntax:\n\trange.setStart(startNode, startOffset);\n*/"
+		},
+		{
+			"trigger": "description-Range.setStartAfter()",
+			"contents": "/*\n\tDescription:\n\tThe Range.setStartAfter() method sets the start position of a Range relative to a Node. The parent Node of the start of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setStartAfter(referenceNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.setStartBefore()",
+			"contents": "/*\n\tDescription:\n\tThe Range.setStartBefore() method sets the start position of a Range relative to another Node. The parent Node of the start of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setStartBefore(referenceNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.surroundContents()",
+			"contents": "/*\n\tDescription:\n\tThe Range.surroundContents() method moves content of the Range into a new node, placing the new node at the start of the specified range.\n\n\tSyntax:\n\trange.surroundContents(newNode);\n*/"
+		},
+		{
+			"trigger": "description-Range.toString()",
+			"contents": "/*\n\tDescription:\n\tThe Range.toString() method is a stringifier returning the text of the Range.\n\n\tSyntax:\n\ttext = range.toString();\n*/"
+		},
   ]
 }

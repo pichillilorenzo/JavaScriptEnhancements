@@ -3,6 +3,104 @@
 
   "completions":
   [
+  	// Properties
+    {
+      "trigger": "collapsed\tRange",
+      "contents": "collapsed"
+    },
+    {
+      "trigger": "commonAncestorContainer\tRange",
+      "contents": "commonAncestorContainer"
+    },
+    {
+      "trigger": "endContainer\tRange",
+      "contents": "endContainer"
+    },
+    {
+      "trigger": "endOffset\tRange",
+      "contents": "endOffset"
+    },
+    {
+      "trigger": "startContainer\tRange",
+      "contents": "startContainer"
+    },
+    {
+      "trigger": "startOffset\tRange",
+      "contents": "startOffset"
+    },
     
+    // Methods
+    {
+      "trigger": "cloneContents()\tRange",
+      "contents": "cloneContents()"
+    },
+    {
+      "trigger": "cloneRange()\tRange",
+      "contents": "cloneRange()"
+    },
+    {
+      "trigger": "collapse(${0:toStart})\tRange",
+      "contents": "collapse(${0:toStart})"
+    },
+    {
+      "trigger": "compareBoundaryPoints(${0:how}, sourceRange)\tRange",
+      "contents": "compareBoundaryPoints(${0:how}, sourceRange)"
+    },
+    {
+      "trigger": "deleteContents()\tRange",
+      "contents": "deleteContents()"
+    },
+    {
+      "trigger": "detach()\tRange",
+      "contents": "detach()"
+    },
+    {
+      "trigger": "extractContents()\tRange",
+      "contents": "extractContents()"
+    },
+    {
+      "trigger": "insertNode(${0:newNode})\tRange",
+      "contents": "insertNode(${0:newNode})"
+    },
+    {
+      "trigger": "selectNode(${0:referenceNode})\tRange",
+      "contents": "selectNode(${0:referenceNode})"
+    },
+    {
+      "trigger": "selectNodeContents(${0:referenceNode})\tRange",
+      "contents": "selectNodeContents(${0:referenceNode})"
+    },
+    {
+      "trigger": "setEnd(${0:endNode}, endOffset)\tRange",
+      "contents": "setEnd(${0:endNode}, endOffset)"
+    },
+    {
+      "trigger": "setEndAfter(${0:referenceNode})\tRange",
+      "contents": "setEndAfter(${0:referenceNode})"
+    },
+    {
+      "trigger": "setEndBefore(${0:referenceNode})\tRange",
+      "contents": "setEndBefore(${0:referenceNode})"
+    },
+    {
+      "trigger": "setStart(${0:startNode}, startOffset)\tRange",
+      "contents": "setStart(${0:startNode}, startOffset)"
+    },
+    {
+      "trigger": "setStartAfter(${0:referenceNode})\tRange",
+      "contents": "setStartAfter(${0:referenceNode})"
+    },
+    {
+      "trigger": "setStartBefore(${0:referenceNode})\tRange",
+      "contents": "setStartBefore(${0:referenceNode})"
+    },
+    {
+      "trigger": "surroundContents(${0:newNode})\tRange",
+      "contents": "surroundContents(${0:newNode})"
+    },
+    {
+      "trigger": "toString()\tRange",
+      "contents": "toString()"
+    },
   ]
 }

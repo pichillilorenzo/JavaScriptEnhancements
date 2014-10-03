@@ -3,6 +3,52 @@
 
   "completions":
   [
-    
+    // Properties
+    {
+      "trigger": "currentNode\tTreeWalker",
+      "contents": "currentNode"
+    },
+    {
+      "trigger": "filter\tTreeWalker",
+      "contents": "filter"
+    },
+    {
+      "trigger": "root\tTreeWalker",
+      "contents": "root"
+    },
+    {
+      "trigger": "whatToShow\tTreeWalker",
+      "contents": "whatToShow"
+    },
+
+    // Methods
+    {
+      "trigger": "firstChild()\tTreeWalker",
+      "contents": "firstChild()"
+    },
+    {
+      "trigger": "lastChild()\tTreeWalker",
+      "contents": "lastChild()"
+    },
+    {
+      "trigger": "nextNode()\tTreeWalker",
+      "contents": "nextNode()"
+    },
+    {
+      "trigger": "nextSibling()\tTreeWalker",
+      "contents": "nextSibling()"
+    },
+    {
+      "trigger": "parentNode()\tTreeWalker",
+      "contents": "parentNode()"
+    },
+    {
+      "trigger": "previousNode()\tTreeWalker",
+      "contents": "previousNode()"
+    },
+    {
+      "trigger": "previousSibling()\tTreeWalker",
+      "contents": "previousSibling()"
+    },
   ]
 }
