@@ -3,6 +3,65 @@
 
   "completions":
   [
-    
+  	{
+			"trigger": "description-URLUtils.hash",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.hash property returns a DOMString containing a '#' followed by the fragment identifier of the URL.\n\n\tSyntax:\n\tstring = object.hash;\n\tobject.hash = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.host",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.host property is a DOMString containing the host, that is the hostname, and then, if the port of the URL is nonempty, a ':', and the port of the URL.\n\n\tSyntax:\n\tstring = object.host;\n\tobject.host = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.hostname",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.hostname property is a DOMString containing the domain of the URL.\n\n\tSyntax:\n\tstring = object.hostname;\n\tobject.hostname = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.href",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.href property is a DOMString containing the whole URL.\n\n\tSyntax:\n\tstring = object.href;\n\tobject.href = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.origin",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.origin read-only property is a DOMString containing the Unicode serialization of the origin of the represented URL, that is, for http and https, the scheme followed by '://', followed by the domain, followed by ':', followed by the port (the default port, 80 and 443 respectively, if explicitely specified). For URL using file: scheme, the value is browser dependant.\n\n\tSyntax:\n\tstring = object.origin;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.password",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.password property is a DOMString containing the password specified before the domain name.\n\n\tSyntax:\n\tstring = object.password;\n\tobject.password = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.pathname",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.pathname property is a DOMString containing an initial '/' followed by the path of the URL.\n\n\tSyntax:\n\tstring = object.pathname;\n\tobject.pathname = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.port",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.port property is a DOMString containing the port number of the URL.\n\n\tSyntax:\n\tstring = object.port;\n\tobject.port = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.protocol",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.protocol property is a DOMString representing the protocol scheme of the URL, including the final ':'.\n\n\tSyntax:\n\tstring = object.protocol;\n\tobject.protocol = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.search",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.search property is a DOMString containing a '?' followed by the parameters of the URL.\n\n\tSyntax:\n\tstring = object.search;\n\tobject.search = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.searchParams",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.searchParams property is a URLSearchParams containing the query/search parameters of the URL.\n\n\tSyntax:\n\tobject2 = object.searchParams;\n\tobject.searchParams = object2;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.username",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.username property is a DOMString containing the username specified before the domain name.\n\n\tSyntax:\n\tstring = object.username;\n\tobject.username = string;\n*/"
+		},
+		{
+			"trigger": "description-URLUtils.toString()",
+			"contents": "/*\n\tDescription:\n\tThe URLUtils.toString() stringifier method returns a DOMString containing the whole URL. It is a read-only version of URLUtilsReadOnly.href.\n\n\tSyntax:\n\tstring = object.toString();\n*/"
+		},
+    {
+			"trigger": "description-URL.createObjectURL()",
+			"contents": "/*\n\tDescription:\n\tThe URL.createObjectURL() static method creates a DOMString containing an URL representing the object given in parameter. The URL lifetime is tied to the document in the window on which it was created. The new object URL represents the specified File object or Blob object.\n\n\tSyntax:\n\tobjectURL = URL.createObjectURL(blob);\n*/"
+		},
+		{
+			"trigger": "description-URL.revokeObjectURL()",
+			"contents": "/*\n\tDescription:\n\tThe URL.revokeObjectURL() static method releases an existing object URL which was previously created by calling window.URL.createObjectURL().  Call this method when you've finished using a object URL, in order to let the browser know it doesn't need to keep the reference to the file any longer.\n\n\tSyntax:\n\twindow.URL.revokeObjectURL(objectURL);\n*/"
+		},
   ]
 }

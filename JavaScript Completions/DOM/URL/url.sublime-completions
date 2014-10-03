@@ -2,7 +2,73 @@
   "scope": "source.js",
 
   "completions":
-  [
-    
+  [	
+  	// Properties
+  	{
+      "trigger": "hash\tURLUtils",
+      "contents": "hash"
+    },
+    {
+      "trigger": "host\tURLUtils",
+      "contents": "host"
+    },
+    {
+      "trigger": "hostname\tURLUtils",
+      "contents": "hostname"
+    },
+    {
+      "trigger": "href\tURLUtils",
+      "contents": "href"
+    },
+    {
+      "trigger": "origin\tURLUtils",
+      "contents": "origin"
+    },
+    {
+      "trigger": "password\tURLUtils",
+      "contents": "password"
+    },
+    {
+      "trigger": "pathname\tURLUtils",
+      "contents": "pathname"
+    },
+    {
+      "trigger": "port\tURLUtils",
+      "contents": "port"
+    },
+    {
+      "trigger": "protocol\tURLUtils",
+      "contents": "protocol"
+    },
+    {
+      "trigger": "search\tURLUtils",
+      "contents": "search"
+    },
+    {
+      "trigger": "searchParams\tURLUtils",
+      "contents": "searchParams"
+    },
+    {
+      "trigger": "username\tURLUtils",
+      "contents": "username"
+    },
+
+  	// Methods
+    {
+      "trigger": "URL.createObjectURL(${0:file|blob})\tURL",
+      "contents": "URL.createObjectURL(${0:file|blob})"
+    },
+    {
+      "trigger": "createObjectURL(${0:file|blob})\tURL",
+      "contents": "createObjectURL(${0:file|blob})"
+    },
+    {
+      "trigger": "URL.revokeObjectURL(${0:objectURL})\tURL",
+      "contents": "URL.revokeObjectURL(${0:objectURL})"
+    },
+    {
+      "trigger": "revokeObjectURL(${0:objectURL})\tURL",
+      "contents": "revokeObjectURL(${0:objectURL})"
+    },
   ]
 }
