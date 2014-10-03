@@ -5,681 +5,681 @@
   [
     // Properties
     {
-			"trigger": "bubbles\tEvent",
-			"contents": "bubbles"
-		},
-		{
-			"trigger": "cancelable\tEvent",
-			"contents": "cancelable"
-		},
-		{
-			"trigger": "currentTarget\tEvent",
-			"contents": "currentTarget"
-		},
-		{
-			"trigger": "defaultPrevented\tEvent",
-			"contents": "defaultPrevented"
-		},
-		{
-			"trigger": "eventPhase\tEvent",
-			"contents": "eventPhase"
-		},
-		{
-			"trigger": "target\tEvent",
-			"contents": "target"
-		},
-		{
-			"trigger": "timeStamp\tEvent",
-			"contents": "timeStamp"
-		},
-		{
-			"trigger": "type\tEvent",
-			"contents": "type"
-		},
-		{
-			"trigger": "isTrusted\tEvent",
-			"contents": "isTrusted"
-		},
+      "trigger": "bubbles\tEvent",
+      "contents": "bubbles"
+    },
+    {
+      "trigger": "cancelable\tEvent",
+      "contents": "cancelable"
+    },
+    {
+      "trigger": "currentTarget\tEvent",
+      "contents": "currentTarget"
+    },
+    {
+      "trigger": "defaultPrevented\tEvent",
+      "contents": "defaultPrevented"
+    },
+    {
+      "trigger": "eventPhase\tEvent",
+      "contents": "eventPhase"
+    },
+    {
+      "trigger": "target\tEvent",
+      "contents": "target"
+    },
+    {
+      "trigger": "timeStamp\tEvent",
+      "contents": "timeStamp"
+    },
+    {
+      "trigger": "type\tEvent",
+      "contents": "type"
+    },
+    {
+      "trigger": "isTrusted\tEvent",
+      "contents": "isTrusted"
+    },
     
 
     // Methods
     {
-			"trigger": "preventDefault()\tEvent",
-			"contents": "preventDefault()"
-		},
-		{
-			"trigger": "stopImmediatePropagation()\tEvent",
-			"contents": "stopImmediatePropagation()"
-		},
-		{
-			"trigger": "stopPropagation()\tEvent",
-			"contents": "stopPropagation()"
-		},
+      "trigger": "preventDefault()\tEvent",
+      "contents": "preventDefault()"
+    },
+    {
+      "trigger": "stopImmediatePropagation()\tEvent",
+      "contents": "stopImmediatePropagation()"
+    },
+    {
+      "trigger": "stopPropagation()\tEvent",
+      "contents": "stopPropagation()"
+    },
 
     // Events
-	  {
-			"trigger": "abort\tEvent",
-			"contents": "abort"
-		},
-		{
-			"trigger": "afterprint\tEvent",
-			"contents": "afterprint"
-		},
-		{
-			"trigger": "animationend\tEvent",
-			"contents": "animationend"
-		},
-		{
-			"trigger": "animationiteration\tEvent",
-			"contents": "animationiteration"
-		},
-		{
-			"trigger": "animationstart\tEvent",
-			"contents": "animationstart"
-		},
-		{
-			"trigger": "audioprocess\tEvent",
-			"contents": "audioprocess"
-		},
-		{
-			"trigger": "beforeprint \tEvent",
-			"contents": "beforeprint "
-		},
-		{
-			"trigger": "beforeunload\tEvent",
-			"contents": "beforeunload"
-		},
-		{
-			"trigger": "beginEvent\tEvent",
-			"contents": "beginEvent"
-		},
-		{
-			"trigger": "blocked\tEvent",
-			"contents": "blocked"
-		},
-		{
-			"trigger": "blur\tEvent",
-			"contents": "blur"
-		},
-		{
-			"trigger": "cached\tEvent",
-			"contents": "cached"
-		},
-		{
-			"trigger": "canplay\tEvent",
-			"contents": "canplay"
-		},
-		{
-			"trigger": "canplaythrough\tEvent",
-			"contents": "canplaythrough"
-		},
-		{
-			"trigger": "change\tEvent",
-			"contents": "change"
-		},
-		{
-			"trigger": "chargingchange\tEvent",
-			"contents": "chargingchange"
-		},
-		{
-			"trigger": "chargingtimechange\tEvent",
-			"contents": "chargingtimechange"
-		},
-		{
-			"trigger": "checking\tEvent",
-			"contents": "checking"
-		},
-		{
-			"trigger": "click\tEvent",
-			"contents": "click"
-		},
-		{
-			"trigger": "close\tEvent",
-			"contents": "close"
-		},
-		{
-			"trigger": "complete\tEvent",
-			"contents": "complete"
-		},
-		{
-			"trigger": "compositionend\tEvent",
-			"contents": "compositionend"
-		},
-		{
-			"trigger": "compositionstart\tEvent",
-			"contents": "compositionstart"
-		},
-		{
-			"trigger": "compositionupdate\tEvent",
-			"contents": "compositionupdate"
-		},
-		{
-			"trigger": "contextmenu\tEvent",
-			"contents": "contextmenu"
-		},
-		{
-			"trigger": "copy\tEvent",
-			"contents": "copy"
-		},
-		{
-			"trigger": "cut\tEvent",
-			"contents": "cut"
-		},
-		{
-			"trigger": "dblclick\tEvent",
-			"contents": "dblclick"
-		},
-		{
-			"trigger": "devicelight\tEvent",
-			"contents": "devicelight"
-		},
-		{
-			"trigger": "devicemotion\tEvent",
-			"contents": "devicemotion"
-		},
-		{
-			"trigger": "deviceorientation\tEvent",
-			"contents": "deviceorientation"
-		},
-		{
-			"trigger": "deviceproximity\tEvent",
-			"contents": "deviceproximity"
-		},
-		{
-			"trigger": "dischargingtimechange\tEvent",
-			"contents": "dischargingtimechange"
-		},
-		{
-			"trigger": "DOMContentLoaded\tEvent",
-			"contents": "DOMContentLoaded"
-		},
-		{
-			"trigger": "downloading\tEvent",
-			"contents": "downloading"
-		},
-		{
-			"trigger": "drag\tEvent",
-			"contents": "drag"
-		},
-		{
-			"trigger": "dragend\tEvent",
-			"contents": "dragend"
-		},
-		{
-			"trigger": "dragenter\tEvent",
-			"contents": "dragenter"
-		},
-		{
-			"trigger": "dragleave\tEvent",
-			"contents": "dragleave"
-		},
-		{
-			"trigger": "dragover\tEvent",
-			"contents": "dragover"
-		},
-		{
-			"trigger": "dragstart\tEvent",
-			"contents": "dragstart"
-		},
-		{
-			"trigger": "drop\tEvent",
-			"contents": "drop"
-		},
-		{
-			"trigger": "durationchange\tEvent",
-			"contents": "durationchange"
-		},
-		{
-			"trigger": "emptied\tEvent",
-			"contents": "emptied"
-		},
-		{
-			"trigger": "ended\tEvent",
-			"contents": "ended"
-		},
-		{
-			"trigger": "endEvent\tEvent",
-			"contents": "endEvent"
-		},
-		{
-			"trigger": "error\tEvent",
-			"contents": "error"
-		},
-		{
-			"trigger": "focus\tEvent",
-			"contents": "focus"
-		},
-		{
-			"trigger": "fullscreenchange\tEvent",
-			"contents": "fullscreenchange"
-		},
-		{
-			"trigger": "fullscreenerror\tEvent",
-			"contents": "fullscreenerror"
-		},
-		{
-			"trigger": "gamepadconnected\tEvent",
-			"contents": "gamepadconnected"
-		},
-		{
-			"trigger": "gamepaddisconnected\tEvent",
-			"contents": "gamepaddisconnected"
-		},
-		{
-			"trigger": "hashchange\tEvent",
-			"contents": "hashchange"
-		},
-		{
-			"trigger": "input\tEvent",
-			"contents": "input"
-		},
-		{
-			"trigger": "invalid\tEvent",
-			"contents": "invalid"
-		},
-		{
-			"trigger": "keydown\tEvent",
-			"contents": "keydown"
-		},
-		{
-			"trigger": "keypress\tEvent",
-			"contents": "keypress"
-		},
-		{
-			"trigger": "keyup\tEvent",
-			"contents": "keyup"
-		},
-		{
-			"trigger": "languagechange\tEvent",
-			"contents": "languagechange"
-		},
-		{
-			"trigger": "levelchange\tEvent",
-			"contents": "levelchange"
-		},
-		{
-			"trigger": "load\tEvent",
-			"contents": "load"
-		},
-		{
-			"trigger": "loadeddata\tEvent",
-			"contents": "loadeddata"
-		},
-		{
-			"trigger": "loadedmetadata\tEvent",
-			"contents": "loadedmetadata"
-		},
-		{
-			"trigger": "loadend\tEvent",
-			"contents": "loadend"
-		},
-		{
-			"trigger": "loadstart\tEvent",
-			"contents": "loadstart"
-		},
-		{
-			"trigger": "message\tEvent",
-			"contents": "message"
-		},
-		{
-			"trigger": "mousedown\tEvent",
-			"contents": "mousedown"
-		},
-		{
-			"trigger": "mouseenter\tEvent",
-			"contents": "mouseenter"
-		},
-		{
-			"trigger": "mouseleave\tEvent",
-			"contents": "mouseleave"
-		},
-		{
-			"trigger": "mousemove\tEvent",
-			"contents": "mousemove"
-		},
-		{
-			"trigger": "mouseout\tEvent",
-			"contents": "mouseout"
-		},
-		{
-			"trigger": "mouseover\tEvent",
-			"contents": "mouseover"
-		},
-		{
-			"trigger": "mouseup\tEvent",
-			"contents": "mouseup"
-		},
-		{
-			"trigger": "noupdate\tEvent",
-			"contents": "noupdate"
-		},
-		{
-			"trigger": "obsolete\tEvent",
-			"contents": "obsolete"
-		},
-		{
-			"trigger": "offline\tEvent",
-			"contents": "offline"
-		},
-		{
-			"trigger": "online\tEvent",
-			"contents": "online"
-		},
-		{
-			"trigger": "open\tEvent",
-			"contents": "open"
-		},
-		{
-			"trigger": "orientationchange\tEvent",
-			"contents": "orientationchange"
-		},
-		{
-			"trigger": "pagehide\tEvent",
-			"contents": "pagehide"
-		},
-		{
-			"trigger": "pageshow\tEvent",
-			"contents": "pageshow"
-		},
-		{
-			"trigger": "paste\tEvent",
-			"contents": "paste"
-		},
-		{
-			"trigger": "pause\tEvent",
-			"contents": "pause"
-		},
-		{
-			"trigger": "pointerlockchange\tEvent",
-			"contents": "pointerlockchange"
-		},
-		{
-			"trigger": "pointerlockerror\tEvent",
-			"contents": "pointerlockerror"
-		},
-		{
-			"trigger": "play\tEvent",
-			"contents": "play"
-		},
-		{
-			"trigger": "playing\tEvent",
-			"contents": "playing"
-		},
-		{
-			"trigger": "popstate\tEvent",
-			"contents": "popstate"
-		},
-		{
-			"trigger": "progress\tEvent",
-			"contents": "progress"
-		},
-		{
-			"trigger": "ratechange\tEvent",
-			"contents": "ratechange"
-		},
-		{
-			"trigger": "readystatechange\tEvent",
-			"contents": "readystatechange"
-		},
-		{
-			"trigger": "repeatEvent\tEvent",
-			"contents": "repeatEvent"
-		},
-		{
-			"trigger": "reset\tEvent",
-			"contents": "reset"
-		},
-		{
-			"trigger": "resize\tEvent",
-			"contents": "resize"
-		},
-		{
-			"trigger": "scroll\tEvent",
-			"contents": "scroll"
-		},
-		{
-			"trigger": "seeked\tEvent",
-			"contents": "seeked"
-		},
-		{
-			"trigger": "seeking\tEvent",
-			"contents": "seeking"
-		},
-		{
-			"trigger": "select\tEvent",
-			"contents": "select"
-		},
-		{
-			"trigger": "show\tEvent",
-			"contents": "show"
-		},
-		{
-			"trigger": "stalled\tEvent",
-			"contents": "stalled"
-		},
-		{
-			"trigger": "storage\tEvent",
-			"contents": "storage"
-		},
-		{
-			"trigger": "submit\tEvent",
-			"contents": "submit"
-		},
-		{
-			"trigger": "success\tEvent",
-			"contents": "success"
-		},
-		{
-			"trigger": "suspend\tEvent",
-			"contents": "suspend"
-		},
-		{
-			"trigger": "SVGAbort\tEvent",
-			"contents": "SVGAbort"
-		},
-		{
-			"trigger": "SVGError\tEvent",
-			"contents": "SVGError"
-		},
-		{
-			"trigger": "SVGLoad\tEvent",
-			"contents": "SVGLoad"
-		},
-		{
-			"trigger": "SVGResize\tEvent",
-			"contents": "SVGResize"
-		},
-		{
-			"trigger": "SVGScroll\tEvent",
-			"contents": "SVGScroll"
-		},
-		{
-			"trigger": "SVGUnload\tEvent",
-			"contents": "SVGUnload"
-		},
-		{
-			"trigger": "SVGZoom\tEvent",
-			"contents": "SVGZoom"
-		},
-		{
-			"trigger": "timeupdate\tEvent",
-			"contents": "timeupdate"
-		},
-		{
-			"trigger": "touchcancel\tEvent",
-			"contents": "touchcancel"
-		},
-		{
-			"trigger": "touchend\tEvent",
-			"contents": "touchend"
-		},
-		{
-			"trigger": "touchenter\tEvent",
-			"contents": "touchenter"
-		},
-		{
-			"trigger": "touchleave\tEvent",
-			"contents": "touchleave"
-		},
-		{
-			"trigger": "touchmove\tEvent",
-			"contents": "touchmove"
-		},
-		{
-			"trigger": "touchstart\tEvent",
-			"contents": "touchstart"
-		},
-		{
-			"trigger": "transitionend\tEvent",
-			"contents": "transitionend"
-		},
-		{
-			"trigger": "unload\tEvent",
-			"contents": "unload"
-		},
-		{
-			"trigger": "updateready\tEvent",
-			"contents": "updateready"
-		},
-		{
-			"trigger": "upgradeneeded\tEvent",
-			"contents": "upgradeneeded"
-		},
-		{
-			"trigger": "userproximity\tEvent",
-			"contents": "userproximity"
-		},
-		{
-			"trigger": "versionchange\tEvent",
-			"contents": "versionchange"
-		},
-		{
-			"trigger": "visibilitychange\tEvent",
-			"contents": "visibilitychange"
-		},
-		{
-			"trigger": "volumechange\tEvent",
-			"contents": "volumechange"
-		},
-		{
-			"trigger": "waiting\tEvent",
-			"contents": "waiting"
-		},
-		{
-			"trigger": "wheel\tEvent",
-			"contents": "wheel"
-		},
-		{
-			"trigger": "afterscriptexecute\tEvent",
-			"contents": "afterscriptexecute"
-		},
-		{
-			"trigger": "beforescriptexecute\tEvent",
-			"contents": "beforescriptexecute"
-		},
-		{
-			"trigger": "change\tEvent",
-			"contents": "change"
-		},
-		{
-			"trigger": "connectionInfoUpdate\tEvent",
-			"contents": "connectionInfoUpdate"
-		},
-		{
-			"trigger": "localized\tEvent",
-			"contents": "localized"
-		},
-		{
-			"trigger": "alerting\tEvent",
-			"contents": "alerting"
-		},
-		{
-			"trigger": "busy\tEvent",
-			"contents": "busy"
-		},
-		{
-			"trigger": "callschanged\tEvent",
-			"contents": "callschanged"
-		},
-		{
-			"trigger": "onconnected connected\tEvent",
-			"contents": "onconnected connected"
-		},
-		{
-			"trigger": "connecting\tEvent",
-			"contents": "connecting"
-		},
-		{
-			"trigger": "delivered\tEvent",
-			"contents": "delivered"
-		},
-		{
-			"trigger": "dialing\tEvent",
-			"contents": "dialing"
-		},
-		{
-			"trigger": "disabled\tEvent",
-			"contents": "disabled"
-		},
-		{
-			"trigger": "disconnected\tEvent",
-			"contents": "disconnected"
-		},
-		{
-			"trigger": "disconnecting\tEvent",
-			"contents": "disconnecting"
-		},
-		{
-			"trigger": "enabled\tEvent",
-			"contents": "enabled"
-		},
-		{
-			"trigger": "error\tEvent",
-			"contents": "error"
-		},
-		{
-			"trigger": "held\tEvent",
-			"contents": "held"
-		},
-		{
-			"trigger": "holding\tEvent",
-			"contents": "holding"
-		},
-		{
-			"trigger": "incoming\tEvent",
-			"contents": "incoming"
-		},
-		{
-			"trigger": "received\tEvent",
-			"contents": "received"
-		},
-		{
-			"trigger": "resuming\tEvent",
-			"contents": "resuming"
-		},
-		{
-			"trigger": "sent\tEvent",
-			"contents": "sent"
-		},
-		{
-			"trigger": "statechange\tEvent",
-			"contents": "statechange"
-		},
-		{
-			"trigger": "statuschange\tEvent",
-			"contents": "statuschange"
-		},
-		{
-			"trigger": "overflow\tEvent",
-			"contents": "overflow"
-		},
-		{
-			"trigger": "smartcard-insert\tEvent",
-			"contents": "smartcard-insert"
-		},
-		{
-			"trigger": "smartcard-remove\tEvent",
-			"contents": "smartcard-remove"
-		}, 
+    {
+      "trigger": "abort\tEvent",
+      "contents": "abort"
+    },
+    {
+      "trigger": "afterprint\tEvent",
+      "contents": "afterprint"
+    },
+    {
+      "trigger": "animationend\tEvent",
+      "contents": "animationend"
+    },
+    {
+      "trigger": "animationiteration\tEvent",
+      "contents": "animationiteration"
+    },
+    {
+      "trigger": "animationstart\tEvent",
+      "contents": "animationstart"
+    },
+    {
+      "trigger": "audioprocess\tEvent",
+      "contents": "audioprocess"
+    },
+    {
+      "trigger": "beforeprint \tEvent",
+      "contents": "beforeprint "
+    },
+    {
+      "trigger": "beforeunload\tEvent",
+      "contents": "beforeunload"
+    },
+    {
+      "trigger": "beginEvent\tEvent",
+      "contents": "beginEvent"
+    },
+    {
+      "trigger": "blocked\tEvent",
+      "contents": "blocked"
+    },
+    {
+      "trigger": "blur\tEvent",
+      "contents": "blur"
+    },
+    {
+      "trigger": "cached\tEvent",
+      "contents": "cached"
+    },
+    {
+      "trigger": "canplay\tEvent",
+      "contents": "canplay"
+    },
+    {
+      "trigger": "canplaythrough\tEvent",
+      "contents": "canplaythrough"
+    },
+    {
+      "trigger": "change\tEvent",
+      "contents": "change"
+    },
+    {
+      "trigger": "chargingchange\tEvent",
+      "contents": "chargingchange"
+    },
+    {
+      "trigger": "chargingtimechange\tEvent",
+      "contents": "chargingtimechange"
+    },
+    {
+      "trigger": "checking\tEvent",
+      "contents": "checking"
+    },
+    {
+      "trigger": "click\tEvent",
+      "contents": "click"
+    },
+    {
+      "trigger": "close\tEvent",
+      "contents": "close"
+    },
+    {
+      "trigger": "complete\tEvent",
+      "contents": "complete"
+    },
+    {
+      "trigger": "compositionend\tEvent",
+      "contents": "compositionend"
+    },
+    {
+      "trigger": "compositionstart\tEvent",
+      "contents": "compositionstart"
+    },
+    {
+      "trigger": "compositionupdate\tEvent",
+      "contents": "compositionupdate"
+    },
+    {
+      "trigger": "contextmenu\tEvent",
+      "contents": "contextmenu"
+    },
+    {
+      "trigger": "copy\tEvent",
+      "contents": "copy"
+    },
+    {
+      "trigger": "cut\tEvent",
+      "contents": "cut"
+    },
+    {
+      "trigger": "dblclick\tEvent",
+      "contents": "dblclick"
+    },
+    {
+      "trigger": "devicelight\tEvent",
+      "contents": "devicelight"
+    },
+    {
+      "trigger": "devicemotion\tEvent",
+      "contents": "devicemotion"
+    },
+    {
+      "trigger": "deviceorientation\tEvent",
+      "contents": "deviceorientation"
+    },
+    {
+      "trigger": "deviceproximity\tEvent",
+      "contents": "deviceproximity"
+    },
+    {
+      "trigger": "dischargingtimechange\tEvent",
+      "contents": "dischargingtimechange"
+    },
+    {
+      "trigger": "DOMContentLoaded\tEvent",
+      "contents": "DOMContentLoaded"
+    },
+    {
+      "trigger": "downloading\tEvent",
+      "contents": "downloading"
+    },
+    {
+      "trigger": "drag\tEvent",
+      "contents": "drag"
+    },
+    {
+      "trigger": "dragend\tEvent",
+      "contents": "dragend"
+    },
+    {
+      "trigger": "dragenter\tEvent",
+      "contents": "dragenter"
+    },
+    {
+      "trigger": "dragleave\tEvent",
+      "contents": "dragleave"
+    },
+    {
+      "trigger": "dragover\tEvent",
+      "contents": "dragover"
+    },
+    {
+      "trigger": "dragstart\tEvent",
+      "contents": "dragstart"
+    },
+    {
+      "trigger": "drop\tEvent",
+      "contents": "drop"
+    },
+    {
+      "trigger": "durationchange\tEvent",
+      "contents": "durationchange"
+    },
+    {
+      "trigger": "emptied\tEvent",
+      "contents": "emptied"
+    },
+    {
+      "trigger": "ended\tEvent",
+      "contents": "ended"
+    },
+    {
+      "trigger": "endEvent\tEvent",
+      "contents": "endEvent"
+    },
+    {
+      "trigger": "error\tEvent",
+      "contents": "error"
+    },
+    {
+      "trigger": "focus\tEvent",
+      "contents": "focus"
+    },
+    {
+      "trigger": "fullscreenchange\tEvent",
+      "contents": "fullscreenchange"
+    },
+    {
+      "trigger": "fullscreenerror\tEvent",
+      "contents": "fullscreenerror"
+    },
+    {
+      "trigger": "gamepadconnected\tEvent",
+      "contents": "gamepadconnected"
+    },
+    {
+      "trigger": "gamepaddisconnected\tEvent",
+      "contents": "gamepaddisconnected"
+    },
+    {
+      "trigger": "hashchange\tEvent",
+      "contents": "hashchange"
+    },
+    {
+      "trigger": "input\tEvent",
+      "contents": "input"
+    },
+    {
+      "trigger": "invalid\tEvent",
+      "contents": "invalid"
+    },
+    {
+      "trigger": "keydown\tEvent",
+      "contents": "keydown"
+    },
+    {
+      "trigger": "keypress\tEvent",
+      "contents": "keypress"
+    },
+    {
+      "trigger": "keyup\tEvent",
+      "contents": "keyup"
+    },
+    {
+      "trigger": "languagechange\tEvent",
+      "contents": "languagechange"
+    },
+    {
+      "trigger": "levelchange\tEvent",
+      "contents": "levelchange"
+    },
+    {
+      "trigger": "load\tEvent",
+      "contents": "load"
+    },
+    {
+      "trigger": "loadeddata\tEvent",
+      "contents": "loadeddata"
+    },
+    {
+      "trigger": "loadedmetadata\tEvent",
+      "contents": "loadedmetadata"
+    },
+    {
+      "trigger": "loadend\tEvent",
+      "contents": "loadend"
+    },
+    {
+      "trigger": "loadstart\tEvent",
+      "contents": "loadstart"
+    },
+    {
+      "trigger": "message\tEvent",
+      "contents": "message"
+    },
+    {
+      "trigger": "mousedown\tEvent",
+      "contents": "mousedown"
+    },
+    {
+      "trigger": "mouseenter\tEvent",
+      "contents": "mouseenter"
+    },
+    {
+      "trigger": "mouseleave\tEvent",
+      "contents": "mouseleave"
+    },
+    {
+      "trigger": "mousemove\tEvent",
+      "contents": "mousemove"
+    },
+    {
+      "trigger": "mouseout\tEvent",
+      "contents": "mouseout"
+    },
+    {
+      "trigger": "mouseover\tEvent",
+      "contents": "mouseover"
+    },
+    {
+      "trigger": "mouseup\tEvent",
+      "contents": "mouseup"
+    },
+    {
+      "trigger": "noupdate\tEvent",
+      "contents": "noupdate"
+    },
+    {
+      "trigger": "obsolete\tEvent",
+      "contents": "obsolete"
+    },
+    {
+      "trigger": "offline\tEvent",
+      "contents": "offline"
+    },
+    {
+      "trigger": "online\tEvent",
+      "contents": "online"
+    },
+    {
+      "trigger": "open\tEvent",
+      "contents": "open"
+    },
+    {
+      "trigger": "orientationchange\tEvent",
+      "contents": "orientationchange"
+    },
+    {
+      "trigger": "pagehide\tEvent",
+      "contents": "pagehide"
+    },
+    {
+      "trigger": "pageshow\tEvent",
+      "contents": "pageshow"
+    },
+    {
+      "trigger": "paste\tEvent",
+      "contents": "paste"
+    },
+    {
+      "trigger": "pause\tEvent",
+      "contents": "pause"
+    },
+    {
+      "trigger": "pointerlockchange\tEvent",
+      "contents": "pointerlockchange"
+    },
+    {
+      "trigger": "pointerlockerror\tEvent",
+      "contents": "pointerlockerror"
+    },
+    {
+      "trigger": "play\tEvent",
+      "contents": "play"
+    },
+    {
+      "trigger": "playing\tEvent",
+      "contents": "playing"
+    },
+    {
+      "trigger": "popstate\tEvent",
+      "contents": "popstate"
+    },
+    {
+      "trigger": "progress\tEvent",
+      "contents": "progress"
+    },
+    {
+      "trigger": "ratechange\tEvent",
+      "contents": "ratechange"
+    },
+    {
+      "trigger": "readystatechange\tEvent",
+      "contents": "readystatechange"
+    },
+    {
+      "trigger": "repeatEvent\tEvent",
+      "contents": "repeatEvent"
+    },
+    {
+      "trigger": "reset\tEvent",
+      "contents": "reset"
+    },
+    {
+      "trigger": "resize\tEvent",
+      "contents": "resize"
+    },
+    {
+      "trigger": "scroll\tEvent",
+      "contents": "scroll"
+    },
+    {
+      "trigger": "seeked\tEvent",
+      "contents": "seeked"
+    },
+    {
+      "trigger": "seeking\tEvent",
+      "contents": "seeking"
+    },
+    {
+      "trigger": "select\tEvent",
+      "contents": "select"
+    },
+    {
+      "trigger": "show\tEvent",
+      "contents": "show"
+    },
+    {
+      "trigger": "stalled\tEvent",
+      "contents": "stalled"
+    },
+    {
+      "trigger": "storage\tEvent",
+      "contents": "storage"
+    },
+    {
+      "trigger": "submit\tEvent",
+      "contents": "submit"
+    },
+    {
+      "trigger": "success\tEvent",
+      "contents": "success"
+    },
+    {
+      "trigger": "suspend\tEvent",
+      "contents": "suspend"
+    },
+    {
+      "trigger": "SVGAbort\tEvent",
+      "contents": "SVGAbort"
+    },
+    {
+      "trigger": "SVGError\tEvent",
+      "contents": "SVGError"
+    },
+    {
+      "trigger": "SVGLoad\tEvent",
+      "contents": "SVGLoad"
+    },
+    {
+      "trigger": "SVGResize\tEvent",
+      "contents": "SVGResize"
+    },
+    {
+      "trigger": "SVGScroll\tEvent",
+      "contents": "SVGScroll"
+    },
+    {
+      "trigger": "SVGUnload\tEvent",
+      "contents": "SVGUnload"
+    },
+    {
+      "trigger": "SVGZoom\tEvent",
+      "contents": "SVGZoom"
+    },
+    {
+      "trigger": "timeupdate\tEvent",
+      "contents": "timeupdate"
+    },
+    {
+      "trigger": "touchcancel\tEvent",
+      "contents": "touchcancel"
+    },
+    {
+      "trigger": "touchend\tEvent",
+      "contents": "touchend"
+    },
+    {
+      "trigger": "touchenter\tEvent",
+      "contents": "touchenter"
+    },
+    {
+      "trigger": "touchleave\tEvent",
+      "contents": "touchleave"
+    },
+    {
+      "trigger": "touchmove\tEvent",
+      "contents": "touchmove"
+    },
+    {
+      "trigger": "touchstart\tEvent",
+      "contents": "touchstart"
+    },
+    {
+      "trigger": "transitionend\tEvent",
+      "contents": "transitionend"
+    },
+    {
+      "trigger": "unload\tEvent",
+      "contents": "unload"
+    },
+    {
+      "trigger": "updateready\tEvent",
+      "contents": "updateready"
+    },
+    {
+      "trigger": "upgradeneeded\tEvent",
+      "contents": "upgradeneeded"
+    },
+    {
+      "trigger": "userproximity\tEvent",
+      "contents": "userproximity"
+    },
+    {
+      "trigger": "versionchange\tEvent",
+      "contents": "versionchange"
+    },
+    {
+      "trigger": "visibilitychange\tEvent",
+      "contents": "visibilitychange"
+    },
+    {
+      "trigger": "volumechange\tEvent",
+      "contents": "volumechange"
+    },
+    {
+      "trigger": "waiting\tEvent",
+      "contents": "waiting"
+    },
+    {
+      "trigger": "wheel\tEvent",
+      "contents": "wheel"
+    },
+    {
+      "trigger": "afterscriptexecute\tEvent",
+      "contents": "afterscriptexecute"
+    },
+    {
+      "trigger": "beforescriptexecute\tEvent",
+      "contents": "beforescriptexecute"
+    },
+    {
+      "trigger": "change\tEvent",
+      "contents": "change"
+    },
+    {
+      "trigger": "connectionInfoUpdate\tEvent",
+      "contents": "connectionInfoUpdate"
+    },
+    {
+      "trigger": "localized\tEvent",
+      "contents": "localized"
+    },
+    {
+      "trigger": "alerting\tEvent",
+      "contents": "alerting"
+    },
+    {
+      "trigger": "busy\tEvent",
+      "contents": "busy"
+    },
+    {
+      "trigger": "callschanged\tEvent",
+      "contents": "callschanged"
+    },
+    {
+      "trigger": "onconnected connected\tEvent",
+      "contents": "onconnected connected"
+    },
+    {
+      "trigger": "connecting\tEvent",
+      "contents": "connecting"
+    },
+    {
+      "trigger": "delivered\tEvent",
+      "contents": "delivered"
+    },
+    {
+      "trigger": "dialing\tEvent",
+      "contents": "dialing"
+    },
+    {
+      "trigger": "disabled\tEvent",
+      "contents": "disabled"
+    },
+    {
+      "trigger": "disconnected\tEvent",
+      "contents": "disconnected"
+    },
+    {
+      "trigger": "disconnecting\tEvent",
+      "contents": "disconnecting"
+    },
+    {
+      "trigger": "enabled\tEvent",
+      "contents": "enabled"
+    },
+    {
+      "trigger": "error\tEvent",
+      "contents": "error"
+    },
+    {
+      "trigger": "held\tEvent",
+      "contents": "held"
+    },
+    {
+      "trigger": "holding\tEvent",
+      "contents": "holding"
+    },
+    {
+      "trigger": "incoming\tEvent",
+      "contents": "incoming"
+    },
+    {
+      "trigger": "received\tEvent",
+      "contents": "received"
+    },
+    {
+      "trigger": "resuming\tEvent",
+      "contents": "resuming"
+    },
+    {
+      "trigger": "sent\tEvent",
+      "contents": "sent"
+    },
+    {
+      "trigger": "statechange\tEvent",
+      "contents": "statechange"
+    },
+    {
+      "trigger": "statuschange\tEvent",
+      "contents": "statuschange"
+    },
+    {
+      "trigger": "overflow\tEvent",
+      "contents": "overflow"
+    },
+    {
+      "trigger": "smartcard-insert\tEvent",
+      "contents": "smartcard-insert"
+    },
+    {
+      "trigger": "smartcard-remove\tEvent",
+      "contents": "smartcard-remove"
+    }, 
   ]
 }
