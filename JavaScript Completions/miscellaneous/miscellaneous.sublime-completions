@@ -19,7 +19,6 @@
     "new Boolean();",
     "new Image();",
     "new Option();",
-    "new File();",
 
     "function ${0:function_name} (argument){\n\t/* body... */\n}",
     "(function(){\n\t$0\n})();",

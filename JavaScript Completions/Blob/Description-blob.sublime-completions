@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions":	[
+		{
+			"trigger": "description-Blob()",
+			"contents": "/*\n\tDescription:\n\tThe Blob() constructor returns a new Blob object. The content of the blob consists of the concatenation of the array of values given in parameter.\n\n\tSyntax:\n\tvar aBlob = new Blob( array, options );\n*/"
+		},
+		{
+			"trigger": "description-Blob.size",
+			"contents": "/*\n\tDescription:\n\tReturns the size of the file in bytes.\n\n\tSyntax:\n\tvar filesize = instanceOfFile.size\n*/"
+		},
+		{
+			"trigger": "description-Blob.type",
+			"contents": "/*\n\tDescription:\n\tThe type property provides the MIME type of the file or the empty string if the type couldn't determined.\n\n\tSyntax:\n\tvar mimetype = instanceOfFile.type\n*/"
+		},
+		{
+			"trigger": "description-Blob.slice()",
+			"contents": "/*\n\tDescription:\n\tThe slice is used to create a new Blob object containing the data in the specified range of bytes of the source Blob.\n\n\tSyntax:\n\tvar blob = instanceOfBlob.slice([start [, end [, contentType]]]);\n*/"
+		},
+	]
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    {
+      "trigger": "new Blob(${0:array}, options)\tBlob",
+      "contents": "new Blob(${0:array}, options)"
+    },
+
+    // Properties
+    {
+      "trigger": "size\tBlob",
+      "contents": "size"
+    },
+    {
+      "trigger": "type\tBlob",
+      "contents": "type"
+    },
+  ]
+}

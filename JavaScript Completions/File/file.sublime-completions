@@ -1,0 +1,60 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+  	{
+      "trigger": "new File(${0:Array_parts}, String_filename, BlobPropertyBag_properties)\tFile",
+      "contents": "new File(${0:Array_parts}, String_filename, BlobPropertyBag_properties)"
+    },
+  	{
+      "trigger": "new FileReader()\tFileReader",
+      "contents": "new FileReader()"
+    },
+
+  	// Properties
+    {
+      "trigger": "lastModifiedDate\tFile",
+      "contents": "lastModifiedDate"
+    },
+    {
+      "trigger": "name\tFile",
+      "contents": "name"
+    },
+
+    {
+      "trigger": "error\tFileReader",
+      "contents": "error"
+    },
+    {
+      "trigger": "readyState\tFileReader",
+      "contents": "readyState"
+    },
+    {
+      "trigger": "result\tFileReader",
+      "contents": "result"
+    },
+
+    //Methods
+    {
+      "trigger": "abort()\tFileReader",
+      "contents": "abort()"
+    },
+    {
+      "trigger": "readAsArrayBuffer(${0:file|blob})\tFileReader",
+      "contents": "readAsArrayBuffer(${0:file|blob})"
+    },
+    {
+      "trigger": "readAsBinaryString(${0:file|blob})\tFileReader",
+      "contents": "readAsBinaryString(${0:file|blob})"
+    },
+    {
+      "trigger": "readAsDataURL(${0:file|blob})\tFileReader",
+      "contents": "readAsDataURL(${0:file|blob})"
+    },
+    {
+      "trigger": "readAsText(${0:file|blob})\tFileReader",
+      "contents": "readAsText(${0:file|blob})"
+    },
+  ]
+}
