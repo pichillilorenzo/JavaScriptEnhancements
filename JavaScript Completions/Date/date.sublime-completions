@@ -7,6 +7,14 @@
       "trigger": "new Date()\tDate",
       "contents": "new Date()"
     },
+
+    // Properties
+    {
+      "trigger": "length\tDate",
+      "contents": "length"
+    },
+
+    // Methods
     {
       "trigger": "now()\tDate",
       "contents": "now()"
@@ -164,6 +172,10 @@
       "contents": "toJSON()"
     },
     {
+      "trigger": "toLocaleString()\tDate",
+      "contents": "toLocaleString()"
+    },
+    {
       "trigger": "toLocaleDateString()\tDate",
       "contents": "toLocaleDateString()"
     },
@@ -175,5 +187,14 @@
       "trigger": "toTimeString()\tDate",
       "contents": "toTimeString()"
     },
+    {
+      "trigger": "toString()\tDate",
+      "contents": "toString()"
+    },
+    {
+      "trigger": "valueOf()\tDate",
+      "contents": "valueOf()"
+    },
+
   ]
 }

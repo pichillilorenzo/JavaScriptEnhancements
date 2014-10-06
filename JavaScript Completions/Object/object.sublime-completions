@@ -11,6 +11,15 @@
       "trigger": "this\tObject",
       "contents": "this"
     },
+
+    // Properties
+    {
+      "trigger": "length\tObject",
+      "contents": "length"
+    },
+
+
+    // Methods0
     {
       "trigger": "delete(${0:Object})\tObject",
       "contents": "delete(${0:Object})"
@@ -112,12 +121,24 @@
       "contents": "setPrototypeOf(${0:Object}, prototype)"
     },
     {
+      "trigger": "toLocaleString()\tObject",
+      "contents": "toLocaleString()"
+    },
+    {
       "trigger": "toSource()\tObject",
       "contents": "toSource()"
     },
     {
+      "trigger": "toString()\tObject",
+      "contents": "toString()"
+    },
+    {
       "trigger": "isPrototypeOf(${0:Object})\tObject",
       "contents": "isPrototypeOf(${0:Object})"
+    },
+    {
+      "trigger": "valueOf()\tObject",
+      "contents": "valueOf()"
     },
   ]
 }

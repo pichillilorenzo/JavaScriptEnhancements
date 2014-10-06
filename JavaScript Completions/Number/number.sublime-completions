@@ -7,6 +7,8 @@
       "trigger": "new Number(${0:value})\tNumber",
       "contents": "new Number(${0:value})"
     },
+
+    // Properties
     {
       "trigger": "Number.MAX_VALUE\tNumber",
       "contents": "Number.MAX_VALUE"
@@ -27,6 +29,8 @@
       "trigger": "Number.POSITIVE_INFINITY\tNumber",
       "contents": "Number.POSITIVE_INFINITY"
     },
+
+    // Methods
     {
       "trigger": "toExponential(${0:fractionDigits})\tNumber",
       "contents": "toExponential(${0:fractionDigits})"
@@ -36,8 +40,20 @@
       "contents": "toFixed(${0:digits})"
     },
     {
+      "trigger": "toLocaleString()\tNumber",
+      "contents": "toLocaleString()"
+    },
+    {
+      "trigger": "toString(${0:radix})\tNumber",
+      "contents": "toString(${0:radix})"
+    },
+    {
       "trigger": "toPrecision(${0:precision})\tNumber",
       "contents": "toPrecision(${0:precision})"
+    },
+    {
+      "trigger": "valueOf()\tNumber",
+      "contents": "valueOf()"
     },
   ]
 }
