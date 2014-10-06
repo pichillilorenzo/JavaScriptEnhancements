@@ -31,6 +31,10 @@
       "contents": "lastIndex"
     },
     {
+      "trigger": "length\tRegExp",
+      "contents": "length"
+    },
+    {
       "trigger": "multiline\tRegExp",
       "contents": "multiline"
     },
@@ -39,9 +43,17 @@
       "contents": "source"
     },
 
-    "length",
-    "index",
-    "input",
+    // String
+    {
+      "trigger": "length\tString",
+      "contents": "length"
+    },
+
+    // Array
+    {
+      "trigger": "length\tArray",
+      "contents": "length"
+    },
 
     //Methods
     // RegExp
@@ -53,6 +65,11 @@
       "trigger": "test(${0:string})\tRegExp",
       "contents": "test(${0:string})"
     },
+    {
+      "trigger": "toString()\tRegExp",
+      "contents": "toString()"
+    },
+    
     // String
     {
       "trigger": "replace(${0:regexp|substr}, 'string')\tString",
@@ -87,6 +104,14 @@
       "contents": "concat(${0:value1}, value2)"
     },
     {
+      "trigger": "indexOf(${0:searchValue})\tString",
+      "contents": "indexOf(${0:searchValue})"
+    },
+    {
+      "trigger": "lastIndexOf(${0:searchValue})\tString",
+      "contents": "lastIndexOf(${0:searchValue})"
+    },
+    {
       "trigger": "localeCompare(${0:compareString})\tString",
       "contents": "localeCompare(${0:compareString})"
     },
@@ -113,6 +138,10 @@
     {
       "trigger": "toLocaleUpperCase()\tString",
       "contents": "toLocaleUpperCase()"
+    },
+    {
+      "trigger": "toString()\tString",
+      "contents": "toString()"
     },
     {
       "trigger": "trim()\tString",
@@ -184,17 +213,28 @@
       "contents": "reduceRight(${0:callback})"
     },
     {
+      "trigger": "indexOf(${0:searchElement})\tArray",
+      "contents": "indexOf(${0:searchElement})"
+    },
+    {
       "trigger": "isArray(${0:Object})\tArray",
       "contents": "isArray(${0:Object})"
+    },
+    {
+      "trigger": "lastIndexOf(${0:searchElement})\tArray",
+      "contents": "lastIndexOf(${0:searchElement})"
     },
     {
       "trigger": "forEach(${0:callback})\tArray",
       "contents": "forEach(${0:callback})"
     },
-
-    "toString()",
-    "toLocaleString()",
-    "indexOf(${0:search})",
-    "lastIndexOf(${0:search})",
+    {
+      "trigger": "toLocaleString()\tArray",
+      "contents": "toString()"
+    },
+    {
+      "trigger": "toString()\tArray",
+      "contents": "toString()"
+    },
   ]
 }
