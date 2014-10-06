@@ -13,131 +13,267 @@
       "contents": "window.closed"
     },
     {
+      "trigger": "closed\tWindow",
+      "contents": "closed"
+    },
+    {
       "trigger": "window.content\tWindow",
       "contents": "window.content"
+    },
+    {
+      "trigger": "content\tWindow",
+      "contents": "content"
     },
     {
       "trigger": "window.devicePixelRatio\tWindow",
       "contents": "window.devicePixelRatio"
     },
     {
+      "trigger": "devicePixelRatio\tWindow",
+      "contents": "devicePixelRatio"
+    },
+    {
       "trigger": "window.dialogArguments\tWindow",
       "contents": "window.dialogArguments"
+    },
+    {
+      "trigger": "dialogArguments\tWindow",
+      "contents": "dialogArguments"
     },
     {
       "trigger": "window.frameElement\tWindow",
       "contents": "window.frameElement"
     },
     {
+      "trigger": "frameElement\tWindow",
+      "contents": "frameElement"
+    },
+    {
       "trigger": "window.fullScreen\tWindow",
       "contents": "window.fullScreen"
+    },
+    {
+      "trigger": "fullScreen\tWindow",
+      "contents": "fullScreen"
     },
     {
       "trigger": "window.history\tWindow",
       "contents": "window.history"
     },
     {
+      "trigger": "history\tWindow",
+      "contents": "history"
+    },
+    {
       "trigger": "window.innerHeight\tWindow",
       "contents": "window.innerHeight"
+    },
+    {
+      "trigger": "innerHeight\tWindow",
+      "contents": "innerHeight"
     },
     {
       "trigger": "window.innerWidth\tWindow",
       "contents": "window.innerWidth"
     },
     {
+      "trigger": "innerWidth\tWindow",
+      "contents": "innerWidth"
+    },
+    {
       "trigger": "window.location\tWindow",
       "contents": "window.location"
+    },
+    {
+      "trigger": "location\tWindow",
+      "contents": "location"
     },
     {
       "trigger": "window.locationbar\tWindow",
       "contents": "window.locationbar"
     },
     {
+      "trigger": "locationbar\tWindow",
+      "contents": "locationbar"
+    },
+    {
       "trigger": "window.name\tWindow",
       "contents": "window.name"
+    },
+    {
+      "trigger": "name\tWindow",
+      "contents": "name"
     },
     {
       "trigger": "window.navigator\tWindow",
       "contents": "window.navigator"
     },
     {
+      "trigger": "navigator\tWindow",
+      "contents": "navigator"
+    },
+    {
       "trigger": "window.opener\tWindow",
       "contents": "window.opener"
+    },
+    {
+      "trigger": "opener\tWindow",
+      "contents": "opener"
     },
     {
       "trigger": "window.outerHeight\tWindow",
       "contents": "window.outerHeight"
     },
     {
+      "trigger": "outerHeight\tWindow",
+      "contents": "outerHeight"
+    },
+    {
       "trigger": "window.outerWidth\tWindow",
       "contents": "window.outerWidth"
+    },
+    {
+      "trigger": "outerWidth\tWindow",
+      "contents": "outerWidth"
     },
     {
       "trigger": "window.parent\tWindow",
       "contents": "window.parent"
     },
     {
+      "trigger": "parent\tWindow",
+      "contents": "parent"
+    },
+    {
       "trigger": "window.personalbar\tWindow",
       "contents": "window.personalbar"
+    },
+    {
+      "trigger": "personalbar\tWindow",
+      "contents": "personalbar"
     },
     {
       "trigger": "window.screen\tWindow",
       "contents": "window.screen"
     },
     {
+      "trigger": "screen\tWindow",
+      "contents": "screen"
+    },
+    {
       "trigger": "window.screenX\tWindow",
       "contents": "window.screenX"
+    },
+    {
+      "trigger": "screenX\tWindow",
+      "contents": "screenX"
     },
     {
       "trigger": "window.screenY\tWindow",
       "contents": "window.screenY"
     },
     {
+      "trigger": "screenY\tWindow",
+      "contents": "screenY"
+    },
+    {
       "trigger": "window.scrollMaxX\tWindow",
       "contents": "window.scrollMaxX"
+    },
+    {
+      "trigger": "scrollMaxX\tWindow",
+      "contents": "scrollMaxX"
     },
     {
       "trigger": "window.scrollMaxY\tWindow",
       "contents": "window.scrollMaxY"
     },
     {
+      "trigger": "scrollMaxY\tWindow",
+      "contents": "scrollMaxY"
+    },
+    {
       "trigger": "window.scrollX\tWindow",
       "contents": "window.scrollX"
+    },
+    {
+      "trigger": "scrollX\tWindow",
+      "contents": "scrollX"
     },
     {
       "trigger": "window.scrollY\tWindow",
       "contents": "window.scrollY"
     },
     {
+      "trigger": "scrollY\tWindow",
+      "contents": "scrollY"
+    },
+    {
       "trigger": "window.scrollbars\tWindow",
       "contents": "window.scrollbars"
+    },
+    {
+      "trigger": "scrollbars\tWindow",
+      "contents": "scrollbars"
     },
     {
       "trigger": "window.status\tWindow",
       "contents": "window.status"
     },
     {
+      "trigger": "status\tWindow",
+      "contents": "status"
+    },
+    {
       "trigger": "window.statusbar\tWindow",
       "contents": "window.statusbar"
+    },
+    {
+      "trigger": "statusbar\tWindow",
+      "contents": "statusbar"
     },
     {
       "trigger": "window.toolbar\tWindow",
       "contents": "window.toolbar"
     },
     {
+      "trigger": "toolbar\tWindow",
+      "contents": "toolbar"
+    },
+    {
       "trigger": "window.top\tWindow",
       "contents": "window.top"
+    },
+    {
+      "trigger": "top\tWindow",
+      "contents": "top"
     },
     {
       "trigger": "window.applicationCache\tWindow",
       "contents": "window.applicationCache"
     },
     {
+      "trigger": "applicationCache\tWindow",
+      "contents": "applicationCache"
+    },
+    {
       "trigger": "window.menubar\tWindow",
       "contents": "window.menubar"
     },
+    {
+      "trigger": "menubar\tWindow",
+      "contents": "menubar"
+    },
 
     // Methods
+    {
+      "trigger": "window.alert(${0:message})\tWindow",
+      "contents": "window.alert(${0:message})"
+    },
+    {
+      "trigger": "alert(${0:message})\tWindow",
+      "contents": "alert(${0:message})"
+    },
     {
       "trigger": "window.blur()\tWindow",
       "contents": "window.blur()"
@@ -147,16 +283,72 @@
       "contents": "window.clearImmediate(${0:immediateID})"
     },
     {
+      "trigger": "clearImmediate(${0:immediateID})\tWindow",
+      "contents": "clearImmediate(${0:immediateID})"
+    },
+    {
       "trigger": "window.close()\tWindow",
       "contents": "window.close()"
+    },
+    {
+      "trigger": "close()\tWindow",
+      "contents": "close()"
+    },
+    {
+      "trigger": "window.decodeURI(${0:encodedURI})\tWindow",
+      "contents": "window.decodeURI(${0:encodedURI})"
+    },
+    {
+      "trigger": "decodeURI(${0:encodedURI})\tWindow",
+      "contents": "decodeURI(${0:encodedURI})"
+    },
+    {
+      "trigger": "window.decodeURIComponent(${0:encodedURI})\tWindow",
+      "contents": "window.decodeURIComponent(${0:encodedURI})"
+    },
+    {
+      "trigger": "decodeURIComponent(${0:encodedURI})\tWindow",
+      "contents": "decodeURIComponent(${0:encodedURI})"
     },
     {
       "trigger": "window.dump(${0:message})\tWindow",
       "contents": "window.dump(${0:message})"
     },
     {
+      "trigger": "dump(${0:message})\tWindow",
+      "contents": "dump(${0:message})"
+    },
+    {
+      "trigger": "window.encodeURI(${0:URI})\tWindow",
+      "contents": "window.encodeURI(${0:URI})"
+    },
+    {
+      "trigger": "encodeURI(${0:URI})\tWindow",
+      "contents": "encodeURI(${0:URI})"
+    },
+    {
+      "trigger": "window.encodeURIComponent(${0:URI})\tWindow",
+      "contents": "window.encodeURIComponent(${0:URI})"
+    },
+    {
+      "trigger": "encodeURIComponent(${0:URI})\tWindow",
+      "contents": "encodeURIComponent(${0:URI})"
+    },
+    {
+      "trigger": "window.eval(${0:string})\tWindow",
+      "contents": "window.eval(${0:string})"
+    },
+    {
+      "trigger": "eval(${0:string})\tWindow",
+      "contents": "eval(${0:string})"
+    },
+    {
       "trigger": "window.find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)\tWindow",
       "contents": "window.find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)"
+    },
+    {
+      "trigger": "find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)\tWindow",
+      "contents": "find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)"
     },
     {
       "trigger": "window.focus()\tWindow",
@@ -167,100 +359,232 @@
       "contents": "window.getAttention()"
     },
     {
+      "trigger": "getAttention()\tWindow",
+      "contents": "getAttention()"
+    },
+    {
       "trigger": "window.getComputedStyle(${0:element})\tWindow",
       "contents": "window.getComputedStyle(${0:element})"
+    },
+    {
+      "trigger": "getComputedStyle(${0:element})\tWindow",
+      "contents": "getComputedStyle(${0:element})"
     },
     {
       "trigger": "window.getDefaultComputedStyle(${0:element})\tWindow",
       "contents": "window.getDefaultComputedStyle(${0:element})"
     },
     {
+      "trigger": "getDefaultComputedStyle(${0:element})\tWindow",
+      "contents": "getDefaultComputedStyle(${0:element})"
+    },
+    {
       "trigger": "window.getSelection()\tWindow",
       "contents": "window.getSelection()"
+    },
+    {
+      "trigger": "getSelection()\tWindow",
+      "contents": "getSelection()"
     },
     {
       "trigger": "window.importDialog(${0:aParent}, aSrc, aArguments)\tWindow",
       "contents": "window.importDialog(${0:aParent}, aSrc, aArguments)"
     },
     {
+      "trigger": "importDialog(${0:aParent}, aSrc, aArguments)\tWindow",
+      "contents": "importDialog(${0:aParent}, aSrc, aArguments)"
+    },
+    {
+      "trigger": "window.isFinite(${0:testValue})\tWindow",
+      "contents": "window.isFinite(${0:testValue})"
+    },
+    {
+      "trigger": "isFinite(${0:testValue})\tWindow",
+      "contents": "isFinite(${0:testValue})"
+    },
+    {
+      "trigger": "window.isNaN(${0:testValue})\tWindow",
+      "contents": "window.isNaN(${0:testValue})"
+    },
+    {
+      "trigger": "isNaN(${0:testValue})\tWindow",
+      "contents": "isNaN(${0:testValue})"
+    },
+    {
       "trigger": "window.matchMedia(${0:mediaQueryString})\tWindow",
       "contents": "window.matchMedia(${0:mediaQueryString})"
+    },
+    {
+      "trigger": "matchMedia(${0:mediaQueryString})\tWindow",
+      "contents": "matchMedia(${0:mediaQueryString})"
     },
     {
       "trigger": "window.minimize()\tWindow",
       "contents": "window.minimize()"
     },
     {
+      "trigger": "minimize()\tWindow",
+      "contents": "minimize()"
+    },
+    {
       "trigger": "window.moveBy(${0:deltaX}, deltaY)\tWindow",
       "contents": "window.moveBy(${0:deltaX}, deltaY)"
+    },
+    {
+      "trigger": "moveBy(${0:deltaX}, deltaY)\tWindow",
+      "contents": "moveBy(${0:deltaX}, deltaY)"
     },
     {
       "trigger": "window.moveTo(${0:x}, y)\tWindow",
       "contents": "window.moveTo(${0:x}, y)"
     },
     {
+      "trigger": "moveTo(${0:x}, y)\tWindow",
+      "contents": "moveTo(${0:x}, y)"
+    },
+    {
       "trigger": "window.open(${0:strUrl}, strWindowName)\tWindow",
       "contents": "window.open(${0:strUrl}, strWindowName)"
+    },
+    {
+      "trigger": "open(${0:strUrl}, strWindowName)\tWindow",
+      "contents": "open(${0:strUrl}, strWindowName)"
     },
     {
       "trigger": "window.openDialog(${0:url}, name, features)\tWindow",
       "contents": "window.openDialog(${0:url}, name, features)"
     },
     {
+      "trigger": "openDialog(${0:url}, name, features)\tWindow",
+      "contents": "openDialog(${0:url}, name, features)"
+    },
+    {
+      "trigger": "window.parseFloat(${0:string})\tWindow",
+      "contents": "window.parseFloat(${0:string})"
+    },
+    {
+      "trigger": "parseFloat(${0:string})\tWindow",
+      "contents": "parseFloat(${0:string})"
+    },
+    {
+      "trigger": "window.parseInt(${0:string}, radix)\tWindow",
+      "contents": "window.parseInt(${0:string}, radix)"
+    },
+    {
+      "trigger": "parseInt(${0:string}, radix)\tWindow",
+      "contents": "parseInt(${0:string}, radix)"
+    },
+    {
       "trigger": "window.postMessage(${0:message}, targetOrigin)\tWindow",
       "contents": "window.postMessage(${0:message}, targetOrigin)"
+    },
+    {
+      "trigger": "postMessage(${0:message}, targetOrigin)\tWindow",
+      "contents": "postMessage(${0:message}, targetOrigin)"
     },
     {
       "trigger": "window.print()\tWindow",
       "contents": "window.print()"
     },
     {
+      "trigger": "print()\tWindow",
+      "contents": "print()"
+    },
+    {
       "trigger": "window.prompt(${0:text}, value)\tWindow",
       "contents": "window.prompt(${0:text}, value)"
+    },
+    {
+      "trigger": "prompt(${0:text}, value)\tWindow",
+      "contents": "prompt(${0:text}, value)"
     },
     {
       "trigger": "window.resizeBy(${0:xDelta}, yDelta)\tWindow",
       "contents": "window.resizeBy(${0:xDelta}, yDelta)"
     },
     {
+      "trigger": "resizeBy(${0:xDelta}, yDelta)\tWindow",
+      "contents": "resizeBy(${0:xDelta}, yDelta)"
+    },
+    {
       "trigger": "window.resizeTo(${0:aWidth}, aHeight)\tWindow",
       "contents": "window.resizeTo(${0:aWidth}, aHeight)"
+    },
+    {
+      "trigger": "resizeTo(${0:aWidth}, aHeight)\tWindow",
+      "contents": "resizeTo(${0:aWidth}, aHeight)"
     },
     {
       "trigger": "window.scroll(${0:x_coord},y_coord)\tWindow",
       "contents": "window.scroll(${0:x_coord},y_coord)"
     },
     {
+      "trigger": "scroll(${0:x_coord},y_coord)\tWindow",
+      "contents": "scroll(${0:x_coord},y_coord)"
+    },
+    {
       "trigger": "window.scrollBy(${0:X},Y)\tWindow",
       "contents": "window.scrollBy(${0:X},Y)"
+    },
+    {
+      "trigger": "scrollBy(${0:X},Y)\tWindow",
+      "contents": "scrollBy(${0:X},Y)"
     },
     {
       "trigger": "window.scrollByLines(${0:lines})\tWindow",
       "contents": "window.scrollByLines(${0:lines})"
     },
     {
+      "trigger": "scrollByLines(${0:lines})\tWindow",
+      "contents": "scrollByLines(${0:lines})"
+    },
+    {
       "trigger": "window.scrollTo(${0:x_coord},y_coord)\tWindow",
       "contents": "window.scrollTo(${0:x_coord},y_coord)"
+    },
+    {
+      "trigger": "scrollTo(${0:x_coord},y_coord)\tWindow",
+      "contents": "scrollTo(${0:x_coord},y_coord)"
     },
     {
       "trigger": "window.setCursor(${0:auto})\tWindow",
       "contents": "window.setCursor(${0:auto})"
     },
     {
+      "trigger": "setCursor(${0:auto})\tWindow",
+      "contents": "setCursor(${0:auto})"
+    },
+    {
       "trigger": "window.updateCommands(${0:sCommandName})\tWindow",
       "contents": "window.updateCommands(${0:sCommandName})"
+    },
+    {
+      "trigger": "updateCommands(${0:sCommandName})\tWindow",
+      "contents": "updateCommands(${0:sCommandName})"
     },
     {
       "trigger": "window.confirm(${0:message})\tWindow",
       "contents": "window.confirm(${0:message})"
     },
     {
+      "trigger": "confirm(${0:message})\tWindow",
+      "contents": "confirm(${0:message})"
+    },
+    {
       "trigger": "window.requestAnimationFrame(${0:callback})\tWindow",
       "contents": "window.requestAnimationFrame(${0:callback})"
     },
     {
+      "trigger": "requestAnimationFrame(${0:callback})\tWindow",
+      "contents": "requestAnimationFrame(${0:callback})"
+    },
+    {
       "trigger": "window.stop()\tWindow",
       "contents": "window.stop()"
+    },
+    {
+      "trigger": "stop()\tWindow",
+      "contents": "stop()"
     },
   ]
 }

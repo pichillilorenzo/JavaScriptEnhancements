@@ -134,6 +134,10 @@
             "contents": "/*\n\tDescription:\n\tReturns the menubar object, whose visibility can be checked.\n\n\tSyntax:\n\tobjRef = window.menubar\n*/"
         },
         {
+            "trigger": "description-Window.alert()",
+            "contents": "/*\n\tDescription:\n\tThe Window.alert() method displays an alert dialog with the optional specified content and an OK button.\n\n\tSyntax:\n\twindow.alert(message);\n*/"
+        },
+        {
             "trigger": "description-window.blur()",
             "contents": "/*\n\tDescription:\n\tShifts focus away from the window.\n\n\tSyntax:\n\twindow.blur()\n*/"
         },
@@ -146,8 +150,28 @@
             "contents": "/*\n\tDescription:\n\tCloses the current window, or a referenced window.\n\n\tSyntax:\n\twindow.close();\n*/"
         },
         {
+            "trigger": "description-window.decodeURI()",
+            "contents": "/*\n\tDescription:\n\tThe decodeURI() function decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine.\n\n\tSyntax:\n\tdecodeURI(encodedURI)\n*/"
+        },
+        {
+            "trigger": "description-window.decodeURIComponent()",
+            "contents": "/*\n\tDescription:\n\tThe decodeURIComponent() method decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine.\n\n\tSyntax:\n\tdecodeURIComponent(encodedURI)\n*/"
+        },
+        {
             "trigger": "description-window.dump()",
             "contents": "/*\n\tDescription:\n\tPrints messages to the (native) console.\n\n\tSyntax:\n\twindow.dump(message);\n\ndump(message);\n*/"
+        },
+        {
+            "trigger": "description-window.encodeURI()",
+            "contents": "/*\n\tDescription:\n\tThe encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two \"surrogate\" characters).\n\n\tSyntax:\n\tencodeURI(URI)\n*/"
+        },
+        {
+            "trigger": "description-window.encodeURIComponent()",
+            "contents": "/*\n\tDescription:\n\tThe encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two \"surrogate\" characters).\n\n\tSyntax:\n\tencodeURIComponent(str);\n*/"
+        },
+        {
+            "trigger": "description-window.eval()",
+            "contents": "/*\n\tDescription:\n\tThe eval() method evaluates JavaScript code represented as a string.\n\n\tSyntax:\n\teval(string)\n*/"
         },
         {
             "trigger": "description-window.find()",
@@ -178,6 +202,14 @@
             "contents": "/*\n\tDescription:\n\tBecause opening windows on mobile isn't necessarily appropriate, the Firefox Mobile team designed the importDialog() method to replace window.openDialog(). Instead of opening a new window, it merges the specified XUL dialog into the main window.\n\n\tSyntax:\n\tnewDialog = importDialog(aParent, aSrc, aArguments)\n*/"
         },
         {
+            "trigger": "description-window.isFinite()",
+            "contents": "/*\n\tDescription:\n\tThe global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number.\n\n\tSyntax:\n\tisFinite(testValue)\n*/"
+        },
+        {
+            "trigger": "description-window.isNaN()",
+            "contents": "/*\n\tDescription:\n\tThe isNaN() function determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in Number.isNaN() as defined in ECMAScript 6 or you can use typeof to determine if the value is Not-A-Number.\n\n\tSyntax:\n\tisNaN(testValue)\n*/"
+        },
+        {
             "trigger": "description-window.matchMedia()",
             "contents": "/*\n\tDescription:\n\tReturns a new MediaQueryList object representing the parsed results of the specified media query string.\n\n\tSyntax:\n\tmql = window.matchMedia(mediaQueryString)\n*/"
         },
@@ -200,6 +232,14 @@
         {
             "trigger": "description-window.openDialog()",
             "contents": "/*\n\tDescription:\n\twindow.openDialog is an extension to window.open. It behaves the same, except that it can optionally take one or more parameters past windowFeatures, and windowFeatures itself is treated a little differently. The optional parameters, if present, will be bundled up in a JavaScript Array object and added to the newly created window as a property named window.arguments. They may be referenced in the JavaScript of the window at any time, including during the execution of a load handler. These parameters may be used, then, to pass arguments to and from the dialog window. Note that the call to openDialog() returns immediately. If you want the call to block until the user has closed the dialog, supply modal as a windowFeatures parameter. Note that this also means the user won't be able to interact with the opener window until he closes the modal dialog.\n\n\tSyntax:\n\tnewWindow = openDialog(url, name, features, arg1, arg2, ...)\n*/"
+        },
+        {
+            "trigger": "description-window.parseFloat()",
+            "contents": "/*\n\tDescription:\n\tThe parseFloat() function parses a string argument and returns a floating point number.\n\n\tSyntax:\n\tparseFloat(string)\n*/"
+        },
+        {
+            "trigger": "description-window.parseInt()",
+            "contents": "/*\n\tDescription:\n\tThe parseInt() function parses a string argument and returns an integer of the specified radix or base.\n\n\tSyntax:\n\tparseInt(string, radix);\n*/"
         },
         {
             "trigger": "description-window.postMessage()",

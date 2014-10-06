@@ -16,9 +16,10 @@
     "break;",
     "return",
     "'use strict';",
-    "new Boolean();",
-    "new Image();",
-    "new Option();",
+    "new Boolean()",
+    "new Image()",
+    "new Option()",
+    "new FormData(${0:form})",
 
     "function ${0:function_name} (argument){\n\t/* body... */\n}",
     "(function(){\n\t$0\n})();",
@@ -79,17 +80,7 @@
     { "trigger": "Zero-fill right shift (>>>)", "contents": "${0:expr1} >>> expr2" },
 
     "console.log('$0');",
-    "alert('$0');",
     "void('$0')",
     "throw $0;",
-    "eval(${0:string});",
-    "isFinite(${0:testValue})",
-    "isNaN(${0:testValue})",
-    "parseFloat(${0:string});",
-    "parseInt(${0:string}, radix);",
-    "encodeURI(${0:URI})",
-    "decodeURI(${0:encodedURI})",
-    "encodeURIComponent(${0:string});",
-    "decodeURIComponent(${0:encodedURI})",
   ]
 }

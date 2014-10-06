@@ -13,148 +13,296 @@
       "contents": "document.URL"
     },
     {
+      "trigger": "URL\tDocument",
+      "contents": "URL"
+    },
+    {
       "trigger": "document.activeElement\tDocument",
       "contents": "document.activeElement"
+    },
+    {
+      "trigger": "activeElement\tDocument",
+      "contents": "activeElement"
     },
     {
       "trigger": "document.anchors\tDocument",
       "contents": "document.anchors"
     },
     {
+      "trigger": "anchors\tDocument",
+      "contents": "anchors"
+    },
+    {
       "trigger": "document.applets\tDocument",
       "contents": "document.applets"
+    },
+    {
+      "trigger": "applets\tDocument",
+      "contents": "applets"
     },
     {
       "trigger": "document.body\tDocument",
       "contents": "document.body"
     },
     {
+      "trigger": "body\tDocument",
+      "contents": "body"
+    },
+    {
       "trigger": "document.defaultView\tDocument",
       "contents": "document.defaultView"
+    },
+    {
+      "trigger": "defaultView\tDocument",
+      "contents": "defaultView"
     },
     {
       "trigger": "document.designMode\tDocument",
       "contents": "document.designMode"
     },
     {
+      "trigger": "designMode\tDocument",
+      "contents": "designMode"
+    },
+    {
       "trigger": "document.domain\tDocument",
       "contents": "document.domain"
+    },
+    {
+      "trigger": "domain\tDocument",
+      "contents": "domain"
     },
     {
       "trigger": "document.embeds\tDocument",
       "contents": "document.embeds"
     },
     {
+      "trigger": "embeds\tDocument",
+      "contents": "embeds"
+    },
+    {
       "trigger": "document.forms\tDocument",
       "contents": "document.forms"
+    },
+    {
+      "trigger": "forms\tDocument",
+      "contents": "forms"
     },
     {
       "trigger": "document.head\tDocument",
       "contents": "document.head"
     },
     {
+      "trigger": "head\tDocument",
+      "contents": "head"
+    },
+    {
       "trigger": "document.images\tDocument",
       "contents": "document.images"
+    },
+    {
+      "trigger": "images\tDocument",
+      "contents": "images"
     },
     {
       "trigger": "document.lastModified\tDocument",
       "contents": "document.lastModified"
     },
     {
+      "trigger": "lastModified\tDocument",
+      "contents": "lastModified"
+    },
+    {
       "trigger": "document.location\tDocument",
       "contents": "document.location"
+    },
+    {
+      "trigger": "location\tDocument",
+      "contents": "location"
     },
     {
       "trigger": "document.plugins\tDocument",
       "contents": "document.plugins"
     },
     {
+      "trigger": "plugins\tDocument",
+      "contents": "plugins"
+    },
+    {
       "trigger": "document.readyState\tDocument",
       "contents": "document.readyState"
+    },
+    {
+      "trigger": "readyState\tDocument",
+      "contents": "readyState"
     },
     {
       "trigger": "document.referrer\tDocument",
       "contents": "document.referrer"
     },
     {
+      "trigger": "referrer\tDocument",
+      "contents": "referrer"
+    },
+    {
       "trigger": "document.scripts\tDocument",
       "contents": "document.scripts"
+    },
+    {
+      "trigger": "scripts\tDocument",
+      "contents": "scripts"
     },
     {
       "trigger": "document.styleSheets\tDocument",
       "contents": "document.styleSheets"
     },
     {
+      "trigger": "styleSheets\tDocument",
+      "contents": "styleSheets"
+    },
+    {
       "trigger": "document.title\tDocument",
       "contents": "document.title"
+    },
+    {
+      "trigger": "title\tDocument",
+      "contents": "title"
     },
     {
       "trigger": "document.characterSet\tDocument",
       "contents": "document.characterSet"
     },
     {
+      "trigger": "characterSet\tDocument",
+      "contents": "characterSet"
+    },
+    {
       "trigger": "document.compatMode\tDocument",
       "contents": "document.compatMode"
+    },
+    {
+      "trigger": "compatMode\tDocument",
+      "contents": "compatMode"
     },
     {
       "trigger": "document.contentType\tDocument",
       "contents": "document.contentType"
     },
     {
+      "trigger": "contentType\tDocument",
+      "contents": "contentType"
+    },
+    {
       "trigger": "document.currentScript\tDocument",
       "contents": "document.currentScript"
+    },
+    {
+      "trigger": "currentScript\tDocument",
+      "contents": "currentScript"
     },
     {
       "trigger": "document.doctype\tDocument",
       "contents": "document.doctype"
     },
     {
+      "trigger": "doctype\tDocument",
+      "contents": "doctype"
+    },
+    {
       "trigger": "document.documentElement\tDocument",
       "contents": "document.documentElement"
+    },
+    {
+      "trigger": "documentElement\tDocument",
+      "contents": "documentElement"
     },
     {
       "trigger": "document.documentURI\tDocument",
       "contents": "document.documentURI"
     },
     {
+      "trigger": "documentURI\tDocument",
+      "contents": "documentURI"
+    },
+    {
       "trigger": "document.documentURIObject\tDocument",
       "contents": "document.documentURIObject"
+    },
+    {
+      "trigger": "documentURIObject\tDocument",
+      "contents": "documentURIObject"
     },
     {
       "trigger": "document.implementation\tDocument",
       "contents": "document.implementation"
     },
     {
+      "trigger": "implementation\tDocument",
+      "contents": "implementation"
+    },
+    {
       "trigger": "document.lastStyleSheetSet\tDocument",
       "contents": "document.lastStyleSheetSet"
+    },
+    {
+      "trigger": "lastStyleSheetSet\tDocument",
+      "contents": "lastStyleSheetSet"
     },
     {
       "trigger": "document.links\tDocument",
       "contents": "document.links"
     },
     {
+      "trigger": "links\tDocument",
+      "contents": "links"
+    },
+    {
       "trigger": "document.onoffline\tDocument",
       "contents": "document.onoffline"
+    },
+    {
+      "trigger": "onoffline\tDocument",
+      "contents": "onoffline"
     },
     {
       "trigger": "document.pointerLockElement\tDocument",
       "contents": "document.pointerLockElement"
     },
     {
+      "trigger": "pointerLockElement\tDocument",
+      "contents": "pointerLockElement"
+    },
+    {
       "trigger": "document.preferredStyleSheetSet\tDocument",
       "contents": "document.preferredStyleSheetSet"
+    },
+    {
+      "trigger": "preferredStyleSheetSet\tDocument",
+      "contents": "preferredStyleSheetSet"
     },
     {
       "trigger": "document.selectedStyleSheetSet\tDocument",
       "contents": "document.selectedStyleSheetSet"
     },
     {
+      "trigger": "selectedStyleSheetSet\tDocument",
+      "contents": "selectedStyleSheetSet"
+    },
+    {
       "trigger": "document.styleSheetSets\tDocument",
       "contents": "document.styleSheetSets"
     },
     {
+      "trigger": "styleSheetSets\tDocument",
+      "contents": "styleSheetSets"
+    },
+    {
       "trigger": "document.tooltipNode\tDocument",
       "contents": "document.tooltipNode"
+    },
+    {
+      "trigger": "tooltipNode\tDocument",
+      "contents": "tooltipNode"
     },
 
     // Methods
