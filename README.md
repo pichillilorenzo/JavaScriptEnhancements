@@ -4,7 +4,7 @@ JavaScript Completions for sublime text
 
 It helps you to write your scripts more quickly with hints and completions.
 
-in Updating!
+In the next updates I will add Ajax and the newest APIs of HTML5
 
 <h2>Usage</h2>
 
