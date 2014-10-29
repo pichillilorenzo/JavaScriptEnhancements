@@ -571,20 +571,20 @@
       "contents": "setCursor(${0:auto})"
     },
     {
-      "trigger": "window.setInterval(${0:code}, delay)\tWindow",
-      "contents": "window.setInterval(${0:code}, delay)"
+      "trigger": "window.setInterval(${0:func}, delay)\tWindow",
+      "contents": "window.setInterval(${0:func}, delay)"
     },
     {
-      "trigger": "setInterval(${0:code}, delay)\tWindow",
-      "contents": "setInterval(${0:code}, delay)"
+      "trigger": "setInterval(${0:func}, delay)\tWindow",
+      "contents": "setInterval(${0:func}, delay)"
     },
     {
-      "trigger": "window.setTimeout(${0:code}, delay)\tWindow",
-      "contents": "window.setTimeout(${0:code}, delay)"
+      "trigger": "window.setTimeout(${0:func}, delay)\tWindow",
+      "contents": "window.setTimeout(${0:func}, delay)"
     },
     {
-      "trigger": "setTimeout(${0:code}, delay)\tWindow",
-      "contents": "setTimeout(${0:code}, delay)"
+      "trigger": "setTimeout(${0:func}, delay)\tWindow",
+      "contents": "setTimeout(${0:func}, delay)"
     },
     {
       "trigger": "window.updateCommands(${0:sCommandName})\tWindow",
