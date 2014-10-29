@@ -146,6 +146,14 @@
             "contents": "/*\n\tDescription:\n\tThis method clears the action specified by window.setImmediate.\n\n\tSyntax:\n\twindow.clearImmediate(immediateID)\n*/"
         },
         {
+            "trigger": "description-window.clearInterval()",
+            "contents": "/*\n\tDescription:\n\tintervalID is the identifier of the repeated action you want to cancel. This ID is returned from setInterval().\n\n\tSyntax:\n\twindow.clearInterval(intervalID)\n*/"
+        },
+        {
+            "trigger": "description-window.clearTimeout()",
+            "contents": "/*\n\tDescription:\n\tRun the script below in the context of a web page and click on the page once. You'll see a message popping up in a second. If you keep clicking on the page once in a second, the alert never appears.\n\n\tSyntax:\n\twindow.clearTimeout(timeoutID)\n*/"
+        },
+        {
             "trigger": "description-window.close()",
             "contents": "/*\n\tDescription:\n\tCloses the current window, or a referenced window.\n\n\tSyntax:\n\twindow.close();\n*/"
         },
@@ -280,6 +288,14 @@
         {
             "trigger": "description-window.setCursor()",
             "contents": "/*\n\tDescription:\n\tChanges the cursor for the current window.\n\n\tSyntax:\n\tfunction setBusyCursor(enable) {\n\t\t  window.setCursor(enable ? \"wait\" : \"auto\");\n\t}\n*/"
+        },
+        {
+            "trigger": "description-window.setInterval()",
+            "contents": "/*\n\tDescription:\n\tNote that passing additional parameters to the function in the first syntax does not work in Internet Explorer 9 and below. If you want to enable this functionality on that browser you must use a compatibility code (see the Callback arguments paragraph).\n\n\tSyntax:\n\tvar intervalID = window.setInterval(func, delay[, param1, param2, ...]);\n\tvar intervalID = window.setInterval(code, delay);\n*/"
+        },
+        {
+            "trigger": "description-WindowTimers.setTimeout()",
+            "contents": "/*\n\tDescription:\n\twhere\n\n\tSyntax:\n\tvar timeoutID = window.setTimeout(func, delay, [param1, param2, ...]);\n\tvar timeoutID = window.setTimeout(code, delay);\n*/"
         },
         {
             "trigger": "description-window.updateCommands()",

@@ -101,6 +101,6 @@
     {
       "trigger": "toString()\tRange",
       "contents": "toString()"
-    },
+    }
   ]
 }

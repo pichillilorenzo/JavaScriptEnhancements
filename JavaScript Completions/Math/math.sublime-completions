@@ -106,6 +106,6 @@
     {
       "trigger": "Math.SQRT2\tMath",
       "contents": "Math.SQRT2"
-    },
+    }
   ]
 }

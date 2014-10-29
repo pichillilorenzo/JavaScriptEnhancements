@@ -16,6 +16,6 @@
     {
       "trigger": "type\tBlob",
       "contents": "type"
-    },
+    }
   ]
 }

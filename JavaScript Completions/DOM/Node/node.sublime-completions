@@ -125,6 +125,6 @@
     {
       "trigger": "replaceChild(${0:newChild}, oldChild)\tNode",
       "contents": "replaceChild(${0:newChild}, oldChild)"
-    },
+    }
   ]
 }

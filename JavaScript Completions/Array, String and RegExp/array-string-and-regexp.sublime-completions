@@ -235,6 +235,6 @@
     {
       "trigger": "toString()\tArray",
       "contents": "toString()"
-    },
+    }
   ]
 }

@@ -557,6 +557,6 @@
     {
       "trigger": "writeln(${0:line})\tDocument",
       "contents": "writeln(${0:line})"
-    },
+    }
   ]
 }

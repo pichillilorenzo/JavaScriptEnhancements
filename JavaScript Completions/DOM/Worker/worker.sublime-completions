@@ -26,6 +26,6 @@
     {
       "trigger": "terminate()\tWorker",
       "contents": "terminate()"
-    },
+    }
   ]
 }

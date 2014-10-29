@@ -287,6 +287,22 @@
       "contents": "clearImmediate(${0:immediateID})"
     },
     {
+      "trigger": "window.clearInterval(${0:intervalID})\tWindow",
+      "contents": "window.clearInterval(${0:intervalID})"
+    },
+    {
+      "trigger": "clearInterval(${0:intervalID})\tWindow",
+      "contents": "clearInterval(${0:intervalID})"
+    },
+    {
+      "trigger": "window.clearTimeout(${0:timeoutID})\tWindow",
+      "contents": "window.clearTimeout(${0:timeoutID})"
+    },
+    {
+      "trigger": "clearTimeout(${0:timeoutID})\tWindow",
+      "contents": "clearTimeout(${0:timeoutID})"
+    },
+    {
       "trigger": "window.close()\tWindow",
       "contents": "window.close()"
     },
@@ -555,6 +571,22 @@
       "contents": "setCursor(${0:auto})"
     },
     {
+      "trigger": "window.setInterval(${0:code}, delay)\tWindow",
+      "contents": "window.setInterval(${0:code}, delay)"
+    },
+    {
+      "trigger": "setInterval(${0:code}, delay)\tWindow",
+      "contents": "setInterval(${0:code}, delay)"
+    },
+    {
+      "trigger": "window.setTimeout(${0:code}, delay)\tWindow",
+      "contents": "window.setTimeout(${0:code}, delay)"
+    },
+    {
+      "trigger": "setTimeout(${0:code}, delay)\tWindow",
+      "contents": "setTimeout(${0:code}, delay)"
+    },
+    {
       "trigger": "window.updateCommands(${0:sCommandName})\tWindow",
       "contents": "window.updateCommands(${0:sCommandName})"
     },
@@ -585,6 +617,6 @@
     {
       "trigger": "stop()\tWindow",
       "contents": "stop()"
-    },
+    }
   ]
 }

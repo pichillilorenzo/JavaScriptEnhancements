@@ -15,6 +15,6 @@
     {
       "trigger": "removeEventListener(${0:type}, listener)\tEventTarget",
       "contents": "removeEventListener(${0:type}, listener)"
-    },
+    }
   ]
 }

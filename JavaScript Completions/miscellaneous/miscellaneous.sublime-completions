@@ -24,7 +24,6 @@
     "function ${0:function_name} (argument){\n\t/* body... */\n}",
     "(function(){\n\t$0\n})();",
 
-    { "trigger": "obj", "contents": "var ${0:obj} = {\n\t\n};" },
     { "trigger": "prototype", "contents": "${0:class_name}.prototype.method_name = function(argument){\n\t/* body... */\n};"},
     { "trigger": "for()", "contents": "for(var i = 0, length1 = ${0:array}.length; i < length1; i++){\n\t${0:array}[i]\n}" },
     { "trigger": "for-j", "contents": "for(var j = 0, length2 = ${0:array}.length; j < length2; j++){\n\t${0:array}[j]\n}" },
@@ -81,6 +80,6 @@
 
     "console.log('$0');",
     "void('$0')",
-    "throw $0;",
+    "throw $0;"
   ]
 }

@@ -69,6 +69,6 @@
     {
       "trigger": "revokeObjectURL(${0:objectURL})\tURL",
       "contents": "revokeObjectURL(${0:objectURL})"
-    },
+    }
   ]
 }

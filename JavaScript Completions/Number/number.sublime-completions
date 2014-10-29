@@ -54,6 +54,6 @@
     {
       "trigger": "valueOf()\tNumber",
       "contents": "valueOf()"
-    },
+    }
   ]
 }

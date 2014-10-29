@@ -680,6 +680,6 @@
     {
       "trigger": "smartcard-remove\tEvent",
       "contents": "smartcard-remove"
-    }, 
+    }
   ]
 }

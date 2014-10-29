@@ -55,6 +55,6 @@
     {
       "trigger": "readAsText(${0:file|blob})\tFileReader",
       "contents": "readAsText(${0:file|blob})"
-    },
+    }
   ]
 }

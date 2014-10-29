@@ -18,6 +18,6 @@
     {
       "trigger": "splitText(${0:offset})\tText",
       "contents": "splitText(${0:offset})"
-    },
+    }
   ]
 }

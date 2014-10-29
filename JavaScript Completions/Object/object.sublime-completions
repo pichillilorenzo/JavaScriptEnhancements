@@ -139,6 +139,6 @@
     {
       "trigger": "valueOf()\tObject",
       "contents": "valueOf()"
-    },
+    }
   ]
 }

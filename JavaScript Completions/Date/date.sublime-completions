@@ -194,7 +194,6 @@
     {
       "trigger": "valueOf()\tDate",
       "contents": "valueOf()"
-    },
-
+    }
   ]
 }

@@ -30,6 +30,6 @@
     {
       "trigger": "new URIError(${0:message})\tError",
       "contents": "new URIError(${0:message})"
-    },
+    }
   ]
 }

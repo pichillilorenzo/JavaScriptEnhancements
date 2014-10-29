@@ -30,6 +30,6 @@
     {
       "trigger": "toString\tFunction",
       "contents": "toString"
-    },
+    }
   ]
 }

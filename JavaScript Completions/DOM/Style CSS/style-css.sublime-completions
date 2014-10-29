@@ -9326,6 +9326,6 @@
     {
       "trigger": "textJustify = '$0'\tStyle CSS",
       "contents": "textJustify = '$0'"
-    },
+    }
   ]
 }

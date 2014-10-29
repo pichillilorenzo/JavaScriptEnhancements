@@ -173,6 +173,6 @@
     {
       "trigger": "setAttributeNodeNS(${0:attributeNode})\tElement",
       "contents": "setAttributeNodeNS(${0:attributeNode})"
-    },
+    }
   ]
 }
