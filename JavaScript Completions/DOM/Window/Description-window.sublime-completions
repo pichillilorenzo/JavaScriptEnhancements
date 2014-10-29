@@ -295,7 +295,7 @@
         },
         {
             "trigger": "description-WindowTimers.setTimeout()",
-            "contents": "/*\n\tDescription:\n\twhere\n\n\tSyntax:\n\tvar timeoutID = window.setTimeout(func, delay, [param1, param2, ...]);\n\tvar timeoutID = window.setTimeout(code, delay);\n*/"
+            "contents": "/*\n\tDescription:\n\tCalls a function or executes a code snippet after a specified delay.\n\n\tSyntax:\n\tvar timeoutID = window.setTimeout(func, delay, [param1, param2, ...]);\n\tvar timeoutID = window.setTimeout(code, delay);\n*/"
         },
         {
             "trigger": "description-window.updateCommands()",
