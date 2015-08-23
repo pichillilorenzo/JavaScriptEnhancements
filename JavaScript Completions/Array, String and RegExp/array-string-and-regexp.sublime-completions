@@ -15,9 +15,6 @@
       "trigger": "new String()\tString",
       "contents": "new String()"
     },
-
-    // Properties
-    // RegExp
     {
       "trigger": "global\tRegExp",
       "contents": "global"
@@ -43,20 +40,16 @@
       "contents": "source"
     },
 
-    // String
     {
       "trigger": "length\tString",
       "contents": "length"
     },
 
-    // Array
     {
       "trigger": "length\tArray",
       "contents": "length"
     },
 
-    //Methods
-    // RegExp
     {
       "trigger": "exec(${0:string})\tRegExp",
       "contents": "exec(${0:string})"
@@ -69,8 +62,7 @@
       "trigger": "toString()\tRegExp",
       "contents": "toString()"
     },
-    
-    // String
+
     {
       "trigger": "replace(${0:regexp|substr}, 'string')\tString",
       "contents": "replace(${0:regexp|substr}, 'string')"
@@ -151,7 +143,7 @@
       "trigger": "valueOf()\tString",
       "contents": "valueOf()"
     },
-    // Array
+
     {
       "trigger": "join(${0:separator})\tArray",
       "contents": "join(${0:separator})"

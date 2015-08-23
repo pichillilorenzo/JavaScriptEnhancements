@@ -3,7 +3,6 @@
 
   "completions":
   [
-    // Properties
     {
       "trigger": "baseURI\tNode",
       "contents": "baseURI"
@@ -68,8 +67,6 @@
       "trigger": "textContent\tNode",
       "contents": "textContent"
     },
-
-    //Methods
     {
       "trigger": "appendChild(${0:aChild})\tNode",
       "contents": "appendChild(${0:aChild})"

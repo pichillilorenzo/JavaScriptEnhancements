@@ -3,7 +3,6 @@
 
   "completions":
   [
-  	// Properties
     {
       "trigger": "collapsed\tRange",
       "contents": "collapsed"
@@ -28,8 +27,6 @@
       "trigger": "startOffset\tRange",
       "contents": "startOffset"
     },
-    
-    // Methods
     {
       "trigger": "cloneContents()\tRange",
       "contents": "cloneContents()"

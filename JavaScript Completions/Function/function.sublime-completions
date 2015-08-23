@@ -7,14 +7,10 @@
       "trigger": "new Function()\tFunction",
       "contents": "new Function()"
     },
-
-    // Properties
     {
       "trigger": "length\tFunction",
       "contents": "length"
     },
-
-    // Methods
     {
       "trigger": "apply(${0:thisArg})\tFunction",
       "contents": "apply(${0:thisArg})"

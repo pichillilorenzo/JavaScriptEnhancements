@@ -3,7 +3,6 @@
 
   "completions":
   [
-    // Properties
     {
       "trigger": "window\tWindow",
       "contents": "window"
@@ -264,8 +263,6 @@
       "trigger": "menubar\tWindow",
       "contents": "menubar"
     },
-
-    // Methods
     {
       "trigger": "window.alert(${0:message})\tWindow",
       "contents": "window.alert(${0:message})"

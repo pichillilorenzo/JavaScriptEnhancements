@@ -3,7 +3,6 @@
 
   "completions":
   [
-  	// Methods
     {
       "trigger": "addEventListener(${0:type}, listener)\tEventTarget",
       "contents": "addEventListener(${0:type}, listener)"

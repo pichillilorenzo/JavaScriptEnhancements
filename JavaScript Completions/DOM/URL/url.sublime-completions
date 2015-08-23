@@ -3,7 +3,6 @@
 
   "completions":
   [	
-  	// Properties
   	{
       "trigger": "hash\tURLUtils",
       "contents": "hash"
@@ -52,8 +51,6 @@
       "trigger": "username\tURLUtils",
       "contents": "username"
     },
-
-  	// Methods
     {
       "trigger": "URL.createObjectURL(${0:file|blob})\tURL",
       "contents": "URL.createObjectURL(${0:file|blob})"

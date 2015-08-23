@@ -3,7 +3,7 @@
 
   "completions":
   [
-    // Properties
+
     {
       "trigger": "document\tDocument",
       "contents": "document"
@@ -304,8 +304,6 @@
       "trigger": "tooltipNode\tDocument",
       "contents": "tooltipNode"
     },
-
-    // Methods
     {
       "trigger": "document.caretPositionFromPoint(${0:x}, y)\tDocument",
       "contents": "document.caretPositionFromPoint(${0:x}, y)"
