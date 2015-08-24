@@ -11,15 +11,11 @@
       "trigger": "this\tObject",
       "contents": "this"
     },
-
-    // Properties
     {
       "trigger": "length\tObject",
       "contents": "length"
     },
 
-
-    // Methods0
     {
       "trigger": "delete(${0:Object})\tObject",
       "contents": "delete(${0:Object})"

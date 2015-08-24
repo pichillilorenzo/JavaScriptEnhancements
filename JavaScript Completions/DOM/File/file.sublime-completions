@@ -11,8 +11,6 @@
       "trigger": "new FileReader()\tFileReader",
       "contents": "new FileReader()"
     },
-
-  	// Properties
     {
       "trigger": "lastModifiedDate\tFile",
       "contents": "lastModifiedDate"
@@ -34,8 +32,6 @@
       "trigger": "result\tFileReader",
       "contents": "result"
     },
-
-    //Methods
     {
       "trigger": "abort()\tFileReader",
       "contents": "abort()"

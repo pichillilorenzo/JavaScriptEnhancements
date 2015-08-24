@@ -7,8 +7,6 @@
       "trigger": "new Number(${0:value})\tNumber",
       "contents": "new Number(${0:value})"
     },
-
-    // Properties
     {
       "trigger": "Number.MAX_VALUE\tNumber",
       "contents": "Number.MAX_VALUE"
@@ -29,8 +27,6 @@
       "trigger": "Number.POSITIVE_INFINITY\tNumber",
       "contents": "Number.POSITIVE_INFINITY"
     },
-
-    // Methods
     {
       "trigger": "toExponential(${0:fractionDigits})\tNumber",
       "contents": "toExponential(${0:fractionDigits})"

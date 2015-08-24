@@ -3,7 +3,6 @@
 
   "completions":
   [
-    // Properties
     {
       "trigger": "accessKey\tElement",
       "contents": "accessKey"
@@ -80,8 +79,6 @@
       "trigger": "tagName\tElement",
       "contents": "tagName"
     },
-
-    // Methods
     {
       "trigger": "getElementsByClassName(${0:names})\tElement",
       "contents": "getElementsByClassName(${0:names})"

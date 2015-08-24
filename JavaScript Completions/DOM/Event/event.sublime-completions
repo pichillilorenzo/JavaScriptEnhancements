@@ -3,7 +3,6 @@
 
   "completions":
   [
-    // Properties
     {
       "trigger": "bubbles\tEvent",
       "contents": "bubbles"
@@ -41,8 +40,6 @@
       "contents": "isTrusted"
     },
     
-
-    // Methods
     {
       "trigger": "preventDefault()\tEvent",
       "contents": "preventDefault()"
@@ -55,8 +52,6 @@
       "trigger": "stopPropagation()\tEvent",
       "contents": "stopPropagation()"
     },
-
-    // Events
     {
       "trigger": "abort\tEvent",
       "contents": "abort"

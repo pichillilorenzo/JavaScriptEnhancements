@@ -7,8 +7,6 @@
       "trigger": "new Worker(${0:URL})\tWorker",
       "contents": "new Worker(${0:URL})"
     },
-
-    // Properties
     {
       "trigger": "onerror\tWorker",
       "contents": "onerror"
@@ -17,8 +15,6 @@
       "trigger": "onmessage\tWorker",
       "contents": "onmessage"
     },
-
-    // Methods
     {
       "trigger": "postMessage(${0:Message}, transferList)\tWorker",
       "contents": "postMessage(${0:Message}, transferList)"

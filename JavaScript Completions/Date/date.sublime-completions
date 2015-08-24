@@ -7,14 +7,10 @@
       "trigger": "new Date()\tDate",
       "contents": "new Date()"
     },
-
-    // Properties
     {
       "trigger": "length\tDate",
       "contents": "length"
     },
-
-    // Methods
     {
       "trigger": "now()\tDate",
       "contents": "now()"
