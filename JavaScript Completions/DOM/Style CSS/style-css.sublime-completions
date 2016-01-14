@@ -8,8 +8,8 @@
       "contents": "style"
     },
     {
-      "trigger": "style.$0 = ''\tStyle CSS",
-      "contents": "style.$0 = ''"
+      "trigger": "style.$1 = ''\tStyle CSS",
+      "contents": "style.$1 = ''"
     },
     {
       "trigger": "style.alignContent\tStyle CSS",
@@ -20,12 +20,12 @@
       "contents": "alignContent"
     },
     {
-      "trigger": "style.alignContent = '$0'\tStyle CSS",
-      "contents": "style.alignContent = '$0'"
+      "trigger": "style.alignContent = ''\tStyle CSS",
+      "contents": "style.alignContent = '$1'"
     },
     {
-      "trigger": "alignContent = '$0'\tStyle CSS",
-      "contents": "alignContent = '$0'"
+      "trigger": "alignContent = ''\tStyle CSS",
+      "contents": "alignContent = '$1'"
     },
     {
       "trigger": "style.alignContent = 'stretch'\tStyle CSS",
@@ -100,12 +100,12 @@
       "contents": "alignItems"
     },
     {
-      "trigger": "style.alignItems = '$0'\tStyle CSS",
-      "contents": "style.alignItems = '$0'"
+      "trigger": "style.alignItems = ''\tStyle CSS",
+      "contents": "style.alignItems = '$1'"
     },
     {
-      "trigger": "alignItems = '$0'\tStyle CSS",
-      "contents": "alignItems = '$0'"
+      "trigger": "alignItems = ''\tStyle CSS",
+      "contents": "alignItems = '$1'"
     },
     {
       "trigger": "style.alignItems = 'stretch'\tStyle CSS",
@@ -172,12 +172,12 @@
       "contents": "alignSelf"
     },
     {
-      "trigger": "style.alignSelf = '$0'\tStyle CSS",
-      "contents": "style.alignSelf = '$0'"
+      "trigger": "style.alignSelf = ''\tStyle CSS",
+      "contents": "style.alignSelf = '$1'"
     },
     {
-      "trigger": "alignSelf = '$0'\tStyle CSS",
-      "contents": "alignSelf = '$0'"
+      "trigger": "alignSelf = ''\tStyle CSS",
+      "contents": "alignSelf = '$1'"
     },
     {
       "trigger": "style.alignSelf = 'auto'\tStyle CSS",
@@ -252,12 +252,12 @@
       "contents": "animation"
     },
     {
-      "trigger": "style.animation = '$0'\tStyle CSS",
-      "contents": "style.animation = '$0'"
+      "trigger": "style.animation = ''\tStyle CSS",
+      "contents": "style.animation = '$1'"
     },
     {
-      "trigger": "animation = '$0'\tStyle CSS",
-      "contents": "animation = '$0'"
+      "trigger": "animation = ''\tStyle CSS",
+      "contents": "animation = '$1'"
     },
     {
       "trigger": "style.animation = 'initial'\tStyle CSS",
@@ -284,12 +284,12 @@
       "contents": "animationDelay"
     },
     {
-      "trigger": "style.animationDelay = '$0'\tStyle CSS",
-      "contents": "style.animationDelay = '$0'"
+      "trigger": "style.animationDelay = ''\tStyle CSS",
+      "contents": "style.animationDelay = '$1'"
     },
     {
-      "trigger": "animationDelay = '$0'\tStyle CSS",
-      "contents": "animationDelay = '$0'"
+      "trigger": "animationDelay = ''\tStyle CSS",
+      "contents": "animationDelay = '$1'"
     },
     {
       "trigger": "style.animationDelay = 'initial'\tStyle CSS",
@@ -316,12 +316,12 @@
       "contents": "animationDirection"
     },
     {
-      "trigger": "style.animationDirection = '$0'\tStyle CSS",
-      "contents": "style.animationDirection = '$0'"
+      "trigger": "style.animationDirection = ''\tStyle CSS",
+      "contents": "style.animationDirection = '$1'"
     },
     {
-      "trigger": "animationDirection = '$0'\tStyle CSS",
-      "contents": "animationDirection = '$0'"
+      "trigger": "animationDirection = ''\tStyle CSS",
+      "contents": "animationDirection = '$1'"
     },
     {
       "trigger": "style.animationDirection = 'normal'\tStyle CSS",
@@ -380,12 +380,12 @@
       "contents": "animationDuration"
     },
     {
-      "trigger": "style.animationDuration = '$0'\tStyle CSS",
-      "contents": "style.animationDuration = '$0'"
+      "trigger": "style.animationDuration = ''\tStyle CSS",
+      "contents": "style.animationDuration = '$1'"
     },
     {
-      "trigger": "animationDuration = '$0'\tStyle CSS",
-      "contents": "animationDuration = '$0'"
+      "trigger": "animationDuration = ''\tStyle CSS",
+      "contents": "animationDuration = '$1'"
     },
     {
       "trigger": "style.animationDuration = 'initial'\tStyle CSS",
@@ -412,12 +412,12 @@
       "contents": "animationFillMode"
     },
     {
-      "trigger": "style.animationFillMode = '$0'\tStyle CSS",
-      "contents": "style.animationFillMode = '$0'"
+      "trigger": "style.animationFillMode = ''\tStyle CSS",
+      "contents": "style.animationFillMode = '$1'"
     },
     {
-      "trigger": "animationFillMode = '$0'\tStyle CSS",
-      "contents": "animationFillMode = '$0'"
+      "trigger": "animationFillMode = ''\tStyle CSS",
+      "contents": "animationFillMode = '$1'"
     },
     {
       "trigger": "style.animationFillMode = 'none'\tStyle CSS",
@@ -476,20 +476,20 @@
       "contents": "animationIterationCount"
     },
     {
-      "trigger": "style.animationIterationCount = '$0'\tStyle CSS",
-      "contents": "style.animationIterationCount = '$0'"
+      "trigger": "style.animationIterationCount = ''\tStyle CSS",
+      "contents": "style.animationIterationCount = '$1'"
     },
     {
-      "trigger": "animationIterationCount = '$0'\tStyle CSS",
-      "contents": "animationIterationCount = '$0'"
+      "trigger": "animationIterationCount = ''\tStyle CSS",
+      "contents": "animationIterationCount = '$1'"
     },
     {
-      "trigger": "style.animationIterationCount = '1$0'\tStyle CSS",
-      "contents": "style.animationIterationCount = '1$0'"
+      "trigger": "style.animationIterationCount = '1$1'\tStyle CSS",
+      "contents": "style.animationIterationCount = '1$1'"
     },
     {
-      "trigger": "animationIterationCount = '1$0'\tStyle CSS",
-      "contents": "animationIterationCount = '1$0'"
+      "trigger": "animationIterationCount = '1$1'\tStyle CSS",
+      "contents": "animationIterationCount = '1$1'"
     },
     {
       "trigger": "style.animationIterationCount = 'infinite'\tStyle CSS",
@@ -524,12 +524,12 @@
       "contents": "animationName"
     },
     {
-      "trigger": "style.animationName = '$0'\tStyle CSS",
-      "contents": "style.animationName = '$0'"
+      "trigger": "style.animationName = ''\tStyle CSS",
+      "contents": "style.animationName = '$1'"
     },
     {
-      "trigger": "animationName = '$0'\tStyle CSS",
-      "contents": "animationName = '$0'"
+      "trigger": "animationName = ''\tStyle CSS",
+      "contents": "animationName = '$1'"
     },
     {
       "trigger": "style.animationName = 'none'\tStyle CSS",
@@ -564,12 +564,12 @@
       "contents": "animationTimingFunction"
     },
     {
-      "trigger": "style.animationTimingFunction = '$0'\tStyle CSS",
-      "contents": "style.animationTimingFunction = '$0'"
+      "trigger": "style.animationTimingFunction = ''\tStyle CSS",
+      "contents": "style.animationTimingFunction = '$1'"
     },
     {
-      "trigger": "animationTimingFunction = '$0'\tStyle CSS",
-      "contents": "animationTimingFunction = '$0'"
+      "trigger": "animationTimingFunction = ''\tStyle CSS",
+      "contents": "animationTimingFunction = '$1'"
     },
     {
       "trigger": "style.animationTimingFunction = 'linear'\tStyle CSS",
@@ -612,12 +612,12 @@
       "contents": "animationTimingFunction = 'ease-in-out'"
     },
     {
-      "trigger": "style.animationTimingFunction = 'cubic-bezier($0n,n,n,n)'\tStyle CSS",
-      "contents": "style.animationTimingFunction = 'cubic-bezier($0n,n,n,n)'"
+      "trigger": "style.animationTimingFunction = 'cubic-bezier($1n,n,n,n)'\tStyle CSS",
+      "contents": "style.animationTimingFunction = 'cubic-bezier($1n,n,n,n)'"
     },
     {
-      "trigger": "animationTimingFunction = 'cubic-bezier($0n,n,n,n)'\tStyle CSS",
-      "contents": "animationTimingFunction = 'cubic-bezier($0n,n,n,n)'"
+      "trigger": "animationTimingFunction = 'cubic-bezier($1n,n,n,n)'\tStyle CSS",
+      "contents": "animationTimingFunction = 'cubic-bezier($1n,n,n,n)'"
     },
     {
       "trigger": "style.animationTimingFunction = 'initial'\tStyle CSS",
@@ -644,12 +644,12 @@
       "contents": "animationPlayState"
     },
     {
-      "trigger": "style.animationPlayState = '$0'\tStyle CSS",
-      "contents": "style.animationPlayState = '$0'"
+      "trigger": "style.animationPlayState = ''\tStyle CSS",
+      "contents": "style.animationPlayState = '$1'"
     },
     {
-      "trigger": "animationPlayState = '$0'\tStyle CSS",
-      "contents": "animationPlayState = '$0'"
+      "trigger": "animationPlayState = ''\tStyle CSS",
+      "contents": "animationPlayState = '$1'"
     },
     {
       "trigger": "style.animationPlayState = 'running'\tStyle CSS",
@@ -692,12 +692,12 @@
       "contents": "background"
     },
     {
-      "trigger": "style.background = '$0'\tStyle CSS",
-      "contents": "style.background = '$0'"
+      "trigger": "style.background = ''\tStyle CSS",
+      "contents": "style.background = '$1'"
     },
     {
-      "trigger": "background = '$0'\tStyle CSS",
-      "contents": "background = '$0'"
+      "trigger": "background = ''\tStyle CSS",
+      "contents": "background = '$1'"
     },
     {
       "trigger": "style.background = 'initial'\tStyle CSS",
@@ -724,12 +724,12 @@
       "contents": "backgroundAttachment"
     },
     {
-      "trigger": "style.backgroundAttachment = '$0'\tStyle CSS",
-      "contents": "style.backgroundAttachment = '$0'"
+      "trigger": "style.backgroundAttachment = ''\tStyle CSS",
+      "contents": "style.backgroundAttachment = '$1'"
     },
     {
-      "trigger": "backgroundAttachment = '$0'\tStyle CSS",
-      "contents": "backgroundAttachment = '$0'"
+      "trigger": "backgroundAttachment = ''\tStyle CSS",
+      "contents": "backgroundAttachment = '$1'"
     },
     {
       "trigger": "style.backgroundAttachment = 'scroll'\tStyle CSS",
@@ -780,12 +780,12 @@
       "contents": "backgroundColor"
     },
     {
-      "trigger": "style.backgroundColor = '$0'\tStyle CSS",
-      "contents": "style.backgroundColor = '$0'"
+      "trigger": "style.backgroundColor = ''\tStyle CSS",
+      "contents": "style.backgroundColor = '$1'"
     },
     {
-      "trigger": "backgroundColor = '$0'\tStyle CSS",
-      "contents": "backgroundColor = '$0'"
+      "trigger": "backgroundColor = ''\tStyle CSS",
+      "contents": "backgroundColor = '$1'"
     },
     {
       "trigger": "style.backgroundColor = 'transparent'\tStyle CSS",
@@ -820,20 +820,20 @@
       "contents": "backgroundImage"
     },
     {
-      "trigger": "style.backgroundImage = '$0'\tStyle CSS",
-      "contents": "style.backgroundImage = '$0'"
+      "trigger": "style.backgroundImage = ''\tStyle CSS",
+      "contents": "style.backgroundImage = '$1'"
     },
     {
-      "trigger": "backgroundImage = '$0'\tStyle CSS",
-      "contents": "backgroundImage = '$0'"
+      "trigger": "backgroundImage = ''\tStyle CSS",
+      "contents": "backgroundImage = '$1'"
     },
     {
-      "trigger": "style.backgroundImage = 'url($0)'\tStyle CSS",
-      "contents": "style.backgroundImage = 'url($0)'"
+      "trigger": "style.backgroundImage = 'url($1)'\tStyle CSS",
+      "contents": "style.backgroundImage = 'url($1)'"
     },
     {
-      "trigger": "backgroundImage = 'url($0)'\tStyle CSS",
-      "contents": "backgroundImage = 'url($0)'"
+      "trigger": "backgroundImage = 'url($1)'\tStyle CSS",
+      "contents": "backgroundImage = 'url($1)'"
     },
     {
       "trigger": "style.backgroundImage = 'none'\tStyle CSS",
@@ -868,12 +868,12 @@
       "contents": "backgroundPosition"
     },
     {
-      "trigger": "style.backgroundPosition = '$0'\tStyle CSS",
-      "contents": "style.backgroundPosition = '$0'"
+      "trigger": "style.backgroundPosition = ''\tStyle CSS",
+      "contents": "style.backgroundPosition = '$1'"
     },
     {
-      "trigger": "backgroundPosition = '$0'\tStyle CSS",
-      "contents": "backgroundPosition = '$0'"
+      "trigger": "backgroundPosition = ''\tStyle CSS",
+      "contents": "backgroundPosition = '$1'"
     },
     {
       "trigger": "style.backgroundPosition = 'top left'\tStyle CSS",
@@ -972,12 +972,12 @@
       "contents": "backgroundRepeat"
     },
     {
-      "trigger": "style.backgroundRepeat = '$0'\tStyle CSS",
-      "contents": "style.backgroundRepeat = '$0'"
+      "trigger": "style.backgroundRepeat = ''\tStyle CSS",
+      "contents": "style.backgroundRepeat = '$1'"
     },
     {
-      "trigger": "backgroundRepeat = '$0'\tStyle CSS",
-      "contents": "backgroundRepeat = '$0'"
+      "trigger": "backgroundRepeat = ''\tStyle CSS",
+      "contents": "backgroundRepeat = '$1'"
     },
     {
       "trigger": "style.backgroundRepeat = 'repeat'\tStyle CSS",
@@ -1036,12 +1036,12 @@
       "contents": "backgroundClip"
     },
     {
-      "trigger": "style.backgroundClip = '$0'\tStyle CSS",
-      "contents": "style.backgroundClip = '$0'"
+      "trigger": "style.backgroundClip = ''\tStyle CSS",
+      "contents": "style.backgroundClip = '$1'"
     },
     {
-      "trigger": "backgroundClip = '$0'\tStyle CSS",
-      "contents": "backgroundClip = '$0'"
+      "trigger": "backgroundClip = ''\tStyle CSS",
+      "contents": "backgroundClip = '$1'"
     },
     {
       "trigger": "style.backgroundClip = 'border-box'\tStyle CSS",
@@ -1092,12 +1092,12 @@
       "contents": "backgroundOrigin"
     },
     {
-      "trigger": "style.backgroundOrigin = '$0'\tStyle CSS",
-      "contents": "style.backgroundOrigin = '$0'"
+      "trigger": "style.backgroundOrigin = ''\tStyle CSS",
+      "contents": "style.backgroundOrigin = '$1'"
     },
     {
-      "trigger": "backgroundOrigin = '$0'\tStyle CSS",
-      "contents": "backgroundOrigin = '$0'"
+      "trigger": "backgroundOrigin = ''\tStyle CSS",
+      "contents": "backgroundOrigin = '$1'"
     },
     {
       "trigger": "style.backgroundOrigin = 'padding-box'\tStyle CSS",
@@ -1148,12 +1148,12 @@
       "contents": "backgroundSize"
     },
     {
-      "trigger": "style.backgroundSize = '$0'\tStyle CSS",
-      "contents": "style.backgroundSize = '$0'"
+      "trigger": "style.backgroundSize = ''\tStyle CSS",
+      "contents": "style.backgroundSize = '$1'"
     },
     {
-      "trigger": "backgroundSize = '$0'\tStyle CSS",
-      "contents": "backgroundSize = '$0'"
+      "trigger": "backgroundSize = ''\tStyle CSS",
+      "contents": "backgroundSize = '$1'"
     },
     {
       "trigger": "style.backgroundSize = 'auto'\tStyle CSS",
@@ -1204,12 +1204,12 @@
       "contents": "backfaceVisibility"
     },
     {
-      "trigger": "style.backfaceVisibility = '$0'\tStyle CSS",
-      "contents": "style.backfaceVisibility = '$0'"
+      "trigger": "style.backfaceVisibility = ''\tStyle CSS",
+      "contents": "style.backfaceVisibility = '$1'"
     },
     {
-      "trigger": "backfaceVisibility = '$0'\tStyle CSS",
-      "contents": "backfaceVisibility = '$0'"
+      "trigger": "backfaceVisibility = ''\tStyle CSS",
+      "contents": "backfaceVisibility = '$1'"
     },
     {
       "trigger": "style.backfaceVisibility = 'visible'\tStyle CSS",
@@ -1252,12 +1252,12 @@
       "contents": "border"
     },
     {
-      "trigger": "style.border = '$0'\tStyle CSS",
-      "contents": "style.border = '$0'"
+      "trigger": "style.border = ''\tStyle CSS",
+      "contents": "style.border = '$1'"
     },
     {
-      "trigger": "border = '$0'\tStyle CSS",
-      "contents": "border = '$0'"
+      "trigger": "border = ''\tStyle CSS",
+      "contents": "border = '$1'"
     },
     {
       "trigger": "style.border = 'initial'\tStyle CSS",
@@ -1284,12 +1284,12 @@
       "contents": "borderBottom"
     },
     {
-      "trigger": "style.borderBottom = '$0'\tStyle CSS",
-      "contents": "style.borderBottom = '$0'"
+      "trigger": "style.borderBottom = ''\tStyle CSS",
+      "contents": "style.borderBottom = '$1'"
     },
     {
-      "trigger": "borderBottom = '$0'\tStyle CSS",
-      "contents": "borderBottom = '$0'"
+      "trigger": "borderBottom = ''\tStyle CSS",
+      "contents": "borderBottom = '$1'"
     },
     {
       "trigger": "style.borderBottom = 'initial'\tStyle CSS",
@@ -1316,12 +1316,12 @@
       "contents": "borderBottomColor"
     },
     {
-      "trigger": "style.borderBottomColor = '$0'\tStyle CSS",
-      "contents": "style.borderBottomColor = '$0'"
+      "trigger": "style.borderBottomColor = ''\tStyle CSS",
+      "contents": "style.borderBottomColor = '$1'"
     },
     {
-      "trigger": "borderBottomColor = '$0'\tStyle CSS",
-      "contents": "borderBottomColor = '$0'"
+      "trigger": "borderBottomColor = ''\tStyle CSS",
+      "contents": "borderBottomColor = '$1'"
     },
     {
       "trigger": "style.borderBottomColor = 'transparent'\tStyle CSS",
@@ -1356,12 +1356,12 @@
       "contents": "borderBottomLeftRadius"
     },
     {
-      "trigger": "style.borderBottomLeftRadius = '$0'\tStyle CSS",
-      "contents": "style.borderBottomLeftRadius = '$0'"
+      "trigger": "style.borderBottomLeftRadius = ''\tStyle CSS",
+      "contents": "style.borderBottomLeftRadius = '$1'"
     },
     {
-      "trigger": "borderBottomLeftRadius = '$0'\tStyle CSS",
-      "contents": "borderBottomLeftRadius = '$0'"
+      "trigger": "borderBottomLeftRadius = ''\tStyle CSS",
+      "contents": "borderBottomLeftRadius = '$1'"
     },
     {
       "trigger": "style.borderBottomLeftRadius = 'initial'\tStyle CSS",
@@ -1388,12 +1388,12 @@
       "contents": "borderBottomRightRadius"
     },
     {
-      "trigger": "style.borderBottomRightRadius = '$0'\tStyle CSS",
-      "contents": "style.borderBottomRightRadius = '$0'"
+      "trigger": "style.borderBottomRightRadius = ''\tStyle CSS",
+      "contents": "style.borderBottomRightRadius = '$1'"
     },
     {
-      "trigger": "borderBottomRightRadius = '$0'\tStyle CSS",
-      "contents": "borderBottomRightRadius = '$0'"
+      "trigger": "borderBottomRightRadius = ''\tStyle CSS",
+      "contents": "borderBottomRightRadius = '$1'"
     },
     {
       "trigger": "style.borderBottomRightRadius = 'initial'\tStyle CSS",
@@ -1420,12 +1420,12 @@
       "contents": "borderBottomStyle"
     },
     {
-      "trigger": "style.borderBottomStyle = '$0'\tStyle CSS",
-      "contents": "style.borderBottomStyle = '$0'"
+      "trigger": "style.borderBottomStyle = ''\tStyle CSS",
+      "contents": "style.borderBottomStyle = '$1'"
     },
     {
-      "trigger": "borderBottomStyle = '$0'\tStyle CSS",
-      "contents": "borderBottomStyle = '$0'"
+      "trigger": "borderBottomStyle = ''\tStyle CSS",
+      "contents": "borderBottomStyle = '$1'"
     },
     {
       "trigger": "style.borderBottomStyle = 'none'\tStyle CSS",
@@ -1532,12 +1532,12 @@
       "contents": "borderBottomWidth"
     },
     {
-      "trigger": "style.borderBottomWidth = '$0'\tStyle CSS",
-      "contents": "style.borderBottomWidth = '$0'"
+      "trigger": "style.borderBottomWidth = ''\tStyle CSS",
+      "contents": "style.borderBottomWidth = '$1'"
     },
     {
-      "trigger": "borderBottomWidth = '$0'\tStyle CSS",
-      "contents": "borderBottomWidth = '$0'"
+      "trigger": "borderBottomWidth = ''\tStyle CSS",
+      "contents": "borderBottomWidth = '$1'"
     },
     {
       "trigger": "style.borderBottomWidth = 'thin'\tStyle CSS",
@@ -1588,12 +1588,12 @@
       "contents": "borderCollapse"
     },
     {
-      "trigger": "style.borderCollapse = '$0'\tStyle CSS",
-      "contents": "style.borderCollapse = '$0'"
+      "trigger": "style.borderCollapse = ''\tStyle CSS",
+      "contents": "style.borderCollapse = '$1'"
     },
     {
-      "trigger": "borderCollapse = '$0'\tStyle CSS",
-      "contents": "borderCollapse = '$0'"
+      "trigger": "borderCollapse = ''\tStyle CSS",
+      "contents": "borderCollapse = '$1'"
     },
     {
       "trigger": "style.borderCollapse = 'separate'\tStyle CSS",
@@ -1636,12 +1636,12 @@
       "contents": "borderColor"
     },
     {
-      "trigger": "style.borderColor = '$0'\tStyle CSS",
-      "contents": "style.borderColor = '$0'"
+      "trigger": "style.borderColor = ''\tStyle CSS",
+      "contents": "style.borderColor = '$1'"
     },
     {
-      "trigger": "borderColor = '$0'\tStyle CSS",
-      "contents": "borderColor = '$0'"
+      "trigger": "borderColor = ''\tStyle CSS",
+      "contents": "borderColor = '$1'"
     },
     {
       "trigger": "style.borderColor = 'transparent'\tStyle CSS",
@@ -1676,12 +1676,12 @@
       "contents": "borderImage"
     },
     {
-      "trigger": "style.borderImage = '$0'\tStyle CSS",
-      "contents": "style.borderImage = '$0'"
+      "trigger": "style.borderImage = ''\tStyle CSS",
+      "contents": "style.borderImage = '$1'"
     },
     {
-      "trigger": "borderImage = '$0'\tStyle CSS",
-      "contents": "borderImage = '$0'"
+      "trigger": "borderImage = ''\tStyle CSS",
+      "contents": "borderImage = '$1'"
     },
     {
       "trigger": "style.borderImage = 'initial'\tStyle CSS",
@@ -1708,12 +1708,12 @@
       "contents": "borderImageOutset"
     },
     {
-      "trigger": "style.borderImageOutset = '$0'\tStyle CSS",
-      "contents": "style.borderImageOutset = '$0'"
+      "trigger": "style.borderImageOutset = ''\tStyle CSS",
+      "contents": "style.borderImageOutset = '$1'"
     },
     {
-      "trigger": "borderImageOutset = '$0'\tStyle CSS",
-      "contents": "borderImageOutset = '$0'"
+      "trigger": "borderImageOutset = ''\tStyle CSS",
+      "contents": "borderImageOutset = '$1'"
     },
     {
       "trigger": "style.borderImageOutset = 'initial'\tStyle CSS",
@@ -1740,12 +1740,12 @@
       "contents": "borderImageRepeat"
     },
     {
-      "trigger": "style.borderImageRepeat = '$0'\tStyle CSS",
-      "contents": "style.borderImageRepeat = '$0'"
+      "trigger": "style.borderImageRepeat = ''\tStyle CSS",
+      "contents": "style.borderImageRepeat = '$1'"
     },
     {
-      "trigger": "borderImageRepeat = '$0'\tStyle CSS",
-      "contents": "borderImageRepeat = '$0'"
+      "trigger": "borderImageRepeat = ''\tStyle CSS",
+      "contents": "borderImageRepeat = '$1'"
     },
     {
       "trigger": "style.borderImageRepeat = 'stretch'\tStyle CSS",
@@ -1804,12 +1804,12 @@
       "contents": "borderImageSlice"
     },
     {
-      "trigger": "style.borderImageSlice = '$0'\tStyle CSS",
-      "contents": "style.borderImageSlice = '$0'"
+      "trigger": "style.borderImageSlice = ''\tStyle CSS",
+      "contents": "style.borderImageSlice = '$1'"
     },
     {
-      "trigger": "borderImageSlice = '$0'\tStyle CSS",
-      "contents": "borderImageSlice = '$0'"
+      "trigger": "borderImageSlice = ''\tStyle CSS",
+      "contents": "borderImageSlice = '$1'"
     },
     {
       "trigger": "style.borderImageSlice = 'fill'\tStyle CSS",
@@ -1844,12 +1844,12 @@
       "contents": "borderImageSource"
     },
     {
-      "trigger": "style.borderImageSource = '$0'\tStyle CSS",
-      "contents": "style.borderImageSource = '$0'"
+      "trigger": "style.borderImageSource = ''\tStyle CSS",
+      "contents": "style.borderImageSource = '$1'"
     },
     {
-      "trigger": "borderImageSource = '$0'\tStyle CSS",
-      "contents": "borderImageSource = '$0'"
+      "trigger": "borderImageSource = ''\tStyle CSS",
+      "contents": "borderImageSource = '$1'"
     },
     {
       "trigger": "style.borderImageSource = 'none'\tStyle CSS",
@@ -1884,12 +1884,12 @@
       "contents": "borderImageWidth"
     },
     {
-      "trigger": "style.borderImageWidth = '$0'\tStyle CSS",
-      "contents": "style.borderImageWidth = '$0'"
+      "trigger": "style.borderImageWidth = ''\tStyle CSS",
+      "contents": "style.borderImageWidth = '$1'"
     },
     {
-      "trigger": "borderImageWidth = '$0'\tStyle CSS",
-      "contents": "borderImageWidth = '$0'"
+      "trigger": "borderImageWidth = ''\tStyle CSS",
+      "contents": "borderImageWidth = '$1'"
     },
     {
       "trigger": "style.borderImageWidth = 'auto'\tStyle CSS",
@@ -1924,12 +1924,12 @@
       "contents": "borderLeft"
     },
     {
-      "trigger": "style.borderLeft = '$0'\tStyle CSS",
-      "contents": "style.borderLeft = '$0'"
+      "trigger": "style.borderLeft = ''\tStyle CSS",
+      "contents": "style.borderLeft = '$1'"
     },
     {
-      "trigger": "borderLeft = '$0'\tStyle CSS",
-      "contents": "borderLeft = '$0'"
+      "trigger": "borderLeft = ''\tStyle CSS",
+      "contents": "borderLeft = '$1'"
     },
     {
       "trigger": "style.borderLeft = 'initial'\tStyle CSS",
@@ -1956,12 +1956,12 @@
       "contents": "borderLeftColor"
     },
     {
-      "trigger": "style.borderLeftColor = '$0'\tStyle CSS",
-      "contents": "style.borderLeftColor = '$0'"
+      "trigger": "style.borderLeftColor = ''\tStyle CSS",
+      "contents": "style.borderLeftColor = '$1'"
     },
     {
-      "trigger": "borderLeftColor = '$0'\tStyle CSS",
-      "contents": "borderLeftColor = '$0'"
+      "trigger": "borderLeftColor = ''\tStyle CSS",
+      "contents": "borderLeftColor = '$1'"
     },
     {
       "trigger": "style.borderLeftColor = 'transparent'\tStyle CSS",
@@ -1996,12 +1996,12 @@
       "contents": "borderLeftStyle"
     },
     {
-      "trigger": "style.borderLeftStyle = '$0'\tStyle CSS",
-      "contents": "style.borderLeftStyle = '$0'"
+      "trigger": "style.borderLeftStyle = ''\tStyle CSS",
+      "contents": "style.borderLeftStyle = '$1'"
     },
     {
-      "trigger": "borderLeftStyle = '$0'\tStyle CSS",
-      "contents": "borderLeftStyle = '$0'"
+      "trigger": "borderLeftStyle = ''\tStyle CSS",
+      "contents": "borderLeftStyle = '$1'"
     },
     {
       "trigger": "style.borderLeftStyle = 'none'\tStyle CSS",
@@ -2108,12 +2108,12 @@
       "contents": "borderLeftWidth"
     },
     {
-      "trigger": "style.borderLeftWidth = '$0'\tStyle CSS",
-      "contents": "style.borderLeftWidth = '$0'"
+      "trigger": "style.borderLeftWidth = ''\tStyle CSS",
+      "contents": "style.borderLeftWidth = '$1'"
     },
     {
-      "trigger": "borderLeftWidth = '$0'\tStyle CSS",
-      "contents": "borderLeftWidth = '$0'"
+      "trigger": "borderLeftWidth = ''\tStyle CSS",
+      "contents": "borderLeftWidth = '$1'"
     },
     {
       "trigger": "style.borderLeftWidth = 'thin'\tStyle CSS",
@@ -2164,12 +2164,12 @@
       "contents": "borderRadius"
     },
     {
-      "trigger": "style.borderRadius = '$0'\tStyle CSS",
-      "contents": "style.borderRadius = '$0'"
+      "trigger": "style.borderRadius = ''\tStyle CSS",
+      "contents": "style.borderRadius = '$1'"
     },
     {
-      "trigger": "borderRadius = '$0'\tStyle CSS",
-      "contents": "borderRadius = '$0'"
+      "trigger": "borderRadius = ''\tStyle CSS",
+      "contents": "borderRadius = '$1'"
     },
     {
       "trigger": "style.borderRadius = 'initial'\tStyle CSS",
@@ -2197,12 +2197,12 @@
       "contents": "borderRight"
     },
     {
-      "trigger": "style.borderRight = '$0'\tStyle CSS",
-      "contents": "style.borderRight = '$0'"
+      "trigger": "style.borderRight = ''\tStyle CSS",
+      "contents": "style.borderRight = '$1'"
     },
     {
-      "trigger": "borderRight = '$0'\tStyle CSS",
-      "contents": "borderRight = '$0'"
+      "trigger": "borderRight = ''\tStyle CSS",
+      "contents": "borderRight = '$1'"
     },
     {
       "trigger": "style.borderRight = 'initial'\tStyle CSS",
@@ -2229,12 +2229,12 @@
       "contents": "borderRightColor"
     },
     {
-      "trigger": "style.borderRightColor = '$0'\tStyle CSS",
-      "contents": "style.borderRightColor = '$0'"
+      "trigger": "style.borderRightColor = ''\tStyle CSS",
+      "contents": "style.borderRightColor = '$1'"
     },
     {
-      "trigger": "borderRightColor = '$0'\tStyle CSS",
-      "contents": "borderRightColor = '$0'"
+      "trigger": "borderRightColor = ''\tStyle CSS",
+      "contents": "borderRightColor = '$1'"
     },
     {
       "trigger": "style.borderRightColor = 'transparent'\tStyle CSS",
@@ -2269,12 +2269,12 @@
       "contents": "borderRightStyle"
     },
     {
-      "trigger": "style.borderRightStyle = '$0'\tStyle CSS",
-      "contents": "style.borderRightStyle = '$0'"
+      "trigger": "style.borderRightStyle = ''\tStyle CSS",
+      "contents": "style.borderRightStyle = '$1'"
     },
     {
-      "trigger": "borderRightStyle = '$0'\tStyle CSS",
-      "contents": "borderRightStyle = '$0'"
+      "trigger": "borderRightStyle = ''\tStyle CSS",
+      "contents": "borderRightStyle = '$1'"
     },
     {
       "trigger": "style.borderRightStyle = 'none'\tStyle CSS",
@@ -2381,12 +2381,12 @@
       "contents": "borderRightWidth"
     },
     {
-      "trigger": "style.borderRightWidth = '$0'\tStyle CSS",
-      "contents": "style.borderRightWidth = '$0'"
+      "trigger": "style.borderRightWidth = ''\tStyle CSS",
+      "contents": "style.borderRightWidth = '$1'"
     },
     {
-      "trigger": "borderRightWidth = '$0'\tStyle CSS",
-      "contents": "borderRightWidth = '$0'"
+      "trigger": "borderRightWidth = ''\tStyle CSS",
+      "contents": "borderRightWidth = '$1'"
     },
     {
       "trigger": "style.borderRightWidth = 'thin'\tStyle CSS",
@@ -2437,12 +2437,12 @@
       "contents": "borderSpacing"
     },
     {
-      "trigger": "style.borderSpacing = '$0'\tStyle CSS",
-      "contents": "style.borderSpacing = '$0'"
+      "trigger": "style.borderSpacing = ''\tStyle CSS",
+      "contents": "style.borderSpacing = '$1'"
     },
     {
-      "trigger": "borderSpacing = '$0'\tStyle CSS",
-      "contents": "borderSpacing = '$0'"
+      "trigger": "borderSpacing = ''\tStyle CSS",
+      "contents": "borderSpacing = '$1'"
     },
     {
       "trigger": "style.borderSpacing = 'initial'\tStyle CSS",
@@ -2469,12 +2469,12 @@
       "contents": "borderStyle"
     },
     {
-      "trigger": "style.borderStyle = '$0'\tStyle CSS",
-      "contents": "style.borderStyle = '$0'"
+      "trigger": "style.borderStyle = ''\tStyle CSS",
+      "contents": "style.borderStyle = '$1'"
     },
     {
-      "trigger": "borderStyle = '$0'\tStyle CSS",
-      "contents": "borderStyle = '$0'"
+      "trigger": "borderStyle = ''\tStyle CSS",
+      "contents": "borderStyle = '$1'"
     },
     {
       "trigger": "style.borderStyle = 'none'\tStyle CSS",
@@ -2581,12 +2581,12 @@
       "contents": "borderTop"
     },
     {
-      "trigger": "style.borderTop = '$0'\tStyle CSS",
-      "contents": "style.borderTop = '$0'"
+      "trigger": "style.borderTop = ''\tStyle CSS",
+      "contents": "style.borderTop = '$1'"
     },
     {
-      "trigger": "borderTop = '$0'\tStyle CSS",
-      "contents": "borderTop = '$0'"
+      "trigger": "borderTop = ''\tStyle CSS",
+      "contents": "borderTop = '$1'"
     },
     {
       "trigger": "style.borderTop = 'initial'\tStyle CSS",
@@ -2613,12 +2613,12 @@
       "contents": "borderTopColor"
     },
     {
-      "trigger": "style.borderTopColor = '$0'\tStyle CSS",
-      "contents": "style.borderTopColor = '$0'"
+      "trigger": "style.borderTopColor = ''\tStyle CSS",
+      "contents": "style.borderTopColor = '$1'"
     },
     {
-      "trigger": "borderTopColor = '$0'\tStyle CSS",
-      "contents": "borderTopColor = '$0'"
+      "trigger": "borderTopColor = ''\tStyle CSS",
+      "contents": "borderTopColor = '$1'"
     },
     {
       "trigger": "style.borderTopColor = 'transparent'\tStyle CSS",
@@ -2653,12 +2653,12 @@
       "contents": "borderTopLeftRadius"
     },
     {
-      "trigger": "style.borderTopLeftRadius = '$0'\tStyle CSS",
-      "contents": "style.borderTopLeftRadius = '$0'"
+      "trigger": "style.borderTopLeftRadius = ''\tStyle CSS",
+      "contents": "style.borderTopLeftRadius = '$1'"
     },
     {
-      "trigger": "borderTopLeftRadius = '$0'\tStyle CSS",
-      "contents": "borderTopLeftRadius = '$0'"
+      "trigger": "borderTopLeftRadius = ''\tStyle CSS",
+      "contents": "borderTopLeftRadius = '$1'"
     },
     {
       "trigger": "style.borderTopLeftRadius = 'initial'\tStyle CSS",
@@ -2685,12 +2685,12 @@
       "contents": "borderTopRightRadius"
     },
     {
-      "trigger": "style.borderTopRightRadius = '$0'\tStyle CSS",
-      "contents": "style.borderTopRightRadius = '$0'"
+      "trigger": "style.borderTopRightRadius = ''\tStyle CSS",
+      "contents": "style.borderTopRightRadius = '$1'"
     },
     {
-      "trigger": "borderTopRightRadius = '$0'\tStyle CSS",
-      "contents": "borderTopRightRadius = '$0'"
+      "trigger": "borderTopRightRadius = ''\tStyle CSS",
+      "contents": "borderTopRightRadius = '$1'"
     },
     {
       "trigger": "style.borderTopRightRadius = 'initial'\tStyle CSS",
@@ -2717,12 +2717,12 @@
       "contents": "borderTopStyle"
     },
     {
-      "trigger": "style.borderTopStyle = '$0'\tStyle CSS",
-      "contents": "style.borderTopStyle = '$0'"
+      "trigger": "style.borderTopStyle = ''\tStyle CSS",
+      "contents": "style.borderTopStyle = '$1'"
     },
     {
-      "trigger": "borderTopStyle = '$0'\tStyle CSS",
-      "contents": "borderTopStyle = '$0'"
+      "trigger": "borderTopStyle = ''\tStyle CSS",
+      "contents": "borderTopStyle = '$1'"
     },
     {
       "trigger": "style.borderTopStyle = 'none'\tStyle CSS",
@@ -2829,12 +2829,12 @@
       "contents": "borderTopWidth"
     },
     {
-      "trigger": "style.borderTopWidth = '$0'\tStyle CSS",
-      "contents": "style.borderTopWidth = '$0'"
+      "trigger": "style.borderTopWidth = ''\tStyle CSS",
+      "contents": "style.borderTopWidth = '$1'"
     },
     {
-      "trigger": "borderTopWidth = '$0'\tStyle CSS",
-      "contents": "borderTopWidth = '$0'"
+      "trigger": "borderTopWidth = ''\tStyle CSS",
+      "contents": "borderTopWidth = '$1'"
     },
     {
       "trigger": "style.borderTopWidth = 'thin'\tStyle CSS",
@@ -2893,12 +2893,12 @@
       "contents": "borderWidth"
     },
     {
-      "trigger": "style.borderWidth = '$0'\tStyle CSS",
-      "contents": "style.borderWidth = '$0'"
+      "trigger": "style.borderWidth = ''\tStyle CSS",
+      "contents": "style.borderWidth = '$1'"
     },
     {
-      "trigger": "borderWidth = '$0'\tStyle CSS",
-      "contents": "borderWidth = '$0'"
+      "trigger": "borderWidth = ''\tStyle CSS",
+      "contents": "borderWidth = '$1'"
     },
     {
       "trigger": "style.borderWidth = 'thin'\tStyle CSS",
@@ -2949,12 +2949,12 @@
       "contents": "bottom"
     },
     {
-      "trigger": "style.bottom = '$0'\tStyle CSS",
-      "contents": "style.bottom = '$0'"
+      "trigger": "style.bottom = ''\tStyle CSS",
+      "contents": "style.bottom = '$1'"
     },
     {
-      "trigger": "bottom = '$0'\tStyle CSS",
-      "contents": "bottom = '$0'"
+      "trigger": "bottom = ''\tStyle CSS",
+      "contents": "bottom = '$1'"
     },
     {
       "trigger": "style.bottom = 'auto'\tStyle CSS",
@@ -2989,12 +2989,12 @@
       "contents": "boxShadow"
     },
     {
-      "trigger": "style.boxShadow = '$0'\tStyle CSS",
-      "contents": "style.boxShadow = '$0'"
+      "trigger": "style.boxShadow = ''\tStyle CSS",
+      "contents": "style.boxShadow = '$1'"
     },
     {
-      "trigger": "boxShadow = '$0'\tStyle CSS",
-      "contents": "boxShadow = '$0'"
+      "trigger": "boxShadow = ''\tStyle CSS",
+      "contents": "boxShadow = '$1'"
     },
     {
       "trigger": "style.boxShadow = 'none'\tStyle CSS",
@@ -3037,12 +3037,12 @@
       "contents": "boxSizing"
     },
     {
-      "trigger": "style.boxSizing = '$0'\tStyle CSS",
-      "contents": "style.boxSizing = '$0'"
+      "trigger": "style.boxSizing = ''\tStyle CSS",
+      "contents": "style.boxSizing = '$1'"
     },
     {
-      "trigger": "boxSizing = '$0'\tStyle CSS",
-      "contents": "boxSizing = '$0'"
+      "trigger": "boxSizing = ''\tStyle CSS",
+      "contents": "boxSizing = '$1'"
     },
     {
       "trigger": "style.boxSizing = 'content-box'\tStyle CSS",
@@ -3085,12 +3085,12 @@
       "contents": "captionSide"
     },
     {
-      "trigger": "style.captionSide = '$0'\tStyle CSS",
-      "contents": "style.captionSide = '$0'"
+      "trigger": "style.captionSide = ''\tStyle CSS",
+      "contents": "style.captionSide = '$1'"
     },
     {
-      "trigger": "captionSide = '$0'\tStyle CSS",
-      "contents": "captionSide = '$0'"
+      "trigger": "captionSide = ''\tStyle CSS",
+      "contents": "captionSide = '$1'"
     },
     {
       "trigger": "style.captionSide = 'top'\tStyle CSS",
@@ -3133,12 +3133,12 @@
       "contents": "clear"
     },
     {
-      "trigger": "style.clear = '$0'\tStyle CSS",
-      "contents": "style.clear = '$0'"
+      "trigger": "style.clear = ''\tStyle CSS",
+      "contents": "style.clear = '$1'"
     },
     {
-      "trigger": "clear = '$0'\tStyle CSS",
-      "contents": "clear = '$0'"
+      "trigger": "clear = ''\tStyle CSS",
+      "contents": "clear = '$1'"
     },
     {
       "trigger": "style.clear = 'none'\tStyle CSS",
@@ -3197,12 +3197,12 @@
       "contents": "clip"
     },
     {
-      "trigger": "style.clip = '$0'\tStyle CSS",
-      "contents": "style.clip = '$0'"
+      "trigger": "style.clip = ''\tStyle CSS",
+      "contents": "style.clip = '$1'"
     },
     {
-      "trigger": "clip = '$0'\tStyle CSS",
-      "contents": "clip = '$0'"
+      "trigger": "clip = ''\tStyle CSS",
+      "contents": "clip = '$1'"
     },
     {
       "trigger": "style.clip = 'auto'\tStyle CSS",
@@ -3245,12 +3245,12 @@
       "contents": "color"
     },
     {
-      "trigger": "style.color = '$0'\tStyle CSS",
-      "contents": "style.color = '$0'"
+      "trigger": "style.color = ''\tStyle CSS",
+      "contents": "style.color = '$1'"
     },
     {
-      "trigger": "color = '$0'\tStyle CSS",
-      "contents": "color = '$0'"
+      "trigger": "color = ''\tStyle CSS",
+      "contents": "color = '$1'"
     },
     {
       "trigger": "style.color = 'initial'\tStyle CSS",
@@ -3277,12 +3277,12 @@
       "contents": "columnCount"
     },
     {
-      "trigger": "style.columnCount = '$0'\tStyle CSS",
-      "contents": "style.columnCount = '$0'"
+      "trigger": "style.columnCount = ''\tStyle CSS",
+      "contents": "style.columnCount = '$1'"
     },
     {
-      "trigger": "columnCount = '$0'\tStyle CSS",
-      "contents": "columnCount = '$0'"
+      "trigger": "columnCount = ''\tStyle CSS",
+      "contents": "columnCount = '$1'"
     },
     {
       "trigger": "style.columnCount = 'auto'\tStyle CSS",
@@ -3317,12 +3317,12 @@
       "contents": "columnFill"
     },
     {
-      "trigger": "style.columnFill = '$0'\tStyle CSS",
-      "contents": "style.columnFill = '$0'"
+      "trigger": "style.columnFill = ''\tStyle CSS",
+      "contents": "style.columnFill = '$1'"
     },
     {
-      "trigger": "columnFill = '$0'\tStyle CSS",
-      "contents": "columnFill = '$0'"
+      "trigger": "columnFill = ''\tStyle CSS",
+      "contents": "columnFill = '$1'"
     },
     {
       "trigger": "style.columnFill = 'balance'\tStyle CSS",
@@ -3365,12 +3365,12 @@
       "contents": "columnGap"
     },
     {
-      "trigger": "style.columnGap = '$0'\tStyle CSS",
-      "contents": "style.columnGap = '$0'"
+      "trigger": "style.columnGap = ''\tStyle CSS",
+      "contents": "style.columnGap = '$1'"
     },
     {
-      "trigger": "columnGap = '$0'\tStyle CSS",
-      "contents": "columnGap = '$0'"
+      "trigger": "columnGap = ''\tStyle CSS",
+      "contents": "columnGap = '$1'"
     },
     {
       "trigger": "style.columnGap = 'normal'\tStyle CSS",
@@ -3405,12 +3405,12 @@
       "contents": "columnRule"
     },
     {
-      "trigger": "style.columnRule = '$0'\tStyle CSS",
-      "contents": "style.columnRule = '$0'"
+      "trigger": "style.columnRule = ''\tStyle CSS",
+      "contents": "style.columnRule = '$1'"
     },
     {
-      "trigger": "columnRule = '$0'\tStyle CSS",
-      "contents": "columnRule = '$0'"
+      "trigger": "columnRule = ''\tStyle CSS",
+      "contents": "columnRule = '$1'"
     },
     {
       "trigger": "style.columnRule = 'initial'\tStyle CSS",
@@ -3437,12 +3437,12 @@
       "contents": "columnRuleColor"
     },
     {
-      "trigger": "style.columnRuleColor = '$0'\tStyle CSS",
-      "contents": "style.columnRuleColor = '$0'"
+      "trigger": "style.columnRuleColor = ''\tStyle CSS",
+      "contents": "style.columnRuleColor = '$1'"
     },
     {
-      "trigger": "columnRuleColor = '$0'\tStyle CSS",
-      "contents": "columnRuleColor = '$0'"
+      "trigger": "columnRuleColor = ''\tStyle CSS",
+      "contents": "columnRuleColor = '$1'"
     },
     {
       "trigger": "style.columnRuleColor = 'initial'\tStyle CSS",
@@ -3469,12 +3469,12 @@
       "contents": "columnRuleStyle"
     },
     {
-      "trigger": "style.columnRuleStyle = '$0'\tStyle CSS",
-      "contents": "style.columnRuleStyle = '$0'"
+      "trigger": "style.columnRuleStyle = ''\tStyle CSS",
+      "contents": "style.columnRuleStyle = '$1'"
     },
     {
-      "trigger": "columnRuleStyle = '$0'\tStyle CSS",
-      "contents": "columnRuleStyle = '$0'"
+      "trigger": "columnRuleStyle = ''\tStyle CSS",
+      "contents": "columnRuleStyle = '$1'"
     },
     {
       "trigger": "style.columnRuleStyle = 'none'\tStyle CSS",
@@ -3581,12 +3581,12 @@
       "contents": "columnRuleWidth"
     },
     {
-      "trigger": "style.columnRuleWidth = '$0'\tStyle CSS",
-      "contents": "style.columnRuleWidth = '$0'"
+      "trigger": "style.columnRuleWidth = ''\tStyle CSS",
+      "contents": "style.columnRuleWidth = '$1'"
     },
     {
-      "trigger": "columnRuleWidth = '$0'\tStyle CSS",
-      "contents": "columnRuleWidth = '$0'"
+      "trigger": "columnRuleWidth = ''\tStyle CSS",
+      "contents": "columnRuleWidth = '$1'"
     },
     {
       "trigger": "style.columnRuleWidth = 'medium'\tStyle CSS",
@@ -3637,12 +3637,12 @@
       "contents": "columns"
     },
     {
-      "trigger": "style.columns = '$0'\tStyle CSS",
-      "contents": "style.columns = '$0'"
+      "trigger": "style.columns = ''\tStyle CSS",
+      "contents": "style.columns = '$1'"
     },
     {
-      "trigger": "columns = '$0'\tStyle CSS",
-      "contents": "columns = '$0'"
+      "trigger": "columns = ''\tStyle CSS",
+      "contents": "columns = '$1'"
     },
     {
       "trigger": "style.columns = 'auto'\tStyle CSS",
@@ -3678,12 +3678,12 @@
       "contents": "columnSpan"
     },
     {
-      "trigger": "style.columnSpan = '$0'\tStyle CSS",
-      "contents": "style.columnSpan = '$0'"
+      "trigger": "style.columnSpan = ''\tStyle CSS",
+      "contents": "style.columnSpan = '$1'"
     },
     {
-      "trigger": "columnSpan = '$0'\tStyle CSS",
-      "contents": "columnSpan = '$0'"
+      "trigger": "columnSpan = ''\tStyle CSS",
+      "contents": "columnSpan = '$1'"
     },
     {
       "trigger": "style.columnSpan = '1'\tStyle CSS",
@@ -3726,12 +3726,12 @@
       "contents": "columnWidth"
     },
     {
-      "trigger": "style.columnWidth = '$0'\tStyle CSS",
-      "contents": "style.columnWidth = '$0'"
+      "trigger": "style.columnWidth = ''\tStyle CSS",
+      "contents": "style.columnWidth = '$1'"
     },
     {
-      "trigger": "columnWidth = '$0'\tStyle CSS",
-      "contents": "columnWidth = '$0'"
+      "trigger": "columnWidth = ''\tStyle CSS",
+      "contents": "columnWidth = '$1'"
     },
     {
       "trigger": "style.columnWidth = 'auto'\tStyle CSS",
@@ -3766,12 +3766,12 @@
       "contents": "counterIncrement"
     },
     {
-      "trigger": "style.counterIncrement = '$0'\tStyle CSS",
-      "contents": "style.counterIncrement = '$0'"
+      "trigger": "style.counterIncrement = ''\tStyle CSS",
+      "contents": "style.counterIncrement = '$1'"
     },
     {
-      "trigger": "counterIncrement = '$0'\tStyle CSS",
-      "contents": "counterIncrement = '$0'"
+      "trigger": "counterIncrement = ''\tStyle CSS",
+      "contents": "counterIncrement = '$1'"
     },
     {
       "trigger": "style.counterIncrement = 'none'\tStyle CSS",
@@ -3806,12 +3806,12 @@
       "contents": "counterReset"
     },
     {
-      "trigger": "style.counterReset = '$0'\tStyle CSS",
-      "contents": "style.counterReset = '$0'"
+      "trigger": "style.counterReset = ''\tStyle CSS",
+      "contents": "style.counterReset = '$1'"
     },
     {
-      "trigger": "counterReset = '$0'\tStyle CSS",
-      "contents": "counterReset = '$0'"
+      "trigger": "counterReset = ''\tStyle CSS",
+      "contents": "counterReset = '$1'"
     },
     {
       "trigger": "style.counterReset = 'none'\tStyle CSS",
@@ -3846,12 +3846,12 @@
       "contents": "cursor"
     },
     {
-      "trigger": "style.cursor = '$0'\tStyle CSS",
-      "contents": "style.cursor = '$0'"
+      "trigger": "style.cursor = ''\tStyle CSS",
+      "contents": "style.cursor = '$1'"
     },
     {
-      "trigger": "cursor = '$0'\tStyle CSS",
-      "contents": "cursor = '$0'"
+      "trigger": "cursor = ''\tStyle CSS",
+      "contents": "cursor = '$1'"
     },
     {
       "trigger": "style.cursor = 'alias'\tStyle CSS",
@@ -4150,12 +4150,12 @@
       "contents": "direction"
     },
     {
-      "trigger": "style.direction = '$0'\tStyle CSS",
-      "contents": "style.direction = '$0'"
+      "trigger": "style.direction = ''\tStyle CSS",
+      "contents": "style.direction = '$1'"
     },
     {
-      "trigger": "direction = '$0'\tStyle CSS",
-      "contents": "direction = '$0'"
+      "trigger": "direction = ''\tStyle CSS",
+      "contents": "direction = '$1'"
     },
     {
       "trigger": "style.direction = 'ltr'\tStyle CSS",
@@ -4198,12 +4198,12 @@
       "contents": "display"
     },
     {
-      "trigger": "style.display = '$0'\tStyle CSS",
-      "contents": "style.display = '$0'"
+      "trigger": "style.display = ''\tStyle CSS",
+      "contents": "style.display = '$1'"
     },
     {
-      "trigger": "display = '$0'\tStyle CSS",
-      "contents": "display = '$0'"
+      "trigger": "display = ''\tStyle CSS",
+      "contents": "display = '$1'"
     },
     {
       "trigger": "style.display = 'block'\tStyle CSS",
@@ -4398,12 +4398,12 @@
       "contents": "emptyCells"
     },
     {
-      "trigger": "style.emptyCells = '$0'\tStyle CSS",
-      "contents": "style.emptyCells = '$0'"
+      "trigger": "style.emptyCells = ''\tStyle CSS",
+      "contents": "style.emptyCells = '$1'"
     },
     {
-      "trigger": "emptyCells = '$0'\tStyle CSS",
-      "contents": "emptyCells = '$0'"
+      "trigger": "emptyCells = ''\tStyle CSS",
+      "contents": "emptyCells = '$1'"
     },
     {
       "trigger": "style.emptyCells = 'show'\tStyle CSS",
@@ -4446,12 +4446,12 @@
       "contents": "flex"
     },
     {
-      "trigger": "style.flex = '$0'\tStyle CSS",
-      "contents": "style.flex = '$0'"
+      "trigger": "style.flex = ''\tStyle CSS",
+      "contents": "style.flex = '$1'"
     },
     {
-      "trigger": "flex = '$0'\tStyle CSS",
-      "contents": "flex = '$0'"
+      "trigger": "flex = ''\tStyle CSS",
+      "contents": "flex = '$1'"
     },
     {
       "trigger": "style.flex = 'auto'\tStyle CSS",
@@ -4494,12 +4494,12 @@
       "contents": "flexBasis"
     },
     {
-      "trigger": "style.flexBasis = '$0'\tStyle CSS",
-      "contents": "style.flexBasis = '$0'"
+      "trigger": "style.flexBasis = ''\tStyle CSS",
+      "contents": "style.flexBasis = '$1'"
     },
     {
-      "trigger": "flexBasis = '$0'\tStyle CSS",
-      "contents": "flexBasis = '$0'"
+      "trigger": "flexBasis = ''\tStyle CSS",
+      "contents": "flexBasis = '$1'"
     },
     {
       "trigger": "style.flexBasis = 'auto'\tStyle CSS",
@@ -4534,12 +4534,12 @@
       "contents": "flexDirection"
     },
     {
-      "trigger": "style.flexDirection = '$0'\tStyle CSS",
-      "contents": "style.flexDirection = '$0'"
+      "trigger": "style.flexDirection = ''\tStyle CSS",
+      "contents": "style.flexDirection = '$1'"
     },
     {
-      "trigger": "flexDirection = '$0'\tStyle CSS",
-      "contents": "flexDirection = '$0'"
+      "trigger": "flexDirection = ''\tStyle CSS",
+      "contents": "flexDirection = '$1'"
     },
     {
       "trigger": "style.flexDirection = 'row'\tStyle CSS",
@@ -4598,12 +4598,12 @@
       "contents": "flexFlow"
     },
     {
-      "trigger": "style.flexFlow = '$0'\tStyle CSS",
-      "contents": "style.flexFlow = '$0'"
+      "trigger": "style.flexFlow = ''\tStyle CSS",
+      "contents": "style.flexFlow = '$1'"
     },
     {
-      "trigger": "flexFlow = '$0'\tStyle CSS",
-      "contents": "flexFlow = '$0'"
+      "trigger": "flexFlow = ''\tStyle CSS",
+      "contents": "flexFlow = '$1'"
     },
     {
       "trigger": "style.flexFlow = 'initial'\tStyle CSS",
@@ -4630,12 +4630,12 @@
       "contents": "flexGrow"
     },
     {
-      "trigger": "style.flexGrow = '$0'\tStyle CSS",
-      "contents": "style.flexGrow = '$0'"
+      "trigger": "style.flexGrow = ''\tStyle CSS",
+      "contents": "style.flexGrow = '$1'"
     },
     {
-      "trigger": "flexGrow = '$0'\tStyle CSS",
-      "contents": "flexGrow = '$0'"
+      "trigger": "flexGrow = ''\tStyle CSS",
+      "contents": "flexGrow = '$1'"
     },
     {
       "trigger": "style.flexGrow = 'initial'\tStyle CSS",
@@ -4662,12 +4662,12 @@
       "contents": "flexShrink"
     },
     {
-      "trigger": "style.flexShrink = '$0'\tStyle CSS",
-      "contents": "style.flexShrink = '$0'"
+      "trigger": "style.flexShrink = ''\tStyle CSS",
+      "contents": "style.flexShrink = '$1'"
     },
     {
-      "trigger": "flexShrink = '$0'\tStyle CSS",
-      "contents": "flexShrink = '$0'"
+      "trigger": "flexShrink = ''\tStyle CSS",
+      "contents": "flexShrink = '$1'"
     },
     {
       "trigger": "style.flexShrink = 'initial'\tStyle CSS",
@@ -4694,12 +4694,12 @@
       "contents": "flexWrap"
     },
     {
-      "trigger": "style.flexWrap = '$0'\tStyle CSS",
-      "contents": "style.flexWrap = '$0'"
+      "trigger": "style.flexWrap = ''\tStyle CSS",
+      "contents": "style.flexWrap = '$1'"
     },
     {
-      "trigger": "flexWrap = '$0'\tStyle CSS",
-      "contents": "flexWrap = '$0'"
+      "trigger": "flexWrap = ''\tStyle CSS",
+      "contents": "flexWrap = '$1'"
     },
     {
       "trigger": "style.flexWrap = 'nowrap'\tStyle CSS",
@@ -4750,12 +4750,12 @@
       "contents": "cssFloat"
     },
     {
-      "trigger": "style.cssFloat = '$0'\tStyle CSS",
-      "contents": "style.cssFloat = '$0'"
+      "trigger": "style.cssFloat = ''\tStyle CSS",
+      "contents": "style.cssFloat = '$1'"
     },
     {
-      "trigger": "cssFloat = '$0'\tStyle CSS",
-      "contents": "cssFloat = '$0'"
+      "trigger": "cssFloat = ''\tStyle CSS",
+      "contents": "cssFloat = '$1'"
     },
     {
       "trigger": "style.cssFloat = 'none'\tStyle CSS",
@@ -4806,12 +4806,12 @@
       "contents": "font"
     },
     {
-      "trigger": "style.font = '$0'\tStyle CSS",
-      "contents": "style.font = '$0'"
+      "trigger": "style.font = ''\tStyle CSS",
+      "contents": "style.font = '$1'"
     },
     {
-      "trigger": "font = '$0'\tStyle CSS",
-      "contents": "font = '$0'"
+      "trigger": "font = ''\tStyle CSS",
+      "contents": "font = '$1'"
     },
     {
       "trigger": "style.font = 'caption'\tStyle CSS",
@@ -4886,12 +4886,12 @@
       "contents": "fontFamily"
     },
     {
-      "trigger": "style.fontFamily = '$0'\tStyle CSS",
-      "contents": "style.fontFamily = '$0'"
+      "trigger": "style.fontFamily = ''\tStyle CSS",
+      "contents": "style.fontFamily = '$1'"
     },
     {
-      "trigger": "fontFamily = '$0'\tStyle CSS",
-      "contents": "fontFamily = '$0'"
+      "trigger": "fontFamily = ''\tStyle CSS",
+      "contents": "fontFamily = '$1'"
     },
     {
       "trigger": "style.fontFamily = 'initial'\tStyle CSS",
@@ -4918,12 +4918,12 @@
       "contents": "fontSize"
     },
     {
-      "trigger": "style.fontSize = '$0'\tStyle CSS",
-      "contents": "style.fontSize = '$0'"
+      "trigger": "style.fontSize = ''\tStyle CSS",
+      "contents": "style.fontSize = '$1'"
     },
     {
-      "trigger": "fontSize = '$0'\tStyle CSS",
-      "contents": "fontSize = '$0'"
+      "trigger": "fontSize = ''\tStyle CSS",
+      "contents": "fontSize = '$1'"
     },
     {
       "trigger": "style.fontSize = 'xx-small'\tStyle CSS",
@@ -5022,12 +5022,12 @@
       "contents": "fontStyle"
     },
     {
-      "trigger": "style.fontStyle = '$0'\tStyle CSS",
-      "contents": "style.fontStyle = '$0'"
+      "trigger": "style.fontStyle = ''\tStyle CSS",
+      "contents": "style.fontStyle = '$1'"
     },
     {
-      "trigger": "fontStyle = '$0'\tStyle CSS",
-      "contents": "fontStyle = '$0'"
+      "trigger": "fontStyle = ''\tStyle CSS",
+      "contents": "fontStyle = '$1'"
     },
     {
       "trigger": "style.fontStyle = 'normal'\tStyle CSS",
@@ -5078,12 +5078,12 @@
       "contents": "fontVariant"
     },
     {
-      "trigger": "style.fontVariant = '$0'\tStyle CSS",
-      "contents": "style.fontVariant = '$0'"
+      "trigger": "style.fontVariant = ''\tStyle CSS",
+      "contents": "style.fontVariant = '$1'"
     },
     {
-      "trigger": "fontVariant = '$0'\tStyle CSS",
-      "contents": "fontVariant = '$0'"
+      "trigger": "fontVariant = ''\tStyle CSS",
+      "contents": "fontVariant = '$1'"
     },
     {
       "trigger": "style.fontVariant = 'normal'\tStyle CSS",
@@ -5126,12 +5126,12 @@
       "contents": "fontWeight"
     },
     {
-      "trigger": "style.fontWeight = '$0'\tStyle CSS",
-      "contents": "style.fontWeight = '$0'"
+      "trigger": "style.fontWeight = ''\tStyle CSS",
+      "contents": "style.fontWeight = '$1'"
     },
     {
-      "trigger": "fontWeight = '$0'\tStyle CSS",
-      "contents": "fontWeight = '$0'"
+      "trigger": "fontWeight = ''\tStyle CSS",
+      "contents": "fontWeight = '$1'"
     },
     {
       "trigger": "style.fontWeight = 'normal'\tStyle CSS",
@@ -5262,12 +5262,12 @@
       "contents": "fontSizeAdjust"
     },
     {
-      "trigger": "style.fontSizeAdjust = '$0'\tStyle CSS",
-      "contents": "style.fontSizeAdjust = '$0'"
+      "trigger": "style.fontSizeAdjust = ''\tStyle CSS",
+      "contents": "style.fontSizeAdjust = '$1'"
     },
     {
-      "trigger": "fontSizeAdjust = '$0'\tStyle CSS",
-      "contents": "fontSizeAdjust = '$0'"
+      "trigger": "fontSizeAdjust = ''\tStyle CSS",
+      "contents": "fontSizeAdjust = '$1'"
     },
     {
       "trigger": "style.fontSizeAdjust = 'none'\tStyle CSS",
@@ -5302,12 +5302,12 @@
       "contents": "height"
     },
     {
-      "trigger": "style.height = '$0'\tStyle CSS",
-      "contents": "style.height = '$0'"
+      "trigger": "style.height = ''\tStyle CSS",
+      "contents": "style.height = '$1'"
     },
     {
-      "trigger": "height = '$0'\tStyle CSS",
-      "contents": "height = '$0'"
+      "trigger": "height = ''\tStyle CSS",
+      "contents": "height = '$1'"
     },
     {
       "trigger": "style.height = 'auto'\tStyle CSS",
@@ -5342,12 +5342,12 @@
       "contents": "justifyContent"
     },
     {
-      "trigger": "style.justifyContent = '$0'\tStyle CSS",
-      "contents": "style.justifyContent = '$0'"
+      "trigger": "style.justifyContent = ''\tStyle CSS",
+      "contents": "style.justifyContent = '$1'"
     },
     {
-      "trigger": "justifyContent = '$0'\tStyle CSS",
-      "contents": "justifyContent = '$0'"
+      "trigger": "justifyContent = ''\tStyle CSS",
+      "contents": "justifyContent = '$1'"
     },
     {
       "trigger": "style.justifyContent = 'flex-start'\tStyle CSS",
@@ -5414,12 +5414,12 @@
       "contents": "left"
     },
     {
-      "trigger": "style.left = '$0'\tStyle CSS",
-      "contents": "style.left = '$0'"
+      "trigger": "style.left = ''\tStyle CSS",
+      "contents": "style.left = '$1'"
     },
     {
-      "trigger": "left = '$0'\tStyle CSS",
-      "contents": "left = '$0'"
+      "trigger": "left = ''\tStyle CSS",
+      "contents": "left = '$1'"
     },
     {
       "trigger": "style.left = 'auto'\tStyle CSS",
@@ -5454,12 +5454,12 @@
       "contents": "letterSpacing"
     },
     {
-      "trigger": "style.letterSpacing = '$0'\tStyle CSS",
-      "contents": "style.letterSpacing = '$0'"
+      "trigger": "style.letterSpacing = ''\tStyle CSS",
+      "contents": "style.letterSpacing = '$1'"
     },
     {
-      "trigger": "letterSpacing = '$0'\tStyle CSS",
-      "contents": "letterSpacing = '$0'"
+      "trigger": "letterSpacing = ''\tStyle CSS",
+      "contents": "letterSpacing = '$1'"
     },
     {
       "trigger": "style.letterSpacing = 'normal'\tStyle CSS",
@@ -5494,12 +5494,12 @@
       "contents": "lineHeight"
     },
     {
-      "trigger": "style.lineHeight = '$0'\tStyle CSS",
-      "contents": "style.lineHeight = '$0'"
+      "trigger": "style.lineHeight = ''\tStyle CSS",
+      "contents": "style.lineHeight = '$1'"
     },
     {
-      "trigger": "lineHeight = '$0'\tStyle CSS",
-      "contents": "lineHeight = '$0'"
+      "trigger": "lineHeight = ''\tStyle CSS",
+      "contents": "lineHeight = '$1'"
     },
     {
       "trigger": "style.lineHeight = 'normal'\tStyle CSS",
@@ -5534,12 +5534,12 @@
       "contents": "listStyle"
     },
     {
-      "trigger": "style.listStyle = '$0'\tStyle CSS",
-      "contents": "style.listStyle = '$0'"
+      "trigger": "style.listStyle = ''\tStyle CSS",
+      "contents": "style.listStyle = '$1'"
     },
     {
-      "trigger": "listStyle = '$0'\tStyle CSS",
-      "contents": "listStyle = '$0'"
+      "trigger": "listStyle = ''\tStyle CSS",
+      "contents": "listStyle = '$1'"
     },
     {
       "trigger": "style.listStyle = 'initial'\tStyle CSS",
@@ -5566,12 +5566,12 @@
       "contents": "listStyleImage"
     },
     {
-      "trigger": "style.listStyleImage = '$0'\tStyle CSS",
-      "contents": "style.listStyleImage = '$0'"
+      "trigger": "style.listStyleImage = ''\tStyle CSS",
+      "contents": "style.listStyleImage = '$1'"
     },
     {
-      "trigger": "listStyleImage = '$0'\tStyle CSS",
-      "contents": "listStyleImage = '$0'"
+      "trigger": "listStyleImage = ''\tStyle CSS",
+      "contents": "listStyleImage = '$1'"
     },
     {
       "trigger": "style.listStyleImage = 'none'\tStyle CSS",
@@ -5606,12 +5606,12 @@
       "contents": "listStylePosition"
     },
     {
-      "trigger": "style.listStylePosition = '$0'\tStyle CSS",
-      "contents": "style.listStylePosition = '$0'"
+      "trigger": "style.listStylePosition = ''\tStyle CSS",
+      "contents": "style.listStylePosition = '$1'"
     },
     {
-      "trigger": "listStylePosition = '$0'\tStyle CSS",
-      "contents": "listStylePosition = '$0'"
+      "trigger": "listStylePosition = ''\tStyle CSS",
+      "contents": "listStylePosition = '$1'"
     },
     {
       "trigger": "style.listStylePosition = 'outside'\tStyle CSS",
@@ -5655,12 +5655,12 @@
       "contents": "listStyleType"
     },
     {
-      "trigger": "style.listStyleType = '$0'\tStyle CSS",
-      "contents": "style.listStyleType = '$0'"
+      "trigger": "style.listStyleType = ''\tStyle CSS",
+      "contents": "style.listStyleType = '$1'"
     },
     {
-      "trigger": "listStyleType = '$0'\tStyle CSS",
-      "contents": "listStyleType = '$0'"
+      "trigger": "listStyleType = ''\tStyle CSS",
+      "contents": "listStyleType = '$1'"
     },
     {
       "trigger": "style.listStyleType = 'armenian'\tStyle CSS",
@@ -5855,12 +5855,12 @@
       "contents": "margin"
     },
     {
-      "trigger": "style.margin = '$0'\tStyle CSS",
-      "contents": "style.margin = '$0'"
+      "trigger": "style.margin = ''\tStyle CSS",
+      "contents": "style.margin = '$1'"
     },
     {
-      "trigger": "margin = '$0'\tStyle CSS",
-      "contents": "margin = '$0'"
+      "trigger": "margin = ''\tStyle CSS",
+      "contents": "margin = '$1'"
     },
     {
       "trigger": "style.margin = 'auto'\tStyle CSS",
@@ -5895,12 +5895,12 @@
       "contents": "marginBottom"
     },
     {
-      "trigger": "style.marginBottom = '$0'\tStyle CSS",
-      "contents": "style.marginBottom = '$0'"
+      "trigger": "style.marginBottom = ''\tStyle CSS",
+      "contents": "style.marginBottom = '$1'"
     },
     {
-      "trigger": "marginBottom = '$0'\tStyle CSS",
-      "contents": "marginBottom = '$0'"
+      "trigger": "marginBottom = ''\tStyle CSS",
+      "contents": "marginBottom = '$1'"
     },
     {
       "trigger": "style.marginBottom = 'auto'\tStyle CSS",
@@ -5935,12 +5935,12 @@
       "contents": "marginLeft"
     },
     {
-      "trigger": "style.marginLeft = '$0'\tStyle CSS",
-      "contents": "style.marginLeft = '$0'"
+      "trigger": "style.marginLeft = ''\tStyle CSS",
+      "contents": "style.marginLeft = '$1'"
     },
     {
-      "trigger": "marginLeft = '$0'\tStyle CSS",
-      "contents": "marginLeft = '$0'"
+      "trigger": "marginLeft = ''\tStyle CSS",
+      "contents": "marginLeft = '$1'"
     },
     {
       "trigger": "style.marginLeft = 'auto'\tStyle CSS",
@@ -5975,12 +5975,12 @@
       "contents": "marginRight"
     },
     {
-      "trigger": "style.marginRight = '$0'\tStyle CSS",
-      "contents": "style.marginRight = '$0'"
+      "trigger": "style.marginRight = ''\tStyle CSS",
+      "contents": "style.marginRight = '$1'"
     },
     {
-      "trigger": "marginRight = '$0'\tStyle CSS",
-      "contents": "marginRight = '$0'"
+      "trigger": "marginRight = ''\tStyle CSS",
+      "contents": "marginRight = '$1'"
     },
     {
       "trigger": "style.marginRight = 'auto'\tStyle CSS",
@@ -6015,12 +6015,12 @@
       "contents": "marginTop"
     },
     {
-      "trigger": "style.marginTop = '$0'\tStyle CSS",
-      "contents": "style.marginTop = '$0'"
+      "trigger": "style.marginTop = ''\tStyle CSS",
+      "contents": "style.marginTop = '$1'"
     },
     {
-      "trigger": "marginTop = '$0'\tStyle CSS",
-      "contents": "marginTop = '$0'"
+      "trigger": "marginTop = ''\tStyle CSS",
+      "contents": "marginTop = '$1'"
     },
     {
       "trigger": "style.marginTop = 'auto'\tStyle CSS",
@@ -6055,12 +6055,12 @@
       "contents": "maxHeight"
     },
     {
-      "trigger": "style.maxHeight = '$0'\tStyle CSS",
-      "contents": "style.maxHeight = '$0'"
+      "trigger": "style.maxHeight = ''\tStyle CSS",
+      "contents": "style.maxHeight = '$1'"
     },
     {
-      "trigger": "maxHeight = '$0'\tStyle CSS",
-      "contents": "maxHeight = '$0'"
+      "trigger": "maxHeight = ''\tStyle CSS",
+      "contents": "maxHeight = '$1'"
     },
     {
       "trigger": "style.maxHeight = 'none'\tStyle CSS",
@@ -6095,12 +6095,12 @@
       "contents": "maxWidth"
     },
     {
-      "trigger": "style.maxWidth = '$0'\tStyle CSS",
-      "contents": "style.maxWidth = '$0'"
+      "trigger": "style.maxWidth = ''\tStyle CSS",
+      "contents": "style.maxWidth = '$1'"
     },
     {
-      "trigger": "maxWidth = '$0'\tStyle CSS",
-      "contents": "maxWidth = '$0'"
+      "trigger": "maxWidth = ''\tStyle CSS",
+      "contents": "maxWidth = '$1'"
     },
     {
       "trigger": "style.maxWidth = 'none'\tStyle CSS",
@@ -6135,12 +6135,12 @@
       "contents": "minHeight"
     },
     {
-      "trigger": "style.minHeight = '$0'\tStyle CSS",
-      "contents": "style.minHeight = '$0'"
+      "trigger": "style.minHeight = ''\tStyle CSS",
+      "contents": "style.minHeight = '$1'"
     },
     {
-      "trigger": "minHeight = '$0'\tStyle CSS",
-      "contents": "minHeight = '$0'"
+      "trigger": "minHeight = ''\tStyle CSS",
+      "contents": "minHeight = '$1'"
     },
     {
       "trigger": "style.minHeight = 'initial'\tStyle CSS",
@@ -6167,12 +6167,12 @@
       "contents": "minWidth"
     },
     {
-      "trigger": "style.minWidth = '$0'\tStyle CSS",
-      "contents": "style.minWidth = '$0'"
+      "trigger": "style.minWidth = ''\tStyle CSS",
+      "contents": "style.minWidth = '$1'"
     },
     {
-      "trigger": "minWidth = '$0'\tStyle CSS",
-      "contents": "minWidth = '$0'"
+      "trigger": "minWidth = ''\tStyle CSS",
+      "contents": "minWidth = '$1'"
     },
     {
       "trigger": "style.minWidth = 'initial'\tStyle CSS",
@@ -6199,12 +6199,12 @@
       "contents": "opacity"
     },
     {
-      "trigger": "style.opacity = '$0'\tStyle CSS",
-      "contents": "style.opacity = '$0'"
+      "trigger": "style.opacity = ''\tStyle CSS",
+      "contents": "style.opacity = '$1'"
     },
     {
-      "trigger": "opacity = '$0'\tStyle CSS",
-      "contents": "opacity = '$0'"
+      "trigger": "opacity = ''\tStyle CSS",
+      "contents": "opacity = '$1'"
     },
     {
       "trigger": "style.opacity = 'initial'\tStyle CSS",
@@ -6231,12 +6231,12 @@
       "contents": "order"
     },
     {
-      "trigger": "style.order = '$0'\tStyle CSS",
-      "contents": "style.order = '$0'"
+      "trigger": "style.order = ''\tStyle CSS",
+      "contents": "style.order = '$1'"
     },
     {
-      "trigger": "order = '$0'\tStyle CSS",
-      "contents": "order = '$0'"
+      "trigger": "order = ''\tStyle CSS",
+      "contents": "order = '$1'"
     },
     {
       "trigger": "style.order = 'initial'\tStyle CSS",
@@ -6263,12 +6263,12 @@
       "contents": "orphans"
     },
     {
-      "trigger": "style.orphans = '$0'\tStyle CSS",
-      "contents": "style.orphans = '$0'"
+      "trigger": "style.orphans = ''\tStyle CSS",
+      "contents": "style.orphans = '$1'"
     },
     {
-      "trigger": "orphans = '$0'\tStyle CSS",
-      "contents": "orphans = '$0'"
+      "trigger": "orphans = ''\tStyle CSS",
+      "contents": "orphans = '$1'"
     },
     {
       "trigger": "style.orphans = 'initial'\tStyle CSS",
@@ -6295,12 +6295,12 @@
       "contents": "outline"
     },
     {
-      "trigger": "style.outline = '$0'\tStyle CSS",
-      "contents": "style.outline = '$0'"
+      "trigger": "style.outline = ''\tStyle CSS",
+      "contents": "style.outline = '$1'"
     },
     {
-      "trigger": "outline = '$0'\tStyle CSS",
-      "contents": "outline = '$0'"
+      "trigger": "outline = ''\tStyle CSS",
+      "contents": "outline = '$1'"
     },
     {
       "trigger": "style.outline = 'initial'\tStyle CSS",
@@ -6327,12 +6327,12 @@
       "contents": "outlineColor"
     },
     {
-      "trigger": "style.outlineColor = '$0'\tStyle CSS",
-      "contents": "style.outlineColor = '$0'"
+      "trigger": "style.outlineColor = ''\tStyle CSS",
+      "contents": "style.outlineColor = '$1'"
     },
     {
-      "trigger": "outlineColor = '$0'\tStyle CSS",
-      "contents": "outlineColor = '$0'"
+      "trigger": "outlineColor = ''\tStyle CSS",
+      "contents": "outlineColor = '$1'"
     },
     {
       "trigger": "style.outlineColor = 'invert'\tStyle CSS",
@@ -6367,12 +6367,12 @@
       "contents": "outlineOffset"
     },
     {
-      "trigger": "style.outlineOffset = '$0'\tStyle CSS",
-      "contents": "style.outlineOffset = '$0'"
+      "trigger": "style.outlineOffset = ''\tStyle CSS",
+      "contents": "style.outlineOffset = '$1'"
     },
     {
-      "trigger": "outlineOffset = '$0'\tStyle CSS",
-      "contents": "outlineOffset = '$0'"
+      "trigger": "outlineOffset = ''\tStyle CSS",
+      "contents": "outlineOffset = '$1'"
     },
     {
       "trigger": "style.outlineOffset = 'initial'\tStyle CSS",
@@ -6399,12 +6399,12 @@
       "contents": "outlineStyle"
     },
     {
-      "trigger": "style.outlineStyle = '$0'\tStyle CSS",
-      "contents": "style.outlineStyle = '$0'"
+      "trigger": "style.outlineStyle = ''\tStyle CSS",
+      "contents": "style.outlineStyle = '$1'"
     },
     {
-      "trigger": "outlineStyle = '$0'\tStyle CSS",
-      "contents": "outlineStyle = '$0'"
+      "trigger": "outlineStyle = ''\tStyle CSS",
+      "contents": "outlineStyle = '$1'"
     },
     {
       "trigger": "style.outlineStyle = 'none'\tStyle CSS",
@@ -6511,12 +6511,12 @@
       "contents": "outlineWidth"
     },
     {
-      "trigger": "style.outlineWidth = '$0'\tStyle CSS",
-      "contents": "style.outlineWidth = '$0'"
+      "trigger": "style.outlineWidth = ''\tStyle CSS",
+      "contents": "style.outlineWidth = '$1'"
     },
     {
-      "trigger": "outlineWidth = '$0'\tStyle CSS",
-      "contents": "outlineWidth = '$0'"
+      "trigger": "outlineWidth = ''\tStyle CSS",
+      "contents": "outlineWidth = '$1'"
     },
     {
       "trigger": "style.outlineWidth = 'thin'\tStyle CSS",
@@ -6567,12 +6567,12 @@
       "contents": "overflow"
     },
     {
-      "trigger": "style.overflow = '$0'\tStyle CSS",
-      "contents": "style.overflow = '$0'"
+      "trigger": "style.overflow = ''\tStyle CSS",
+      "contents": "style.overflow = '$1'"
     },
     {
-      "trigger": "overflow = '$0'\tStyle CSS",
-      "contents": "overflow = '$0'"
+      "trigger": "overflow = ''\tStyle CSS",
+      "contents": "overflow = '$1'"
     },
     {
       "trigger": "style.overflow = 'visible'\tStyle CSS",
@@ -6631,12 +6631,12 @@
       "contents": "overflowX"
     },
     {
-      "trigger": "style.overflowX = '$0'\tStyle CSS",
-      "contents": "style.overflowX = '$0'"
+      "trigger": "style.overflowX = ''\tStyle CSS",
+      "contents": "style.overflowX = '$1'"
     },
     {
-      "trigger": "overflowX = '$0'\tStyle CSS",
-      "contents": "overflowX = '$0'"
+      "trigger": "overflowX = ''\tStyle CSS",
+      "contents": "overflowX = '$1'"
     },
     {
       "trigger": "style.overflowX = 'visible'\tStyle CSS",
@@ -6695,12 +6695,12 @@
       "contents": "overflowY"
     },
     {
-      "trigger": "style.overflowY = '$0'\tStyle CSS",
-      "contents": "style.overflowY = '$0'"
+      "trigger": "style.overflowY = ''\tStyle CSS",
+      "contents": "style.overflowY = '$1'"
     },
     {
-      "trigger": "overflowY = '$0'\tStyle CSS",
-      "contents": "overflowY = '$0'"
+      "trigger": "overflowY = ''\tStyle CSS",
+      "contents": "overflowY = '$1'"
     },
     {
       "trigger": "style.overflowY = 'visible'\tStyle CSS",
@@ -6759,12 +6759,12 @@
       "contents": "padding"
     },
     {
-      "trigger": "style.padding = '$0'\tStyle CSS",
-      "contents": "style.padding = '$0'"
+      "trigger": "style.padding = ''\tStyle CSS",
+      "contents": "style.padding = '$1'"
     },
     {
-      "trigger": "padding = '$0'\tStyle CSS",
-      "contents": "padding = '$0'"
+      "trigger": "padding = ''\tStyle CSS",
+      "contents": "padding = '$1'"
     },
     {
       "trigger": "style.padding = 'initial'\tStyle CSS",
@@ -6791,12 +6791,12 @@
       "contents": "paddingBottom"
     },
     {
-      "trigger": "style.paddingBottom = '$0'\tStyle CSS",
-      "contents": "style.paddingBottom = '$0'"
+      "trigger": "style.paddingBottom = ''\tStyle CSS",
+      "contents": "style.paddingBottom = '$1'"
     },
     {
-      "trigger": "paddingBottom = '$0'\tStyle CSS",
-      "contents": "paddingBottom = '$0'"
+      "trigger": "paddingBottom = ''\tStyle CSS",
+      "contents": "paddingBottom = '$1'"
     },
     {
       "trigger": "style.paddingBottom = 'initial'\tStyle CSS",
@@ -6823,12 +6823,12 @@
       "contents": "paddingLeft"
     },
     {
-      "trigger": "style.paddingLeft = '$0'\tStyle CSS",
-      "contents": "style.paddingLeft = '$0'"
+      "trigger": "style.paddingLeft = ''\tStyle CSS",
+      "contents": "style.paddingLeft = '$1'"
     },
     {
-      "trigger": "paddingLeft = '$0'\tStyle CSS",
-      "contents": "paddingLeft = '$0'"
+      "trigger": "paddingLeft = ''\tStyle CSS",
+      "contents": "paddingLeft = '$1'"
     },
     {
       "trigger": "style.paddingLeft = 'initial'\tStyle CSS",
@@ -6855,12 +6855,12 @@
       "contents": "paddingRight"
     },
     {
-      "trigger": "style.paddingRight = '$0'\tStyle CSS",
-      "contents": "style.paddingRight = '$0'"
+      "trigger": "style.paddingRight = ''\tStyle CSS",
+      "contents": "style.paddingRight = '$1'"
     },
     {
-      "trigger": "paddingRight = '$0'\tStyle CSS",
-      "contents": "paddingRight = '$0'"
+      "trigger": "paddingRight = ''\tStyle CSS",
+      "contents": "paddingRight = '$1'"
     },
     {
       "trigger": "style.paddingRight = 'initial'\tStyle CSS",
@@ -6887,12 +6887,12 @@
       "contents": "paddingTop"
     },
     {
-      "trigger": "style.paddingTop = '$0'\tStyle CSS",
-      "contents": "style.paddingTop = '$0'"
+      "trigger": "style.paddingTop = ''\tStyle CSS",
+      "contents": "style.paddingTop = '$1'"
     },
     {
-      "trigger": "paddingTop = '$0'\tStyle CSS",
-      "contents": "paddingTop = '$0'"
+      "trigger": "paddingTop = ''\tStyle CSS",
+      "contents": "paddingTop = '$1'"
     },
     {
       "trigger": "style.paddingTop = 'initial'\tStyle CSS",
@@ -6919,12 +6919,12 @@
       "contents": "pageBreakAfter"
     },
     {
-      "trigger": "style.pageBreakAfter = '$0'\tStyle CSS",
-      "contents": "style.pageBreakAfter = '$0'"
+      "trigger": "style.pageBreakAfter = ''\tStyle CSS",
+      "contents": "style.pageBreakAfter = '$1'"
     },
     {
-      "trigger": "pageBreakAfter = '$0'\tStyle CSS",
-      "contents": "pageBreakAfter = '$0'"
+      "trigger": "pageBreakAfter = ''\tStyle CSS",
+      "contents": "pageBreakAfter = '$1'"
     },
     {
       "trigger": "style.pageBreakAfter = 'auto'\tStyle CSS",
@@ -6991,12 +6991,12 @@
       "contents": "pageBreakBefore"
     },
     {
-      "trigger": "style.pageBreakBefore = '$0'\tStyle CSS",
-      "contents": "style.pageBreakBefore = '$0'"
+      "trigger": "style.pageBreakBefore = ''\tStyle CSS",
+      "contents": "style.pageBreakBefore = '$1'"
     },
     {
-      "trigger": "pageBreakBefore = '$0'\tStyle CSS",
-      "contents": "pageBreakBefore = '$0'"
+      "trigger": "pageBreakBefore = ''\tStyle CSS",
+      "contents": "pageBreakBefore = '$1'"
     },
     {
       "trigger": "style.pageBreakBefore = 'auto'\tStyle CSS",
@@ -7063,12 +7063,12 @@
       "contents": "pageBreakInside"
     },
     {
-      "trigger": "style.pageBreakInside = '$0'\tStyle CSS",
-      "contents": "style.pageBreakInside = '$0'"
+      "trigger": "style.pageBreakInside = ''\tStyle CSS",
+      "contents": "style.pageBreakInside = '$1'"
     },
     {
-      "trigger": "pageBreakInside = '$0'\tStyle CSS",
-      "contents": "pageBreakInside = '$0'"
+      "trigger": "pageBreakInside = ''\tStyle CSS",
+      "contents": "pageBreakInside = '$1'"
     },
     {
       "trigger": "style.pageBreakInside = 'auto'\tStyle CSS",
@@ -7111,12 +7111,12 @@
       "contents": "perspective"
     },
     {
-      "trigger": "style.perspective = '$0'\tStyle CSS",
-      "contents": "style.perspective = '$0'"
+      "trigger": "style.perspective = ''\tStyle CSS",
+      "contents": "style.perspective = '$1'"
     },
     {
-      "trigger": "perspective = '$0'\tStyle CSS",
-      "contents": "perspective = '$0'"
+      "trigger": "perspective = ''\tStyle CSS",
+      "contents": "perspective = '$1'"
     },
     {
       "trigger": "style.perspective = 'none'\tStyle CSS",
@@ -7151,12 +7151,12 @@
       "contents": "perspectiveOrigin"
     },
     {
-      "trigger": "style.perspectiveOrigin = '$0'\tStyle CSS",
-      "contents": "style.perspectiveOrigin = '$0'"
+      "trigger": "style.perspectiveOrigin = ''\tStyle CSS",
+      "contents": "style.perspectiveOrigin = '$1'"
     },
     {
-      "trigger": "perspectiveOrigin = '$0'\tStyle CSS",
-      "contents": "perspectiveOrigin = '$0'"
+      "trigger": "perspectiveOrigin = ''\tStyle CSS",
+      "contents": "perspectiveOrigin = '$1'"
     },
     {
       "trigger": "style.perspectiveOrigin = 'initial'\tStyle CSS",
@@ -7183,12 +7183,12 @@
       "contents": "position"
     },
     {
-      "trigger": "style.position = '$0'\tStyle CSS",
-      "contents": "style.position = '$0'"
+      "trigger": "style.position = ''\tStyle CSS",
+      "contents": "style.position = '$1'"
     },
     {
-      "trigger": "position = '$0'\tStyle CSS",
-      "contents": "position = '$0'"
+      "trigger": "position = ''\tStyle CSS",
+      "contents": "position = '$1'"
     },
     {
       "trigger": "style.position = 'static'\tStyle CSS",
@@ -7247,12 +7247,12 @@
       "contents": "quotes"
     },
     {
-      "trigger": "style.quotes = '$0'\tStyle CSS",
-      "contents": "style.quotes = '$0'"
+      "trigger": "style.quotes = ''\tStyle CSS",
+      "contents": "style.quotes = '$1'"
     },
     {
-      "trigger": "quotes = '$0'\tStyle CSS",
-      "contents": "quotes = '$0'"
+      "trigger": "quotes = ''\tStyle CSS",
+      "contents": "quotes = '$1'"
     },
     {
       "trigger": "style.quotes = 'none'\tStyle CSS",
@@ -7287,12 +7287,12 @@
       "contents": "resize"
     },
     {
-      "trigger": "style.resize = '$0'\tStyle CSS",
-      "contents": "style.resize = '$0'"
+      "trigger": "style.resize = ''\tStyle CSS",
+      "contents": "style.resize = '$1'"
     },
     {
-      "trigger": "resize = '$0'\tStyle CSS",
-      "contents": "resize = '$0'"
+      "trigger": "resize = ''\tStyle CSS",
+      "contents": "resize = '$1'"
     },
     {
       "trigger": "style.resize = 'none'\tStyle CSS",
@@ -7351,12 +7351,12 @@
       "contents": "right"
     },
     {
-      "trigger": "style.right = '$0'\tStyle CSS",
-      "contents": "style.right = '$0'"
+      "trigger": "style.right = ''\tStyle CSS",
+      "contents": "style.right = '$1'"
     },
     {
-      "trigger": "right = '$0'\tStyle CSS",
-      "contents": "right = '$0'"
+      "trigger": "right = ''\tStyle CSS",
+      "contents": "right = '$1'"
     },
     {
       "trigger": "style.right = 'auto'\tStyle CSS",
@@ -7392,12 +7392,12 @@
       "contents": "tableLayout"
     },
     {
-      "trigger": "style.tableLayout = '$0'\tStyle CSS",
-      "contents": "style.tableLayout = '$0'"
+      "trigger": "style.tableLayout = ''\tStyle CSS",
+      "contents": "style.tableLayout = '$1'"
     },
     {
-      "trigger": "tableLayout = '$0'\tStyle CSS",
-      "contents": "tableLayout = '$0'"
+      "trigger": "tableLayout = ''\tStyle CSS",
+      "contents": "tableLayout = '$1'"
     },
     {
       "trigger": "style.tableLayout = 'auto'\tStyle CSS",
@@ -7440,12 +7440,12 @@
       "contents": "tabSize"
     },
     {
-      "trigger": "style.tabSize = '$0'\tStyle CSS",
-      "contents": "style.tabSize = '$0'"
+      "trigger": "style.tabSize = ''\tStyle CSS",
+      "contents": "style.tabSize = '$1'"
     },
     {
-      "trigger": "tabSize = '$0'\tStyle CSS",
-      "contents": "tabSize = '$0'"
+      "trigger": "tabSize = ''\tStyle CSS",
+      "contents": "tabSize = '$1'"
     },
     {
       "trigger": "style.tabSize = 'initial'\tStyle CSS",
@@ -7472,12 +7472,12 @@
       "contents": "textAlign"
     },
     {
-      "trigger": "style.textAlign = '$0'\tStyle CSS",
-      "contents": "style.textAlign = '$0'"
+      "trigger": "style.textAlign = ''\tStyle CSS",
+      "contents": "style.textAlign = '$1'"
     },
     {
-      "trigger": "textAlign = '$0'\tStyle CSS",
-      "contents": "textAlign = '$0'"
+      "trigger": "textAlign = ''\tStyle CSS",
+      "contents": "textAlign = '$1'"
     },
     {
       "trigger": "style.textAlign = 'left'\tStyle CSS",
@@ -7536,12 +7536,12 @@
       "contents": "textAlignLast"
     },
     {
-      "trigger": "style.textAlignLast = '$0'\tStyle CSS",
-      "contents": "style.textAlignLast = '$0'"
+      "trigger": "style.textAlignLast = ''\tStyle CSS",
+      "contents": "style.textAlignLast = '$1'"
     },
     {
-      "trigger": "textAlignLast = '$0'\tStyle CSS",
-      "contents": "textAlignLast = '$0'"
+      "trigger": "textAlignLast = ''\tStyle CSS",
+      "contents": "textAlignLast = '$1'"
     },
     {
       "trigger": "style.textAlignLast = 'auto'\tStyle CSS",
@@ -7624,12 +7624,12 @@
       "contents": "textDecoration"
     },
     {
-      "trigger": "style.textDecoration = '$0'\tStyle CSS",
-      "contents": "style.textDecoration = '$0'"
+      "trigger": "style.textDecoration = ''\tStyle CSS",
+      "contents": "style.textDecoration = '$1'"
     },
     {
-      "trigger": "textDecoration = '$0'\tStyle CSS",
-      "contents": "textDecoration = '$0'"
+      "trigger": "textDecoration = ''\tStyle CSS",
+      "contents": "textDecoration = '$1'"
     },
     {
       "trigger": "style.textDecoration = 'none'\tStyle CSS",
@@ -7688,12 +7688,12 @@
       "contents": "textDecorationColor"
     },
     {
-      "trigger": "style.textDecorationColor = '$0'\tStyle CSS",
-      "contents": "style.textDecorationColor = '$0'"
+      "trigger": "style.textDecorationColor = ''\tStyle CSS",
+      "contents": "style.textDecorationColor = '$1'"
     },
     {
-      "trigger": "textDecorationColor = '$0'\tStyle CSS",
-      "contents": "textDecorationColor = '$0'"
+      "trigger": "textDecorationColor = ''\tStyle CSS",
+      "contents": "textDecorationColor = '$1'"
     },
     {
       "trigger": "style.textDecorationColor = 'initial'\tStyle CSS",
@@ -7720,12 +7720,12 @@
       "contents": "textDecorationLine"
     },
     {
-      "trigger": "style.textDecorationLine = '$0'\tStyle CSS",
-      "contents": "style.textDecorationLine = '$0'"
+      "trigger": "style.textDecorationLine = ''\tStyle CSS",
+      "contents": "style.textDecorationLine = '$1'"
     },
     {
-      "trigger": "textDecorationLine = '$0'\tStyle CSS",
-      "contents": "textDecorationLine = '$0'"
+      "trigger": "textDecorationLine = ''\tStyle CSS",
+      "contents": "textDecorationLine = '$1'"
     },
     {
       "trigger": "style.textDecorationLine = 'none'\tStyle CSS",
@@ -7784,12 +7784,12 @@
       "contents": "textDecorationStyle"
     },
     {
-      "trigger": "style.textDecorationStyle = '$0'\tStyle CSS",
-      "contents": "style.textDecorationStyle = '$0'"
+      "trigger": "style.textDecorationStyle = ''\tStyle CSS",
+      "contents": "style.textDecorationStyle = '$1'"
     },
     {
-      "trigger": "textDecorationStyle = '$0'\tStyle CSS",
-      "contents": "textDecorationStyle = '$0'"
+      "trigger": "textDecorationStyle = ''\tStyle CSS",
+      "contents": "textDecorationStyle = '$1'"
     },
     {
       "trigger": "style.textDecorationStyle = 'solid'\tStyle CSS",
@@ -7856,12 +7856,12 @@
       "contents": "textIndent"
     },
     {
-      "trigger": "style.textIndent = '$0'\tStyle CSS",
-      "contents": "style.textIndent = '$0'"
+      "trigger": "style.textIndent = ''\tStyle CSS",
+      "contents": "style.textIndent = '$1'"
     },
     {
-      "trigger": "textIndent = '$0'\tStyle CSS",
-      "contents": "textIndent = '$0'"
+      "trigger": "textIndent = ''\tStyle CSS",
+      "contents": "textIndent = '$1'"
     },
     {
       "trigger": "style.textIndent = 'initial'\tStyle CSS",
@@ -7888,12 +7888,12 @@
       "contents": "textOverflow"
     },
     {
-      "trigger": "style.textOverflow = '$0'\tStyle CSS",
-      "contents": "style.textOverflow = '$0'"
+      "trigger": "style.textOverflow = ''\tStyle CSS",
+      "contents": "style.textOverflow = '$1'"
     },
     {
-      "trigger": "textOverflow = '$0'\tStyle CSS",
-      "contents": "textOverflow = '$0'"
+      "trigger": "textOverflow = ''\tStyle CSS",
+      "contents": "textOverflow = '$1'"
     },
     {
       "trigger": "style.textOverflow = 'clip'\tStyle CSS",
@@ -7936,12 +7936,12 @@
       "contents": "textShadow"
     },
     {
-      "trigger": "style.textShadow = '$0'\tStyle CSS",
-      "contents": "style.textShadow = '$0'"
+      "trigger": "style.textShadow = ''\tStyle CSS",
+      "contents": "style.textShadow = '$1'"
     },
     {
-      "trigger": "textShadow = '$0'\tStyle CSS",
-      "contents": "textShadow = '$0'"
+      "trigger": "textShadow = ''\tStyle CSS",
+      "contents": "textShadow = '$1'"
     },
     {
       "trigger": "style.textShadow = 'none'\tStyle CSS",
@@ -7976,12 +7976,12 @@
       "contents": "textTransform"
     },
     {
-      "trigger": "style.textTransform = '$0'\tStyle CSS",
-      "contents": "style.textTransform = '$0'"
+      "trigger": "style.textTransform = ''\tStyle CSS",
+      "contents": "style.textTransform = '$1'"
     },
     {
-      "trigger": "textTransform = '$0'\tStyle CSS",
-      "contents": "textTransform = '$0'"
+      "trigger": "textTransform = ''\tStyle CSS",
+      "contents": "textTransform = '$1'"
     },
     {
       "trigger": "style.textTransform = 'none'\tStyle CSS",
@@ -8040,12 +8040,12 @@
       "contents": "top"
     },
     {
-      "trigger": "style.top = '$0'\tStyle CSS",
-      "contents": "style.top = '$0'"
+      "trigger": "style.top = ''\tStyle CSS",
+      "contents": "style.top = '$1'"
     },
     {
-      "trigger": "top = '$0'\tStyle CSS",
-      "contents": "top = '$0'"
+      "trigger": "top = ''\tStyle CSS",
+      "contents": "top = '$1'"
     },
     {
       "trigger": "style.top = 'auto'\tStyle CSS",
@@ -8080,12 +8080,12 @@
       "contents": "transform"
     },
     {
-      "trigger": "style.transform = '$0'\tStyle CSS",
-      "contents": "style.transform = '$0'"
+      "trigger": "style.transform = ''\tStyle CSS",
+      "contents": "style.transform = '$1'"
     },
     {
-      "trigger": "transform = '$0'\tStyle CSS",
-      "contents": "transform = '$0'"
+      "trigger": "transform = ''\tStyle CSS",
+      "contents": "transform = '$1'"
     },
     {
       "trigger": "style.transform = 'none'\tStyle CSS",
@@ -8096,172 +8096,172 @@
       "contents": "transform = 'none'"
     },
     {
-      "trigger": "style.transform = 'matrix($0n,n,n,n,n,n)'\tStyle CSS",
-      "contents": "style.transform = 'matrix($0n,n,n,n,n,n)'"
+      "trigger": "style.transform = 'matrix(n,n,n,n,n,n)'\tStyle CSS",
+      "contents": "style.transform = 'matrix(${1:n},${2:n},${3:n},${4:n},${5:n},${6:n})'"
     },
     {
-      "trigger": "transform = 'matrix($0n,n,n,n,n,n)'\tStyle CSS",
-      "contents": "transform = 'matrix($0n,n,n,n,n,n)'"
+      "trigger": "transform = 'matrix(n,n,n,n,n,n)'\tStyle CSS",
+      "contents": "transform = 'matrix(${1:n},${2:n},${3:n},${4:n},${5:n},${6:n})'"
     },
     {
-      "trigger": "style.transform = 'matrix3d($0n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)'\tStyle CSS",
-      "contents": "style.transform = 'matrix3d($0n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)'"
+      "trigger": "style.transform = 'matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)'\tStyle CSS",
+      "contents": "style.transform = 'matrix3d(${1:n},${2:n},${3:n},${4:n},${5:n},${6:n},${7:n},${8:n},${9:n},${10:n},${11:n},${12:n},${13:n},${14:n},${15:n},${16:n})'"
     },
     {
-      "trigger": "transform = 'matrix3d($0n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)'\tStyle CSS",
-      "contents": "transform = 'matrix3d($0n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)'"
+      "trigger": "transform = 'matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)'\tStyle CSS",
+      "contents": "transform = 'matrix3d(${1:n},${2:n},${3:n},${4:n},${5:n},${6:n},${7:n},${8:n},${9:n},${10:n},${11:n},${12:n},${13:n},${14:n},${15:n},${16:n})'"
     },
     {
-      "trigger": "style.transform = 'translate($0x,y)'\tStyle CSS",
-      "contents": "style.transform = 'translate($0x,y)'"
+      "trigger": "style.transform = 'translate(x, y)'\tStyle CSS",
+      "contents": "style.transform = 'translate(${1:x}, ${1:y})'"
     },
     {
-      "trigger": "transform = 'translate($0x,y)'\tStyle CSS",
-      "contents": "transform = 'translate($0x,y)'"
+      "trigger": "transform = 'translate(x, y)'\tStyle CSS",
+      "contents": "transform = 'translate(${1:x}, ${2:y})'"
     },
     {
-      "trigger": "style.transform = 'translate3d($0x,y,z)'\tStyle CSS",
-      "contents": "style.transform = 'translate3d($0x,y,z)'"
+      "trigger": "style.transform = 'translate3d(x, y, z)'\tStyle CSS",
+      "contents": "style.transform = 'translate3d(${1:x}, ${2:y}, ${3:z})'"
     },
     {
-      "trigger": "transform = 'translate3d($0x,y,z)'\tStyle CSS",
-      "contents": "transform = 'translate3d($0x,y,z)'"
+      "trigger": "transform = 'translate3d(x,y,z)'\tStyle CSS",
+      "contents": "transform = 'translate3d(${1:x}, ${2:y}, ${3:z})'"
     },
     {
-      "trigger": "style.transform = 'translateX($0x)'\tStyle CSS",
-      "contents": "style.transform = 'translateX($0x)'"
+      "trigger": "style.transform = 'translateX(x)'\tStyle CSS",
+      "contents": "style.transform = 'translateX(${1:x})'"
     },
     {
-      "trigger": "transform = 'translateX($0x)'\tStyle CSS",
-      "contents": "transform = 'translateX($0x)'"
+      "trigger": "transform = 'translateX(x)'\tStyle CSS",
+      "contents": "transform = 'translateX(${1:x})'"
     },
     {
-      "trigger": "style.transform = 'translateY($0y)'\tStyle CSS",
-      "contents": "style.transform = 'translateY($0y)'"
+      "trigger": "style.transform = 'translateY(y)'\tStyle CSS",
+      "contents": "style.transform = 'translateY(${1:y})'"
     },
     {
-      "trigger": "transform = 'translateY($0y)'\tStyle CSS",
-      "contents": "transform = 'translateY($0y)'"
+      "trigger": "transform = 'translateY(y)'\tStyle CSS",
+      "contents": "transform = 'translateY(${1:y})'"
     },
     {
-      "trigger": "style.transform = 'translateZ($0z)'\tStyle CSS",
-      "contents": "style.transform = 'translateZ($0z)'"
+      "trigger": "style.transform = 'translateZ(z)'\tStyle CSS",
+      "contents": "style.transform = 'translateZ(${1:z})'"
     },
     {
-      "trigger": "transform = 'translateZ($0z)'\tStyle CSS",
-      "contents": "transform = 'translateZ($0z)'"
+      "trigger": "transform = 'translateZ(z)'\tStyle CSS",
+      "contents": "transform = 'translateZ(${1:z})'"
     },
     {
-      "trigger": "style.transform = 'scale($0x,y)'\tStyle CSS",
-      "contents": "style.transform = 'scale($0x,y)'"
+      "trigger": "style.transform = 'scale(x, y)'\tStyle CSS",
+      "contents": "style.transform = 'scale(${1:x}, ${2:y})'"
     },
     {
-      "trigger": "transform = 'scale($0x,y)'\tStyle CSS",
-      "contents": "transform = 'scale($0x,y)'"
+      "trigger": "transform = 'scale(x,y)'\tStyle CSS",
+      "contents": "transform = 'scale(${1:x}, ${2:y})'"
     },
     {
-      "trigger": "style.transform = 'scale3d($0x,y,z)'\tStyle CSS",
-      "contents": "style.transform = 'scale3d($0x,y,z)'"
+      "trigger": "style.transform = 'scale3d(x, y, z)'\tStyle CSS",
+      "contents": "style.transform = 'scale3d(${1:x}, ${2:y}, ${3:z})'"
     },
     {
-      "trigger": "transform = 'scale3d($0x,y,z)'\tStyle CSS",
-      "contents": "transform = 'scale3d($0x,y,z)'"
+      "trigger": "transform = 'scale3d(x, y, z)'\tStyle CSS",
+      "contents": "transform = 'scale3d(${1:x}, ${2:y}, ${3:z})'"
     },
     {
-      "trigger": "style.transform = 'scaleX($0x)'\tStyle CSS",
-      "contents": "style.transform = 'scaleX($0x)'"
+      "trigger": "style.transform = 'scaleX(x)'\tStyle CSS",
+      "contents": "style.transform = 'scaleX(${1:x})'"
     },
     {
-      "trigger": "transform = 'scaleX($0x)'\tStyle CSS",
-      "contents": "transform = 'scaleX($0x)'"
+      "trigger": "transform = 'scaleX(x)'\tStyle CSS",
+      "contents": "transform = 'scaleX(${1:x})'"
     },
     {
-      "trigger": "style.transform = 'scaleY($0y)'\tStyle CSS",
-      "contents": "style.transform = 'scaleY($0y)'"
+      "trigger": "style.transform = 'scaleY(y)'\tStyle CSS",
+      "contents": "style.transform = 'scaleY(${1:y})'"
     },
     {
-      "trigger": "transform = 'scaleY($0y)'\tStyle CSS",
-      "contents": "transform = 'scaleY($0y)'"
+      "trigger": "transform = 'scaleY(y)'\tStyle CSS",
+      "contents": "transform = 'scaleY(${1:y})'"
     },
     {
-      "trigger": "style.transform = 'scaleZ($0z)'\tStyle CSS",
-      "contents": "style.transform = 'scaleZ($0z)'"
+      "trigger": "style.transform = 'scaleZ(z)'\tStyle CSS",
+      "contents": "style.transform = 'scaleZ(${1:z})'"
     },
     {
-      "trigger": "transform = 'scaleZ($0z)'\tStyle CSS",
-      "contents": "transform = 'scaleZ($0z)'"
+      "trigger": "transform = 'scaleZ(z)'\tStyle CSS",
+      "contents": "transform = 'scaleZ(${1:z})'"
     },
     {
-      "trigger": "style.transform = 'rotate($0angle)'\tStyle CSS",
-      "contents": "style.transform = 'rotate($0angle)'"
+      "trigger": "style.transform = 'rotate(angle)'\tStyle CSS",
+      "contents": "style.transform = 'rotate(${1:angle})'"
     },
     {
-      "trigger": "transform = 'rotate($0angle)'\tStyle CSS",
-      "contents": "transform = 'rotate($0angle)'"
+      "trigger": "transform = 'rotate(angle)'\tStyle CSS",
+      "contents": "transform = 'rotate(${1:angle})'"
     },
     {
-      "trigger": "style.transform = 'rotate3d($0x,y,z,angle)'\tStyle CSS",
-      "contents": "style.transform = 'rotate3d($0x,y,z,angle)'"
+      "trigger": "style.transform = 'rotate3d(x, y, z, angle)'\tStyle CSS",
+      "contents": "style.transform = 'rotate3d(${1:x}, ${2:y}, ${3:z}, ${4:angle})'"
     },
     {
-      "trigger": "transform = 'rotate3d($0x,y,z,angle)'\tStyle CSS",
-      "contents": "transform = 'rotate3d($0x,y,z,angle)'"
+      "trigger": "transform = 'rotate3d(x, y, z, angle)'\tStyle CSS",
+      "contents": "transform = 'rotate3d(${1:x}, ${2:y}, ${3:z}, ${4:angle})'"
     },
     {
-      "trigger": "style.transform = 'rotateX($0angle)'\tStyle CSS",
-      "contents": "style.transform = 'rotateX($0angle)'"
+      "trigger": "style.transform = 'rotateX(angle)'\tStyle CSS",
+      "contents": "style.transform = 'rotateX(${1:angle})'"
     },
     {
-      "trigger": "transform = 'rotateX($0angle)'\tStyle CSS",
-      "contents": "transform = 'rotateX($0angle)'"
+      "trigger": "transform = 'rotateX(angle)'\tStyle CSS",
+      "contents": "transform = 'rotateX(${1:angle})'"
     },
     {
-      "trigger": "style.transform = 'rotateY($0angle)'\tStyle CSS",
-      "contents": "style.transform = 'rotateY($0angle)'"
+      "trigger": "style.transform = 'rotateY(angle)'\tStyle CSS",
+      "contents": "style.transform = 'rotateY(${1:angle})'"
     },
     {
-      "trigger": "transform = 'rotateY($0angle)'\tStyle CSS",
-      "contents": "transform = 'rotateY($0angle)'"
+      "trigger": "transform = 'rotateY(angle)'\tStyle CSS",
+      "contents": "transform = 'rotateY(${1:angle})'"
     },
     {
-      "trigger": "style.transform = 'rotateZ($0angle)'\tStyle CSS",
-      "contents": "style.transform = 'rotateZ($0angle)'"
+      "trigger": "style.transform = 'rotateZ(angle)'\tStyle CSS",
+      "contents": "style.transform = 'rotateZ(${1:angle})'"
     },
     {
-      "trigger": "transform = 'rotateZ($0angle)'\tStyle CSS",
-      "contents": "transform = 'rotateZ($0angle)'"
+      "trigger": "transform = 'rotateZ(angle)'\tStyle CSS",
+      "contents": "transform = 'rotateZ(${1:angle})'"
     },
     {
-      "trigger": "style.transform = 'skew($0x-angle,y-angle)'\tStyle CSS",
-      "contents": "style.transform = 'skew($0x-angle,y-angle)'"
+      "trigger": "style.transform = 'skew(x-angle, y-angle)'\tStyle CSS",
+      "contents": "style.transform = 'skew(${1:x-angle}, ${2:y-angle})'"
     },
     {
-      "trigger": "transform = 'skew($0x-angle,y-angle)'\tStyle CSS",
-      "contents": "transform = 'skew($0x-angle,y-angle)'"
+      "trigger": "transform = 'skew(x-angle, y-angle)'\tStyle CSS",
+      "contents": "transform = 'skew(${1:x-angle}, ${2:y-angle})'"
     },
     {
-      "trigger": "style.transform = 'skewX($0angle)'\tStyle CSS",
-      "contents": "style.transform = 'skewX($0angle)'"
+      "trigger": "style.transform = 'skewX(angle)'\tStyle CSS",
+      "contents": "style.transform = 'skewX(${1:angle})'"
     },
     {
-      "trigger": "transform = 'skewX($0angle)'\tStyle CSS",
-      "contents": "transform = 'skewX($0angle)'"
+      "trigger": "transform = 'skewX(angle)'\tStyle CSS",
+      "contents": "transform = 'skewX(${1:angle})'"
     },
     {
-      "trigger": "style.transform = 'skewY($0angle)'\tStyle CSS",
-      "contents": "style.transform = 'skewY($0angle)'"
+      "trigger": "style.transform = 'skewY(angle)'\tStyle CSS",
+      "contents": "style.transform = 'skewY(${1:angle})'"
     },
     {
-      "trigger": "transform = 'skewY($0angle)'\tStyle CSS",
-      "contents": "transform = 'skewY($0angle)'"
+      "trigger": "transform = 'skewY(angle)'\tStyle CSS",
+      "contents": "transform = 'skewY(${1:angle})'"
     },
     {
-      "trigger": "style.transform = 'perspective($0n)'\tStyle CSS",
-      "contents": "style.transform = 'perspective($0n)'"
+      "trigger": "style.transform = 'perspective(n)'\tStyle CSS",
+      "contents": "style.transform = 'perspective(${1:n})'"
     },
     {
-      "trigger": "transform = 'perspective($0n)'\tStyle CSS",
-      "contents": "transform = 'perspective($0n)'"
+      "trigger": "transform = 'perspective(n)'\tStyle CSS",
+      "contents": "transform = 'perspective(${1:n})'"
     },
     {
       "trigger": "style.transform = 'initial'\tStyle CSS",
@@ -8288,12 +8288,12 @@
       "contents": "transformOrigin"
     },
     {
-      "trigger": "style.transformOrigin = '$0'\tStyle CSS",
-      "contents": "style.transformOrigin = '$0'"
+      "trigger": "style.transformOrigin = ''\tStyle CSS",
+      "contents": "style.transformOrigin = '$1'"
     },
     {
-      "trigger": "transformOrigin = '$0'\tStyle CSS",
-      "contents": "transformOrigin = '$0'"
+      "trigger": "transformOrigin = ''\tStyle CSS",
+      "contents": "transformOrigin = '$1'"
     },
     {
       "trigger": "style.transformOrigin = 'initial'\tStyle CSS",
@@ -8320,12 +8320,12 @@
       "contents": "transformStyle"
     },
     {
-      "trigger": "style.transformStyle = '$0'\tStyle CSS",
-      "contents": "style.transformStyle = '$0'"
+      "trigger": "style.transformStyle = ''\tStyle CSS",
+      "contents": "style.transformStyle = '$1'"
     },
     {
-      "trigger": "transformStyle = '$0'\tStyle CSS",
-      "contents": "transformStyle = '$0'"
+      "trigger": "transformStyle = ''\tStyle CSS",
+      "contents": "transformStyle = '$1'"
     },
     {
       "trigger": "style.transformStyle = 'flat'\tStyle CSS",
@@ -8368,12 +8368,12 @@
       "contents": "transition"
     },
     {
-      "trigger": "style.transition = '$0'\tStyle CSS",
-      "contents": "style.transition = '$0'"
+      "trigger": "style.transition = ''\tStyle CSS",
+      "contents": "style.transition = '$1'"
     },
     {
-      "trigger": "transition = '$0'\tStyle CSS",
-      "contents": "transition = '$0'"
+      "trigger": "transition = ''\tStyle CSS",
+      "contents": "transition = '$1'"
     },
     {
       "trigger": "style.transition = 'initial'\tStyle CSS",
@@ -8400,12 +8400,12 @@
       "contents": "transitionProperty"
     },
     {
-      "trigger": "style.transitionProperty = '$0'\tStyle CSS",
-      "contents": "style.transitionProperty = '$0'"
+      "trigger": "style.transitionProperty = ''\tStyle CSS",
+      "contents": "style.transitionProperty = '$1'"
     },
     {
-      "trigger": "transitionProperty = '$0'\tStyle CSS",
-      "contents": "transitionProperty = '$0'"
+      "trigger": "transitionProperty = ''\tStyle CSS",
+      "contents": "transitionProperty = '$1'"
     },
     {
       "trigger": "style.transitionProperty = 'none'\tStyle CSS",
@@ -8448,12 +8448,12 @@
       "contents": "transitionDuration"
     },
     {
-      "trigger": "style.transitionDuration = '$0'\tStyle CSS",
-      "contents": "style.transitionDuration = '$0'"
+      "trigger": "style.transitionDuration = ''\tStyle CSS",
+      "contents": "style.transitionDuration = '$1'"
     },
     {
-      "trigger": "transitionDuration = '$0'\tStyle CSS",
-      "contents": "transitionDuration = '$0'"
+      "trigger": "transitionDuration = ''\tStyle CSS",
+      "contents": "transitionDuration = '$1'"
     },
     {
       "trigger": "style.transitionDuration = 'initial'\tStyle CSS",
@@ -8480,12 +8480,12 @@
       "contents": "transitionTimingFunction"
     },
     {
-      "trigger": "style.transitionTimingFunction = '$0'\tStyle CSS",
-      "contents": "style.transitionTimingFunction = '$0'"
+      "trigger": "style.transitionTimingFunction = ''\tStyle CSS",
+      "contents": "style.transitionTimingFunction = '$1'"
     },
     {
-      "trigger": "transitionTimingFunction = '$0'\tStyle CSS",
-      "contents": "transitionTimingFunction = '$0'"
+      "trigger": "transitionTimingFunction = ''\tStyle CSS",
+      "contents": "transitionTimingFunction = '$1'"
     },
     {
       "trigger": "style.transitionTimingFunction = 'ease'\tStyle CSS",
@@ -8528,12 +8528,12 @@
       "contents": "transitionTimingFunction = 'ease-in-out'"
     },
     {
-      "trigger": "style.transitionTimingFunction = 'cubic-bezier($0n,n,n,n)'\tStyle CSS",
-      "contents": "style.transitionTimingFunction = 'cubic-bezier($0n,n,n,n)'"
+      "trigger": "style.transitionTimingFunction = 'cubic-bezier($1n,n,n,n)'\tStyle CSS",
+      "contents": "style.transitionTimingFunction = 'cubic-bezier($1n,n,n,n)'"
     },
     {
-      "trigger": "transitionTimingFunction = 'cubic-bezier($0n,n,n,n)'\tStyle CSS",
-      "contents": "transitionTimingFunction = 'cubic-bezier($0n,n,n,n)'"
+      "trigger": "transitionTimingFunction = 'cubic-bezier($1n,n,n,n)'\tStyle CSS",
+      "contents": "transitionTimingFunction = 'cubic-bezier($1n,n,n,n)'"
     },
     {
       "trigger": "style.transitionTimingFunction = 'initial'\tStyle CSS",
@@ -8560,12 +8560,12 @@
       "contents": "transitionDelay"
     },
     {
-      "trigger": "style.transitionDelay = '$0'\tStyle CSS",
-      "contents": "style.transitionDelay = '$0'"
+      "trigger": "style.transitionDelay = ''\tStyle CSS",
+      "contents": "style.transitionDelay = '$1'"
     },
     {
-      "trigger": "transitionDelay = '$0'\tStyle CSS",
-      "contents": "transitionDelay = '$0'"
+      "trigger": "transitionDelay = ''\tStyle CSS",
+      "contents": "transitionDelay = '$1'"
     },
     {
       "trigger": "style.transitionDelay = 'initial'\tStyle CSS",
@@ -8592,12 +8592,12 @@
       "contents": "unicodeBidi"
     },
     {
-      "trigger": "style.unicodeBidi = '$0'\tStyle CSS",
-      "contents": "style.unicodeBidi = '$0'"
+      "trigger": "style.unicodeBidi = ''\tStyle CSS",
+      "contents": "style.unicodeBidi = '$1'"
     },
     {
-      "trigger": "unicodeBidi = '$0'\tStyle CSS",
-      "contents": "unicodeBidi = '$0'"
+      "trigger": "unicodeBidi = ''\tStyle CSS",
+      "contents": "unicodeBidi = '$1'"
     },
     {
       "trigger": "style.unicodeBidi = 'normal'\tStyle CSS",
@@ -8648,12 +8648,12 @@
       "contents": "verticalAlign"
     },
     {
-      "trigger": "style.verticalAlign = '$0'\tStyle CSS",
-      "contents": "style.verticalAlign = '$0'"
+      "trigger": "style.verticalAlign = ''\tStyle CSS",
+      "contents": "style.verticalAlign = '$1'"
     },
     {
-      "trigger": "verticalAlign = '$0'\tStyle CSS",
-      "contents": "verticalAlign = '$0'"
+      "trigger": "verticalAlign = ''\tStyle CSS",
+      "contents": "verticalAlign = '$1'"
     },
     {
       "trigger": "style.verticalAlign = 'baseline'\tStyle CSS",
@@ -8744,12 +8744,12 @@
       "contents": "visibility"
     },
     {
-      "trigger": "style.visibility = '$0'\tStyle CSS",
-      "contents": "style.visibility = '$0'"
+      "trigger": "style.visibility = ''\tStyle CSS",
+      "contents": "style.visibility = '$1'"
     },
     {
-      "trigger": "visibility = '$0'\tStyle CSS",
-      "contents": "visibility = '$0'"
+      "trigger": "visibility = ''\tStyle CSS",
+      "contents": "visibility = '$1'"
     },
     {
       "trigger": "style.visibility = 'visible'\tStyle CSS",
@@ -8800,12 +8800,12 @@
       "contents": "whiteSpace"
     },
     {
-      "trigger": "style.whiteSpace = '$0'\tStyle CSS",
-      "contents": "style.whiteSpace = '$0'"
+      "trigger": "style.whiteSpace = ''\tStyle CSS",
+      "contents": "style.whiteSpace = '$1'"
     },
     {
-      "trigger": "whiteSpace = '$0'\tStyle CSS",
-      "contents": "whiteSpace = '$0'"
+      "trigger": "whiteSpace = ''\tStyle CSS",
+      "contents": "whiteSpace = '$1'"
     },
     {
       "trigger": "style.whiteSpace = 'normal'\tStyle CSS",
@@ -8872,12 +8872,12 @@
       "contents": "width"
     },
     {
-      "trigger": "style.width = '$0'\tStyle CSS",
-      "contents": "style.width = '$0'"
+      "trigger": "style.width = ''\tStyle CSS",
+      "contents": "style.width = '$1'"
     },
     {
-      "trigger": "width = '$0'\tStyle CSS",
-      "contents": "width = '$0'"
+      "trigger": "width = ''\tStyle CSS",
+      "contents": "width = '$1'"
     },
     {
       "trigger": "style.width = 'auto'\tStyle CSS",
@@ -8912,12 +8912,12 @@
       "contents": "wordBreak"
     },
     {
-      "trigger": "style.wordBreak = '$0'\tStyle CSS",
-      "contents": "style.wordBreak = '$0'"
+      "trigger": "style.wordBreak = ''\tStyle CSS",
+      "contents": "style.wordBreak = '$1'"
     },
     {
-      "trigger": "wordBreak = '$0'\tStyle CSS",
-      "contents": "wordBreak = '$0'"
+      "trigger": "wordBreak = ''\tStyle CSS",
+      "contents": "wordBreak = '$1'"
     },
     {
       "trigger": "style.wordBreak = 'normal'\tStyle CSS",
@@ -8968,12 +8968,12 @@
       "contents": "wordSpacing"
     },
     {
-      "trigger": "style.wordSpacing = '$0'\tStyle CSS",
-      "contents": "style.wordSpacing = '$0'"
+      "trigger": "style.wordSpacing = ''\tStyle CSS",
+      "contents": "style.wordSpacing = '$1'"
     },
     {
-      "trigger": "wordSpacing = '$0'\tStyle CSS",
-      "contents": "wordSpacing = '$0'"
+      "trigger": "wordSpacing = ''\tStyle CSS",
+      "contents": "wordSpacing = '$1'"
     },
     {
       "trigger": "style.wordSpacing = 'normal'\tStyle CSS",
@@ -9008,12 +9008,12 @@
       "contents": "wordWrap"
     },
     {
-      "trigger": "style.wordWrap = '$0'\tStyle CSS",
-      "contents": "style.wordWrap = '$0'"
+      "trigger": "style.wordWrap = ''\tStyle CSS",
+      "contents": "style.wordWrap = '$1'"
     },
     {
-      "trigger": "wordWrap = '$0'\tStyle CSS",
-      "contents": "wordWrap = '$0'"
+      "trigger": "wordWrap = ''\tStyle CSS",
+      "contents": "wordWrap = '$1'"
     },
     {
       "trigger": "style.wordWrap = 'normal'\tStyle CSS",
@@ -9056,12 +9056,12 @@
       "contents": "widows"
     },
     {
-      "trigger": "style.widows = '$0'\tStyle CSS",
-      "contents": "style.widows = '$0'"
+      "trigger": "style.widows = ''\tStyle CSS",
+      "contents": "style.widows = '$1'"
     },
     {
-      "trigger": "widows = '$0'\tStyle CSS",
-      "contents": "widows = '$0'"
+      "trigger": "widows = ''\tStyle CSS",
+      "contents": "widows = '$1'"
     },
     {
       "trigger": "style.widows = 'initial'\tStyle CSS",
@@ -9088,12 +9088,12 @@
       "contents": "zIndex"
     },
     {
-      "trigger": "style.zIndex = '$0'\tStyle CSS",
-      "contents": "style.zIndex = '$0'"
+      "trigger": "style.zIndex = ''\tStyle CSS",
+      "contents": "style.zIndex = '$1'"
     },
     {
-      "trigger": "zIndex = '$0'\tStyle CSS",
-      "contents": "zIndex = '$0'"
+      "trigger": "zIndex = ''\tStyle CSS",
+      "contents": "zIndex = '$1'"
     },
     {
       "trigger": "style.zIndex = 'auto'\tStyle CSS",
@@ -9128,12 +9128,12 @@
       "contents": "boxDecorationBreak"
     },
     {
-      "trigger": "style.boxDecorationBreak = '$0'\tStyle CSS",
-      "contents": "style.boxDecorationBreak = '$0'"
+      "trigger": "style.boxDecorationBreak = ''\tStyle CSS",
+      "contents": "style.boxDecorationBreak = '$1'"
     },
     {
-      "trigger": "boxDecorationBreak = '$0'\tStyle CSS",
-      "contents": "boxDecorationBreak = '$0'"
+      "trigger": "boxDecorationBreak = ''\tStyle CSS",
+      "contents": "boxDecorationBreak = '$1'"
     },
     {
       "trigger": "style.content\tStyle CSS",
@@ -9144,12 +9144,12 @@
       "contents": "content"
     },
     {
-      "trigger": "style.content = '$0'\tStyle CSS",
-      "contents": "style.content = '$0'"
+      "trigger": "style.content = ''\tStyle CSS",
+      "contents": "style.content = '$1'"
     },
     {
-      "trigger": "content = '$0'\tStyle CSS",
-      "contents": "content = '$0'"
+      "trigger": "content = ''\tStyle CSS",
+      "contents": "content = '$1'"
     },
     {
       "trigger": "style.fontStretch\tStyle CSS",
@@ -9160,12 +9160,12 @@
       "contents": "fontStretch"
     },
     {
-      "trigger": "style.fontStretch = '$0'\tStyle CSS",
-      "contents": "style.fontStretch = '$0'"
+      "trigger": "style.fontStretch = ''\tStyle CSS",
+      "contents": "style.fontStretch = '$1'"
     },
     {
-      "trigger": "fontStretch = '$0'\tStyle CSS",
-      "contents": "fontStretch = '$0'"
+      "trigger": "fontStretch = ''\tStyle CSS",
+      "contents": "fontStretch = '$1'"
     },
     {
       "trigger": "style.hangingPunctuation\tStyle CSS",
@@ -9176,12 +9176,12 @@
       "contents": "hangingPunctuation"
     },
     {
-      "trigger": "style.hangingPunctuation = '$0'\tStyle CSS",
-      "contents": "style.hangingPunctuation = '$0'"
+      "trigger": "style.hangingPunctuation = ''\tStyle CSS",
+      "contents": "style.hangingPunctuation = '$1'"
     },
     {
-      "trigger": "hangingPunctuation = '$0'\tStyle CSS",
-      "contents": "hangingPunctuation = '$0'"
+      "trigger": "hangingPunctuation = ''\tStyle CSS",
+      "contents": "hangingPunctuation = '$1'"
     },
     {
       "trigger": "style.hyphens\tStyle CSS",
@@ -9192,12 +9192,12 @@
       "contents": "hyphens"
     },
     {
-      "trigger": "style.hyphens = '$0'\tStyle CSS",
-      "contents": "style.hyphens = '$0'"
+      "trigger": "style.hyphens = ''\tStyle CSS",
+      "contents": "style.hyphens = '$1'"
     },
     {
-      "trigger": "hyphens = '$0'\tStyle CSS",
-      "contents": "hyphens = '$0'"
+      "trigger": "hyphens = ''\tStyle CSS",
+      "contents": "hyphens = '$1'"
     },
     {
       "trigger": "style.icon\tStyle CSS",
@@ -9208,12 +9208,12 @@
       "contents": "icon"
     },
     {
-      "trigger": "style.icon = '$0'\tStyle CSS",
-      "contents": "style.icon = '$0'"
+      "trigger": "style.icon = ''\tStyle CSS",
+      "contents": "style.icon = '$1'"
     },
     {
-      "trigger": "icon = '$0'\tStyle CSS",
-      "contents": "icon = '$0'"
+      "trigger": "icon = ''\tStyle CSS",
+      "contents": "icon = '$1'"
     },
     {
       "trigger": "style.imageOrientation\tStyle CSS",
@@ -9224,12 +9224,12 @@
       "contents": "imageOrientation"
     },
     {
-      "trigger": "style.imageOrientation = '$0'\tStyle CSS",
-      "contents": "style.imageOrientation = '$0'"
+      "trigger": "style.imageOrientation = ''\tStyle CSS",
+      "contents": "style.imageOrientation = '$1'"
     },
     {
-      "trigger": "imageOrientation = '$0'\tStyle CSS",
-      "contents": "imageOrientation = '$0'"
+      "trigger": "imageOrientation = ''\tStyle CSS",
+      "contents": "imageOrientation = '$1'"
     },
     {
       "trigger": "style.navDown\tStyle CSS",
@@ -9240,12 +9240,12 @@
       "contents": "navDown"
     },
     {
-      "trigger": "style.navDown = '$0'\tStyle CSS",
-      "contents": "style.navDown = '$0'"
+      "trigger": "style.navDown = ''\tStyle CSS",
+      "contents": "style.navDown = '$1'"
     },
     {
-      "trigger": "navDown = '$0'\tStyle CSS",
-      "contents": "navDown = '$0'"
+      "trigger": "navDown = ''\tStyle CSS",
+      "contents": "navDown = '$1'"
     },
     {
       "trigger": "style.navIndex\tStyle CSS",
@@ -9256,12 +9256,12 @@
       "contents": "navIndex"
     },
     {
-      "trigger": "style.navIndex = '$0'\tStyle CSS",
-      "contents": "style.navIndex = '$0'"
+      "trigger": "style.navIndex = ''\tStyle CSS",
+      "contents": "style.navIndex = '$1'"
     },
     {
-      "trigger": "navIndex = '$0'\tStyle CSS",
-      "contents": "navIndex = '$0'"
+      "trigger": "navIndex = ''\tStyle CSS",
+      "contents": "navIndex = '$1'"
     },
     {
       "trigger": "style.navLeft\tStyle CSS",
@@ -9272,12 +9272,12 @@
       "contents": "navLeft"
     },
     {
-      "trigger": "style.navLeft = '$0'\tStyle CSS",
-      "contents": "style.navLeft = '$0'"
+      "trigger": "style.navLeft = ''\tStyle CSS",
+      "contents": "style.navLeft = '$1'"
     },
     {
-      "trigger": "navLeft = '$0'\tStyle CSS",
-      "contents": "navLeft = '$0'"
+      "trigger": "navLeft = ''\tStyle CSS",
+      "contents": "navLeft = '$1'"
     },
     {
       "trigger": "style.navRight\tStyle CSS",
@@ -9288,12 +9288,12 @@
       "contents": "navRight"
     },
     {
-      "trigger": "style.navRight = '$0'\tStyle CSS",
-      "contents": "style.navRight = '$0'"
+      "trigger": "style.navRight = ''\tStyle CSS",
+      "contents": "style.navRight = '$1'"
     },
     {
-      "trigger": "navRight = '$0'\tStyle CSS",
-      "contents": "navRight = '$0'"
+      "trigger": "navRight = ''\tStyle CSS",
+      "contents": "navRight = '$1'"
     },
     {
       "trigger": "style.navUp\tStyle CSS",
@@ -9304,12 +9304,12 @@
       "contents": "navUp"
     },
     {
-      "trigger": "style.navUp = '$0'\tStyle CSS",
-      "contents": "style.navUp = '$0'"
+      "trigger": "style.navUp = ''\tStyle CSS",
+      "contents": "style.navUp = '$1'"
     },
     {
-      "trigger": "navUp = '$0'\tStyle CSS",
-      "contents": "navUp = '$0'"
+      "trigger": "navUp = ''\tStyle CSS",
+      "contents": "navUp = '$1'"
     },
     {
       "trigger": "style.textJustify\tStyle CSS",
@@ -9320,12 +9320,12 @@
       "contents": "textJustify"
     },
     {
-      "trigger": "style.textJustify = '$0'\tStyle CSS",
-      "contents": "style.textJustify = '$0'"
+      "trigger": "style.textJustify = ''\tStyle CSS",
+      "contents": "style.textJustify = '$1'"
     },
     {
-      "trigger": "textJustify = '$0'\tStyle CSS",
-      "contents": "textJustify = '$0'"
+      "trigger": "textJustify = ''\tStyle CSS",
+      "contents": "textJustify = '$1'"
     }
   ]
 }

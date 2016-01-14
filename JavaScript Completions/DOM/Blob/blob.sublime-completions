@@ -4,8 +4,8 @@
   "completions":
   [
     {
-      "trigger": "new Blob(${0:array}, options)\tBlob",
-      "contents": "new Blob(${0:array}, options)"
+      "trigger": "new Blob(array, options)\tBlob",
+      "contents": "new Blob(${1:array}, ${2:options})"
     },
     {
       "trigger": "size\tBlob",

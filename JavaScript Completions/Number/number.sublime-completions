@@ -4,8 +4,8 @@
   "completions":
   [
     {
-      "trigger": "new Number(${0:value})\tNumber",
-      "contents": "new Number(${0:value})"
+      "trigger": "new Number(value)\tNumber",
+      "contents": "new Number(${1:value})"
     },
     {
       "trigger": "Number.MAX_VALUE\tNumber",
@@ -28,24 +28,24 @@
       "contents": "Number.POSITIVE_INFINITY"
     },
     {
-      "trigger": "toExponential(${0:fractionDigits})\tNumber",
-      "contents": "toExponential(${0:fractionDigits})"
+      "trigger": "toExponential(fractionDigits)\tNumber",
+      "contents": "toExponential(${1:fractionDigits})"
     },
     {
-      "trigger": "toFixed(${0:digits})\tNumber",
-      "contents": "toFixed(${0:digits})"
+      "trigger": "toFixed(digits)\tNumber",
+      "contents": "toFixed(${1:digits})"
     },
     {
       "trigger": "toLocaleString()\tNumber",
       "contents": "toLocaleString()"
     },
     {
-      "trigger": "toString(${0:radix})\tNumber",
-      "contents": "toString(${0:radix})"
+      "trigger": "toString(radix)\tNumber",
+      "contents": "toString(${1:radix})"
     },
     {
-      "trigger": "toPrecision(${0:precision})\tNumber",
-      "contents": "toPrecision(${0:precision})"
+      "trigger": "toPrecision(precision)\tNumber",
+      "contents": "toPrecision(${1:precision})"
     },
     {
       "trigger": "valueOf()\tNumber",

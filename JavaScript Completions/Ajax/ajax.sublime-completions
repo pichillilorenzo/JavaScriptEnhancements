@@ -1,0 +1,87 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [ 
+    {
+      "trigger": "new XMLHttpRequest()\tXMLHttpRequest",
+      "contents": "new XMLHttpRequest()"
+    },
+    {
+      "trigger": "onreadystatechange\tXMLHttpRequest",
+      "contents": "onreadystatechange"
+    },
+    {
+      "trigger": "readyState\tXMLHttpRequest",
+      "contents": "readyState"
+    },
+    {
+      "trigger": "response\tXMLHttpRequest",
+      "contents": "response"
+    },
+    {
+      "trigger": "responseText\tXMLHttpRequest",
+      "contents": "responseText"
+    },
+    {
+      "trigger": "responseType\tXMLHttpRequest",
+      "contents": "responseType"
+    },
+    {
+      "trigger": "responseXML\tXMLHttpRequest",
+      "contents": "responseXML"
+    },
+    {
+      "trigger": "status\tXMLHttpRequest",
+      "contents": "status"
+    },
+    {
+      "trigger": "statusText\tXMLHttpRequest",
+      "contents": "statusText"
+    },
+    {
+      "trigger": "timeout\tXMLHttpRequest",
+      "contents": "timeout"
+    },
+    {
+      "trigger": "ontimeout\tXMLHttpRequest",
+      "contents": "ontimeout"
+    },
+    {
+      "trigger": "upload\tXMLHttpRequest",
+      "contents": "upload"
+    },
+    {
+      "trigger": "withCredentials\tXMLHttpRequest",
+      "contents": "withCredentials"
+    },
+    {
+      "trigger": "abort()\tXMLHttpRequest",
+      "contents": "abort()"
+    },
+    {
+      "trigger": "getAllResponseHeaders()\tXMLHttpRequest",
+      "contents": "getAllResponseHeaders()"
+    },
+    {
+      "trigger": "getResponseHeader(header)\tXMLHttpRequest",
+      "contents": "getResponseHeader(${0:header})"
+    },
+    {
+      "trigger": "open(method, url, async, user, password)\tXMLHttpRequest",
+      "contents": "open(${1:method}, ${2:url}, ${3:async}, ${4:user}, ${5:password})"
+    },
+    {
+      "trigger": "overrideMimeType(mimetype)\tXMLHttpRequest",
+      "contents": "overrideMimeType(${0:mimetype})"
+    },
+    {
+      "trigger": "send(data)\tXMLHttpRequest",
+      "contents": "send(${0:data})"
+    },
+    {
+      "trigger": "setRequestHeader(header, value)\tXMLHttpRequest",
+      "contents": "setRequestHeader(${1:header}, ${2:value})"
+    }
+  ]
+}

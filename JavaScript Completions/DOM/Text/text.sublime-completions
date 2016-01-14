@@ -12,8 +12,8 @@
       "contents": "wholeText"
     },
     {
-      "trigger": "splitText(${0:offset})\tText",
-      "contents": "splitText(${0:offset})"
+      "trigger": "splitText(offset)\tText",
+      "contents": "splitText(${1:offset})"
     }
   ]
 }

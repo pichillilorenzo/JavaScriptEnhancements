@@ -4,16 +4,16 @@
   "completions":
   [
     {
-      "trigger": "addEventListener(${0:type}, listener)\tEventTarget",
-      "contents": "addEventListener(${0:type}, listener)"
+      "trigger": "addEventListener(type, listener)\tEventTarget",
+      "contents": "addEventListener(${1:type}, ${2:listener})"
     },
     {
-      "trigger": "dispatchEvent(${0:event})\tEventTarget",
-      "contents": "dispatchEvent(${0:event})"
+      "trigger": "dispatchEvent(event)\tEventTarget",
+      "contents": "dispatchEvent(${1:event})"
     },
     {
-      "trigger": "removeEventListener(${0:type}, listener)\tEventTarget",
-      "contents": "removeEventListener(${0:type}, listener)"
+      "trigger": "removeEventListener(type, listener)\tEventTarget",
+      "contents": "removeEventListener(${1:type}, ${2:listener})"
     }
   ]
 }

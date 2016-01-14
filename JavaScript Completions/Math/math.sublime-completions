@@ -4,80 +4,80 @@
   "completions":
   [
     {
-      "trigger": "Math.abs($0)\tMath",
-      "contents": "Math.abs($0)"
+      "trigger": "Math.abs()\tMath",
+      "contents": "Math.abs($1)"
     },
     {
       "trigger": "Math.PI\tMath",
       "contents": "Math.PI"
     },
     {
-      "trigger": "Math.sin($0)\tMath",
-      "contents": "Math.sin($0)"
+      "trigger": "Math.sin()\tMath",
+      "contents": "Math.sin($1)"
     },
     {
-      "trigger": "Math.cos($0)\tMath",
-      "contents": "Math.cos($0)"
+      "trigger": "Math.cos()\tMath",
+      "contents": "Math.cos($1)"
     },
     {
-      "trigger": "Math.tan($0)\tMath",
-      "contents": "Math.tan($0)"
+      "trigger": "Math.tan()\tMath",
+      "contents": "Math.tan($1)"
     },
     {
-      "trigger": "Math.acos($0)\tMath",
-      "contents": "Math.acos($0)"
+      "trigger": "Math.acos()\tMath",
+      "contents": "Math.acos($1)"
     },
     {
-      "trigger": "Math.asin($0)\tMath",
-      "contents": "Math.asin($0)"
+      "trigger": "Math.asin()\tMath",
+      "contents": "Math.asin($1)"
     },
     {
-      "trigger": "Math.atan($0)\tMath",
-      "contents": "Math.atan($0)"
+      "trigger": "Math.atan()\tMath",
+      "contents": "Math.atan($1)"
     },
     {
-      "trigger": "Math.atan2(${0:y}, x)\tMath",
-      "contents": "Math.atan2(${0:y}, x)"
+      "trigger": "Math.atan2(y, x)\tMath",
+      "contents": "Math.atan2(${1:y}, ${2:x})"
     },
     {
-      "trigger": "Math.exp($0)\tMath",
-      "contents": "Math.exp($0)"
+      "trigger": "Math.exp()\tMath",
+      "contents": "Math.exp($1)"
     },
     {
-      "trigger": "Math.log($0)\tMath",
-      "contents": "Math.log($0)"
+      "trigger": "Math.log()\tMath",
+      "contents": "Math.log($1)"
     },
     {
-      "trigger": "Math.ceil($0)\tMath",
-      "contents": "Math.ceil($0)"
+      "trigger": "Math.ceil()\tMath",
+      "contents": "Math.ceil($1)"
     },
     {
-      "trigger": "Math.floor($0)\tMath",
-      "contents": "Math.floor($0)"
+      "trigger": "Math.floor()\tMath",
+      "contents": "Math.floor($1)"
     },
     {
-      "trigger": "Math.min(${0:value1}, value2)\tMath",
-      "contents": "Math.min(${0:value1}, value2)"
+      "trigger": "Math.min(value1, value2)\tMath",
+      "contents": "Math.min(${1:value1}, ${2:value2})"
     },
     {
-      "trigger": "Math.max(${0:value1}, value2)\tMath",
-      "contents": "Math.max(${0:value1}, value2)"
+      "trigger": "Math.max(value1, value2)\tMath",
+      "contents": "Math.max(${1:value1}, ${2:value2})"
     },
     {
-      "trigger": "Math.pow(${0:base}, exponent)\tMath",
-      "contents": "Math.pow(${0:base}, exponent)"
+      "trigger": "Math.pow(base, exponent)\tMath",
+      "contents": "Math.pow(${1:base}, ${2:exponent})"
     },
     {
       "trigger": "Math.random()\tMath",
       "contents": "Math.random()"
     },
     {
-      "trigger": "Math.round($0)\tMath",
-      "contents": "Math.round($0)"
+      "trigger": "Math.round()\tMath",
+      "contents": "Math.round($1)"
     },
     {
-      "trigger": "Math.sqrt($0)\tMath",
-      "contents": "Math.sqrt($0)"
+      "trigger": "Math.sqrt()\tMath",
+      "contents": "Math.sqrt($1)"
     },
     {
       "trigger": "Math.E\tMath",

@@ -51,12 +51,12 @@
     },
 
     {
-      "trigger": "exec(${0:string})\tRegExp",
-      "contents": "exec(${0:string})"
+      "trigger": "exec(string)\tRegExp",
+      "contents": "exec(${1:string})"
     },
     {
-      "trigger": "test(${0:string})\tRegExp",
-      "contents": "test(${0:string})"
+      "trigger": "test(string)\tRegExp",
+      "contents": "test(${1:string})"
     },
     {
       "trigger": "toString()\tRegExp",
@@ -64,56 +64,56 @@
     },
 
     {
-      "trigger": "replace(${0:regexp|substr}, 'string')\tString",
-      "contents": "replace(${0:regexp|substr}, 'string')"
+      "trigger": "replace(regexp|substr, 'string')\tString",
+      "contents": "replace(${1:regexp|substr}, ${2:'string'})"
     },
     {
-      "trigger": "match(${0:regexp})\tString",
-      "contents": "match(${0:regexp})"
+      "trigger": "match(regexp)\tString",
+      "contents": "match(${1:regexp})"
     },
     {
-      "trigger": "search(${0:regexp})\tString",
-      "contents": "search(${0:regexp})"
+      "trigger": "search(regexp)\tString",
+      "contents": "search(${1:regexp})"
     },
     {
-      "trigger": "split(${0:separator})\tString",
-      "contents": "split(${0:separator})"
+      "trigger": "split(separator)\tString",
+      "contents": "split(${1:separator})"
     },
     {
-      "trigger": "fromCharCode(${0:num1})\tString",
-      "contents": "fromCharCode(${0:num1})"
+      "trigger": "fromCharCode(num1)\tString",
+      "contents": "fromCharCode(${1:num1})"
     },
     {
-      "trigger": "charAt(${0:index})\tString",
-      "contents": "charAt(${0:index})"
+      "trigger": "charAt(index)\tString",
+      "contents": "charAt(${1:index})"
     },
     {
-      "trigger": "charCodeAt(${0:index})\tString",
-      "contents": "charCodeAt(${0:index})"
+      "trigger": "charCodeAt(index)\tString",
+      "contents": "charCodeAt(${1:index})"
     },
     {
-      "trigger": "concat(${0:value1}, value2)\tString",
-      "contents": "concat(${0:value1}, value2)"
+      "trigger": "concat(value1, value2)\tString",
+      "contents": "concat(${1:value1}, ${2:value2})"
     },
     {
-      "trigger": "indexOf(${0:searchValue})\tString",
-      "contents": "indexOf(${0:searchValue})"
+      "trigger": "indexOf(searchValue)\tString",
+      "contents": "indexOf(${1:searchValue})"
     },
     {
-      "trigger": "lastIndexOf(${0:searchValue})\tString",
-      "contents": "lastIndexOf(${0:searchValue})"
+      "trigger": "lastIndexOf(searchValue)\tString",
+      "contents": "lastIndexOf(${1:searchValue})"
     },
     {
-      "trigger": "localeCompare(${0:compareString})\tString",
-      "contents": "localeCompare(${0:compareString})"
+      "trigger": "localeCompare(compareString)\tString",
+      "contents": "localeCompare(${1:compareString})"
     },
     {
-      "trigger": "substring(${0:indexA})\tString",
-      "contents": "substring(${0:indexA})"
+      "trigger": "substring(indexA)\tString",
+      "contents": "substring(${1:indexA})"
     },
     {
-      "trigger": "substr(${0:start})\tString",
-      "contents": "substr(${0:start})"
+      "trigger": "substr(start)\tString",
+      "contents": "substr(${1:start})"
     },
     {
       "trigger": "toLowerCase()\tString",
@@ -145,12 +145,12 @@
     },
 
     {
-      "trigger": "join(${0:separator})\tArray",
-      "contents": "join(${0:separator})"
+      "trigger": "join(separator)\tArray",
+      "contents": "join(${1:separator})"
     },
     {
-      "trigger": "push(${0:element1})\tArray",
-      "contents": "push(${0:element1})"
+      "trigger": "push(element1)\tArray",
+      "contents": "push(${1:element1})"
     },
     {
       "trigger": "pop()\tArray",
@@ -161,64 +161,64 @@
       "contents": "shift()"
     },
     {
-      "trigger": "unshift(${0:element1})\tArray",
-      "contents": "unshift(${0:element1})"
+      "trigger": "unshift(element1)\tArray",
+      "contents": "unshift(${1:element1})"
     },
     {
-      "trigger": "slice(${0:begin})\tArray",
-      "contents": "slice(${0:begin})"
+      "trigger": "slice(begin)\tArray",
+      "contents": "slice(${1:begin})"
     },
     {
-      "trigger": "splice(${0:index}, howMany)\tArray",
-      "contents": "splice(${0:index}, howMany)"
+      "trigger": "splice(index, howMany)\tArray",
+      "contents": "splice(${1:index}, ${2:howMany})"
     },
     {
       "trigger": "reverse()\tArray",
       "contents": "reverse()"
     },
     {
-      "trigger": "sort(${0:compareFunction})\tArray",
-      "contents": "sort(${0:compareFunction})"
+      "trigger": "sort(compareFunction)\tArray",
+      "contents": "sort(${1:compareFunction})"
     },
     {
-      "trigger": "map(${0:callback})\tArray",
-      "contents": "map(${0:callback})"
+      "trigger": "map(callback)\tArray",
+      "contents": "map(${1:callback})"
     },
     {
-      "trigger": "filter(${0:callback})\tArray",
-      "contents": "filter(${0:callback})"
+      "trigger": "filter(callback)\tArray",
+      "contents": "filter(${1:callback})"
     },
     {
-      "trigger": "every(${0:callback})\tArray",
-      "contents": "every(${0:callback})"
+      "trigger": "every(callback)\tArray",
+      "contents": "every(${1:callback})"
     },
     {
-      "trigger": "some(${0:callback})\tArray",
-      "contents": "some(${0:callback})"
+      "trigger": "some(callback)\tArray",
+      "contents": "some(${1:callback})"
     },
     {
-      "trigger": "reduce(${0:callback})\tArray",
-      "contents": "reduce(${0:callback})"
+      "trigger": "reduce(callback)\tArray",
+      "contents": "reduce(${1:callback})"
     },
     {
-      "trigger": "reduceRight(${0:callback})\tArray",
-      "contents": "reduceRight(${0:callback})"
+      "trigger": "reduceRight(callback)\tArray",
+      "contents": "reduceRight(${1:callback})"
     },
     {
-      "trigger": "indexOf(${0:searchElement})\tArray",
-      "contents": "indexOf(${0:searchElement})"
+      "trigger": "indexOf(searchElement)\tArray",
+      "contents": "indexOf(${1:searchElement})"
     },
     {
-      "trigger": "isArray(${0:Object})\tArray",
-      "contents": "isArray(${0:Object})"
+      "trigger": "isArray(Object)\tArray",
+      "contents": "isArray(${1:Object})"
     },
     {
-      "trigger": "lastIndexOf(${0:searchElement})\tArray",
-      "contents": "lastIndexOf(${0:searchElement})"
+      "trigger": "lastIndexOf(searchElement)\tArray",
+      "contents": "lastIndexOf(${1:searchElement})"
     },
     {
-      "trigger": "forEach(${0:callback})\tArray",
-      "contents": "forEach(${0:callback})"
+      "trigger": "forEach(callback)\tArray",
+      "contents": "forEach(${1:callback})"
     },
     {
       "trigger": "toLocaleString()\tArray",

@@ -264,40 +264,40 @@
       "contents": "menubar"
     },
     {
-      "trigger": "window.alert(${0:message})\tWindow",
-      "contents": "window.alert(${0:message})"
+      "trigger": "window.alert(message)\tWindow",
+      "contents": "window.alert(${1:message})"
     },
     {
-      "trigger": "alert(${0:message})\tWindow",
-      "contents": "alert(${0:message})"
+      "trigger": "alert(message)\tWindow",
+      "contents": "alert(${1:message})"
     },
     {
       "trigger": "window.blur()\tWindow",
       "contents": "window.blur()"
     },
     {
-      "trigger": "window.clearImmediate(${0:immediateID})\tWindow",
-      "contents": "window.clearImmediate(${0:immediateID})"
+      "trigger": "window.clearImmediate(immediateID)\tWindow",
+      "contents": "window.clearImmediate(${1:immediateID})"
     },
     {
-      "trigger": "clearImmediate(${0:immediateID})\tWindow",
-      "contents": "clearImmediate(${0:immediateID})"
+      "trigger": "clearImmediate(immediateID)\tWindow",
+      "contents": "clearImmediate(${1:immediateID})"
     },
     {
-      "trigger": "window.clearInterval(${0:intervalID})\tWindow",
-      "contents": "window.clearInterval(${0:intervalID})"
+      "trigger": "window.clearInterval(intervalID)\tWindow",
+      "contents": "window.clearInterval(${1:intervalID})"
     },
     {
-      "trigger": "clearInterval(${0:intervalID})\tWindow",
-      "contents": "clearInterval(${0:intervalID})"
+      "trigger": "clearInterval(intervalID)\tWindow",
+      "contents": "clearInterval(${1:intervalID})"
     },
     {
-      "trigger": "window.clearTimeout(${0:timeoutID})\tWindow",
-      "contents": "window.clearTimeout(${0:timeoutID})"
+      "trigger": "window.clearTimeout(timeoutID)\tWindow",
+      "contents": "window.clearTimeout(${1:timeoutID})"
     },
     {
-      "trigger": "clearTimeout(${0:timeoutID})\tWindow",
-      "contents": "clearTimeout(${0:timeoutID})"
+      "trigger": "clearTimeout(timeoutID)\tWindow",
+      "contents": "clearTimeout(${1:timeoutID})"
     },
     {
       "trigger": "window.close()\tWindow",
@@ -308,60 +308,60 @@
       "contents": "close()"
     },
     {
-      "trigger": "window.decodeURI(${0:encodedURI})\tWindow",
-      "contents": "window.decodeURI(${0:encodedURI})"
+      "trigger": "window.decodeURI(encodedURI)\tWindow",
+      "contents": "window.decodeURI(${1:encodedURI})"
     },
     {
-      "trigger": "decodeURI(${0:encodedURI})\tWindow",
-      "contents": "decodeURI(${0:encodedURI})"
+      "trigger": "decodeURI(encodedURI)\tWindow",
+      "contents": "decodeURI(${1:encodedURI})"
     },
     {
-      "trigger": "window.decodeURIComponent(${0:encodedURI})\tWindow",
-      "contents": "window.decodeURIComponent(${0:encodedURI})"
+      "trigger": "window.decodeURIComponent(encodedURI)\tWindow",
+      "contents": "window.decodeURIComponent(${1:encodedURI})"
     },
     {
-      "trigger": "decodeURIComponent(${0:encodedURI})\tWindow",
-      "contents": "decodeURIComponent(${0:encodedURI})"
+      "trigger": "decodeURIComponent(encodedURI)\tWindow",
+      "contents": "decodeURIComponent(${1:encodedURI})"
     },
     {
-      "trigger": "window.dump(${0:message})\tWindow",
-      "contents": "window.dump(${0:message})"
+      "trigger": "window.dump(message)\tWindow",
+      "contents": "window.dump(${1:message})"
     },
     {
-      "trigger": "dump(${0:message})\tWindow",
-      "contents": "dump(${0:message})"
+      "trigger": "dump(message)\tWindow",
+      "contents": "dump(${1:message})"
     },
     {
-      "trigger": "window.encodeURI(${0:URI})\tWindow",
-      "contents": "window.encodeURI(${0:URI})"
+      "trigger": "window.encodeURI(URI)\tWindow",
+      "contents": "window.encodeURI(${1:URI})"
     },
     {
-      "trigger": "encodeURI(${0:URI})\tWindow",
-      "contents": "encodeURI(${0:URI})"
+      "trigger": "encodeURI(URI)\tWindow",
+      "contents": "encodeURI(${1:URI})"
     },
     {
-      "trigger": "window.encodeURIComponent(${0:URI})\tWindow",
-      "contents": "window.encodeURIComponent(${0:URI})"
+      "trigger": "window.encodeURIComponent(URI)\tWindow",
+      "contents": "window.encodeURIComponent(${1:URI})"
     },
     {
-      "trigger": "encodeURIComponent(${0:URI})\tWindow",
-      "contents": "encodeURIComponent(${0:URI})"
+      "trigger": "encodeURIComponent(URI)\tWindow",
+      "contents": "encodeURIComponent(${1:URI})"
     },
     {
-      "trigger": "window.eval(${0:string})\tWindow",
-      "contents": "window.eval(${0:string})"
+      "trigger": "window.eval(string)\tWindow",
+      "contents": "window.eval(${1:string})"
     },
     {
-      "trigger": "eval(${0:string})\tWindow",
-      "contents": "eval(${0:string})"
+      "trigger": "eval(string)\tWindow",
+      "contents": "eval(${1:string})"
     },
     {
-      "trigger": "window.find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)\tWindow",
-      "contents": "window.find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)"
+      "trigger": "window.find(aString, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)\tWindow",
+      "contents": "window.find(${1:aString}, ${2:aCaseSensitive}, ${3:aBackwards}, ${4:aWrapAround}, ${5:aWholeWord}, ${6:aSearchInFrames}, ${7:aShowDialog})"
     },
     {
-      "trigger": "find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)\tWindow",
-      "contents": "find(${0:aString}, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)"
+      "trigger": "find(aString, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)\tWindow",
+      "contents": "find(${1:aString}, ${2:aCaseSensitive}, ${3:aBackwards}, ${4:aWrapAround}, ${5:aWholeWord}, ${6:aSearchInFrames}, ${7:aShowDialog})"
     },
     {
       "trigger": "window.focus()\tWindow",
@@ -376,20 +376,20 @@
       "contents": "getAttention()"
     },
     {
-      "trigger": "window.getComputedStyle(${0:element})\tWindow",
-      "contents": "window.getComputedStyle(${0:element})"
+      "trigger": "window.getComputedStyle(element)\tWindow",
+      "contents": "window.getComputedStyle(${1:element})"
     },
     {
-      "trigger": "getComputedStyle(${0:element})\tWindow",
-      "contents": "getComputedStyle(${0:element})"
+      "trigger": "getComputedStyle(element)\tWindow",
+      "contents": "getComputedStyle(${1:element})"
     },
     {
-      "trigger": "window.getDefaultComputedStyle(${0:element})\tWindow",
-      "contents": "window.getDefaultComputedStyle(${0:element})"
+      "trigger": "window.getDefaultComputedStyle(element)\tWindow",
+      "contents": "window.getDefaultComputedStyle(${1:element})"
     },
     {
-      "trigger": "getDefaultComputedStyle(${0:element})\tWindow",
-      "contents": "getDefaultComputedStyle(${0:element})"
+      "trigger": "getDefaultComputedStyle(element)\tWindow",
+      "contents": "getDefaultComputedStyle(${1:element})"
     },
     {
       "trigger": "window.getSelection()\tWindow",
@@ -400,36 +400,36 @@
       "contents": "getSelection()"
     },
     {
-      "trigger": "window.importDialog(${0:aParent}, aSrc, aArguments)\tWindow",
-      "contents": "window.importDialog(${0:aParent}, aSrc, aArguments)"
+      "trigger": "window.importDialog(aParent, aSrc, aArguments)\tWindow",
+      "contents": "window.importDialog(${1:aParent}, ${2:aSrc}, ${3:aArguments})"
     },
     {
-      "trigger": "importDialog(${0:aParent}, aSrc, aArguments)\tWindow",
-      "contents": "importDialog(${0:aParent}, aSrc, aArguments)"
+      "trigger": "importDialog(aParent, aSrc, aArguments)\tWindow",
+      "contents": "importDialog(${1:aParent}, ${2:aSrc}, ${3:aArguments})"
     },
     {
-      "trigger": "window.isFinite(${0:testValue})\tWindow",
-      "contents": "window.isFinite(${0:testValue})"
+      "trigger": "window.isFinite(testValue)\tWindow",
+      "contents": "window.isFinite(${1:testValue})"
     },
     {
-      "trigger": "isFinite(${0:testValue})\tWindow",
-      "contents": "isFinite(${0:testValue})"
+      "trigger": "isFinite(testValue)\tWindow",
+      "contents": "isFinite(${1:testValue})"
     },
     {
-      "trigger": "window.isNaN(${0:testValue})\tWindow",
-      "contents": "window.isNaN(${0:testValue})"
+      "trigger": "window.isNaN(testValue)\tWindow",
+      "contents": "window.isNaN(${1:testValue})"
     },
     {
-      "trigger": "isNaN(${0:testValue})\tWindow",
-      "contents": "isNaN(${0:testValue})"
+      "trigger": "isNaN(testValue)\tWindow",
+      "contents": "isNaN(${1:testValue})"
     },
     {
-      "trigger": "window.matchMedia(${0:mediaQueryString})\tWindow",
-      "contents": "window.matchMedia(${0:mediaQueryString})"
+      "trigger": "window.matchMedia(mediaQueryString)\tWindow",
+      "contents": "window.matchMedia(${1:mediaQueryString})"
     },
     {
-      "trigger": "matchMedia(${0:mediaQueryString})\tWindow",
-      "contents": "matchMedia(${0:mediaQueryString})"
+      "trigger": "matchMedia(mediaQueryString)\tWindow",
+      "contents": "matchMedia(${1:mediaQueryString})"
     },
     {
       "trigger": "window.minimize()\tWindow",
@@ -440,60 +440,60 @@
       "contents": "minimize()"
     },
     {
-      "trigger": "window.moveBy(${0:deltaX}, deltaY)\tWindow",
-      "contents": "window.moveBy(${0:deltaX}, deltaY)"
+      "trigger": "window.moveBy(deltaX, deltaY)\tWindow",
+      "contents": "window.moveBy(${1:deltaX}, ${2:deltaY})"
     },
     {
-      "trigger": "moveBy(${0:deltaX}, deltaY)\tWindow",
-      "contents": "moveBy(${0:deltaX}, deltaY)"
+      "trigger": "moveBy(deltaX, deltaY)\tWindow",
+      "contents": "moveBy(${1:deltaX}, ${2:deltaY})"
     },
     {
-      "trigger": "window.moveTo(${0:x}, y)\tWindow",
-      "contents": "window.moveTo(${0:x}, y)"
+      "trigger": "window.moveTo(x, y)\tWindow",
+      "contents": "window.moveTo(${1:x}, ${2:y})"
     },
     {
-      "trigger": "moveTo(${0:x}, y)\tWindow",
-      "contents": "moveTo(${0:x}, y)"
+      "trigger": "moveTo(x, y)\tWindow",
+      "contents": "moveTo(${1:x}, ${2:y})"
     },
     {
-      "trigger": "window.open(${0:strUrl}, strWindowName)\tWindow",
-      "contents": "window.open(${0:strUrl}, strWindowName)"
+      "trigger": "window.open(strUrl, strWindowName)\tWindow",
+      "contents": "window.open(${1:strUrl}, ${2:strWindowName})"
     },
     {
-      "trigger": "open(${0:strUrl}, strWindowName)\tWindow",
-      "contents": "open(${0:strUrl}, strWindowName)"
+      "trigger": "open(strUrl, strWindowName)\tWindow",
+      "contents": "open(${1:strUrl}, ${2:strWindowName})"
     },
     {
-      "trigger": "window.openDialog(${0:url}, name, features)\tWindow",
-      "contents": "window.openDialog(${0:url}, name, features)"
+      "trigger": "window.openDialog(url, name, features)\tWindow",
+        "contents": "window.openDialog(${1:url}, ${2:name}, ${3:features)"
     },
     {
-      "trigger": "openDialog(${0:url}, name, features)\tWindow",
-      "contents": "openDialog(${0:url}, name, features)"
+      "trigger": "openDialog(url, name, features)\tWindow",
+      "contents": "openDialog(${1:url}, ${2:name}, ${3:features})"
     },
     {
-      "trigger": "window.parseFloat(${0:string})\tWindow",
-      "contents": "window.parseFloat(${0:string})"
+      "trigger": "window.parseFloat(string)\tWindow",
+      "contents": "window.parseFloat(${1:string})"
     },
     {
-      "trigger": "parseFloat(${0:string})\tWindow",
-      "contents": "parseFloat(${0:string})"
+      "trigger": "parseFloat(string)\tWindow",
+      "contents": "parseFloat(${1:string})"
     },
     {
-      "trigger": "window.parseInt(${0:string}, radix)\tWindow",
-      "contents": "window.parseInt(${0:string}, radix)"
+      "trigger": "window.parseInt(string, radix)\tWindow",
+      "contents": "window.parseInt(${1:string}, ${2:radix})"
     },
     {
-      "trigger": "parseInt(${0:string}, radix)\tWindow",
-      "contents": "parseInt(${0:string}, radix)"
+      "trigger": "parseInt(string, radix)\tWindow",
+      "contents": "parseInt(${1:string}, ${2:radix})"
     },
     {
-      "trigger": "window.postMessage(${0:message}, targetOrigin)\tWindow",
-      "contents": "window.postMessage(${0:message}, targetOrigin)"
+      "trigger": "window.postMessage(message, targetOrigin)\tWindow",
+      "contents": "window.postMessage(${1:message}, ${2:targetOrigin})"
     },
     {
-      "trigger": "postMessage(${0:message}, targetOrigin)\tWindow",
-      "contents": "postMessage(${0:message}, targetOrigin)"
+      "trigger": "postMessage(message, targetOrigin)\tWindow",
+      "contents": "postMessage(${1:message}, ${2:targetOrigin})"
     },
     {
       "trigger": "window.print()\tWindow",
@@ -504,108 +504,108 @@
       "contents": "print()"
     },
     {
-      "trigger": "window.prompt(${0:text}, value)\tWindow",
-      "contents": "window.prompt(${0:text}, value)"
+      "trigger": "window.prompt(text, value)\tWindow",
+      "contents": "window.prompt(${1:text}, ${2:value})"
     },
     {
-      "trigger": "prompt(${0:text}, value)\tWindow",
-      "contents": "prompt(${0:text}, value)"
+      "trigger": "prompt(text, value)\tWindow",
+      "contents": "prompt(${1:text}, ${2:value})"
     },
     {
-      "trigger": "window.resizeBy(${0:xDelta}, yDelta)\tWindow",
-      "contents": "window.resizeBy(${0:xDelta}, yDelta)"
+      "trigger": "window.resizeBy(xDelta, yDelta)\tWindow",
+      "contents": "window.resizeBy(${1:xDelta}, ${2:yDelta})"
     },
     {
-      "trigger": "resizeBy(${0:xDelta}, yDelta)\tWindow",
-      "contents": "resizeBy(${0:xDelta}, yDelta)"
+      "trigger": "resizeBy(xDelta, yDelta)\tWindow",
+      "contents": "resizeBy(${1:xDelta}, ${2:yDelta})"
     },
     {
-      "trigger": "window.resizeTo(${0:aWidth}, aHeight)\tWindow",
-      "contents": "window.resizeTo(${0:aWidth}, aHeight)"
+      "trigger": "window.resizeTo(aWidth, aHeight)\tWindow",
+      "contents": "window.resizeTo(${1:aWidth}, ${2:aHeight})"
     },
     {
-      "trigger": "resizeTo(${0:aWidth}, aHeight)\tWindow",
-      "contents": "resizeTo(${0:aWidth}, aHeight)"
+      "trigger": "resizeTo(aWidth, aHeight)\tWindow",
+      "contents": "resizeTo(${1:aWidth}, ${2:aHeight})"
     },
     {
-      "trigger": "window.scroll(${0:x_coord},y_coord)\tWindow",
-      "contents": "window.scroll(${0:x_coord},y_coord)"
+      "trigger": "window.scroll(x_coord, y_coord)\tWindow",
+      "contents": "window.scroll(${1:x_coord}, ${2:y_coord})"
     },
     {
-      "trigger": "scroll(${0:x_coord},y_coord)\tWindow",
-      "contents": "scroll(${0:x_coord},y_coord)"
+      "trigger": "scroll(x_coord, y_coord)\tWindow",
+      "contents": "scroll(${1:x_coord}, ${2:y_coord})"
     },
     {
-      "trigger": "window.scrollBy(${0:X},Y)\tWindow",
-      "contents": "window.scrollBy(${0:X},Y)"
+      "trigger": "window.scrollBy(X, Y)\tWindow",
+      "contents": "window.scrollBy(${1:X}, ${2:Y})"
     },
     {
-      "trigger": "scrollBy(${0:X},Y)\tWindow",
-      "contents": "scrollBy(${0:X},Y)"
+      "trigger": "scrollBy(X, Y)\tWindow",
+      "contents": "scrollBy(${1:X}, ${2:Y})"
     },
     {
-      "trigger": "window.scrollByLines(${0:lines})\tWindow",
-      "contents": "window.scrollByLines(${0:lines})"
+      "trigger": "window.scrollByLines(lines)\tWindow",
+      "contents": "window.scrollByLines(${1:lines})"
     },
     {
-      "trigger": "scrollByLines(${0:lines})\tWindow",
-      "contents": "scrollByLines(${0:lines})"
+      "trigger": "scrollByLines(lines)\tWindow",
+      "contents": "scrollByLines(${1:lines})"
     },
     {
-      "trigger": "window.scrollTo(${0:x_coord},y_coord)\tWindow",
-      "contents": "window.scrollTo(${0:x_coord},y_coord)"
+      "trigger": "window.scrollTo(x_coord, y_coord)\tWindow",
+      "contents": "window.scrollTo(${1:x_coord}, ${2:y_coord})"
     },
     {
-      "trigger": "scrollTo(${0:x_coord},y_coord)\tWindow",
-      "contents": "scrollTo(${0:x_coord},y_coord)"
+      "trigger": "scrollTo(x_coord, y_coord)\tWindow",
+      "contents": "scrollTo(${1:x_coord}, ${2:y_coord})"
     },
     {
-      "trigger": "window.setCursor(${0:auto})\tWindow",
-      "contents": "window.setCursor(${0:auto})"
+      "trigger": "window.setCursor(auto)\tWindow",
+      "contents": "window.setCursor(${1:auto})"
     },
     {
-      "trigger": "setCursor(${0:auto})\tWindow",
-      "contents": "setCursor(${0:auto})"
+      "trigger": "setCursor(auto)\tWindow",
+      "contents": "setCursor(${1:auto})"
     },
     {
-      "trigger": "window.setInterval(${0:func}, delay)\tWindow",
-      "contents": "window.setInterval(${0:func}, delay)"
+      "trigger": "window.setInterval(func, delay)\tWindow",
+      "contents": "window.setInterval(${1:func}, ${2:delay})"
     },
     {
-      "trigger": "setInterval(${0:func}, delay)\tWindow",
-      "contents": "setInterval(${0:func}, delay)"
+      "trigger": "setInterval(func, delay)\tWindow",
+      "contents": "setInterval(${1:func}, ${2:delay})"
     },
     {
-      "trigger": "window.setTimeout(${0:func}, delay)\tWindow",
-      "contents": "window.setTimeout(${0:func}, delay)"
+      "trigger": "window.setTimeout(func, delay)\tWindow",
+      "contents": "window.setTimeout(${1:func}, ${2:delay})"
     },
     {
-      "trigger": "setTimeout(${0:func}, delay)\tWindow",
-      "contents": "setTimeout(${0:func}, delay)"
+      "trigger": "setTimeout(func, delay)\tWindow",
+      "contents": "setTimeout(${1:func}, ${2:delay})"
     },
     {
-      "trigger": "window.updateCommands(${0:sCommandName})\tWindow",
-      "contents": "window.updateCommands(${0:sCommandName})"
+      "trigger": "window.updateCommands(sCommandName)\tWindow",
+      "contents": "window.updateCommands(${1:sCommandName})"
     },
     {
-      "trigger": "updateCommands(${0:sCommandName})\tWindow",
-      "contents": "updateCommands(${0:sCommandName})"
+      "trigger": "updateCommands(sCommandName)\tWindow",
+      "contents": "updateCommands(${1:sCommandName})"
     },
     {
-      "trigger": "window.confirm(${0:message})\tWindow",
-      "contents": "window.confirm(${0:message})"
+      "trigger": "window.confirm(message)\tWindow",
+      "contents": "window.confirm(${1:message})"
     },
     {
-      "trigger": "confirm(${0:message})\tWindow",
-      "contents": "confirm(${0:message})"
+      "trigger": "confirm(message)\tWindow",
+      "contents": "confirm(${1:message})"
     },
     {
-      "trigger": "window.requestAnimationFrame(${0:callback})\tWindow",
-      "contents": "window.requestAnimationFrame(${0:callback})"
+      "trigger": "window.requestAnimationFrame(callback)\tWindow",
+      "contents": "window.requestAnimationFrame(${1:callback})"
     },
     {
-      "trigger": "requestAnimationFrame(${0:callback})\tWindow",
-      "contents": "requestAnimationFrame(${0:callback})"
+      "trigger": "requestAnimationFrame(callback)\tWindow",
+      "contents": "requestAnimationFrame(${1:callback})"
     },
     {
       "trigger": "window.stop()\tWindow",

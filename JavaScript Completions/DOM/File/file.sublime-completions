@@ -4,8 +4,8 @@
   "completions":
   [
   	{
-      "trigger": "new File(${0:Array_parts}, String_filename, BlobPropertyBag_properties)\tFile",
-      "contents": "new File(${0:Array_parts}, String_filename, BlobPropertyBag_properties)"
+      "trigger": "new File(Array_parts, String_filename, BlobPropertyBag_properties)\tFile",
+      "contents": "new File(${1:Array_parts}, ${2:String_filename}, ${3:BlobPropertyBag_properties})"
     },
   	{
       "trigger": "new FileReader()\tFileReader",
@@ -37,20 +37,20 @@
       "contents": "abort()"
     },
     {
-      "trigger": "readAsArrayBuffer(${0:file|blob})\tFileReader",
-      "contents": "readAsArrayBuffer(${0:file|blob})"
+      "trigger": "readAsArrayBuffer(file|blob)\tFileReader",
+      "contents": "readAsArrayBuffer(${1:file|blob})"
     },
     {
-      "trigger": "readAsBinaryString(${0:file|blob})\tFileReader",
-      "contents": "readAsBinaryString(${0:file|blob})"
+      "trigger": "readAsBinaryString(file|blob)\tFileReader",
+      "contents": "readAsBinaryString(${1:file|blob})"
     },
     {
-      "trigger": "readAsDataURL(${0:file|blob})\tFileReader",
-      "contents": "readAsDataURL(${0:file|blob})"
+      "trigger": "readAsDataURL(file|blob)\tFileReader",
+      "contents": "readAsDataURL(${1:file|blob})"
     },
     {
-      "trigger": "readAsText(${0:file|blob})\tFileReader",
-      "contents": "readAsText(${0:file|blob})"
+      "trigger": "readAsText(file|blob)\tFileReader",
+      "contents": "readAsText(${1:file|blob})"
     }
   ]
 }

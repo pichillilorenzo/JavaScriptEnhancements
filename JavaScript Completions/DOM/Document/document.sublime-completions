@@ -305,12 +305,12 @@
       "contents": "tooltipNode"
     },
     {
-      "trigger": "document.caretPositionFromPoint(${0:x}, y)\tDocument",
-      "contents": "document.caretPositionFromPoint(${0:x}, y)"
+      "trigger": "document.caretPositionFromPoint(x, y)\tDocument",
+      "contents": "document.caretPositionFromPoint(${1:x}, ${2:y})"
     },
     {
-      "trigger": "caretPositionFromPoint(${0:x}, y)\tDocument",
-      "contents": "caretPositionFromPoint(${0:x}, y)"
+      "trigger": "caretPositionFromPoint(x, y)\tDocument",
+      "contents": "caretPositionFromPoint(${1:x}, ${2:y})"
     },
     {
       "trigger": "document.close()\tDocument",
@@ -321,12 +321,12 @@
       "contents": "close()"
     },
     {
-      "trigger": "document.createNodeIterator(${0:root}, whatToShow, filter)\tDocument",
-      "contents": "document.createNodeIterator(${0:root}, whatToShow, filter)"
+      "trigger": "document.createNodeIterator(root, whatToShow, filter)\tDocument",
+      "contents": "document.createNodeIterator(${1:root}, ${2:whatToShow}, ${3:filter})"
     },
     {
-      "trigger": "createNodeIterator(${0:root}, whatToShow, filter)\tDocument",
-      "contents": "createNodeIterator(${0:root}, whatToShow, filter)"
+      "trigger": "createNodeIterator(root, whatToShow, filter)\tDocument",
+      "contents": "createNodeIterator(${1:root}, ${2:whatToShow}, ${3:filter})"
     },
     {
       "trigger": "document.createRange()\tDocument",
@@ -337,28 +337,28 @@
       "contents": "createRange()"
     },
     {
-      "trigger": "document.createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)\tDocument",
-      "contents": "document.createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)"
+      "trigger": "document.createTreeWalker(root, whatToShow, filter, entityReferenceExpansion)\tDocument",
+      "contents": "document.createTreeWalker(${1:root}, ${2:whatToShow}, ${3:filter}, ${4:entityReferenceExpansion})"
     },
     {
-      "trigger": "createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)\tDocument",
-      "contents": "createTreeWalker(${0:root}, whatToShow, filter, entityReferenceExpansion)"
+      "trigger": "createTreeWalker(root, whatToShow, filter, entityReferenceExpansion)\tDocument",
+      "contents": "createTreeWalker(${1:root}, ${2:whatToShow}, ${3:filter}, ${4:entityReferenceExpansion})"
     },
     {
-      "trigger": "document.elementFromPoint(${0:x}, y)\tDocument",
-      "contents": "document.elementFromPoint(${0:x}, y)"
+      "trigger": "document.elementFromPoint(x, y)\tDocument",
+      "contents": "document.elementFromPoint(${1:x}, ${2:y})"
     },
     {
-      "trigger": "elementFromPoint(${0:x}, y)\tDocument",
-      "contents": "elementFromPoint(${0:x}, y)"
+      "trigger": "elementFromPoint(x, y)\tDocument",
+      "contents": "elementFromPoint(${1:x}, ${2:y})"
     },
     {
-      "trigger": "document.getElementsByClassName(${0:names})\tDocument",
-      "contents": "document.getElementsByClassName(${0:names})"
+      "trigger": "document.getElementsByClassName(names)\tDocument",
+      "contents": "document.getElementsByClassName(${1:names})"
     },
     {
-      "trigger": "document.getElementsByName(${0:name})\tDocument",
-      "contents": "document.getElementsByName(${0:name})"
+      "trigger": "document.getElementsByName(name)\tDocument",
+      "contents": "document.getElementsByName(${1:name})"
     },
     {
       "trigger": "document.releaseCapture()\tDocument",
@@ -369,36 +369,36 @@
       "contents": "releaseCapture()"
     },
     {
-      "trigger": "document.adoptNode(${0:externalNode})\tDocument",
-      "contents": "document.adoptNode(${0:externalNode})"
+      "trigger": "document.adoptNode(externalNode)\tDocument",
+      "contents": "document.adoptNode(${1:externalNode})"
     },
     {
-      "trigger": "adoptNode(${0:externalNode})\tDocument",
-      "contents": "adoptNode(${0:externalNode})"
+      "trigger": "adoptNode(externalNode)\tDocument",
+      "contents": "adoptNode(${1:externalNode})"
     },
     {
-      "trigger": "document.createAttribute(${0:name})\tDocument",
-      "contents": "document.createAttribute(${0:name})"
+      "trigger": "document.createAttribute(name)\tDocument",
+      "contents": "document.createAttribute(${1:name})"
     },
     {
-      "trigger": "createAttribute(${0:name})\tDocument",
-      "contents": "createAttribute(${0:name})"
+      "trigger": "createAttribute(name)\tDocument",
+      "contents": "createAttribute(${1:name})"
     },
     {
-      "trigger": "document.createCDATASection(${0:data})\tDocument",
-      "contents": "document.createCDATASection(${0:data})"
+      "trigger": "document.createCDATASection(data)\tDocument",
+      "contents": "document.createCDATASection(${1:data})"
     },
     {
-      "trigger": "createCDATASection(${0:data})\tDocument",
-      "contents": "createCDATASection(${0:data})"
+      "trigger": "createCDATASection(data)\tDocument",
+      "contents": "createCDATASection(${1:data})"
     },
     {
-      "trigger": "document.createComment(${0:data})\tDocument",
-      "contents": "document.createComment(${0:data})"
+      "trigger": "document.createComment(data)\tDocument",
+      "contents": "document.createComment(${1:data})"
     },
     {
-      "trigger": "createComment(${0:data})\tDocument",
-      "contents": "createComment(${0:data})"
+      "trigger": "createComment(data)\tDocument",
+      "contents": "createComment(${1:data})"
     },
     {
       "trigger": "document.createDocumentFragment()\tDocument",
@@ -409,88 +409,88 @@
       "contents": "createDocumentFragment()"
     },
     {
-      "trigger": "document.createElement(${0:tagName})\tDocument",
-      "contents": "document.createElement(${0:tagName})"
+      "trigger": "document.createElement(tagName)\tDocument",
+      "contents": "document.createElement(${1:tagName})"
     },
     {
-      "trigger": "createElement(${0:tagName})\tDocument",
-      "contents": "createElement(${0:tagName})"
+      "trigger": "createElement(tagName)\tDocument",
+      "contents": "createElement(${1:tagName})"
     },
     {
-      "trigger": "document.createElementNS(${0:namespaceURI}, qualifiedName)\tDocument",
-      "contents": "document.createElementNS(${0:namespaceURI}, qualifiedName)"
+      "trigger": "document.createElementNS(namespaceURI, qualifiedName)\tDocument",
+      "contents": "document.createElementNS(${1:namespaceURI}, ${2:qualifiedName})"
     },
     {
-      "trigger": "createElementNS(${0:namespaceURI}, qualifiedName)\tDocument",
-      "contents": "createElementNS(${0:namespaceURI}, qualifiedName)"
+      "trigger": "createElementNS(namespaceURI, qualifiedName)\tDocument",
+      "contents": "createElementNS(${1:namespaceURI}, ${2:qualifiedName})"
     },
     {
-      "trigger": "document.createExpression(${0:xpathText}, namespaceURLMapper)\tDocument",
-      "contents": "document.createExpression(${0:xpathText}, namespaceURLMapper)"
+      "trigger": "document.createExpression(xpathText, namespaceURLMapper)\tDocument",
+      "contents": "document.createExpression(${1:xpathText}, ${2:namespaceURLMapper})"
     },
     {
-      "trigger": "createExpression(${0:xpathText}, namespaceURLMapper)\tDocument",
-      "contents": "createExpression(${0:xpathText}, namespaceURLMapper)"
+      "trigger": "createExpression(xpathText, namespaceURLMapper)\tDocument",
+      "contents": "createExpression(${1:xpathText}, ${2:namespaceURLMapper})"
     },
     {
-      "trigger": "document.createNSResolver(${0:node})\tDocument",
-      "contents": "document.createNSResolver(${0:node})"
+      "trigger": "document.createNSResolver(node)\tDocument",
+      "contents": "document.createNSResolver(${1:node})"
     },
     {
-      "trigger": "createNSResolver(${0:node})\tDocument",
-      "contents": "createNSResolver(${0:node})"
+      "trigger": "createNSResolver(node)\tDocument",
+      "contents": "createNSResolver(${1:node})"
     },
     {
-      "trigger": "document.createProcessingInstruction(${0:target}, data)\tDocument",
-      "contents": "document.createProcessingInstruction(${0:target}, data)"
+      "trigger": "document.createProcessingInstruction(target, data)\tDocument",
+      "contents": "document.createProcessingInstruction(${1:target}, ${2:data})"
     },
     {
-      "trigger": "createProcessingInstruction(${0:target}, data)\tDocument",
-      "contents": "createProcessingInstruction(${0:target}, data)"
+      "trigger": "createProcessingInstruction(target, data)\tDocument",
+      "contents": "createProcessingInstruction(${1:target}, ${2:data})"
     },
     {
-      "trigger": "document.createTextNode(${0:data})\tDocument",
-      "contents": "document.createTextNode(${0:data})"
+      "trigger": "document.createTextNode(data)\tDocument",
+      "contents": "document.createTextNode(${1:data})"
     },
     {
-      "trigger": "createTextNode(${0:data})\tDocument",
-      "contents": "createTextNode(${0:data})"
+      "trigger": "createTextNode(data)\tDocument",
+      "contents": "createTextNode(${1:data})"
     },
     {
-      "trigger": "document.enableStyleSheetsForSet(${0:name})\tDocument",
-      "contents": "document.enableStyleSheetsForSet(${0:name})"
+      "trigger": "document.enableStyleSheetsForSet(name)\tDocument",
+      "contents": "document.enableStyleSheetsForSet(${1:name})"
     },
     {
-      "trigger": "enableStyleSheetsForSet(${0:name})\tDocument",
-      "contents": "enableStyleSheetsForSet(${0:name})"
+      "trigger": "enableStyleSheetsForSet(name)\tDocument",
+      "contents": "enableStyleSheetsForSet(${1:name})"
     },
     {
-      "trigger": "document.evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);\tDocument",
-      "contents": "document.evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);"
+      "trigger": "document.evaluate(xpathExpression, contextNode, namespaceResolver, resultType, result);\tDocument",
+      "contents": "document.evaluate(${1:xpathExpression}, ${2:contextNode}, ${3:namespaceResolver}, ${4:resultType}, ${5:result});"
     },
     {
-      "trigger": "evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);\tDocument",
-      "contents": "evaluate(${0:xpathExpression}, contextNode, namespaceResolver, resultType, result);"
+      "trigger": "evaluate(xpathExpression, contextNode, namespaceResolver, resultType, result);\tDocument",
+      "contents": "evaluate(${1:xpathExpression}, ${2:contextNode}, ${3:namespaceResolver}, ${4:resultType}, ${5:result});"
     },
     {
-      "trigger": "document.execCommand(${0:String aCommandName}, Boolean aShowDefaultUI, String aValueArgument)\tDocument",
-      "contents": "document.execCommand(${0:String aCommandName}, Boolean aShowDefaultUI, String aValueArgument)"
+      "trigger": "document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)\tDocument",
+      "contents": "document.execCommand(${1:aCommandName}, ${2:aShowDefaultUI}, ${3:aValueArgument})"
     },
     {
-      "trigger": "execCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)\tDocument",
-      "contents": "execCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)"
+      "trigger": "execCommand(aCommandName, aShowDefaultUI, aValueArgument)\tDocument",
+      "contents": "execCommand(${1:aCommandName}, ${2:aShowDefaultUI}, ${3:aValueArgument})"
     },
     {
-      "trigger": "document.getElementById(${0:id})\tDocument",
-      "contents": "document.getElementById(${0:id})"
+      "trigger": "document.getElementById(id)\tDocument",
+      "contents": "document.getElementById(${1:id})"
     },
     {
-      "trigger": "document.getElementsByTagName(${0:name})\tDocument",
-      "contents": "document.getElementsByTagName(${0:name})"
+      "trigger": "document.getElementsByTagName(name)\tDocument",
+      "contents": "document.getElementsByTagName(${1:name})"
     },
     {
-      "trigger": "document.getElementsByTagNameNS(${0:namespace}, name)\tDocument",
-      "contents": "document.getElementsByTagNameNS(${0:namespace}, name)"
+      "trigger": "document.getElementsByTagNameNS(namespace, name)\tDocument",
+      "contents": "document.getElementsByTagNameNS(${1:namespace}, ${2:name})"
     },
     {
       "trigger": "document.hasFocus()\tDocument",
@@ -501,20 +501,20 @@
       "contents": "hasFocus()"
     },
     {
-      "trigger": "document.importNode(${0:externalNode}, deep)\tDocument",
-      "contents": "document.importNode(${0:externalNode}, deep)"
+      "trigger": "document.importNode(externalNode, deep)\tDocument",
+      "contents": "document.importNode(${1:externalNode}, ${2:deep})"
     },
     {
-      "trigger": "importNode(${0:externalNode}, deep)\tDocument",
-      "contents": "importNode(${0:externalNode}, deep)"
+      "trigger": "importNode(externalNode, deep)\tDocument",
+      "contents": "importNode(${1:externalNode}, ${2:deep})"
     },
     {
-      "trigger": "document.loadOverlay(${0:url}, observer)\tDocument",
-      "contents": "document.loadOverlay(${0:url}, observer)"
+      "trigger": "document.loadOverlay(url, observer)\tDocument",
+      "contents": "document.loadOverlay(${1:url}, ${2:observer})"
     },
     {
-      "trigger": "loadOverlay(${0:url}, observer)\tDocument",
-      "contents": "loadOverlay(${0:url}, observer)"
+      "trigger": "loadOverlay(url, observer)\tDocument",
+      "contents": "loadOverlay(${1:url}, ${2:observer})"
     },
     {
       "trigger": "document.open()\tDocument",
@@ -525,36 +525,36 @@
       "contents": "open()"
     },
     {
-      "trigger": "document.queryCommandSupported(${0:command})\tDocument",
-      "contents": "document.queryCommandSupported(${0:command})"
+      "trigger": "document.queryCommandSupported(command)\tDocument",
+      "contents": "document.queryCommandSupported(${1:command})"
     },
     {
-      "trigger": "queryCommandSupported(${0:command})\tDocument",
-      "contents": "queryCommandSupported(${0:command})"
+      "trigger": "queryCommandSupported(command)\tDocument",
+      "contents": "queryCommandSupported(${1:command})"
     },
     {
-      "trigger": "document.querySelector(${0:selectors})\tDocument",
-      "contents": "document.querySelector(${0:selectors})"
+      "trigger": "document.querySelector(selectors)\tDocument",
+      "contents": "document.querySelector(${1:selectors})"
     },
     {
-      "trigger": "document.querySelectorAll(${0:selectors})\tDocument",
-      "contents": "document.querySelectorAll(${0:selectors})"
+      "trigger": "document.querySelectorAll(selectors)\tDocument",
+      "contents": "document.querySelectorAll(${1:selectors})"
     },
     {
-      "trigger": "document.write(${0:markup})\tDocument",
-      "contents": "document.write(${0:markup})"
+      "trigger": "document.write(markup)\tDocument",
+      "contents": "document.write(${1:markup})"
     },
     {
-      "trigger": "write(${0:markup})\tDocument",
-      "contents": "write(${0:markup})"
+      "trigger": "write(markup)\tDocument",
+      "contents": "write(${1:markup})"
     },
     {
-      "trigger": "document.writeln(${0:line})\tDocument",
-      "contents": "document.writeln(${0:line})"
+      "trigger": "document.writeln(line)\tDocument",
+      "contents": "document.writeln(${1:line})"
     },
     {
-      "trigger": "writeln(${0:line})\tDocument",
-      "contents": "writeln(${0:line})"
+      "trigger": "writeln(line)\tDocument",
+      "contents": "writeln(${1:line})"
     }
   ]
 }

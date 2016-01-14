@@ -16,12 +16,12 @@
       "contents": "now()"
     },
     {
-      "trigger": "parse(${0:dateString})\tDate",
-      "contents": "parse(${0:dateString})"
+      "trigger": "parse(dateString)\tDate",
+      "contents": "parse(${1:dateString})"
     },
     {
-      "trigger": "UTC(${0:year}, month)\tDate",
-      "contents": "UTC(${0:year}, month)"
+      "trigger": "UTC(year, month)\tDate",
+      "contents": "UTC(${1:year}, ${2:month})"
     },
     {
       "trigger": "getDate()\tDate",
@@ -96,64 +96,64 @@
       "contents": "getTimezoneOffset()"
     },
     {
-      "trigger": "setDate(${0:dayValue})\tDate",
-      "contents": "setDate(${0:dayValue})"
+      "trigger": "setDate(dayValue)\tDate",
+      "contents": "setDate(${1:dayValue})"
     },
     {
-      "trigger": "setUTCDate(${0:dayValue})\tDate",
-      "contents": "setUTCDate(${0:dayValue})"
+      "trigger": "setUTCDate(dayValue)\tDate",
+      "contents": "setUTCDate(${1:dayValue})"
     },
     {
-      "trigger": "setFullYear(${0:yearValue})\tDate",
-      "contents": "setFullYear(${0:yearValue})"
+      "trigger": "setFullYear(yearValue)\tDate",
+      "contents": "setFullYear(${1:yearValue})"
     },
     {
-      "trigger": "setUTCFullYear(${0:yearValue})\tDate",
-      "contents": "setUTCFullYear(${0:yearValue})"
+      "trigger": "setUTCFullYear(yearValue)\tDate",
+      "contents": "setUTCFullYear(${1:yearValue})"
     },
     {
-      "trigger": "setHours(${0:hoursValue})\tDate",
-      "contents": "setHours(${0:hoursValue})"
+      "trigger": "setHours(hoursValue)\tDate",
+      "contents": "setHours(${1:hoursValue})"
     },
     {
-      "trigger": "setUTCHours(${0:hoursValue})\tDate",
-      "contents": "setUTCHours(${0:hoursValue})"
+      "trigger": "setUTCHours(hoursValue)\tDate",
+      "contents": "setUTCHours(${1:hoursValue})"
     },
     {
-      "trigger": "setMilliseconds(${0:millisecondsValue})\tDate",
-      "contents": "setMilliseconds(${0:millisecondsValue})"
+      "trigger": "setMilliseconds(millisecondsValue)\tDate",
+      "contents": "setMilliseconds(${1:millisecondsValue})"
     },
     {
-      "trigger": "setUTCMilliseconds(${0:millisecondsValue})\tDate",
-      "contents": "setUTCMilliseconds(${0:millisecondsValue})"
+      "trigger": "setUTCMilliseconds(millisecondsValue)\tDate",
+      "contents": "setUTCMilliseconds(${1:millisecondsValue})"
     },
     {
-      "trigger": "setMinutes(${0:minutesValue})\tDate",
-      "contents": "setMinutes(${0:minutesValue})"
+      "trigger": "setMinutes(minutesValue)\tDate",
+      "contents": "setMinutes(${1:minutesValue})"
     },
     {
-      "trigger": "setUTCMinutes(${0:minutesValue})\tDate",
-      "contents": "setUTCMinutes(${0:minutesValue})"
+      "trigger": "setUTCMinutes(minutesValue)\tDate",
+      "contents": "setUTCMinutes(${1:minutesValue})"
     },
     {
-      "trigger": "setMonth(${0:monthValue})\tDate",
-      "contents": "setMonth(${0:monthValue})"
+      "trigger": "setMonth(monthValue)\tDate",
+      "contents": "setMonth(${1:monthValue})"
     },
     {
-      "trigger": "setUTCMonth(${0:monthValue})\tDate",
-      "contents": "setUTCMonth(${0:monthValue})"
+      "trigger": "setUTCMonth(monthValue)\tDate",
+      "contents": "setUTCMonth(${1:monthValue})"
     },
     {
-      "trigger": "setSeconds(${0:secondsValue})\tDate",
-      "contents": "setSeconds(${0:secondsValue})"
+      "trigger": "setSeconds(secondsValue)\tDate",
+      "contents": "setSeconds(${1:secondsValue})"
     },
     {
-      "trigger": "setUTCSeconds(${0:secondsValue})\tDate",
-      "contents": "setUTCSeconds(${0:secondsValue})"
+      "trigger": "setUTCSeconds(secondsValue)\tDate",
+      "contents": "setUTCSeconds(${1:secondsValue})"
     },
     {
-      "trigger": "setTime(${0:timeValue})\tDate",
-      "contents": "setTime(${0:timeValue})"
+      "trigger": "setTime(timeValue)\tDate",
+      "contents": "setTime(${1:timeValue})"
     },
     {
       "trigger": "toDateString()\tDate",

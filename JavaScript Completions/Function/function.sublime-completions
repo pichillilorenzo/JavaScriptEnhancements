@@ -12,16 +12,16 @@
       "contents": "length"
     },
     {
-      "trigger": "apply(${0:thisArg})\tFunction",
-      "contents": "apply(${0:thisArg})"
+      "trigger": "apply(thisArg)\tFunction",
+      "contents": "apply(${1:thisArg})"
     },
     {
-      "trigger": "bind(${0:thisArg})\tFunction",
-      "contents": "bind(${0:thisArg})"
+      "trigger": "bind(thisArg)\tFunction",
+      "contents": "bind(${1:thisArg})"
     },
     {
-      "trigger": "call(${0:thisArg})\tFunction",
-      "contents": "call(${0:thisArg})"
+      "trigger": "call(thisArg)\tFunction",
+      "contents": "call(${1:thisArg})"
     },
     {
       "trigger": "toString\tFunction",

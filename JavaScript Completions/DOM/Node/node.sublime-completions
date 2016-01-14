@@ -68,20 +68,20 @@
       "contents": "textContent"
     },
     {
-      "trigger": "appendChild(${0:aChild})\tNode",
-      "contents": "appendChild(${0:aChild})"
+      "trigger": "appendChild(aChild)\tNode",
+      "contents": "appendChild(${1:aChild})"
     },
     {
-      "trigger": "cloneNode(${0:deep})\tNode",
-      "contents": "cloneNode(${0:deep})"
+      "trigger": "cloneNode(deep)\tNode",
+      "contents": "cloneNode(${1:deep})"
     },
     {
-      "trigger": "compareDocumentPosition(${0:otherNode})\tNode",
-      "contents": "compareDocumentPosition(${0:otherNode})"
+      "trigger": "compareDocumentPosition(otherNode)\tNode",
+      "contents": "compareDocumentPosition(${1:otherNode})"
     },
     {
-      "trigger": "contains(${0:otherNode})\tNode",
-      "contents": "contains(${0:otherNode})"
+      "trigger": "contains(otherNode)\tNode",
+      "contents": "contains(${1:otherNode})"
     },
     {
       "trigger": "hasAttributes()\tNode",
@@ -92,16 +92,16 @@
       "contents": "hasChildNodes()"
     },
     {
-      "trigger": "insertBefore(${0:newElement}, referenceElement)\tNode",
-      "contents": "insertBefore(${0:newElement}, referenceElement)"
+      "trigger": "insertBefore(newElement, referenceElement)\tNode",
+      "contents": "insertBefore(${1:newElement}, ${2:referenceElement})"
     },
     {
-      "trigger": "isDefaultNamespace(${0:namespaceURI})\tNode",
-      "contents": "isDefaultNamespace(${0:namespaceURI})"
+      "trigger": "isDefaultNamespace(namespaceURI)\tNode",
+      "contents": "isDefaultNamespace(${1:namespaceURI})"
     },
     {
-      "trigger": "isEqualNode(${0:arg})\tNode",
-      "contents": "isEqualNode(${0:arg})"
+      "trigger": "isEqualNode(arg)\tNode",
+      "contents": "isEqualNode(${1:arg})"
     },
     {
       "trigger": "lookupNamespaceURI()\tNode",
@@ -116,12 +116,12 @@
       "contents": "normalize()"
     },
     {
-      "trigger": "removeChild(${0:child})\tNode",
-      "contents": "removeChild(${0:child})"
+      "trigger": "removeChild(child)\tNode",
+      "contents": "removeChild(${1:child})"
     },
     {
-      "trigger": "replaceChild(${0:newChild}, oldChild)\tNode",
-      "contents": "replaceChild(${0:newChild}, oldChild)"
+      "trigger": "replaceChild(newChild, oldChild)\tNode",
+      "contents": "replaceChild(${1:newChild}, ${2:oldChild})"
     }
   ]
 }

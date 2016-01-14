@@ -52,20 +52,20 @@
       "contents": "username"
     },
     {
-      "trigger": "URL.createObjectURL(${0:file|blob})\tURL",
-      "contents": "URL.createObjectURL(${0:file|blob})"
+      "trigger": "URL.createObjectURL(file|blob)\tURL",
+      "contents": "URL.createObjectURL(${1:file|blob})"
     },
     {
-      "trigger": "createObjectURL(${0:file|blob})\tURL",
-      "contents": "createObjectURL(${0:file|blob})"
+      "trigger": "createObjectURL(file|blob)\tURL",
+      "contents": "createObjectURL(${1:file|blob})"
     },
     {
-      "trigger": "URL.revokeObjectURL(${0:objectURL})\tURL",
-      "contents": "URL.revokeObjectURL(${0:objectURL})"
+      "trigger": "URL.revokeObjectURL(objectURL)\tURL",
+      "contents": "URL.revokeObjectURL(${1:objectURL})"
     },
     {
-      "trigger": "revokeObjectURL(${0:objectURL})\tURL",
-      "contents": "revokeObjectURL(${0:objectURL})"
+      "trigger": "revokeObjectURL(objectURL)\tURL",
+      "contents": "revokeObjectURL(${1:objectURL})"
     }
   ]
 }

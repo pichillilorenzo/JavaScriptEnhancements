@@ -4,8 +4,8 @@
   "completions":
   [
     {
-      "trigger": "new Worker(${0:URL})\tWorker",
-      "contents": "new Worker(${0:URL})"
+      "trigger": "new Worker(URL)\tWorker",
+      "contents": "new Worker(${1:URL})"
     },
     {
       "trigger": "onerror\tWorker",
@@ -16,8 +16,8 @@
       "contents": "onmessage"
     },
     {
-      "trigger": "postMessage(${0:Message}, transferList)\tWorker",
-      "contents": "postMessage(${0:Message}, transferList)"
+      "trigger": "postMessage(Message, transferList)\tWorker",
+      "contents": "postMessage(${1:Message}, ${2:transferList})"
     },
     {
       "trigger": "terminate()\tWorker",

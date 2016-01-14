@@ -17,104 +17,104 @@
     },
 
     {
-      "trigger": "delete(${0:Object})\tObject",
-      "contents": "delete(${0:Object})"
+      "trigger": "delete(Object)\tObject",
+      "contents": "delete(${1:Object})"
     },
     {
-      "trigger": "in(${0:Object})\tObject",
-      "contents": "in(${0:Object})"
+      "trigger": "in(Object)\tObject",
+      "contents": "in(${1:Object})"
     },
     {
-      "trigger": "instanceof(${0:Object})\tObject",
-      "contents": "instanceof(${0:Object})"
+      "trigger": "instanceof(Object)\tObject",
+      "contents": "instanceof(${1:Object})"
     },
     {
-      "trigger": "typeof(${0:Object})\tObject",
-      "contents": "typeof(${0:Object})"
+      "trigger": "typeof(Object)\tObject",
+      "contents": "typeof(${1:Object})"
     },
     {
-      "trigger": "String(${0:Object})\tObject",
-      "contents": "String(${0:Object})"
+      "trigger": "String(Object)\tObject",
+      "contents": "String(${1:Object})"
     },
     {
-      "trigger": "Number(${0:Object})\tObject",
-      "contents": "Number(${0:Object})"
+      "trigger": "Number(Object)\tObject",
+      "contents": "Number(${1:Object})"
     },
     {
-      "trigger": "hasOwnProperty(${0:property})\tObject",
-      "contents": "hasOwnProperty(${0:property})"
+      "trigger": "hasOwnProperty(property)\tObject",
+      "contents": "hasOwnProperty(${1:property})"
     },
     {
-      "trigger": "getOwnPropertyNames(${0:Object})\tObject",
-      "contents": "getOwnPropertyNames(${0:Object})"
+      "trigger": "getOwnPropertyNames(Object)\tObject",
+      "contents": "getOwnPropertyNames(${1:Object})"
     },
     {
-      "trigger": "getOwnPropertyDescriptor(${0:Object}, prop)\tObject",
-      "contents": "getOwnPropertyDescriptor(${0:Object}, prop)"
+      "trigger": "getOwnPropertyDescriptor(Object, prop)\tObject",
+      "contents": "getOwnPropertyDescriptor(${1:Object}, ${2:prop})"
     },
     {
-      "trigger": "getOwnPropertySymbols(${0:Object})\tObject",
-      "contents": "getOwnPropertySymbols(${0:Object})"
+      "trigger": "getOwnPropertySymbols(Object)\tObject",
+      "contents": "getOwnPropertySymbols(${1:Object})"
     },
     {
-      "trigger": "getPrototypeOf(${0:Object})\tObject",
-      "contents": "getPrototypeOf(${0:Object})"
+      "trigger": "getPrototypeOf(Object)\tObject",
+      "contents": "getPrototypeOf(${1:Object})"
     },
     {
-      "trigger": "keys(${0:Object})\tObject",
-      "contents": "keys(${0:Object})"
+      "trigger": "keys(Object)\tObject",
+      "contents": "keys(${1:Object})"
     },
     {
-      "trigger": "create(${0:proto})\tObject",
-      "contents": "create(${0:proto})"
+      "trigger": "create(proto)\tObject",
+      "contents": "create(${1:proto})"
     },
     {
-      "trigger": "defineProperty(${0:Object}, prop, descriptor)\tObject",
-      "contents": "defineProperty(${0:Object}, prop, descriptor)"
+      "trigger": "defineProperty(Object, prop, descriptor)\tObject",
+      "contents": "defineProperty(${1:Object}, ${2:prop}, ${3:descriptor})"
     },
     {
-      "trigger": "defineProperties(${0:Object}, props)\tObject",
-      "contents": "defineProperties(${0:Object}, props)"
+      "trigger": "defineProperties(Object, props)\tObject",
+      "contents": "defineProperties(${1:Object}, ${2:props})"
     },
     {
-      "trigger": "propertyIsEnumerable(${0:prop})\tObject",
-      "contents": "propertyIsEnumerable(${0:prop})"
+      "trigger": "propertyIsEnumerable(prop)\tObject",
+      "contents": "propertyIsEnumerable(${1:prop})"
     },
     {
-      "trigger": "assign(${0:target}, sources)\tObject",
-      "contents": "assign(${0:target}, sources)"
+      "trigger": "assign(target, sources)\tObject",
+      "contents": "assign(${1:target}, ${2:sources})"
     },
     {
-      "trigger": "freeze(${0:Object})\tObject",
-      "contents": "freeze(${0:Object})"
+      "trigger": "freeze(Object)\tObject",
+      "contents": "freeze(${1:Object})"
     },
     {
-      "trigger": "is(${0:value1}, value2);\tObject",
-      "contents": "is(${0:value1}, value2);"
+      "trigger": "is(value1, value2);\tObject",
+      "contents": "is(${1:value1}, ${2:value2});"
     },
     {
-      "trigger": "isExtensible(${0:Object})\tObject",
-      "contents": "isExtensible(${0:Object})"
+      "trigger": "isExtensible(Object)\tObject",
+      "contents": "isExtensible(${1:Object})"
     },
     {
-      "trigger": "isFrozen(${0:Object})\tObject",
-      "contents": "isFrozen(${0:Object})"
+      "trigger": "isFrozen(Object)\tObject",
+      "contents": "isFrozen(${1:Object})"
     },
     {
-      "trigger": "isSealed(${0:Object})\tObject",
-      "contents": "isSealed(${0:Object})"
+      "trigger": "isSealed(Object)\tObject",
+      "contents": "isSealed(${1:Object})"
     },
     {
-      "trigger": "preventExtensions(${0:Object})\tObject",
-      "contents": "preventExtensions(${0:Object})"
+      "trigger": "preventExtensions(Object)\tObject",
+      "contents": "preventExtensions(${1:Object})"
     },
     {
-      "trigger": "seal(${0:Object})\tObject",
-      "contents": "seal(${0:Object})"
+      "trigger": "seal(Object)\tObject",
+      "contents": "seal(${1:Object})"
     },
     {
-      "trigger": "setPrototypeOf(${0:Object}, prototype)\tObject",
-      "contents": "setPrototypeOf(${0:Object}, prototype)"
+      "trigger": "setPrototypeOf(Object, prototype)\tObject",
+      "contents": "setPrototypeOf(${1:Object}, ${2:prototype})"
     },
     {
       "trigger": "toLocaleString()\tObject",
@@ -129,8 +129,8 @@
       "contents": "toString()"
     },
     {
-      "trigger": "isPrototypeOf(${0:Object})\tObject",
-      "contents": "isPrototypeOf(${0:Object})"
+      "trigger": "isPrototypeOf(Object)\tObject",
+      "contents": "isPrototypeOf(${1:Object})"
     },
     {
       "trigger": "valueOf()\tObject",
