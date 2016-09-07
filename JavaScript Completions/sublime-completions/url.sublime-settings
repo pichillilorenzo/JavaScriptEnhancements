@@ -1,0 +1,23 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["hash\tURLUtils", "hash"],
+    ["host\tURLUtils", "host"],
+    ["hostname\tURLUtils", "hostname"],
+    ["href\tURLUtils", "href"],
+    ["origin\tURLUtils", "origin"],
+    ["password\tURLUtils", "password"],
+    ["pathname\tURLUtils", "pathname"],
+    ["port\tURLUtils", "port"],
+    ["protocol\tURLUtils", "protocol"],
+    ["search\tURLUtils", "search"],
+    ["searchParams\tURLUtils", "searchParams"],
+    ["username\tURLUtils", "username"],
+    ["URL.createObjectURL(file|blob)\tURL", "URL.createObjectURL(${1:file|blob})"],
+    ["createObjectURL(file|blob)\tURL", "createObjectURL(${1:file|blob})"],
+    ["URL.revokeObjectURL(objectURL)\tURL", "URL.revokeObjectURL(${1:objectURL})"],
+    ["revokeObjectURL(objectURL)\tURL", "revokeObjectURL(${1:objectURL})"]
+  ]
+}

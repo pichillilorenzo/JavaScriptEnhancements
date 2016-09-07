@@ -1,0 +1,13 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["new Function()\tFunction", "new Function()"],
+    ["length\tFunction", "length"],
+    ["apply(thisArg)\tFunction", "apply(${1:thisArg})"],
+    ["bind(thisArg)\tFunction", "bind(${1:thisArg})"],
+    ["call(thisArg)\tFunction", "call(${1:thisArg})"],
+    ["toString\tFunction", "toString"]
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["new Blob(array, options)\tBlob", "new Blob(${1:array}, ${2:options})"],
+    ["size\tBlob", "size"],
+    ["type\tBlob", "type"]
+  ]
+}

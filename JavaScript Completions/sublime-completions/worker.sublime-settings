@@ -1,0 +1,12 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["new Worker(URL)\tWorker", "new Worker(${1:URL})"],
+    ["onerror\tWorker", "onerror"],
+    ["onmessage\tWorker", "onmessage"],
+    ["postMessage(Message, transferList)\tWorker", "postMessage(${1:Message}, ${2:transferList})"],
+    ["terminate()\tWorker", "terminate()"]
+  ]
+}

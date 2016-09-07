@@ -1,0 +1,10 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["new Text()\tText", "new Text()"],
+    ["wholeText\tText", "wholeText"],
+    ["splitText(offset)\tText", "splitText(${1:offset})"]
+  ]
+}

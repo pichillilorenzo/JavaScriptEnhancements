@@ -1,0 +1,34 @@
+{
+    "scope": "source.js",
+
+    "completions":
+    [
+        ["description-Math", "/*\n\tMath is a built-in object that has properties and methods for mathematical constants and functions. Not a function object.\n*/"],
+        ["description-Math.E", "/*\n\tThe Math.E property represents the base of natural logarithms, e, approximately 2.718.\n*/"],
+        ["description-Math.LN2", "/*\n\tThe Math.LN2 property represents the natural logarithm of 2, approximately 0.693:\n*/"],
+        ["description-Math.LN10", "/*\n\tThe Math.LN10 property represents the natural logarithm of 10, approximately 2.302:\n*/"],
+        ["description-Math.LOG2E", "/*\n\tThe Math.LOG2E property represents the base 2 logarithm of e, approximately 1.442.\n*/"],
+        ["description-Math.LOG10E", "/*\n\tThe Math.LOG10E property represents the base 10 logarithm of e, approximately 0.434.\n*/"],
+        ["description-Math.PI", "/*\n\tThe Math.PI property represents the ratio of the circumference of a circle to its diameter, approximately 3.14159.\n*/"],
+        ["description-Math.SQRT1_2", "/*\n\tThe Math.SQRT1_2 property represents the square root of 1/2 which is approximately 0.707.\n*/"],
+        ["description-Math.SQRT2", "/*\n\tThe Math.SQRT2 property represents the square root of 2, approximately 1.414.\n*/"],
+        ["description-Math.abs()", "/*\n\tDescription:\n\tThe Math.abs(x) function returns the absolute value of a number \"x\".\n\n\tSyntax:\n\tvar abs = Math.abs(x);\n*/"],
+        ["description-Math.acos()", "/*\n\tDescription:\n\tThe Math.acos() function returns the arccosine (in radians) of a number.\n\n\tSyntax:\n\tMath.acos(x)\n*/"],
+        ["description-Math.asin()", "/*\n\tDescription:\n\tThe Math.asin() function returns the arcsine (in radians) of a number.\n\n\tSyntax:\n\tMath.asin(x)\n*/"],
+        ["description-Math.atan()", "/*\n\tDescription:\n\tThe Math.atan() function returns the arctangent (in radians) of a number.\n\n\tSyntax:\n\tMath.atan(x)\n*/"],
+        ["description-Math.atan2()", "/*\n\tDescription:\n\tThe Math.atan2() function returns the arctangent of the quotient of its arguments.\n\n\tSyntax:\n\tMath.atan2(y, x)\n*/"],
+        ["description-Math.ceil()", "/*\n\tDescription:\n\tThe Math.ceil(x) function returns the smallest integer greater than or equal to a number \"x\".\n\n\tSyntax:\n\tMath.ceil(x)\n*/"],
+        ["description-Math.cos()", "/*\n\tDescription:\n\tThe Math.cos() function returns the cosine of a number.\n\n\tSyntax:\n\tMath.cos(x)\n*/"],
+        ["description-Math.exp()", "/*\n\tDescription:\n\tThe Math.exp() function returns ex, where x is the argument, and e is Euler's constant, the base of the natural logarithms.\n\n\tSyntax:\n\tMath.exp(x)\n*/"],
+        ["description-Math.floor()", "/*\n\tDescription:\n\tThe Math.floor(x) function returns the largest integer less than or equal to a number \"x\".\n\n\tSyntax:\n\tMath.floor(x)\n*/"],
+        ["description-Math.log()", "/*\n\tDescription:\n\tThe Math.log() function returns the natural logarithm (base e) of a number, that is\n\n\tSyntax:\n\tMath.log(x)\n*/"],
+        ["description-Math.max()", "/*\n\tDescription:\n\tThe Math.max() function returns the largest of zero or more numbers.\n\n\tSyntax:\n\tMath.max([value1[,value2, ...]])\n*/"],
+        ["description-Math.min()", "/*\n\tDescription:\n\tThe Math.min() function returns the smallest of zero or more numbers.\n\n\tSyntax:\n\tMath.min([value1[,value2, ...]])\n*/"],
+        ["description-Math.pow()", "/*\n\tDescription:\n\tThe Math.pow() function returns the base to the exponent Power.\n\n\tSyntax:\n\tMath.pow(base, exponent)\n*/"],
+        ["description-Math.random()", "/*\n\tDescription:\n\tThe Math.random() function returns a floating-point, pseudo-random number in the range [0, 1) that is, from 0 (inclusive) up to but not including 1 (exclusive), which you can then scale to your desired range.  The implementation selects the initial seed to the random number generation algorithm; it cannot be chosen or reset by the user.\n\n\tSyntax:\n\tMath.random()\n*/"],
+        ["description-Math.round()", "/*\n\tDescription:\n\tThe Math.round() function returns the value of a number rounded to the nearest integer.\n\n\tSyntax:\n\tMath.round(x)\n*/"],
+        ["description-Math.sin()", "/*\n\tDescription:\n\tThe Math.sin() function returns the sine of a number.\n\n\tSyntax:\n\tMath.sin(x)\n*/"],
+        ["description-Math.sqrt()", "/*\n\tDescription:\n\tThe Math.sqrt() function returns the square root of a number.\n\n\tSyntax:\n\tMath.sqrt(x)\n*/"],
+        ["description-Math.tan()", "/*\n\tDescription:\n\tThe Math.tan() function returns the tangent of a number.\n\n\tSyntax:\n\tMath.tan(x)\n*/"]
+    ]
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["Math.abs()\tMath", "Math.abs($1)"],
+    ["Math.PI\tMath", "Math.PI"],
+    ["Math.sin()\tMath", "Math.sin($1)"],
+    ["Math.cos()\tMath", "Math.cos($1)"],
+    ["Math.tan()\tMath", "Math.tan($1)"],
+    ["Math.acos()\tMath", "Math.acos($1)"],
+    ["Math.asin()\tMath", "Math.asin($1)"],
+    ["Math.atan()\tMath", "Math.atan($1)"],
+    ["Math.atan2(y, x)\tMath", "Math.atan2(${1:y}, ${2:x})"],
+    ["Math.exp()\tMath", "Math.exp($1)"],
+    ["Math.log()\tMath", "Math.log($1)"],
+    ["Math.ceil()\tMath", "Math.ceil($1)"],
+    ["Math.floor()\tMath", "Math.floor($1)"],
+    ["Math.min(value1, value2)\tMath", "Math.min(${1:value1}, ${2:value2})"],
+    ["Math.max(value1, value2)\tMath", "Math.max(${1:value1}, ${2:value2})"],
+    ["Math.pow(base, exponent)\tMath", "Math.pow(${1:base}, ${2:exponent})"],
+    ["Math.random()\tMath", "Math.random()"],
+    ["Math.round()\tMath", "Math.round($1)"],
+    ["Math.sqrt()\tMath", "Math.sqrt($1)"],
+    ["Math.E\tMath", "Math.E"],
+    ["Math.LN2\tMath", "Math.LN2"],
+    ["Math.LN10\tMath", "Math.LN10"],
+    ["Math.LOG2E\tMath", "Math.LOG2E"],
+    ["Math.LOG10E\tMath", "Math.LOG10E"],
+    ["Math.SQRT1_2\tMath", "Math.SQRT1_2"],
+    ["Math.SQRT2\tMath", "Math.SQRT2"]
+  ]
+}

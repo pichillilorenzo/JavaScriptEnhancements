@@ -1,0 +1,18 @@
+{
+	"scope": "source.js",
+
+	"completions":
+	[
+		["description-event.bubbles", "/*\n\tDescription:\n\tIndicates whether the given event bubbles up through the DOM or not.\n\n\tSyntax:\n\tevent.bubbles\n*/"],
+		["description-event.cancelable", "/*\n\tDescription:\n\tIndicates whether the event is cancelable or not.\n\n\tSyntax:\n\tbool = event.cancelable\n*/"],
+		["description-event.currentTarget", "/*\n\tDescription:\n\tIdentifies the current target for the event, as the event traverses the DOM. It always refers to the element the event handler has been attached to as opposed to event.target which identifies the element on which the event occurred.\n*/"],
+		["description-event.defaultPrevented", "/*\n\tDescription:\n\tReturns a boolean indicating whether or not event.preventDefault() was called on the event.\n\n\tSyntax:\n\tbool = event.defaultPrevented\n*/"],
+		["description-event.eventPhase", "/*\n\tDescription:\n\tIndicates which phase of the event flow is currently being evaluated.\n\n\tSyntax:\n\tvar phase = event.eventPhase;\n*/"],
+		["description-event.target", "/*\n\tDescription:\n\tThis property of event objects is the object the event was dispatched on. It is different than event.currentTarget when the event handler is called in bubbling or capturing phase of the event.\n\n\tSyntax:\n\tevent.target\n*/"],
+		["description-event.timeStamp", "/*\n\tDescription:\n\tReturns the time (in milliseconds since the epoch) at which the event was created.\n\n\tSyntax:\n\tevent.timeStamp\n*/"],
+		["description-event.type", "/*\n\tDescription:\n\tReturns a string containing the type of event.\n\n\tSyntax:\n\tevent.type\n*/"],
+		["description-event.preventDefault()", "/*\n\tDescription:\n\tCancels the event if it is cancelable, without stopping further propagation of the event.\n\n\tSyntax:\n\tevent.preventDefault();\n*/"],
+		["description-event.stopImmediatePropagation()", "/*\n\tDescription:\n\tPrevents other listeners of the same event to be called.\n\n\tSyntax:\n\tevent.stopImmediatePropagation();\n*/"],
+		["description-event.stopPropagation()", "/*\n\tDescription:\n\tPrevents further propagation of the current event.\n\n\tSyntax:\n\tevent.stopPropagation();\n*/"]
+	]
+}

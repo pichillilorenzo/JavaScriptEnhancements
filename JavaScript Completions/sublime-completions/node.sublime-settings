@@ -1,0 +1,37 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["baseURI\tNode", "baseURI"],
+    ["childNodes\tNode", "childNodes"],
+    ["firstChild\tNode", "firstChild"],
+    ["lastChild\tNode", "lastChild"],
+    ["localName\tNode", "localName"],
+    ["namespaceURI\tNode", "namespaceURI"],
+    ["nextSibling\tNode", "nextSibling"],
+    ["nodeName\tNode", "nodeName"],
+    ["nodeType\tNode", "nodeType"],
+    ["nodeValue\tNode", "nodeValue"],
+    ["ownerDocument\tNode", "ownerDocument"],
+    ["parentElement\tNode", "parentElement"],
+    ["parentNode\tNode", "parentNode"],
+    ["prefix\tNode", "prefix"],
+    ["previousSibling\tNode", "previousSibling"],
+    ["textContent\tNode", "textContent"],
+    ["appendChild(aChild)\tNode", "appendChild(${1:aChild})"],
+    ["cloneNode(deep)\tNode", "cloneNode(${1:deep})"],
+    ["compareDocumentPosition(otherNode)\tNode", "compareDocumentPosition(${1:otherNode})"],
+    ["contains(otherNode)\tNode", "contains(${1:otherNode})"],
+    ["hasAttributes()\tNode", "hasAttributes()"],
+    ["hasChildNodes()\tNode", "hasChildNodes()"],
+    ["insertBefore(newElement, referenceElement)\tNode", "insertBefore(${1:newElement}, ${2:referenceElement})"],
+    ["isDefaultNamespace(namespaceURI)\tNode", "isDefaultNamespace(${1:namespaceURI})"],
+    ["isEqualNode(arg)\tNode", "isEqualNode(${1:arg})"],
+    ["lookupNamespaceURI()\tNode", "lookupNamespaceURI()"],
+    ["lookupPrefix()\tNode", "lookupPrefix()"],
+    ["normalize()\tNode", "normalize()"],
+    ["removeChild(child)\tNode", "removeChild(${1:child})"],
+    ["replaceChild(newChild, oldChild)\tNode", "replaceChild(${1:newChild}, ${2:oldChild})"]
+  ]
+}

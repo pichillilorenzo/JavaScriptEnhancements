@@ -1,0 +1,40 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["new Object()\tObject", "new Object()"],
+    ["this\tObject", "this"],
+    ["length\tObject", "length"],
+    ["delete(Object)\tObject", "delete(${1:Object})"],
+    ["in(Object)\tObject", "in(${1:Object})"],
+    ["instanceof(Object)\tObject", "instanceof(${1:Object})"],
+    ["typeof(Object)\tObject", "typeof(${1:Object})"],
+    ["String(Object)\tObject", "String(${1:Object})"],
+    ["Number(Object)\tObject", "Number(${1:Object})"],
+    ["hasOwnProperty(property)\tObject", "hasOwnProperty(${1:property})"],
+    ["getOwnPropertyNames(Object)\tObject", "getOwnPropertyNames(${1:Object})"],
+    ["getOwnPropertyDescriptor(Object, prop)\tObject", "getOwnPropertyDescriptor(${1:Object}, ${2:prop})"],
+    ["getOwnPropertySymbols(Object)\tObject", "getOwnPropertySymbols(${1:Object})"],
+    ["getPrototypeOf(Object)\tObject", "getPrototypeOf(${1:Object})"],
+    ["keys(Object)\tObject", "keys(${1:Object})"],
+    ["create(proto)\tObject", "create(${1:proto})"],
+    ["defineProperty(Object, prop, descriptor)\tObject", "defineProperty(${1:Object}, ${2:prop}, ${3:descriptor})"],
+    ["defineProperties(Object, props)\tObject", "defineProperties(${1:Object}, ${2:props})"],
+    ["propertyIsEnumerable(prop)\tObject", "propertyIsEnumerable(${1:prop})"],
+    ["assign(target, sources)\tObject", "assign(${1:target}, ${2:sources})"],
+    ["freeze(Object)\tObject", "freeze(${1:Object})"],
+    ["is(value1, value2);\tObject", "is(${1:value1}, ${2:value2});"],
+    ["isExtensible(Object)\tObject", "isExtensible(${1:Object})"],
+    ["isFrozen(Object)\tObject", "isFrozen(${1:Object})"],
+    ["isSealed(Object)\tObject", "isSealed(${1:Object})"],
+    ["preventExtensions(Object)\tObject", "preventExtensions(${1:Object})"],
+    ["seal(Object)\tObject", "seal(${1:Object})"],
+    ["setPrototypeOf(Object, prototype)\tObject", "setPrototypeOf(${1:Object}, ${2:prototype})"],
+    ["toLocaleString()\tObject", "toLocaleString()"],
+    ["toSource()\tObject", "toSource()"],
+    ["toString()\tObject", "toString()"],
+    ["isPrototypeOf(Object)\tObject", "isPrototypeOf(${1:Object})"],
+    ["valueOf()\tObject", "valueOf()"]
+  ]
+}

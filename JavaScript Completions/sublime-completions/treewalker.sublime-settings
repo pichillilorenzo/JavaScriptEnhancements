@@ -1,0 +1,18 @@
+{
+  "scope": "source.js",
+
+  "completions":
+  [
+    ["currentNode\tTreeWalker", "currentNode"],
+    ["filter\tTreeWalker", "filter"],
+    ["root\tTreeWalker", "root"],
+    ["whatToShow\tTreeWalker", "whatToShow"],
+    ["firstChild()\tTreeWalker", "firstChild()"],
+    ["lastChild()\tTreeWalker", "lastChild()"],
+    ["nextNode()\tTreeWalker", "nextNode()"],
+    ["nextSibling()\tTreeWalker", "nextSibling()"],
+    ["parentNode()\tTreeWalker", "parentNode()"],
+    ["previousNode()\tTreeWalker", "previousNode()"],
+    ["previousSibling()\tTreeWalker", "previousSibling()"]
+  ]
+}
