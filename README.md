@@ -16,6 +16,8 @@ Example:
 
 <code>description-Name_of_function/property/method</code> shows to you the explanation of the function/property/method and its syntax.
 
+Information about the description of function/property/method has been taken on the site https://developer.mozilla.org
+
 <h3>ENABLE or DISABLE completions</h3>
 
 Now you can also ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions and set your settings!
@@ -103,7 +105,5 @@ Default settings are:
     }
 }
 ```
-
-Information about the description of function/property/method has been taken on the site https://developer.mozilla.org
 
 <i>MIT License</i>
