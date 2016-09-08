@@ -10,9 +10,11 @@ In the next updates I will add the newest APIs of HTML5
 
 To try it, just write.
 
-Example:
+Examples:
 
-<img src="http://i57.tinypic.com/5v65ia.gif" alt="example of JavaScript Completions"/>
+<img src="https://media.giphy.com/media/l0MYypWg9s9exQ0xi/giphy.gif" alt="example #1 of JavaScript Completions"/>
+
+<img src="https://media.giphy.com/media/d31wQpJ2iCyGtS0M/giphy.gif" alt="example #2 of JavaScript Completions"/>
 
 <code>description-Name_of_function/property/method</code> shows to you the explanation of the function/property/method and its syntax.
 
