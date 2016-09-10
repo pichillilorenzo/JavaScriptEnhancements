@@ -22,6 +22,8 @@ Examples:
 <code>description-Name_of_function/property/method</code> shows to you the explanation of the function/property/method and its syntax.
 
 Information about the description of function/property/method has been taken on the site https://developer.mozilla.org
+Information about the description of jQuery's function/property/method has been taken on the official site. 
+Information about the description of NativeScript's function/property/method has been taken on the official site. 
 
 <h3>ENABLE or DISABLE completions</h3>
 
