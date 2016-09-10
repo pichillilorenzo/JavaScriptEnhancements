@@ -3,8 +3,8 @@
 
   "completions":
   [
+    ["removeEventListener(type, listener)\tEventTarget", "removeEventListener(${1:type}, ${2:listener})"],
     ["addEventListener(type, listener)\tEventTarget", "addEventListener(${1:type}, ${2:listener})"],
-    ["dispatchEvent(event)\tEventTarget", "dispatchEvent(${1:event})"],
-    ["removeEventListener(type, listener)\tEventTarget", "removeEventListener(${1:type}, ${2:listener})"]
+    ["dispatchEvent(event)\tEventTarget", "dispatchEvent(${1:event})"]
   ]
 }

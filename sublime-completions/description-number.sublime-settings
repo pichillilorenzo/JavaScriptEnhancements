@@ -3,17 +3,17 @@
 
   "completions":
   [
-    ["description-Number", "/*\n\tDescription:\n\tThe Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor.\n\n\tSyntax:\n\tnew Number(value);\n*/"],
-    ["description-Number.MAX_VALUE", "/*\n\tThe Number.MAX_VALUE property represents the maximum numeric value representable in JavaScript.\n*/"],
-    ["description-Number.MIN_VALUE", "/*\n\tThe Number.MIN_VALUE property represents the smallest positive numeric value representable in JavaScript.\n*/"],
-    ["description-Number.NaN", "/*\n\tThe Number.NaN property represents Not-A-Number. Equivalent of NaN.\n*/"],
-    ["description-Number.NEGATIVE_INFINITY", "/*\n\tThe Number.NEGATIVE_INFINITY property represents the negative Infinity value.\n*/"],
-    ["description-Number.POSITIVE_INFINITY", "/*\n\tThe Number.POSITIVE_INFINITY property represents the positive Infinity value.\n*/"],
-    ["description-Number.prototype.toExponential()", "/*\n\tDescription:\n\tThe toExponential() method returns a string representing the Number object in exponential notation\n\n\tSyntax:\n\tnumObj.toExponential(fractionDigits)\n*/"],
-    ["description-Number.prototype.toFixed()", "/*\n\tDescription:\n\tThe toFixed() method formats a number using fixed-point notation.\n\n\tSyntax:\n\tnumObj.toFixed(digits)\n*/"],
     ["description-Number.prototype.toLocaleString()", "/*\n\tDescription:\n\tThe toLocaleString() method returns a string with a language sensitive representation of this number.\n\n\tSyntax:\n\tnumObj.toLocaleString([locales [, options]])\n*/"],
+    ["description-Number", "/*\n\tDescription:\n\tThe Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor.\n\n\tSyntax:\n\tnew Number(value);\n*/"],
+    ["description-Number.prototype.toExponential()", "/*\n\tDescription:\n\tThe toExponential() method returns a string representing the Number object in exponential notation\n\n\tSyntax:\n\tnumObj.toExponential(fractionDigits)\n*/"],
     ["description-Number.prototype.toPrecision()", "/*\n\tDescription:\n\tThe toPrecision() method returns a string representing the Number object to the specified precision.\n\n\tSyntax:\n\tnumObj.toPrecision(precision)\n*/"],
     ["description-Number.prototype.toString()", "/*\n\tDescription:\n\tThe toString() method returns a string representing the specified Number object.\n\n\tSyntax:\n\tnumObj.toString(radix)\n*/"],
-    ["description-Number.prototype.valueOf()", "/*\n\tDescription:\n\tThe valueOf() method returns the primitive value of a Number object.\n\n\tSyntax:\n\tnumObj.valueOf()\n*/"]
+    ["description-Number.prototype.toFixed()", "/*\n\tDescription:\n\tThe toFixed() method formats a number using fixed-point notation.\n\n\tSyntax:\n\tnumObj.toFixed(digits)\n*/"],
+    ["description-Number.prototype.valueOf()", "/*\n\tDescription:\n\tThe valueOf() method returns the primitive value of a Number object.\n\n\tSyntax:\n\tnumObj.valueOf()\n*/"],
+    ["description-Number.MIN_VALUE", "/*\n\tThe Number.MIN_VALUE property represents the smallest positive numeric value representable in JavaScript.\n*/"],
+    ["description-Number.MAX_VALUE", "/*\n\tThe Number.MAX_VALUE property represents the maximum numeric value representable in JavaScript.\n*/"],
+    ["description-Number.POSITIVE_INFINITY", "/*\n\tThe Number.POSITIVE_INFINITY property represents the positive Infinity value.\n*/"],
+    ["description-Number.NEGATIVE_INFINITY", "/*\n\tThe Number.NEGATIVE_INFINITY property represents the negative Infinity value.\n*/"],
+    ["description-Number.NaN", "/*\n\tThe Number.NaN property represents Not-A-Number. Equivalent of NaN.\n*/"]
   ]
 }

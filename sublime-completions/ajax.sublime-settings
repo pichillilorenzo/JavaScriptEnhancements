@@ -3,25 +3,25 @@
 
   "completions":
   [
+    ["open(method, url, async, user, password)\tXMLHttpRequest", "open(${1:method}, ${2:url}, ${3:async}, ${4:user}, ${5:password})"],
+    ["setRequestHeader(header, value)\tXMLHttpRequest", "setRequestHeader(${1:header}, ${2:value})"],
+    ["overrideMimeType(mimetype)\tXMLHttpRequest", "overrideMimeType(${0:mimetype})"],
+    ["getResponseHeader(header)\tXMLHttpRequest", "getResponseHeader(${0:header})"],
+    ["getAllResponseHeaders()\tXMLHttpRequest", "getAllResponseHeaders()"],
     ["new XMLHttpRequest()\tXMLHttpRequest", "new XMLHttpRequest()"],
     ["onreadystatechange\tXMLHttpRequest", "onreadystatechange"],
-    ["readyState\tXMLHttpRequest", "readyState"],
-    ["response\tXMLHttpRequest", "response"],
-    ["responseText\tXMLHttpRequest", "responseText"],
-    ["responseType\tXMLHttpRequest", "responseType"],
-    ["responseXML\tXMLHttpRequest", "responseXML"],
-    ["status\tXMLHttpRequest", "status"],
-    ["statusText\tXMLHttpRequest", "statusText"],
-    ["timeout\tXMLHttpRequest", "timeout"],
-    ["ontimeout\tXMLHttpRequest", "ontimeout"],
-    ["upload\tXMLHttpRequest", "upload"],
     ["withCredentials\tXMLHttpRequest", "withCredentials"],
-    ["abort()\tXMLHttpRequest", "abort()"],
-    ["getAllResponseHeaders()\tXMLHttpRequest", "getAllResponseHeaders()"],
-    ["getResponseHeader(header)\tXMLHttpRequest", "getResponseHeader(${0:header})"],
-    ["open(method, url, async, user, password)\tXMLHttpRequest", "open(${1:method}, ${2:url}, ${3:async}, ${4:user}, ${5:password})"],
-    ["overrideMimeType(mimetype)\tXMLHttpRequest", "overrideMimeType(${0:mimetype})"],
     ["send(data)\tXMLHttpRequest", "send(${0:data})"],
-    ["setRequestHeader(header, value)\tXMLHttpRequest", "setRequestHeader(${1:header}, ${2:value})"]
+    ["responseType\tXMLHttpRequest", "responseType"],
+    ["responseText\tXMLHttpRequest", "responseText"],
+    ["responseXML\tXMLHttpRequest", "responseXML"],
+    ["readyState\tXMLHttpRequest", "readyState"],
+    ["statusText\tXMLHttpRequest", "statusText"],
+    ["ontimeout\tXMLHttpRequest", "ontimeout"],
+    ["response\tXMLHttpRequest", "response"],
+    ["timeout\tXMLHttpRequest", "timeout"],
+    ["abort()\tXMLHttpRequest", "abort()"],
+    ["upload\tXMLHttpRequest", "upload"],
+    ["status\tXMLHttpRequest", "status"]
   ]
 }

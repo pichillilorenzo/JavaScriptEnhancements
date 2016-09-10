@@ -3,17 +3,17 @@
 
   "completions":
   [
+    ["toExponential(fractionDigits)\tNumber", "toExponential(${1:fractionDigits})"],
+    ["toPrecision(precision)\tNumber", "toPrecision(${1:precision})"],
+    ["Number.NEGATIVE_INFINITY\tNumber", "Number.NEGATIVE_INFINITY"],
+    ["Number.POSITIVE_INFINITY\tNumber", "Number.POSITIVE_INFINITY"],
     ["new Number(value)\tNumber", "new Number(${1:value})"],
+    ["toFixed(digits)\tNumber", "toFixed(${1:digits})"],
+    ["toString(radix)\tNumber", "toString(${1:radix})"],
+    ["toLocaleString()\tNumber", "toLocaleString()"],
     ["Number.MAX_VALUE\tNumber", "Number.MAX_VALUE"],
     ["Number.MIN_VALUE\tNumber", "Number.MIN_VALUE"],
     ["Number.NaN\tNumber", "Number.NaN"],
-    ["Number.NEGATIVE_INFINITY\tNumber", "Number.NEGATIVE_INFINITY"],
-    ["Number.POSITIVE_INFINITY\tNumber", "Number.POSITIVE_INFINITY"],
-    ["toExponential(fractionDigits)\tNumber", "toExponential(${1:fractionDigits})"],
-    ["toFixed(digits)\tNumber", "toFixed(${1:digits})"],
-    ["toLocaleString()\tNumber", "toLocaleString()"],
-    ["toString(radix)\tNumber", "toString(${1:radix})"],
-    ["toPrecision(precision)\tNumber", "toPrecision(${1:precision})"],
-    ["valueOf()\tNumber", "valueOf()"]
+    ["valueOf()\tNumber", "valueOf()"],
   ]
 }

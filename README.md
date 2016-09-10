@@ -6,6 +6,9 @@ It helps you to write your scripts more quickly with hints and completions.
 
 In the next updates I will add the newest APIs of HTML5
 
+<strong>jQuery</strong> and <strong>NativeScript</strong> completions added! They are disabled by default!
+You can enable them on Preferences -> Package Settings -> JavaScript Completions and here you can set your settings.
+
 <h2>Usage</h2>
 
 To try it, just write.
@@ -104,6 +107,12 @@ Default settings are:
 
         "object": true,
         "description-object": true,
+
+        "nativescript": false,
+        "description-nativescript": false,
+
+        "jquery": false,
+        "description-jquery": false,
     }
 }
 ```

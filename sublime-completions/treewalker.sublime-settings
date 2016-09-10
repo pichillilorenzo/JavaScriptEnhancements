@@ -3,16 +3,16 @@
 
   "completions":
   [
-    ["currentNode\tTreeWalker", "currentNode"],
-    ["filter\tTreeWalker", "filter"],
-    ["root\tTreeWalker", "root"],
-    ["whatToShow\tTreeWalker", "whatToShow"],
-    ["firstChild()\tTreeWalker", "firstChild()"],
-    ["lastChild()\tTreeWalker", "lastChild()"],
-    ["nextNode()\tTreeWalker", "nextNode()"],
+    ["previousSibling()\tTreeWalker", "previousSibling()"],
+    ["previousNode()\tTreeWalker", "previousNode()"],
     ["nextSibling()\tTreeWalker", "nextSibling()"],
     ["parentNode()\tTreeWalker", "parentNode()"],
-    ["previousNode()\tTreeWalker", "previousNode()"],
-    ["previousSibling()\tTreeWalker", "previousSibling()"]
+    ["firstChild()\tTreeWalker", "firstChild()"],
+    ["lastChild()\tTreeWalker", "lastChild()"],
+    ["currentNode\tTreeWalker", "currentNode"],
+    ["nextNode()\tTreeWalker", "nextNode()"],
+    ["whatToShow\tTreeWalker", "whatToShow"],
+    ["filter\tTreeWalker", "filter"],
+    ["root\tTreeWalker", "root"],
   ]
 }

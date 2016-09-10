@@ -1,3 +1,17 @@
+JavaScript Completions Package
+===============================
+
+How To USE
+==========
+
+You can ENABLE or DISABLE completions! 
+
+Just go to Preferences -> Package Settings -> JavaScript Completions and set your settings!
+
+jQuery and NativeScript completions are disabled by default!
+
+Default settings are:
+
 {
     // --------------------
     // Setup

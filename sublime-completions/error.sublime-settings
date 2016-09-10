@@ -3,12 +3,12 @@
 
   "completions":
   [
-    ["new Error(message)\tError", "new Error(${1:message})"],
-    ["new EvalError(message)\tError", "new EvalError(${1:message})"],
-    ["new RangeError(message)\tError", "new RangeError(${1:message})"],
     ["new ReferenceError(message)\tError", "new ReferenceError(${1:message})"],
     ["new SyntaxError(message)\tError", "new SyntaxError(${1:message})"],
+    ["new RangeError(message)\tError", "new RangeError(${1:message})"],
+    ["new EvalError(message)\tError", "new EvalError(${1:message})"],
     ["new TypeError(message)\tError", "new TypeError(${1:message})"],
-    ["new URIError(message)\tError", "new URIError(${1:message})"]
+    ["new URIError(message)\tError", "new URIError(${1:message})"],
+    ["new Error(message)\tError", "new Error(${1:message})"]
   ]
 }
