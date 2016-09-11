@@ -13,6 +13,6 @@
     ["nextNode()\tTreeWalker", "nextNode()"],
     ["whatToShow\tTreeWalker", "whatToShow"],
     ["filter\tTreeWalker", "filter"],
-    ["root\tTreeWalker", "root"],
+    ["root\tTreeWalker", "root"]
   ]
 }
