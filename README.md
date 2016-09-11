@@ -114,7 +114,7 @@ Default settings are:
         "description-nativescript": false,
 
         "jquery": false,
-        "description-jquery": false,
+        "description-jquery": false
     }
 }
 ```
