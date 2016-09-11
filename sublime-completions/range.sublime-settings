@@ -26,6 +26,6 @@
     ["toString()\tRange", "toString()"],
     ["collapsed\tRange", "collapsed"],
     ["endOffset\tRange", "endOffset"],
-    ["detach()\tRange", "detach()"],
+    ["detach()\tRange", "detach()"]
   ]
 }
