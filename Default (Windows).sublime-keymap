@@ -1,0 +1,6 @@
+[
+  {
+    "keys": ["ctrl+super+c"],
+    "command": "find_description"
+  }
+]

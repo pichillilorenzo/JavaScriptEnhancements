@@ -97,3 +97,10 @@ Default settings are:
         "description-jquery": false
     }
 }
+
+"Show Description" Feature
+==========================
+
+Now you can check the description of function/property/method by selecting the word you want find and "right-click" of your mouse and click on "Find JavaScript Description" or, alternately, with "ctrl+super+c" from your keyboard!
+
+It will show a popup with the list of possible descriptions or, in some case, the direct description. 

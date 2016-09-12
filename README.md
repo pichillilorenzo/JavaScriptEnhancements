@@ -29,6 +29,16 @@ Information about the description of function/property/method has been taken on 
 Information about the description of jQuery's function/property/method has been taken on the official site. 
 Information about the description of NativeScript's function/property/method has been taken on the official site. 
 
+<h3>"Show Description" Feature</h3>
+
+Now you can check the description of function/property/method by selecting the word you want find and "right-click" of your mouse and click on "Find JavaScript Description" or, alternately, with "ctrl+super+c" from your keyboard!
+
+It will show a popup with the list of possible descriptions or, in some case, the direct description. 
+
+<img src="https://s22.postimg.io/xslsughdt/Schermata_2016_09_12_alle_02_53_20.png" alt="example #1 'Show Description' Feature"> 
+
+<img src="https://s22.postimg.io/jaolmgq2p/Schermata_2016_09_12_alle_02_58_27.png" alt="example #2 'Show Description' Feature"> 
+
 <h3>ENABLE or DISABLE completions</h3>
 
 Now you can also ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions and set your settings!
