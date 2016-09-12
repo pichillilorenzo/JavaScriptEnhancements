@@ -35,6 +35,6 @@
     ["toSource()\tObject", "toSource()"],
     ["valueOf()\tObject", "valueOf()"],
     ["length\tObject", "length"],
-    ["this\tObject", "this"],
+    ["this\tObject", "this"]
   ]
 }

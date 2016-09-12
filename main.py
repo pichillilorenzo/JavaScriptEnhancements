@@ -96,6 +96,9 @@ class find_descriptionCommand(sublime_plugin.TextCommand):
   global javascriptCompletions
   def run(self, edit):
 
+    if int(sublime.version()) < 3000:
+      sublime.message_dialog("This version of Sublime Text is not supported by this feature!\n\nMinimum System Requirements:\n - Sublime Text 3")
+
     global completions_link_html
     global prev_selected
     global maybe_is_one
