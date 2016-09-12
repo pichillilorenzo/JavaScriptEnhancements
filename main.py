@@ -1,6 +1,27 @@
 import sublime, sublime_plugin
 import string
 
+if int(sublime.version()) < 3000:
+  from HTMLParser import HTMLParser
+else:
+  from html.parser import HTMLParser
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.strict = False
+        self.convert_charrefs= True
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
 
 class JavaScriptCompletionsPackage():
   def init(self):
@@ -86,7 +107,7 @@ def find_descriptionclick(href, *is_single):
     <body>
     """+css+"""
     """ + ("<a href=\"back\">Back to the list</a>" if not is_single else "") + """
-      <div>"""+completion_content[2:-2].replace("\n", "<br>")+"""</div>
+      <div>"""+strip_tags(completion_content[2:-2]).replace("\n", "<br>")+"""</div>
     </body>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 600, 500, back_to_list_find_description)
 
 def back_to_list_find_description(action):
@@ -120,7 +141,7 @@ class find_descriptionCommand(sublime_plugin.TextCommand):
         if completions_link_html :
           view.show_popup("<body>"+css+"<div>"+completions_link_html+"</div></body>", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, max_width, max_height, find_descriptionclick)
         else :
-          view.show_popup("<body>No result found!</body>", sublime.COOPERATE_WITH_AUTO_COMPLETE)
+          view.show_popup("<body>No results found!</body>", sublime.COOPERATE_WITH_AUTO_COMPLETE)
       return 
 
     prev_selected = str_selected
@@ -142,10 +163,9 @@ class find_descriptionCommand(sublime_plugin.TextCommand):
             for completion in completions:
               completion_name = completion[0][12:].split("\t")
               tab_name = ""
-              tab_name_only = ""
               if len(completion_name) > 1:
-                tab_name = " | "+(completion_name[1] if len(completion_name[1]) < 35 else completion_name[1][:35]+" ...")
-              completion_name = completion_name[0].strip()
+                tab_name = " | "+(strip_tags(completion_name[1]) if len(completion_name[1]) < 50 else strip_tags(completion_name[1][:50])+" ...")
+              completion_name = strip_tags(completion_name[0].strip())
               if(completion_name.find(str_selected) >= 0):
                 href = API_Keyword+","+str(index_completion)
                 if len(completion_name.replace("()", "")) == len(str_selected) and maybe_is_one < 2 :
@@ -166,4 +186,4 @@ class find_descriptionCommand(sublime_plugin.TextCommand):
       if completions_link_html :
         view.show_popup("<body>"+css+"<div>"+completions_link_html+"</div></body>", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, max_width, max_height, find_descriptionclick)
       else :
-        view.show_popup("<body>No result found!</body>", sublime.COOPERATE_WITH_AUTO_COMPLETE)
+        view.show_popup("<body><p>No results found!</p></body>", sublime.COOPERATE_WITH_AUTO_COMPLETE)

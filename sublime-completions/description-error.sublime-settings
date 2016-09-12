@@ -3,12 +3,12 @@
 
   "completions":
   [
-    ["description-Error", "/*\n\tDescription:\n\tThe Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types.\n\n\tSyntax:\n\tnew Error([message[, fileName[,lineNumber]]])\n*/"],
-    ["description-RangeError", "/*\n\tDescription:\n\tThe RangeError object indicates an error when a value is not in the set or range of allowed values.\n\n\tSyntax:\n\tnew RangeError([message[, fileName[, lineNumber]]])\n*/"],
-    ["description-ReferenceError", "/*\n\tDescription:\n\tThe ReferenceError object represents an error when a non-existent variable is referenced.\n\n\tSyntax:\n\tnew ReferenceError([message[, fileName[, linenumber]]])\n*/"],
-    ["description-SyntaxError", "/*\n\tDescription:\n\tThe SyntaxError object represents an error when trying to interpret syntactically invalid code.\n\n\tSyntax:\n\tnew SyntaxError([message[, fileName[,lineNumber ]]])\n*/"],
-    ["description-URIError", "/*\n\tDescription:\n\tThe URIError object represents an error when a global URI handling function was used in a wrong way.\n\n\tSyntax:\n\tnew URIError([message[, fileName[,lineNumber]]])\n*/"],
-    ["description-TypeError", "/*\n\tDescription:\n\tThe TypeError object represents an error when a value is not of the expected type.\n\n\tSyntax:\n\tnew TypeError([message[, fileName[,lineNumber]]])\n*/"],
-    ["description-EvalError", "/*\n\tDescription:\n\tThe EvalError object indicates an error regarding the global eval() function.\n\n\tSyntax:\n\tnew EvalError([message[, fileName[,lineNumber]]])\n*/"]
+    ["description-Error\tError", "/*\n\tDescription:\n\tThe Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types.\n\n\tSyntax:\n\tnew Error([message[, fileName[,lineNumber]]])\n*/"],
+    ["description-RangeError\tRangeError", "/*\n\tDescription:\n\tThe RangeError object indicates an error when a value is not in the set or range of allowed values.\n\n\tSyntax:\n\tnew RangeError([message[, fileName[, lineNumber]]])\n*/"],
+    ["description-ReferenceError\tReferenceError", "/*\n\tDescription:\n\tThe ReferenceError object represents an error when a non-existent variable is referenced.\n\n\tSyntax:\n\tnew ReferenceError([message[, fileName[, linenumber]]])\n*/"],
+    ["description-SyntaxError\tSyntaxError", "/*\n\tDescription:\n\tThe SyntaxError object represents an error when trying to interpret syntactically invalid code.\n\n\tSyntax:\n\tnew SyntaxError([message[, fileName[,lineNumber ]]])\n*/"],
+    ["description-URIError\tURIError", "/*\n\tDescription:\n\tThe URIError object represents an error when a global URI handling function was used in a wrong way.\n\n\tSyntax:\n\tnew URIError([message[, fileName[,lineNumber]]])\n*/"],
+    ["description-TypeError\tTypeError", "/*\n\tDescription:\n\tThe TypeError object represents an error when a value is not of the expected type.\n\n\tSyntax:\n\tnew TypeError([message[, fileName[,lineNumber]]])\n*/"],
+    ["description-EvalError\tEvalError", "/*\n\tDescription:\n\tThe EvalError object indicates an error regarding the global eval() function.\n\n\tSyntax:\n\tnew EvalError([message[, fileName[,lineNumber]]])\n*/"]
   ]
 }

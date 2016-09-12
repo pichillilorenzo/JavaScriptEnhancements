@@ -9,6 +9,7 @@
     ["getResponseHeader(header)\tXMLHttpRequest", "getResponseHeader(${0:header})"],
     ["getAllResponseHeaders()\tXMLHttpRequest", "getAllResponseHeaders()"],
     ["new XMLHttpRequest()\tXMLHttpRequest", "new XMLHttpRequest()"],
+    ["XMLHttpRequest()\tXMLHttpRequest", "XMLHttpRequest()"],
     ["onreadystatechange\tXMLHttpRequest", "onreadystatechange"],
     ["withCredentials\tXMLHttpRequest", "withCredentials"],
     ["send(data)\tXMLHttpRequest", "send(${0:data})"],
