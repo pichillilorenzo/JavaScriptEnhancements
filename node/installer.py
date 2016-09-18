@@ -19,6 +19,8 @@ class DownloadNodeJS(object):
     self.animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Downloading: "+self.NODE_JS_BINARY_URL+" ")
     self.interval_animation = None
     self.thread = None
+    if not os.path.exists(node_variables.NODE_JS_BINARIES_FOLDER_PLATFORM):
+      os.makedirs(node_variables.NODE_JS_BINARIES_FOLDER_PLATFORM)
   def download(self):
     try :
       urllib.request.urlretrieve(self.NODE_JS_BINARY_URL, self.NODE_JS_BINARY_TARFILE_FULL_PATH)
