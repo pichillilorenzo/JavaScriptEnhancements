@@ -1,0 +1,57 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setCustomValidity( error: DOMString ): void\tHTMLOutputElement",
+			"setCustomValidity(${1:error: DOMString})"
+		],
+		[
+			"htmlFor: DOMSettableTokenList\tHTMLOutputElement",
+			"htmlFor"
+		],
+		[
+			"validationMessage: DOMString\tHTMLOutputElement",
+			"validationMessage"
+		],
+		[
+			"reportValidity(): boolean\tHTMLOutputElement",
+			"reportValidity()"
+		],
+		[
+			"checkValidity(): boolean\tHTMLOutputElement",
+			"checkValidity()"
+		],
+		[
+			"validity: ValidityState\tHTMLOutputElement",
+			"validity"
+		],
+		[
+			"defaultValue: DOMString\tHTMLOutputElement",
+			"defaultValue"
+		],
+		[
+			"form: HTMLFormElement\tHTMLOutputElement",
+			"form"
+		],
+		[
+			"willValidate: boolean\tHTMLOutputElement",
+			"willValidate"
+		],
+		[
+			"labels: NodeList\tHTMLOutputElement",
+			"labels"
+		],
+		[
+			"value: DOMString\tHTMLOutputElement",
+			"value"
+		],
+		[
+			"name: DOMString\tHTMLOutputElement",
+			"name"
+		],
+		[
+			"type: DOMString\tHTMLOutputElement",
+			"type"
+		]
+	]
+}

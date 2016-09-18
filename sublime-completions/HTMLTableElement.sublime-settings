@@ -1,0 +1,69 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"insertRow( index?: long ): HTMLElement\tHTMLTableElement",
+			"insertRow(${1:index?: long})"
+		],
+		[
+			"caption: HTMLTableCaptionElement\tHTMLTableElement",
+			"caption"
+		],
+		[
+			"deleteRow( index: long ): void\tHTMLTableElement",
+			"deleteRow(${1:index: long})"
+		],
+		[
+			"tFoot: HTMLTableSectionElement\tHTMLTableElement",
+			"tFoot"
+		],
+		[
+			"tHead: HTMLTableSectionElement\tHTMLTableElement",
+			"tHead"
+		],
+		[
+			"createCaption(): HTMLElement\tHTMLTableElement",
+			"createCaption()"
+		],
+		[
+			"createTFoot(): HTMLElement\tHTMLTableElement",
+			"createTFoot()"
+		],
+		[
+			"createTBody(): HTMLElement\tHTMLTableElement",
+			"createTBody()"
+		],
+		[
+			"createTHead(): HTMLElement\tHTMLTableElement",
+			"createTHead()"
+		],
+		[
+			"tBodies: HTMLCollection\tHTMLTableElement",
+			"tBodies"
+		],
+		[
+			"deleteCaption(): void\tHTMLTableElement",
+			"deleteCaption()"
+		],
+		[
+			"rows: HTMLCollection\tHTMLTableElement",
+			"rows"
+		],
+		[
+			"deleteTFoot(): void\tHTMLTableElement",
+			"deleteTFoot()"
+		],
+		[
+			"deleteTHead(): void\tHTMLTableElement",
+			"deleteTHead()"
+		],
+		[
+			"stopSorting(): void\tHTMLTableElement",
+			"stopSorting()"
+		],
+		[
+			"sortable: boolean\tHTMLTableElement",
+			"sortable"
+		]
+	]
+}

@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new ArrayBuffer( length: unsigned long ): ArrayBuffer\tArrayBuffer",
+			"new ArrayBuffer(${1:length: unsigned long})"
+		],
+		[
+			"ArrayBuffer( length: unsigned long ): ArrayBuffer\tArrayBuffer",
+			"ArrayBuffer(${1:length: unsigned long})"
+		],
+		[
+			"ArrayBuffer.isView( value: any ): static boolean\tArrayBuffer",
+			"ArrayBuffer.isView(${1:value: any})"
+		],
+		[
+			"slice( begin: long, end?: long ): ArrayBuffer\tArrayBuffer",
+			"slice(${1:begin: long}, ${2:end?: long})"
+		],
+		[
+			"isView( value: any ): static boolean\tArrayBuffer",
+			"isView(${1:value: any})"
+		],
+		[
+			"byteLength: unsigned long\tArrayBuffer",
+			"byteLength"
+		]
+	]
+}

@@ -1,0 +1,30 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-addColorStop()\tCanvasGradient",
+			{
+				"name": "addColorStop",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "offset",
+						"type": "double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "color",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The addColorStop(offset, color) method on the CanvasGradient interface adds a new stop to a gradient. If the offset is less than 0 or greater than 1 then an IndexSizeError exception must be thrown. If the color cannot be parsed as a CSS <color> value, then a SyntaxError exception must be thrown.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasGradient.html#addColorStop",
+				"full_description": "/*\n\n\tCanvasGradient\n\n\taddColorStop ( offset: double, color: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe addColorStop(offset, color) method on the CanvasGradient interface adds a new stop to a gradient. If the offset is less than 0 or greater than 1 then an IndexSizeError exception must be thrown. If the color cannot be parsed as a CSS <color> value, then a SyntaxError exception must be thrown.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasGradient.html#addColorStop\n\n*/"
+			}
+		]
+	]
+}

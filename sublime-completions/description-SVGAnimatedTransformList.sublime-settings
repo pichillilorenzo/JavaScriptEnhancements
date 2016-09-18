@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-animVal\tSVGAnimatedTransformList",
+			{
+				"name": "animVal",
+				"return_type": "SVGTransformList",
+				"description": "If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as baseVal.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedTransformList.html#animVal",
+				"full_description": "/*\n\n\tSVGAnimatedTransformList\n\n\tanimVal\n\n\tReturn Type:\n\tSVGTransformList\n\n\tDescription:\n\tIf the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as baseVal.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedTransformList.html#animVal\n\n*/"
+			}
+		],
+		[
+			"description-baseVal\tSVGAnimatedTransformList",
+			{
+				"name": "baseVal",
+				"return_type": "SVGTransformList",
+				"description": "The base value of the given attribute before applying any animations. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedTransformList.html#baseVal",
+				"full_description": "/*\n\n\tSVGAnimatedTransformList\n\n\tbaseVal\n\n\tReturn Type:\n\tSVGTransformList\n\n\tDescription:\n\tThe base value of the given attribute before applying any animations. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedTransformList.html#baseVal\n\n*/"
+			}
+		]
+	]
+}

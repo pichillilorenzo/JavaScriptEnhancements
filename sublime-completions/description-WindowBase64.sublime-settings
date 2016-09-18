@@ -1,0 +1,43 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-btoa()\tWindowBase64",
+			{
+				"name": "btoa",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "btoa",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The btoa() method must throw an InvalidCharacterError exception if the method's first argument contains any character whose code point is greater than U+00FF. Otherwise, the user agent must convert that argument to a sequence of octets whose nth octet is the eight-bit representation of the code point of the nth character of the argument, and then must apply the base64 algorithm to that sequence of octets, and return the result.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowBase64.html#btoa",
+				"full_description": "/*\n\n\tWindowBase64\n\n\tbtoa ( btoa: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe btoa() method must throw an InvalidCharacterError exception if the method's first argument contains any character whose code point is greater than U+00FF. Otherwise, the user agent must convert that argument to a sequence of octets whose nth octet is the eight-bit representation of the code point of the nth character of the argument, and then must apply the base64 algorithm to that sequence of octets, and return the result.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowBase64.html#btoa\n\n*/"
+			}
+		],
+		[
+			"description-atob()\tWindowBase64",
+			{
+				"name": "atob",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "atob",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-windowbase64-atob",
+				"full_description": "/*\n\n\tWindowBase64\n\n\tatob ( atob: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-windowbase64-atob\n\n*/"
+			}
+		]
+	]
+}

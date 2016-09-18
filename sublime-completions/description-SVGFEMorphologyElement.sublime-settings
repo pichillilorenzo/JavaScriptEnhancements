@@ -1,0 +1,137 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-height\tSVGFEMorphologyElement",
+			{
+				"name": "height",
+				"return_type": "SVGAnimatedLength",
+				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#height",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#height\n\n*/"
+			}
+		],
+		[
+			"description-width\tSVGFEMorphologyElement",
+			{
+				"name": "width",
+				"return_type": "SVGAnimatedLength",
+				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#width",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#width\n\n*/"
+			}
+		],
+		[
+			"description-y\tSVGFEMorphologyElement",
+			{
+				"name": "y",
+				"return_type": "SVGAnimatedLength",
+				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#y",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#y\n\n*/"
+			}
+		],
+		[
+			"description-x\tSVGFEMorphologyElement",
+			{
+				"name": "x",
+				"return_type": "SVGAnimatedLength",
+				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#x",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#x\n\n*/"
+			}
+		],
+		[
+			"description-SVG_MORPHOLOGY_OPERATOR_UNKNOWN\tSVGFEMorphologyElement",
+			{
+				"name": "SVG_MORPHOLOGY_OPERATOR_UNKNOWN",
+				"return_type": "const unsigned short",
+				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#SVG_MORPHOLOGY_OPERATOR_UNKNOWN",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tSVG_MORPHOLOGY_OPERATOR_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#SVG_MORPHOLOGY_OPERATOR_UNKNOWN\n\n*/"
+			}
+		],
+		[
+			"description-operator\tSVGFEMorphologyElement",
+			{
+				"name": "operator",
+				"return_type": "SVGAnimatedEnumeration",
+				"description": "Corresponds to attribute ‘operator’ on the given ‘feComposite’ element. Takes one of the SVG_FECOMPOSITE_OPERATOR_* constants defined on this interface.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#operator",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\toperator\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘operator’ on the given ‘feComposite’ element. Takes one of the SVG_FECOMPOSITE_OPERATOR_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#operator\n\n*/"
+			}
+		],
+		[
+			"description-SVG_MORPHOLOGY_OPERATOR_DILATE\tSVGFEMorphologyElement",
+			{
+				"name": "SVG_MORPHOLOGY_OPERATOR_DILATE",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'dilate'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#SVG_MORPHOLOGY_OPERATOR_DILATE",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tSVG_MORPHOLOGY_OPERATOR_DILATE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'dilate'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#SVG_MORPHOLOGY_OPERATOR_DILATE\n\n*/"
+			}
+		],
+		[
+			"description-SVG_MORPHOLOGY_OPERATOR_ERODE\tSVGFEMorphologyElement",
+			{
+				"name": "SVG_MORPHOLOGY_OPERATOR_ERODE",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'erode'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#SVG_MORPHOLOGY_OPERATOR_ERODE",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tSVG_MORPHOLOGY_OPERATOR_ERODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'erode'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#SVG_MORPHOLOGY_OPERATOR_ERODE\n\n*/"
+			}
+		],
+		[
+			"description-radiusY\tSVGFEMorphologyElement",
+			{
+				"name": "radiusY",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘radius’ on the given ‘feMorphology’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#radiusY",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tradiusY\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘radius’ on the given ‘feMorphology’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#radiusY\n\n*/"
+			}
+		],
+		[
+			"description-radiusX\tSVGFEMorphologyElement",
+			{
+				"name": "radiusX",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘radius’ on the given ‘feMorphology’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#radiusX",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tradiusX\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘radius’ on the given ‘feMorphology’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#radiusX\n\n*/"
+			}
+		],
+		[
+			"description-result\tSVGFEMorphologyElement",
+			{
+				"name": "result",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#result",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#result\n\n*/"
+			}
+		],
+		[
+			"description-in1\tSVGFEMorphologyElement",
+			{
+				"name": "in1",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#in1",
+				"full_description": "/*\n\n\tSVGFEMorphologyElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEMorphologyElement.html#in1\n\n*/"
+			}
+		]
+	]
+}

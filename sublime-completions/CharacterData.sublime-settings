@@ -1,0 +1,57 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"replaceData( offset: unsigned long, count: unsigned long, data: DOMString ): void\tCharacterData",
+			"replaceData(${1:offset: unsigned long}, ${2:count: unsigned long}, ${3:data: DOMString})"
+		],
+		[
+			"substringData( offset: unsigned long, count: unsigned long ): DOMString\tCharacterData",
+			"substringData(${1:offset: unsigned long}, ${2:count: unsigned long})"
+		],
+		[
+			"deleteData( offset: unsigned long, count: unsigned long ): void\tCharacterData",
+			"deleteData(${1:offset: unsigned long}, ${2:count: unsigned long})"
+		],
+		[
+			"insertData( offset: unsigned long, data: DOMString ): void\tCharacterData",
+			"insertData(${1:offset: unsigned long}, ${2:data: DOMString})"
+		],
+		[
+			"replace( nodes...: Node|DOMString ): void\tCharacterData",
+			"replace(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"before( nodes...: Node|DOMString ): void\tCharacterData",
+			"before(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"after( nodes...: Node|DOMString ): void\tCharacterData",
+			"after(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"appendData( data: DOMString ): void\tCharacterData",
+			"appendData(${1:data: DOMString})"
+		],
+		[
+			"previousElementSibling: Element\tCharacterData",
+			"previousElementSibling"
+		],
+		[
+			"nextElementSibling: Element\tCharacterData",
+			"nextElementSibling"
+		],
+		[
+			"length: unsigned long\tCharacterData",
+			"length"
+		],
+		[
+			"data: DOMString\tCharacterData",
+			"data"
+		],
+		[
+			"remove(): void\tCharacterData",
+			"remove()"
+		]
+	]
+}

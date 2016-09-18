@@ -1,0 +1,41 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setStdDeviation( stdDeviationX: float, stdDeviationY: float ): void\tSVGFEGaussianBlurElement",
+			"setStdDeviation(${1:stdDeviationX: float}, ${2:stdDeviationY: float})"
+		],
+		[
+			"stdDeviationX: SVGAnimatedNumber\tSVGFEGaussianBlurElement",
+			"stdDeviationX"
+		],
+		[
+			"stdDeviationY: SVGAnimatedNumber\tSVGFEGaussianBlurElement",
+			"stdDeviationY"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFEGaussianBlurElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEGaussianBlurElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEGaussianBlurElement",
+			"width"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFEGaussianBlurElement",
+			"in1"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEGaussianBlurElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEGaussianBlurElement",
+			"y"
+		]
+	]
+}

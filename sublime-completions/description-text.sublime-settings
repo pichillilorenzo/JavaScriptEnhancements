@@ -1,12 +1,54 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["description-Text.splitText()\tText", "/*\n\tDescription:\n\tThe Text.splitText() method breaks the Textnode into two nodes at the specified offset, keeping both nodes in the tree as siblings. After the split, the current node contains all the content up to the specified offset point, and a newly created node of the same type contains the remaining text.  The newly created node is returned to the caller.  If the original node had a parent, the new node is inserted as the next sibling of the original node.  If the offset is equal to the length of the original node, the newly created node has no data.\n\n\tSyntax:\n\treplacementNode = textnode.splitText(offset)\n*/"],
-    ["description-Text()\tText", "/*\n\tDescription:\n\tThe Text() constructor returns a newly created Text object with the optional DOMString given in parameter as its textual content.\n\n\tSyntax:\n\ttext1 = new Text(); // Create an empty text node\n\ttext2 = new Text(\"This is a text node\");\n*/"],
-    ["description-Text.wholeText\tText", "/*\n\tDescription:\n\tThe Text.wholeText read-only property returns all text of all Text nodes logically adjacent to the node. The text is concatenated in document order.  This allows to specify any text node and obtain all adjacent text as a single string.\n\n\tSyntax:\n\tstr = textnode.wholeText;\n*/"],
-    ["description-splitText()\tText", "/*\n\tDescription:\n\tThe Text.splitText() method breaks the Textnode into two nodes at the specified offset, keeping both nodes in the tree as siblings. After the split, the current node contains all the content up to the specified offset point, and a newly created node of the same type contains the remaining text.  The newly created node is returned to the caller.  If the original node had a parent, the new node is inserted as the next sibling of the original node.  If the offset is equal to the length of the original node, the newly created node has no data.\n\n\tSyntax:\n\treplacementNode = textnode.splitText(offset)\n*/"],
-    ["description-wholeText\tText", "/*\n\tDescription:\n\tThe Text.wholeText read-only property returns all text of all Text nodes logically adjacent to the node. The text is concatenated in document order.  This allows to specify any text node and obtain all adjacent text as a single string.\n\n\tSyntax:\n\tstr = textnode.wholeText;\n*/"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-wholeText\tText",
+			{
+				"name": "wholeText",
+				"return_type": "DOMString",
+				"description": "The wholeText attribute must return a concatenation of the data of the contiguous Text nodes of the context object, in tree order.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Text.html#wholeText",
+				"full_description": "/*\n\n\tText\n\n\twholeText\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe wholeText attribute must return a concatenation of the data of the contiguous Text nodes of the context object, in tree order.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Text.html#wholeText\n\n*/"
+			}
+		],
+		[
+			"description-splitText()\tText",
+			{
+				"name": "splitText",
+				"return_type": "Text",
+				"parameters": [
+					{
+						"name": "offset",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The splitText(offset) method must split the context object with offset offset.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Text.html#splitText",
+				"full_description": "/*\n\n\tText\n\n\tsplitText ( offset: unsigned long )\n\n\tReturn Type:\n\tText\n\n\tDescription:\n\tThe splitText(offset) method must split the context object with offset offset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Text.html#splitText\n\n*/"
+			}
+		],
+		[
+			"description-Text()\tText",
+			{
+				"name": "Text",
+				"return_type": "Text",
+				"parameters": [
+					{
+						"name": "data",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/DOM%20-%20Text.html#Text",
+				"full_description": "/*\n\n\tText\n\n\tText ( data?: DOMString )\n\n\tReturn Type:\n\tText\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Text.html#Text\n\n*/"
+			}
+		]
+	]
 }

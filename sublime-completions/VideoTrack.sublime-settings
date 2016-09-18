@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"language: DOMString\tVideoTrack",
+			"language"
+		],
+		[
+			"selected: boolean\tVideoTrack",
+			"selected"
+		],
+		[
+			"label: DOMString\tVideoTrack",
+			"label"
+		],
+		[
+			"kind: DOMString\tVideoTrack",
+			"kind"
+		],
+		[
+			"id: DOMString\tVideoTrack",
+			"id"
+		]
+	]
+}

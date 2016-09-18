@@ -1,37 +1,181 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["insertBefore(newElement, referenceElement)\tNode", "insertBefore(${1:newElement}, ${2:referenceElement})"],
-    ["compareDocumentPosition(otherNode)\tNode", "compareDocumentPosition(${1:otherNode})"],
-    ["replaceChild(newChild, oldChild)\tNode", "replaceChild(${1:newChild}, ${2:oldChild})"],
-    ["isDefaultNamespace(namespaceURI)\tNode", "isDefaultNamespace(${1:namespaceURI})"],
-    ["contains(otherNode)\tNode", "contains(${1:otherNode})"],
-    ["appendChild(aChild)\tNode", "appendChild(${1:aChild})"],
-    ["removeChild(child)\tNode", "removeChild(${1:child})"],
-    ["lookupNamespaceURI()\tNode", "lookupNamespaceURI()"],
-    ["isEqualNode(arg)\tNode", "isEqualNode(${1:arg})"],
-    ["cloneNode(deep)\tNode", "cloneNode(${1:deep})"],
-    ["previousSibling\tNode", "previousSibling"],
-    ["hasChildNodes()\tNode", "hasChildNodes()"],
-    ["hasAttributes()\tNode", "hasAttributes()"],
-    ["lookupPrefix()\tNode", "lookupPrefix()"],
-    ["ownerDocument\tNode", "ownerDocument"],
-    ["parentElement\tNode", "parentElement"],
-    ["namespaceURI\tNode", "namespaceURI"],
-    ["nextSibling\tNode", "nextSibling"],
-    ["textContent\tNode", "textContent"],
-    ["normalize()\tNode", "normalize()"],
-    ["childNodes\tNode", "childNodes"],
-    ["firstChild\tNode", "firstChild"],
-    ["parentNode\tNode", "parentNode"],
-    ["lastChild\tNode", "lastChild"],
-    ["localName\tNode", "localName"],
-    ["nodeValue\tNode", "nodeValue"],
-    ["nodeName\tNode", "nodeName"],
-    ["nodeType\tNode", "nodeType"],
-    ["baseURI\tNode", "baseURI"],
-    ["prefix\tNode", "prefix"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: const unsigned short\tNode",
+			"DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC"
+		],
+		[
+			"compareDocumentPosition( other: Node ): unsigned short\tNode",
+			"compareDocumentPosition(${1:other: Node})"
+		],
+		[
+			"DOCUMENT_POSITION_DISCONNECTED: const unsigned short\tNode",
+			"DOCUMENT_POSITION_DISCONNECTED"
+		],
+		[
+			"DOCUMENT_POSITION_CONTAINED_BY: const unsigned short\tNode",
+			"DOCUMENT_POSITION_CONTAINED_BY"
+		],
+		[
+			"isDefaultNamespace( namespace: DOMString ): boolean\tNode",
+			"isDefaultNamespace(${1:namespace: DOMString})"
+		],
+		[
+			"lookupNamespaceURI( prefix: DOMString ): DOMString\tNode",
+			"lookupNamespaceURI(${1:prefix: DOMString})"
+		],
+		[
+			"PROCESSING_INSTRUCTION_NODE: const unsigned short\tNode",
+			"PROCESSING_INSTRUCTION_NODE"
+		],
+		[
+			"DOCUMENT_POSITION_FOLLOWING: const unsigned short\tNode",
+			"DOCUMENT_POSITION_FOLLOWING"
+		],
+		[
+			"DOCUMENT_POSITION_PRECEDING: const unsigned short\tNode",
+			"DOCUMENT_POSITION_PRECEDING"
+		],
+		[
+			"DOCUMENT_POSITION_CONTAINS: const unsigned short\tNode",
+			"DOCUMENT_POSITION_CONTAINS"
+		],
+		[
+			"lookupPrefix( namespace: DOMString ): DOMString\tNode",
+			"lookupPrefix(${1:namespace: DOMString})"
+		],
+		[
+			"replaceChild( node: Node, child: Node ): Node\tNode",
+			"replaceChild(${1:node: Node}, ${2:child: Node})"
+		],
+		[
+			"insertBefore( node: Node, child: Node ): Node\tNode",
+			"insertBefore(${1:node: Node}, ${2:child: Node})"
+		],
+		[
+			"DOCUMENT_FRAGMENT_NODE: const unsigned short\tNode",
+			"DOCUMENT_FRAGMENT_NODE"
+		],
+		[
+			"ENTITY_REFERENCE_NODE: const unsigned short\tNode",
+			"ENTITY_REFERENCE_NODE"
+		],
+		[
+			"DOCUMENT_TYPE_NODE: const unsigned short\tNode",
+			"DOCUMENT_TYPE_NODE"
+		],
+		[
+			"CDATA_SECTION_NODE: const unsigned short\tNode",
+			"CDATA_SECTION_NODE"
+		],
+		[
+			"ATTRIBUTE_NODE: const unsigned short\tNode",
+			"ATTRIBUTE_NODE"
+		],
+		[
+			"NOTATION_NODE: const unsigned short\tNode",
+			"NOTATION_NODE"
+		],
+		[
+			"DOCUMENT_NODE: const unsigned short\tNode",
+			"DOCUMENT_NODE"
+		],
+		[
+			"isEqualNode( node: Node ): boolean\tNode",
+			"isEqualNode(${1:node: Node})"
+		],
+		[
+			"COMMENT_NODE: const unsigned short\tNode",
+			"COMMENT_NODE"
+		],
+		[
+			"ELEMENT_NODE: const unsigned short\tNode",
+			"ELEMENT_NODE"
+		],
+		[
+			"ENTITY_NODE: const unsigned short\tNode",
+			"ENTITY_NODE"
+		],
+		[
+			"cloneNode( deep?: boolean ): Node\tNode",
+			"cloneNode(${1:deep?: boolean})"
+		],
+		[
+			"contains( other: Node ): boolean\tNode",
+			"contains(${1:other: Node})"
+		],
+		[
+			"removeChild( child: Node ): Node\tNode",
+			"removeChild(${1:child: Node})"
+		],
+		[
+			"TEXT_NODE: const unsigned short\tNode",
+			"TEXT_NODE"
+		],
+		[
+			"appendChild( node: Node ): Node\tNode",
+			"appendChild(${1:node: Node})"
+		],
+		[
+			"hasChildNodes(): boolean\tNode",
+			"hasChildNodes()"
+		],
+		[
+			"nodeType: unsigned short\tNode",
+			"nodeType"
+		],
+		[
+			"ownerDocument: Document\tNode",
+			"ownerDocument"
+		],
+		[
+			"textContent: DOMString\tNode",
+			"textContent"
+		],
+		[
+			"parentElement: Element\tNode",
+			"parentElement"
+		],
+		[
+			"previousSibling: Node\tNode",
+			"previousSibling"
+		],
+		[
+			"childNodes: NodeList\tNode",
+			"childNodes"
+		],
+		[
+			"nodeValue: DOMString\tNode",
+			"nodeValue"
+		],
+		[
+			"nodeName: DOMString\tNode",
+			"nodeName"
+		],
+		[
+			"baseURI: DOMString\tNode",
+			"baseURI"
+		],
+		[
+			"normalize(): void\tNode",
+			"normalize()"
+		],
+		[
+			"nextSibling: Node\tNode",
+			"nextSibling"
+		],
+		[
+			"parentNode: Node\tNode",
+			"parentNode"
+		],
+		[
+			"firstChild: Node\tNode",
+			"firstChild"
+		],
+		[
+			"lastChild: Node\tNode",
+			"lastChild"
+		]
+	]
 }

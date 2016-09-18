@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-target\tHTMLBaseElement",
+			{
+				"name": "target",
+				"return_type": "DOMString",
+				"description": "The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLBaseElement.html#target",
+				"full_description": "/*\n\n\tHTMLBaseElement\n\n\ttarget\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLBaseElement.html#target\n\n*/"
+			}
+		],
+		[
+			"description-href\tHTMLBaseElement",
+			{
+				"name": "href",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#dom-base-href",
+				"full_description": "/*\n\n\tHTMLBaseElement\n\n\thref\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#dom-base-href\n\n*/"
+			}
+		]
+	]
+}

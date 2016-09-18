@@ -1,0 +1,54 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-deleteRow()\tHTMLTableSectionElement",
+			{
+				"name": "deleteRow",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The deleteRow(index) method must remove the indexth element in the rows collection from its parent. If index is less than zero or greater than or equal to the number of elements in the rows collection, the method must instead throw an IndexSizeError exception.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableSectionElement.html#deleteRow",
+				"full_description": "/*\n\n\tHTMLTableSectionElement\n\n\tdeleteRow ( index: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe deleteRow(index) method must remove the indexth element in the rows collection from its parent. If index is less than zero or greater than or equal to the number of elements in the rows collection, the method must instead throw an IndexSizeError exception.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableSectionElement.html#deleteRow\n\n*/"
+			}
+		],
+		[
+			"description-rows\tHTMLTableSectionElement",
+			{
+				"name": "rows",
+				"return_type": "HTMLCollection",
+				"description": "The rows attribute must return an HTMLCollection rooted at the element, whose filter matches only tr elements that are children of the element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableSectionElement.html#rows",
+				"full_description": "/*\n\n\tHTMLTableSectionElement\n\n\trows\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe rows attribute must return an HTMLCollection rooted at the element, whose filter matches only tr elements that are children of the element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableSectionElement.html#rows\n\n*/"
+			}
+		],
+		[
+			"description-insertRow()\tHTMLTableSectionElement",
+			{
+				"name": "insertRow",
+				"return_type": "HTMLElement",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#dom-tbody-insertrow",
+				"full_description": "/*\n\n\tHTMLTableSectionElement\n\n\tinsertRow ( index?: long )\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#dom-tbody-insertrow\n\n*/"
+			}
+		]
+	]
+}

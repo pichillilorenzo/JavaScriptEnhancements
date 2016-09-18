@@ -1,19 +1,21 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["new File(Array_parts, String_filename, BlobPropertyBag_properties)\tFile", "new File(${1:Array_parts}, ${2:String_filename}, ${3:BlobPropertyBag_properties})"],
-    ["readAsBinaryString(file|blob)\tFileReader", "readAsBinaryString(${1:file|blob})"],
-    ["readAsArrayBuffer(file|blob)\tFileReader", "readAsArrayBuffer(${1:file|blob})"],
-    ["readAsDataURL(file|blob)\tFileReader", "readAsDataURL(${1:file|blob})"],
-    ["readAsText(file|blob)\tFileReader", "readAsText(${1:file|blob})"],
-    ["new FileReader()\tFileReader", "new FileReader()"],
-    ["lastModifiedDate\tFile", "lastModifiedDate"],
-    ["readyState\tFileReader", "readyState"],
-    ["abort()\tFileReader", "abort()"],
-    ["result\tFileReader", "result"],
-    ["error\tFileReader", "error"],
-    ["name\tFile", "name"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"new File( fileBits: Blob, fileName: DOMString ): File\tFile",
+			"new File(${1:fileBits: Blob}, ${2:fileName: DOMString})"
+		],
+		[
+			"File( fileBits: Blob, fileName: DOMString ): File\tFile",
+			"File(${1:fileBits: Blob}, ${2:fileName: DOMString})"
+		],
+		[
+			"lastModifiedDate: Date\tFile",
+			"lastModifiedDate"
+		],
+		[
+			"name: DOMString\tFile",
+			"name"
+		]
+	]
 }

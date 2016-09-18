@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"height: SVGAnimatedLength\tSVGFEOffsetElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEOffsetElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEOffsetElement",
+			"width"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFEOffsetElement",
+			"in1"
+		],
+		[
+			"dx: SVGAnimatedNumber\tSVGFEOffsetElement",
+			"dx"
+		],
+		[
+			"dy: SVGAnimatedNumber\tSVGFEOffsetElement",
+			"dy"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEOffsetElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEOffsetElement",
+			"y"
+		]
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"postMessage( message: any, transfer?: sequence<Transferable> ): void\tDedicatedWorkerGlobalScope",
+			"postMessage(${1:message: any}, ${2:transfer?: sequence<Transferable>})"
+		],
+		[
+			"onmessage: EventHandler\tDedicatedWorkerGlobalScope",
+			"onmessage"
+		]
+	]
+}

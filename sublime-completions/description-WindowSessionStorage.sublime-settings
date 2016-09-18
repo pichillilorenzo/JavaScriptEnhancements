@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-sessionStorage\tWindowSessionStorage",
+			{
+				"name": "sessionStorage",
+				"return_type": "Storage",
+				"description": "The sessionStorage attribute represents the set of storage areas specific to the current top-level browsing context.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Web%20Storage%20-%20WindowSessionStorage.html#sessionStorage",
+				"full_description": "/*\n\n\tWindowSessionStorage\n\n\tsessionStorage\n\n\tReturn Type:\n\tStorage\n\n\tDescription:\n\tThe sessionStorage attribute represents the set of storage areas specific to the current top-level browsing context.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Storage%20-%20WindowSessionStorage.html#sessionStorage\n\n*/"
+			}
+		]
+	]
+}

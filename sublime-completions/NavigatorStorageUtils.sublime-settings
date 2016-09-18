@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"yieldForStorageUpdates(): void\tNavigatorStorageUtils",
+			"yieldForStorageUpdates()"
+		],
+		[
+			"cookieEnabled: boolean\tNavigatorStorageUtils",
+			"cookieEnabled"
+		]
+	]
+}

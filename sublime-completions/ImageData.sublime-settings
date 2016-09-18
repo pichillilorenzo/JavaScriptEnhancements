@@ -1,0 +1,33 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new ImageData( data: Uint8ClampedArray, sw: unsigned long, sh?: unsigned long ): ImageData\tImageData",
+			"new ImageData(${1:data: Uint8ClampedArray}, ${2:sw: unsigned long}, ${3:sh?: unsigned long})"
+		],
+		[
+			"ImageData( data: Uint8ClampedArray, sw: unsigned long, sh?: unsigned long ): ImageData\tImageData",
+			"ImageData(${1:data: Uint8ClampedArray}, ${2:sw: unsigned long}, ${3:sh?: unsigned long})"
+		],
+		[
+			"new ImageData( sw: unsigned long, sh: unsigned long ): ImageData\tImageData",
+			"new ImageData(${1:sw: unsigned long}, ${2:sh: unsigned long})"
+		],
+		[
+			"ImageData( sw: unsigned long, sh: unsigned long ): ImageData\tImageData",
+			"ImageData(${1:sw: unsigned long}, ${2:sh: unsigned long})"
+		],
+		[
+			"data: Uint8ClampedArray\tImageData",
+			"data"
+		],
+		[
+			"height: unsigned long\tImageData",
+			"height"
+		],
+		[
+			"width: unsigned long\tImageData",
+			"width"
+		]
+	]
+}

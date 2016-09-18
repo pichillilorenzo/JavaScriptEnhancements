@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"namespaceURI: DOMString\tCSSNamespaceRule",
+			"namespaceURI"
+		],
+		[
+			"prefix: DOMString\tCSSNamespaceRule",
+			"prefix"
+		]
+	]
+}

@@ -1,23 +1,29 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["URL.revokeObjectURL(objectURL)\tURL", "URL.revokeObjectURL(${1:objectURL})"],
-    ["URL.createObjectURL(file|blob)\tURL", "URL.createObjectURL(${1:file|blob})"],
-    ["createObjectURL(file|blob)\tURL", "createObjectURL(${1:file|blob})"],
-    ["revokeObjectURL(objectURL)\tURL", "revokeObjectURL(${1:objectURL})"],
-    ["searchParams\tURLUtils", "searchParams"],
-    ["pathname\tURLUtils", "pathname"],
-    ["username\tURLUtils", "username"],
-    ["protocol\tURLUtils", "protocol"],
-    ["hostname\tURLUtils", "hostname"],
-    ["password\tURLUtils", "password"],
-    ["origin\tURLUtils", "origin"],
-    ["search\tURLUtils", "search"],
-    ["host\tURLUtils", "host"],
-    ["port\tURLUtils", "port"],
-    ["href\tURLUtils", "href"],
-    ["hash\tURLUtils", "hash"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"URL.createObjectURL( blob: Blob ): static DOMString\tURL",
+			"URL.createObjectURL(${1:blob: Blob})"
+		],
+		[
+			"URL.revokeObjectURL( url: DOMString ): static void\tURL",
+			"URL.revokeObjectURL(${1:url: DOMString})"
+		],
+		[
+			"createObjectURL( blob: Blob ): static DOMString\tURL",
+			"createObjectURL(${1:blob: Blob})"
+		],
+		[
+			"revokeObjectURL( url: DOMString ): static void\tURL",
+			"revokeObjectURL(${1:url: DOMString})"
+		],
+		[
+			"URL.createFor( blob: Blob ): static DOMString\tURL",
+			"URL.createFor(${1:blob: Blob})"
+		],
+		[
+			"createFor( blob: Blob ): static DOMString\tURL",
+			"createFor(${1:blob: Blob})"
+		]
+	]
 }

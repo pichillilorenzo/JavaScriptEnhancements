@@ -1,0 +1,35 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-item()\tSVGElementInstanceList",
+			{
+				"name": "item",
+				"return_type": "SVGElementInstance",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns the indexth item in the collection. If index is greater than or equal to the number of nodes in the list, this returns null. Parametersunsigned long index Index into the collection. Returns The SVGElementInstance object at the indexth position in the SVGElementInstanceList, or null if that is not a valid index.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGElementInstanceList.html#item",
+				"full_description": "/*\n\n\tSVGElementInstanceList\n\n\titem ( index: unsigned long )\n\n\tReturn Type:\n\tSVGElementInstance\n\n\tDescription:\n\tReturns the indexth item in the collection. If index is greater than or equal to the number of nodes in the list, this returns null. Parametersunsigned long index Index into the collection. Returns The SVGElementInstance object at the indexth position in the SVGElementInstanceList, or null if that is not a valid index.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGElementInstanceList.html#item\n\n*/"
+			}
+		],
+		[
+			"description-length\tSVGElementInstanceList",
+			{
+				"name": "length",
+				"return_type": "unsigned long",
+				"description": "The number of SVGElementInstance objects in the list. The range of valid child indices is 0 to length-1 inclusive.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGElementInstanceList.html#length",
+				"full_description": "/*\n\n\tSVGElementInstanceList\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe number of SVGElementInstance objects in the list. The range of valid child indices is 0 to length-1 inclusive.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGElementInstanceList.html#length\n\n*/"
+			}
+		]
+	]
+}

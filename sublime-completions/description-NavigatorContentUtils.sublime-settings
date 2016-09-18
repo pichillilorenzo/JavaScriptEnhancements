@@ -1,0 +1,167 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-isContentHandlerRegistered()\tNavigatorContentUtils",
+			{
+				"name": "isContentHandlerRegistered",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "mimeType",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The isContentHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorContentUtils.html#isContentHandlerRegistered",
+				"full_description": "/*\n\n\tNavigatorContentUtils\n\n\tisContentHandlerRegistered ( mimeType: DOMString, url: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe isContentHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorContentUtils.html#isContentHandlerRegistered\n\n*/"
+			}
+		],
+		[
+			"description-registerContentHandler()\tNavigatorContentUtils",
+			{
+				"name": "registerContentHandler",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "mimeType",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "title",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorContentUtils.html#registerContentHandler",
+				"full_description": "/*\n\n\tNavigatorContentUtils\n\n\tregisterContentHandler ( mimeType: DOMString, url: DOMString, title: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorContentUtils.html#registerContentHandler\n\n*/"
+			}
+		],
+		[
+			"description-registerProtocolHandler()\tNavigatorContentUtils",
+			{
+				"name": "registerProtocolHandler",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "scheme",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "title",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorContentUtils.html#registerProtocolHandler",
+				"full_description": "/*\n\n\tNavigatorContentUtils\n\n\tregisterProtocolHandler ( scheme: DOMString, url: DOMString, title: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorContentUtils.html#registerProtocolHandler\n\n*/"
+			}
+		],
+		[
+			"description-isProtocolHandlerRegistered()\tNavigatorContentUtils",
+			{
+				"name": "isProtocolHandlerRegistered",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "scheme",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The isProtocolHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorContentUtils.html#isProtocolHandlerRegistered",
+				"full_description": "/*\n\n\tNavigatorContentUtils\n\n\tisProtocolHandlerRegistered ( scheme: DOMString, url: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe isProtocolHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorContentUtils.html#isProtocolHandlerRegistered\n\n*/"
+			}
+		],
+		[
+			"description-unregisterContentHandler()\tNavigatorContentUtils",
+			{
+				"name": "unregisterContentHandler",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "mimeType",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The unregisterContentHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorContentUtils.html#unregisterContentHandler",
+				"full_description": "/*\n\n\tNavigatorContentUtils\n\n\tunregisterContentHandler ( mimeType: DOMString, url: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe unregisterContentHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorContentUtils.html#unregisterContentHandler\n\n*/"
+			}
+		],
+		[
+			"description-unregisterProtocolHandler()\tNavigatorContentUtils",
+			{
+				"name": "unregisterProtocolHandler",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "scheme",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The unregisterProtocolHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorContentUtils.html#unregisterProtocolHandler",
+				"full_description": "/*\n\n\tNavigatorContentUtils\n\n\tunregisterProtocolHandler ( scheme: DOMString, url: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe unregisterProtocolHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorContentUtils.html#unregisterProtocolHandler\n\n*/"
+			}
+		]
+	]
+}

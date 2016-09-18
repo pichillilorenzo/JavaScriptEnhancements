@@ -1,67 +1,591 @@
 {
-    "scope": "source.js",
-
-    "completions":
-    [
-        ["description-Node.appendChild()\tNode", "/*\n\tDescription:\n\tThe Node.appendChild() method adds a node to the end of the list of children of a specified parent node. If the given child is a reference to an existing node in the document, appendChild() moves it from its current position to the new position (i.e. there is no requirement to remove the node from its parent node before appending it to some other node).\n\n\tSyntax:\n\tvar aChild = element.appendChild(aChild);\n*/"],
-        ["description-Node.lastChild\tNode", "/*\n\tDescription:\n\tThe Node.lastChild read-only property returns the last child of the node. If its parent is an element, then the child is generally an element node, a text node, or a comment node. It returns null if there are no child elements.\n\n\tSyntax:\n\tvar last_child = element.lastChild\n*/"],
-        ["description-Node.normalize()\tNode", "/*\n\tDescription:\n\tThe Node.normalize() method puts the specified node and all of its sub-tree into a \"normalized\" form. In a normalized sub-tree, no text nodes in the sub-tree are empty and there are no adjacent text nodes.\n\n\tSyntax:\n\telement.normalize();\n*/"],
-        ["description-Node.isDefaultNamespace()\tNode", "/*\n\tDescription:\n\tThe Node.isDefaultNamespace()method accepts a namespace URI as an argument and returns a Boolean with a value of true if the namespace is the default namespace on the given node or false if not.\n\n\tSyntax:\n\tresult = node.isDefaultNamespace(namespaceURI)\n*/"],
-        ["description-Node.namespaceURI\tNode", "/*\n\tDescription:\n\tThe Node.namespaceURI read-only property returns the namespace URI of the node, or null if the node is not in a namespace (read-only). When the node is a document, it returns the XML namespace for the current document.\n\n\tSyntax:\n\tnamespace = node.namespaceURI\n*/"],
-        ["description-Node.firstChild\tNode", "/*\n\tDescription:\n\tThe Node.firstChild read-only property returns the node's first child in the tree, or null if the node is childless. If the node is a document, it returns the first node in the list of its direct children.\n\n\tSyntax:\n\tvar childNode = node.firstChild;\n*/"],
-        ["description-Node.previousSibling\tNode", "/*\n\tDescription:\n\tThe Node.previousSibling read-only property returns the node immediately preceding the specified one in its parent's childNodes list, null if the specified node is the first in that list.\n\n\tSyntax:\n\tpreviousNode = node.previousSibling;\n*/"],
-        ["description-Node.nextSibling\tNode", "/*\n\tDescription:\n\tThe Node.nextSibling read-only property returns the node immediately following the specified one in its parent's childNodes list, or null if the specified node is the last node in that list.\n\n\tSyntax:\n\tnextNode = node.nextSibling\n*/"],
-        ["description-Node.textContent\tNode", "/*\n\tDescription:\n\tThe Node.textContent property represents the text content of a node and its descendants.\n\n\tSyntax:\n\tvar text = element.textContent;\nelement.textContent = \"this is some sample text\";\n*/"],
-        ["description-Node.insertBefore()\tNode", "/*\n\tDescription:\n\tThe Node.insertBefore() method inserts the specified node before a reference element as a child of the current node.\n\n\tSyntax:\n\tvar insertedElement = parentElement.insertBefore(newElement, referenceElement);\n*/"],
-        ["description-Node.parentElement\tNode", "/*\n\tDescription:\n\tThe Node.parentElement read-only property returns the DOM node's parent Element, or null if the node either has no parent, or its parent isn't a DOM Element.\n\n\tSyntax:\n\tparentElement = node.parentElement\n*/"],
-        ["description-Node.removeChild()\tNode", "/*\n\tDescription:\n\tThe Node.removeChild() method removes a child node from the DOM. Returns removed node.\n\n\tSyntax:\n\tvar oldChild = element.removeChild(child);\n\telement.removeChild(child);\n*/"],
-        ["description-Node.comparedocumentPosition()\tNode", "/*\n\tDescription:\n\tThe Node.comparedocumentPosition() method compares the position of the current node against another node in any other document.\n\n\tSyntax:\n\tnode.compareDocumentPosition( otherNode )\n*/"],
-        ["description-Node.hasAttributes()\tNode", "/*\n\tDescription:\n\tThe Node.hasAttributes() method returns a Boolean value of true or false, indicating if the current element has any attributes or not.\n\n\tSyntax:\n\tresult = targetNode.hasAttributes();\n*/"],
-        ["description-Node.prefix\tNode", "/*\n\tDescription:\n\tThe Node.prefix read-only property returns the namespace prefix of the specified node, or null if no prefix is specified. This property is read only.\n\n\tSyntax:\n\tstring = element.prefix\n*/"],
-        ["description-Node.replaceChild()\tNode", "/*\n\tDescription:\n\tThe Node.replaceChild() method replaces one child node of the specified element with another.\n\n\tSyntax:\n\treplacedNode = parentNode.replaceChild(newChild, oldChild);\n*/"],
-        ["description-Node.childNodes\tNode", "/*\n\tDescription:\n\tThe Node.childNodes read-only property returns a live collection of child nodes of the given element.\n\n\tSyntax:\n\tvar ndList = elementNodeReference.childNodes;\n*/"],
-        ["description-Node.contains()\tNode", "/*\n\tDescription:\n\tThe Node.contains() method returns a Boolean value indicating whether a node is a descendant of a given node. or not.\n\n\tSyntax:\n\tnode.contains( otherNode )\n*/"],
-        ["description-Node.hasChildNodes()\tNode", "/*\n\tDescription:\n\tThe Node.hasChildNodes() method returns a Boolean value indicating whether the current Node has child nodes or not.\n\n\tSyntax:\n\tnode.hasChildNodes()\n*/"],
-        ["description-Node.ownerdocument\tNode", "/*\n\tDescription:\n\tThe Node.ownerdocument read-only property returns the top-level document object for this node.\n\n\tSyntax:\n\tdocument = element.ownerDocument\n*/"],
-        ["description-Node.cloneNode()\tNode", "/*\n\tDescription:\n\tThe Node.cloneNode() method returns a duplicate of the node on which this method was called.\n\n\tSyntax:\n\tvar dupNode = node.cloneNode(deep);\n*/"],
-        ["description-Node.nodeType\tNode", "/*\n\tDescription:\n\tThe read-only Node.nodeType property returns an unsigned short integer representing the type of the node.\n\n\tSyntax:\n\tvar type = node.nodeType;\n*/"],
-        ["description-Node.parentNode\tNode", "/*\n\tDescription:\n\tThe Node.parentNode read-only property returns the parent of the specified node in the DOM tree.\n\n\tSyntax:\n\tparentNode = node.parentNode\n*/"],
-        ["description-Node.localName\tNode", "/*\n\tDescription:\n\tThe Node.localName read-only property returns the local part of the qualified name of this node.\n\n\tSyntax:\n\tname = element.localName\n*/"],
-        ["description-Node.nodeName\tNode", "/*\n\tDescription:\n\tThe Node.nodeName read-only property returns the name of the current node as a string.\n\n\tSyntax:\n\tvar str = node.nodeName;\n*/"],
-        ["description-Node.lookupNamespaceURI()\tNode", "/*\n\tThe Node.lookupNamespaceURI() method takes a prefix and returns the namespace URI associated with it on the given node if found (and null if not). Supplying null for the prefix will return the default namespace.\n*/"],
-        ["description-Node.isEqualNode()\tNode", "/*\n\tDescription:\n\tThe Node.isEqualNode() tests whether two nodes are equal.\n\n\tSyntax:\n\tvar isEqualNode = node.isEqualNode(arg);\n*/"],
-        ["description-Node.baseURI\tNode", "/*\n\tDescription:\n\tThe Node.baseURI read-only property returns the absolute base URL of a node.\n\n\tSyntax:\n\tvar baseURI = node.baseURI;\n*/"],
-        ["description-Node.nodeValue\tNode", "/*\n\tDescription:\n\tThe Node.nodeValue property returns or sets the value of the current node.\n\n\tSyntax:\n\tvalue = node.nodeValue;\n*/"],
-        ["description-Node.lookupPrefix()\tNode", "/*\n\tThe Node.lookupPrefix() method returns a DOMString containing the prefix for a given namespace URI, if present, and null if not. When multiple prefixes are possible, the result is implementation-dependent.\n*/"],
-        ["description-appendChild()\tNode", "/*\n\tDescription:\n\tThe Node.appendChild() method adds a node to the end of the list of children of a specified parent node. If the given child is a reference to an existing node in the document, appendChild() moves it from its current position to the new position (i.e. there is no requirement to remove the node from its parent node before appending it to some other node).\n\n\tSyntax:\n\tvar aChild = element.appendChild(aChild);\n*/"],
-        ["description-lastChild\tNode", "/*\n\tDescription:\n\tThe Node.lastChild read-only property returns the last child of the node. If its parent is an element, then the child is generally an element node, a text node, or a comment node. It returns null if there are no child elements.\n\n\tSyntax:\n\tvar last_child = element.lastChild\n*/"],
-        ["description-normalize()\tNode", "/*\n\tDescription:\n\tThe Node.normalize() method puts the specified node and all of its sub-tree into a \"normalized\" form. In a normalized sub-tree, no text nodes in the sub-tree are empty and there are no adjacent text nodes.\n\n\tSyntax:\n\telement.normalize();\n*/"],
-        ["description-isDefaultNamespace()\tNode", "/*\n\tDescription:\n\tThe Node.isDefaultNamespace()method accepts a namespace URI as an argument and returns a Boolean with a value of true if the namespace is the default namespace on the given node or false if not.\n\n\tSyntax:\n\tresult = node.isDefaultNamespace(namespaceURI)\n*/"],
-        ["description-namespaceURI\tNode", "/*\n\tDescription:\n\tThe Node.namespaceURI read-only property returns the namespace URI of the node, or null if the node is not in a namespace (read-only). When the node is a document, it returns the XML namespace for the current document.\n\n\tSyntax:\n\tnamespace = node.namespaceURI\n*/"],
-        ["description-firstChild\tNode", "/*\n\tDescription:\n\tThe Node.firstChild read-only property returns the node's first child in the tree, or null if the node is childless. If the node is a document, it returns the first node in the list of its direct children.\n\n\tSyntax:\n\tvar childNode = node.firstChild;\n*/"],
-        ["description-previousSibling\tNode", "/*\n\tDescription:\n\tThe Node.previousSibling read-only property returns the node immediately preceding the specified one in its parent's childNodes list, null if the specified node is the first in that list.\n\n\tSyntax:\n\tpreviousNode = node.previousSibling;\n*/"],
-        ["description-nextSibling\tNode", "/*\n\tDescription:\n\tThe Node.nextSibling read-only property returns the node immediately following the specified one in its parent's childNodes list, or null if the specified node is the last node in that list.\n\n\tSyntax:\n\tnextNode = node.nextSibling\n*/"],
-        ["description-textContent\tNode", "/*\n\tDescription:\n\tThe Node.textContent property represents the text content of a node and its descendants.\n\n\tSyntax:\n\tvar text = element.textContent;\nelement.textContent = \"this is some sample text\";\n*/"],
-        ["description-insertBefore()\tNode", "/*\n\tDescription:\n\tThe Node.insertBefore() method inserts the specified node before a reference element as a child of the current node.\n\n\tSyntax:\n\tvar insertedElement = parentElement.insertBefore(newElement, referenceElement);\n*/"],
-        ["description-parentElement\tNode", "/*\n\tDescription:\n\tThe Node.parentElement read-only property returns the DOM node's parent Element, or null if the node either has no parent, or its parent isn't a DOM Element.\n\n\tSyntax:\n\tparentElement = node.parentElement\n*/"],
-        ["description-removeChild()\tNode", "/*\n\tDescription:\n\tThe Node.removeChild() method removes a child node from the DOM. Returns removed node.\n\n\tSyntax:\n\tvar oldChild = element.removeChild(child);\n\telement.removeChild(child);\n*/"],
-        ["description-comparedocumentPosition()\tNode", "/*\n\tDescription:\n\tThe Node.comparedocumentPosition() method compares the position of the current node against another node in any other document.\n\n\tSyntax:\n\tnode.compareDocumentPosition( otherNode )\n*/"],
-        ["description-hasAttributes()\tNode", "/*\n\tDescription:\n\tThe Node.hasAttributes() method returns a Boolean value of true or false, indicating if the current element has any attributes or not.\n\n\tSyntax:\n\tresult = targetNode.hasAttributes();\n*/"],
-        ["description-prefix\tNode", "/*\n\tDescription:\n\tThe Node.prefix read-only property returns the namespace prefix of the specified node, or null if no prefix is specified. This property is read only.\n\n\tSyntax:\n\tstring = element.prefix\n*/"],
-        ["description-replaceChild()\tNode", "/*\n\tDescription:\n\tThe Node.replaceChild() method replaces one child node of the specified element with another.\n\n\tSyntax:\n\treplacedNode = parentNode.replaceChild(newChild, oldChild);\n*/"],
-        ["description-childNodes\tNode", "/*\n\tDescription:\n\tThe Node.childNodes read-only property returns a live collection of child nodes of the given element.\n\n\tSyntax:\n\tvar ndList = elementNodeReference.childNodes;\n*/"],
-        ["description-contains()\tNode", "/*\n\tDescription:\n\tThe Node.contains() method returns a Boolean value indicating whether a node is a descendant of a given node. or not.\n\n\tSyntax:\n\tnode.contains( otherNode )\n*/"],
-        ["description-hasChildNodes()\tNode", "/*\n\tDescription:\n\tThe Node.hasChildNodes() method returns a Boolean value indicating whether the current Node has child nodes or not.\n\n\tSyntax:\n\tnode.hasChildNodes()\n*/"],
-        ["description-ownerdocument\tNode", "/*\n\tDescription:\n\tThe Node.ownerdocument read-only property returns the top-level document object for this node.\n\n\tSyntax:\n\tdocument = element.ownerDocument\n*/"],
-        ["description-cloneNode()\tNode", "/*\n\tDescription:\n\tThe Node.cloneNode() method returns a duplicate of the node on which this method was called.\n\n\tSyntax:\n\tvar dupNode = node.cloneNode(deep);\n*/"],
-        ["description-nodeType\tNode", "/*\n\tDescription:\n\tThe read-only Node.nodeType property returns an unsigned short integer representing the type of the node.\n\n\tSyntax:\n\tvar type = node.nodeType;\n*/"],
-        ["description-parentNode\tNode", "/*\n\tDescription:\n\tThe Node.parentNode read-only property returns the parent of the specified node in the DOM tree.\n\n\tSyntax:\n\tparentNode = node.parentNode\n*/"],
-        ["description-localName\tNode", "/*\n\tDescription:\n\tThe Node.localName read-only property returns the local part of the qualified name of this node.\n\n\tSyntax:\n\tname = element.localName\n*/"],
-        ["description-nodeName\tNode", "/*\n\tDescription:\n\tThe Node.nodeName read-only property returns the name of the current node as a string.\n\n\tSyntax:\n\tvar str = node.nodeName;\n*/"],
-        ["description-lookupNamespaceURI()\tNode", "/*\n\tThe Node.lookupNamespaceURI() method takes a prefix and returns the namespace URI associated with it on the given node if found (and null if not). Supplying null for the prefix will return the default namespace.\n*/"],
-        ["description-isEqualNode()\tNode", "/*\n\tDescription:\n\tThe Node.isEqualNode() tests whether two nodes are equal.\n\n\tSyntax:\n\tvar isEqualNode = node.isEqualNode(arg);\n*/"],
-        ["description-baseURI\tNode", "/*\n\tDescription:\n\tThe Node.baseURI read-only property returns the absolute base URL of a node.\n\n\tSyntax:\n\tvar baseURI = node.baseURI;\n*/"],
-        ["description-nodeValue\tNode", "/*\n\tDescription:\n\tThe Node.nodeValue property returns or sets the value of the current node.\n\n\tSyntax:\n\tvalue = node.nodeValue;\n*/"],
-        ["description-lookupPrefix()\tNode", "/*\n\tThe Node.lookupPrefix() method returns a DOMString containing the prefix for a given namespace URI, if present, and null if not. When multiple prefixes are possible, the result is implementation-dependent.\n*/"]
-    ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-contains()\tNode",
+			{
+				"name": "contains",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "other",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The contains(other) method must return true if other is an inclusive descendant of the context object, and false otherwise (including when other is null).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#contains",
+				"full_description": "/*\n\n\tNode\n\n\tcontains ( other: Node )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe contains(other) method must return true if other is an inclusive descendant of the context object, and false otherwise (including when other is null).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#contains\n\n*/"
+			}
+		],
+		[
+			"description-insertBefore()\tNode",
+			{
+				"name": "insertBefore",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "child",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The insertBefore(node, child) method must return the result of pre-inserting node into the context object before child.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#insertBefore",
+				"full_description": "/*\n\n\tNode\n\n\tinsertBefore ( node: Node, child: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe insertBefore(node, child) method must return the result of pre-inserting node into the context object before child.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#insertBefore\n\n*/"
+			}
+		],
+		[
+			"description-replaceChild()\tNode",
+			{
+				"name": "replaceChild",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "child",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The replaceChild(node, child) method must return the result of replacing child with node within the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#replaceChild",
+				"full_description": "/*\n\n\tNode\n\n\treplaceChild ( node: Node, child: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe replaceChild(node, child) method must return the result of replacing child with node within the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#replaceChild\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC\tNode",
+			{
+				"name": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC (32, 20 in hexadecimal).",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC (32, 20 in hexadecimal).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC\n\n*/"
+			}
+		],
+		[
+			"description-isEqualNode()\tNode",
+			{
+				"name": "isEqualNode",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The isEqualNode(node) method must return true if node is not null and context object equals node, and false otherwise.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#isEqualNode",
+				"full_description": "/*\n\n\tNode\n\n\tisEqualNode ( node: Node )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe isEqualNode(node) method must return true if node is not null and context object equals node, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#isEqualNode\n\n*/"
+			}
+		],
+		[
+			"description-cloneNode()\tNode",
+			{
+				"name": "cloneNode",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "deep",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The cloneNode(deep) method must return a clone of the context object, with the clone children flag set if deep is true.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#cloneNode",
+				"full_description": "/*\n\n\tNode\n\n\tcloneNode ( deep?: boolean )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe cloneNode(deep) method must return a clone of the context object, with the clone children flag set if deep is true.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#cloneNode\n\n*/"
+			}
+		],
+		[
+			"description-removeChild()\tNode",
+			{
+				"name": "removeChild",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "child",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The removeChild(child) method must return the result of pre-removing child from the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#removeChild",
+				"full_description": "/*\n\n\tNode\n\n\tremoveChild ( child: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe removeChild(child) method must return the result of pre-removing child from the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#removeChild\n\n*/"
+			}
+		],
+		[
+			"description-hasChildNodes()\tNode",
+			{
+				"name": "hasChildNodes",
+				"return_type": "boolean",
+				"parameters": [],
+				"description": "The hasChildNodes() method must return true if the context object has children, and false otherwise.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#hasChildNodes",
+				"full_description": "/*\n\n\tNode\n\n\thasChildNodes ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe hasChildNodes() method must return true if the context object has children, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#hasChildNodes\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_POSITION_CONTAINED_BY\tNode",
+			{
+				"name": "DOCUMENT_POSITION_CONTAINED_BY",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_POSITION_CONTAINED_BY (16, 10 in hexadecimal);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINED_BY",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_CONTAINED_BY\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_CONTAINED_BY (16, 10 in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINED_BY\n\n*/"
+			}
+		],
+		[
+			"description-appendChild()\tNode",
+			{
+				"name": "appendChild",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The appendChild(node) method must return the result of appending node to the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#appendChild",
+				"full_description": "/*\n\n\tNode\n\n\tappendChild ( node: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe appendChild(node) method must return the result of appending node to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#appendChild\n\n*/"
+			}
+		],
+		[
+			"description-childNodes\tNode",
+			{
+				"name": "childNodes",
+				"return_type": "NodeList",
+				"description": "The childNodes attribute must return a NodeList rooted at the context object matching only children.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#childNodes",
+				"full_description": "/*\n\n\tNode\n\n\tchildNodes\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe childNodes attribute must return a NodeList rooted at the context object matching only children.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#childNodes\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_POSITION_DISCONNECTED\tNode",
+			{
+				"name": "DOCUMENT_POSITION_DISCONNECTED",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_POSITION_DISCONNECTED (1);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_DISCONNECTED",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_DISCONNECTED\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_DISCONNECTED (1);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_DISCONNECTED\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_POSITION_PRECEDING\tNode",
+			{
+				"name": "DOCUMENT_POSITION_PRECEDING",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_POSITION_PRECEDING (2);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_PRECEDING",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_PRECEDING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_PRECEDING (2);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_PRECEDING\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_POSITION_FOLLOWING\tNode",
+			{
+				"name": "DOCUMENT_POSITION_FOLLOWING",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_POSITION_FOLLOWING (4);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_FOLLOWING",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_FOLLOWING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_FOLLOWING (4);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_FOLLOWING\n\n*/"
+			}
+		],
+		[
+			"description-PROCESSING_INSTRUCTION_NODE\tNode",
+			{
+				"name": "PROCESSING_INSTRUCTION_NODE",
+				"return_type": "const unsigned short",
+				"description": "PROCESSING_INSTRUCTION_NODE (7);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#PROCESSING_INSTRUCTION_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tPROCESSING_INSTRUCTION_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tPROCESSING_INSTRUCTION_NODE (7);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#PROCESSING_INSTRUCTION_NODE\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_POSITION_CONTAINS\tNode",
+			{
+				"name": "DOCUMENT_POSITION_CONTAINS",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_POSITION_CONTAINS (8);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINS",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_CONTAINS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_CONTAINS (8);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINS\n\n*/"
+			}
+		],
+		[
+			"description-previousSibling\tNode",
+			{
+				"name": "previousSibling",
+				"return_type": "Node",
+				"description": "The previousSibling attribute must return the previous sibling.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#previousSibling",
+				"full_description": "/*\n\n\tNode\n\n\tpreviousSibling\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe previousSibling attribute must return the previous sibling.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#previousSibling\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_FRAGMENT_NODE\tNode",
+			{
+				"name": "DOCUMENT_FRAGMENT_NODE",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_FRAGMENT_NODE (11).",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_FRAGMENT_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_FRAGMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_FRAGMENT_NODE (11).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_FRAGMENT_NODE\n\n*/"
+			}
+		],
+		[
+			"description-parentElement\tNode",
+			{
+				"name": "parentElement",
+				"return_type": "Element",
+				"description": "The parentElement attribute must return the parent element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#parentElement",
+				"full_description": "/*\n\n\tNode\n\n\tparentElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe parentElement attribute must return the parent element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#parentElement\n\n*/"
+			}
+		],
+		[
+			"description-nextSibling\tNode",
+			{
+				"name": "nextSibling",
+				"return_type": "Node",
+				"description": "The nextSibling attribute must return the next sibling.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#nextSibling",
+				"full_description": "/*\n\n\tNode\n\n\tnextSibling\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe nextSibling attribute must return the next sibling.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#nextSibling\n\n*/"
+			}
+		],
+		[
+			"description-baseURI\tNode",
+			{
+				"name": "baseURI",
+				"return_type": "DOMString",
+				"description": "The baseURI attribute must return the associated base URL.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#baseURI",
+				"full_description": "/*\n\n\tNode\n\n\tbaseURI\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe baseURI attribute must return the associated base URL.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#baseURI\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_TYPE_NODE\tNode",
+			{
+				"name": "DOCUMENT_TYPE_NODE",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_TYPE_NODE (10);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_TYPE_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_TYPE_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_TYPE_NODE (10);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_TYPE_NODE\n\n*/"
+			}
+		],
+		[
+			"description-firstChild\tNode",
+			{
+				"name": "firstChild",
+				"return_type": "Node",
+				"description": "The firstChild attribute must return the first child.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#firstChild",
+				"full_description": "/*\n\n\tNode\n\n\tfirstChild\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe firstChild attribute must return the first child.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#firstChild\n\n*/"
+			}
+		],
+		[
+			"description-lastChild\tNode",
+			{
+				"name": "lastChild",
+				"return_type": "Node",
+				"description": "The lastChild attribute must return the last child.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#lastChild",
+				"full_description": "/*\n\n\tNode\n\n\tlastChild\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe lastChild attribute must return the last child.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#lastChild\n\n*/"
+			}
+		],
+		[
+			"description-compareDocumentPosition()\tNode",
+			{
+				"name": "compareDocumentPosition",
+				"return_type": "unsigned short",
+				"parameters": [
+					{
+						"name": "other",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-comparedocumentposition",
+				"full_description": "/*\n\n\tNode\n\n\tcompareDocumentPosition ( other: Node )\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-comparedocumentposition\n\n*/"
+			}
+		],
+		[
+			"description-parentNode\tNode",
+			{
+				"name": "parentNode",
+				"return_type": "Node",
+				"description": "The parentNode attribute must return the parent.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#parentNode",
+				"full_description": "/*\n\n\tNode\n\n\tparentNode\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe parentNode attribute must return the parent.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#parentNode\n\n*/"
+			}
+		],
+		[
+			"description-isDefaultNamespace()\tNode",
+			{
+				"name": "isDefaultNamespace",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "namespace",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-isdefaultnamespace",
+				"full_description": "/*\n\n\tNode\n\n\tisDefaultNamespace ( namespace: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-isdefaultnamespace\n\n*/"
+			}
+		],
+		[
+			"description-lookupNamespaceURI()\tNode",
+			{
+				"name": "lookupNamespaceURI",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "prefix",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-lookupnamespaceuri",
+				"full_description": "/*\n\n\tNode\n\n\tlookupNamespaceURI ( prefix: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-lookupnamespaceuri\n\n*/"
+			}
+		],
+		[
+			"description-DOCUMENT_NODE\tNode",
+			{
+				"name": "DOCUMENT_NODE",
+				"return_type": "const unsigned short",
+				"description": "DOCUMENT_NODE (9);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_NODE (9);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_NODE\n\n*/"
+			}
+		],
+		[
+			"description-ENTITY_REFERENCE_NODE\tNode",
+			{
+				"name": "ENTITY_REFERENCE_NODE",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ENTITY_REFERENCE_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tENTITY_REFERENCE_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ENTITY_REFERENCE_NODE\n\n*/"
+			}
+		],
+		[
+			"description-ELEMENT_NODE\tNode",
+			{
+				"name": "ELEMENT_NODE",
+				"return_type": "const unsigned short",
+				"description": "ELEMENT_NODE (1);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ELEMENT_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tELEMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tELEMENT_NODE (1);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ELEMENT_NODE\n\n*/"
+			}
+		],
+		[
+			"description-COMMENT_NODE\tNode",
+			{
+				"name": "COMMENT_NODE",
+				"return_type": "const unsigned short",
+				"description": "COMMENT_NODE (8);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#COMMENT_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tCOMMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCOMMENT_NODE (8);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#COMMENT_NODE\n\n*/"
+			}
+		],
+		[
+			"description-CDATA_SECTION_NODE\tNode",
+			{
+				"name": "CDATA_SECTION_NODE",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#CDATA_SECTION_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tCDATA_SECTION_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#CDATA_SECTION_NODE\n\n*/"
+			}
+		],
+		[
+			"description-lookupPrefix()\tNode",
+			{
+				"name": "lookupPrefix",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "namespace",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-lookupprefix",
+				"full_description": "/*\n\n\tNode\n\n\tlookupPrefix ( namespace: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-lookupprefix\n\n*/"
+			}
+		],
+		[
+			"description-TEXT_NODE\tNode",
+			{
+				"name": "TEXT_NODE",
+				"return_type": "const unsigned short",
+				"description": "TEXT_NODE (3);",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#TEXT_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tTEXT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tTEXT_NODE (3);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#TEXT_NODE\n\n*/"
+			}
+		],
+		[
+			"description-ATTRIBUTE_NODE\tNode",
+			{
+				"name": "ATTRIBUTE_NODE",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ATTRIBUTE_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tATTRIBUTE_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ATTRIBUTE_NODE\n\n*/"
+			}
+		],
+		[
+			"description-NOTATION_NODE\tNode",
+			{
+				"name": "NOTATION_NODE",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#NOTATION_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tNOTATION_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#NOTATION_NODE\n\n*/"
+			}
+		],
+		[
+			"description-ENTITY_NODE\tNode",
+			{
+				"name": "ENTITY_NODE",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ENTITY_NODE",
+				"full_description": "/*\n\n\tNode\n\n\tENTITY_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ENTITY_NODE\n\n*/"
+			}
+		],
+		[
+			"description-ownerDocument\tNode",
+			{
+				"name": "ownerDocument",
+				"return_type": "Document",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-ownerdocument",
+				"full_description": "/*\n\n\tNode\n\n\townerDocument\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-ownerdocument\n\n*/"
+			}
+		],
+		[
+			"description-textContent\tNode",
+			{
+				"name": "textContent",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-textcontent",
+				"full_description": "/*\n\n\tNode\n\n\ttextContent\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-textcontent\n\n*/"
+			}
+		],
+		[
+			"description-nodeType\tNode",
+			{
+				"name": "nodeType",
+				"return_type": "unsigned short",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-nodetype",
+				"full_description": "/*\n\n\tNode\n\n\tnodeType\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-nodetype\n\n*/"
+			}
+		],
+		[
+			"description-nodeValue\tNode",
+			{
+				"name": "nodeValue",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-nodevalue",
+				"full_description": "/*\n\n\tNode\n\n\tnodeValue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-nodevalue\n\n*/"
+			}
+		],
+		[
+			"description-nodeName\tNode",
+			{
+				"name": "nodeName",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-nodename",
+				"full_description": "/*\n\n\tNode\n\n\tnodeName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-nodename\n\n*/"
+			}
+		],
+		[
+			"description-normalize()\tNode",
+			{
+				"name": "normalize",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-node-normalize",
+				"full_description": "/*\n\n\tNode\n\n\tnormalize ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-normalize\n\n*/"
+			}
+		]
+	]
 }

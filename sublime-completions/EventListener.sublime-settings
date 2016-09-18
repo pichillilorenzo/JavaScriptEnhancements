@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"handleEvent( event: Event ): void\tEventListener",
+			"handleEvent(${1:event: Event})"
+		]
+	]
+}

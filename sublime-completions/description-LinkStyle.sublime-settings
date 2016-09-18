@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-sheet\tLinkStyle",
+			{
+				"name": "sheet",
+				"return_type": "StyleSheet",
+				"description": "The sheet attribute must return the associated CSS style sheet for the node or null if there is no associated CSS style sheet.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20LinkStyle.html#sheet",
+				"full_description": "/*\n\n\tLinkStyle\n\n\tsheet\n\n\tReturn Type:\n\tStyleSheet\n\n\tDescription:\n\tThe sheet attribute must return the associated CSS style sheet for the node or null if there is no associated CSS style sheet.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20LinkStyle.html#sheet\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,82 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-disabled\tStyleSheet",
+			{
+				"name": "disabled",
+				"return_type": "boolean",
+				"description": "The disabled attribute, on getting, must return true if the disabled flag is set, or false otherwise. On setting, the disabled attribute must set the disabled flag if the new value is true, or unset the disabled flag otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#disabled",
+				"full_description": "/*\n\n\tStyleSheet\n\n\tdisabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe disabled attribute, on getting, must return true if the disabled flag is set, or false otherwise. On setting, the disabled attribute must set the disabled flag if the new value is true, or unset the disabled flag otherwise.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#disabled\n\n*/"
+			}
+		],
+		[
+			"description-parentStyleSheet\tStyleSheet",
+			{
+				"name": "parentStyleSheet",
+				"return_type": "StyleSheet",
+				"description": "The parentStyleSheet attribute must return the parent CSS style sheet.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#parentStyleSheet",
+				"full_description": "/*\n\n\tStyleSheet\n\n\tparentStyleSheet\n\n\tReturn Type:\n\tStyleSheet\n\n\tDescription:\n\tThe parentStyleSheet attribute must return the parent CSS style sheet.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#parentStyleSheet\n\n*/"
+			}
+		],
+		[
+			"description-ownerNode\tStyleSheet",
+			{
+				"name": "ownerNode",
+				"return_type": "(Element or ProcessingInstruction)",
+				"description": "The ownerNode attribute must return the owner node.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#ownerNode",
+				"full_description": "/*\n\n\tStyleSheet\n\n\townerNode\n\n\tReturn Type:\n\t(Element or ProcessingInstruction)\n\n\tDescription:\n\tThe ownerNode attribute must return the owner node.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#ownerNode\n\n*/"
+			}
+		],
+		[
+			"description-title\tStyleSheet",
+			{
+				"name": "title",
+				"return_type": "DOMString",
+				"description": "The title attribute must return the title or null if title is the empty string.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#title",
+				"full_description": "/*\n\n\tStyleSheet\n\n\ttitle\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe title attribute must return the title or null if title is the empty string.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#title\n\n*/"
+			}
+		],
+		[
+			"description-href\tStyleSheet",
+			{
+				"name": "href",
+				"return_type": "DOMString",
+				"description": "The href attribute must return the location.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#href",
+				"full_description": "/*\n\n\tStyleSheet\n\n\thref\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe href attribute must return the location.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#href\n\n*/"
+			}
+		],
+		[
+			"description-media\tStyleSheet",
+			{
+				"name": "media",
+				"return_type": "MediaList",
+				"description": "The media attribute must return the media.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#media",
+				"full_description": "/*\n\n\tStyleSheet\n\n\tmedia\n\n\tReturn Type:\n\tMediaList\n\n\tDescription:\n\tThe media attribute must return the media.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#media\n\n*/"
+			}
+		],
+		[
+			"description-type\tStyleSheet",
+			{
+				"name": "type",
+				"return_type": "DOMString",
+				"description": "The type attribute must return the type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#type",
+				"full_description": "/*\n\n\tStyleSheet\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type attribute must return the type.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20StyleSheet.html#type\n\n*/"
+			}
+		]
+	]
+}

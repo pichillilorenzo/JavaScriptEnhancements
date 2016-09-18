@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-olderShadowRoot\tHTMLShadowElement",
+			{
+				"name": "olderShadowRoot",
+				"return_type": "ShadowRoot",
+				"description": "Represents the shadow tree that is rendered in place of this shadow insertion point",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20HTMLShadowElement.html#olderShadowRoot",
+				"full_description": "/*\n\n\tHTMLShadowElement\n\n\tolderShadowRoot\n\n\tReturn Type:\n\tShadowRoot\n\n\tDescription:\n\tRepresents the shadow tree that is rendered in place of this shadow insertion point\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20HTMLShadowElement.html#olderShadowRoot\n\n*/"
+			}
+		],
+		[
+			"description-resetStyleInheritance\tHTMLShadowElement",
+			{
+				"name": "resetStyleInheritance",
+				"return_type": "boolean",
+				"description": "Must reflect the resetstyleinheritance attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20HTMLShadowElement.html#resetStyleInheritance",
+				"full_description": "/*\n\n\tHTMLShadowElement\n\n\tresetStyleInheritance\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tMust reflect the resetstyleinheritance attribute.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20HTMLShadowElement.html#resetStyleInheritance\n\n*/"
+			}
+		]
+	]
+}

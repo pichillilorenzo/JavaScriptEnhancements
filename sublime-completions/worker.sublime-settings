@@ -1,12 +1,29 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["postMessage(Message, transferList)\tWorker", "postMessage(${1:Message}, ${2:transferList})"],
-    ["new Worker(URL)\tWorker", "new Worker(${1:URL})"],
-    ["terminate()\tWorker", "terminate()"],
-    ["onmessage\tWorker", "onmessage"],
-    ["onerror\tWorker", "onerror"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"postMessage( message: any, transfer?: sequence<Transferable> ): void\tWorker",
+			"postMessage(${1:message: any}, ${2:transfer?: sequence<Transferable>})"
+		],
+		[
+			"new Worker( scriptURL: DOMString ): Worker\tWorker",
+			"new Worker(${1:scriptURL: DOMString})"
+		],
+		[
+			"Worker( scriptURL: DOMString ): Worker\tWorker",
+			"Worker(${1:scriptURL: DOMString})"
+		],
+		[
+			"onmessage: EventHandler\tWorker",
+			"onmessage"
+		],
+		[
+			"onerror: EventHandler\tWorker",
+			"onerror"
+		],
+		[
+			"terminate(): void\tWorker",
+			"terminate()"
+		]
+	]
 }

@@ -1,0 +1,49 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-zoomAndPan\tSVGZoomAndPan",
+			{
+				"name": "zoomAndPan",
+				"return_type": "unsigned short",
+				"description": "Corresponds to attribute ‘zoomAndPan’ on the given element. The value must be one of the SVG_ZOOMANDPAN_* constants defined on this interface. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGZoomAndPan.html#zoomAndPan",
+				"full_description": "/*\n\n\tSVGZoomAndPan\n\n\tzoomAndPan\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tCorresponds to attribute ‘zoomAndPan’ on the given element. The value must be one of the SVG_ZOOMANDPAN_* constants defined on this interface. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGZoomAndPan.html#zoomAndPan\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ZOOMANDPAN_UNKNOWN\tSVGZoomAndPan",
+			{
+				"name": "SVG_ZOOMANDPAN_UNKNOWN",
+				"return_type": "const unsigned short",
+				"description": "The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGZoomAndPan.html#SVG_ZOOMANDPAN_UNKNOWN",
+				"full_description": "/*\n\n\tSVGZoomAndPan\n\n\tSVG_ZOOMANDPAN_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGZoomAndPan.html#SVG_ZOOMANDPAN_UNKNOWN\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ZOOMANDPAN_DISABLE\tSVGZoomAndPan",
+			{
+				"name": "SVG_ZOOMANDPAN_DISABLE",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'disable'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGZoomAndPan.html#SVG_ZOOMANDPAN_DISABLE",
+				"full_description": "/*\n\n\tSVGZoomAndPan\n\n\tSVG_ZOOMANDPAN_DISABLE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'disable'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGZoomAndPan.html#SVG_ZOOMANDPAN_DISABLE\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ZOOMANDPAN_MAGNIFY\tSVGZoomAndPan",
+			{
+				"name": "SVG_ZOOMANDPAN_MAGNIFY",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'magnify'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGZoomAndPan.html#SVG_ZOOMANDPAN_MAGNIFY",
+				"full_description": "/*\n\n\tSVGZoomAndPan\n\n\tSVG_ZOOMANDPAN_MAGNIFY\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'magnify'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGZoomAndPan.html#SVG_ZOOMANDPAN_MAGNIFY\n\n*/"
+			}
+		]
+	]
+}

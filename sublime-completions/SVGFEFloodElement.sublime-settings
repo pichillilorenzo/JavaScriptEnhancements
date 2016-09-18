@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"height: SVGAnimatedLength\tSVGFEFloodElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEFloodElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEFloodElement",
+			"width"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEFloodElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEFloodElement",
+			"y"
+		]
+	]
+}

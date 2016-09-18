@@ -1,0 +1,107 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-publicId\tDocumentType",
+			{
+				"name": "publicId",
+				"return_type": "DOMString",
+				"description": "The publicId attribute must return the public ID.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20DocumentType.html#publicId",
+				"full_description": "/*\n\n\tDocumentType\n\n\tpublicId\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe publicId attribute must return the public ID.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentType.html#publicId\n\n*/"
+			}
+		],
+		[
+			"description-systemId\tDocumentType",
+			{
+				"name": "systemId",
+				"return_type": "DOMString",
+				"description": "The systemId attribute must return the system ID.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20DocumentType.html#systemId",
+				"full_description": "/*\n\n\tDocumentType\n\n\tsystemId\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe systemId attribute must return the system ID.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentType.html#systemId\n\n*/"
+			}
+		],
+		[
+			"description-name\tDocumentType",
+			{
+				"name": "name",
+				"return_type": "DOMString",
+				"description": "The name attribute must return the name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20DocumentType.html#name",
+				"full_description": "/*\n\n\tDocumentType\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name attribute must return the name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentType.html#name\n\n*/"
+			}
+		],
+		[
+			"description-replace()\tDocumentType",
+			{
+				"name": "replace",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "nodes...",
+						"type": "Node|DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-replace",
+				"full_description": "/*\n\n\tDocumentType\n\n\treplace ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-replace\n\n*/"
+			}
+		],
+		[
+			"description-before()\tDocumentType",
+			{
+				"name": "before",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "nodes...",
+						"type": "Node|DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-before",
+				"full_description": "/*\n\n\tDocumentType\n\n\tbefore ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-before\n\n*/"
+			}
+		],
+		[
+			"description-after()\tDocumentType",
+			{
+				"name": "after",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "nodes...",
+						"type": "Node|DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-after",
+				"full_description": "/*\n\n\tDocumentType\n\n\tafter ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-after\n\n*/"
+			}
+		],
+		[
+			"description-remove()\tDocumentType",
+			{
+				"name": "remove",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-remove",
+				"full_description": "/*\n\n\tDocumentType\n\n\tremove ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-remove\n\n*/"
+			}
+		]
+	]
+}

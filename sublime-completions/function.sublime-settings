@@ -1,13 +1,33 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["apply(thisArg)\tFunction", "apply(${1:thisArg})"],
-    ["bind(thisArg)\tFunction", "bind(${1:thisArg})"],
-    ["call(thisArg)\tFunction", "call(${1:thisArg})"],
-    ["new Function()\tFunction", "new Function()"],
-    ["toString\tFunction", "toString"],
-    ["length\tFunction", "length"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"new Function( paramsAndBody...: string ): Function\tFunction",
+			"new Function(${1:paramsAndBody...: string})"
+		],
+		[
+			"Function( paramsAndBody...: string ): Function\tFunction",
+			"Function(${1:paramsAndBody...: string})"
+		],
+		[
+			"apply( thisArg: any, argArray: Array ): any\tFunction",
+			"apply(${1:thisArg: any}, ${2:argArray: Array})"
+		],
+		[
+			"bind( thisArg: any, args...: any ): any\tFunction",
+			"bind(${1:thisArg: any}, ${2:args...: any})"
+		],
+		[
+			"call( thisArg: any, args...: any ): any\tFunction",
+			"call(${1:thisArg: any}, ${2:args...: any})"
+		],
+		[
+			"toString(): string\tFunction",
+			"toString()"
+		],
+		[
+			"length: int\tFunction",
+			"length"
+		]
+	]
 }

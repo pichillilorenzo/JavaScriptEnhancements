@@ -1,0 +1,155 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-IDBKeyRange.bound\tIDBKeyRange",
+			{
+				"name": "bound",
+				"return_type": "static IDBKeyRange",
+				"parameters": [
+					{
+						"name": "lower",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "upper",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "lowerOpen",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "upperOpen",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "Creates and returns a new key range with lower set to lower, lowerOpen set to lowerOpen, upper set to upper and upperOpen set to upperOpen. If either the lower parameter or upper parameter is not valid key, or the lower key is greater than the upper key, or the lower key and upper key match and either of the bounds are open, the implementation MUST throw a DOMException of type DataError.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#bound",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tbound ( lower: any, upper: any, lowerOpen?: boolean, upperOpen?: boolean )\n\n\tReturn Type:\n\tstatic IDBKeyRange\n\n\tDescription:\n\tCreates and returns a new key range with lower set to lower, lowerOpen set to lowerOpen, upper set to upper and upperOpen set to upperOpen. If either the lower parameter or upper parameter is not valid key, or the lower key is greater than the upper key, or the lower key and upper key match and either of the bounds are open, the implementation MUST throw a DOMException of type DataError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#bound\n\n*/"
+			}
+		],
+		[
+			"description-IDBKeyRange.lowerBound\tIDBKeyRange",
+			{
+				"name": "lowerBound",
+				"return_type": "static IDBKeyRange",
+				"parameters": [
+					{
+						"name": "lower",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "open",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "Creates and returns a new key range with lower set to lower, lowerOpen set to open, upper set to undefined and and upperOpen set to true. If the value parameter is not a valid key, the implementation MUST throw a DOMException of type DataError.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#lowerBound",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tlowerBound ( lower: any, open?: boolean )\n\n\tReturn Type:\n\tstatic IDBKeyRange\n\n\tDescription:\n\tCreates and returns a new key range with lower set to lower, lowerOpen set to open, upper set to undefined and and upperOpen set to true. If the value parameter is not a valid key, the implementation MUST throw a DOMException of type DataError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#lowerBound\n\n*/"
+			}
+		],
+		[
+			"description-IDBKeyRange.upperBound\tIDBKeyRange",
+			{
+				"name": "upperBound",
+				"return_type": "static IDBKeyRange",
+				"parameters": [
+					{
+						"name": "upper",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "open",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "Creates and returns a new key range with lower set to undefined, lowerOpen set to true, upper set to upper and and upperOpen set to open. If the value parameter is not a valid key, the implementation MUST throw a DOMException of type DataError.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#upperBound",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tupperBound ( upper: any, open?: boolean )\n\n\tReturn Type:\n\tstatic IDBKeyRange\n\n\tDescription:\n\tCreates and returns a new key range with lower set to undefined, lowerOpen set to true, upper set to upper and and upperOpen set to open. If the value parameter is not a valid key, the implementation MUST throw a DOMException of type DataError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#upperBound\n\n*/"
+			}
+		],
+		[
+			"description-IDBKeyRange.only\tIDBKeyRange",
+			{
+				"name": "only",
+				"return_type": "static IDBKeyRange",
+				"parameters": [
+					{
+						"name": "value",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Creates and returns a new key range with both lower and upper set to value and both lowerOpen and upperOpen set to false. If the value parameter is not a valid key, the implementation MUST throw a DOMException of type DataError.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#only",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tonly ( value: any )\n\n\tReturn Type:\n\tstatic IDBKeyRange\n\n\tDescription:\n\tCreates and returns a new key range with both lower and upper set to value and both lowerOpen and upperOpen set to false. If the value parameter is not a valid key, the implementation MUST throw a DOMException of type DataError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#only\n\n*/"
+			}
+		],
+		[
+			"description-lowerOpen\tIDBKeyRange",
+			{
+				"name": "lowerOpen",
+				"return_type": "boolean",
+				"description": "Returns false if the lower-bound value is included in the key range. Returns true if the lower-bound value is excluded from the key range.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#lowerOpen",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tlowerOpen\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns false if the lower-bound value is included in the key range. Returns true if the lower-bound value is excluded from the key range.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#lowerOpen\n\n*/"
+			}
+		],
+		[
+			"description-upperOpen\tIDBKeyRange",
+			{
+				"name": "upperOpen",
+				"return_type": "boolean",
+				"description": "Returns false if the upper-bound value is included in the key range. Returns true if the upper-bound value is excluded from the key range.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#upperOpen",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tupperOpen\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns false if the upper-bound value is included in the key range. Returns true if the upper-bound value is excluded from the key range.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#upperOpen\n\n*/"
+			}
+		],
+		[
+			"description-lower\tIDBKeyRange",
+			{
+				"name": "lower",
+				"return_type": "any",
+				"description": "This value is the lower-bound of the key range.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#lower",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tlower\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThis value is the lower-bound of the key range.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#lower\n\n*/"
+			}
+		],
+		[
+			"description-upper\tIDBKeyRange",
+			{
+				"name": "upper",
+				"return_type": "any",
+				"description": "This value is the upper-bound of the key range.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#upper",
+				"full_description": "/*\n\n\tIDBKeyRange\n\n\tupper\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThis value is the upper-bound of the key range.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBKeyRange.html#upper\n\n*/"
+			}
+		]
+	]
+}

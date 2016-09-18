@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"preserveAspectRatio: SVGAnimatedPreserveAspectRatio\tSVGViewSpec",
+			"preserveAspectRatio"
+		],
+		[
+			"preserveAspectRatioString: DOMString\tSVGViewSpec",
+			"preserveAspectRatioString"
+		],
+		[
+			"transform: SVGTransformList\tSVGViewSpec",
+			"transform"
+		],
+		[
+			"viewTargetString: DOMString\tSVGViewSpec",
+			"viewTargetString"
+		],
+		[
+			"transformString: DOMString\tSVGViewSpec",
+			"transformString"
+		],
+		[
+			"viewBox: SVGAnimatedRect\tSVGViewSpec",
+			"viewBox"
+		],
+		[
+			"viewBoxString: DOMString\tSVGViewSpec",
+			"viewBoxString"
+		],
+		[
+			"viewTarget: SVGElement\tSVGViewSpec",
+			"viewTarget"
+		]
+	]
+}

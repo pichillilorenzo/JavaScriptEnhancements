@@ -1,0 +1,77 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"UPDATEREADY: const unsigned short\tApplicationCache",
+			"UPDATEREADY"
+		],
+		[
+			"DOWNLOADING: const unsigned short\tApplicationCache",
+			"DOWNLOADING"
+		],
+		[
+			"CHECKING: const unsigned short\tApplicationCache",
+			"CHECKING"
+		],
+		[
+			"OBSOLETE: const unsigned short\tApplicationCache",
+			"OBSOLETE"
+		],
+		[
+			"UNCACHED: const unsigned short\tApplicationCache",
+			"UNCACHED"
+		],
+		[
+			"onupdateready: EventHandler\tApplicationCache",
+			"onupdateready"
+		],
+		[
+			"ondownloading: EventHandler\tApplicationCache",
+			"ondownloading"
+		],
+		[
+			"IDLE: const unsigned short\tApplicationCache",
+			"IDLE"
+		],
+		[
+			"onchecking: EventHandler\tApplicationCache",
+			"onchecking"
+		],
+		[
+			"onnoupdate: EventHandler\tApplicationCache",
+			"onnoupdate"
+		],
+		[
+			"onobsolete: EventHandler\tApplicationCache",
+			"onobsolete"
+		],
+		[
+			"onprogress: EventHandler\tApplicationCache",
+			"onprogress"
+		],
+		[
+			"oncached: EventHandler\tApplicationCache",
+			"oncached"
+		],
+		[
+			"status: unsigned short\tApplicationCache",
+			"status"
+		],
+		[
+			"onerror: EventHandler\tApplicationCache",
+			"onerror"
+		],
+		[
+			"swapCache(): void\tApplicationCache",
+			"swapCache()"
+		],
+		[
+			"update(): void\tApplicationCache",
+			"update()"
+		],
+		[
+			"abort(): void\tApplicationCache",
+			"abort()"
+		]
+	]
+}

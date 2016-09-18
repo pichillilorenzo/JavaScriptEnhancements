@@ -1,33 +1,181 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["Math.max(value1, value2)\tMath", "Math.max(${1:value1}, ${2:value2})"],
-    ["Math.pow(base, exponent)\tMath", "Math.pow(${1:base}, ${2:exponent})"],
-    ["Math.min(value1, value2)\tMath", "Math.min(${1:value1}, ${2:value2})"],
-    ["Math.atan2(y, x)\tMath", "Math.atan2(${1:y}, ${2:x})"],
-    ["Math.random()\tMath", "Math.random()"],
-    ["Math.round()\tMath", "Math.round($1)"],
-    ["Math.floor()\tMath", "Math.floor($1)"],
-    ["Math.sqrt()\tMath", "Math.sqrt($1)"],
-    ["Math.asin()\tMath", "Math.asin($1)"],
-    ["Math.ceil()\tMath", "Math.ceil($1)"],
-    ["Math.SQRT1_2\tMath", "Math.SQRT1_2"],
-    ["Math.atan()\tMath", "Math.atan($1)"],
-    ["Math.acos()\tMath", "Math.acos($1)"],
-    ["Math.cos()\tMath", "Math.cos($1)"],
-    ["Math.tan()\tMath", "Math.tan($1)"],
-    ["Math.sin()\tMath", "Math.sin($1)"],
-    ["Math.abs()\tMath", "Math.abs($1)"],
-    ["Math.exp()\tMath", "Math.exp($1)"],
-    ["Math.log()\tMath", "Math.log($1)"],
-    ["Math.LOG10E\tMath", "Math.LOG10E"],
-    ["Math.LOG2E\tMath", "Math.LOG2E"],
-    ["Math.SQRT2\tMath", "Math.SQRT2"],
-    ["Math.LN10\tMath", "Math.LN10"],
-    ["Math.LN2\tMath", "Math.LN2"],
-    ["Math.PI\tMath", "Math.PI"],
-    ["Math.E\tMath", "Math.E"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"Math.atan2( y: number, x: number ): static number\tMath",
+			"Math.atan2(${1:y: number}, ${2:x: number})"
+		],
+		[
+			"Math.pow( x: number, y: number ): static number\tMath",
+			"Math.pow(${1:x: number}, ${2:y: number})"
+		],
+		[
+			"atan2( y: number, x: number ): static number\tMath",
+			"atan2(${1:y: number}, ${2:x: number})"
+		],
+		[
+			"Math.min( values...: number ): static number\tMath",
+			"Math.min(${1:values...: number})"
+		],
+		[
+			"Math.max( values...: number ): static number\tMath",
+			"Math.max(${1:values...: number})"
+		],
+		[
+			"pow( x: number, y: number ): static number\tMath",
+			"pow(${1:x: number}, ${2:y: number})"
+		],
+		[
+			"min( values...: number ): static number\tMath",
+			"min(${1:values...: number})"
+		],
+		[
+			"max( values...: number ): static number\tMath",
+			"max(${1:values...: number})"
+		],
+		[
+			"Math.round( x: number ): static number\tMath",
+			"Math.round(${1:x: number})"
+		],
+		[
+			"Math.floor( x: number ): static number\tMath",
+			"Math.floor(${1:x: number})"
+		],
+		[
+			"Math.asin( x: number ): static number\tMath",
+			"Math.asin(${1:x: number})"
+		],
+		[
+			"Math.sqrt( x: number ): static number\tMath",
+			"Math.sqrt(${1:x: number})"
+		],
+		[
+			"Math.atan( x: number ): static number\tMath",
+			"Math.atan(${1:x: number})"
+		],
+		[
+			"Math.ceil( x: number ): static number\tMath",
+			"Math.ceil(${1:x: number})"
+		],
+		[
+			"Math.acos( x: number ): static number\tMath",
+			"Math.acos(${1:x: number})"
+		],
+		[
+			"Math.cos( x: number ): static number\tMath",
+			"Math.cos(${1:x: number})"
+		],
+		[
+			"Math.log( x: number ): static number\tMath",
+			"Math.log(${1:x: number})"
+		],
+		[
+			"Math.sin( x: number ): static number\tMath",
+			"Math.sin(${1:x: number})"
+		],
+		[
+			"Math.tan( x: number ): static number\tMath",
+			"Math.tan(${1:x: number})"
+		],
+		[
+			"Math.abs( x: number ): static number\tMath",
+			"Math.abs(${1:x: number})"
+		],
+		[
+			"Math.exp( x: number ): static number\tMath",
+			"Math.exp(${1:x: number})"
+		],
+		[
+			"floor( x: number ): static number\tMath",
+			"floor(${1:x: number})"
+		],
+		[
+			"round( x: number ): static number\tMath",
+			"round(${1:x: number})"
+		],
+		[
+			"ceil( x: number ): static number\tMath",
+			"ceil(${1:x: number})"
+		],
+		[
+			"atan( x: number ): static number\tMath",
+			"atan(${1:x: number})"
+		],
+		[
+			"asin( x: number ): static number\tMath",
+			"asin(${1:x: number})"
+		],
+		[
+			"acos( x: number ): static number\tMath",
+			"acos(${1:x: number})"
+		],
+		[
+			"sqrt( x: number ): static number\tMath",
+			"sqrt(${1:x: number})"
+		],
+		[
+			"abs( x: number ): static number\tMath",
+			"abs(${1:x: number})"
+		],
+		[
+			"exp( x: number ): static number\tMath",
+			"exp(${1:x: number})"
+		],
+		[
+			"sin( x: number ): static number\tMath",
+			"sin(${1:x: number})"
+		],
+		[
+			"tan( x: number ): static number\tMath",
+			"tan(${1:x: number})"
+		],
+		[
+			"cos( x: number ): static number\tMath",
+			"cos(${1:x: number})"
+		],
+		[
+			"log( x: number ): static number\tMath",
+			"log(${1:x: number})"
+		],
+		[
+			"Math.random(): static number\tMath",
+			"Math.random()"
+		],
+		[
+			"random(): static number\tMath",
+			"random()"
+		],
+		[
+			"SQRT1_2: const number\tMath",
+			"SQRT1_2"
+		],
+		[
+			"LOG10E: const number\tMath",
+			"LOG10E"
+		],
+		[
+			"SQRT2: const number\tMath",
+			"SQRT2"
+		],
+		[
+			"LOG2E: const number\tMath",
+			"LOG2E"
+		],
+		[
+			"LN10: const number\tMath",
+			"LN10"
+		],
+		[
+			"LN2: const number\tMath",
+			"LN2"
+		],
+		[
+			"PI: const number\tMath",
+			"PI"
+		],
+		[
+			"E: const number\tMath",
+			"E"
+		]
+	]
 }

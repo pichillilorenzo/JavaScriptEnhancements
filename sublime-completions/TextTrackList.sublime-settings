@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getter( index: unsigned long ): TextTrack\tTextTrackList",
+			"getter(${1:index: unsigned long})"
+		],
+		[
+			"getTrackById( id: DOMString ): TextTrack\tTextTrackList",
+			"getTrackById(${1:id: DOMString})"
+		],
+		[
+			"onremovetrack: EventHandler\tTextTrackList",
+			"onremovetrack"
+		],
+		[
+			"onaddtrack: EventHandler\tTextTrackList",
+			"onaddtrack"
+		],
+		[
+			"onchange: EventHandler\tTextTrackList",
+			"onchange"
+		],
+		[
+			"length: unsigned long\tTextTrackList",
+			"length"
+		]
+	]
+}

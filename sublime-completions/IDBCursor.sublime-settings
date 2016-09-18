@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"advance( count: unsigned long ): void\tIDBCursor",
+			"advance(${1:count: unsigned long})"
+		],
+		[
+			"source: (IDBObjectStore or IDBIndex)\tIDBCursor",
+			"source"
+		],
+		[
+			"update( value: any ): IDBRequest\tIDBCursor",
+			"update(${1:value: any})"
+		],
+		[
+			"direction: IDBCursorDirection\tIDBCursor",
+			"direction"
+		],
+		[
+			"continue( key?: any ): void\tIDBCursor",
+			"continue(${1:key?: any})"
+		],
+		[
+			"delete(): IDBRequest\tIDBCursor",
+			"delete()"
+		],
+		[
+			"primaryKey: any\tIDBCursor",
+			"primaryKey"
+		],
+		[
+			"key: any\tIDBCursor",
+			"key"
+		]
+	]
+}

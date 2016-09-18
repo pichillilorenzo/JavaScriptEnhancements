@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"x: SVGAnimatedNumber\tSVGFEPointLightElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedNumber\tSVGFEPointLightElement",
+			"y"
+		],
+		[
+			"z: SVGAnimatedNumber\tSVGFEPointLightElement",
+			"z"
+		]
+	]
+}

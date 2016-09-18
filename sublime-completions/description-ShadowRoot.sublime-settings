@@ -1,0 +1,179 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-elementFromPoint()\tShadowRoot",
+			{
+				"name": "elementFromPoint",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "x",
+						"type": "float",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "float",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns an element at specified coordinates. Eventually, this needs to be part of CSSOM View Module specification When invoked, it must return result of running the following steps: If context object is not a ShadowRoot instance, throw an InvalidNodeTypeError.If either argument is negative, x is greated than the viewport width excluding the size of a rendered scroll bar (if any), or if y is greated than the viewport height excluding the size of a rendered scroll bar (if any), return null.Let HIT be the element at coordinates x and y in the viewport, determined through hit testingLet TARGETS be the result of running the retargeting algorithm with HIT as its argumentLet TUPLE be the tuple in TARGETS, whose second value is context objectReturn first value of TUPLE.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#elementFromPoint",
+				"full_description": "/*\n\n\tShadowRoot\n\n\telementFromPoint ( x: float, y: float )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tReturns an element at specified coordinates. Eventually, this needs to be part of CSSOM View Module specification When invoked, it must return result of running the following steps: If context object is not a ShadowRoot instance, throw an InvalidNodeTypeError.If either argument is negative, x is greated than the viewport width excluding the size of a rendered scroll bar (if any), or if y is greated than the viewport height excluding the size of a rendered scroll bar (if any), return null.Let HIT be the element at coordinates x and y in the viewport, determined through hit testingLet TARGETS be the result of running the retargeting algorithm with HIT as its argumentLet TUPLE be the tuple in TARGETS, whose second value is context objectReturn first value of TUPLE.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#elementFromPoint\n\n*/"
+			}
+		],
+		[
+			"description-applyAuthorStyles\tShadowRoot",
+			{
+				"name": "applyAuthorStyles",
+				"return_type": "bool",
+				"description": "Represents the apply-author-styles flag and indicates whether or not the rules in author styles associated with the element's document apply to the shadow tree. If false (default value), the author styles are not applied to the shadow tree. If true, the author styles are applied.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#applyAuthorStyles",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tapplyAuthorStyles\n\n\tReturn Type:\n\tbool\n\n\tDescription:\n\tRepresents the apply-author-styles flag and indicates whether or not the rules in author styles associated with the element's document apply to the shadow tree. If false (default value), the author styles are not applied to the shadow tree. If true, the author styles are applied.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#applyAuthorStyles\n\n*/"
+			}
+		],
+		[
+			"description-resetStyleInheritance\tShadowRoot",
+			{
+				"name": "resetStyleInheritance",
+				"return_type": "bool",
+				"description": "Represents the reset-style-inheritance flag and indicates whether or not the inheritable CSS properties are set to the initial value at the shadow boundary. If false (default value), the properties continue to inherit. If true, the properties are set to initial value.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#resetStyleInheritance",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tresetStyleInheritance\n\n\tReturn Type:\n\tbool\n\n\tDescription:\n\tRepresents the reset-style-inheritance flag and indicates whether or not the inheritable CSS properties are set to the initial value at the shadow boundary. If false (default value), the properties continue to inherit. If true, the properties are set to initial value.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#resetStyleInheritance\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByTagNameNS()\tShadowRoot",
+			{
+				"name": "getElementsByTagNameNS",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "namespace",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "localName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Must behave exactly like document.getElementsByTagNameNS, except scoped to the shadow tree.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementsByTagNameNS",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tgetElementsByTagNameNS ( namespace: DOMString, localName: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tMust behave exactly like document.getElementsByTagNameNS, except scoped to the shadow tree.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementsByTagNameNS\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByClassName()\tShadowRoot",
+			{
+				"name": "getElementsByClassName",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "tagName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Must behave exactly like document.getElementsByClassName, except scoped to the shadow tree.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementsByClassName",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tgetElementsByClassName ( tagName: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tMust behave exactly like document.getElementsByClassName, except scoped to the shadow tree.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementsByClassName\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByTagName()\tShadowRoot",
+			{
+				"name": "getElementsByTagName",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "className",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Must behave exactly like document.getElementsByTagName, except scoped to the shadow tree.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementsByTagName",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tgetElementsByTagName ( className: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tMust behave exactly like document.getElementsByTagName, except scoped to the shadow tree.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementsByTagName\n\n*/"
+			}
+		],
+		[
+			"description-getElementById()\tShadowRoot",
+			{
+				"name": "getElementById",
+				"return_type": "HTMLElement",
+				"parameters": [
+					{
+						"name": "elementId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Must behave exactly like document.getElementById, except scoped to the shadow tree.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementById",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tgetElementById ( elementId: DOMString )\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\tMust behave exactly like document.getElementById, except scoped to the shadow tree.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#getElementById\n\n*/"
+			}
+		],
+		[
+			"description-activeElement\tShadowRoot",
+			{
+				"name": "activeElement",
+				"return_type": "Element",
+				"description": "Represents the currently focused element in the shadow tree.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#activeElement",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tactiveElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tRepresents the currently focused element in the shadow tree.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#activeElement\n\n*/"
+			}
+		],
+		[
+			"description-styleSheets\tShadowRoot",
+			{
+				"name": "styleSheets",
+				"return_type": "StyleSheetList",
+				"description": "Represents the shadow root style sheets.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#styleSheets",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tstyleSheets\n\n\tReturn Type:\n\tStyleSheetList\n\n\tDescription:\n\tRepresents the shadow root style sheets.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#styleSheets\n\n*/"
+			}
+		],
+		[
+			"description-innerHTML\tShadowRoot",
+			{
+				"name": "innerHTML",
+				"return_type": "DOMString",
+				"description": "represents the markup of ShadowRoot's contents.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#innerHTML",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tinnerHTML\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\trepresents the markup of ShadowRoot's contents.\n\n\tURL doc:\n\thttp://html5index.org/Shadow%20DOM%20-%20ShadowRoot.html#innerHTML\n\n*/"
+			}
+		],
+		[
+			"description-getSelection()\tShadowRoot",
+			{
+				"name": "getSelection",
+				"return_type": "Selection",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.w3.org/TR/shadow-dom/#api-shadow-root-selection",
+				"full_description": "/*\n\n\tShadowRoot\n\n\tgetSelection ()\n\n\tReturn Type:\n\tSelection\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/shadow-dom/#api-shadow-root-selection\n\n*/"
+			}
+		]
+	]
+}

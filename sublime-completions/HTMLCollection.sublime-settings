@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"item( index: unsigned long ): Element\tHTMLCollection",
+			"item(${1:index: unsigned long})"
+		],
+		[
+			"namedItem( name: DOMString ): Element\tHTMLCollection",
+			"namedItem(${1:name: DOMString})"
+		],
+		[
+			"length: unsigned long\tHTMLCollection",
+			"length"
+		]
+	]
+}

@@ -1,0 +1,129 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"playbackState: MediaControllerPlaybackState\tMediaController",
+			"playbackState"
+		],
+		[
+			"new MediaController(): MediaController\tMediaController",
+			"new MediaController()"
+		],
+		[
+			"MediaController(): MediaController\tMediaController",
+			"MediaController()"
+		],
+		[
+			"oncanplaythrough: EventHandler\tMediaController",
+			"oncanplaythrough"
+		],
+		[
+			"ondurationchange: EventHandler\tMediaController",
+			"ondurationchange"
+		],
+		[
+			"onloadedmetadata: EventHandler\tMediaController",
+			"onloadedmetadata"
+		],
+		[
+			"duration: unrestricted double\tMediaController",
+			"duration"
+		],
+		[
+			"onvolumechange: EventHandler\tMediaController",
+			"onvolumechange"
+		],
+		[
+			"defaultPlaybackRate: double\tMediaController",
+			"defaultPlaybackRate"
+		],
+		[
+			"readyState: unsigned short\tMediaController",
+			"readyState"
+		],
+		[
+			"ontimeupdate: EventHandler\tMediaController",
+			"ontimeupdate"
+		],
+		[
+			"onratechange: EventHandler\tMediaController",
+			"onratechange"
+		],
+		[
+			"onloadeddata: EventHandler\tMediaController",
+			"onloadeddata"
+		],
+		[
+			"onplaying: EventHandler\tMediaController",
+			"onplaying"
+		],
+		[
+			"oncanplay: EventHandler\tMediaController",
+			"oncanplay"
+		],
+		[
+			"onemptied: EventHandler\tMediaController",
+			"onemptied"
+		],
+		[
+			"onwaiting: EventHandler\tMediaController",
+			"onwaiting"
+		],
+		[
+			"onended: EventHandler\tMediaController",
+			"onended"
+		],
+		[
+			"onpause: EventHandler\tMediaController",
+			"onpause"
+		],
+		[
+			"onplay: EventHandler\tMediaController",
+			"onplay"
+		],
+		[
+			"buffered: TimeRanges\tMediaController",
+			"buffered"
+		],
+		[
+			"seekable: TimeRanges\tMediaController",
+			"seekable"
+		],
+		[
+			"playbackRate: double\tMediaController",
+			"playbackRate"
+		],
+		[
+			"currentTime: double\tMediaController",
+			"currentTime"
+		],
+		[
+			"played: TimeRanges\tMediaController",
+			"played"
+		],
+		[
+			"paused: boolean\tMediaController",
+			"paused"
+		],
+		[
+			"unpause(): void\tMediaController",
+			"unpause()"
+		],
+		[
+			"muted: boolean\tMediaController",
+			"muted"
+		],
+		[
+			"volume: double\tMediaController",
+			"volume"
+		],
+		[
+			"pause(): void\tMediaController",
+			"pause()"
+		],
+		[
+			"play(): void\tMediaController",
+			"play()"
+		]
+	]
+}

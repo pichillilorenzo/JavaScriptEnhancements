@@ -1,0 +1,105 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-clearInterval()\tWindowTimers",
+			{
+				"name": "clearInterval",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "handle",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowTimers.html#clearInterval",
+				"full_description": "/*\n\n\tWindowTimers\n\n\tclearInterval ( handle?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowTimers.html#clearInterval\n\n*/"
+			}
+		],
+		[
+			"description-clearTimeout()\tWindowTimers",
+			{
+				"name": "clearTimeout",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "handle",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowTimers.html#clearTimeout",
+				"full_description": "/*\n\n\tWindowTimers\n\n\tclearTimeout ( handle?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowTimers.html#clearTimeout\n\n*/"
+			}
+		],
+		[
+			"description-setInterval()\tWindowTimers",
+			{
+				"name": "setInterval",
+				"return_type": "long",
+				"parameters": [
+					{
+						"name": "handler",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "timeout",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "arguments...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setInterval() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to true.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowTimers.html#setInterval",
+				"full_description": "/*\n\n\tWindowTimers\n\n\tsetInterval ( handler: any, timeout?: long, arguments...: any )\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe setInterval() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to true.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowTimers.html#setInterval\n\n*/"
+			}
+		],
+		[
+			"description-setTimeout()\tWindowTimers",
+			{
+				"name": "setTimeout",
+				"return_type": "long",
+				"parameters": [
+					{
+						"name": "handler",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "timeout",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "arguments...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setTimeout() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to false.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowTimers.html#setTimeout",
+				"full_description": "/*\n\n\tWindowTimers\n\n\tsetTimeout ( handler: any, timeout?: long, arguments...: any )\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe setTimeout() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to false.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowTimers.html#setTimeout\n\n*/"
+			}
+		]
+	]
+}

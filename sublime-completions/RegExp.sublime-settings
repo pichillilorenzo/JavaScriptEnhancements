@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new RegExp( pattern: any, flags: string ): RegExp\tRegExp",
+			"new RegExp(${1:pattern: any}, ${2:flags: string})"
+		],
+		[
+			"RegExp( pattern: any, flags: string ): RegExp\tRegExp",
+			"RegExp(${1:pattern: any}, ${2:flags: string})"
+		],
+		[
+			"test( s: string ): boolean\tRegExp",
+			"test(${1:s: string})"
+		],
+		[
+			"ignoreCase: boolean\tRegExp",
+			"ignoreCase"
+		],
+		[
+			"multiline: boolean\tRegExp",
+			"multiline"
+		],
+		[
+			"global: boolean\tRegExp",
+			"global"
+		],
+		[
+			"lastIndex: int\tRegExp",
+			"lastIndex"
+		],
+		[
+			"source: string\tRegExp",
+			"source"
+		]
+	]
+}

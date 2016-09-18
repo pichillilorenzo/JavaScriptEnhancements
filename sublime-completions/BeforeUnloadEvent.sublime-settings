@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"returnValue: DOMString\tBeforeUnloadEvent",
+			"returnValue"
+		]
+	]
+}

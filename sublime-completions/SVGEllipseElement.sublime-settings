@@ -1,0 +1,65 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGEllipseElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGEllipseElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGEllipseElement",
+			"externalResourcesRequired"
+		],
+		[
+			"transform: SVGAnimatedTransformList\tSVGEllipseElement",
+			"transform"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGEllipseElement",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGEllipseElement",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGEllipseElement",
+			"systemLanguage"
+		],
+		[
+			"className: SVGAnimatedString\tSVGEllipseElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGEllipseElement",
+			"style"
+		],
+		[
+			"cx: SVGAnimatedLength\tSVGEllipseElement",
+			"cx"
+		],
+		[
+			"rx: SVGAnimatedLength\tSVGEllipseElement",
+			"rx"
+		],
+		[
+			"cy: SVGAnimatedLength\tSVGEllipseElement",
+			"cy"
+		],
+		[
+			"ry: SVGAnimatedLength\tSVGEllipseElement",
+			"ry"
+		],
+		[
+			"xmlspace: DOMString\tSVGEllipseElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGEllipseElement",
+			"xmllang"
+		]
+	]
+}

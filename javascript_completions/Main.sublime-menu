@@ -1,0 +1,91 @@
+[
+  {
+    "caption": "Preferences",
+    "mnemonic": "n",
+    "id": "preferences",
+    "children": [
+      {
+        "caption": "Package Settings",
+        "mnemonic": "P",
+        "id": "package-settings",
+        "children": [
+          {
+            "caption": "JavaScript Completions",
+            "children": [
+              {
+                "caption": "Settings - Default",
+                "command": "open_file",
+                "args": {"file": "${packages}/JavaScript Completions/javascript_completions/JavaScript-Completions.sublime-settings"}
+              },
+              {
+                "caption": "Settings - User",
+                "command": "open_file",
+                "args": {"file": "${packages}/User/JavaScript-Completions.sublime-settings"}
+              },
+              { "caption": "-" },
+              { "caption": "-" },
+              {
+                  "command": "handle_setting",
+                  "args": {
+                      "folder_from_package": "javascript_completions",
+                      "file_name": "Default (OSX)",
+                      "extension": "sublime-keymap"
+                  },
+                  "caption": "Key Bindings – Default"
+              },
+              {
+                  "command": "handle_setting",
+                  "args": {
+                      "folder_from_package": "javascript_completions",
+                      "file_name": "Default (Linux)",
+                      "extension": "sublime-keymap"
+                  },
+                  "caption": "Key Bindings – Default"
+              },
+              {
+                  "command": "handle_setting",
+                  "args": {
+                      "folder_from_package": "javascript_completions",
+                      "file_name": "Default (Windows)",
+                      "extension": "sublime-keymap"
+                  },
+                  "caption": "Key Bindings – Default"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/User/Default (OSX).sublime-keymap",
+                      "platform": "OSX"
+                  },
+                  "caption": "Key Bindings – User"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/User/Default (Linux).sublime-keymap",
+                      "platform": "Linux"
+                  },
+                  "caption": "Key Bindings – User"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/User/Default (Windows).sublime-keymap",
+                      "platform": "Windows"
+                  },
+                  "caption": "Key Bindings – User"
+              },
+              { "caption": "-" },
+              {
+                "caption": "GitHub Project",
+                "command": "open_url",
+                "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
+              },
+              { "caption": "-" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

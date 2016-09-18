@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"videoHeight: unsigned long\tHTMLVideoElement",
+			"videoHeight"
+		],
+		[
+			"videoWidth: unsigned long\tHTMLVideoElement",
+			"videoWidth"
+		],
+		[
+			"height: unsigned long\tHTMLVideoElement",
+			"height"
+		],
+		[
+			"width: unsigned long\tHTMLVideoElement",
+			"width"
+		],
+		[
+			"poster: DOMString\tHTMLVideoElement",
+			"poster"
+		]
+	]
+}

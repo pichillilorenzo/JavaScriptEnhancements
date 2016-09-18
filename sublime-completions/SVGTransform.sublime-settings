@@ -1,0 +1,69 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setRotate( angle: float, cx: float, cy: float ): void\tSVGTransform",
+			"setRotate(${1:angle: float}, ${2:cx: float}, ${3:cy: float})"
+		],
+		[
+			"SVG_TRANSFORM_TRANSLATE: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_TRANSLATE"
+		],
+		[
+			"SVG_TRANSFORM_UNKNOWN: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_UNKNOWN"
+		],
+		[
+			"SVG_TRANSFORM_MATRIX: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_MATRIX"
+		],
+		[
+			"setTranslate( tx: float, ty: float ): void\tSVGTransform",
+			"setTranslate(${1:tx: float}, ${2:ty: float})"
+		],
+		[
+			"SVG_TRANSFORM_ROTATE: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_ROTATE"
+		],
+		[
+			"SVG_TRANSFORM_SKEWY: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_SKEWY"
+		],
+		[
+			"SVG_TRANSFORM_SKEWX: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_SKEWX"
+		],
+		[
+			"SVG_TRANSFORM_SCALE: const unsigned short\tSVGTransform",
+			"SVG_TRANSFORM_SCALE"
+		],
+		[
+			"setScale( sx: float, sy: float ): void\tSVGTransform",
+			"setScale(${1:sx: float}, ${2:sy: float})"
+		],
+		[
+			"setMatrix( matrix: SVGMatrix ): void\tSVGTransform",
+			"setMatrix(${1:matrix: SVGMatrix})"
+		],
+		[
+			"setSkewX( angle: float ): void\tSVGTransform",
+			"setSkewX(${1:angle: float})"
+		],
+		[
+			"setSkewY( angle: float ): void\tSVGTransform",
+			"setSkewY(${1:angle: float})"
+		],
+		[
+			"type: unsigned short\tSVGTransform",
+			"type"
+		],
+		[
+			"matrix: SVGMatrix\tSVGTransform",
+			"matrix"
+		],
+		[
+			"angle: float\tSVGTransform",
+			"angle"
+		]
+	]
+}

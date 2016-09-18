@@ -1,0 +1,49 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getElementsByTagNameNS( namespace: DOMString, localName: DOMString ): NodeList\tShadowRoot",
+			"getElementsByTagNameNS(${1:namespace: DOMString}, ${2:localName: DOMString})"
+		],
+		[
+			"getElementsByTagName( className: DOMString ): NodeList\tShadowRoot",
+			"getElementsByTagName(${1:className: DOMString})"
+		],
+		[
+			"getElementsByClassName( tagName: DOMString ): NodeList\tShadowRoot",
+			"getElementsByClassName(${1:tagName: DOMString})"
+		],
+		[
+			"getElementById( elementId: DOMString ): HTMLElement\tShadowRoot",
+			"getElementById(${1:elementId: DOMString})"
+		],
+		[
+			"elementFromPoint( x: float, y: float ): Element\tShadowRoot",
+			"elementFromPoint(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"resetStyleInheritance: bool\tShadowRoot",
+			"resetStyleInheritance"
+		],
+		[
+			"styleSheets: StyleSheetList\tShadowRoot",
+			"styleSheets"
+		],
+		[
+			"getSelection(): Selection\tShadowRoot",
+			"getSelection()"
+		],
+		[
+			"applyAuthorStyles: bool\tShadowRoot",
+			"applyAuthorStyles"
+		],
+		[
+			"activeElement: Element\tShadowRoot",
+			"activeElement"
+		],
+		[
+			"innerHTML: DOMString\tShadowRoot",
+			"innerHTML"
+		]
+	]
+}

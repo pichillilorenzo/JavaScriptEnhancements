@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"replace( url: DOMString ): void\tLocation",
+			"replace(${1:url: DOMString})"
+		],
+		[
+			"assign( url: DOMString ): void\tLocation",
+			"assign(${1:url: DOMString})"
+		],
+		[
+			"reload(): void\tLocation",
+			"reload()"
+		]
+	]
+}

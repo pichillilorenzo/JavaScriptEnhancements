@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"toBlob( _callback: FileCallback, type?: DOMString, arguments...: any ): void\tHTMLCanvasElement",
+			"toBlob(${1:_callback: FileCallback}, ${2:type?: DOMString}, ${3:arguments...: any})"
+		],
+		[
+			"probablySupportsContext( contextId: DOMString, arguments...: any ): boolean\tHTMLCanvasElement",
+			"probablySupportsContext(${1:contextId: DOMString}, ${2:arguments...: any})"
+		],
+		[
+			"getContext( contextId: DOMString, arguments...: any ): RenderingContext\tHTMLCanvasElement",
+			"getContext(${1:contextId: DOMString}, ${2:arguments...: any})"
+		],
+		[
+			"toDataURL( type?: DOMString, arguments...: any ): DOMString\tHTMLCanvasElement",
+			"toDataURL(${1:type?: DOMString}, ${2:arguments...: any})"
+		],
+		[
+			"setContext( context: RenderingContext ): void\tHTMLCanvasElement",
+			"setContext(${1:context: RenderingContext})"
+		],
+		[
+			"transferControlToProxy(): CanvasProxy\tHTMLCanvasElement",
+			"transferControlToProxy()"
+		],
+		[
+			"height: unsigned long\tHTMLCanvasElement",
+			"height"
+		],
+		[
+			"width: unsigned long\tHTMLCanvasElement",
+			"width"
+		]
+	]
+}

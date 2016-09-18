@@ -1,0 +1,158 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-reportValidity()\tHTMLOutputElement",
+			{
+				"name": "reportValidity",
+				"return_type": "boolean",
+				"parameters": [],
+				"description": "When the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#reportValidity",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\treportValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#reportValidity\n\n*/"
+			}
+		],
+		[
+			"description-validationMessage\tHTMLOutputElement",
+			{
+				"name": "validationMessage",
+				"return_type": "DOMString",
+				"description": "The validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#validationMessage",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tvalidationMessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#validationMessage\n\n*/"
+			}
+		],
+		[
+			"description-checkValidity()\tHTMLOutputElement",
+			{
+				"name": "checkValidity",
+				"return_type": "boolean",
+				"parameters": [],
+				"description": "When the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#checkValidity",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tcheckValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#checkValidity\n\n*/"
+			}
+		],
+		[
+			"description-defaultValue\tHTMLOutputElement",
+			{
+				"name": "defaultValue",
+				"return_type": "DOMString",
+				"description": "The defaultValue IDL attribute, on getting, must return the element's default value. On setting, the attribute must set the element's default value, and, if the element's value mode flag is in the mode default, set the element's textContent IDL attribute as well.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#defaultValue",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tdefaultValue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe defaultValue IDL attribute, on getting, must return the element's default value. On setting, the attribute must set the element's default value, and, if the element's value mode flag is in the mode default, set the element's textContent IDL attribute as well.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#defaultValue\n\n*/"
+			}
+		],
+		[
+			"description-labels\tHTMLOutputElement",
+			{
+				"name": "labels",
+				"return_type": "NodeList",
+				"description": "Labelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#labels",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tlabels\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tLabelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#labels\n\n*/"
+			}
+		],
+		[
+			"description-validity\tHTMLOutputElement",
+			{
+				"name": "validity",
+				"return_type": "ValidityState",
+				"description": "The validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#validity",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tvalidity\n\n\tReturn Type:\n\tValidityState\n\n\tDescription:\n\tThe validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#validity\n\n*/"
+			}
+		],
+		[
+			"description-willValidate\tHTMLOutputElement",
+			{
+				"name": "willValidate",
+				"return_type": "boolean",
+				"description": "The willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#willValidate",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\twillValidate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#willValidate\n\n*/"
+			}
+		],
+		[
+			"description-value\tHTMLOutputElement",
+			{
+				"name": "value",
+				"return_type": "DOMString",
+				"description": "The value IDL attribute must act like the element's textContent IDL attribute, except that on setting, in addition, before the child nodes are changed, the element's value mode flag must be set to value.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#value",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tvalue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe value IDL attribute must act like the element's textContent IDL attribute, except that on setting, in addition, before the child nodes are changed, the element's value mode flag must be set to value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#value\n\n*/"
+			}
+		],
+		[
+			"description-setCustomValidity()\tHTMLOutputElement",
+			{
+				"name": "setCustomValidity",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "error",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#setCustomValidity",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tsetCustomValidity ( error: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#setCustomValidity\n\n*/"
+			}
+		],
+		[
+			"description-form\tHTMLOutputElement",
+			{
+				"name": "form",
+				"return_type": "HTMLFormElement",
+				"description": "Reassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#form",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tReassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#form\n\n*/"
+			}
+		],
+		[
+			"description-htmlFor\tHTMLOutputElement",
+			{
+				"name": "htmlFor",
+				"return_type": "DOMSettableTokenList",
+				"description": "The htmlFor IDL attribute must reflect the for content attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#htmlFor",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\thtmlFor\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\tThe htmlFor IDL attribute must reflect the for content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#htmlFor\n\n*/"
+			}
+		],
+		[
+			"description-name\tHTMLOutputElement",
+			{
+				"name": "name",
+				"return_type": "DOMString",
+				"description": "The name IDL attribute must reflect the name content attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#name",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name IDL attribute must reflect the name content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#name\n\n*/"
+			}
+		],
+		[
+			"description-type\tHTMLOutputElement",
+			{
+				"name": "type",
+				"return_type": "DOMString",
+				"description": "The type attribute must return the string \"output\".",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLOutputElement.html#type",
+				"full_description": "/*\n\n\tHTMLOutputElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type attribute must return the string \"output\".\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOutputElement.html#type\n\n*/"
+			}
+		]
+	]
+}

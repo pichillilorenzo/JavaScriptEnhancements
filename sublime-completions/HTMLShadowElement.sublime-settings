@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"resetStyleInheritance: boolean\tHTMLShadowElement",
+			"resetStyleInheritance"
+		],
+		[
+			"olderShadowRoot: ShadowRoot\tHTMLShadowElement",
+			"olderShadowRoot"
+		]
+	]
+}

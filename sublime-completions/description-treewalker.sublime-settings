@@ -1,29 +1,133 @@
 {
 	"scope": "source.js",
-
-	"completions":
-	[
-		["description-TreeWalker.previousNode()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.previousNode() method moves the current Node to the previous visible node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists,or if it is before that the root node defined at the object construction, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.previousNode();\n*/"],
-		["description-TreeWalker.parentNode()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.parentNode() method moves the current Node to the first visible ancestor node in the document order, and returns the found node. If no such node exists, or if it is above the TreeWalker's root node, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.parentNode();\n*/"],
-		["description-TreeWalker.firstChild()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.firstChild() method moves the current Node to the first visible child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.firstChild();\n*/"],
-		["description-TreeWalker.lastChild()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.lastChild() method moves the current Node to the last visible child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.lastChild();\n*/"],
-		["description-TreeWalker.nextNode()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.nextNode() method moves the current Node to the next visible node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.nextNode();\n*/"],
-		["description-TreeWalker.whatToShow\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.whatToShow read-only property returns an unsigned long being a bitmask made of constants describing the types of Node that must to be presented. Non-matching nodes are skipped, but their children may be included, if relevant.\n\n\tSyntax:\n\tnodeTypes = treeWalker.whatToShow;\n*/"],
-		["description-TreeWalker.previousSibling()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.previousSibling() method moves the current Node to its previous sibling, if any, and returns the found sibling. I there is no such node, return null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.previousSibling();\n*/"],
-		["description-TreeWalker.nextSibling()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.nextSibling() method moves the current Node to its next sibling, if any, and returns the found sibling. I there is no such node, return null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.nextSibling();\n*/"],
-		["description-TreeWalker.currentNode\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.currentNode property represents the Node on which the TreeWalker is currently pointing at.\n\n\tSyntax:\n\tnode = treeWalker.currentNode;\n\ttreeWalker.currentNode = node;\n*/"],
-		["description-TreeWalker.filter\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.filter read-only property returns a NodeFilter that is the filtering object associated with the TreeWalker.\n\n\tSyntax:\n\tnodeFilter = treeWalker.filter;\n*/"],
-		["description-TreeWalker.root\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.root read-only property returns the node that is the root of what the TreeWalker traverses.\n\n\tSyntax:\n\troot = TreeWalker.root;\n*/"],
-		["description-previousNode()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.previousNode() method moves the current Node to the previous visible node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists,or if it is before that the root node defined at the object construction, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.previousNode();\n*/"],
-    ["description-parentNode()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.parentNode() method moves the current Node to the first visible ancestor node in the document order, and returns the found node. If no such node exists, or if it is above the TreeWalker's root node, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.parentNode();\n*/"],
-    ["description-firstChild()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.firstChild() method moves the current Node to the first visible child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.firstChild();\n*/"],
-    ["description-lastChild()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.lastChild() method moves the current Node to the last visible child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.lastChild();\n*/"],
-    ["description-nextNode()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.nextNode() method moves the current Node to the next visible node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists, returns null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.nextNode();\n*/"],
-    ["description-whatToShow\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.whatToShow read-only property returns an unsigned long being a bitmask made of constants describing the types of Node that must to be presented. Non-matching nodes are skipped, but their children may be included, if relevant.\n\n\tSyntax:\n\tnodeTypes = treeWalker.whatToShow;\n*/"],
-    ["description-previousSibling()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.previousSibling() method moves the current Node to its previous sibling, if any, and returns the found sibling. I there is no such node, return null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.previousSibling();\n*/"],
-    ["description-nextSibling()\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.nextSibling() method moves the current Node to its next sibling, if any, and returns the found sibling. I there is no such node, return null and the current node is not changed.\n\n\tSyntax:\n\tnode = treeWalker.nextSibling();\n*/"],
-    ["description-currentNode\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.currentNode property represents the Node on which the TreeWalker is currently pointing at.\n\n\tSyntax:\n\tnode = treeWalker.currentNode;\n\ttreeWalker.currentNode = node;\n*/"],
-    ["description-filter\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.filter read-only property returns a NodeFilter that is the filtering object associated with the TreeWalker.\n\n\tSyntax:\n\tnodeFilter = treeWalker.filter;\n*/"],
-    ["description-root\tTreeWalker", "/*\n\tDescription:\n\tThe TreeWalker.root read-only property returns the node that is the root of what the TreeWalker traverses.\n\n\tSyntax:\n\troot = TreeWalker.root;\n*/"]
+	"completions": [
+		[
+			"description-previousSibling()\tTreeWalker",
+			{
+				"name": "previousSibling",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "The previousSibling() method must traverse siblings of type previous.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#previousSibling",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tpreviousSibling ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe previousSibling() method must traverse siblings of type previous.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#previousSibling\n\n*/"
+			}
+		],
+		[
+			"description-currentNode\tTreeWalker",
+			{
+				"name": "currentNode",
+				"return_type": "Node",
+				"description": "The currentNode attribute must return what it was initialized to.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#currentNode",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tcurrentNode\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe currentNode attribute must return what it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#currentNode\n\n*/"
+			}
+		],
+		[
+			"description-nextSibling()\tTreeWalker",
+			{
+				"name": "nextSibling",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "The nextSibling() method must traverse siblings of type next.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#nextSibling",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tnextSibling ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe nextSibling() method must traverse siblings of type next.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#nextSibling\n\n*/"
+			}
+		],
+		[
+			"description-firstChild()\tTreeWalker",
+			{
+				"name": "firstChild",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "The firstChild() method must traverse children of type first.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#firstChild",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tfirstChild ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe firstChild() method must traverse children of type first.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#firstChild\n\n*/"
+			}
+		],
+		[
+			"description-lastChild()\tTreeWalker",
+			{
+				"name": "lastChild",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "The lastChild() method must traverse children of type last.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#lastChild",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tlastChild ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe lastChild() method must traverse children of type last.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#lastChild\n\n*/"
+			}
+		],
+		[
+			"description-whatToShow\tTreeWalker",
+			{
+				"name": "whatToShow",
+				"return_type": "unsigned long",
+				"description": "The whatToShow attribute must return whatToShow.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#whatToShow",
+				"full_description": "/*\n\n\tTreeWalker\n\n\twhatToShow\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe whatToShow attribute must return whatToShow.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#whatToShow\n\n*/"
+			}
+		],
+		[
+			"description-filter\tTreeWalker",
+			{
+				"name": "filter",
+				"return_type": "NodeFilter",
+				"description": "The filter attribute must return filter.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#filter",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tfilter\n\n\tReturn Type:\n\tNodeFilter\n\n\tDescription:\n\tThe filter attribute must return filter.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#filter\n\n*/"
+			}
+		],
+		[
+			"description-root\tTreeWalker",
+			{
+				"name": "root",
+				"return_type": "Node",
+				"description": "The root attribute must return root.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20TreeWalker.html#root",
+				"full_description": "/*\n\n\tTreeWalker\n\n\troot\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe root attribute must return root.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20TreeWalker.html#root\n\n*/"
+			}
+		],
+		[
+			"description-previousNode()\tTreeWalker",
+			{
+				"name": "previousNode",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-treewalker-previousnode",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tpreviousNode ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-treewalker-previousnode\n\n*/"
+			}
+		],
+		[
+			"description-parentNode()\tTreeWalker",
+			{
+				"name": "parentNode",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-treewalker-parentnode",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tparentNode ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-treewalker-parentnode\n\n*/"
+			}
+		],
+		[
+			"description-nextNode()\tTreeWalker",
+			{
+				"name": "nextNode",
+				"return_type": "Node",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-treewalker-nextnode",
+				"full_description": "/*\n\n\tTreeWalker\n\n\tnextNode ()\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-treewalker-nextnode\n\n*/"
+			}
+		]
 	]
 }

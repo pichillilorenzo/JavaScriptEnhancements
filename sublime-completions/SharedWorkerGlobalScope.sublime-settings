@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"applicationCache: ApplicationCache\tSharedWorkerGlobalScope",
+			"applicationCache"
+		],
+		[
+			"onconnect: EventHandler\tSharedWorkerGlobalScope",
+			"onconnect"
+		],
+		[
+			"name: DOMString\tSharedWorkerGlobalScope",
+			"name"
+		]
+	]
+}

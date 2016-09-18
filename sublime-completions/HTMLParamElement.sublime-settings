@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"value: DOMString\tHTMLParamElement",
+			"value"
+		],
+		[
+			"name: DOMString\tHTMLParamElement",
+			"name"
+		]
+	]
+}

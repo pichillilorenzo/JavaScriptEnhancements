@@ -1,0 +1,77 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new WebSocket( url: DOMString, protocols?: DOMString|DOMString[] ): WebSocket\tWebSocket",
+			"new WebSocket(${1:url: DOMString}, ${2:protocols?: DOMString|DOMString[]})"
+		],
+		[
+			"WebSocket( url: DOMString, protocols?: DOMString|DOMString[] ): WebSocket\tWebSocket",
+			"WebSocket(${1:url: DOMString}, ${2:protocols?: DOMString|DOMString[]})"
+		],
+		[
+			"close( code?: unsigned short, reason?: DOMString ): void\tWebSocket",
+			"close(${1:code?: unsigned short}, ${2:reason?: DOMString})"
+		],
+		[
+			"CONNECTING: const unsigned short\tWebSocket",
+			"CONNECTING"
+		],
+		[
+			"CLOSING: const unsigned short\tWebSocket",
+			"CLOSING"
+		],
+		[
+			"bufferedAmount: unsigned long\tWebSocket",
+			"bufferedAmount"
+		],
+		[
+			"CLOSED: const unsigned short\tWebSocket",
+			"CLOSED"
+		],
+		[
+			"OPEN: const unsigned short\tWebSocket",
+			"OPEN"
+		],
+		[
+			"readyState: unsigned short\tWebSocket",
+			"readyState"
+		],
+		[
+			"send( data: any ): void\tWebSocket",
+			"send(${1:data: any})"
+		],
+		[
+			"onmessage: EventHandler\tWebSocket",
+			"onmessage"
+		],
+		[
+			"binaryType: BinaryType\tWebSocket",
+			"binaryType"
+		],
+		[
+			"onerror: EventHandler\tWebSocket",
+			"onerror"
+		],
+		[
+			"extensions: DOMString\tWebSocket",
+			"extensions"
+		],
+		[
+			"onclose: EventHandler\tWebSocket",
+			"onclose"
+		],
+		[
+			"onopen: EventHandler\tWebSocket",
+			"onopen"
+		],
+		[
+			"protocol: DOMString\tWebSocket",
+			"protocol"
+		],
+		[
+			"url: DOMString\tWebSocket",
+			"url"
+		]
+	]
+}

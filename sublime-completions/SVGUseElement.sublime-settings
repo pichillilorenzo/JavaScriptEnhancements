@@ -1,0 +1,77 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGUseElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGUseElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGUseElement",
+			"externalResourcesRequired"
+		],
+		[
+			"animatedInstanceRoot: SVGElementInstance\tSVGUseElement",
+			"animatedInstanceRoot"
+		],
+		[
+			"transform: SVGAnimatedTransformList\tSVGUseElement",
+			"transform"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGUseElement",
+			"requiredExtensions"
+		],
+		[
+			"instanceRoot: SVGElementInstance\tSVGUseElement",
+			"instanceRoot"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGUseElement",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGUseElement",
+			"systemLanguage"
+		],
+		[
+			"className: SVGAnimatedString\tSVGUseElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGUseElement",
+			"style"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGUseElement",
+			"height"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGUseElement",
+			"width"
+		],
+		[
+			"href: SVGAnimatedString\tSVGUseElement",
+			"href"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGUseElement",
+			"y"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGUseElement",
+			"x"
+		],
+		[
+			"xmlspace: DOMString\tSVGUseElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGUseElement",
+			"xmllang"
+		]
+	]
+}

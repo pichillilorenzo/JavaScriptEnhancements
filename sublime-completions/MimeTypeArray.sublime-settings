@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"item( index: unsigned long ): MimeType\tMimeTypeArray",
+			"item(${1:index: unsigned long})"
+		],
+		[
+			"namedItem( name: DOMString ): MimeType\tMimeTypeArray",
+			"namedItem(${1:name: DOMString})"
+		],
+		[
+			"length: unsigned long\tMimeTypeArray",
+			"length"
+		]
+	]
+}

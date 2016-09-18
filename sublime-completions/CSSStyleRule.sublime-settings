@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"style: CSSStyleDeclaration\tCSSStyleRule",
+			"style"
+		],
+		[
+			"selectorText: DOMString\tCSSStyleRule",
+			"selectorText"
+		]
+	]
+}

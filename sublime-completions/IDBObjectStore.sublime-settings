@@ -1,0 +1,65 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"createIndex( name: DOMString, keyPath: DOMString|sequence<DOMString>, optionalParameters?: IDBIndexParameters ): IDBIndex\tIDBObjectStore",
+			"createIndex(${1:name: DOMString}, ${2:keyPath: DOMString|sequence<DOMString>}, ${3:optionalParameters?: IDBIndexParameters})"
+		],
+		[
+			"openCursor( range?: any, direction?: IDBCursorDirection ): IDBRequest\tIDBObjectStore",
+			"openCursor(${1:range?: any}, ${2:direction?: IDBCursorDirection})"
+		],
+		[
+			"deleteIndex( indexName: DOMString ): void\tIDBObjectStore",
+			"deleteIndex(${1:indexName: DOMString})"
+		],
+		[
+			"put( value: any, key?: any ): IDBRequest\tIDBObjectStore",
+			"put(${1:value: any}, ${2:key?: any})"
+		],
+		[
+			"add( value: any, key?: any ): IDBRequest\tIDBObjectStore",
+			"add(${1:value: any}, ${2:key?: any})"
+		],
+		[
+			"index( name: DOMString ): IDBIndex\tIDBObjectStore",
+			"index(${1:name: DOMString})"
+		],
+		[
+			"delete( key: any ): IDBRequest\tIDBObjectStore",
+			"delete(${1:key: any})"
+		],
+		[
+			"count( key?: any ): IDBRequest\tIDBObjectStore",
+			"count(${1:key?: any})"
+		],
+		[
+			"transaction: IDBTransaction\tIDBObjectStore",
+			"transaction"
+		],
+		[
+			"get( key: any ): IDBRequest\tIDBObjectStore",
+			"get(${1:key: any})"
+		],
+		[
+			"indexNames: DOMStringList\tIDBObjectStore",
+			"indexNames"
+		],
+		[
+			"autoIncrement: boolean\tIDBObjectStore",
+			"autoIncrement"
+		],
+		[
+			"clear(): IDBRequest\tIDBObjectStore",
+			"clear()"
+		],
+		[
+			"name: DOMString\tIDBObjectStore",
+			"name"
+		],
+		[
+			"keyPath: any\tIDBObjectStore",
+			"keyPath"
+		]
+	]
+}

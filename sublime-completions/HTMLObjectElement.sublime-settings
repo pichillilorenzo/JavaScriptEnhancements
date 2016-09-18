@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setCustomValidity( error: DOMString ): void\tHTMLObjectElement",
+			"setCustomValidity(${1:error: DOMString})"
+		],
+		[
+			"legacycaller( arguments...: any ): any\tHTMLObjectElement",
+			"legacycaller(${1:arguments...: any})"
+		],
+		[
+			"validationMessage: DOMString\tHTMLObjectElement",
+			"validationMessage"
+		],
+		[
+			"contentWindow: WindowProxy\tHTMLObjectElement",
+			"contentWindow"
+		],
+		[
+			"reportValidity(): boolean\tHTMLObjectElement",
+			"reportValidity()"
+		],
+		[
+			"contentDocument: Document\tHTMLObjectElement",
+			"contentDocument"
+		],
+		[
+			"checkValidity(): boolean\tHTMLObjectElement",
+			"checkValidity()"
+		],
+		[
+			"validity: ValidityState\tHTMLObjectElement",
+			"validity"
+		],
+		[
+			"typeMustMatch: boolean\tHTMLObjectElement",
+			"typeMustMatch"
+		],
+		[
+			"form: HTMLFormElement\tHTMLObjectElement",
+			"form"
+		],
+		[
+			"willValidate: boolean\tHTMLObjectElement",
+			"willValidate"
+		],
+		[
+			"useMap: DOMString\tHTMLObjectElement",
+			"useMap"
+		],
+		[
+			"height: DOMString\tHTMLObjectElement",
+			"height"
+		],
+		[
+			"width: DOMString\tHTMLObjectElement",
+			"width"
+		],
+		[
+			"name: DOMString\tHTMLObjectElement",
+			"name"
+		],
+		[
+			"data: DOMString\tHTMLObjectElement",
+			"data"
+		],
+		[
+			"type: DOMString\tHTMLObjectElement",
+			"type"
+		]
+	]
+}

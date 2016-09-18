@@ -1,0 +1,177 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-getSimpleDuration()\tSVGAnimationElement",
+			{
+				"name": "getSimpleDuration",
+				"return_type": "float",
+				"parameters": [],
+				"description": "Returns the number of seconds for the simple duration for this animation. If the simple duration is undefined (e.g., the end time is indefinite), then an exception is raised. Returns number of seconds for the simple duration for this animation. ExceptionsDOMException, code NOT_SUPPORTED_ERR The simple duration is not determined on the given element.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#getSimpleDuration",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tgetSimpleDuration ()\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tReturns the number of seconds for the simple duration for this animation. If the simple duration is undefined (e.g., the end time is indefinite), then an exception is raised. Returns number of seconds for the simple duration for this animation. ExceptionsDOMException, code NOT_SUPPORTED_ERR The simple duration is not determined on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#getSimpleDuration\n\n*/"
+			}
+		],
+		[
+			"description-getStartTime()\tSVGAnimationElement",
+			{
+				"name": "getStartTime",
+				"return_type": "float",
+				"parameters": [],
+				"description": "Returns the begin time, in seconds, for this animation element's current interval, if it exists, regardless of whether the interval has begun yet. If there is no current interval, then a DOMException with code INVALID_STATE_ERR is thrown. Returns The start time, in seconds, of this animation element's current interval.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#getStartTime",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tgetStartTime ()\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tReturns the begin time, in seconds, for this animation element's current interval, if it exists, regardless of whether the interval has begun yet. If there is no current interval, then a DOMException with code INVALID_STATE_ERR is thrown. Returns The start time, in seconds, of this animation element's current interval.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#getStartTime\n\n*/"
+			}
+		],
+		[
+			"description-externalResourcesRequired\tSVGAnimationElement",
+			{
+				"name": "externalResourcesRequired",
+				"return_type": "SVGAnimatedBoolean",
+				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#externalResourcesRequired",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#externalResourcesRequired\n\n*/"
+			}
+		],
+		[
+			"description-beginElementAt()\tSVGAnimationElement",
+			{
+				"name": "beginElementAt",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "offset",
+						"type": "float",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Creates a begin instance time for the current time plus the specified offset. The new instance time is added to the begin instance times list. Parametersfloat offset The offset from the current document time, in seconds, at which to begin the element.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#beginElementAt",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tbeginElementAt ( offset: float )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCreates a begin instance time for the current time plus the specified offset. The new instance time is added to the begin instance times list. Parametersfloat offset The offset from the current document time, in seconds, at which to begin the element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#beginElementAt\n\n*/"
+			}
+		],
+		[
+			"description-hasExtension()\tSVGAnimationElement",
+			{
+				"name": "hasExtension",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "extension",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#hasExtension",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#hasExtension\n\n*/"
+			}
+		],
+		[
+			"description-endElementAt()\tSVGAnimationElement",
+			{
+				"name": "endElementAt",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "offset",
+						"type": "float",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Creates a end instance time for the current time plus the specified offset. The new instance time is added to the end instance times list. Parametersfloat offset offset from the current document time, in seconds, at which to end the element.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#endElementAt",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tendElementAt ( offset: float )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCreates a end instance time for the current time plus the specified offset. The new instance time is added to the end instance times list. Parametersfloat offset offset from the current document time, in seconds, at which to end the element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#endElementAt\n\n*/"
+			}
+		],
+		[
+			"description-beginElement()\tSVGAnimationElement",
+			{
+				"name": "beginElement",
+				"return_type": "void",
+				"parameters": [],
+				"description": "Creates a begin instance time for the current time. The new instance time is added to the begin instance times list. The behavior of this method is equivalent to beginElementAt(0).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#beginElement",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tbeginElement ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCreates a begin instance time for the current time. The new instance time is added to the begin instance times list. The behavior of this method is equivalent to beginElementAt(0).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#beginElement\n\n*/"
+			}
+		],
+		[
+			"description-getCurrentTime()\tSVGAnimationElement",
+			{
+				"name": "getCurrentTime",
+				"return_type": "float",
+				"parameters": [],
+				"description": "Returns the current time in seconds relative to time zero for the given time container. Returns The current time in seconds relative to time zero for the given time container.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#getCurrentTime",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tgetCurrentTime ()\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tReturns the current time in seconds relative to time zero for the given time container. Returns The current time in seconds relative to time zero for the given time container.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#getCurrentTime\n\n*/"
+			}
+		],
+		[
+			"description-endElement()\tSVGAnimationElement",
+			{
+				"name": "endElement",
+				"return_type": "void",
+				"parameters": [],
+				"description": "Creates an end instance time for the current time. The new instance time is added to the end instance times list. The behavior of this method is equivalent to endElementAt(0).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#endElement",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tendElement ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCreates an end instance time for the current time. The new instance time is added to the end instance times list. The behavior of this method is equivalent to endElementAt(0).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#endElement\n\n*/"
+			}
+		],
+		[
+			"description-requiredExtensions\tSVGAnimationElement",
+			{
+				"name": "requiredExtensions",
+				"return_type": "SVGStringList",
+				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#requiredExtensions",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#requiredExtensions\n\n*/"
+			}
+		],
+		[
+			"description-requiredFeatures\tSVGAnimationElement",
+			{
+				"name": "requiredFeatures",
+				"return_type": "SVGStringList",
+				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#requiredFeatures",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#requiredFeatures\n\n*/"
+			}
+		],
+		[
+			"description-systemLanguage\tSVGAnimationElement",
+			{
+				"name": "systemLanguage",
+				"return_type": "SVGStringList",
+				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#systemLanguage",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#systemLanguage\n\n*/"
+			}
+		],
+		[
+			"description-targetElement\tSVGAnimationElement",
+			{
+				"name": "targetElement",
+				"return_type": "SVGElement",
+				"description": "The element which is being animated.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimationElement.html#targetElement",
+				"full_description": "/*\n\n\tSVGAnimationElement\n\n\ttargetElement\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tThe element which is being animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimationElement.html#targetElement\n\n*/"
+			}
+		]
+	]
+}

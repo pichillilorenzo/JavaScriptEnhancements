@@ -1,0 +1,49 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-value\tHTMLProgressElement",
+			{
+				"name": "value",
+				"return_type": "double",
+				"description": "If the progress bar is an indeterminate progress bar, then the value IDL attribute, on getting, must return 0. Otherwise, it must return the current value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the value content attribute must be set to that string.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLProgressElement.html#value",
+				"full_description": "/*\n\n\tHTMLProgressElement\n\n\tvalue\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tIf the progress bar is an indeterminate progress bar, then the value IDL attribute, on getting, must return 0. Otherwise, it must return the current value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the value content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLProgressElement.html#value\n\n*/"
+			}
+		],
+		[
+			"description-labels\tHTMLProgressElement",
+			{
+				"name": "labels",
+				"return_type": "NodeList",
+				"description": "Labelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLProgressElement.html#labels",
+				"full_description": "/*\n\n\tHTMLProgressElement\n\n\tlabels\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tLabelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLProgressElement.html#labels\n\n*/"
+			}
+		],
+		[
+			"description-position\tHTMLProgressElement",
+			{
+				"name": "position",
+				"return_type": "double",
+				"description": "If the progress bar is an indeterminate progress bar, then the position IDL attribute must return −1. Otherwise, it must return the result of dividing the current value by the maximum value.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLProgressElement.html#position",
+				"full_description": "/*\n\n\tHTMLProgressElement\n\n\tposition\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tIf the progress bar is an indeterminate progress bar, then the position IDL attribute must return −1. Otherwise, it must return the result of dividing the current value by the maximum value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLProgressElement.html#position\n\n*/"
+			}
+		],
+		[
+			"description-max\tHTMLProgressElement",
+			{
+				"name": "max",
+				"return_type": "double",
+				"description": "The max IDL attribute must reflect the content attribute of the same name, limited to numbers greater than zero. The default value for max is 1.0.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLProgressElement.html#max",
+				"full_description": "/*\n\n\tHTMLProgressElement\n\n\tmax\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe max IDL attribute must reflect the content attribute of the same name, limited to numbers greater than zero. The default value for max is 1.0.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLProgressElement.html#max\n\n*/"
+			}
+		]
+	]
+}

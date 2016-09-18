@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-colorProfile\tSVGICCColor",
+			{
+				"name": "colorProfile",
+				"return_type": "DOMString",
+				"description": "The name of the color profile, which is the first parameter of an ICC color specification. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGICCColor.html#colorProfile",
+				"full_description": "/*\n\n\tSVGICCColor\n\n\tcolorProfile\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name of the color profile, which is the first parameter of an ICC color specification. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGICCColor.html#colorProfile\n\n*/"
+			}
+		],
+		[
+			"description-colors\tSVGICCColor",
+			{
+				"name": "colors",
+				"return_type": "SVGNumberList",
+				"description": "The list of color values that define this ICC color. Each color value is an arbitrary floating point number.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGICCColor.html#colors",
+				"full_description": "/*\n\n\tSVGICCColor\n\n\tcolors\n\n\tReturn Type:\n\tSVGNumberList\n\n\tDescription:\n\tThe list of color values that define this ICC color. Each color value is an arbitrary floating point number.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGICCColor.html#colors\n\n*/"
+			}
+		]
+	]
+}

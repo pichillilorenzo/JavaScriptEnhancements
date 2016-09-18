@@ -1,0 +1,205 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-elements\tHTMLFormElement",
+			{
+				"name": "elements",
+				"return_type": "HTMLFormControlsCollection",
+				"description": "The elements IDL attribute must return an HTMLFormControlsCollection rooted at the form element's home subtree's root element, whose filter matches listed elements whose form owner is the form element, with the exception of input elements whose type attribute is in the Image Button state, which must, for historical reasons, be excluded from this particular collection.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#elements",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\telements\n\n\tReturn Type:\n\tHTMLFormControlsCollection\n\n\tDescription:\n\tThe elements IDL attribute must return an HTMLFormControlsCollection rooted at the form element's home subtree's root element, whose filter matches listed elements whose form owner is the form element, with the exception of input elements whose type attribute is in the Image Button state, which must, for historical reasons, be excluded from this particular collection.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#elements\n\n*/"
+			}
+		],
+		[
+			"description-noValidate\tHTMLFormElement",
+			{
+				"name": "noValidate",
+				"return_type": "boolean",
+				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#noValidate",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tnoValidate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#noValidate\n\n*/"
+			}
+		],
+		[
+			"description-encoding\tHTMLFormElement",
+			{
+				"name": "encoding",
+				"return_type": "DOMString",
+				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#encoding",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tencoding\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#encoding\n\n*/"
+			}
+		],
+		[
+			"description-enctype\tHTMLFormElement",
+			{
+				"name": "enctype",
+				"return_type": "DOMString",
+				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#enctype",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tenctype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#enctype\n\n*/"
+			}
+		],
+		[
+			"description-method\tHTMLFormElement",
+			{
+				"name": "method",
+				"return_type": "DOMString",
+				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#method",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tmethod\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#method\n\n*/"
+			}
+		],
+		[
+			"description-action\tHTMLFormElement",
+			{
+				"name": "action",
+				"return_type": "DOMString",
+				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#action",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\taction\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#action\n\n*/"
+			}
+		],
+		[
+			"description-target\tHTMLFormElement",
+			{
+				"name": "target",
+				"return_type": "DOMString",
+				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#target",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\ttarget\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#target\n\n*/"
+			}
+		],
+		[
+			"description-reportValidity()\tHTMLFormElement",
+			{
+				"name": "reportValidity",
+				"return_type": "boolean",
+				"parameters": [],
+				"description": "If the reportValidity() method is invoked, the user agent must interactively validate the constraints of the form element, and return true if the constraint validation return a positive result, and false if it returned a negative result.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#reportValidity",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\treportValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tIf the reportValidity() method is invoked, the user agent must interactively validate the constraints of the form element, and return true if the constraint validation return a positive result, and false if it returned a negative result.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#reportValidity\n\n*/"
+			}
+		],
+		[
+			"description-checkValidity()\tHTMLFormElement",
+			{
+				"name": "checkValidity",
+				"return_type": "boolean",
+				"parameters": [],
+				"description": "If the checkValidity() method is invoked, the user agent must statically validate the constraints of the form element, and return true if the constraint validation return a positive result, and false if it returned a negative result.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#checkValidity",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tcheckValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tIf the checkValidity() method is invoked, the user agent must statically validate the constraints of the form element, and return true if the constraint validation return a positive result, and false if it returned a negative result.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#checkValidity\n\n*/"
+			}
+		],
+		[
+			"description-getter()\tHTMLFormElement",
+			{
+				"name": "getter",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "index_name",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "When a form element is indexed for indexed property retrieval, the user agent must return the value returned by the item method on the elements collection, when invoked with the given index as its argument.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#getter",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tgetter ( index_name: any )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tWhen a form element is indexed for indexed property retrieval, the user agent must return the value returned by the item method on the elements collection, when invoked with the given index as its argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#getter\n\n*/"
+			}
+		],
+		[
+			"description-submit()\tHTMLFormElement",
+			{
+				"name": "submit",
+				"return_type": "void",
+				"parameters": [],
+				"description": "The submit() method, when invoked, must submit the form element from the form element itself, with the submitted from submit() method flag set.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#submit",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tsubmit ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe submit() method, when invoked, must submit the form element from the form element itself, with the submitted from submit() method flag set.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#submit\n\n*/"
+			}
+		],
+		[
+			"description-autocomplete\tHTMLFormElement",
+			{
+				"name": "autocomplete",
+				"return_type": "DOMString",
+				"description": "The autocomplete IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#autocomplete",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tautocomplete\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe autocomplete IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#autocomplete\n\n*/"
+			}
+		],
+		[
+			"description-acceptCharset\tHTMLFormElement",
+			{
+				"name": "acceptCharset",
+				"return_type": "DOMString",
+				"description": "The acceptCharset IDL attribute must reflect the accept-charset content attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#acceptCharset",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tacceptCharset\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe acceptCharset IDL attribute must reflect the accept-charset content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#acceptCharset\n\n*/"
+			}
+		],
+		[
+			"description-length\tHTMLFormElement",
+			{
+				"name": "length",
+				"return_type": "long",
+				"description": "The length IDL attribute must return the number of nodes represented by the elements collection.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#length",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tlength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe length IDL attribute must return the number of nodes represented by the elements collection.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#length\n\n*/"
+			}
+		],
+		[
+			"description-requestAutocomplete()\tHTMLFormElement",
+			{
+				"name": "requestAutocomplete",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#dom-form-requestautocomplete",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\trequestAutocomplete ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#dom-form-requestautocomplete\n\n*/"
+			}
+		],
+		[
+			"description-name\tHTMLFormElement",
+			{
+				"name": "name",
+				"return_type": "DOMString",
+				"description": "The name IDL attribute must reflect the content attribute of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLFormElement.html#name",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLFormElement.html#name\n\n*/"
+			}
+		],
+		[
+			"description-reset()\tHTMLFormElement",
+			{
+				"name": "reset",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-form-reset",
+				"full_description": "/*\n\n\tHTMLFormElement\n\n\treset ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-form-reset\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"renderedBuffer: AudioBuffer\tOfflineAudioCompletionEvent",
+			"renderedBuffer"
+		]
+	]
+}

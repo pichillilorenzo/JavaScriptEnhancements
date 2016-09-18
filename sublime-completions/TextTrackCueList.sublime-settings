@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getter( index: unsigned long ): TextTrackCue\tTextTrackCueList",
+			"getter(${1:index: unsigned long})"
+		],
+		[
+			"getCueById( id: DOMString ): TextTrackCue\tTextTrackCueList",
+			"getCueById(${1:id: DOMString})"
+		],
+		[
+			"length: unsigned long\tTextTrackCueList",
+			"length"
+		]
+	]
+}

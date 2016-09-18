@@ -1,0 +1,78 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-initCustomEvent()\tCustomEvent",
+			{
+				"name": "initCustomEvent",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "type",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "bubbles",
+						"type": "boolean",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "cancelable",
+						"type": "boolean",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "detail",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The initCustomEvent(type, bubbles, cancelable, detail) method must initialize the context object with type, bubbles, and cancelable, and then set its detail attribute to detail.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20CustomEvent.html#initCustomEvent",
+				"full_description": "/*\n\n\tCustomEvent\n\n\tinitCustomEvent ( type: DOMString, bubbles: boolean, cancelable: boolean, detail: any )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe initCustomEvent(type, bubbles, cancelable, detail) method must initialize the context object with type, bubbles, and cancelable, and then set its detail attribute to detail.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CustomEvent.html#initCustomEvent\n\n*/"
+			}
+		],
+		[
+			"description-CustomEvent()\tCustomEvent",
+			{
+				"name": "CustomEvent",
+				"return_type": "CustomEvent",
+				"parameters": [
+					{
+						"name": "type",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "eventInitDict",
+						"type": "CustomEventInit",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/DOM%20-%20CustomEvent.html#CustomEvent",
+				"full_description": "/*\n\n\tCustomEvent\n\n\tCustomEvent ( type: DOMString, eventInitDict?: CustomEventInit )\n\n\tReturn Type:\n\tCustomEvent\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CustomEvent.html#CustomEvent\n\n*/"
+			}
+		],
+		[
+			"description-detail\tCustomEvent",
+			{
+				"name": "detail",
+				"return_type": "any",
+				"description": "The detail attribute must return the value it was initialized to.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20CustomEvent.html#detail",
+				"full_description": "/*\n\n\tCustomEvent\n\n\tdetail\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe detail attribute must return the value it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CustomEvent.html#detail\n\n*/"
+			}
+		]
+	]
+}

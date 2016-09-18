@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"height: float\tSVGRect",
+			"height"
+		],
+		[
+			"width: float\tSVGRect",
+			"width"
+		],
+		[
+			"x: float\tSVGRect",
+			"x"
+		],
+		[
+			"y: float\tSVGRect",
+			"y"
+		]
+	]
+}

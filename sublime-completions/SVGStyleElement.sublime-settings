@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"xmlspace: DOMString\tSVGStyleElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGStyleElement",
+			"xmllang"
+		],
+		[
+			"media: DOMString\tSVGStyleElement",
+			"media"
+		],
+		[
+			"title: DOMString\tSVGStyleElement",
+			"title"
+		],
+		[
+			"type: DOMString\tSVGStyleElement",
+			"type"
+		]
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-indexedDB\tIDBEnvironment",
+			{
+				"name": "indexedDB",
+				"return_type": "IDBFactory",
+				"description": "This attribute provides applications a mechanism for accessing capabilities of indexed databases.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBEnvironment.html#indexedDB",
+				"full_description": "/*\n\n\tIDBEnvironment\n\n\tindexedDB\n\n\tReturn Type:\n\tIDBFactory\n\n\tDescription:\n\tThis attribute provides applications a mechanism for accessing capabilities of indexed databases.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBEnvironment.html#indexedDB\n\n*/"
+			}
+		]
+	]
+}

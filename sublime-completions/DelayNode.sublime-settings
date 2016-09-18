@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"delayTime: AudioParam\tDelayNode",
+			"delayTime"
+		]
+	]
+}

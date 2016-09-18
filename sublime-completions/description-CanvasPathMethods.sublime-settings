@@ -1,0 +1,355 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-bezierCurveTo()\tCanvasPathMethods",
+			{
+				"name": "bezierCurveTo",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "cp1x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "cp1y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "cp2x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "cp2y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) method must ensure there is a subpath for (cp1x, cp1y), and then must connect the last point in the subpath to the given point (x, y) using a cubic Bézier curve with control points (cp1x, cp1y) and (cp2x, cp2y).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#bezierCurveTo",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tbezierCurveTo ( cp1x: unrestricted double, cp1y: unrestricted double, cp2x: unrestricted double, cp2y: unrestricted double, x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) method must ensure there is a subpath for (cp1x, cp1y), and then must connect the last point in the subpath to the given point (x, y) using a cubic Bézier curve with control points (cp1x, cp1y) and (cp2x, cp2y).\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#bezierCurveTo\n\n*/"
+			}
+		],
+		[
+			"description-rect()\tCanvasPathMethods",
+			{
+				"name": "rect",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "w",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "h",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The rect(x, y, w, h) method must create a new subpath containing just the four points (x, y), (x+w, y), (x+w, y+h), (x, y+h), in that order, with those four points connected by straight lines, and must then mark the subpath as closed. It must then create a new subpath with the point (x, y) as the only point in the subpath.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#rect",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\trect ( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe rect(x, y, w, h) method must create a new subpath containing just the four points (x, y), (x+w, y), (x+w, y+h), (x, y+h), in that order, with those four points connected by straight lines, and must then mark the subpath as closed. It must then create a new subpath with the point (x, y) as the only point in the subpath.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#rect\n\n*/"
+			}
+		],
+		[
+			"description-quadraticCurveTo()\tCanvasPathMethods",
+			{
+				"name": "quadraticCurveTo",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "cpx",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "cpy",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The quadraticCurveTo(cpx, cpy, x, y) method must ensure there is a subpath for (cpx, cpy), and then must connect the last point in the subpath to the given point (x, y) using a quadratic Bézier curve with control point (cpx, cpy), and must then add the given point (x, y) to the subpath.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#quadraticCurveTo",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tquadraticCurveTo ( cpx: unrestricted double, cpy: unrestricted double, x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe quadraticCurveTo(cpx, cpy, x, y) method must ensure there is a subpath for (cpx, cpy), and then must connect the last point in the subpath to the given point (x, y) using a quadratic Bézier curve with control point (cpx, cpy), and must then add the given point (x, y) to the subpath.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#quadraticCurveTo\n\n*/"
+			}
+		],
+		[
+			"description-arcTo()\tCanvasPathMethods",
+			{
+				"name": "arcTo",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "x1",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y1",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "x2",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y2",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "radius",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "radiusY",
+						"type": "unrestricted double",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "rotation",
+						"type": "unrestricted double",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The arcTo(x1, y1, x2, y2, radiusX, radiusY, rotation) method must first ensure there is a subpath for (x1, y1). Then, the behavior depends on the arguments and the last point in the subpath, as described below.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#arcTo",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tarcTo ( x1: unrestricted double, y1: unrestricted double, x2: unrestricted double, y2: unrestricted double, radius: unrestricted double, radiusY?: unrestricted double, rotation?: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe arcTo(x1, y1, x2, y2, radiusX, radiusY, rotation) method must first ensure there is a subpath for (x1, y1). Then, the behavior depends on the arguments and the last point in the subpath, as described below.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#arcTo\n\n*/"
+			}
+		],
+		[
+			"description-ellipse()\tCanvasPathMethods",
+			{
+				"name": "ellipse",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "radiusX",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "radiusY",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "rotation",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "startAngle",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "endAngle",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "anticlockwise",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#ellipse",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tellipse ( x: unrestricted double, y: unrestricted double, radiusX: unrestricted double, radiusY: unrestricted double, rotation: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#ellipse\n\n*/"
+			}
+		],
+		[
+			"description-arc()\tCanvasPathMethods",
+			{
+				"name": "arc",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "radius",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "startAngle",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "endAngle",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "anticlockwise",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#arc",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tarc ( x: unrestricted double, y: unrestricted double, radius: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#arc\n\n*/"
+			}
+		],
+		[
+			"description-lineTo()\tCanvasPathMethods",
+			{
+				"name": "lineTo",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The lineTo(x, y) method must ensure there is a subpath for (x, y) if the object's path has no subpaths. Otherwise, it must connect the last point in the subpath to the given point (x, y) using a straight line, and must then add the given point (x, y) to the subpath.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#lineTo",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tlineTo ( x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe lineTo(x, y) method must ensure there is a subpath for (x, y) if the object's path has no subpaths. Otherwise, it must connect the last point in the subpath to the given point (x, y) using a straight line, and must then add the given point (x, y) to the subpath.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#lineTo\n\n*/"
+			}
+		],
+		[
+			"description-closePath()\tCanvasPathMethods",
+			{
+				"name": "closePath",
+				"return_type": "void",
+				"parameters": [],
+				"description": "The closePath() method must do nothing if the object's path has no subpaths. Otherwise, it must mark the last subpath as closed, create a new subpath whose first point is the same as the previous subpath's first point, and finally add this new subpath to the path.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#closePath",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tclosePath ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe closePath() method must do nothing if the object's path has no subpaths. Otherwise, it must mark the last subpath as closed, create a new subpath whose first point is the same as the previous subpath's first point, and finally add this new subpath to the path.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#closePath\n\n*/"
+			}
+		],
+		[
+			"description-moveTo()\tCanvasPathMethods",
+			{
+				"name": "moveTo",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "x",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "y",
+						"type": "unrestricted double",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The moveTo(x, y) method must create a new subpath with the specified point as its first (and only) point.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPathMethods.html#moveTo",
+				"full_description": "/*\n\n\tCanvasPathMethods\n\n\tmoveTo ( x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe moveTo(x, y) method must create a new subpath with the specified point as its first (and only) point.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPathMethods.html#moveTo\n\n*/"
+			}
+		]
+	]
+}

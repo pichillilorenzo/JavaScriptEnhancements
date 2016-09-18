@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"styleSheet: CSSStyleSheet\tCSSImportRule",
+			"styleSheet"
+		],
+		[
+			"media: MediaList\tCSSImportRule",
+			"media"
+		],
+		[
+			"href: DOMString\tCSSImportRule",
+			"href"
+		]
+	]
+}

@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"height: SVGAnimatedLength\tSVGFETileElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFETileElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFETileElement",
+			"width"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFETileElement",
+			"in1"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFETileElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFETileElement",
+			"y"
+		]
+	]
+}

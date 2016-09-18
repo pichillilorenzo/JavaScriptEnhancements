@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"label: DOMString\tHTMLMenuElement",
+			"label"
+		],
+		[
+			"type: DOMString\tHTMLMenuElement",
+			"type"
+		]
+	]
+}

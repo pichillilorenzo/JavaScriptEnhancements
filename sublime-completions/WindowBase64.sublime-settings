@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"atob( atob: DOMString ): DOMString\tWindowBase64",
+			"atob(${1:atob: DOMString})"
+		],
+		[
+			"btoa( btoa: DOMString ): DOMString\tWindowBase64",
+			"btoa(${1:btoa: DOMString})"
+		]
+	]
+}

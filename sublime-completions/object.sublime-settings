@@ -1,40 +1,141 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["defineProperty(Object, prop, descriptor)\tObject", "defineProperty(${1:Object}, ${2:prop}, ${3:descriptor})"],
-    ["getOwnPropertyDescriptor(Object, prop)\tObject", "getOwnPropertyDescriptor(${1:Object}, ${2:prop})"],
-    ["setPrototypeOf(Object, prototype)\tObject", "setPrototypeOf(${1:Object}, ${2:prototype})"],
-    ["defineProperties(Object, props)\tObject", "defineProperties(${1:Object}, ${2:props})"],
-    ["getOwnPropertySymbols(Object)\tObject", "getOwnPropertySymbols(${1:Object})"],
-    ["getOwnPropertyNames(Object)\tObject", "getOwnPropertyNames(${1:Object})"],
-    ["propertyIsEnumerable(prop)\tObject", "propertyIsEnumerable(${1:prop})"],
-    ["assign(target, sources)\tObject", "assign(${1:target}, ${2:sources})"],
-    ["preventExtensions(Object)\tObject", "preventExtensions(${1:Object})"],
-    ["hasOwnProperty(property)\tObject", "hasOwnProperty(${1:property})"],
-    ["getPrototypeOf(Object)\tObject", "getPrototypeOf(${1:Object})"],
-    ["is(value1, value2);\tObject", "is(${1:value1}, ${2:value2});"],
-    ["isPrototypeOf(Object)\tObject", "isPrototypeOf(${1:Object})"],
-    ["isExtensible(Object)\tObject", "isExtensible(${1:Object})"],
-    ["instanceof(Object)\tObject", "instanceof(${1:Object})"],
-    ["isFrozen(Object)\tObject", "isFrozen(${1:Object})"],
-    ["isSealed(Object)\tObject", "isSealed(${1:Object})"],
-    ["freeze(Object)\tObject", "freeze(${1:Object})"],
-    ["delete(Object)\tObject", "delete(${1:Object})"],
-    ["Number(Object)\tObject", "Number(${1:Object})"],
-    ["typeof(Object)\tObject", "typeof(${1:Object})"],
-    ["String(Object)\tObject", "String(${1:Object})"],
-    ["toLocaleString()\tObject", "toLocaleString()"],
-    ["create(proto)\tObject", "create(${1:proto})"],
-    ["seal(Object)\tObject", "seal(${1:Object})"],
-    ["keys(Object)\tObject", "keys(${1:Object})"],
-    ["in(Object)\tObject", "in(${1:Object})"],
-    ["new Object()\tObject", "new Object()"],
-    ["toString()\tObject", "toString()"],
-    ["toSource()\tObject", "toSource()"],
-    ["valueOf()\tObject", "valueOf()"],
-    ["length\tObject", "length"],
-    ["this\tObject", "this"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"Object.defineProperty( o: Object, p: string, attrs: any ): static Object\tObject",
+			"Object.defineProperty(${1:o: Object}, ${2:p: string}, ${3:attrs: any})"
+		],
+		[
+			"Object.getOwnPropertyDescriptor( o: Object, p: string ): static Object\tObject",
+			"Object.getOwnPropertyDescriptor(${1:o: Object}, ${2:p: string})"
+		],
+		[
+			"defineProperty( o: Object, p: string, attrs: any ): static Object\tObject",
+			"defineProperty(${1:o: Object}, ${2:p: string}, ${3:attrs: any})"
+		],
+		[
+			"getOwnPropertyDescriptor( o: Object, p: string ): static Object\tObject",
+			"getOwnPropertyDescriptor(${1:o: Object}, ${2:p: string})"
+		],
+		[
+			"Object.defineProperties( o: Object, props: any ): static Object\tObject",
+			"Object.defineProperties(${1:o: Object}, ${2:props: any})"
+		],
+		[
+			"Object.create( o: Object, properties?: any ): static Object\tObject",
+			"Object.create(${1:o: Object}, ${2:properties?: any})"
+		],
+		[
+			"defineProperties( o: Object, props: any ): static Object\tObject",
+			"defineProperties(${1:o: Object}, ${2:props: any})"
+		],
+		[
+			"Object.getOwnPropertyNames( o: Object ): static string[]\tObject",
+			"Object.getOwnPropertyNames(${1:o: Object})"
+		],
+		[
+			"Object.preventExtensions( o: Object ): static Object\tObject",
+			"Object.preventExtensions(${1:o: Object})"
+		],
+		[
+			"create( o: Object, properties?: any ): static Object\tObject",
+			"create(${1:o: Object}, ${2:properties?: any})"
+		],
+		[
+			"getOwnPropertyNames( o: Object ): static string[]\tObject",
+			"getOwnPropertyNames(${1:o: Object})"
+		],
+		[
+			"Object.getPrototypeOf( o: Object ): static Object\tObject",
+			"Object.getPrototypeOf(${1:o: Object})"
+		],
+		[
+			"Object.isExtensible( o: Object ): static boolean\tObject",
+			"Object.isExtensible(${1:o: Object})"
+		],
+		[
+			"preventExtensions( o: Object ): static Object\tObject",
+			"preventExtensions(${1:o: Object})"
+		],
+		[
+			"Object.isFrozen( o: Object ): static boolean\tObject",
+			"Object.isFrozen(${1:o: Object})"
+		],
+		[
+			"Object.isSealed( o: Object ): static boolean\tObject",
+			"Object.isSealed(${1:o: Object})"
+		],
+		[
+			"hasOwnProperty( property: string ): boolean\tObject",
+			"hasOwnProperty(${1:property: string})"
+		],
+		[
+			"propertyIsEnumerable( p: string ): boolean\tObject",
+			"propertyIsEnumerable(${1:p: string})"
+		],
+		[
+			"getPrototypeOf( o: Object ): static Object\tObject",
+			"getPrototypeOf(${1:o: Object})"
+		],
+		[
+			"isExtensible( o: Object ): static boolean\tObject",
+			"isExtensible(${1:o: Object})"
+		],
+		[
+			"Object.keys( o: Object ): static string[]\tObject",
+			"Object.keys(${1:o: Object})"
+		],
+		[
+			"Object.freeze( o: Object ): static Object\tObject",
+			"Object.freeze(${1:o: Object})"
+		],
+		[
+			"Object.seal( o: Object ): static Object\tObject",
+			"Object.seal(${1:o: Object})"
+		],
+		[
+			"isFrozen( o: Object ): static boolean\tObject",
+			"isFrozen(${1:o: Object})"
+		],
+		[
+			"isSealed( o: Object ): static boolean\tObject",
+			"isSealed(${1:o: Object})"
+		],
+		[
+			"isPrototypeOf( o: Object ): boolean\tObject",
+			"isPrototypeOf(${1:o: Object})"
+		],
+		[
+			"keys( o: Object ): static string[]\tObject",
+			"keys(${1:o: Object})"
+		],
+		[
+			"freeze( o: Object ): static Object\tObject",
+			"freeze(${1:o: Object})"
+		],
+		[
+			"new Object( value?: any ): Object\tObject",
+			"new Object(${1:value?: any})"
+		],
+		[
+			"seal( o: Object ): static Object\tObject",
+			"seal(${1:o: Object})"
+		],
+		[
+			"Object( value?: any ): Object\tObject",
+			"Object(${1:value?: any})"
+		],
+		[
+			"toLocaleString(): string\tObject",
+			"toLocaleString()"
+		],
+		[
+			"toString(): string\tObject",
+			"toString()"
+		],
+		[
+			"valueOf(): Object\tObject",
+			"valueOf()"
+		]
+	]
 }

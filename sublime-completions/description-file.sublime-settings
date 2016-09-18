@@ -1,28 +1,52 @@
 {
 	"scope": "source.js",
-
-	"completions":
-	[
-		["description-FileReader.readAsDataURL()\tFile", "/*\n\tDescription:\n\tThe readAsDataURL method is used to starts reading the contents of the specified Blob or File. When the read operation is finished, the readyState becomes DONE, and the loadend is triggered. At that time, the result attribute contains a data: URL representing the file's data as base64 encoded string.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsDataURL(blob);\n*/"],
-		["description-FileReader.readAsArrayBuffer()\tFile", "/*\n\tDescription:\n\tThe readAsArrayBuffer method is used to start reading the contents of a specified Blob or File. When the read operation is finished, the readyState becomes DONE, and the loadend is triggered. At that time, the result attribute contains an ArrayBuffer representing the file's data.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsArrayBuffer(blob);\n*/"],
-		["description-FileReader.readAsBinaryString()\tFile", "/*\n\tDescription:\n\tThe readAsBinaryString method is used to starts reading the contents of the specified Blob or File. When the read operation is finished, the readyState becomes DONE, and the loadend is triggered. At that time, the result attribute contains the raw binary data from the file.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsBinaryString(blob);\n*/"],
-		["description-FileReader.readAsText()\tFile", "/*\n\tDescription:\n\tThe readAsText method is used to read the contents of the specified Blob or File. When the read operation is complete, the readyState is changed to DONE, the loadend is triggered, and the result attribute contains the contents of the file as a text string.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsText(blob[, encoding]);\n*/"],
-		["description-FileReader.result\tFile", "/*\n\tDescription:\n\tReturns the file's contents. This property is only valid after the read operation is complete, and the format of the data depends on which of the methods was used to initiate the read operation.\n\n\tSyntax:\n\tvar file = instanceOfFileReader.result\n*/"],
-		["description-FileReader\tFile", "/*\n\tDescription:\n\tThe FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read.\n\n\tSyntax:\n\tvar FileReader = FileReader();\n*/"],
-		["description-File.lastModifiedDate\tFile", "/*\n\tDescription:\n\tReturns the last modified date of the file. Files without a known last modified date use the current date instead.\n\n\tSyntax:\n\tvar time = instanceOfFile.lastModifiedDate\n*/"],
-		["description-FileReader.abort()\tFile", "/*\n\tDescription:\n\tThe abort method is used to aborts the read operation. Upon return, the readyState will be DONE.\n\n\tSyntax:\n\tinstanceOfFileReader.abort();\n*/"],
-		["description-File.name\tFile", "/*\n\tDescription:\n\tReturns the name of the file. For security reasons, the path is excluded from this property.\n\n\tSyntax:\n\tvar name = instanceOfFile.name\n*/"],
-		["description-FileReader.readyState\tFile", "/*\n\tDescription:\n\tProvides the current state of the reading operation.\n\n\tSyntax:\n\tvar state = instanceOfFileReader.readyState\n*/"],
-		["description-FileReader.error\tFile", "/*\n\tDescription:\n\tReturns the error that occurred while reading the file.\n\n\tSyntax:\n\tvar error = instanceOfFileReader.error\n*/"],
-    ["description-readAsDataURL()\tFile", "/*\n\tDescription:\n\tThe readAsDataURL method is used to starts reading the contents of the specified Blob or File. When the read operation is finished, the readyState becomes DONE, and the loadend is triggered. At that time, the result attribute contains a data: URL representing the file's data as base64 encoded string.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsDataURL(blob);\n*/"],
-    ["description-readAsArrayBuffer()\tFile", "/*\n\tDescription:\n\tThe readAsArrayBuffer method is used to start reading the contents of a specified Blob or File. When the read operation is finished, the readyState becomes DONE, and the loadend is triggered. At that time, the result attribute contains an ArrayBuffer representing the file's data.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsArrayBuffer(blob);\n*/"],
-    ["description-readAsBinaryString()\tFile", "/*\n\tDescription:\n\tThe readAsBinaryString method is used to starts reading the contents of the specified Blob or File. When the read operation is finished, the readyState becomes DONE, and the loadend is triggered. At that time, the result attribute contains the raw binary data from the file.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsBinaryString(blob);\n*/"],
-    ["description-readAsText()\tFile", "/*\n\tDescription:\n\tThe readAsText method is used to read the contents of the specified Blob or File. When the read operation is complete, the readyState is changed to DONE, the loadend is triggered, and the result attribute contains the contents of the file as a text string.\n\n\tSyntax:\n\tinstanceOfFileReader.readAsText(blob[, encoding]);\n*/"],
-    ["description-result\tFile", "/*\n\tDescription:\n\tReturns the file's contents. This property is only valid after the read operation is complete, and the format of the data depends on which of the methods was used to initiate the read operation.\n\n\tSyntax:\n\tvar file = instanceOfFileReader.result\n*/"],
-    ["description-lastModifiedDate\tFile", "/*\n\tDescription:\n\tReturns the last modified date of the file. Files without a known last modified date use the current date instead.\n\n\tSyntax:\n\tvar time = instanceOfFile.lastModifiedDate\n*/"],
-    ["description-abort()\tFile", "/*\n\tDescription:\n\tThe abort method is used to aborts the read operation. Upon return, the readyState will be DONE.\n\n\tSyntax:\n\tinstanceOfFileReader.abort();\n*/"],
-    ["description-name\tFile", "/*\n\tDescription:\n\tReturns the name of the file. For security reasons, the path is excluded from this property.\n\n\tSyntax:\n\tvar name = instanceOfFile.name\n*/"],
-    ["description-readyState\tFile", "/*\n\tDescription:\n\tProvides the current state of the reading operation.\n\n\tSyntax:\n\tvar state = instanceOfFileReader.readyState\n*/"],
-    ["description-error\tFile", "/*\n\tDescription:\n\tReturns the error that occurred while reading the file.\n\n\tSyntax:\n\tvar error = instanceOfFileReader.error\n*/"]
+	"completions": [
+		[
+			"description-lastModifiedDate\tFile",
+			{
+				"name": "lastModifiedDate",
+				"return_type": "Date",
+				"description": "The last modified date of the file. On getting, if user agents can make this information available, this must return a new Date[HTML] object initialized to the last modified date of the file. If the last modification date and time are not known, the attribute must return the current date and time as a Date object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/File%20API%20-%20File.html#lastModifiedDate",
+				"full_description": "/*\n\n\tFile\n\n\tlastModifiedDate\n\n\tReturn Type:\n\tDate\n\n\tDescription:\n\tThe last modified date of the file. On getting, if user agents can make this information available, this must return a new Date[HTML] object initialized to the last modified date of the file. If the last modification date and time are not known, the attribute must return the current date and time as a Date object.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20File.html#lastModifiedDate\n\n*/"
+			}
+		],
+		[
+			"description-name\tFile",
+			{
+				"name": "name",
+				"return_type": "DOMString",
+				"description": "The name of the file; on getting, this must return the name of the file as a string. There are numerous file name variations on different systems; this is merely the name of the file, without path information. On getting, if user agents cannot make this information available, they must return the empty string.",
+				"type": "property",
+				"url_doc": "http://html5index.org/File%20API%20-%20File.html#name",
+				"full_description": "/*\n\n\tFile\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name of the file; on getting, this must return the name of the file as a string. There are numerous file name variations on different systems; this is merely the name of the file, without path information. On getting, if user agents cannot make this information available, they must return the empty string.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20File.html#name\n\n*/"
+			}
+		],
+		[
+			"description-File()\tFile",
+			{
+				"name": "File",
+				"return_type": "File",
+				"parameters": [
+					{
+						"name": "fileBits",
+						"type": "Blob",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "fileName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/File%20API%20-%20File.html#File",
+				"full_description": "/*\n\n\tFile\n\n\tFile ( fileBits: Blob, fileName: DOMString )\n\n\tReturn Type:\n\tFile\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20File.html#File\n\n*/"
+			}
+		]
 	]
 }

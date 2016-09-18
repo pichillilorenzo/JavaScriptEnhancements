@@ -1,0 +1,50 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-scope\tHTMLTableHeaderCellElement",
+			{
+				"name": "scope",
+				"return_type": "DOMString",
+				"description": "The scope IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableHeaderCellElement.html#scope",
+				"full_description": "/*\n\n\tHTMLTableHeaderCellElement\n\n\tscope\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe scope IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableHeaderCellElement.html#scope\n\n*/"
+			}
+		],
+		[
+			"description-sorted\tHTMLTableHeaderCellElement",
+			{
+				"name": "sorted",
+				"return_type": "DOMString",
+				"description": "The abbr and sorted IDL attributes must reflect the content attributes of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableHeaderCellElement.html#sorted",
+				"full_description": "/*\n\n\tHTMLTableHeaderCellElement\n\n\tsorted\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe abbr and sorted IDL attributes must reflect the content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableHeaderCellElement.html#sorted\n\n*/"
+			}
+		],
+		[
+			"description-abbr\tHTMLTableHeaderCellElement",
+			{
+				"name": "abbr",
+				"return_type": "DOMString",
+				"description": "The abbr and sorted IDL attributes must reflect the content attributes of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableHeaderCellElement.html#abbr",
+				"full_description": "/*\n\n\tHTMLTableHeaderCellElement\n\n\tabbr\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe abbr and sorted IDL attributes must reflect the content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableHeaderCellElement.html#abbr\n\n*/"
+			}
+		],
+		[
+			"description-sort()\tHTMLTableHeaderCellElement",
+			{
+				"name": "sort",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#dom-th-sort",
+				"full_description": "/*\n\n\tHTMLTableHeaderCellElement\n\n\tsort ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#dom-th-sort\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"reversed: boolean\tHTMLOListElement",
+			"reversed"
+		],
+		[
+			"type: DOMString\tHTMLOListElement",
+			"type"
+		],
+		[
+			"start: long\tHTMLOListElement",
+			"start"
+		]
+	]
+}

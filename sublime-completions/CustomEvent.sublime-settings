@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"initCustomEvent( type: DOMString, bubbles: boolean, cancelable: boolean, detail: any ): void\tCustomEvent",
+			"initCustomEvent(${1:type: DOMString}, ${2:bubbles: boolean}, ${3:cancelable: boolean}, ${4:detail: any})"
+		],
+		[
+			"new CustomEvent( type: DOMString, eventInitDict?: CustomEventInit ): CustomEvent\tCustomEvent",
+			"new CustomEvent(${1:type: DOMString}, ${2:eventInitDict?: CustomEventInit})"
+		],
+		[
+			"CustomEvent( type: DOMString, eventInitDict?: CustomEventInit ): CustomEvent\tCustomEvent",
+			"CustomEvent(${1:type: DOMString}, ${2:eventInitDict?: CustomEventInit})"
+		],
+		[
+			"detail: any\tCustomEvent",
+			"detail"
+		]
+	]
+}

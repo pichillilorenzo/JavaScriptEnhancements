@@ -1,0 +1,49 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setLineDash( segments: sequence<unrestricted double> ): void\tCanvasDrawingStyles",
+			"setLineDash(${1:segments: sequence<unrestricted double>})"
+		],
+		[
+			"getLineDash(): sequence<unrestricted double>\tCanvasDrawingStyles",
+			"getLineDash()"
+		],
+		[
+			"lineDashOffset: unrestricted double\tCanvasDrawingStyles",
+			"lineDashOffset"
+		],
+		[
+			"miterLimit: unrestricted double\tCanvasDrawingStyles",
+			"miterLimit"
+		],
+		[
+			"lineWidth: unrestricted double\tCanvasDrawingStyles",
+			"lineWidth"
+		],
+		[
+			"textBaseline: DOMString\tCanvasDrawingStyles",
+			"textBaseline"
+		],
+		[
+			"textAlign: DOMString\tCanvasDrawingStyles",
+			"textAlign"
+		],
+		[
+			"direction: DOMString\tCanvasDrawingStyles",
+			"direction"
+		],
+		[
+			"lineJoin: DOMString\tCanvasDrawingStyles",
+			"lineJoin"
+		],
+		[
+			"lineCap: DOMString\tCanvasDrawingStyles",
+			"lineCap"
+		],
+		[
+			"font: DOMString\tCanvasDrawingStyles",
+			"font"
+		]
+	]
+}

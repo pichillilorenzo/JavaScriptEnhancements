@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"RENDERING_INTENT_ABSOLUTE_COLORIMETRIC: const unsigned short\tSVGRenderingIntent",
+			"RENDERING_INTENT_ABSOLUTE_COLORIMETRIC"
+		],
+		[
+			"RENDERING_INTENT_RELATIVE_COLORIMETRIC: const unsigned short\tSVGRenderingIntent",
+			"RENDERING_INTENT_RELATIVE_COLORIMETRIC"
+		],
+		[
+			"RENDERING_INTENT_PERCEPTUAL: const unsigned short\tSVGRenderingIntent",
+			"RENDERING_INTENT_PERCEPTUAL"
+		],
+		[
+			"RENDERING_INTENT_SATURATION: const unsigned short\tSVGRenderingIntent",
+			"RENDERING_INTENT_SATURATION"
+		],
+		[
+			"RENDERING_INTENT_UNKNOWN: const unsigned short\tSVGRenderingIntent",
+			"RENDERING_INTENT_UNKNOWN"
+		],
+		[
+			"RENDERING_INTENT_AUTO: const unsigned short\tSVGRenderingIntent",
+			"RENDERING_INTENT_AUTO"
+		]
+	]
+}

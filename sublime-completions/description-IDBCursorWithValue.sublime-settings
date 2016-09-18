@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-value\tIDBCursorWithValue",
+			{
+				"name": "value",
+				"return_type": "any",
+				"description": "Returns the cursor's current value. Note that if this property returns an object, it returns the same object instance every time it is inspected, until the cursor's value is changed. This means that if the object is modified, those modifications will be seen by anyone inspecting the value of the cursor.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBCursorWithValue.html#value",
+				"full_description": "/*\n\n\tIDBCursorWithValue\n\n\tvalue\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tReturns the cursor's current value. Note that if this property returns an object, it returns the same object instance every time it is inspected, until the cursor's value is changed. This means that if the object is modified, those modifications will be seen by anyone inspecting the value of the cursor.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBCursorWithValue.html#value\n\n*/"
+			}
+		]
+	]
+}

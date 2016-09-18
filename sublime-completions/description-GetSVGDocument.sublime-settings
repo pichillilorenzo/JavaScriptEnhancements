@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-getSVGDocument()\tGetSVGDocument",
+			{
+				"name": "getSVGDocument",
+				"return_type": "SVGDocument",
+				"parameters": [],
+				"description": "This method must return the Document object embedded content in an embedding element, or null if there is no document. Note that this is equivalent to fetching the value of the EmbeddingElement::contentDocument attribute of the embedding element, if the EmbeddingElement interface is also implemented.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20GetSVGDocument.html#getSVGDocument",
+				"full_description": "/*\n\n\tGetSVGDocument\n\n\tgetSVGDocument ()\n\n\tReturn Type:\n\tSVGDocument\n\n\tDescription:\n\tThis method must return the Document object embedded content in an embedding element, or null if there is no document. Note that this is equivalent to fetching the value of the EmbeddingElement::contentDocument attribute of the embedding element, if the EmbeddingElement interface is also implemented.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20GetSVGDocument.html#getSVGDocument\n\n*/"
+			}
+		]
+	]
+}

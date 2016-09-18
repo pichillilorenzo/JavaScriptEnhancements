@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getElementById( elementId: DOMString ): Element\tNonElementParentNode",
+			"getElementById(${1:elementId: DOMString})"
+		]
+	]
+}

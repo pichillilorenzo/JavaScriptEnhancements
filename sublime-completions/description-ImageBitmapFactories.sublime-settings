@@ -1,0 +1,48 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-createImageBitmap()\tImageBitmapFactories",
+			{
+				"name": "createImageBitmap",
+				"return_type": "Promise",
+				"parameters": [
+					{
+						"name": "image",
+						"type": "ImageBitmapSource",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sx",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "sy",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sw",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sh",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "An ImageBitmap object can be obtained from a variety of different objects, using the createImageBitmap() method.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20ImageBitmapFactories.html#createImageBitmap",
+				"full_description": "/*\n\n\tImageBitmapFactories\n\n\tcreateImageBitmap ( image: ImageBitmapSource, sx?: long, sy: long, sw: long, sh: long )\n\n\tReturn Type:\n\tPromise\n\n\tDescription:\n\tAn ImageBitmap object can be obtained from a variety of different objects, using the createImageBitmap() method.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ImageBitmapFactories.html#createImageBitmap\n\n*/"
+			}
+		]
+	]
+}

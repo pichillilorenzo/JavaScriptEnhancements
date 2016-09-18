@@ -1,0 +1,93 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS"
+		],
+		[
+			"PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL"
+		],
+		[
+			"PATHSEG_CURVETO_CUBIC_SMOOTH_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_CUBIC_SMOOTH_ABS"
+		],
+		[
+			"PATHSEG_CURVETO_CUBIC_SMOOTH_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_CUBIC_SMOOTH_REL"
+		],
+		[
+			"PATHSEG_LINETO_HORIZONTAL_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_LINETO_HORIZONTAL_REL"
+		],
+		[
+			"PATHSEG_CURVETO_QUADRATIC_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_QUADRATIC_ABS"
+		],
+		[
+			"PATHSEG_LINETO_HORIZONTAL_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_LINETO_HORIZONTAL_ABS"
+		],
+		[
+			"PATHSEG_CURVETO_QUADRATIC_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_QUADRATIC_REL"
+		],
+		[
+			"PATHSEG_LINETO_VERTICAL_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_LINETO_VERTICAL_ABS"
+		],
+		[
+			"PATHSEG_LINETO_VERTICAL_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_LINETO_VERTICAL_REL"
+		],
+		[
+			"PATHSEG_CURVETO_CUBIC_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_CUBIC_ABS"
+		],
+		[
+			"PATHSEG_CURVETO_CUBIC_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CURVETO_CUBIC_REL"
+		],
+		[
+			"PATHSEG_LINETO_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_LINETO_REL"
+		],
+		[
+			"PATHSEG_MOVETO_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_MOVETO_ABS"
+		],
+		[
+			"PATHSEG_LINETO_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_LINETO_ABS"
+		],
+		[
+			"PATHSEG_MOVETO_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_MOVETO_REL"
+		],
+		[
+			"PATHSEG_CLOSEPATH: const unsigned short\tSVGPathSeg",
+			"PATHSEG_CLOSEPATH"
+		],
+		[
+			"PATHSEG_ARC_REL: const unsigned short\tSVGPathSeg",
+			"PATHSEG_ARC_REL"
+		],
+		[
+			"PATHSEG_ARC_ABS: const unsigned short\tSVGPathSeg",
+			"PATHSEG_ARC_ABS"
+		],
+		[
+			"PATHSEG_UNKNOWN: const unsigned short\tSVGPathSeg",
+			"PATHSEG_UNKNOWN"
+		],
+		[
+			"pathSegTypeAsLetter: DOMString\tSVGPathSeg",
+			"pathSegTypeAsLetter"
+		],
+		[
+			"pathSegType: unsigned short\tSVGPathSeg",
+			"pathSegType"
+		]
+	]
+}

@@ -1,0 +1,87 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-getTrackById()\tTextTrackList",
+			{
+				"name": "getTrackById",
+				"return_type": "TextTrack",
+				"parameters": [
+					{
+						"name": "id",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getTrackById(id) method must return the first TextTrack in the TextTrackList object whose id IDL attribute would return a value equal to the value of the id argument. When no tracks match the given argument, the method must return null.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20TextTrackList.html#getTrackById",
+				"full_description": "/*\n\n\tTextTrackList\n\n\tgetTrackById ( id: DOMString )\n\n\tReturn Type:\n\tTextTrack\n\n\tDescription:\n\tThe getTrackById(id) method must return the first TextTrack in the TextTrackList object whose id IDL attribute would return a value equal to the value of the id argument. When no tracks match the given argument, the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TextTrackList.html#getTrackById\n\n*/"
+			}
+		],
+		[
+			"description-length\tTextTrackList",
+			{
+				"name": "length",
+				"return_type": "unsigned long",
+				"description": "The length attribute of a TextTrackList object must return the number of text tracks in the list represented by the TextTrackList object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20TextTrackList.html#length",
+				"full_description": "/*\n\n\tTextTrackList\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length attribute of a TextTrackList object must return the number of text tracks in the list represented by the TextTrackList object.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TextTrackList.html#length\n\n*/"
+			}
+		],
+		[
+			"description-onremovetrack\tTextTrackList",
+			{
+				"name": "onremovetrack",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttracklist-onremovetrack",
+				"full_description": "/*\n\n\tTextTrackList\n\n\tonremovetrack\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttracklist-onremovetrack\n\n*/"
+			}
+		],
+		[
+			"description-onaddtrack\tTextTrackList",
+			{
+				"name": "onaddtrack",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttracklist-onaddtrack",
+				"full_description": "/*\n\n\tTextTrackList\n\n\tonaddtrack\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttracklist-onaddtrack\n\n*/"
+			}
+		],
+		[
+			"description-onchange\tTextTrackList",
+			{
+				"name": "onchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttracklist-onchange",
+				"full_description": "/*\n\n\tTextTrackList\n\n\tonchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttracklist-onchange\n\n*/"
+			}
+		],
+		[
+			"description-getter()\tTextTrackList",
+			{
+				"name": "getter",
+				"return_type": "TextTrack",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20TextTrackList.html#getter",
+				"full_description": "/*\n\n\tTextTrackList\n\n\tgetter ( index: unsigned long )\n\n\tReturn Type:\n\tTextTrack\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TextTrackList.html#getter\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"postMessage( message: any, transfer?: sequence<Transferable> ): void\tMessagePort",
+			"postMessage(${1:message: any}, ${2:transfer?: sequence<Transferable>})"
+		],
+		[
+			"onmessage: EventHandler\tMessagePort",
+			"onmessage"
+		],
+		[
+			"close(): void\tMessagePort",
+			"close()"
+		],
+		[
+			"start(): void\tMessagePort",
+			"start()"
+		]
+	]
+}

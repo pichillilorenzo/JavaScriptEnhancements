@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new DOMError( name: DOMString, message?: DOMString ): DOMError\tDOMError",
+			"new DOMError(${1:name: DOMString}, ${2:message?: DOMString})"
+		],
+		[
+			"DOMError( name: DOMString, message?: DOMString ): DOMError\tDOMError",
+			"DOMError(${1:name: DOMString}, ${2:message?: DOMString})"
+		],
+		[
+			"message: DOMString\tDOMError",
+			"message"
+		],
+		[
+			"name: DOMString\tDOMError",
+			"name"
+		]
+	]
+}

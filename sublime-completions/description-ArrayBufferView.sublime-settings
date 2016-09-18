@@ -1,0 +1,38 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-byteLength\tArrayBufferView",
+			{
+				"name": "byteLength",
+				"return_type": "unsigned long",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20ArrayBufferView.html#byteLength",
+				"full_description": "/*\n\n\tArrayBufferView\n\n\tbyteLength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBufferView.html#byteLength\n\n*/"
+			}
+		],
+		[
+			"description-byteOffset\tArrayBufferView",
+			{
+				"name": "byteOffset",
+				"return_type": "unsigned long",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20ArrayBufferView.html#byteOffset",
+				"full_description": "/*\n\n\tArrayBufferView\n\n\tbyteOffset\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBufferView.html#byteOffset\n\n*/"
+			}
+		],
+		[
+			"description-buffer\tArrayBufferView",
+			{
+				"name": "buffer",
+				"return_type": "ArrayBuffer",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20ArrayBufferView.html#buffer",
+				"full_description": "/*\n\n\tArrayBufferView\n\n\tbuffer\n\n\tReturn Type:\n\tArrayBuffer\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBufferView.html#buffer\n\n*/"
+			}
+		]
+	]
+}

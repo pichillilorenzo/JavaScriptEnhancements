@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"CSS.escape( ident: DOMString ): static DOMString\tCSS",
+			"CSS.escape(${1:ident: DOMString})"
+		],
+		[
+			"escape( ident: DOMString ): static DOMString\tCSS",
+			"escape(${1:ident: DOMString})"
+		]
+	]
+}

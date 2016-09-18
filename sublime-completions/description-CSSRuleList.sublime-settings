@@ -1,0 +1,35 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-item()\tCSSRuleList",
+			{
+				"name": "item",
+				"return_type": "CSSRule",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The item(index) method must return the indexth CSSRule object in the collection. If there is no indexth object in the collection, then the method must return null.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRuleList.html#item",
+				"full_description": "/*\n\n\tCSSRuleList\n\n\titem ( index: unsigned long )\n\n\tReturn Type:\n\tCSSRule\n\n\tDescription:\n\tThe item(index) method must return the indexth CSSRule object in the collection. If there is no indexth object in the collection, then the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRuleList.html#item\n\n*/"
+			}
+		],
+		[
+			"description-length\tCSSRuleList",
+			{
+				"name": "length",
+				"return_type": "unsigned long",
+				"description": "The length attribute must return the number of CSSRule objects represented by the collection.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRuleList.html#length",
+				"full_description": "/*\n\n\tCSSRuleList\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length attribute must return the number of CSSRule objects represented by the collection.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRuleList.html#length\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-encoding\tCSSCharsetRule",
+			{
+				"name": "encoding",
+				"return_type": "DOMString",
+				"description": "The encoding attribute must return the encoding information specified by the @charset at-rule.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSCharsetRule.html#encoding",
+				"full_description": "/*\n\n\tCSSCharsetRule\n\n\tencoding\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe encoding attribute must return the encoding information specified by the @charset at-rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSCharsetRule.html#encoding\n\n*/"
+			}
+		]
+	]
+}

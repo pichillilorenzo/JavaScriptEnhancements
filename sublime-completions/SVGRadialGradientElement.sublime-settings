@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"cx: SVGAnimatedLength\tSVGRadialGradientElement",
+			"cx"
+		],
+		[
+			"cy: SVGAnimatedLength\tSVGRadialGradientElement",
+			"cy"
+		],
+		[
+			"fx: SVGAnimatedLength\tSVGRadialGradientElement",
+			"fx"
+		],
+		[
+			"fy: SVGAnimatedLength\tSVGRadialGradientElement",
+			"fy"
+		],
+		[
+			"r: SVGAnimatedLength\tSVGRadialGradientElement",
+			"r"
+		]
+	]
+}

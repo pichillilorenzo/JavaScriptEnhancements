@@ -1,153 +1,2031 @@
 {
 	"scope": "source.js",
-
-	"completions":
-	[
-		["description-document.getElementsByClassName()\tDocument", "/*\n\tDescription:\n\tReturns an array-like object of all child elements which have all of the given class names. When called on the document object, the complete document is searched, including the root node. You may also call getElementsByClassName() on any element; it will return only elements which are descendants of the specified root element with the given class names.\n\n\tSyntax:\n\tvar elements = document.getElementsByClassName(names); // or:\nvar elements = rootElement.getElementsByClassName(names);\n*/"],
-		["description-document.execCommand()\tDocument", "/*\n\tDescription:\n\tWhen an HTML document has been switched to designMode, the document object exposes the execCommand method which allows one to run commands to manipulate the contents of the editable region. Most commands affect the document's selection (bold, italics, etc), while others insert new elements (adding a link) or affect an entire line (indenting). When using contentEditable, calling execCommand will affect the currently active editable element.\n\n\tSyntax:\n\texecCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)\n*/"],
-		["description-document.ononline\tDocument", "/*\n\t\"online\" event is fired on the <body> of each page when the browser switches between online and offline mode. Additionally, the events bubble up from document.body, to document, ending at window. Both events are non-cancellable (you can't prevent the user from coming online, or going offline).\nwindow.navigator.onLine returns boolean true if the browser is online and false if it is definitely offline (disconnected from the network). The online and offline events are fired when the value of this attribute changes.\n*/"],
-		["description-document.location\tDocument", "/*\n\tDescription:\n\tThe document.location read-only property returns a Location object, which contains information about the URL of the document and provides methods for changing that URL and load another URL.\n\n\tSyntax:\n\tlocationObj = document.location\ndocument.location = 'http://www.mozilla.org' // Equivalent to document.location.href = 'http://www.mozilla.org'\n*/"],
-		["description-document.getElementsByTagName()\tDocument", "/*\n\tDescription:\n\tReturns an HTMLCollection of elements with the given tag name. The complete document is searched, including the root node. The returned HTMLCollection is live, meaning that it updates itself automatically to stay in sync with the DOM tree without having to call document.getElementsByTagName() again.\n\n\tSyntax:\n\tvar elements = document.getElementsByTagName(name);\n*/"],
-		["description-document.elementFromPoint()\tDocument", "/*\n\tDescription:\n\tReturns the element from the document whose elementFromPoint method is being called which is the topmost element which lies under the given point.  To get an element, specify the point via coordinates, in CSS pixels, relative to the upper-left-most point in the window or frame containing the document.\n\n\tSyntax:\n\tvar element = document.elementFromPoint(x, y);\n*/"],
-		["description-document.createElement()\tDocument", "/*\n\tDescription:\n\tIn an HTML document creates the specified HTML element or HTMLUnknownElement if the element is not known. In a XUL document creates the specified XUL element. In other documents creates an element with a null namespaceURI.\n\n\tSyntax:\n\tvar element = document.createElement(tagName);\n*/"],
-		["description-document.readyState\tDocument", "/*\n\tDescription:\n\tReturns \"loading\" while the document is loading, \"interactive\" once it is finished parsing but still loading sub-resources, and \"complete\" once it has loaded.\n\n\tSyntax:\n\tvar string = document.readyState;\n*/"],
-		["description-document.contentType\tDocument", "/*\n\tDescription:\n\tReturns the MIME type that the document is being rendered as.  This may come from HTTP headers or other sources of MIME information, and might be affected by automatic type conversions performed by either the browser or extensions.\n\n\tSyntax:\n\tcontentType = document.contentType;\n*/"],
-		["description-document.adoptNode()\tDocument", "/*\n\tDescription:\n\tAdopts a node from an external document. The node and its subtree is removed from the document it's in (if any), and its ownerdocument is changed to the current document. The node can then be inserted into the current document.\n\n\tSyntax:\n\tnode = document.adoptNode(externalNode);\n*/"],
-		["description-document.caretPositionFromPoint()\tDocument", "/*\n\tDescription:\n\tThis method is used to retrieve the caret position in a document based on two coordinates. A CaretPosition is returned, containing the found DOM node and the character offset in that node.\n\n\tSyntax:\n\tvar cp = document.caretPositionFromPoint(float x, float y);\n*/"],
-		["description-document.pointerLockElement\tDocument", "/*\n\tDescription:\n\tThe pointerLockElement property provides the element set as the target for mouse events while the pointer is locked. It is null if lock is pending, pointer is unlocked, or the target is in another document.\n\n\tSyntax:\n\tvar element = document.pointerLockElement;\n*/"],
-		["description-document.querySelectorAll()\tDocument", "/*\n\tDescription:\n\tReturns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a NodeList.\n\n\tSyntax:\n\telementList = document.querySelectorAll(selectors);\n*/"],
-		["description-document.enableStyleSheetsForSet()\tDocument", "/*\n\tDescription:\n\tEnables the style sheets matching the specified name in the current style sheet set, and disables all other style sheets (except those without a title, which are always enabled).\n\n\tSyntax:\n\tdocument.enableStyleSheetsForSet(name)\n*/"],
-		["description-document.doctype\tDocument", "/*\n\tDescription:\n\tReturns the document Type Declaration (DTD) associated with current document. The returned object implements the DocumentType interface. Use DOMImplementation.createDocumentType() to create a DocumentType.\n\n\tSyntax:\n\tdoctype = document.doctype;\n*/"],
-		["description-document.hasFocus()\tDocument", "/*\n\tDescription:\n\tReturns a Boolean value indicating whether the document or any element inside the document has focus. This method can be used to determine whether the active element in a document has focus.\n\n\tSyntax:\n\tfocused = document.hasFocus();\n*/"],
-		["description-document.getElementsByTagNameNS()\tDocument", "/*\n\tDescription:\n\tReturns a list of elements with the given tag name belonging to the given namespace. The complete document is searched, including the root node.\n\n\tSyntax:\n\telements = document.getElementsByTagNameNS(namespace, name)\n*/"],
-		["description-document.querySelector()\tDocument", "/*\n\tDescription:\n\tReturns the first element within the document (using depth-first pre-order traversal of the document's nodes) that matches the specified group of selectors.\n\n\tSyntax:\n\telement = document.querySelector(selectors);\n*/"],
-		["description-document.selectedStyleSheetSet\tDocument", "/*\n\tDescription:\n\tIndicates the name of the style sheet set that's currently in use.\n\n\tSyntax:\n\tcurrentStyleSheetSet = document.selectedStyleSheetSet\n\ndocument.selectedStyleSheet = newStyleSheetSet\n*/"],
-		["description-document.styleSheets\tDocument", "/*\n\tDescription:\n\tThe document.styleSheets read-only property returns a StyleSheetList of StyleSheet  objects for stylesheets explicitly linked into or embedded in a document.\n\n\tSyntax:\n\tvar styleSheetList = document.styleSheets;\n*/"],
-		["description-document.releaseCapture()\tDocument", "/*\n\tDescription:\n\tReleases mouse capture if it's currently enabled on an element within this document. Enabling mouse capture on an element is done by calling element.setCapture().\n\n\tSyntax:\n\tdocument.releaseCapture()\n*/"],
-		["description-document.lastStyleSheetSet\tDocument", "/*\n\tDescription:\n\tReturns the last enabled style sheet set; this property's value changes whenever the document.selectedStyleSheetSet property is changed.\n\n\tSyntax:\n\tlastStyleSheetSet = document.lastStyleSheetSet\n*/"],
-		["description-document.createTreeWalker()\tDocument", "/*\n\tDescription:\n\tThe document.createTreeWalker() creator method returns a newly created TreeWalker object.\n\n\tSyntax:\n\ttreeWalker = document.createTreeWalker(root, whatToShow, filter, entityReferenceExpansion);\n*/"],
-		["description-document.createProcessingInstruction()\tDocument", "/*\n\tDescription:\n\tcreateProcessingInstruction() creates a new processing instruction node, and returns it.\n\n\tSyntax:\n\tProcessing instruction node = document.createProcessingInstruction(target, data)\n*/"],
-		["description-document.domain\tDocument", "/*\n\tDescription:\n\tGets/sets the domain portion of the origin of the current document, as used by the same origin policy.\n\n\tSyntax:\n\tvar domainString = document.domain;\ndocument.domain = string;\n*/"],
-		["description-document.activeElement\tDocument", "/*\n\tDescription:\n\tReturns the currently focused element, that is, the element that will get keystroke events if the user types any. This attribute is read only.\n\n\tSyntax:\n\tvar curElement = document.activeElement;\n*/"],
-		["description-document.evaluate()\tDocument", "/*\n\tDescription:\n\tReturns an XPathResult based on an XPath expression and other given parameters.\n\n\tSyntax:\n\tvar xpathResult = document.evaluate(xpathExpression, contextNode, namespaceResolver, resultType, result);\n*/"],
-		["description-document.plugins\tDocument", "/*\n\tDescription:\n\tReturns an HTMLCollection object containing one or more HTMLEmbedElements or null which represent the <embed> elements in the current document.\n\n\tSyntax:\n\tembedArrayObj = document.plugins\n*/"],
-		["description-document.createNSResolver()\tDocument", "/*\n\tDescription:\n\tCreates an XPathNSResolver which resolves namespaces with respect to the definitions in scope for a specified node.\n\n\tSyntax:\n\tnsResolver = document.createNSResolver(node);\n*/"],
-		["description-document.createExpression()\tDocument", "/*\n\tDescription:\n\tThis method compiles an XPathExpression which can then be used for (repeated) evaluations.\n\n\tSyntax:\n\txpathExpr = document.createExpression(xpathText, namespaceURLMapper);\n*/"],
-		["description-document.documentElement\tDocument", "/*\n\tDescription:\n\tReturns the Element that is the root element of the document (for example, the <html> element for HTML documents).\n\n\tSyntax:\n\tvar element = document.documentElement;\n*/"],
-		["description-document.body\tDocument", "/*\n\tDescription:\n\tReturns the <body> or <frameset> node of the current document, or null if no such element exists.\n\n\tSyntax:\n\tvar objRef = document.body; \ndocument.body = objRef;\n*/"],
-		["description-document.queryCommandSupported()\tDocument", "/*\n\tDescription:\n\tReports whether or not the specified editor query command is supported by the browser.\n\n\tSyntax:\n\tisSupported = document.queryCommandSupported(command);\n*/"],
-		["description-document.importNode()\tDocument", "/*\n\tDescription:\n\tCreates a copy of a node from an external document that can be inserted into the current document.\n\n\tSyntax:\n\tvar node = document.importNode(externalNode, deep);\n*/"],
-		["description-document.links\tDocument", "/*\n\tDescription:\n\tThe links property returns a collection of all <area> elements and <a> elements in a document with a value for the href attribute.\n\n\tSyntax:\n\tnodeList = document.links\n*/"],
-		["description-document.loadOverlay()\tDocument", "/*\n\tDescription:\n\tLoads a XUL overlay and merges it with the current document, notifying an observer when the merge is complete.\n\n\tSyntax:\n\tdocument.loadOverlay(url, observer);\n*/"],
-		["description-document.head\tDocument", "/*\n\tDescription:\n\tReturns the <head> element of the current document. If there are more than one <head> elements, the first one is returned.\n\n\tSyntax:\n\tvar objRef = document.head;\n*/"],
-		["description-document.createElementNS()\tDocument", "/*\n\tDescription:\n\tCreates an element with the specified namespace URI and qualified name.\n\n\tSyntax:\n\telement = document.createElementNS(namespaceURI, qualifiedName);\n*/"],
-		["description-document.designMode\tDocument", "/*\n\tDescription:\n\tdocument.designMode controls whether the entire document is editable.\n\n\tSyntax:\n\tiframe_node.contentDocument.designMode = \"on\";\n*/"],
-		["description-document.createCDATASection()\tDocument", "/*\n\tDescription:\n\tcreateCDATASection() creates a new CDATA section node, and returns it.\n\n\tSyntax:\n\tCDATASectionNode = document.createCDATASection(data)\n*/"],
-		["description-document.preferredStyleSheetSet\tDocument", "/*\n\tDescription:\n\tReturns the preferred style sheet set as set by the page author.\n\n\tSyntax:\n\tpreferredStyleSheetSet = document.preferredStyleSheetSet\n*/"],
-		["description-document.scripts\tDocument", "/*\n\tDescription:\n\tReturns a list of the <script> elements in the document. The returned object is an HTMLCollection.\n\n\tSyntax:\n\tvar scriptList = document.scripts;\n*/"],
-		["description-document.lastModified\tDocument", "/*\n\tDescription:\n\tReturns a string containing the date and time on which the current document was last modified.\n\n\tSyntax:\n\tstring = document.lastModified;\n*/"],
-		["description-document.defaultView\tDocument", "/*\n\tDescription:\n\tIn browsers returns the window object associated with the document or null if none available.\n\n\tSyntax:\n\tvar win = document.defaultView;\n*/"],
-		["description-document.getElementsByName()\tDocument", "/*\n\tDescription:\n\tReturns a nodelist collection with a given name in the (X)HTML document.\n\n\tSyntax:\n\telements = document.getElementsByName(name)\n*/"],
-		["description-document.currentScript\tDocument", "/*\n\tDescription:\n\tReturns the <script> element whose script is currently being processed.\n\n\tSyntax:\n\tvar curScriptElement = document.currentScript;\n*/"],
-		["description-document.forms\tDocument", "/*\n\tDescription:\n\tforms returns a collection (an HTMLCollection) of the form elements within the current document.\n\n\tSyntax:\n\tcollection = document.forms;\n*/"],
-		["description-document.createNodeIterator()\tDocument", "/*\n\tDescription:\n\tReturns a new NodeIterator object.\n\n\tSyntax:\n\tvar nodeIterator = document.createNodeIterator(root, whatToShow, filter);\n*/"],
-		["description-document.documentURI\tDocument", "/*\n\tDescription:\n\tReturns the document location as string. It is read-only per DOM4 specification.\n\n\tSyntax:\n\tvar string = document.documentURI;\n*/"],
-		["description-document.images\tDocument", "/*\n\tDescription:\n\tdocument.images returns a collection of the images in the current HTML document.\n\n\tSyntax:\n\tvar htmlCollection = document.images;\n*/"],
-		["description-document.implementation\tDocument", "/*\n\tDescription:\n\tReturns a DOMImplementation object associated with the current document.\n\n\tSyntax:\n\tDOMImpObj = document.implementation;\n*/"],
-		["description-document.createAttribute()\tDocument", "/*\n\tDescription:\n\tcreateAttribute creates a new attribute node, and returns it.\n\n\tSyntax:\n\tattribute = document.createAttribute(name)\n*/"],
-		["description-document.createComment()\tDocument", "/*\n\tDescription:\n\tcreateComment() creates a new comment node, and returns it.\n\n\tSyntax:\n\tCommentNode = document.createComment(data)\n*/"],
-		["description-document.styleSheetSets\tDocument", "/*\n\tDescription:\n\tReturns a live list of all of the currently-available style sheet sets.\n\n\tSyntax:\n\tsets = document.styleSheetSets\n*/"],
-		["description-document.title\tDocument", "/*\n\tDescription:\n\tGets or sets the title of the document.\n\n\tSyntax:\n\tvar docTitle = document.title;\ndocument.title = newTitle;\n*/"],
-		["description-document.createdocumentFragment()\tDocument", "/*\n\tDescription:\n\tCreates a new empty documentFragment.\n\n\tSyntax:\n\tvar docFragment = document.createDocumentFragment();\n*/"],
-		["description-document.close()\tDocument", "/*\n\tDescription:\n\tThe document.close() method finishes writing to a document, opened with document.open().\n\n\tSyntax:\n\tdocument.close();\n*/"],
-		["description-document.compatMode\tDocument", "/*\n\tDescription:\n\tIndicates whether the document is rendered in Quirks mode or Standards mode.\n\n\tSyntax:\n\tmode = document.compatMode\n*/"],
-		["description-document.documentURIObject\tDocument", "/*\n\tDescription:\n\tReturns an nsIURI object representing the URI of the document.\n\n\tSyntax:\n\tvar uri = doc.documentURIObject;\n*/"],
-		["description-document.embeds\tDocument", "/*\n\tDescription:\n\tembeds returns a list of the embedded OBJECTS within the current document.\n\n\tSyntax:\n\tnodeList = document.embeds\n*/"],
-		["description-document.writeln()\tDocument", "/*\n\tDescription:\n\tWrites a string of text followed by a newline character to a document.\n\n\tSyntax:\n\tdocument.writeln(line);\n*/"],
-		["description-document.write()\tDocument", "/*\n\tDescription:\n\tWrites a string of text to a document stream opened by document.open().\n\n\tSyntax:\n\tdocument.write(markup);\n*/"],
-		["description-document.applets\tDocument", "/*\n\tDescription:\n\tapplets returns an ordered list of the applets within a document.\n\n\tSyntax:\n\tnodeList = document.applets\n*/"],
-		["description-document.getElementById()\tDocument", "/*\n\tDescription:\n\tReturns a reference to the element by its ID.\n\n\tSyntax:\n\telement = document.getElementById(id);\n*/"],
-		["description-document.anchors\tDocument", "/*\n\tDescription:\n\tanchors returns a list of all of the anchors in the document.\n\n\tSyntax:\n\tnodeList = document.anchors;\n*/"],
-		["description-document.tooltipNode\tDocument", "/*\n\tDescription:\n\tReturns the node which is the target of the current tooltip.\n\n\tSyntax:\n\tdocument.tooltipNode;\n*/"],
-		["description-document.characterSet\tDocument", "/*\n\tDescription:\n\tReturns the character encoding of the current document.\n\n\tSyntax:\n\tdocument.characterSet\n*/"],
-		["description-document.referrer\tDocument", "/*\n\tDescription:\n\tReturns the URI of the page that linked to this page.\n\n\tSyntax:\n\tstring = document.referrer;\n*/"],
-		["description-document.open()\tDocument", "/*\n\tDescription:\n\tThe document.open() method opens a document for writing.\n\n\tSyntax:\n\tdocument.open();\n*/"],
-		["description-document.createTextNode()\tDocument", "/*\n\tDescription:\n\tCreates a new Text node.\n\n\tSyntax:\n\ttext = document.createTextNode(data);\n*/"],
-		["description-document.createRange()\tDocument", "/*\n\tDescription:\n\tReturns a new Range object.\n\n\tSyntax:\n\trange = document.createRange();\n*/"],
-		["description-document.URL\tDocument", "/*\n\tDescription:\n\tReturns the string URL of the HTML document.\n\n\tSyntax:\n\tstring = document.URL\n*/"],
-		["description-document.onoffline\tDocument", "/*\n\tThis event is fired on body and bubbles up when navigator.onLine property changes and becomes false.\n*/"],
-		["description-getElementsByClassName()\tDocument", "/*\n\tDescription:\n\tReturns an array-like object of all child elements which have all of the given class names. When called on the document object, the complete document is searched, including the root node. You may also call getElementsByClassName() on any element; it will return only elements which are descendants of the specified root element with the given class names.\n\n\tSyntax:\n\tvar elements = document.getElementsByClassName(names); // or:\nvar elements = rootElement.getElementsByClassName(names);\n*/"],
-		["description-execCommand()\tDocument", "/*\n\tDescription:\n\tWhen an HTML document has been switched to designMode, the document object exposes the execCommand method which allows one to run commands to manipulate the contents of the editable region. Most commands affect the document's selection (bold, italics, etc), while others insert new elements (adding a link) or affect an entire line (indenting). When using contentEditable, calling execCommand will affect the currently active editable element.\n\n\tSyntax:\n\texecCommand(String aCommandName, Boolean aShowDefaultUI, String aValueArgument)\n*/"],
-		["description-ononline\tDocument", "/*\n\t\"online\" event is fired on the <body> of each page when the browser switches between online and offline mode. Additionally, the events bubble up from document.body, to document, ending at window. Both events are non-cancellable (you can't prevent the user from coming online, or going offline).\nwindow.navigator.onLine returns boolean true if the browser is online and false if it is definitely offline (disconnected from the network). The online and offline events are fired when the value of this attribute changes.\n*/"],
-		["description-location\tDocument", "/*\n\tDescription:\n\tThe document.location read-only property returns a Location object, which contains information about the URL of the document and provides methods for changing that URL and load another URL.\n\n\tSyntax:\n\tlocationObj = document.location\ndocument.location = 'http://www.mozilla.org' // Equivalent to document.location.href = 'http://www.mozilla.org'\n*/"],
-		["description-getElementsByTagName()\tDocument", "/*\n\tDescription:\n\tReturns an HTMLCollection of elements with the given tag name. The complete document is searched, including the root node. The returned HTMLCollection is live, meaning that it updates itself automatically to stay in sync with the DOM tree without having to call document.getElementsByTagName() again.\n\n\tSyntax:\n\tvar elements = document.getElementsByTagName(name);\n*/"],
-		["description-elementFromPoint()\tDocument", "/*\n\tDescription:\n\tReturns the element from the document whose elementFromPoint method is being called which is the topmost element which lies under the given point.  To get an element, specify the point via coordinates, in CSS pixels, relative to the upper-left-most point in the window or frame containing the document.\n\n\tSyntax:\n\tvar element = document.elementFromPoint(x, y);\n*/"],
-		["description-createElement()\tDocument", "/*\n\tDescription:\n\tIn an HTML document creates the specified HTML element or HTMLUnknownElement if the element is not known. In a XUL document creates the specified XUL element. In other documents creates an element with a null namespaceURI.\n\n\tSyntax:\n\tvar element = document.createElement(tagName);\n*/"],
-		["description-readyState\tDocument", "/*\n\tDescription:\n\tReturns \"loading\" while the document is loading, \"interactive\" once it is finished parsing but still loading sub-resources, and \"complete\" once it has loaded.\n\n\tSyntax:\n\tvar string = document.readyState;\n*/"],
-		["description-contentType\tDocument", "/*\n\tDescription:\n\tReturns the MIME type that the document is being rendered as.  This may come from HTTP headers or other sources of MIME information, and might be affected by automatic type conversions performed by either the browser or extensions.\n\n\tSyntax:\n\tcontentType = document.contentType;\n*/"],
-		["description-adoptNode()\tDocument", "/*\n\tDescription:\n\tAdopts a node from an external document. The node and its subtree is removed from the document it's in (if any), and its ownerdocument is changed to the current document. The node can then be inserted into the current document.\n\n\tSyntax:\n\tnode = document.adoptNode(externalNode);\n*/"],
-		["description-caretPositionFromPoint()\tDocument", "/*\n\tDescription:\n\tThis method is used to retrieve the caret position in a document based on two coordinates. A CaretPosition is returned, containing the found DOM node and the character offset in that node.\n\n\tSyntax:\n\tvar cp = document.caretPositionFromPoint(float x, float y);\n*/"],
-		["description-pointerLockElement\tDocument", "/*\n\tDescription:\n\tThe pointerLockElement property provides the element set as the target for mouse events while the pointer is locked. It is null if lock is pending, pointer is unlocked, or the target is in another document.\n\n\tSyntax:\n\tvar element = document.pointerLockElement;\n*/"],
-		["description-querySelectorAll()\tDocument", "/*\n\tDescription:\n\tReturns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a NodeList.\n\n\tSyntax:\n\telementList = document.querySelectorAll(selectors);\n*/"],
-		["description-enableStyleSheetsForSet()\tDocument", "/*\n\tDescription:\n\tEnables the style sheets matching the specified name in the current style sheet set, and disables all other style sheets (except those without a title, which are always enabled).\n\n\tSyntax:\n\tdocument.enableStyleSheetsForSet(name)\n*/"],
-		["description-doctype\tDocument", "/*\n\tDescription:\n\tReturns the document Type Declaration (DTD) associated with current document. The returned object implements the DocumentType interface. Use DOMImplementation.createDocumentType() to create a DocumentType.\n\n\tSyntax:\n\tdoctype = document.doctype;\n*/"],
-		["description-hasFocus()\tDocument", "/*\n\tDescription:\n\tReturns a Boolean value indicating whether the document or any element inside the document has focus. This method can be used to determine whether the active element in a document has focus.\n\n\tSyntax:\n\tfocused = document.hasFocus();\n*/"],
-		["description-getElementsByTagNameNS()\tDocument", "/*\n\tDescription:\n\tReturns a list of elements with the given tag name belonging to the given namespace. The complete document is searched, including the root node.\n\n\tSyntax:\n\telements = document.getElementsByTagNameNS(namespace, name)\n*/"],
-		["description-querySelector()\tDocument", "/*\n\tDescription:\n\tReturns the first element within the document (using depth-first pre-order traversal of the document's nodes) that matches the specified group of selectors.\n\n\tSyntax:\n\telement = document.querySelector(selectors);\n*/"],
-		["description-selectedStyleSheetSet\tDocument", "/*\n\tDescription:\n\tIndicates the name of the style sheet set that's currently in use.\n\n\tSyntax:\n\tcurrentStyleSheetSet = document.selectedStyleSheetSet\n\ndocument.selectedStyleSheet = newStyleSheetSet\n*/"],
-		["description-styleSheets\tDocument", "/*\n\tDescription:\n\tThe document.styleSheets read-only property returns a StyleSheetList of StyleSheet  objects for stylesheets explicitly linked into or embedded in a document.\n\n\tSyntax:\n\tvar styleSheetList = document.styleSheets;\n*/"],
-		["description-releaseCapture()\tDocument", "/*\n\tDescription:\n\tReleases mouse capture if it's currently enabled on an element within this document. Enabling mouse capture on an element is done by calling element.setCapture().\n\n\tSyntax:\n\tdocument.releaseCapture()\n*/"],
-		["description-lastStyleSheetSet\tDocument", "/*\n\tDescription:\n\tReturns the last enabled style sheet set; this property's value changes whenever the document.selectedStyleSheetSet property is changed.\n\n\tSyntax:\n\tlastStyleSheetSet = document.lastStyleSheetSet\n*/"],
-		["description-createTreeWalker()\tDocument", "/*\n\tDescription:\n\tThe document.createTreeWalker() creator method returns a newly created TreeWalker object.\n\n\tSyntax:\n\ttreeWalker = document.createTreeWalker(root, whatToShow, filter, entityReferenceExpansion);\n*/"],
-		["description-createProcessingInstruction()\tDocument", "/*\n\tDescription:\n\tcreateProcessingInstruction() creates a new processing instruction node, and returns it.\n\n\tSyntax:\n\tProcessing instruction node = document.createProcessingInstruction(target, data)\n*/"],
-		["description-domain\tDocument", "/*\n\tDescription:\n\tGets/sets the domain portion of the origin of the current document, as used by the same origin policy.\n\n\tSyntax:\n\tvar domainString = document.domain;\ndocument.domain = string;\n*/"],
-		["description-activeElement\tDocument", "/*\n\tDescription:\n\tReturns the currently focused element, that is, the element that will get keystroke events if the user types any. This attribute is read only.\n\n\tSyntax:\n\tvar curElement = document.activeElement;\n*/"],
-		["description-evaluate()\tDocument", "/*\n\tDescription:\n\tReturns an XPathResult based on an XPath expression and other given parameters.\n\n\tSyntax:\n\tvar xpathResult = document.evaluate(xpathExpression, contextNode, namespaceResolver, resultType, result);\n*/"],
-		["description-plugins\tDocument", "/*\n\tDescription:\n\tReturns an HTMLCollection object containing one or more HTMLEmbedElements or null which represent the <embed> elements in the current document.\n\n\tSyntax:\n\tembedArrayObj = document.plugins\n*/"],
-		["description-createNSResolver()\tDocument", "/*\n\tDescription:\n\tCreates an XPathNSResolver which resolves namespaces with respect to the definitions in scope for a specified node.\n\n\tSyntax:\n\tnsResolver = document.createNSResolver(node);\n*/"],
-		["description-createExpression()\tDocument", "/*\n\tDescription:\n\tThis method compiles an XPathExpression which can then be used for (repeated) evaluations.\n\n\tSyntax:\n\txpathExpr = document.createExpression(xpathText, namespaceURLMapper);\n*/"],
-		["description-documentElement\tDocument", "/*\n\tDescription:\n\tReturns the Element that is the root element of the document (for example, the <html> element for HTML documents).\n\n\tSyntax:\n\tvar element = document.documentElement;\n*/"],
-		["description-body\tDocument", "/*\n\tDescription:\n\tReturns the <body> or <frameset> node of the current document, or null if no such element exists.\n\n\tSyntax:\n\tvar objRef = document.body; \ndocument.body = objRef;\n*/"],
-		["description-queryCommandSupported()\tDocument", "/*\n\tDescription:\n\tReports whether or not the specified editor query command is supported by the browser.\n\n\tSyntax:\n\tisSupported = document.queryCommandSupported(command);\n*/"],
-		["description-importNode()\tDocument", "/*\n\tDescription:\n\tCreates a copy of a node from an external document that can be inserted into the current document.\n\n\tSyntax:\n\tvar node = document.importNode(externalNode, deep);\n*/"],
-		["description-links\tDocument", "/*\n\tDescription:\n\tThe links property returns a collection of all <area> elements and <a> elements in a document with a value for the href attribute.\n\n\tSyntax:\n\tnodeList = document.links\n*/"],
-		["description-loadOverlay()\tDocument", "/*\n\tDescription:\n\tLoads a XUL overlay and merges it with the current document, notifying an observer when the merge is complete.\n\n\tSyntax:\n\tdocument.loadOverlay(url, observer);\n*/"],
-		["description-head\tDocument", "/*\n\tDescription:\n\tReturns the <head> element of the current document. If there are more than one <head> elements, the first one is returned.\n\n\tSyntax:\n\tvar objRef = document.head;\n*/"],
-		["description-createElementNS()\tDocument", "/*\n\tDescription:\n\tCreates an element with the specified namespace URI and qualified name.\n\n\tSyntax:\n\telement = document.createElementNS(namespaceURI, qualifiedName);\n*/"],
-		["description-designMode\tDocument", "/*\n\tDescription:\n\tdocument.designMode controls whether the entire document is editable.\n\n\tSyntax:\n\tiframe_node.contentDocument.designMode = \"on\";\n*/"],
-		["description-createCDATASection()\tDocument", "/*\n\tDescription:\n\tcreateCDATASection() creates a new CDATA section node, and returns it.\n\n\tSyntax:\n\tCDATASectionNode = document.createCDATASection(data)\n*/"],
-		["description-preferredStyleSheetSet\tDocument", "/*\n\tDescription:\n\tReturns the preferred style sheet set as set by the page author.\n\n\tSyntax:\n\tpreferredStyleSheetSet = document.preferredStyleSheetSet\n*/"],
-		["description-scripts\tDocument", "/*\n\tDescription:\n\tReturns a list of the <script> elements in the document. The returned object is an HTMLCollection.\n\n\tSyntax:\n\tvar scriptList = document.scripts;\n*/"],
-		["description-lastModified\tDocument", "/*\n\tDescription:\n\tReturns a string containing the date and time on which the current document was last modified.\n\n\tSyntax:\n\tstring = document.lastModified;\n*/"],
-		["description-defaultView\tDocument", "/*\n\tDescription:\n\tIn browsers returns the window object associated with the document or null if none available.\n\n\tSyntax:\n\tvar win = document.defaultView;\n*/"],
-		["description-getElementsByName()\tDocument", "/*\n\tDescription:\n\tReturns a nodelist collection with a given name in the (X)HTML document.\n\n\tSyntax:\n\telements = document.getElementsByName(name)\n*/"],
-		["description-currentScript\tDocument", "/*\n\tDescription:\n\tReturns the <script> element whose script is currently being processed.\n\n\tSyntax:\n\tvar curScriptElement = document.currentScript;\n*/"],
-		["description-forms\tDocument", "/*\n\tDescription:\n\tforms returns a collection (an HTMLCollection) of the form elements within the current document.\n\n\tSyntax:\n\tcollection = document.forms;\n*/"],
-		["description-createNodeIterator()\tDocument", "/*\n\tDescription:\n\tReturns a new NodeIterator object.\n\n\tSyntax:\n\tvar nodeIterator = document.createNodeIterator(root, whatToShow, filter);\n*/"],
-		["description-documentURI\tDocument", "/*\n\tDescription:\n\tReturns the document location as string. It is read-only per DOM4 specification.\n\n\tSyntax:\n\tvar string = document.documentURI;\n*/"],
-		["description-images\tDocument", "/*\n\tDescription:\n\tdocument.images returns a collection of the images in the current HTML document.\n\n\tSyntax:\n\tvar htmlCollection = document.images;\n*/"],
-		["description-implementation\tDocument", "/*\n\tDescription:\n\tReturns a DOMImplementation object associated with the current document.\n\n\tSyntax:\n\tDOMImpObj = document.implementation;\n*/"],
-		["description-createAttribute()\tDocument", "/*\n\tDescription:\n\tcreateAttribute creates a new attribute node, and returns it.\n\n\tSyntax:\n\tattribute = document.createAttribute(name)\n*/"],
-		["description-createComment()\tDocument", "/*\n\tDescription:\n\tcreateComment() creates a new comment node, and returns it.\n\n\tSyntax:\n\tCommentNode = document.createComment(data)\n*/"],
-		["description-styleSheetSets\tDocument", "/*\n\tDescription:\n\tReturns a live list of all of the currently-available style sheet sets.\n\n\tSyntax:\n\tsets = document.styleSheetSets\n*/"],
-		["description-title\tDocument", "/*\n\tDescription:\n\tGets or sets the title of the document.\n\n\tSyntax:\n\tvar docTitle = document.title;\ndocument.title = newTitle;\n*/"],
-		["description-createdocumentFragment()\tDocument", "/*\n\tDescription:\n\tCreates a new empty documentFragment.\n\n\tSyntax:\n\tvar docFragment = document.createDocumentFragment();\n*/"],
-		["description-close()\tDocument", "/*\n\tDescription:\n\tThe document.close() method finishes writing to a document, opened with document.open().\n\n\tSyntax:\n\tdocument.close();\n*/"],
-		["description-compatMode\tDocument", "/*\n\tDescription:\n\tIndicates whether the document is rendered in Quirks mode or Standards mode.\n\n\tSyntax:\n\tmode = document.compatMode\n*/"],
-		["description-documentURIObject\tDocument", "/*\n\tDescription:\n\tReturns an nsIURI object representing the URI of the document.\n\n\tSyntax:\n\tvar uri = doc.documentURIObject;\n*/"],
-		["description-embeds\tDocument", "/*\n\tDescription:\n\tembeds returns a list of the embedded OBJECTS within the current document.\n\n\tSyntax:\n\tnodeList = document.embeds\n*/"],
-		["description-writeln()\tDocument", "/*\n\tDescription:\n\tWrites a string of text followed by a newline character to a document.\n\n\tSyntax:\n\tdocument.writeln(line);\n*/"],
-		["description-write()\tDocument", "/*\n\tDescription:\n\tWrites a string of text to a document stream opened by document.open().\n\n\tSyntax:\n\tdocument.write(markup);\n*/"],
-		["description-applets\tDocument", "/*\n\tDescription:\n\tapplets returns an ordered list of the applets within a document.\n\n\tSyntax:\n\tnodeList = document.applets\n*/"],
-		["description-getElementById()\tDocument", "/*\n\tDescription:\n\tReturns a reference to the element by its ID.\n\n\tSyntax:\n\telement = document.getElementById(id);\n*/"],
-		["description-anchors\tDocument", "/*\n\tDescription:\n\tanchors returns a list of all of the anchors in the document.\n\n\tSyntax:\n\tnodeList = document.anchors;\n*/"],
-		["description-tooltipNode\tDocument", "/*\n\tDescription:\n\tReturns the node which is the target of the current tooltip.\n\n\tSyntax:\n\tdocument.tooltipNode;\n*/"],
-		["description-characterSet\tDocument", "/*\n\tDescription:\n\tReturns the character encoding of the current document.\n\n\tSyntax:\n\tdocument.characterSet\n*/"],
-		["description-referrer\tDocument", "/*\n\tDescription:\n\tReturns the URI of the page that linked to this page.\n\n\tSyntax:\n\tstring = document.referrer;\n*/"],
-		["description-open()\tDocument", "/*\n\tDescription:\n\tThe document.open() method opens a document for writing.\n\n\tSyntax:\n\tdocument.open();\n*/"],
-		["description-createTextNode()\tDocument", "/*\n\tDescription:\n\tCreates a new Text node.\n\n\tSyntax:\n\ttext = document.createTextNode(data);\n*/"],
-		["description-createRange()\tDocument", "/*\n\tDescription:\n\tReturns a new Range object.\n\n\tSyntax:\n\trange = document.createRange();\n*/"],
-		["description-URL\tDocument", "/*\n\tDescription:\n\tReturns the string URL of the HTML document.\n\n\tSyntax:\n\tstring = document.URL\n*/"],
-		["description-onoffline\tDocument", "/*\n\tThis event is fired on body and bubbles up when navigator.onLine property changes and becomes false.\n*/"]
+	"completions": [
+		[
+			"description-exitPointerLock()\tDocument",
+			{
+				"name": "exitPointerLock",
+				"return_type": "void",
+				"parameters": [],
+				"description": "Initiates an exit from pointer lock state if currently locked to a target in this document, and sends a pointerlockchange event when the lock state has been exited. The system mouse cursor must be displayed again and positioned at the same location that it was when pointer lock was entered (the same location that is reported in screenX/Y when the pointer is locked).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#exitPointerLock",
+				"full_description": "/*\n\n\tDocument\n\n\texitPointerLock ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tInitiates an exit from pointer lock state if currently locked to a target in this document, and sends a pointerlockchange event when the lock state has been exited. The system mouse cursor must be displayed again and positioned at the same location that it was when pointer lock was entered (the same location that is reported in screenX/Y when the pointer is locked).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#exitPointerLock\n\n*/"
+			}
+		],
+		[
+			"description-querySelectorAll()\tDocument",
+			{
+				"name": "querySelectorAll",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "selectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelectorAll",
+				"full_description": "/*\n\n\tDocument\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelectorAll\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByName()\tDocument",
+			{
+				"name": "getElementsByName",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "elementName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getElementsByName(name) method takes a string name, and must return a live NodeList containing all the HTML elements in that document that have a name attribute whose value is equal to the name argument (in a case-sensitive manner), in tree order.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByName",
+				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByName ( elementName: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe getElementsByName(name) method takes a string name, and must return a live NodeList containing all the HTML elements in that document that have a name attribute whose value is equal to the name argument (in a case-sensitive manner), in tree order.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByName\n\n*/"
+			}
+		],
+		[
+			"description-styleSheetSets\tDocument",
+			{
+				"name": "styleSheetSets",
+				"return_type": "DOMString[]",
+				"description": "The styleSheetSets attribute must return a read only array of the CSS style sheet set names of the CSS style sheet sets, in order of the document CSS style sheets. The array is live; if the document CSS style sheets change, the array must be updated as appropriate.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#styleSheetSets",
+				"full_description": "/*\n\n\tDocument\n\n\tstyleSheetSets\n\n\tReturn Type:\n\tDOMString[]\n\n\tDescription:\n\tThe styleSheetSets attribute must return a read only array of the CSS style sheet set names of the CSS style sheet sets, in order of the document CSS style sheets. The array is live; if the document CSS style sheets change, the array must be updated as appropriate.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#styleSheetSets\n\n*/"
+			}
+		],
+		[
+			"description-querySelector()\tDocument",
+			{
+				"name": "querySelector",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "selectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelector",
+				"full_description": "/*\n\n\tDocument\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelector\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByTagNameNS()\tDocument",
+			{
+				"name": "getElementsByTagNameNS",
+				"return_type": "HTMLCollection",
+				"parameters": [
+					{
+						"name": "namespace",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "localName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getElementsByTagNameNS(namespace, localName) method must return the list of elements with namespace namespace and local name localName for the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByTagNameNS",
+				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByTagNameNS ( namespace: DOMString, localName: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByTagNameNS(namespace, localName) method must return the list of elements with namespace namespace and local name localName for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByTagNameNS\n\n*/"
+			}
+		],
+		[
+			"description-query()\tDocument",
+			{
+				"name": "query",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "relativeSelectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against a set consisting of context object, and null if the result is an empty list.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#query",
+				"full_description": "/*\n\n\tDocument\n\n\tquery ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against a set consisting of context object, and null if the result is an empty list.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#query\n\n*/"
+			}
+		],
+		[
+			"description-queryAll()\tDocument",
+			{
+				"name": "queryAll",
+				"return_type": "Elements",
+				"parameters": [
+					{
+						"name": "relativeSelectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The queryAll(relativeSelectors) method must return an Elements array initialized with the result of running match a relative selectors string relativeSelectors against a set consisting of context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryAll",
+				"full_description": "/*\n\n\tDocument\n\n\tqueryAll ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElements\n\n\tDescription:\n\tThe queryAll(relativeSelectors) method must return an Elements array initialized with the result of running match a relative selectors string relativeSelectors against a set consisting of context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryAll\n\n*/"
+			}
+		],
+		[
+			"description-dir\tDocument",
+			{
+				"name": "dir",
+				"return_type": "DOMString",
+				"description": "The dir IDL attribute on Document objects must reflect the dir content attribute of the html element, if any, limited to only known values. If there is no such element, then the attribute must return the empty string and do nothing on setting.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#dir",
+				"full_description": "/*\n\n\tDocument\n\n\tdir\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe dir IDL attribute on Document objects must reflect the dir content attribute of the html element, if any, limited to only known values. If there is no such element, then the attribute must return the empty string and do nothing on setting.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#dir\n\n*/"
+			}
+		],
+		[
+			"description-querySelector()\tDocument",
+			{
+				"name": "querySelector",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "selectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The querySelector(selectors) method must return the first result of running scope-match a selectors string selectors against the context object, and null if the result is an empty list otherwise.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelector",
+				"full_description": "/*\n\n\tDocument\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector(selectors) method must return the first result of running scope-match a selectors string selectors against the context object, and null if the result is an empty list otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelector\n\n*/"
+			}
+		],
+		[
+			"description-getElementById()\tDocument",
+			{
+				"name": "getElementById",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "elementId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementById",
+				"full_description": "/*\n\n\tDocument\n\n\tgetElementById ( elementId: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementById\n\n*/"
+			}
+		],
+		[
+			"description-pointerLockElement\tDocument",
+			{
+				"name": "pointerLockElement",
+				"return_type": "Element (Pointer Lock)",
+				"description": "Returns the element set as the target for mouse events while the pointer is locked. Null if lock is pending, pointer is unlocked, or if the target is in another document.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#pointerLockElement",
+				"full_description": "/*\n\n\tDocument\n\n\tpointerLockElement\n\n\tReturn Type:\n\tElement (Pointer Lock)\n\n\tDescription:\n\tReturns the element set as the target for mouse events while the pointer is locked. Null if lock is pending, pointer is unlocked, or if the target is in another document.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#pointerLockElement\n\n*/"
+			}
+		],
+		[
+			"description-currentScript\tDocument",
+			{
+				"name": "currentScript",
+				"return_type": "HTMLScriptElement",
+				"description": "The currentScript attribute, on getting, must return the value to which it was most recently initialized. When the Document is created, the currentScript must be initialized to null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#currentScript",
+				"full_description": "/*\n\n\tDocument\n\n\tcurrentScript\n\n\tReturn Type:\n\tHTMLScriptElement\n\n\tDescription:\n\tThe currentScript attribute, on getting, must return the value to which it was most recently initialized. When the Document is created, the currentScript must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#currentScript\n\n*/"
+			}
+		],
+		[
+			"description-cssElementMap\tDocument",
+			{
+				"name": "cssElementMap",
+				"return_type": "DOMElementMap",
+				"description": "The cssElementMap IDL attribute allows authors to define CSS element reference identifiers, which are used in certain CSS features to override the normal ID-based mapping. [CSSIMAGES]",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#cssElementMap",
+				"full_description": "/*\n\n\tDocument\n\n\tcssElementMap\n\n\tReturn Type:\n\tDOMElementMap\n\n\tDescription:\n\tThe cssElementMap IDL attribute allows authors to define CSS element reference identifiers, which are used in certain CSS features to override the normal ID-based mapping. [CSSIMAGES]\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#cssElementMap\n\n*/"
+			}
+		],
+		[
+			"description-commands\tDocument",
+			{
+				"name": "commands",
+				"return_type": "HTMLCollection",
+				"description": "The commands attribute of the document's Document interface must return an HTMLCollection rooted at the Document node, whose filter matches only elements that define commands and have IDs.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#commands",
+				"full_description": "/*\n\n\tDocument\n\n\tcommands\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe commands attribute of the document's Document interface must return an HTMLCollection rooted at the Document node, whose filter matches only elements that define commands and have IDs.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#commands\n\n*/"
+			}
+		],
+		[
+			"description-fullscreenEnabled\tDocument",
+			{
+				"name": "fullscreenEnabled",
+				"return_type": "boolean",
+				"description": "The fullscreenEnabled attribute must return true if the context object and all ancestor browsing context's documents have their fullscreen enabled flag set, or false otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#fullscreenEnabled",
+				"full_description": "/*\n\n\tDocument\n\n\tfullscreenEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe fullscreenEnabled attribute must return true if the context object and all ancestor browsing context's documents have their fullscreen enabled flag set, or false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#fullscreenEnabled\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByClassName()\tDocument",
+			{
+				"name": "getElementsByClassName",
+				"return_type": "HTMLCollection",
+				"parameters": [
+					{
+						"name": "classNames",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getElementsByClassName(classNames) method must return the list of elements with class names classNames for the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByClassName",
+				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByClassName ( classNames: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByClassName(classNames) method must return the list of elements with class names classNames for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByClassName\n\n*/"
+			}
+		],
+		[
+			"description-querySelectorAll()\tDocument",
+			{
+				"name": "querySelectorAll",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "selectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelectorAll",
+				"full_description": "/*\n\n\tDocument\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelectorAll\n\n*/"
+			}
+		],
+		[
+			"description-getElementsByTagName()\tDocument",
+			{
+				"name": "getElementsByTagName",
+				"return_type": "HTMLCollection",
+				"parameters": [
+					{
+						"name": "localName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getElementsByTagName(localName) method must return the list of elements with local name localName for the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByTagName",
+				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByTagName ( localName: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByTagName(localName) method must return the list of elements with local name localName for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByTagName\n\n*/"
+			}
+		],
+		[
+			"description-links\tDocument",
+			{
+				"name": "links",
+				"return_type": "HTMLCollection",
+				"description": "The links attribute must return an HTMLCollection rooted at the Document node, whose filter matches only a elements with href attributes and area elements with href attributes.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#links",
+				"full_description": "/*\n\n\tDocument\n\n\tlinks\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe links attribute must return an HTMLCollection rooted at the Document node, whose filter matches only a elements with href attributes and area elements with href attributes.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#links\n\n*/"
+			}
+		],
+		[
+			"description-createDocumentFragment()\tDocument",
+			{
+				"name": "createDocumentFragment",
+				"return_type": "DocumentFragment",
+				"parameters": [],
+				"description": "The createDocumentFragment() method must return a new DocumentFragment node with its node document set to the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createDocumentFragment",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateDocumentFragment ()\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe createDocumentFragment() method must return a new DocumentFragment node with its node document set to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createDocumentFragment\n\n*/"
+			}
+		],
+		[
+			"description-createComment()\tDocument",
+			{
+				"name": "createComment",
+				"return_type": "Comment",
+				"parameters": [
+					{
+						"name": "data",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The createComment(data) method must return a new Comment node with its data set to data and node document set to the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createComment",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateComment ( data: DOMString )\n\n\tReturn Type:\n\tComment\n\n\tDescription:\n\tThe createComment(data) method must return a new Comment node with its data set to data and node document set to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createComment\n\n*/"
+			}
+		],
+		[
+			"description-createTextNode()\tDocument",
+			{
+				"name": "createTextNode",
+				"return_type": "Text",
+				"parameters": [
+					{
+						"name": "data",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The createTextNode(data) method must return a new Text node with its data set to data and node document set to the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createTextNode",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateTextNode ( data: DOMString )\n\n\tReturn Type:\n\tText\n\n\tDescription:\n\tThe createTextNode(data) method must return a new Text node with its data set to data and node document set to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createTextNode\n\n*/"
+			}
+		],
+		[
+			"description-fullscreenElement\tDocument",
+			{
+				"name": "fullscreenElement",
+				"return_type": "Element (Fullscreen)",
+				"description": "The fullscreenElement attribute must return the top element of the context object's fullscreen element stack, or null otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#fullscreenElement",
+				"full_description": "/*\n\n\tDocument\n\n\tfullscreenElement\n\n\tReturn Type:\n\tElement (Fullscreen)\n\n\tDescription:\n\tThe fullscreenElement attribute must return the top element of the context object's fullscreen element stack, or null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#fullscreenElement\n\n*/"
+			}
+		],
+		[
+			"description-children\tDocument",
+			{
+				"name": "children",
+				"return_type": "HTMLCollection",
+				"description": "The children attribute must return an HTMLCollection collection rooted at the context object matching only element children.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#children",
+				"full_description": "/*\n\n\tDocument\n\n\tchildren\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe children attribute must return an HTMLCollection collection rooted at the context object matching only element children.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#children\n\n*/"
+			}
+		],
+		[
+			"description-childElementCount\tDocument",
+			{
+				"name": "childElementCount",
+				"return_type": "unsigned long",
+				"description": "The childElementCount attribute must return the number of children of the context object that are elements.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#childElementCount",
+				"full_description": "/*\n\n\tDocument\n\n\tchildElementCount\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe childElementCount attribute must return the number of children of the context object that are elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#childElementCount\n\n*/"
+			}
+		],
+		[
+			"description-implementation\tDocument",
+			{
+				"name": "implementation",
+				"return_type": "DOMImplementation",
+				"description": "The implementation attribute must return the DOMImplementation object that is associated with the document.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#implementation",
+				"full_description": "/*\n\n\tDocument\n\n\timplementation\n\n\tReturn Type:\n\tDOMImplementation\n\n\tDescription:\n\tThe implementation attribute must return the DOMImplementation object that is associated with the document.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#implementation\n\n*/"
+			}
+		],
+		[
+			"description-scripts\tDocument",
+			{
+				"name": "scripts",
+				"return_type": "HTMLCollection",
+				"description": "The scripts attribute must return an HTMLCollection rooted at the Document node, whose filter matches only script elements.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#scripts",
+				"full_description": "/*\n\n\tDocument\n\n\tscripts\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe scripts attribute must return an HTMLCollection rooted at the Document node, whose filter matches only script elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#scripts\n\n*/"
+			}
+		],
+		[
+			"description-body\tDocument",
+			{
+				"name": "body",
+				"return_type": "HTMLElement",
+				"description": "The body attribute, on getting, must return the body element of the document (either a body element, a frameset element, or null).",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#body",
+				"full_description": "/*\n\n\tDocument\n\n\tbody\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\tThe body attribute, on getting, must return the body element of the document (either a body element, a frameset element, or null).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#body\n\n*/"
+			}
+		],
+		[
+			"description-embeds\tDocument",
+			{
+				"name": "embeds",
+				"return_type": "HTMLCollection",
+				"description": "The embeds attribute must return an HTMLCollection rooted at the Document node, whose filter matches only embed elements.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#embeds",
+				"full_description": "/*\n\n\tDocument\n\n\tembeds\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe embeds attribute must return an HTMLCollection rooted at the Document node, whose filter matches only embed elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#embeds\n\n*/"
+			}
+		],
+		[
+			"description-compatMode\tDocument",
+			{
+				"name": "compatMode",
+				"return_type": "DOMString",
+				"description": "The compatMode attribute must return \"BackCompat\" if the context object is in quirks mode, and \"CSS1Compat\" otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#compatMode",
+				"full_description": "/*\n\n\tDocument\n\n\tcompatMode\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe compatMode attribute must return \"BackCompat\" if the context object is in quirks mode, and \"CSS1Compat\" otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#compatMode\n\n*/"
+			}
+		],
+		[
+			"description-styleSheets\tDocument",
+			{
+				"name": "styleSheets",
+				"return_type": "StyleSheetList",
+				"description": "The styleSheets attribute must return a StyleSheetList collection representing the document CSS style sheets.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#styleSheets",
+				"full_description": "/*\n\n\tDocument\n\n\tstyleSheets\n\n\tReturn Type:\n\tStyleSheetList\n\n\tDescription:\n\tThe styleSheets attribute must return a StyleSheetList collection representing the document CSS style sheets.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#styleSheets\n\n*/"
+			}
+		],
+		[
+			"description-images\tDocument",
+			{
+				"name": "images",
+				"return_type": "HTMLCollection",
+				"description": "The images attribute must return an HTMLCollection rooted at the Document node, whose filter matches only img elements.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#images",
+				"full_description": "/*\n\n\tDocument\n\n\timages\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe images attribute must return an HTMLCollection rooted at the Document node, whose filter matches only img elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#images\n\n*/"
+			}
+		],
+		[
+			"description-forms\tDocument",
+			{
+				"name": "forms",
+				"return_type": "HTMLCollection",
+				"description": "The forms attribute must return an HTMLCollection rooted at the Document node, whose filter matches only form elements.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#forms",
+				"full_description": "/*\n\n\tDocument\n\n\tforms\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe forms attribute must return an HTMLCollection rooted at the Document node, whose filter matches only form elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#forms\n\n*/"
+			}
+		],
+		[
+			"description-preferredStyleSheetSet\tDocument",
+			{
+				"name": "preferredStyleSheetSet",
+				"return_type": "DOMString",
+				"description": "The preferredStyleSheetSet attribute must return the preferred CSS style sheet set name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#preferredStyleSheetSet",
+				"full_description": "/*\n\n\tDocument\n\n\tpreferredStyleSheetSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe preferredStyleSheetSet attribute must return the preferred CSS style sheet set name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#preferredStyleSheetSet\n\n*/"
+			}
+		],
+		[
+			"description-firstElementChild\tDocument",
+			{
+				"name": "firstElementChild",
+				"return_type": "Element",
+				"description": "The firstElementChild attribute must return the first child that is an element, and null otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#firstElementChild",
+				"full_description": "/*\n\n\tDocument\n\n\tfirstElementChild\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe firstElementChild attribute must return the first child that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#firstElementChild\n\n*/"
+			}
+		],
+		[
+			"description-lastElementChild\tDocument",
+			{
+				"name": "lastElementChild",
+				"return_type": "Element",
+				"description": "The lastElementChild attribute must return the last child that is an element, and null otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#lastElementChild",
+				"full_description": "/*\n\n\tDocument\n\n\tlastElementChild\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe lastElementChild attribute must return the last child that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#lastElementChild\n\n*/"
+			}
+		],
+		[
+			"description-head\tDocument",
+			{
+				"name": "head",
+				"return_type": "HTMLHeadElement",
+				"description": "The head attribute, on getting, must return the head element of the document (a head element or null).",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#head",
+				"full_description": "/*\n\n\tDocument\n\n\thead\n\n\tReturn Type:\n\tHTMLHeadElement\n\n\tDescription:\n\tThe head attribute, on getting, must return the head element of the document (a head element or null).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#head\n\n*/"
+			}
+		],
+		[
+			"description-createRange()\tDocument",
+			{
+				"name": "createRange",
+				"return_type": "Range",
+				"parameters": [],
+				"description": "The createRange() method must return a new range with (context object, 0) as its start and end.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createRange",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateRange ()\n\n\tReturn Type:\n\tRange\n\n\tDescription:\n\tThe createRange() method must return a new range with (context object, 0) as its start and end.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createRange\n\n*/"
+			}
+		],
+		[
+			"description-doctype\tDocument",
+			{
+				"name": "doctype",
+				"return_type": "DocumentType",
+				"description": "The doctype attribute must return the child of the document that is a doctype, and null otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#doctype",
+				"full_description": "/*\n\n\tDocument\n\n\tdoctype\n\n\tReturn Type:\n\tDocumentType\n\n\tDescription:\n\tThe doctype attribute must return the child of the document that is a doctype, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#doctype\n\n*/"
+			}
+		],
+		[
+			"description-readyState\tDocument",
+			{
+				"name": "readyState",
+				"return_type": "DocumentReadyState",
+				"description": "The readyState IDL attribute must, on getting, return the current document readiness.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#readyState",
+				"full_description": "/*\n\n\tDocument\n\n\treadyState\n\n\tReturn Type:\n\tDocumentReadyState\n\n\tDescription:\n\tThe readyState IDL attribute must, on getting, return the current document readiness.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#readyState\n\n*/"
+			}
+		],
+		[
+			"description-lastStyleSheetSet\tDocument",
+			{
+				"name": "lastStyleSheetSet",
+				"return_type": "DOMString",
+				"description": "The lastStyleSheetSet attribute must return the last CSS style sheet set name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#lastStyleSheetSet",
+				"full_description": "/*\n\n\tDocument\n\n\tlastStyleSheetSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lastStyleSheetSet attribute must return the last CSS style sheet set name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#lastStyleSheetSet\n\n*/"
+			}
+		],
+		[
+			"description-plugins\tDocument",
+			{
+				"name": "plugins",
+				"return_type": "HTMLCollection",
+				"description": "The plugins attribute must return the same object as that returned by the embeds attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#plugins",
+				"full_description": "/*\n\n\tDocument\n\n\tplugins\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe plugins attribute must return the same object as that returned by the embeds attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#plugins\n\n*/"
+			}
+		],
+		[
+			"description-cookie\tDocument",
+			{
+				"name": "cookie",
+				"return_type": "DOMString",
+				"description": "The cookie attribute represents the cookies of the resource identified by the document's address.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#cookie",
+				"full_description": "/*\n\n\tDocument\n\n\tcookie\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cookie attribute represents the cookies of the resource identified by the document's address.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#cookie\n\n*/"
+			}
+		],
+		[
+			"description-origin\tDocument",
+			{
+				"name": "origin",
+				"return_type": "DOMString",
+				"description": "The origin attribute must return the Unicode serialization of context object's origin. [ORIGIN]",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#origin",
+				"full_description": "/*\n\n\tDocument\n\n\torigin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe origin attribute must return the Unicode serialization of context object's origin. [ORIGIN]\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#origin\n\n*/"
+			}
+		],
+		[
+			"description-createProcessingInstruction()\tDocument",
+			{
+				"name": "createProcessingInstruction",
+				"return_type": "ProcessingInstruction",
+				"parameters": [
+					{
+						"name": "target",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "data",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createprocessinginstruction",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateProcessingInstruction ( target: DOMString, data: DOMString )\n\n\tReturn Type:\n\tProcessingInstruction\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createprocessinginstruction\n\n*/"
+			}
+		],
+		[
+			"description-createNodeIterator()\tDocument",
+			{
+				"name": "createNodeIterator",
+				"return_type": "NodeIterator",
+				"parameters": [
+					{
+						"name": "root",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "whatToShow",
+						"type": "unsigned long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "filter",
+						"type": "NodeFilter",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createnodeiterator",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateNodeIterator ( root: Node, whatToShow?: unsigned long, filter?: NodeFilter )\n\n\tReturn Type:\n\tNodeIterator\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createnodeiterator\n\n*/"
+			}
+		],
+		[
+			"description-open()\tDocument",
+			{
+				"name": "open",
+				"return_type": "Document",
+				"parameters": [
+					{
+						"name": "type_url",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "replace_name",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "features",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "replace",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#open",
+				"full_description": "/*\n\n\tDocument\n\n\topen ( type_url?: DOMString, replace_name?: DOMString, features?: DOMString, replace?: boolean )\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#open\n\n*/"
+			}
+		],
+		[
+			"description-createTreeWalker()\tDocument",
+			{
+				"name": "createTreeWalker",
+				"return_type": "TreeWalker",
+				"parameters": [
+					{
+						"name": "root",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "whatToShow",
+						"type": "unsigned long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "filter",
+						"type": "NodeFilter",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createtreewalker",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateTreeWalker ( root: Node, whatToShow?: unsigned long, filter?: NodeFilter )\n\n\tReturn Type:\n\tTreeWalker\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createtreewalker\n\n*/"
+			}
+		],
+		[
+			"description-documentElement\tDocument",
+			{
+				"name": "documentElement",
+				"return_type": "Element",
+				"description": "The documentElement attribute must return the document element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#documentElement",
+				"full_description": "/*\n\n\tDocument\n\n\tdocumentElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe documentElement attribute must return the document element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#documentElement\n\n*/"
+			}
+		],
+		[
+			"description-characterSet\tDocument",
+			{
+				"name": "characterSet",
+				"return_type": "DOMString",
+				"description": "The characterSet attribute must return the name of the encoding.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#characterSet",
+				"full_description": "/*\n\n\tDocument\n\n\tcharacterSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe characterSet attribute must return the name of the encoding.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#characterSet\n\n*/"
+			}
+		],
+		[
+			"description-onpointerlockchange\tDocument",
+			{
+				"name": "onpointerlockchange",
+				"return_type": "EventHandler",
+				"description": "An event handler for pointerlockchange events.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#onpointerlockchange",
+				"full_description": "/*\n\n\tDocument\n\n\tonpointerlockchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tAn event handler for pointerlockchange events.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#onpointerlockchange\n\n*/"
+			}
+		],
+		[
+			"description-onpointerlockerror\tDocument",
+			{
+				"name": "onpointerlockerror",
+				"return_type": "EventHandler",
+				"description": "An event handler for pointerlockerror events.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#onpointerlockerror",
+				"full_description": "/*\n\n\tDocument\n\n\tonpointerlockerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tAn event handler for pointerlockerror events.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#onpointerlockerror\n\n*/"
+			}
+		],
+		[
+			"description-execCommand()\tDocument",
+			{
+				"name": "execCommand",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "commandId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "showUI",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "value",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#execCommand",
+				"full_description": "/*\n\n\tDocument\n\n\texecCommand ( commandId: DOMString, showUI?: boolean, value?: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#execCommand\n\n*/"
+			}
+		],
+		[
+			"description-onautocompleteerror\tDocument",
+			{
+				"name": "onautocompleteerror",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror",
+				"full_description": "/*\n\n\tDocument\n\n\tonautocompleteerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror\n\n*/"
+			}
+		],
+		[
+			"description-contentType\tDocument",
+			{
+				"name": "contentType",
+				"return_type": "DOMString",
+				"description": "The contentType attribute must return the content type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#contentType",
+				"full_description": "/*\n\n\tDocument\n\n\tcontentType\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe contentType attribute must return the content type.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#contentType\n\n*/"
+			}
+		],
+		[
+			"description-documentURI\tDocument",
+			{
+				"name": "documentURI",
+				"return_type": "DOMString",
+				"description": "The URL and documentURI attributes must return the URL.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#documentURI",
+				"full_description": "/*\n\n\tDocument\n\n\tdocumentURI\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe URL and documentURI attributes must return the URL.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#documentURI\n\n*/"
+			}
+		],
+		[
+			"description-createElementNS()\tDocument",
+			{
+				"name": "createElementNS",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "namespace",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "qualifiedName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createelementns",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateElementNS ( namespace: DOMString, qualifiedName: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createelementns\n\n*/"
+			}
+		],
+		[
+			"description-onloadedmetadata\tDocument",
+			{
+				"name": "onloadedmetadata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata",
+				"full_description": "/*\n\n\tDocument\n\n\tonloadedmetadata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata\n\n*/"
+			}
+		],
+		[
+			"description-referrer\tDocument",
+			{
+				"name": "referrer",
+				"return_type": "DOMString",
+				"description": "The referrer attribute must return the document's referrer.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#referrer",
+				"full_description": "/*\n\n\tDocument\n\n\treferrer\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe referrer attribute must return the document's referrer.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#referrer\n\n*/"
+			}
+		],
+		[
+			"description-ondurationchange\tDocument",
+			{
+				"name": "ondurationchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange",
+				"full_description": "/*\n\n\tDocument\n\n\tondurationchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange\n\n*/"
+			}
+		],
+		[
+			"description-oncanplaythrough\tDocument",
+			{
+				"name": "oncanplaythrough",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough",
+				"full_description": "/*\n\n\tDocument\n\n\toncanplaythrough\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough\n\n*/"
+			}
+		],
+		[
+			"description-onvolumechange\tDocument",
+			{
+				"name": "onvolumechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange",
+				"full_description": "/*\n\n\tDocument\n\n\tonvolumechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange\n\n*/"
+			}
+		],
+		[
+			"description-onautocomplete\tDocument",
+			{
+				"name": "onautocomplete",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete",
+				"full_description": "/*\n\n\tDocument\n\n\tonautocomplete\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete\n\n*/"
+			}
+		],
+		[
+			"description-getter()\tDocument",
+			{
+				"name": "getter",
+				"return_type": "object",
+				"parameters": [
+					{
+						"name": "name",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-nameditem",
+				"full_description": "/*\n\n\tDocument\n\n\tgetter ( name: DOMString )\n\n\tReturn Type:\n\tobject\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-nameditem\n\n*/"
+			}
+		],
+		[
+			"description-oncontextmenu\tDocument",
+			{
+				"name": "oncontextmenu",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu",
+				"full_description": "/*\n\n\tDocument\n\n\toncontextmenu\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu\n\n*/"
+			}
+		],
+		[
+			"description-onmouseleave\tDocument",
+			{
+				"name": "onmouseleave",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave",
+				"full_description": "/*\n\n\tDocument\n\n\tonmouseleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave\n\n*/"
+			}
+		],
+		[
+			"description-onmouseenter\tDocument",
+			{
+				"name": "onmouseenter",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter",
+				"full_description": "/*\n\n\tDocument\n\n\tonmouseenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter\n\n*/"
+			}
+		],
+		[
+			"description-onmousewheel\tDocument",
+			{
+				"name": "onmousewheel",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel",
+				"full_description": "/*\n\n\tDocument\n\n\tonmousewheel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel\n\n*/"
+			}
+		],
+		[
+			"description-onloadeddata\tDocument",
+			{
+				"name": "onloadeddata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata",
+				"full_description": "/*\n\n\tDocument\n\n\tonloadeddata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata\n\n*/"
+			}
+		],
+		[
+			"description-ontimeupdate\tDocument",
+			{
+				"name": "ontimeupdate",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate",
+				"full_description": "/*\n\n\tDocument\n\n\tontimeupdate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate\n\n*/"
+			}
+		],
+		[
+			"description-onratechange\tDocument",
+			{
+				"name": "onratechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange",
+				"full_description": "/*\n\n\tDocument\n\n\tonratechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange\n\n*/"
+			}
+		],
+		[
+			"description-queryCommandSupported()\tDocument",
+			{
+				"name": "queryCommandSupported",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "commandId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandSupported",
+				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandSupported ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandSupported\n\n*/"
+			}
+		],
+		[
+			"description-oncuechange\tDocument",
+			{
+				"name": "oncuechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange",
+				"full_description": "/*\n\n\tDocument\n\n\toncuechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange\n\n*/"
+			}
+		],
+		[
+			"description-onloadstart\tDocument",
+			{
+				"name": "onloadstart",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart",
+				"full_description": "/*\n\n\tDocument\n\n\tonloadstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart\n\n*/"
+			}
+		],
+		[
+			"description-onmousedown\tDocument",
+			{
+				"name": "onmousedown",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown",
+				"full_description": "/*\n\n\tDocument\n\n\tonmousedown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown\n\n*/"
+			}
+		],
+		[
+			"description-ondragleave\tDocument",
+			{
+				"name": "ondragleave",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave",
+				"full_description": "/*\n\n\tDocument\n\n\tondragleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave\n\n*/"
+			}
+		],
+		[
+			"description-onmousemove\tDocument",
+			{
+				"name": "onmousemove",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove",
+				"full_description": "/*\n\n\tDocument\n\n\tonmousemove\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove\n\n*/"
+			}
+		],
+		[
+			"description-ondragstart\tDocument",
+			{
+				"name": "ondragstart",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart",
+				"full_description": "/*\n\n\tDocument\n\n\tondragstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart\n\n*/"
+			}
+		],
+		[
+			"description-ondragenter\tDocument",
+			{
+				"name": "ondragenter",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter",
+				"full_description": "/*\n\n\tDocument\n\n\tondragenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter\n\n*/"
+			}
+		],
+		[
+			"description-onmouseover\tDocument",
+			{
+				"name": "onmouseover",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover",
+				"full_description": "/*\n\n\tDocument\n\n\tonmouseover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover\n\n*/"
+			}
+		],
+		[
+			"description-onerror\tDocument",
+			{
+				"name": "onerror",
+				"return_type": "OnErrorEventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror",
+				"full_description": "/*\n\n\tDocument\n\n\tonerror\n\n\tReturn Type:\n\tOnErrorEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror\n\n*/"
+			}
+		],
+		[
+			"description-onmouseout\tDocument",
+			{
+				"name": "onmouseout",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout",
+				"full_description": "/*\n\n\tDocument\n\n\tonmouseout\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout\n\n*/"
+			}
+		],
+		[
+			"description-ondragexit\tDocument",
+			{
+				"name": "ondragexit",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit",
+				"full_description": "/*\n\n\tDocument\n\n\tondragexit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit\n\n*/"
+			}
+		],
+		[
+			"description-ondragover\tDocument",
+			{
+				"name": "ondragover",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover",
+				"full_description": "/*\n\n\tDocument\n\n\tondragover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover\n\n*/"
+			}
+		],
+		[
+			"description-ondblclick\tDocument",
+			{
+				"name": "ondblclick",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick",
+				"full_description": "/*\n\n\tDocument\n\n\tondblclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick\n\n*/"
+			}
+		],
+		[
+			"description-queryCommandIndeterm()\tDocument",
+			{
+				"name": "queryCommandIndeterm",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "commandId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandIndeterm",
+				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandIndeterm ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandIndeterm\n\n*/"
+			}
+		],
+		[
+			"description-onkeypress\tDocument",
+			{
+				"name": "onkeypress",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress",
+				"full_description": "/*\n\n\tDocument\n\n\tonkeypress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress\n\n*/"
+			}
+		],
+		[
+			"description-onprogress\tDocument",
+			{
+				"name": "onprogress",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress",
+				"full_description": "/*\n\n\tDocument\n\n\tonprogress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress\n\n*/"
+			}
+		],
+		[
+			"description-lastModified\tDocument",
+			{
+				"name": "lastModified",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-lastmodified",
+				"full_description": "/*\n\n\tDocument\n\n\tlastModified\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-lastmodified\n\n*/"
+			}
+		],
+		[
+			"description-onsuspend\tDocument",
+			{
+				"name": "onsuspend",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend",
+				"full_description": "/*\n\n\tDocument\n\n\tonsuspend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend\n\n*/"
+			}
+		],
+		[
+			"description-ondragend\tDocument",
+			{
+				"name": "ondragend",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend",
+				"full_description": "/*\n\n\tDocument\n\n\tondragend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend\n\n*/"
+			}
+		],
+		[
+			"description-onplaying\tDocument",
+			{
+				"name": "onplaying",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying",
+				"full_description": "/*\n\n\tDocument\n\n\tonplaying\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying\n\n*/"
+			}
+		],
+		[
+			"description-onwaiting\tDocument",
+			{
+				"name": "onwaiting",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting",
+				"full_description": "/*\n\n\tDocument\n\n\tonwaiting\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting\n\n*/"
+			}
+		],
+		[
+			"description-onseeking\tDocument",
+			{
+				"name": "onseeking",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking",
+				"full_description": "/*\n\n\tDocument\n\n\tonseeking\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking\n\n*/"
+			}
+		],
+		[
+			"description-onemptied\tDocument",
+			{
+				"name": "onemptied",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied",
+				"full_description": "/*\n\n\tDocument\n\n\tonemptied\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied\n\n*/"
+			}
+		],
+		[
+			"description-onmouseup\tDocument",
+			{
+				"name": "onmouseup",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup",
+				"full_description": "/*\n\n\tDocument\n\n\tonmouseup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup\n\n*/"
+			}
+		],
+		[
+			"description-queryCommandEnabled()\tDocument",
+			{
+				"name": "queryCommandEnabled",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "commandId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandEnabled",
+				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandEnabled ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandEnabled\n\n*/"
+			}
+		],
+		[
+			"description-oncanplay\tDocument",
+			{
+				"name": "oncanplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay",
+				"full_description": "/*\n\n\tDocument\n\n\toncanplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay\n\n*/"
+			}
+		],
+		[
+			"description-onstalled\tDocument",
+			{
+				"name": "onstalled",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled",
+				"full_description": "/*\n\n\tDocument\n\n\tonstalled\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled\n\n*/"
+			}
+		],
+		[
+			"description-onkeydown\tDocument",
+			{
+				"name": "onkeydown",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown",
+				"full_description": "/*\n\n\tDocument\n\n\tonkeydown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown\n\n*/"
+			}
+		],
+		[
+			"description-URL\tDocument",
+			{
+				"name": "URL",
+				"return_type": "DOMString",
+				"description": "The URL and documentURI attributes must return the URL.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#URL",
+				"full_description": "/*\n\n\tDocument\n\n\tURL\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe URL and documentURI attributes must return the URL.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#URL\n\n*/"
+			}
+		],
+		[
+			"description-oninvalid\tDocument",
+			{
+				"name": "oninvalid",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid",
+				"full_description": "/*\n\n\tDocument\n\n\toninvalid\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid\n\n*/"
+			}
+		],
+		[
+			"description-onchange\tDocument",
+			{
+				"name": "onchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange",
+				"full_description": "/*\n\n\tDocument\n\n\tonchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange\n\n*/"
+			}
+		],
+		[
+			"description-onresize\tDocument",
+			{
+				"name": "onresize",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize",
+				"full_description": "/*\n\n\tDocument\n\n\tonresize\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize\n\n*/"
+			}
+		],
+		[
+			"description-onscroll\tDocument",
+			{
+				"name": "onscroll",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll",
+				"full_description": "/*\n\n\tDocument\n\n\tonscroll\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll\n\n*/"
+			}
+		],
+		[
+			"description-queryCommandValue()\tDocument",
+			{
+				"name": "queryCommandValue",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "commandId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandValue",
+				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandValue ( commandId: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandValue\n\n*/"
+			}
+		],
+		[
+			"description-onsubmit\tDocument",
+			{
+				"name": "onsubmit",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit",
+				"full_description": "/*\n\n\tDocument\n\n\tonsubmit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit\n\n*/"
+			}
+		],
+		[
+			"description-oncancel\tDocument",
+			{
+				"name": "oncancel",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel",
+				"full_description": "/*\n\n\tDocument\n\n\toncancel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel\n\n*/"
+			}
+		],
+		[
+			"description-onseeked\tDocument",
+			{
+				"name": "onseeked",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked",
+				"full_description": "/*\n\n\tDocument\n\n\tonseeked\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked\n\n*/"
+			}
+		],
+		[
+			"description-ontoggle\tDocument",
+			{
+				"name": "ontoggle",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle",
+				"full_description": "/*\n\n\tDocument\n\n\tontoggle\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle\n\n*/"
+			}
+		],
+		[
+			"description-onselect\tDocument",
+			{
+				"name": "onselect",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect",
+				"full_description": "/*\n\n\tDocument\n\n\tonselect\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect\n\n*/"
+			}
+		],
+		[
+			"description-enableStyleSheetsForSet()\tDocument",
+			{
+				"name": "enableStyleSheetsForSet",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "name",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-document-enablestylesheetsforset",
+				"full_description": "/*\n\n\tDocument\n\n\tenableStyleSheetsForSet ( name: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-document-enablestylesheetsforset\n\n*/"
+			}
+		],
+		[
+			"description-onended\tDocument",
+			{
+				"name": "onended",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended",
+				"full_description": "/*\n\n\tDocument\n\n\tonended\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended\n\n*/"
+			}
+		],
+		[
+			"description-onclose\tDocument",
+			{
+				"name": "onclose",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose",
+				"full_description": "/*\n\n\tDocument\n\n\tonclose\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose\n\n*/"
+			}
+		],
+		[
+			"description-onpause\tDocument",
+			{
+				"name": "onpause",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause",
+				"full_description": "/*\n\n\tDocument\n\n\tonpause\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause\n\n*/"
+			}
+		],
+		[
+			"description-oninput\tDocument",
+			{
+				"name": "oninput",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput",
+				"full_description": "/*\n\n\tDocument\n\n\toninput\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput\n\n*/"
+			}
+		],
+		[
+			"description-onkeyup\tDocument",
+			{
+				"name": "onkeyup",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup",
+				"full_description": "/*\n\n\tDocument\n\n\tonkeyup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup\n\n*/"
+			}
+		],
+		[
+			"description-queryCommandState()\tDocument",
+			{
+				"name": "queryCommandState",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "commandId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandState",
+				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandState ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandState\n\n*/"
+			}
+		],
+		[
+			"description-onfocus\tDocument",
+			{
+				"name": "onfocus",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus",
+				"full_description": "/*\n\n\tDocument\n\n\tonfocus\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus\n\n*/"
+			}
+		],
+		[
+			"description-onabort\tDocument",
+			{
+				"name": "onabort",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort",
+				"full_description": "/*\n\n\tDocument\n\n\tonabort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort\n\n*/"
+			}
+		],
+		[
+			"description-onclick\tDocument",
+			{
+				"name": "onclick",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick",
+				"full_description": "/*\n\n\tDocument\n\n\tonclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick\n\n*/"
+			}
+		],
+		[
+			"description-onreset\tDocument",
+			{
+				"name": "onreset",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset",
+				"full_description": "/*\n\n\tDocument\n\n\tonreset\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset\n\n*/"
+			}
+		],
+		[
+			"description-ondrag\tDocument",
+			{
+				"name": "ondrag",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag",
+				"full_description": "/*\n\n\tDocument\n\n\tondrag\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag\n\n*/"
+			}
+		],
+		[
+			"description-onshow\tDocument",
+			{
+				"name": "onshow",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow",
+				"full_description": "/*\n\n\tDocument\n\n\tonshow\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow\n\n*/"
+			}
+		],
+		[
+			"description-onsort\tDocument",
+			{
+				"name": "onsort",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort",
+				"full_description": "/*\n\n\tDocument\n\n\tonsort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort\n\n*/"
+			}
+		],
+		[
+			"description-onblur\tDocument",
+			{
+				"name": "onblur",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur",
+				"full_description": "/*\n\n\tDocument\n\n\tonblur\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur\n\n*/"
+			}
+		],
+		[
+			"description-onload\tDocument",
+			{
+				"name": "onload",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload",
+				"full_description": "/*\n\n\tDocument\n\n\tonload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload\n\n*/"
+			}
+		],
+		[
+			"description-ondrop\tDocument",
+			{
+				"name": "ondrop",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop",
+				"full_description": "/*\n\n\tDocument\n\n\tondrop\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop\n\n*/"
+			}
+		],
+		[
+			"description-onplay\tDocument",
+			{
+				"name": "onplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay",
+				"full_description": "/*\n\n\tDocument\n\n\tonplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay\n\n*/"
+			}
+		],
+		[
+			"description-createElement()\tDocument",
+			{
+				"name": "createElement",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "localName",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createelement",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateElement ( localName: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createelement\n\n*/"
+			}
+		],
+		[
+			"description-title\tDocument",
+			{
+				"name": "title",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title",
+				"full_description": "/*\n\n\tDocument\n\n\ttitle\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title\n\n*/"
+			}
+		],
+		[
+			"description-importNode()\tDocument",
+			{
+				"name": "importNode",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "deep",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-importnode",
+				"full_description": "/*\n\n\tDocument\n\n\timportNode ( node: Node, deep?: boolean )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-importnode\n\n*/"
+			}
+		],
+		[
+			"description-getItems()\tDocument",
+			{
+				"name": "getItems",
+				"return_type": "NodeList",
+				"parameters": [
+					{
+						"name": "typeNames",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getItems",
+				"full_description": "/*\n\n\tDocument\n\n\tgetItems ( typeNames?: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getItems\n\n*/"
+			}
+		],
+		[
+			"description-createEvent()\tDocument",
+			{
+				"name": "createEvent",
+				"return_type": "Event",
+				"parameters": [
+					{
+						"name": "interface",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createevent",
+				"full_description": "/*\n\n\tDocument\n\n\tcreateEvent ( interface: DOMString )\n\n\tReturn Type:\n\tEvent\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createevent\n\n*/"
+			}
+		],
+		[
+			"description-onreadystatechange\tDocument",
+			{
+				"name": "onreadystatechange",
+				"return_type": "EventHandler",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#onreadystatechange",
+				"full_description": "/*\n\n\tDocument\n\n\tonreadystatechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#onreadystatechange\n\n*/"
+			}
+		],
+		[
+			"description-selectedStyleSheetSet\tDocument",
+			{
+				"name": "selectedStyleSheetSet",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-document-selectedstylesheetset",
+				"full_description": "/*\n\n\tDocument\n\n\tselectedStyleSheetSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-document-selectedstylesheetset\n\n*/"
+			}
+		],
+		[
+			"description-prepend()\tDocument",
+			{
+				"name": "prepend",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "nodes...",
+						"type": "Node|DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-parentnode-prepend",
+				"full_description": "/*\n\n\tDocument\n\n\tprepend ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-parentnode-prepend\n\n*/"
+			}
+		],
+		[
+			"description-append()\tDocument",
+			{
+				"name": "append",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "nodes...",
+						"type": "Node|DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-parentnode-append",
+				"full_description": "/*\n\n\tDocument\n\n\tappend ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-parentnode-append\n\n*/"
+			}
+		],
+		[
+			"description-writeln()\tDocument",
+			{
+				"name": "writeln",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "text...",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#writeln",
+				"full_description": "/*\n\n\tDocument\n\n\twriteln ( text...: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#writeln\n\n*/"
+			}
+		],
+		[
+			"description-write()\tDocument",
+			{
+				"name": "write",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "text...",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#write",
+				"full_description": "/*\n\n\tDocument\n\n\twrite ( text...: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#write\n\n*/"
+			}
+		],
+		[
+			"description-exitFullscreen()\tDocument",
+			{
+				"name": "exitFullscreen",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.w3.org/TR/fullscreen/#dom-document-exitfullscreen",
+				"full_description": "/*\n\n\tDocument\n\n\texitFullscreen ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/fullscreen/#dom-document-exitfullscreen\n\n*/"
+			}
+		],
+		[
+			"description-adoptNode()\tDocument",
+			{
+				"name": "adoptNode",
+				"return_type": "Node",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-document-adoptnode",
+				"full_description": "/*\n\n\tDocument\n\n\tadoptNode ( node: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-adoptnode\n\n*/"
+			}
+		],
+		[
+			"description-activeElement\tDocument",
+			{
+				"name": "activeElement",
+				"return_type": "Element",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#activeElement",
+				"full_description": "/*\n\n\tDocument\n\n\tactiveElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#activeElement\n\n*/"
+			}
+		],
+		[
+			"description-defaultView\tDocument",
+			{
+				"name": "defaultView",
+				"return_type": "WindowProxy",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#defaultView",
+				"full_description": "/*\n\n\tDocument\n\n\tdefaultView\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#defaultView\n\n*/"
+			}
+		],
+		[
+			"description-designMode\tDocument",
+			{
+				"name": "designMode",
+				"return_type": "DOMString",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#designMode",
+				"full_description": "/*\n\n\tDocument\n\n\tdesignMode\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#designMode\n\n*/"
+			}
+		],
+		[
+			"description-Document()\tDocument",
+			{
+				"name": "Document",
+				"return_type": "Document",
+				"parameters": [],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#Document",
+				"full_description": "/*\n\n\tDocument\n\n\tDocument ()\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#Document\n\n*/"
+			}
+		],
+		[
+			"description-hasFocus()\tDocument",
+			{
+				"name": "hasFocus",
+				"return_type": "boolean",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#hasFocus",
+				"full_description": "/*\n\n\tDocument\n\n\thasFocus ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#hasFocus\n\n*/"
+			}
+		],
+		[
+			"description-location\tDocument",
+			{
+				"name": "location",
+				"return_type": "Location",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#location",
+				"full_description": "/*\n\n\tDocument\n\n\tlocation\n\n\tReturn Type:\n\tLocation\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#location\n\n*/"
+			}
+		],
+		[
+			"description-domain\tDocument",
+			{
+				"name": "domain",
+				"return_type": "DOMString",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#domain",
+				"full_description": "/*\n\n\tDocument\n\n\tdomain\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#domain\n\n*/"
+			}
+		],
+		[
+			"description-close()\tDocument",
+			{
+				"name": "close",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Document.html#close",
+				"full_description": "/*\n\n\tDocument\n\n\tclose ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#close\n\n*/"
+			}
+		]
 	]
 }

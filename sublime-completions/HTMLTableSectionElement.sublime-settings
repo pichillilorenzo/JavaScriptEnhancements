@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"insertRow( index?: long ): HTMLElement\tHTMLTableSectionElement",
+			"insertRow(${1:index?: long})"
+		],
+		[
+			"deleteRow( index: long ): void\tHTMLTableSectionElement",
+			"deleteRow(${1:index: long})"
+		],
+		[
+			"rows: HTMLCollection\tHTMLTableSectionElement",
+			"rows"
+		]
+	]
+}

@@ -1,0 +1,97 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGMarkerElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"SVG_MARKERUNITS_USERSPACEONUSE: const unsigned short\tSVGMarkerElement",
+			"SVG_MARKERUNITS_USERSPACEONUSE"
+		],
+		[
+			"preserveAspectRatio: SVGAnimatedPreserveAspectRatio\tSVGMarkerElement",
+			"preserveAspectRatio"
+		],
+		[
+			"SVG_MARKERUNITS_STROKEWIDTH: const unsigned short\tSVGMarkerElement",
+			"SVG_MARKERUNITS_STROKEWIDTH"
+		],
+		[
+			"SVG_MARKER_ORIENT_UNKNOWN: const unsigned short\tSVGMarkerElement",
+			"SVG_MARKER_ORIENT_UNKNOWN"
+		],
+		[
+			"SVG_MARKERUNITS_UNKNOWN: const unsigned short\tSVGMarkerElement",
+			"SVG_MARKERUNITS_UNKNOWN"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGMarkerElement",
+			"externalResourcesRequired"
+		],
+		[
+			"SVG_MARKER_ORIENT_ANGLE: const unsigned short\tSVGMarkerElement",
+			"SVG_MARKER_ORIENT_ANGLE"
+		],
+		[
+			"SVG_MARKER_ORIENT_AUTO: const unsigned short\tSVGMarkerElement",
+			"SVG_MARKER_ORIENT_AUTO"
+		],
+		[
+			"setOrientToAngle( angle: SVGAngle ): void\tSVGMarkerElement",
+			"setOrientToAngle(${1:angle: SVGAngle})"
+		],
+		[
+			"markerUnits: SVGAnimatedEnumeration\tSVGMarkerElement",
+			"markerUnits"
+		],
+		[
+			"orientType: SVGAnimatedEnumeration\tSVGMarkerElement",
+			"orientType"
+		],
+		[
+			"markerHeight: SVGAnimatedLength\tSVGMarkerElement",
+			"markerHeight"
+		],
+		[
+			"markerWidth: SVGAnimatedLength\tSVGMarkerElement",
+			"markerWidth"
+		],
+		[
+			"orientAngle: SVGAnimatedAngle\tSVGMarkerElement",
+			"orientAngle"
+		],
+		[
+			"className: SVGAnimatedString\tSVGMarkerElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGMarkerElement",
+			"style"
+		],
+		[
+			"viewBox: SVGAnimatedRect\tSVGMarkerElement",
+			"viewBox"
+		],
+		[
+			"refY: SVGAnimatedLength\tSVGMarkerElement",
+			"refY"
+		],
+		[
+			"refX: SVGAnimatedLength\tSVGMarkerElement",
+			"refX"
+		],
+		[
+			"setOrientToAuto(): void\tSVGMarkerElement",
+			"setOrientToAuto()"
+		],
+		[
+			"xmlspace: DOMString\tSVGMarkerElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGMarkerElement",
+			"xmllang"
+		]
+	]
+}

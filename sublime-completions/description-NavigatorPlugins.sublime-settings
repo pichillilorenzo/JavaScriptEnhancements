@@ -1,0 +1,38 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-javaEnabled\tNavigatorPlugins",
+			{
+				"name": "javaEnabled",
+				"return_type": "boolean",
+				"description": "The navigator.javaEnabled attribute must return true if the user agent supports a plugin that supports the MIME type \"application/x-java-vm\"; otherwise it must return false.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorPlugins.html#javaEnabled",
+				"full_description": "/*\n\n\tNavigatorPlugins\n\n\tjavaEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe navigator.javaEnabled attribute must return true if the user agent supports a plugin that supports the MIME type \"application/x-java-vm\"; otherwise it must return false.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorPlugins.html#javaEnabled\n\n*/"
+			}
+		],
+		[
+			"description-mimeTypes\tNavigatorPlugins",
+			{
+				"name": "mimeTypes",
+				"return_type": "MimeTypeArray",
+				"description": "The navigator.mimeTypes attribute must return a MimeTypeArray object. The same object must be returned each time.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorPlugins.html#mimeTypes",
+				"full_description": "/*\n\n\tNavigatorPlugins\n\n\tmimeTypes\n\n\tReturn Type:\n\tMimeTypeArray\n\n\tDescription:\n\tThe navigator.mimeTypes attribute must return a MimeTypeArray object. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorPlugins.html#mimeTypes\n\n*/"
+			}
+		],
+		[
+			"description-plugins\tNavigatorPlugins",
+			{
+				"name": "plugins",
+				"return_type": "PluginArray",
+				"description": "The navigator.plugins attribute must return a PluginArray object. The same object must be returned each time.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorPlugins.html#plugins",
+				"full_description": "/*\n\n\tNavigatorPlugins\n\n\tplugins\n\n\tReturn Type:\n\tPluginArray\n\n\tDescription:\n\tThe navigator.plugins attribute must return a PluginArray object. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorPlugins.html#plugins\n\n*/"
+			}
+		]
+	]
+}

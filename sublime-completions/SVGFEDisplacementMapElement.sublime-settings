@@ -1,0 +1,65 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_CHANNEL_UNKNOWN: const unsigned short\tSVGFEDisplacementMapElement",
+			"SVG_CHANNEL_UNKNOWN"
+		],
+		[
+			"yChannelSelector: SVGAnimatedEnumeration\tSVGFEDisplacementMapElement",
+			"yChannelSelector"
+		],
+		[
+			"xChannelSelector: SVGAnimatedEnumeration\tSVGFEDisplacementMapElement",
+			"xChannelSelector"
+		],
+		[
+			"SVG_CHANNEL_R: const unsigned short\tSVGFEDisplacementMapElement",
+			"SVG_CHANNEL_R"
+		],
+		[
+			"SVG_CHANNEL_A: const unsigned short\tSVGFEDisplacementMapElement",
+			"SVG_CHANNEL_A"
+		],
+		[
+			"SVG_CHANNEL_G: const unsigned short\tSVGFEDisplacementMapElement",
+			"SVG_CHANNEL_G"
+		],
+		[
+			"SVG_CHANNEL_B: const unsigned short\tSVGFEDisplacementMapElement",
+			"SVG_CHANNEL_B"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEDisplacementMapElement",
+			"result"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFEDisplacementMapElement",
+			"height"
+		],
+		[
+			"scale: SVGAnimatedNumber\tSVGFEDisplacementMapElement",
+			"scale"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEDisplacementMapElement",
+			"width"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFEDisplacementMapElement",
+			"in1"
+		],
+		[
+			"in2: SVGAnimatedString\tSVGFEDisplacementMapElement",
+			"in2"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEDisplacementMapElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEDisplacementMapElement",
+			"y"
+		]
+	]
+}

@@ -1,0 +1,45 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"preserveAspectRatio: SVGAnimatedPreserveAspectRatio\tSVGFEImageElement",
+			"preserveAspectRatio"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGFEImageElement",
+			"externalResourcesRequired"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFEImageElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEImageElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEImageElement",
+			"width"
+		],
+		[
+			"href: SVGAnimatedString\tSVGFEImageElement",
+			"href"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEImageElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEImageElement",
+			"y"
+		],
+		[
+			"xmlspace: DOMString\tSVGFEImageElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGFEImageElement",
+			"xmllang"
+		]
+	]
+}

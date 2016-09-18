@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"createDocumentType( qualifiedName: DOMString, publicId: DOMString, systemId: DOMString ): DocumentType\tDOMImplementation",
+			"createDocumentType(${1:qualifiedName: DOMString}, ${2:publicId: DOMString}, ${3:systemId: DOMString})"
+		],
+		[
+			"createDocument( namespace: DOMString, qualifiedName: DOMString, doctype?: DocumentType ): XMLDocument\tDOMImplementation",
+			"createDocument(${1:namespace: DOMString}, ${2:qualifiedName: DOMString}, ${3:doctype?: DocumentType})"
+		],
+		[
+			"createHTMLDocument( title?: DOMString ): Document\tDOMImplementation",
+			"createHTMLDocument(${1:title?: DOMString})"
+		],
+		[
+			"hasFeature(): boolean\tDOMImplementation",
+			"hasFeature()"
+		]
+	]
+}

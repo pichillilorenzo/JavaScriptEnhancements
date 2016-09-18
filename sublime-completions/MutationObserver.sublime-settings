@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new MutationObserver( callback: MutationCallback ): MutationObserver\tMutationObserver",
+			"new MutationObserver(${1:callback: MutationCallback})"
+		],
+		[
+			"MutationObserver( callback: MutationCallback ): MutationObserver\tMutationObserver",
+			"MutationObserver(${1:callback: MutationCallback})"
+		],
+		[
+			"observe( target: Node, options: MutationObserverInit ): void\tMutationObserver",
+			"observe(${1:target: Node}, ${2:options: MutationObserverInit})"
+		],
+		[
+			"takeRecords(): sequence<MutationRecord>\tMutationObserver",
+			"takeRecords()"
+		],
+		[
+			"disconnect(): void\tMutationObserver",
+			"disconnect()"
+		]
+	]
+}

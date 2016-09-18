@@ -1,334 +1,1025 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["deferred.then( doneFilter [, failFilter ] [, progressFilter ] )\tjQuery - Deferred Object", "${1:deferred}.then(${2:doneFilter}, ${3:[ failFilter ]}, ${4:[ progressFilter ]})"],
-    [".animate( properties [, duration ] [, easing ] [, complete ] )\tjQuery - Effects > Custom", ".animate(${1:properties}, ${2:[ duration ]}, ${3:[ easing ]}, ${4:[ complete ]})"],
-    ["jQuery.post( url [, data ] [, success ] [, dataType ] )\tjQuery - Ajax > Shorthand Methods", "${1:jQuery}.post(${2:url}, ${3:[ data ]}, ${4:[ success ]}, ${5:[ dataType ]})"],
-    ["jQuery.get( url [, data ] [, success ] [, dataType ] )\tjQuery - Ajax > Shorthand Methods", "${1:jQuery}.get(${2:url}, ${3:[ data ]}, ${4:[ success ]}, ${5:[ dataType ]})"],
-    ["deferred.progress( progressCallbacks [, progressCallbacks ] )\tjQuery - Deferred Object", "${1:deferred}.progress(${2:progressCallbacks}, ${3:[ progressCallbacks ]})"],
-    [".fadeToggle(  [duration ] [, easing ] [, complete ] )\tjQuery - Effects | Effects > Fading", ".fadeToggle(${1:[duration ]}, ${2:[ easing ]}, ${3:[ complete ]})"],
-    [".on( events [, selector ] [, data ], handler )\tjQuery - Events > Event Handler Attachment", ".on(${1:events}, ${2:[ selector ]}, ${3:[ data ]}, ${4:handler})"],
-    [".post( url [, data ] [, success ] [, dataType ] )\tjQuery - Ajax > Shorthand Methods", ".post(${1:url}, ${2:[ data ]}, ${3:[ success ]}, ${4:[ dataType ]})"],
-    [".triggerHandler( eventType [, extraParameters ] )\tjQuery - Events > Event Handler Attachment", ".triggerHandler(${1:eventType}, ${2:[ extraParameters ]})"],
-    [".get( url [, data ] [, success ] [, dataType ] )\tjQuery - Ajax > Shorthand Methods", ".get(${1:url}, ${2:[ data ]}, ${3:[ success ]}, ${4:[ dataType ]})"],
-    ["deferred.always( alwaysCallbacks [, alwaysCallbacks ] )\tjQuery - Deferred Object", "${1:deferred}.always(${2:alwaysCallbacks}, ${3:[ alwaysCallbacks ]})"],
-    [".then( doneFilter [, failFilter ] [, progressFilter ] )\tjQuery - Deferred Object", ".then(${1:doneFilter}, ${2:[ failFilter ]}, ${3:[ progressFilter ]})"],
-    ["jQuery.parseHTML( data [, context ] [, keepScripts ] )\tjQuery - Utilities", "${1:jQuery}.parseHTML(${2:data}, ${3:[ context ]}, ${4:[ keepScripts ]})"],
-    ["jQuery.getJSON( url [, data ] [, success ] )\tjQuery - Ajax > Shorthand Methods", "${1:jQuery}.getJSON(${2:url}, ${3:[ data ]}, ${4:[ success ]})"],
-    ["jQuery.ajaxPrefilter(  [dataTypes ], handler )\tjQuery - Ajax > Low-Level Interface", "${1:jQuery}.ajaxPrefilter(${2:[dataTypes ]}, ${3:handler})"],
-    [".progress( progressCallbacks [, progressCallbacks ] )\tjQuery - Deferred Object", ".progress(${1:progressCallbacks}, ${2:[ progressCallbacks ]})"],
-    [".off( events [, selector ] [, handler ] )\tjQuery - Events > Event Handler Attachment", ".off(${1:events}, ${2:[ selector ]}, ${3:[ handler ]})"],
-    ["deferred.fail( failCallbacks [, failCallbacks ] )\tjQuery - Deferred Object", "${1:deferred}.fail(${2:failCallbacks}, ${3:[ failCallbacks ]})"],
-    ["deferred.done( doneCallbacks [, doneCallbacks ] )\tjQuery - Deferred Object", "${1:deferred}.done(${2:doneCallbacks}, ${3:[ doneCallbacks ]})"],
-    ["jQuery.extend( target [, object1 ] [, objectN ] )\tjQuery - Utilities", "${1:jQuery}.extend(${2:target}, ${3:[ object1 ]}, ${4:[ objectN ]})"],
-    [".trigger( eventType [, extraParameters ] )\tjQuery - Events > Event Handler Attachment", ".trigger(${1:eventType}, ${2:[ extraParameters ]})"],
-    ["jQuery.proxy( function, context )\tjQuery - Events > Event Handler Attachment | Utilities", "${1:jQuery}.proxy(${2:function}, ${3:context})"],
-    ["jQuery.ajaxTransport( dataType, handler )\tjQuery - Ajax > Low-Level Interface", "${1:jQuery}.ajaxTransport(${2:dataType}, ${3:handler})"],
-    ["jQuery.param( obj )\tjQuery - Miscellaneous > Collection Manipulation | Forms | Ajax > Helper Functions", "${1:jQuery}.param(${2:obj})"],
-    [".parseHTML( data [, context ] [, keepScripts ] )\tjQuery - Utilities", ".parseHTML(${1:data}, ${2:[ context ]}, ${3:[ keepScripts ]})"],
-    [".outerHeight(  [includeMargin ] )\tjQuery - CSS | Dimensions | Manipulation > Style Properties", ".outerHeight(${1:[includeMargin ]})"],
-    ["jQuery.inArray( value, array [, fromIndex ] )\tjQuery - Utilities", "${1:jQuery}.inArray(${2:value}, ${3:array}, ${4:[ fromIndex ]})"],
-    [".always( alwaysCallbacks [, alwaysCallbacks ] )\tjQuery - Deferred Object", ".always(${1:alwaysCallbacks}, ${2:[ alwaysCallbacks ]})"],
-    [".parentsUntil(  [selector ] [, filter ] )\tjQuery - Traversing > Tree Traversal", ".parentsUntil(${1:[selector ]}, ${2:[ filter ]})"],
-    [".outerWidth(  [includeMargin ] )\tjQuery - CSS | Dimensions | Manipulation > Style Properties", ".outerWidth(${1:[includeMargin ]})"],
-    ["callbacks.fireWith(  [context ] [, args ] )\tjQuery - Callbacks Object", "${1:callbacks}.fireWith(${2:[context ]}, ${3:[ args ]})"],
-    [".getJSON( url [, data ] [, success ] )\tjQuery - Ajax > Shorthand Methods", ".getJSON(${1:url}, ${2:[ data ]}, ${3:[ success ]})"],
-    [".fadeTo( duration, opacity [, complete ] )\tjQuery - Effects > Fading", ".fadeTo(${1:duration}, ${2:opacity}, ${3:[ complete ]})"],
-    [".ajaxPrefilter(  [dataTypes ], handler )\tjQuery - Ajax > Low-Level Interface", ".ajaxPrefilter(${1:[dataTypes ]}, ${2:handler})"],
-    ["jQuery.speed(  [duration ] [, settings ] )\tjQuery - Effects > Custom", "${1:jQuery}.speed(${2:[duration ]}, ${3:[ settings ]})"],
-    [".one( events [, data ], handler )\tjQuery - Events > Event Handler Attachment", ".one(${1:events}, ${2:[ data ]}, ${3:handler})"],
-    ["jQuery.grep( array, function [, invert ] )\tjQuery - Utilities", "${1:jQuery}.grep(${2:array}, ${3:function}, ${4:[ invert ]})"],
-    ["jQuery.noConflict(  [removeAll ] )\tjQuery - Core | Miscellaneous > Setup Methods", "${1:jQuery}.noConflict(${2:[removeAll ]})"],
-    [".prevUntil(  [selector ] [, filter ] )\tjQuery - Traversing > Tree Traversal", ".prevUntil(${1:[selector ]}, ${2:[ filter ]})"],
-    ["deferred.resolveWith( context [, args ] )\tjQuery - Deferred Object", "${1:deferred}.resolveWith(${2:context}, ${3:[ args ]})"],
-    [".nextUntil(  [selector ] [, filter ] )\tjQuery - Traversing > Tree Traversal", ".nextUntil(${1:[selector ]}, ${2:[ filter ]})"],
-    [".removeClass(  [className ] )\tjQuery - Attributes | Manipulation > Class Attribute | CSS", ".removeClass(${1:[className ]})"],
-    [".load( url [, data ] [, complete ] )\tjQuery - Ajax > Shorthand Methods", ".load(${1:url}, ${2:[ data ]}, ${3:[ complete ]})"],
-    ["jQuery.dequeue( element [, queueName ] )\tjQuery - Data | Utilities", "${1:jQuery}.dequeue(${2:element}, ${3:[ queueName ]})"],
-    ["jQuery.getScript( url [, success ] )\tjQuery - Ajax > Shorthand Methods", "${1:jQuery}.getScript(${2:url}, ${3:[ success ]})"],
-    [".extend( target [, object1 ] [, objectN ] )\tjQuery - Utilities", ".extend(${1:target}, ${2:[ object1 ]}, ${3:[ objectN ]})"],
-    ["deferred.notifyWith( context [, args ] )\tjQuery - Deferred Object", "${1:deferred}.notifyWith(${2:context}, ${3:[ args ]})"],
-    ["deferred.rejectWith( context [, args ] )\tjQuery - Deferred Object", "${1:deferred}.rejectWith(${2:context}, ${3:[ args ]})"],
-    [".prepend( content [, content ] )\tjQuery - Manipulation > DOM Insertion, Inside", ".prepend(${1:content}, ${2:[ content ]})"],
-    [".slideToggle(  [duration ] [, complete ] )\tjQuery - Effects > Sliding", ".slideToggle(${1:[duration ]}, ${2:[ complete ]})"],
-    [".before( content [, content ] )\tjQuery - Manipulation > DOM Insertion, Outside", ".before(${1:content}, ${2:[ content ]})"],
-    [".proxy( function, context )\tjQuery - Events > Event Handler Attachment | Utilities", ".proxy(${1:function}, ${2:context})"],
-    [".append( content [, content ] )\tjQuery - Manipulation > DOM Insertion, Inside", ".append(${1:content}, ${2:[ content ]})"],
-    ["jQuery.queue( element [, queueName ] )\tjQuery - Data | Utilities", "${1:jQuery}.queue(${2:element}, ${3:[ queueName ]})"],
-    ["jQuery.removeData( element [, name ] )\tjQuery - Data | Utilities", "${1:jQuery}.removeData(${2:element}, ${3:[ name ]})"],
-    [".after( content [, content ] )\tjQuery - Manipulation > DOM Insertion, Outside", ".after(${1:content}, ${2:[ content ]})"],
-    [".removeAttr( attributeName )\tjQuery - Attributes | Manipulation > General Attributes", ".removeAttr(${1:attributeName})"],
-    [".fail( failCallbacks [, failCallbacks ] )\tjQuery - Deferred Object", ".fail(${1:failCallbacks}, ${2:[ failCallbacks ]})"],
-    [".done( doneCallbacks [, doneCallbacks ] )\tjQuery - Deferred Object", ".done(${1:doneCallbacks}, ${2:[ doneCallbacks ]})"],
-    [".ajaxTransport( dataType, handler )\tjQuery - Ajax > Low-Level Interface", ".ajaxTransport(${1:dataType}, ${2:handler})"],
-    [".slideDown(  [duration ] [, complete ] )\tjQuery - Effects > Sliding", ".slideDown(${1:[duration ]}, ${2:[ complete ]})"],
-    ["jQuery.ajax( url [, settings ] )\tjQuery - Ajax > Low-Level Interface", "${1:jQuery}.ajax(${2:url}, ${3:[ settings ]})"],
-    [".removeProp( propertyName )\tjQuery - Attributes | Manipulation > General Attributes", ".removeProp(${1:propertyName})"],
-    ["jQuery.data( element, key, value )\tjQuery - Data | Utilities", "${1:jQuery}.data(${2:element}, ${3:key}, ${4:value})"],
-    [".param( obj )\tjQuery - Miscellaneous > Collection Manipulation | Forms | Ajax > Helper Functions", ".param(${1:obj})"],
-    [".toggleClass( className )\tjQuery - Attributes | Manipulation > Class Attribute | CSS", ".toggleClass(${1:className})"],
-    ["jQuery.fx.off\tjQuery - Effects > Custom | Properties > Properties of the Global jQuery Object", "${1:jQuery}.fx.off"],
-    ["jQuery.contains( container, contained )\tjQuery - Utilities", "${1:jQuery}.contains(${2:container}, ${3:contained})"],
-    ["event.isImmediatePropagationStopped()\tjQuery - Events > Event Object", "${1:event}.isImmediatePropagationStopped()"],
-    [".slideUp(  [duration ] [, complete ] )\tjQuery - Effects > Sliding", ".slideUp(${1:[duration ]}, ${2:[ complete ]})"],
-    [".inArray( value, array [, fromIndex ] )\tjQuery - Utilities", ".inArray(${1:value}, ${2:array}, ${3:[ fromIndex ]})"],
-    [".fadeOut(  [duration ] [, complete ] )\tjQuery - Effects > Fading", ".fadeOut(${1:[duration ]}, ${2:[ complete ]})"],
-    [".stop(  [clearQueue ] [, jumpToEnd ] )\tjQuery - Effects > Custom", ".stop(${1:[clearQueue ]}, ${2:[ jumpToEnd ]})"],
-    [".fadeIn(  [duration ] [, complete ] )\tjQuery - Effects > Fading", ".fadeIn(${1:[duration ]}, ${2:[ complete ]})"],
-    [".toggle(  [duration ] [, complete ] )\tjQuery - Effects > Basics", ".toggle(${1:[duration ]}, ${2:[ complete ]})"],
-    [".not( selector )\tjQuery - Traversing > Filtering | Traversing > Miscellaneous Traversing", ".not(${1:selector})"],
-    [".wrapInner( wrappingElement )\tjQuery - Manipulation > DOM Insertion, Around", ".wrapInner(${1:wrappingElement})"],
-    [".hasClass( className )\tjQuery - Attributes | Manipulation > Class Attribute | CSS", ".hasClass(${1:className})"],
-    [".addClass( className )\tjQuery - Attributes | Manipulation > Class Attribute | CSS", ".addClass(${1:className})"],
-    [".speed(  [duration ] [, settings ] )\tjQuery - Effects > Custom", ".speed(${1:[duration ]}, ${2:[ settings ]})"],
-    [".grep( array, function [, invert ] )\tjQuery - Utilities", ".grep(${1:array}, ${2:function}, ${3:[ invert ]})"],
-    [".noConflict(  [removeAll ] )\tjQuery - Core | Miscellaneous > Setup Methods", ".noConflict(${1:[removeAll ]})"],
-    [".clearQueue(  [queueName ] )\tjQuery - Effects > Custom | Data | Utilities", ".clearQueue(${1:[queueName ]})"],
-    [".attr( attributeName )\tjQuery - Attributes | Manipulation > General Attributes", ".attr(${1:attributeName})"],
-    [".wrapAll( wrappingElement )\tjQuery - Manipulation > DOM Insertion, Around", ".wrapAll(${1:wrappingElement})"],
-    [".dequeue( element [, queueName ] )\tjQuery - Data | Utilities", ".dequeue(${1:element}, ${2:[ queueName ]})"],
-    [".getScript( url [, success ] )\tjQuery - Ajax > Shorthand Methods", ".getScript(${1:url}, ${2:[ success ]})"],
-    [".hover( handlerIn, handlerOut )\tjQuery - Events > Mouse Events", ".hover(${1:handlerIn}, ${2:handlerOut})"],
-    [".prop( propertyName )\tjQuery - Attributes | Manipulation > General Attributes", ".prop(${1:propertyName})"],
-    [".fireWith(  [context ] [, args ] )\tjQuery - Callbacks Object", ".fireWith(${1:[context ]}, ${2:[ args ]})"],
-    [".delay( duration [, queueName ] )\tjQuery - Effects > Custom", ".delay(${1:duration}, ${2:[ queueName ]})"],
-    ["event.stopImmediatePropagation()\tjQuery - Events > Event Object", "${1:event}.stopImmediatePropagation()"],
-    ["jQuery.Deferred(  [beforeStart ] )\tjQuery - Deferred Object", "${1:jQuery}.Deferred(${2:[beforeStart ]})"],
-    [".resolveWith( context [, args ] )\tjQuery - Deferred Object", ".resolveWith(${1:context}, ${2:[ args ]})"],
-    [".each( function )\tjQuery - Miscellaneous > Collection Manipulation | Traversing", ".each(${1:function})"],
-    [".removeData( element [, name ] )\tjQuery - Data | Utilities", ".removeData(${1:element}, ${2:[ name ]})"],
-    [".queue( element [, queueName ] )\tjQuery - Data | Utilities", ".queue(${1:element}, ${2:[ queueName ]})"],
-    ["jQuery.ajaxSetup( options )\tjQuery - Ajax > Low-Level Interface", "${1:jQuery}.ajaxSetup(${2:options})"],
-    [".wrap( wrappingElement )\tjQuery - Manipulation > DOM Insertion, Around", ".wrap(${1:wrappingElement})"],
-    [".notifyWith( context [, args ] )\tjQuery - Deferred Object", ".notifyWith(${1:context}, ${2:[ args ]})"],
-    [".rejectWith( context [, args ] )\tjQuery - Deferred Object", ".rejectWith(${1:context}, ${2:[ args ]})"],
-    [".addBack(  [selector ] )\tjQuery - Traversing > Miscellaneous Traversing", ".addBack(${1:[selector ]})"],
-    [".dequeue(  [queueName ] )\tjQuery - Effects > Custom | Data | Utilities", ".dequeue(${1:[queueName ]})"],
-    [".insertBefore( target )\tjQuery - Manipulation > DOM Insertion, Outside", ".insertBefore(${1:target})"],
-    [".clone(  [withDataAndEvents ] )\tjQuery - Manipulation > Copying", ".clone(${1:[withDataAndEvents ]})"],
-    [".ajax( url [, settings ] )\tjQuery - Ajax > Low-Level Interface", ".ajax(${1:url}, ${2:[ settings ]})"],
-    [".promise(  [type ] [, target ] )\tjQuery - Deferred Object", ".promise(${1:[type ]}, ${2:[ target ]})"],
-    [".data( element, key, value )\tjQuery - Data | Utilities", ".data(${1:element}, ${2:key}, ${3:value})"],
-    [".replaceWith( newContent )\tjQuery - Manipulation > DOM Replacement", ".replaceWith(${1:newContent})"],
-    [".isImmediatePropagationStopped()\tjQuery - Events > Event Object", ".isImmediatePropagationStopped()"],
-    [".insertAfter( target )\tjQuery - Manipulation > DOM Insertion, Outside", ".insertAfter(${1:target})"],
-    [".fx.off\tjQuery - Effects > Custom | Properties > Properties of the Global jQuery Object", ".fx.off"],
-    [".ajaxComplete( handler )\tjQuery - Ajax > Global Ajax Event Handlers", ".ajaxComplete(${1:handler})"],
-    [".removeData(  [name ] )\tjQuery - Data | Miscellaneous > Data Storage", ".removeData(${1:[name ]})"],
-    [".unwrap()\tjQuery - Manipulation > DOM Insertion, Around | Manipulation > DOM Removal", ".unwrap()"],
-    [".contains( container, contained )\tjQuery - Utilities", ".contains(${1:container}, ${2:contained})"],
-    [".queue(  [queueName ] )\tjQuery - Effects > Custom | Data | Utilities", ".queue(${1:[queueName ]})"],
-    ["jQuery.each( array, callback )\tjQuery - Utilities", "${1:jQuery}.each(${2:array}, ${3:callback})"],
-    ["callbacks.remove( callbacks )\tjQuery - Callbacks Object", "${1:callbacks}.remove(${2:callbacks})"],
-    [".ajaxSuccess( handler )\tjQuery - Ajax > Global Ajax Event Handlers", ".ajaxSuccess(${1:handler})"],
-    ["deferred.promise(  [target ] )\tjQuery - Deferred Object", "${1:deferred}.promise(${2:[target ]})"],
-    ["event.isPropagationStopped()\tjQuery - Events > Event Object", "${1:event}.isPropagationStopped()"],
-    [".data( key, value )\tjQuery - Data | Miscellaneous > Data Storage", ".data(${1:key}, ${2:value})"],
-    ["callbacks.has(  [callback ] )\tjQuery - Callbacks Object", "${1:callbacks}.has(${2:[callback ]})"],
-    ["jQuery.merge( first, second )\tjQuery - Utilities", "${1:jQuery}.merge(${2:first}, ${3:second})"],
-    [".css( propertyName )\tjQuery - CSS | Manipulation > Style Properties", ".css(${1:propertyName})"],
-    ["jQuery.map( array, callback )\tjQuery - Utilities", "${1:jQuery}.map(${2:array}, ${3:callback})"],
-    [".children(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".children(${1:[selector ]})"],
-    [".prependTo( target )\tjQuery - Manipulation > DOM Insertion, Inside", ".prependTo(${1:target})"],
-    [".siblings(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".siblings(${1:[selector ]})"],
-    ["deferred.resolve(  [args ] )\tjQuery - Deferred Object", "${1:deferred}.resolve(${2:[args ]})"],
-    ["jQuery.when( deferreds )\tjQuery - Core | Deferred Object", "${1:jQuery}.when(${2:deferreds})"],
-    ["event.isDefaultPrevented()\tjQuery - Events > Event Object", "${1:event}.isDefaultPrevented()"],
-    [".ajaxError( handler )\tjQuery - Ajax > Global Ajax Event Handlers", ".ajaxError(${1:handler})"],
-    [".innerHeight()\tjQuery - CSS | Dimensions | Manipulation > Style Properties", ".innerHeight()"],
-    ["callbacks.fire( arguments )\tjQuery - Callbacks Object", "${1:callbacks}.fire(${2:arguments})"],
-    [".ajaxStart( handler )\tjQuery - Ajax > Global Ajax Event Handlers", ".ajaxStart(${1:handler})"],
-    [".slice( start [, end ] )\tjQuery - Traversing > Filtering", ".slice(${1:start}, ${2:[ end ]})"],
-    [".parents(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".parents(${1:[selector ]})"],
-    [".prevAll(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".prevAll(${1:[selector ]})"],
-    ["jQuery.isPlainObject( object )\tjQuery - Utilities", "${1:jQuery}.isPlainObject(${2:object})"],
-    ["jQuery.escapeSelector( selector )\tjQuery - CSS", "${1:jQuery}.escapeSelector(${2:selector})"],
-    [".appendTo( target )\tjQuery - Manipulation > DOM Insertion, Inside", ".appendTo(${1:target})"],
-    [".nextAll(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".nextAll(${1:[selector ]})"],
-    ["jQuery.isEmptyObject( object )\tjQuery - Utilities", "${1:jQuery}.isEmptyObject(${2:object})"],
-    [".ajaxStop( handler )\tjQuery - Ajax > Global Ajax Event Handlers", ".ajaxStop(${1:handler})"],
-    [".ajaxSend( handler )\tjQuery - Ajax > Global Ajax Event Handlers", ".ajaxSend(${1:handler})"],
-    ["deferred.reject(  [args ] )\tjQuery - Deferred Object", "${1:deferred}.reject(${2:[args ]})"],
-    ["jQuery.htmlPrefilter( html )\tjQuery - Manipulation", "${1:jQuery}.htmlPrefilter(${2:html})"],
-    ["callbacks.add( callbacks )\tjQuery - Callbacks Object", "${1:callbacks}.add(${2:callbacks})"],
-    [".innerWidth()\tjQuery - CSS | Dimensions | Manipulation > Style Properties", ".innerWidth()"],
-    [".stopImmediatePropagation()\tjQuery - Events > Event Object", ".stopImmediatePropagation()"],
-    [".replaceAll( target )\tjQuery - Manipulation > DOM Replacement", ".replaceAll(${1:target})"],
-    [".parent(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".parent(${1:[selector ]})"],
-    ["event.delegateTarget\tjQuery - Events > Event Object | Events", "${1:event}.delegateTarget"],
-    [".remove(  [selector ] )\tjQuery - Manipulation > DOM Removal", ".remove(${1:[selector ]})"],
-    ["jquery\tjQuery - Internals | Properties > Properties of jQuery Object Instances", "jquery"],
-    ["jQuery.Callbacks( flags )\tjQuery - Callbacks Object", "${1:jQuery}.Callbacks(${2:flags})"],
-    ["jQuery( selector [, context ] )\tjQuery - Core", "jQuery(${1:selector}, ${2:[ context ]})"],
-    [".detach(  [selector ] )\tjQuery - Manipulation > DOM Removal", ".detach(${1:[selector ]})"],
-    ["jQuery.cssNumber\tjQuery - CSS | Manipulation > Style Properties", "${1:jQuery}.cssNumber"],
-    [".Deferred(  [beforeStart ] )\tjQuery - Deferred Object", ".Deferred(${1:[beforeStart ]})"],
-    [".add( selector )\tjQuery - Traversing > Miscellaneous Traversing", ".add(${1:selector})"],
-    ["event.stopPropagation()\tjQuery - Events > Event Object", "${1:event}.stopPropagation()"],
-    [".scrollLeft()\tjQuery - CSS | Offset | Manipulation > Style Properties", ".scrollLeft()"],
-    ["jQuery.readyException( error )\tjQuery - Core", "${1:jQuery}.readyException(${2:error})"],
-    [".prev(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".prev(${1:[selector ]})"],
-    [".focusout( handler )\tjQuery - Events > Form Events | Forms", ".focusout(${1:handler})"],
-    [".next(  [selector ] )\tjQuery - Traversing > Tree Traversal", ".next(${1:[selector ]})"],
-    [".ajaxSetup( options )\tjQuery - Ajax > Low-Level Interface", ".ajaxSetup(${1:options})"],
-    [".contextmenu( handler )\tjQuery - Events > Mouse Events", ".contextmenu(${1:handler})"],
-    ["event.preventDefault()\tjQuery - Events > Event Object", "${1:event}.preventDefault()"],
-    [".scrollTop()\tjQuery - CSS | Offset | Manipulation > Style Properties", ".scrollTop()"],
-    [".closest( selector )\tjQuery - Traversing > Tree Traversal", ".closest(${1:selector})"],
-    ["jQuery.uniqueSort( array )\tjQuery - Utilities", "${1:jQuery}.uniqueSort(${2:array})"],
-    ["deferred.notify( args )\tjQuery - Deferred Object", "${1:deferred}.notify(${2:args})"],
-    ["jQuery.fn.extend( object )\tjQuery - Utilities", "${1:jQuery}.fn.extend(${2:object})"],
-    [".focusin( handler )\tjQuery - Events > Form Events | Forms", ".focusin(${1:handler})"],
-    [".mouseenter( handler )\tjQuery - Events > Mouse Events", ".mouseenter(${1:handler})"],
-    [".mouseleave( handler )\tjQuery - Events > Mouse Events", ".mouseleave(${1:handler})"],
-    [".height()\tjQuery - CSS | Dimensions | Manipulation > Style Properties", ".height()"],
-    [".position()\tjQuery - CSS | Offset | Manipulation > Style Properties", ".position()"],
-    [".select( handler )\tjQuery - Events > Form Events | Forms", ".select(${1:handler})"],
-    [".change( handler )\tjQuery - Events > Form Events | Forms", ".change(${1:handler})"],
-    [".submit( handler )\tjQuery - Events > Form Events | Forms", ".submit(${1:handler})"],
-    [".keypress( handler )\tjQuery - Events > Keyboard Events", ".keypress(${1:handler})"],
-    ["jQuery.globalEval( code )\tjQuery - Utilities", "${1:jQuery}.globalEval(${2:code})"],
-    ["jQuery.isNumeric( value )\tjQuery - Utilities", "${1:jQuery}.isNumeric(${2:value})"],
-    [".isPropagationStopped()\tjQuery - Events > Event Object", ".isPropagationStopped()"],
-    [".mousemove( handler )\tjQuery - Events > Mouse Events", ".mousemove(${1:handler})"],
-    [".mouseover( handler )\tjQuery - Events > Mouse Events", ".mouseover(${1:handler})"],
-    [".val()\tjQuery - Attributes | Forms | Manipulation > General Attributes", ".val()"],
-    [".width()\tjQuery - CSS | Dimensions | Manipulation > Style Properties", ".width()"],
-    [".mousedown( handler )\tjQuery - Events > Mouse Events", ".mousedown(${1:handler})"],
-    [".offsetParent()\tjQuery - Offset | Traversing > Tree Traversal", ".offsetParent()"],
-    [".each( array, callback )\tjQuery - Utilities", ".each(${1:array}, ${2:callback})"],
-    ["jQuery.isFunction( obj )\tjQuery - Utilities", "${1:jQuery}.isFunction(${2:obj})"],
-    ["jQuery.parseJSON( json )\tjQuery - Utilities", "${1:jQuery}.parseJSON(${2:json})"],
-    [".focus( handler )\tjQuery - Events > Form Events | Forms", ".focus(${1:handler})"],
-    [".keydown( handler )\tjQuery - Events > Keyboard Events", ".keydown(${1:handler})"],
-    [".serializeArray()\tjQuery - Forms | Ajax > Helper Functions", ".serializeArray()"],
-    [".find( selector )\tjQuery - Traversing > Tree Traversal", ".find(${1:selector})"],
-    [".dblclick( handler )\tjQuery - Events > Mouse Events", ".dblclick(${1:handler})"],
-    [".offset()\tjQuery - CSS | Offset | Manipulation > Style Properties", ".offset()"],
-    ["event.currentTarget\tjQuery - Events > Event Object", "${1:event}.currentTarget"],
-    [".get( index )\tjQuery - Miscellaneous > DOM Element Methods", ".get(${1:index})"],
-    [".mouseout( handler )\tjQuery - Events > Mouse Events", ".mouseout(${1:handler})"],
-    ["event.relatedTarget\tjQuery - Events > Event Object", "${1:event}.relatedTarget"],
-    [".html()\tjQuery - Attributes | Manipulation > DOM Insertion, Inside", ".html()"],
-    ["jQuery.error( message )\tjQuery - Internals", "${1:jQuery}.error(${2:message})"],
-    [".isDefaultPrevented()\tjQuery - Events > Event Object", ".isDefaultPrevented()"],
-    [".filter( selector )\tjQuery - Traversing > Filtering", ".filter(${1:selector})"],
-    [".blur( handler )\tjQuery - Events > Form Events | Forms", ".blur(${1:handler})"],
-    ["jQuery.parseXML( data )\tjQuery - Utilities", "${1:jQuery}.parseXML(${2:data})"],
-    [".map( array, callback )\tjQuery - Utilities", ".map(${1:array}, ${2:callback})"],
-    ["jQuery.makeArray( obj )\tjQuery - Utilities", "${1:jQuery}.makeArray(${2:obj})"],
-    ["jQuery.isXMLDoc( node )\tjQuery - Utilities", "${1:jQuery}.isXMLDoc(${2:node})"],
-    [".scroll( handler )\tjQuery - Events > Browser Events", ".scroll(${1:handler})"],
-    ["jQuery.hasData( element )\tjQuery - Data", "${1:jQuery}.hasData(${2:element})"],
-    [".ready( handler )\tjQuery - Events > Document Loading", ".ready(${1:handler})"],
-    ["length\tjQuery - Properties > Properties of jQuery Object Instances", "length"],
-    [".resize( handler )\tjQuery - Events > Browser Events", ".resize(${1:handler})"],
-    [".mouseup( handler )\tjQuery - Events > Mouse Events", ".mouseup(${1:handler})"],
-    ["jQuery.isWindow( obj )\tjQuery - Utilities", "${1:jQuery}.isWindow(${2:obj})"],
-    ["jQuery.unique( array )\tjQuery - Utilities", "${1:jQuery}.unique(${2:array})"],
-    ["callbacks.disabled()\tjQuery - Callbacks Object", "${1:callbacks}.disabled()"],
-    [".when( deferreds )\tjQuery - Core | Deferred Object", ".when(${1:deferreds})"],
-    [".promise(  [target ] )\tjQuery - Deferred Object", ".promise(${1:[target ]})"],
-    [".keyup( handler )\tjQuery - Events > Keyboard Events", ".keyup(${1:handler})"],
-    [".isPlainObject( object )\tjQuery - Utilities", ".isPlainObject(${1:object})"],
-    [".escapeSelector( selector )\tjQuery - CSS", ".escapeSelector(${1:selector})"],
-    [".delegateTarget\tjQuery - Events > Event Object | Events", ".delegateTarget"],
-    ["jQuery.holdReady( hold )\tjQuery - Core", "${1:jQuery}.holdReady(${2:hold})"],
-    [".isEmptyObject( object )\tjQuery - Utilities", ".isEmptyObject(${1:object})"],
-    [".merge( first, second )\tjQuery - Utilities", ".merge(${1:first}, ${2:second})"],
-    [".remove( callbacks )\tjQuery - Callbacks Object", ".remove(${1:callbacks})"],
-    [".htmlPrefilter( html )\tjQuery - Manipulation", ".htmlPrefilter(${1:html})"],
-    ["callbacks.disable()\tjQuery - Callbacks Object", "${1:callbacks}.disable()"],
-    [".contents()\tjQuery - Traversing > Miscellaneous Traversing", ".contents()"],
-    ["jQuery.isArray( obj )\tjQuery - Utilities", "${1:jQuery}.isArray(${2:obj})"],
-    [".finish(  [queue ] )\tjQuery - Effects > Custom", ".finish(${1:[queue ]})"],
-    [".has(  [callback ] )\tjQuery - Callbacks Object", ".has(${1:[callback ]})"],
-    [".click( handler )\tjQuery - Events > Mouse Events", ".click(${1:handler})"],
-    [".cssNumber\tjQuery - CSS | Manipulation > Style Properties", ".cssNumber"],
-    [".resolve(  [args ] )\tjQuery - Deferred Object", ".resolve(${1:[args ]})"],
-    [".map( callback )\tjQuery - Traversing > Filtering", ".map(${1:callback})"],
-    [".Callbacks( flags )\tjQuery - Callbacks Object", ".Callbacks(${1:flags})"],
-    [".stopPropagation()\tjQuery - Events > Event Object", ".stopPropagation()"],
-    [".has( selector )\tjQuery - Traversing > Filtering", ".has(${1:selector})"],
-    ["callbacks.locked()\tjQuery - Callbacks Object", "${1:callbacks}.locked()"],
-    ["event.timeStamp\tjQuery - Events > Event Object", "${1:event}.timeStamp"],
-    [".pushStack( elements )\tjQuery - Internals", ".pushStack(${1:elements})"],
-    ["event.namespace\tjQuery - Events > Event Object", "${1:event}.namespace"],
-    [".is( selector )\tjQuery - Traversing > Filtering", ".is(${1:selector})"],
-    [".serialize()\tjQuery - Forms | Ajax > Helper Functions", ".serialize()"],
-    [".preventDefault()\tjQuery - Events > Event Object", ".preventDefault()"],
-    ["callbacks.empty()\tjQuery - Callbacks Object", "${1:callbacks}.empty()"],
-    [".readyException( error )\tjQuery - Core", ".readyException(${1:error})"],
-    [".reject(  [args ] )\tjQuery - Deferred Object", ".reject(${1:[args ]})"],
-    [".toArray()\tjQuery - Miscellaneous > DOM Element Methods", ".toArray()"],
-    [".fire( arguments )\tjQuery - Callbacks Object", ".fire(${1:arguments})"],
-    ["callbacks.fired()\tjQuery - Callbacks Object", "${1:callbacks}.fired()"],
-    ["jQuery.trim( str )\tjQuery - Utilities", "${1:jQuery}.trim(${2:str})"],
-    ["callbacks.lock()\tjQuery - Callbacks Object", "${1:callbacks}.lock()"],
-    ["jQuery.type( obj )\tjQuery - Utilities", "${1:jQuery}.type(${2:obj})"],
-    [".add( callbacks )\tjQuery - Callbacks Object", ".add(${1:callbacks})"],
-    [".uniqueSort( array )\tjQuery - Utilities", ".uniqueSort(${1:array})"],
-    [".fn.extend( object )\tjQuery - Utilities", ".fn.extend(${1:object})"],
-    ["event.metaKey\tjQuery - Events > Event Object", "${1:event}.metaKey"],
-    ["deferred.state()\tjQuery - Deferred Object", "${1:deferred}.state()"],
-    [".index()\tjQuery - Miscellaneous > DOM Element Methods", ".index()"],
-    [".globalEval( code )\tjQuery - Utilities", ".globalEval(${1:code})"],
-    [".text()\tjQuery - Manipulation > DOM Insertion, Inside", ".text()"],
-    ["event.result\tjQuery - Events > Event Object", "${1:event}.result"],
-    ["event.target\tjQuery - Events > Event Object", "${1:event}.target"],
-    [".isNumeric( value )\tjQuery - Utilities", ".isNumeric(${1:value})"],
-    [".eq( index )\tjQuery - Traversing > Filtering", ".eq(${1:index})"],
-    [".currentTarget\tjQuery - Events > Event Object", ".currentTarget"],
-    [".end()\tjQuery - Traversing > Miscellaneous Traversing", ".end()"],
-    [".relatedTarget\tjQuery - Events > Event Object", ".relatedTarget"],
-    ["event.pageX\tjQuery - Events > Event Object", "${1:event}.pageX"],
-    [".notify( args )\tjQuery - Deferred Object", ".notify(${1:args})"],
-    ["event.which\tjQuery - Events > Event Object", "${1:event}.which"],
-    [".isFunction( obj )\tjQuery - Utilities", ".isFunction(${1:obj})"],
-    [".parseJSON( json )\tjQuery - Utilities", ".parseJSON(${1:json})"],
-    ["event.pageY\tjQuery - Events > Event Object", "${1:event}.pageY"],
-    [".parseXML( data )\tjQuery - Utilities", ".parseXML(${1:data})"],
-    ["event.type\tjQuery - Events > Event Object", "${1:event}.type"],
-    ["event.data\tjQuery - Events > Event Object", "${1:event}.data"],
-    [".isXMLDoc( node )\tjQuery - Utilities", ".isXMLDoc(${1:node})"],
-    [".makeArray( obj )\tjQuery - Utilities", ".makeArray(${1:obj})"],
-    [".error( message )\tjQuery - Internals", ".error(${1:message})"],
-    [".hasData( element )\tjQuery - Data", ".hasData(${1:element})"],
-    [".isWindow( obj )\tjQuery - Utilities", ".isWindow(${1:obj})"],
-    [".unique( array )\tjQuery - Utilities", ".unique(${1:array})"],
-    [".holdReady( hold )\tjQuery - Core", ".holdReady(${1:hold})"],
-    [".empty()\tjQuery - Manipulation > DOM Removal", ".empty()"],
-    [".isArray( obj )\tjQuery - Utilities", ".isArray(${1:obj})"],
-    [".timeStamp\tjQuery - Events > Event Object", ".timeStamp"],
-    [".namespace\tjQuery - Events > Event Object", ".namespace"],
-    ["jQuery.noop()\tjQuery - Utilities", "${1:jQuery}.noop()"],
-    [".first()\tjQuery - Traversing > Filtering", ".first()"],
-    ["jQuery.cssHooks\tjQuery - CSS", "${1:jQuery}.cssHooks"],
-    [".disabled()\tjQuery - Callbacks Object", ".disabled()"],
-    ["jQuery.now()\tjQuery - Utilities", "${1:jQuery}.now()"],
-    [".metaKey\tjQuery - Events > Event Object", ".metaKey"],
-    [".disable()\tjQuery - Callbacks Object", ".disable()"],
-    [".last()\tjQuery - Traversing > Filtering", ".last()"],
-    [".type( obj )\tjQuery - Utilities", ".type(${1:obj})"],
-    [".trim( str )\tjQuery - Utilities", ".trim(${1:str})"],
-    [".result\tjQuery - Events > Event Object", ".result"],
-    [".target\tjQuery - Events > Event Object", ".target"],
-    [".locked()\tjQuery - Callbacks Object", ".locked()"],
-    [".which\tjQuery - Events > Event Object", ".which"],
-    [".pageX\tjQuery - Events > Event Object", ".pageX"],
-    [".pageY\tjQuery - Events > Event Object", ".pageY"],
-    [".empty()\tjQuery - Callbacks Object", ".empty()"],
-    [".fired()\tjQuery - Callbacks Object", ".fired()"],
-    [".state()\tjQuery - Deferred Object", ".state()"],
-    [".data\tjQuery - Events > Event Object", ".data"],
-    [".type\tjQuery - Events > Event Object", ".type"],
-    [".show()\tjQuery - Effects > Basics", ".show()"],
-    [".lock()\tjQuery - Callbacks Object", ".lock()"],
-    [".hide()\tjQuery - Effects > Basics", ".hide()"],
-    [".noop()\tjQuery - Utilities", ".noop()"],
-    [".now()\tjQuery - Utilities", ".now()"],
-    [".cssHooks\tjQuery - CSS", ".cssHooks"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"on( events: String, selector?: String, data?: Anything, handler: Function( Event eventObject [, Anything extraParameter ] [, ... ] ) ): jQuery\tjQuery - Events > Event Handler Attachment",
+			"on(${1:events: String}, ${2:selector?: String}, ${3:data?: Anything}, ${4:handler: Function( Event eventObject [, Anything extraParameter ] [, ... ] )})"
+		],
+		[
+			"prepend( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Inside",
+			"prepend(${1:content: htmlString or Element or Text or Array or jQuery}, ${2:content?: htmlString or Element or Text or Array or jQuery})"
+		],
+		[
+			"before( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Outside",
+			"before(${1:content: htmlString or Element or Text or Array or jQuery}, ${2:content?: htmlString or Element or Text or Array or jQuery})"
+		],
+		[
+			"post( url: String, data?: PlainObject or String, success?: Function( PlainObject data, String textStatus, jqXHR jqXHR ), dataType?: String ): jqXHR\tjQuery - Ajax > Shorthand Methods",
+			"post(${1:url: String}, ${2:data?: PlainObject or String}, ${3:success?: Function( PlainObject data, String textStatus, jqXHR jqXHR )}, ${4:dataType?: String})"
+		],
+		[
+			"after( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Outside",
+			"after(${1:content: htmlString or Element or Text or Array or jQuery}, ${2:content?: htmlString or Element or Text or Array or jQuery})"
+		],
+		[
+			"append( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Inside",
+			"append(${1:content: htmlString or Element or Text or Array or jQuery}, ${2:content?: htmlString or Element or Text or Array or jQuery})"
+		],
+		[
+			"get( url: String, data?: PlainObject or String, success?: Function( PlainObject data, String textStatus, jqXHR jqXHR ), dataType?: String ): jqXHR\tjQuery - Ajax > Shorthand Methods",
+			"get(${1:url: String}, ${2:data?: PlainObject or String}, ${3:success?: Function( PlainObject data, String textStatus, jqXHR jqXHR )}, ${4:dataType?: String})"
+		],
+		[
+			"animate( properties: PlainObject, duration (default: 400)?: Number or String, easing (default: swing)?: String, complete?: Function() ): jQuery\tjQuery - Effects > Custom",
+			"animate(${1:properties: PlainObject}, ${2:duration (default: 400)?: Number or String}, ${3:easing (default: swing)?: String}, ${4:complete?: Function()})"
+		],
+		[
+			"load( url: String, data?: PlainObject or String, complete?: Function( String responseText, String textStatus, jqXHR jqXHR ) ): jQuery\tjQuery - Ajax > Shorthand Methods",
+			"load(${1:url: String}, ${2:data?: PlainObject or String}, ${3:complete?: Function( String responseText, String textStatus, jqXHR jqXHR )})"
+		],
+		[
+			"ajaxPrefilter( dataTypes?: String, handler: Function( PlainObject options, PlainObject originalOptions, jqXHR jqXHR ) ): undefined\tjQuery - Ajax > Low-Level Interface",
+			"ajaxPrefilter(${1:dataTypes?: String}, ${2:handler: Function( PlainObject options, PlainObject originalOptions, jqXHR jqXHR )})"
+		],
+		[
+			"getJSON( url: String, data?: PlainObject or String, success?: Function( PlainObject data, String textStatus, jqXHR jqXHR ) ): jqXHR\tjQuery - Ajax > Shorthand Methods",
+			"getJSON(${1:url: String}, ${2:data?: PlainObject or String}, ${3:success?: Function( PlainObject data, String textStatus, jqXHR jqXHR )})"
+		],
+		[
+			"ajaxTransport( dataType: String, handler: Function( PlainObject options, PlainObject originalOptions, jqXHR jqXHR ) ): undefined\tjQuery - Ajax > Low-Level Interface",
+			"ajaxTransport(${1:dataType: String}, ${2:handler: Function( PlainObject options, PlainObject originalOptions, jqXHR jqXHR )})"
+		],
+		[
+			"grep( array: ArrayLikeObject, function: Function( Object elementOfArray, Integer indexInArray )\n\t\t\t=>\n\t\t\tBoolean, invert?: Boolean ): Array\tjQuery - Utilities",
+			"grep(${1:array: ArrayLikeObject}, ${2:function: Function( Object elementOfArray, Integer indexInArray )\n\t\t\t=>\n\t\t\tBoolean}, ${3:invert?: Boolean})"
+		],
+		[
+			"fadeToggle( duration (default: 400)?: Number or String, easing (default: swing)?: String, complete?: Function() ): jQuery\tjQuery - Effects | Effects > Fading",
+			"fadeToggle(${1:duration (default: 400)?: Number or String}, ${2:easing (default: swing)?: String}, ${3:complete?: Function()})"
+		],
+		[
+			"ajaxError( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxSettings, String thrownError ) ): jQuery\tjQuery - Ajax > Global Ajax Event Handlers",
+			"ajaxError(${1:handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxSettings, String thrownError )})"
+		],
+		[
+			"ajaxSuccess( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions, PlainObject data ) ): jQuery\tjQuery - Ajax > Global Ajax Event Handlers",
+			"ajaxSuccess(${1:handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions, PlainObject data )})"
+		],
+		[
+			"ajaxComplete( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions ) ): jQuery\tjQuery - Ajax > Global Ajax Event Handlers",
+			"ajaxComplete(${1:handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions )})"
+		],
+		[
+			"param( obj: Array or PlainObject or jQuery ): String\tjQuery - Miscellaneous > Collection Manipulation | Forms | Ajax > Helper Functions",
+			"param(${1:obj: Array or PlainObject or jQuery})"
+		],
+		[
+			"getScript( url: String, success?: Function( String script, String textStatus, jqXHR jqXHR ) ): jqXHR\tjQuery - Ajax > Shorthand Methods",
+			"getScript(${1:url: String}, ${2:success?: Function( String script, String textStatus, jqXHR jqXHR )})"
+		],
+		[
+			"ajaxSend( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions ) ): jQuery\tjQuery - Ajax > Global Ajax Event Handlers",
+			"ajaxSend(${1:handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions )})"
+		],
+		[
+			"off( events: String, selector?: String, handler?: Function( Event eventObject ) ): jQuery\tjQuery - Events > Event Handler Attachment",
+			"off(${1:events: String}, ${2:selector?: String}, ${3:handler?: Function( Event eventObject )})"
+		],
+		[
+			"one( events: String, data?: PlainObject, handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Event Handler Attachment",
+			"one(${1:events: String}, ${2:data?: PlainObject}, ${3:handler: Function( Event eventObject )})"
+		],
+		[
+			"insertBefore( target: Selector or htmlString or Element or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Outside",
+			"insertBefore(${1:target: Selector or htmlString or Element or Array or jQuery})"
+		],
+		[
+			"hover( handlerIn: Function( Event eventObject ), handlerOut: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"hover(${1:handlerIn: Function( Event eventObject )}, ${2:handlerOut: Function( Event eventObject )})"
+		],
+		[
+			"parseHTML( data: String, context (default: document)?: Element, keepScripts (default: false)?: Boolean ): Array\tjQuery - Utilities",
+			"parseHTML(${1:data: String}, ${2:context (default: document)?: Element}, ${3:keepScripts (default: false)?: Boolean})"
+		],
+		[
+			"insertAfter( target: Selector or htmlString or Element or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Outside",
+			"insertAfter(${1:target: Selector or htmlString or Element or Array or jQuery})"
+		],
+		[
+			"each( function: Function( Integer index, Element element ) ): jQuery\tjQuery - Miscellaneous > Collection Manipulation | Traversing",
+			"each(${1:function: Function( Integer index, Element element )})"
+		],
+		[
+			"map( array: Array, callback: Function( Object elementOfArray, Integer indexInArray )\n\t\t\t=>\n\t\t\tObject ): Array\tjQuery - Utilities",
+			"map(${1:array: Array}, ${2:callback: Function( Object elementOfArray, Integer indexInArray )\n\t\t\t=>\n\t\t\tObject})"
+		],
+		[
+			"prependTo( target: Selector or htmlString or Element or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Inside",
+			"prependTo(${1:target: Selector or htmlString or Element or Array or jQuery})"
+		],
+		[
+			"wrapInner( wrappingElement: htmlString or Selector or jQuery or Element ): jQuery\tjQuery - Manipulation > DOM Insertion, Around",
+			"wrapInner(${1:wrappingElement: htmlString or Selector or jQuery or Element})"
+		],
+		[
+			"attr( attributeName: String, value: String or Number or Null ): jQuery\tjQuery - Attributes | Manipulation > General Attributes",
+			"attr(${1:attributeName: String}, ${2:value: String or Number or Null})"
+		],
+		[
+			"triggerHandler( eventType: String, extraParameters?: Array or PlainObject ): Object\tjQuery - Events > Event Handler Attachment",
+			"triggerHandler(${1:eventType: String}, ${2:extraParameters?: Array or PlainObject})"
+		],
+		[
+			"progress( progressCallbacks: Function() or Array, progressCallbacks?: Function() or Array ): Deferred\tjQuery - Deferred Object",
+			"progress(${1:progressCallbacks: Function() or Array}, ${2:progressCallbacks?: Function() or Array})"
+		],
+		[
+			"appendTo( target: Selector or htmlString or Element or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Inside",
+			"appendTo(${1:target: Selector or htmlString or Element or Array or jQuery})"
+		],
+		[
+			"not( selector: Selector or Element or Array ): jQuery\tjQuery - Traversing > Filtering | Traversing > Miscellaneous Traversing",
+			"not(${1:selector: Selector or Element or Array})"
+		],
+		[
+			"wrapAll( wrappingElement: Selector or htmlString or Element or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Around",
+			"wrapAll(${1:wrappingElement: Selector or htmlString or Element or jQuery})"
+		],
+		[
+			"outerHeight( includeMargin (default: false)?: Boolean ): Number\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"outerHeight(${1:includeMargin (default: false)?: Boolean})"
+		],
+		[
+			"outerWidth( includeMargin (default: false)?: Boolean ): Number\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"outerWidth(${1:includeMargin (default: false)?: Boolean})"
+		],
+		[
+			"wrap( wrappingElement: Selector or htmlString or Element or jQuery ): jQuery\tjQuery - Manipulation > DOM Insertion, Around",
+			"wrap(${1:wrappingElement: Selector or htmlString or Element or jQuery})"
+		],
+		[
+			"trigger( eventType: String, extraParameters?: Array or PlainObject ): jQuery\tjQuery - Events > Event Handler Attachment",
+			"trigger(${1:eventType: String}, ${2:extraParameters?: Array or PlainObject})"
+		],
+		[
+			"then( doneFilter: Function(), failFilter?: Function(), progressFilter?: Function() ): Promise\tjQuery - Deferred Object",
+			"then(${1:doneFilter: Function()}, ${2:failFilter?: Function()}, ${3:progressFilter?: Function()})"
+		],
+		[
+			"map( callback: Function( Integer index, Element domElement )\n\t\t\t=>\n\t\t\tObject ): jQuery\tjQuery - Traversing > Filtering",
+			"map(${1:callback: Function( Integer index, Element domElement )\n\t\t\t=>\n\t\t\tObject})"
+		],
+		[
+			"stop( clearQueue (default: false)?: Boolean, jumpToEnd (default: false)?: Boolean ): jQuery\tjQuery - Effects > Custom",
+			"stop(${1:clearQueue (default: false)?: Boolean}, ${2:jumpToEnd (default: false)?: Boolean})"
+		],
+		[
+			"proxy( function: Function(), context: PlainObject ): Function\tjQuery - Events > Event Handler Attachment | Utilities",
+			"proxy(${1:function: Function()}, ${2:context: PlainObject})"
+		],
+		[
+			"slideToggle( duration (default: 400)?: Number or String, complete?: Function() ): jQuery\tjQuery - Effects > Sliding",
+			"slideToggle(${1:duration (default: 400)?: Number or String}, ${2:complete?: Function()})"
+		],
+		[
+			"replaceWith( newContent: htmlString or Element or Array or jQuery ): jQuery\tjQuery - Manipulation > DOM Replacement",
+			"replaceWith(${1:newContent: htmlString or Element or Array or jQuery})"
+		],
+		[
+			"speed( duration (default: 400)?: Number or String, settings?: PlainObject ): PlainObject\tjQuery - Effects > Custom",
+			"speed(${1:duration (default: 400)?: Number or String}, ${2:settings?: PlainObject})"
+		],
+		[
+			"slideDown( duration (default: 400)?: Number or String, complete?: Function() ): jQuery\tjQuery - Effects > Sliding",
+			"slideDown(${1:duration (default: 400)?: Number or String}, ${2:complete?: Function()})"
+		],
+		[
+			"val( value: String or Number or Array ): jQuery\tjQuery - Attributes | Forms | Manipulation > General Attributes",
+			"val(${1:value: String or Number or Array})"
+		],
+		[
+			"slideUp( duration (default: 400)?: Number or String, complete?: Function() ): jQuery\tjQuery - Effects > Sliding",
+			"slideUp(${1:duration (default: 400)?: Number or String}, ${2:complete?: Function()})"
+		],
+		[
+			"fadeTo( duration: String or Number, opacity: Number, complete?: Function() ): jQuery\tjQuery - Effects > Fading",
+			"fadeTo(${1:duration: String or Number}, ${2:opacity: Number}, ${3:complete?: Function()})"
+		],
+		[
+			"fadeOut( duration (default: 400)?: Number or String, complete?: Function() ): jQuery\tjQuery - Effects > Fading",
+			"fadeOut(${1:duration (default: 400)?: Number or String}, ${2:complete?: Function()})"
+		],
+		[
+			"toggle( duration (default: 400)?: Number or String, complete?: Function() ): jQuery\tjQuery - Effects > Basics",
+			"toggle(${1:duration (default: 400)?: Number or String}, ${2:complete?: Function()})"
+		],
+		[
+			"prop( propertyName: String, value: Anything ): jQuery\tjQuery - Attributes | Manipulation > General Attributes",
+			"prop(${1:propertyName: String}, ${2:value: Anything})"
+		],
+		[
+			"fadeIn( duration (default: 400)?: Number or String, complete?: Function() ): jQuery\tjQuery - Effects > Fading",
+			"fadeIn(${1:duration (default: 400)?: Number or String}, ${2:complete?: Function()})"
+		],
+		[
+			"replaceAll( target: Selector or jQuery or Array or Element ): jQuery\tjQuery - Manipulation > DOM Replacement",
+			"replaceAll(${1:target: Selector or jQuery or Array or Element})"
+		],
+		[
+			"css( propertyName: String, value: String or Number ): jQuery\tjQuery - CSS | Manipulation > Style Properties",
+			"css(${1:propertyName: String}, ${2:value: String or Number})"
+		],
+		[
+			"innerHeight( value: String or Number ): jQuery\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"innerHeight(${1:value: String or Number})"
+		],
+		[
+			"outerHeight( value: String or Number ): jQuery\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"outerHeight(${1:value: String or Number})"
+		],
+		[
+			"innerWidth( value: String or Number ): jQuery\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"innerWidth(${1:value: String or Number})"
+		],
+		[
+			"outerWidth( value: String or Number ): jQuery\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"outerWidth(${1:value: String or Number})"
+		],
+		[
+			"each( array: Array, callback: Function( Integer indexInArray, Object value ) ): Object\tjQuery - Utilities",
+			"each(${1:array: Array}, ${2:callback: Function( Integer indexInArray, Object value )})"
+		],
+		[
+			"always( alwaysCallbacks: Function(), alwaysCallbacks?: Function() ): Deferred\tjQuery - Deferred Object",
+			"always(${1:alwaysCallbacks: Function()}, ${2:alwaysCallbacks?: Function()})"
+		],
+		[
+			"height( value: String or Number ): jQuery\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"height(${1:value: String or Number})"
+		],
+		[
+			"removeClass( className?: String ): jQuery\tjQuery - Attributes | Manipulation > Class Attribute | CSS",
+			"removeClass(${1:className?: String})"
+		],
+		[
+			"width( value: String or Number ): jQuery\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"width(${1:value: String or Number})"
+		],
+		[
+			"parentsUntil( selector?: Selector, filter?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"parentsUntil(${1:selector?: Selector}, ${2:filter?: Selector})"
+		],
+		[
+			"removeAttr( attributeName: String ): jQuery\tjQuery - Attributes | Manipulation > General Attributes",
+			"removeAttr(${1:attributeName: String})"
+		],
+		[
+			"toggleClass( className: String ): jQuery\tjQuery - Attributes | Manipulation > Class Attribute | CSS",
+			"toggleClass(${1:className: String})"
+		],
+		[
+			"removeProp( propertyName: String ): jQuery\tjQuery - Attributes | Manipulation > General Attributes",
+			"removeProp(${1:propertyName: String})"
+		],
+		[
+			"offset( coordinates: PlainObject ): jQuery\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"offset(${1:coordinates: PlainObject})"
+		],
+		[
+			"toggleClass( state?: Boolean ): jQuery\tjQuery - Attributes | Manipulation > Class Attribute | CSS",
+			"toggleClass(${1:state?: Boolean})"
+		],
+		[
+			"html( htmlString: htmlString ): jQuery\tjQuery - Attributes | Manipulation > DOM Insertion, Inside",
+			"html(${1:htmlString: htmlString})"
+		],
+		[
+			"queue( queueName?: String, newQueue: Array ): jQuery\tjQuery - Effects > Custom | Data | Utilities",
+			"queue(${1:queueName?: String}, ${2:newQueue: Array})"
+		],
+		[
+			"hasClass( className: String ): Boolean\tjQuery - Attributes | Manipulation > Class Attribute | CSS",
+			"hasClass(${1:className: String})"
+		],
+		[
+			"fail( failCallbacks: Function(), failCallbacks?: Function() ): Deferred\tjQuery - Deferred Object",
+			"fail(${1:failCallbacks: Function()}, ${2:failCallbacks?: Function()})"
+		],
+		[
+			"addClass( className: String ): jQuery\tjQuery - Attributes | Manipulation > Class Attribute | CSS",
+			"addClass(${1:className: String})"
+		],
+		[
+			"val(): String or Number or Array\tjQuery - Attributes | Forms | Manipulation > General Attributes",
+			"val()"
+		],
+		[
+			"nextUntil( selector?: Selector, filter?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"nextUntil(${1:selector?: Selector}, ${2:filter?: Selector})"
+		],
+		[
+			"focusout( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"focusout(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"prevUntil( selector?: Selector, filter?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"prevUntil(${1:selector?: Selector}, ${2:filter?: Selector})"
+		],
+		[
+			"done( doneCallbacks: Function(), doneCallbacks?: Function() ): Deferred\tjQuery - Deferred Object",
+			"done(${1:doneCallbacks: Function()}, ${2:doneCallbacks?: Function()})"
+		],
+		[
+			"focusin( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"focusin(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"text( text: String or Number or Boolean ): jQuery\tjQuery - Manipulation > DOM Insertion, Inside",
+			"text(${1:text: String or Number or Boolean})"
+		],
+		[
+			"queue( element: Element, queueName: String, newQueue: Array ): jQuery\tjQuery - Data | Utilities",
+			"queue(${1:element: Element}, ${2:queueName: String}, ${3:newQueue: Array})"
+		],
+		[
+			"submit( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"submit(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"select( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"select(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"change( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"change(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"prop( propertyName: String ): Anything\tjQuery - Attributes | Manipulation > General Attributes",
+			"prop(${1:propertyName: String})"
+		],
+		[
+			"promise( type (default: fx)?: String, target?: PlainObject ): Promise\tjQuery - Deferred Object",
+			"promise(${1:type (default: fx)?: String}, ${2:target?: PlainObject})"
+		],
+		[
+			"attr( attributeName: String ): String\tjQuery - Attributes | Manipulation > General Attributes",
+			"attr(${1:attributeName: String})"
+		],
+		[
+			"focus( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"focus(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"clone( withDataAndEvents (default: false)?: Boolean ): jQuery\tjQuery - Manipulation > Copying",
+			"clone(${1:withDataAndEvents (default: false)?: Boolean})"
+		],
+		[
+			"parseJSON( json: String ): String or Number or Object or Array or Boolean\tjQuery - Utilities",
+			"parseJSON(${1:json: String})"
+		],
+		[
+			"keypress( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Keyboard Events",
+			"keypress(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"blur( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Form Events | Forms",
+			"blur(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"contextmenu( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"contextmenu(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"unwrap(): jQuery\tjQuery - Manipulation > DOM Insertion, Around | Manipulation > DOM Removal",
+			"unwrap()"
+		],
+		[
+			"fx: Boolean\tjQuery - Effects > Custom | Properties > Properties of the Global jQuery Object",
+			"fx"
+		],
+		[
+			"hover( handlerInOut: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"hover(${1:handlerInOut: Function( Event eventObject )})"
+		],
+		[
+			"scrollLeft( value: Number ): jQuery\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"scrollLeft(${1:value: Number})"
+		],
+		[
+			"keydown( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Keyboard Events",
+			"keydown(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"mouseenter( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mouseenter(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"mouseleave( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mouseleave(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"mousemove( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mousemove(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"mouseover( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mouseover(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"closest( selectors: Array, context?: Element ): Array\tjQuery - Traversing > Tree Traversal",
+			"closest(${1:selectors: Array}, ${2:context?: Element})"
+		],
+		[
+			"scrollTop( value: Number ): jQuery\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"scrollTop(${1:value: Number})"
+		],
+		[
+			"mousedown( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mousedown(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"Deferred( beforeStart?: Function( Deferred deferred ) ): Deferred\tjQuery - Deferred Object",
+			"Deferred(${1:beforeStart?: Function( Deferred deferred )})"
+		],
+		[
+			"keyup( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Keyboard Events",
+			"keyup(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"dblclick( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"dblclick(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"scroll( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Browser Events",
+			"scroll(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"mouseout( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mouseout(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"data( key: String, value: Anything ): jQuery\tjQuery - Data | Miscellaneous > Data Storage",
+			"data(${1:key: String}, ${2:value: Anything})"
+		],
+		[
+			"resize( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Browser Events",
+			"resize(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"mouseup( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"mouseup(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"data( element: Element, key: String, value: Anything ): Object\tjQuery - Data | Utilities",
+			"data(${1:element: Element}, ${2:key: String}, ${3:value: Anything})"
+		],
+		[
+			"inArray( value: Anything, array: Array, fromIndex?: Number ): Number\tjQuery - Utilities",
+			"inArray(${1:value: Anything}, ${2:array: Array}, ${3:fromIndex?: Number})"
+		],
+		[
+			"noConflict( removeAll?: Boolean ): Object\tjQuery - Core | Miscellaneous > Setup Methods",
+			"noConflict(${1:removeAll?: Boolean})"
+		],
+		[
+			"extend( target: Object, object1?: Object, objectN?: Object ): Object\tjQuery - Utilities",
+			"extend(${1:target: Object}, ${2:object1?: Object}, ${3:objectN?: Object})"
+		],
+		[
+			"click( handler: Function( Event eventObject ) ): jQuery\tjQuery - Events > Mouse Events",
+			"click(${1:handler: Function( Event eventObject )})"
+		],
+		[
+			"ajax( url: String, settings?: PlainObject ): jqXHR\tjQuery - Ajax > Low-Level Interface",
+			"ajax(${1:url: String}, ${2:settings?: PlainObject})"
+		],
+		[
+			"jquery: String\tjQuery - Internals | Properties > Properties of jQuery Object Instances",
+			"jquery"
+		],
+		[
+			"addBack( selector?: Selector ): jQuery\tjQuery - Traversing > Miscellaneous Traversing",
+			"addBack(${1:selector?: Selector})"
+		],
+		[
+			"clearQueue( queueName?: String ): jQuery\tjQuery - Effects > Custom | Data | Utilities",
+			"clearQueue(${1:queueName?: String})"
+		],
+		[
+			"dequeue( element: Element, queueName?: String ): undefined\tjQuery - Data | Utilities",
+			"dequeue(${1:element: Element}, ${2:queueName?: String})"
+		],
+		[
+			"ajaxStart( handler: Function() ): jQuery\tjQuery - Ajax > Global Ajax Event Handlers",
+			"ajaxStart(${1:handler: Function()})"
+		],
+		[
+			"css( propertyName: String ): String\tjQuery - CSS | Manipulation > Style Properties",
+			"css(${1:propertyName: String})"
+		],
+		[
+			"merge( first: ArrayLikeObject, second: ArrayLikeObject ): Array\tjQuery - Utilities",
+			"merge(${1:first: ArrayLikeObject}, ${2:second: ArrayLikeObject})"
+		],
+		[
+			"dequeue( queueName?: String ): jQuery\tjQuery - Effects > Custom | Data | Utilities",
+			"dequeue(${1:queueName?: String})"
+		],
+		[
+			"ajaxStop( handler: Function() ): jQuery\tjQuery - Ajax > Global Ajax Event Handlers",
+			"ajaxStop(${1:handler: Function()})"
+		],
+		[
+			"innerHeight(): Number\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"innerHeight()"
+		],
+		[
+			"delay( duration: Integer, queueName?: String ): jQuery\tjQuery - Effects > Custom",
+			"delay(${1:duration: Integer}, ${2:queueName?: String})"
+		],
+		[
+			"innerWidth(): Number\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"innerWidth()"
+		],
+		[
+			"removeData( name?: String ): jQuery\tjQuery - Data | Miscellaneous > Data Storage",
+			"removeData(${1:name?: String})"
+		],
+		[
+			"add( selector: Selector ): jQuery\tjQuery - Traversing > Miscellaneous Traversing",
+			"add(${1:selector: Selector})"
+		],
+		[
+			"queue( queueName?: String ): Array\tjQuery - Effects > Custom | Data | Utilities",
+			"queue(${1:queueName?: String})"
+		],
+		[
+			"resolveWith( context: Object, args?: Array ): Deferred\tjQuery - Deferred Object",
+			"resolveWith(${1:context: Object}, ${2:args?: Array})"
+		],
+		[
+			"removeData( element: Element, name?: String ): jQuery\tjQuery - Data | Utilities",
+			"removeData(${1:element: Element}, ${2:name?: String})"
+		],
+		[
+			"jQuery( selector: Selector, context?: Element or jQuery ): jQuery\tjQuery - Core",
+			"jQuery(${1:selector: Selector}, ${2:context?: Element or jQuery})"
+		],
+		[
+			"rejectWith( context: Object, args?: Array ): Deferred\tjQuery - Deferred Object",
+			"rejectWith(${1:context: Object}, ${2:args?: Array})"
+		],
+		[
+			"contains( container: Element, contained: Element ): Boolean\tjQuery - Utilities",
+			"contains(${1:container: Element}, ${2:contained: Element})"
+		],
+		[
+			"queue( element: Element, queueName?: String ): Array\tjQuery - Data | Utilities",
+			"queue(${1:element: Element}, ${2:queueName?: String})"
+		],
+		[
+			"notifyWith( context: Object, args?: Array ): Deferred\tjQuery - Deferred Object",
+			"notifyWith(${1:context: Object}, ${2:args?: Array})"
+		],
+		[
+			"slice( start: Integer, end?: Integer ): jQuery\tjQuery - Traversing > Filtering",
+			"slice(${1:start: Integer}, ${2:end?: Integer})"
+		],
+		[
+			"scrollLeft(): Integer\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"scrollLeft()"
+		],
+		[
+			"remove( callbacks: Function() or Array ): Callbacks\tjQuery - Callbacks Object",
+			"remove(${1:callbacks: Function() or Array})"
+		],
+		[
+			"siblings( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"siblings(${1:selector?: Selector})"
+		],
+		[
+			"children( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"children(${1:selector?: Selector})"
+		],
+		[
+			"height(): Number\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"height()"
+		],
+		[
+			"length: Integer\tjQuery - Properties > Properties of jQuery Object Instances",
+			"length"
+		],
+		[
+			"scrollTop(): Number\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"scrollTop()"
+		],
+		[
+			"width(): Number\tjQuery - CSS | Dimensions | Manipulation > Style Properties",
+			"width()"
+		],
+		[
+			"prevAll( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"prevAll(${1:selector?: Selector})"
+		],
+		[
+			"get( index: Integer ): Element\tjQuery - Miscellaneous > DOM Element Methods",
+			"get(${1:index: Integer})"
+		],
+		[
+			"parents( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"parents(${1:selector?: Selector})"
+		],
+		[
+			"parent( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"parent(${1:selector?: Selector})"
+		],
+		[
+			"position(): Object\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"position()"
+		],
+		[
+			"add( callbacks: Function() or Array ): Callbacks\tjQuery - Callbacks Object",
+			"add(${1:callbacks: Function() or Array})"
+		],
+		[
+			"jQuery( html: htmlString, ownerDocument?: document ): jQuery\tjQuery - Core",
+			"jQuery(${1:html: htmlString}, ${2:ownerDocument?: document})"
+		],
+		[
+			"closest( selector: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"closest(${1:selector: Selector})"
+		],
+		[
+			"finish( queue (default: 'fx')?: String ): jQuery\tjQuery - Effects > Custom",
+			"finish(${1:queue (default: 'fx')?: String})"
+		],
+		[
+			"html(): String\tjQuery - Attributes | Manipulation > DOM Insertion, Inside",
+			"html()"
+		],
+		[
+			"nextAll( selector?: String ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"nextAll(${1:selector?: String})"
+		],
+		[
+			"detach( selector?: Selector ): jQuery\tjQuery - Manipulation > DOM Removal",
+			"detach(${1:selector?: Selector})"
+		],
+		[
+			"offset(): Object\tjQuery - CSS | Offset | Manipulation > Style Properties",
+			"offset()"
+		],
+		[
+			"data( key: String ): Object\tjQuery - Data | Miscellaneous > Data Storage",
+			"data(${1:key: String})"
+		],
+		[
+			"next( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"next(${1:selector?: Selector})"
+		],
+		[
+			"prev( selector?: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"prev(${1:selector?: Selector})"
+		],
+		[
+			"isImmediatePropagationStopped(): Boolean\tjQuery - Events > Event Object",
+			"isImmediatePropagationStopped()"
+		],
+		[
+			"find( selector: Selector ): jQuery\tjQuery - Traversing > Tree Traversal",
+			"find(${1:selector: Selector})"
+		],
+		[
+			"ajaxSetup( options: PlainObject ): \tjQuery - Ajax > Low-Level Interface",
+			"ajaxSetup(${1:options: PlainObject})"
+		],
+		[
+			"remove( selector?: String ): jQuery\tjQuery - Manipulation > DOM Removal",
+			"remove(${1:selector?: String})"
+		],
+		[
+			"data( element: Element, key: String ): Object\tjQuery - Data | Utilities",
+			"data(${1:element: Element}, ${2:key: String})"
+		],
+		[
+			"ready( handler: Function() ): jQuery\tjQuery - Events > Document Loading",
+			"ready(${1:handler: Function()})"
+		],
+		[
+			"filter( selector: Selector ): jQuery\tjQuery - Traversing > Filtering",
+			"filter(${1:selector: Selector})"
+		],
+		[
+			"fireWith( context?: , args?:  ): Callbacks\tjQuery - Callbacks Object",
+			"fireWith(${1:context?: }, ${2:args?: })"
+		],
+		[
+			"when( deferreds: Deferred ): Promise\tjQuery - Core | Deferred Object",
+			"when(${1:deferreds: Deferred})"
+		],
+		[
+			"offsetParent(): jQuery\tjQuery - Offset | Traversing > Tree Traversal",
+			"offsetParent()"
+		],
+		[
+			"contents(): jQuery\tjQuery - Traversing > Miscellaneous Traversing",
+			"contents()"
+		],
+		[
+			"is( selector: Selector ): Boolean\tjQuery - Traversing > Filtering",
+			"is(${1:selector: Selector})"
+		],
+		[
+			"serializeArray(): Array\tjQuery - Forms | Ajax > Helper Functions",
+			"serializeArray()"
+		],
+		[
+			"fire( arguments: Anything ): Callbacks\tjQuery - Callbacks Object",
+			"fire(${1:arguments: Anything})"
+		],
+		[
+			"isPlainObject( object: PlainObject ): Boolean\tjQuery - Utilities",
+			"isPlainObject(${1:object: PlainObject})"
+		],
+		[
+			"cssNumber: Object\tjQuery - CSS | Manipulation > Style Properties",
+			"cssNumber"
+		],
+		[
+			"Callbacks( flags: String ): Callbacks\tjQuery - Callbacks Object",
+			"Callbacks(${1:flags: String})"
+		],
+		[
+			"has( selector: String ): jQuery\tjQuery - Traversing > Filtering",
+			"has(${1:selector: String})"
+		],
+		[
+			"has( callback?: Function() ): Boolean\tjQuery - Callbacks Object",
+			"has(${1:callback?: Function()})"
+		],
+		[
+			"delegateTarget: Element\tjQuery - Events > Event Object | Events",
+			"delegateTarget"
+		],
+		[
+			"isPropagationStopped(): Boolean\tjQuery - Events > Event Object",
+			"isPropagationStopped()"
+		],
+		[
+			"toArray(): Array\tjQuery - Miscellaneous > DOM Element Methods",
+			"toArray()"
+		],
+		[
+			"index(): Integer\tjQuery - Miscellaneous > DOM Element Methods",
+			"index()"
+		],
+		[
+			"resolve( args?: Anything ): Deferred\tjQuery - Deferred Object",
+			"resolve(${1:args?: Anything})"
+		],
+		[
+			"reject( args?: Anything ): Deferred\tjQuery - Deferred Object",
+			"reject(${1:args?: Anything})"
+		],
+		[
+			"isDefaultPrevented(): Boolean\tjQuery - Events > Event Object",
+			"isDefaultPrevented()"
+		],
+		[
+			"promise( target?: Object ): Promise\tjQuery - Deferred Object",
+			"promise(${1:target?: Object})"
+		],
+		[
+			"text(): String\tjQuery - Manipulation > DOM Insertion, Inside",
+			"text()"
+		],
+		[
+			"eq( index: Integer ): jQuery\tjQuery - Traversing > Filtering",
+			"eq(${1:index: Integer})"
+		],
+		[
+			"serialize(): String\tjQuery - Forms | Ajax > Helper Functions",
+			"serialize()"
+		],
+		[
+			"end(): jQuery\tjQuery - Traversing > Miscellaneous Traversing",
+			"end()"
+		],
+		[
+			"stopImmediatePropagation(): \tjQuery - Events > Event Object",
+			"stopImmediatePropagation()"
+		],
+		[
+			"escapeSelector( selector: Selector ): Selector\tjQuery - CSS",
+			"escapeSelector(${1:selector: Selector})"
+		],
+		[
+			"isEmptyObject( object: Object ): Boolean\tjQuery - Utilities",
+			"isEmptyObject(${1:object: Object})"
+		],
+		[
+			"htmlPrefilter( html: String ): String\tjQuery - Manipulation",
+			"htmlPrefilter(${1:html: String})"
+		],
+		[
+			"isFunction( obj: PlainObject ): boolean\tjQuery - Utilities",
+			"isFunction(${1:obj: PlainObject})"
+		],
+		[
+			"preventDefault(): undefined\tjQuery - Events > Event Object",
+			"preventDefault()"
+		],
+		[
+			"get(): Array\tjQuery - Miscellaneous > DOM Element Methods",
+			"get()"
+		],
+		[
+			"notify( args: Object ): Deferred\tjQuery - Deferred Object",
+			"notify(${1:args: Object})"
+		],
+		[
+			"parseXML( data: String ): XMLDocument\tjQuery - Utilities",
+			"parseXML(${1:data: String})"
+		],
+		[
+			"isWindow( obj: PlainObject ): boolean\tjQuery - Utilities",
+			"isWindow(${1:obj: PlainObject})"
+		],
+		[
+			"isNumeric( value: Anything ): Boolean\tjQuery - Utilities",
+			"isNumeric(${1:value: Anything})"
+		],
+		[
+			"pushStack( elements: Array ): jQuery\tjQuery - Internals",
+			"pushStack(${1:elements: Array})"
+		],
+		[
+			"makeArray( obj: PlainObject ): Array\tjQuery - Utilities",
+			"makeArray(${1:obj: PlainObject})"
+		],
+		[
+			"readyException( error: Error ): Selector\tjQuery - Core",
+			"readyException(${1:error: Error})"
+		],
+		[
+			"isXMLDoc( node: Element ): Boolean\tjQuery - Utilities",
+			"isXMLDoc(${1:node: Element})"
+		],
+		[
+			"currentTarget: Element\tjQuery - Events > Event Object",
+			"currentTarget"
+		],
+		[
+			"relatedTarget: Element\tjQuery - Events > Event Object",
+			"relatedTarget"
+		],
+		[
+			"jQuery( callback: Function() ): jQuery\tjQuery - Core",
+			"jQuery(${1:callback: Function()})"
+		],
+		[
+			"uniqueSort( array: Array ): Array\tjQuery - Utilities",
+			"uniqueSort(${1:array: Array})"
+		],
+		[
+			"empty(): jQuery\tjQuery - Manipulation > DOM Removal",
+			"empty()"
+		],
+		[
+			"holdReady( hold: Boolean ): undefined\tjQuery - Core",
+			"holdReady(${1:hold: Boolean})"
+		],
+		[
+			"hasData( element: Element ): Boolean\tjQuery - Data",
+			"hasData(${1:element: Element})"
+		],
+		[
+			"stopPropagation(): \tjQuery - Events > Event Object",
+			"stopPropagation()"
+		],
+		[
+			"isArray( obj: Object ): boolean\tjQuery - Utilities",
+			"isArray(${1:obj: Object})"
+		],
+		[
+			"namespace: String\tjQuery - Events > Event Object",
+			"namespace"
+		],
+		[
+			"type( obj: Anything ): String\tjQuery - Utilities",
+			"type(${1:obj: Anything})"
+		],
+		[
+			"unique( array: Array ): Array\tjQuery - Utilities",
+			"unique(${1:array: Array})"
+		],
+		[
+			"timeStamp: Number\tjQuery - Events > Event Object",
+			"timeStamp"
+		],
+		[
+			"globalEval( code: String ): \tjQuery - Utilities",
+			"globalEval(${1:code: String})"
+		],
+		[
+			"first(): jQuery\tjQuery - Traversing > Filtering",
+			"first()"
+		],
+		[
+			"metaKey: Boolean\tjQuery - Events > Event Object",
+			"metaKey"
+		],
+		[
+			"target: Element\tjQuery - Events > Event Object",
+			"target"
+		],
+		[
+			"last(): jQuery\tjQuery - Traversing > Filtering",
+			"last()"
+		],
+		[
+			"trim( str: String ): String\tjQuery - Utilities",
+			"trim(${1:str: String})"
+		],
+		[
+			"disable(): Callbacks\tjQuery - Callbacks Object",
+			"disable()"
+		],
+		[
+			"error( message: String ): \tjQuery - Internals",
+			"error(${1:message: String})"
+		],
+		[
+			"result: Object\tjQuery - Events > Event Object",
+			"result"
+		],
+		[
+			"disabled(): Boolean\tjQuery - Callbacks Object",
+			"disabled()"
+		],
+		[
+			"empty(): Callbacks\tjQuery - Callbacks Object",
+			"empty()"
+		],
+		[
+			"pageX: Number\tjQuery - Events > Event Object",
+			"pageX"
+		],
+		[
+			"pageY: Number\tjQuery - Events > Event Object",
+			"pageY"
+		],
+		[
+			"which: Number\tjQuery - Events > Event Object",
+			"which"
+		],
+		[
+			"locked(): Boolean\tjQuery - Callbacks Object",
+			"locked()"
+		],
+		[
+			"lock(): Callbacks\tjQuery - Callbacks Object",
+			"lock()"
+		],
+		[
+			"data: Object\tjQuery - Events > Event Object",
+			"data"
+		],
+		[
+			"type: String\tjQuery - Events > Event Object",
+			"type"
+		],
+		[
+			"fired(): Boolean\tjQuery - Callbacks Object",
+			"fired()"
+		],
+		[
+			"state(): String\tjQuery - Deferred Object",
+			"state()"
+		],
+		[
+			"hide(): jQuery\tjQuery - Effects > Basics",
+			"hide()"
+		],
+		[
+			"show(): jQuery\tjQuery - Effects > Basics",
+			"show()"
+		],
+		[
+			"noop(): undefined\tjQuery - Utilities",
+			"noop()"
+		],
+		[
+			"now(): Number\tjQuery - Utilities",
+			"now()"
+		],
+		[
+			"cssHooks: Object\tjQuery - CSS",
+			"cssHooks"
+		],
+		[
+			"fn: Object\tjQuery - Utilities",
+			"fn"
+		]
+	]
 }

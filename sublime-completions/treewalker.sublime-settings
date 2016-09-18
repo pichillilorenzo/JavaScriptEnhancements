@@ -1,18 +1,49 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["previousSibling()\tTreeWalker", "previousSibling()"],
-    ["previousNode()\tTreeWalker", "previousNode()"],
-    ["nextSibling()\tTreeWalker", "nextSibling()"],
-    ["parentNode()\tTreeWalker", "parentNode()"],
-    ["firstChild()\tTreeWalker", "firstChild()"],
-    ["lastChild()\tTreeWalker", "lastChild()"],
-    ["currentNode\tTreeWalker", "currentNode"],
-    ["nextNode()\tTreeWalker", "nextNode()"],
-    ["whatToShow\tTreeWalker", "whatToShow"],
-    ["filter\tTreeWalker", "filter"],
-    ["root\tTreeWalker", "root"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"whatToShow: unsigned long\tTreeWalker",
+			"whatToShow"
+		],
+		[
+			"previousSibling(): Node\tTreeWalker",
+			"previousSibling()"
+		],
+		[
+			"previousNode(): Node\tTreeWalker",
+			"previousNode()"
+		],
+		[
+			"nextSibling(): Node\tTreeWalker",
+			"nextSibling()"
+		],
+		[
+			"firstChild(): Node\tTreeWalker",
+			"firstChild()"
+		],
+		[
+			"filter: NodeFilter\tTreeWalker",
+			"filter"
+		],
+		[
+			"parentNode(): Node\tTreeWalker",
+			"parentNode()"
+		],
+		[
+			"currentNode: Node\tTreeWalker",
+			"currentNode"
+		],
+		[
+			"lastChild(): Node\tTreeWalker",
+			"lastChild()"
+		],
+		[
+			"nextNode(): Node\tTreeWalker",
+			"nextNode()"
+		],
+		[
+			"root: Node\tTreeWalker",
+			"root"
+		]
+	]
 }

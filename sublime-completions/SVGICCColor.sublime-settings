@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"colorProfile: DOMString\tSVGICCColor",
+			"colorProfile"
+		],
+		[
+			"colors: SVGNumberList\tSVGICCColor",
+			"colors"
+		]
+	]
+}

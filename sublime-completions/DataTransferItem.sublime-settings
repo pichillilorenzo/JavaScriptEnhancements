@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getAsString( _callback: FunctionStringCallback ): void\tDataTransferItem",
+			"getAsString(${1:_callback: FunctionStringCallback})"
+		],
+		[
+			"getAsFile(): File\tDataTransferItem",
+			"getAsFile()"
+		],
+		[
+			"kind: DOMString\tDataTransferItem",
+			"kind"
+		],
+		[
+			"type: DOMString\tDataTransferItem",
+			"type"
+		]
+	]
+}

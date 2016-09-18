@@ -1,49 +1,181 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["setAttributeNS(namespace, name, value)\tElement", "setAttributeNS(${1:namespace}, ${2:name}, ${3:value})"],
-    ["getAttributeNodeNS(namespace, nodeName)\tElement", "getAttributeNodeNS(${1:namespace}, ${2:nodeName})"],
-    ["getElementsByTagNameNS(namespace, name)\tElement", "getElementsByTagNameNS(${1:namespace}, ${2:name})"],
-    ["removeAttributeNS(namespace, attrName)\tElement", "removeAttributeNS(${1:namespace}, ${2:attrName})"],
-    ["hasAttributeNS(namespace, localName)\tElement", "hasAttributeNS(${1:namespace}, ${2:localName])"],
-    ["insertAdjacentHTML(position, text)\tElement", "insertAdjacentHTML(${1:position}, ${2:text})"],
-    ["removeAttributeNode(attributeNode)\tElement", "removeAttributeNode(${1:attributeNode})"],
-    ["getAttributeNS(namespace, name)\tElement", "getAttributeNS(${1:namespace}, ${2:name})"],
-    ["setAttributeNodeNS(attributeNode)\tElement", "setAttributeNodeNS(${1:attributeNode})"],
-    ["getElementsByClassName(names)\tElement", "getElementsByClassName(${1:names})"],
-    ["setAttribute(name, value)\tElement", "setAttribute(${1:name}, ${2:value})"],
-    ["getAttribute(attributeName)\tElement", "getAttribute(${1:attributeName})"],
-    ["querySelectorAll(selectors)\tElement", "querySelectorAll(${1:selectors})"],
-    ["setAttributeNode(attribute)\tElement", "setAttributeNode(${1:attribute})"],
-    ["getAttributeNode(attrName)\tElement", "getAttributeNode(${1:attrName})"],
-    ["getElementsByTagName(name)\tElement", "getElementsByTagName(${1:name})"],
-    ["removeAttribute(attrName)\tElement", "removeAttribute(${1:attrName})"],
-    ["querySelector(selectors)\tElement", "querySelector(${1:selectors})"],
-    ["getElementsByName(name)\tElement", "getElementsByName(${1:name})"],
-    ["hasAttribute(attrName)\tElement", "hasAttribute(${1:attrName})"],
-    ["getBoundingClientRect()\tElement", "getBoundingClientRect()"],
-    ["onbeforescriptexecute\tElement", "onbeforescriptexecute"],
-    ["getElementById(id)\tElement", "getElementById(${1:id})"],
-    ["onafterscriptexecute\tElement", "onafterscriptexecute"],
-    ["getClientRects()\tElement", "getClientRects()"],
-    ["scrollHeight\tElement", "scrollHeight"],
-    ["clientHeight\tElement", "clientHeight"],
-    ["scrollWidth\tElement", "scrollWidth"],
-    ["clientWidth\tElement", "clientWidth"],
-    ["scrollLeft\tElement", "scrollLeft"],
-    ["attributes\tElement", "attributes"],
-    ["clientLeft\tElement", "clientLeft"],
-    ["className\tElement", "className"],
-    ["clientTop\tElement", "clientTop"],
-    ["classList\tElement", "classList"],
-    ["innerHTML\tElement", "innerHTML"],
-    ["scrollTop\tElement", "scrollTop"],
-    ["outerHTML\tElement", "outerHTML"],
-    ["accessKey\tElement", "accessKey"],
-    ["tagName\tElement", "tagName"],
-    ["name\tElement", "name"],
-    ["id\tElement", "id"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"getElementsByTagNameNS( namespace: DOMString, localName: DOMString ): HTMLCollection\tElement",
+			"getElementsByTagNameNS(${1:namespace: DOMString}, ${2:localName: DOMString})"
+		],
+		[
+			"setAttributeNS( namespace: DOMString, name: DOMString, value: DOMString ): void\tElement",
+			"setAttributeNS(${1:namespace: DOMString}, ${2:name: DOMString}, ${3:value: DOMString})"
+		],
+		[
+			"getAttributeNS( namespace: DOMString, localName: DOMString ): DOMString\tElement",
+			"getAttributeNS(${1:namespace: DOMString}, ${2:localName: DOMString})"
+		],
+		[
+			"removeAttributeNS( namespace: DOMString, localName: DOMString ): void\tElement",
+			"removeAttributeNS(${1:namespace: DOMString}, ${2:localName: DOMString})"
+		],
+		[
+			"hasAttributeNS( namespace: DOMString, localName: DOMString ): boolean\tElement",
+			"hasAttributeNS(${1:namespace: DOMString}, ${2:localName: DOMString})"
+		],
+		[
+			"getElementsByClassName( classNames: DOMString ): HTMLCollection\tElement",
+			"getElementsByClassName(${1:classNames: DOMString})"
+		],
+		[
+			"getElementsByTagName( localName: DOMString ): HTMLCollection\tElement",
+			"getElementsByTagName(${1:localName: DOMString})"
+		],
+		[
+			"querySelector( selectors: DOMString ): Element (Selectors)\tElement",
+			"querySelector(${1:selectors: DOMString})"
+		],
+		[
+			"setAttribute( name: DOMString, value: DOMString ): void\tElement",
+			"setAttribute(${1:name: DOMString}, ${2:value: DOMString})"
+		],
+		[
+			"querySelectorAll( selectors: DOMString ): NodeList\tElement",
+			"querySelectorAll(${1:selectors: DOMString})"
+		],
+		[
+			"querySelectorAll( selectors: DOMString ): NodeList\tElement",
+			"querySelectorAll(${1:selectors: DOMString})"
+		],
+		[
+			"queryAll( relativeSelectors: DOMString ): Elements\tElement",
+			"queryAll(${1:relativeSelectors: DOMString})"
+		],
+		[
+			"querySelector( selectors: DOMString ): Element\tElement",
+			"querySelector(${1:selectors: DOMString})"
+		],
+		[
+			"query( relativeSelectors: DOMString ): Element\tElement",
+			"query(${1:relativeSelectors: DOMString})"
+		],
+		[
+			"pseudo( pseudoElt: DOMString ): PseudoElement\tElement",
+			"pseudo(${1:pseudoElt: DOMString})"
+		],
+		[
+			"getAttribute( name: DOMString ): DOMString\tElement",
+			"getAttribute(${1:name: DOMString})"
+		],
+		[
+			"prepend( nodes...: Node|DOMString ): void\tElement",
+			"prepend(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"replace( nodes...: Node|DOMString ): void\tElement",
+			"replace(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"removeAttribute( name: DOMString ): void\tElement",
+			"removeAttribute(${1:name: DOMString})"
+		],
+		[
+			"append( nodes...: Node|DOMString ): void\tElement",
+			"append(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"before( nodes...: Node|DOMString ): void\tElement",
+			"before(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"hasAttribute( name: DOMString ): boolean\tElement",
+			"hasAttribute(${1:name: DOMString})"
+		],
+		[
+			"matches( selectors: DOMString ): boolean\tElement",
+			"matches(${1:selectors: DOMString})"
+		],
+		[
+			"after( nodes...: Node|DOMString ): void\tElement",
+			"after(${1:nodes...: Node|DOMString})"
+		],
+		[
+			"childElementCount: unsigned long\tElement",
+			"childElementCount"
+		],
+		[
+			"previousElementSibling: Element\tElement",
+			"previousElementSibling"
+		],
+		[
+			"createShadowRoot(): ShadowRoot\tElement",
+			"createShadowRoot()"
+		],
+		[
+			"nextElementSibling: Element\tElement",
+			"nextElementSibling"
+		],
+		[
+			"firstElementChild: Element\tElement",
+			"firstElementChild"
+		],
+		[
+			"requestPointerLock(): void\tElement",
+			"requestPointerLock()"
+		],
+		[
+			"lastElementChild: Element\tElement",
+			"lastElementChild"
+		],
+		[
+			"requestFullscreen(): void\tElement",
+			"requestFullscreen()"
+		],
+		[
+			"children: HTMLCollection\tElement",
+			"children"
+		],
+		[
+			"namespaceURI: DOMString\tElement",
+			"namespaceURI"
+		],
+		[
+			"classList: DOMTokenList\tElement",
+			"classList"
+		],
+		[
+			"shadowRoot: ShadowRoot\tElement",
+			"shadowRoot"
+		],
+		[
+			"localName: DOMString\tElement",
+			"localName"
+		],
+		[
+			"className: DOMString\tElement",
+			"className"
+		],
+		[
+			"attributes: Attr[]\tElement",
+			"attributes"
+		],
+		[
+			"tagName: DOMString\tElement",
+			"tagName"
+		],
+		[
+			"pseudo: DOMString\tElement",
+			"pseudo"
+		],
+		[
+			"prefix: DOMString\tElement",
+			"prefix"
+		],
+		[
+			"remove(): void\tElement",
+			"remove()"
+		],
+		[
+			"id: DOMString\tElement",
+			"id"
+		]
+	]
 }

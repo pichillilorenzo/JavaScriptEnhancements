@@ -1,0 +1,1065 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-commandDisabled\tHTMLElement",
+			{
+				"name": "commandDisabled",
+				"return_type": "boolean",
+				"description": "The commandDisabled attribute must return true if the command's Disabled State is that the command is disabled, and false if the command is not disabled. This attribute is not affected by the command's Hidden State. If the element does not define a command, the attribute must return null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#commandDisabled",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcommandDisabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe commandDisabled attribute must return true if the command's Disabled State is that the command is disabled, and false if the command is not disabled. This attribute is not affected by the command's Hidden State. If the element does not define a command, the attribute must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#commandDisabled\n\n*/"
+			}
+		],
+		[
+			"description-commandType\tHTMLElement",
+			{
+				"name": "commandType",
+				"return_type": "DOMString",
+				"description": "The commandType attribute must return a string whose value is either \"command\", \"radio\", or \"checkbox\", depending on whether the Type of the command defined by the element is \"command\", \"radio\", or \"checkbox\" respectively. If the element does not define a command, it must return null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#commandType",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcommandType\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe commandType attribute must return a string whose value is either \"command\", \"radio\", or \"checkbox\", depending on whether the Type of the command defined by the element is \"command\", \"radio\", or \"checkbox\" respectively. If the element does not define a command, it must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#commandType\n\n*/"
+			}
+		],
+		[
+			"description-translate\tHTMLElement",
+			{
+				"name": "translate",
+				"return_type": "boolean",
+				"description": "The translate IDL attribute must, on getting, return true if the element's translation mode is translate-enabled, and false otherwise. On setting, it must set the content attribute's value to \"yes\" if the new value is true, and set the content attribute's value to \"no\" otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#translate",
+				"full_description": "/*\n\n\tHTMLElement\n\n\ttranslate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe translate IDL attribute must, on getting, return true if the element's translation mode is translate-enabled, and false otherwise. On setting, it must set the content attribute's value to \"yes\" if the new value is true, and set the content attribute's value to \"no\" otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#translate\n\n*/"
+			}
+		],
+		[
+			"description-commandChecked\tHTMLElement",
+			{
+				"name": "commandChecked",
+				"return_type": "boolean",
+				"description": "The commandChecked attribute must return true if the command's Checked State is that the command is checked, and false if it is that the command is not checked. If the element does not define a command, the attribute must return null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#commandChecked",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcommandChecked\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe commandChecked attribute must return true if the command's Checked State is that the command is checked, and false if it is that the command is not checked. If the element does not define a command, the attribute must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#commandChecked\n\n*/"
+			}
+		],
+		[
+			"description-commandHidden\tHTMLElement",
+			{
+				"name": "commandHidden",
+				"return_type": "boolean",
+				"description": "The commandHidden attribute must return true if the command's Hidden State is that the command is hidden, and false if the command is not hidden. If the element does not define a command, the attribute must return null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#commandHidden",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcommandHidden\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe commandHidden attribute must return true if the command's Hidden State is that the command is hidden, and false if the command is not hidden. If the element does not define a command, the attribute must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#commandHidden\n\n*/"
+			}
+		],
+		[
+			"description-commandIcon\tHTMLElement",
+			{
+				"name": "commandIcon",
+				"return_type": "DOMString",
+				"description": "The commandIcon attribute must return the absolute URL of the command's Icon. If the element does not specify an icon, or if the element does not define a command, then the attribute must return null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#commandIcon",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcommandIcon\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe commandIcon attribute must return the absolute URL of the command's Icon. If the element does not specify an icon, or if the element does not define a command, then the attribute must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#commandIcon\n\n*/"
+			}
+		],
+		[
+			"description-commandLabel\tHTMLElement",
+			{
+				"name": "commandLabel",
+				"return_type": "DOMString",
+				"description": "The commandLabel attribute must return the command's Label, or null if the element does not define a command or does not specify a Label.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#commandLabel",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcommandLabel\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe commandLabel attribute must return the command's Label, or null if the element does not define a command or does not specify a Label.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#commandLabel\n\n*/"
+			}
+		],
+		[
+			"description-dir\tHTMLElement",
+			{
+				"name": "dir",
+				"return_type": "DOMString",
+				"description": "The dir IDL attribute on an element must reflect the dir content attribute of that element, limited to only known values.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#dir",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tdir\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe dir IDL attribute on an element must reflect the dir content attribute of that element, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#dir\n\n*/"
+			}
+		],
+		[
+			"description-dataset\tHTMLElement",
+			{
+				"name": "dataset",
+				"return_type": "DOMStringMap",
+				"description": "The dataset IDL attribute provides convenient accessors for all the data-* attributes on an element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#dataset",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tdataset\n\n\tReturn Type:\n\tDOMStringMap\n\n\tDescription:\n\tThe dataset IDL attribute provides convenient accessors for all the data-* attributes on an element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#dataset\n\n*/"
+			}
+		],
+		[
+			"description-contextMenu\tHTMLElement",
+			{
+				"name": "contextMenu",
+				"return_type": "HTMLMenuElement",
+				"description": "The contextMenu IDL attribute must reflect the contextmenu content attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#contextMenu",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcontextMenu\n\n\tReturn Type:\n\tHTMLMenuElement\n\n\tDescription:\n\tThe contextMenu IDL attribute must reflect the contextmenu content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#contextMenu\n\n*/"
+			}
+		],
+		[
+			"description-lang\tHTMLElement",
+			{
+				"name": "lang",
+				"return_type": "DOMString",
+				"description": "The lang IDL attribute must reflect the lang content attribute in no namespace.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#lang",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tlang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lang IDL attribute must reflect the lang content attribute in no namespace.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#lang\n\n*/"
+			}
+		],
+		[
+			"description-onautocompleteerror\tHTMLElement",
+			{
+				"name": "onautocompleteerror",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonautocompleteerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror\n\n*/"
+			}
+		],
+		[
+			"description-title\tHTMLElement",
+			{
+				"name": "title",
+				"return_type": "DOMString",
+				"description": "The title IDL attribute must reflect the title content attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#title",
+				"full_description": "/*\n\n\tHTMLElement\n\n\ttitle\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe title IDL attribute must reflect the title content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#title\n\n*/"
+			}
+		],
+		[
+			"description-oncanplaythrough\tHTMLElement",
+			{
+				"name": "oncanplaythrough",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toncanplaythrough\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough\n\n*/"
+			}
+		],
+		[
+			"description-onloadedmetadata\tHTMLElement",
+			{
+				"name": "onloadedmetadata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonloadedmetadata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata\n\n*/"
+			}
+		],
+		[
+			"description-ondurationchange\tHTMLElement",
+			{
+				"name": "ondurationchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondurationchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange\n\n*/"
+			}
+		],
+		[
+			"description-onautocomplete\tHTMLElement",
+			{
+				"name": "onautocomplete",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonautocomplete\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete\n\n*/"
+			}
+		],
+		[
+			"description-onvolumechange\tHTMLElement",
+			{
+				"name": "onvolumechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonvolumechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange\n\n*/"
+			}
+		],
+		[
+			"description-oncontextmenu\tHTMLElement",
+			{
+				"name": "oncontextmenu",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toncontextmenu\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu\n\n*/"
+			}
+		],
+		[
+			"description-onmouseleave\tHTMLElement",
+			{
+				"name": "onmouseleave",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmouseleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave\n\n*/"
+			}
+		],
+		[
+			"description-onmouseenter\tHTMLElement",
+			{
+				"name": "onmouseenter",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmouseenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter\n\n*/"
+			}
+		],
+		[
+			"description-onloadeddata\tHTMLElement",
+			{
+				"name": "onloadeddata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonloadeddata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata\n\n*/"
+			}
+		],
+		[
+			"description-ontimeupdate\tHTMLElement",
+			{
+				"name": "ontimeupdate",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tontimeupdate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate\n\n*/"
+			}
+		],
+		[
+			"description-onratechange\tHTMLElement",
+			{
+				"name": "onratechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonratechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange\n\n*/"
+			}
+		],
+		[
+			"description-onmousewheel\tHTMLElement",
+			{
+				"name": "onmousewheel",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmousewheel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel\n\n*/"
+			}
+		],
+		[
+			"description-onmousedown\tHTMLElement",
+			{
+				"name": "onmousedown",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmousedown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown\n\n*/"
+			}
+		],
+		[
+			"description-ondragenter\tHTMLElement",
+			{
+				"name": "ondragenter",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondragenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter\n\n*/"
+			}
+		],
+		[
+			"description-onmousemove\tHTMLElement",
+			{
+				"name": "onmousemove",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmousemove\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove\n\n*/"
+			}
+		],
+		[
+			"description-ondragstart\tHTMLElement",
+			{
+				"name": "ondragstart",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondragstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart\n\n*/"
+			}
+		],
+		[
+			"description-onloadstart\tHTMLElement",
+			{
+				"name": "onloadstart",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonloadstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart\n\n*/"
+			}
+		],
+		[
+			"description-ondragleave\tHTMLElement",
+			{
+				"name": "ondragleave",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondragleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave\n\n*/"
+			}
+		],
+		[
+			"description-oncuechange\tHTMLElement",
+			{
+				"name": "oncuechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toncuechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange\n\n*/"
+			}
+		],
+		[
+			"description-onmouseover\tHTMLElement",
+			{
+				"name": "onmouseover",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmouseover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover\n\n*/"
+			}
+		],
+		[
+			"description-onerror\tHTMLElement",
+			{
+				"name": "onerror",
+				"return_type": "OnErrorEventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonerror\n\n\tReturn Type:\n\tOnErrorEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror\n\n*/"
+			}
+		],
+		[
+			"description-onprogress\tHTMLElement",
+			{
+				"name": "onprogress",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonprogress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress\n\n*/"
+			}
+		],
+		[
+			"description-ondragexit\tHTMLElement",
+			{
+				"name": "ondragexit",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondragexit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit\n\n*/"
+			}
+		],
+		[
+			"description-ondblclick\tHTMLElement",
+			{
+				"name": "ondblclick",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondblclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick\n\n*/"
+			}
+		],
+		[
+			"description-ondragover\tHTMLElement",
+			{
+				"name": "ondragover",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondragover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover\n\n*/"
+			}
+		],
+		[
+			"description-onkeypress\tHTMLElement",
+			{
+				"name": "onkeypress",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonkeypress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress\n\n*/"
+			}
+		],
+		[
+			"description-onmouseout\tHTMLElement",
+			{
+				"name": "onmouseout",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmouseout\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout\n\n*/"
+			}
+		],
+		[
+			"description-onsuspend\tHTMLElement",
+			{
+				"name": "onsuspend",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonsuspend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend\n\n*/"
+			}
+		],
+		[
+			"description-onwaiting\tHTMLElement",
+			{
+				"name": "onwaiting",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonwaiting\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting\n\n*/"
+			}
+		],
+		[
+			"description-oncanplay\tHTMLElement",
+			{
+				"name": "oncanplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toncanplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay\n\n*/"
+			}
+		],
+		[
+			"description-onseeking\tHTMLElement",
+			{
+				"name": "onseeking",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonseeking\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking\n\n*/"
+			}
+		],
+		[
+			"description-onemptied\tHTMLElement",
+			{
+				"name": "onemptied",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonemptied\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied\n\n*/"
+			}
+		],
+		[
+			"description-ondragend\tHTMLElement",
+			{
+				"name": "ondragend",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondragend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend\n\n*/"
+			}
+		],
+		[
+			"description-onmouseup\tHTMLElement",
+			{
+				"name": "onmouseup",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonmouseup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup\n\n*/"
+			}
+		],
+		[
+			"description-onplaying\tHTMLElement",
+			{
+				"name": "onplaying",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonplaying\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying\n\n*/"
+			}
+		],
+		[
+			"description-oninvalid\tHTMLElement",
+			{
+				"name": "oninvalid",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toninvalid\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid\n\n*/"
+			}
+		],
+		[
+			"description-onkeydown\tHTMLElement",
+			{
+				"name": "onkeydown",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonkeydown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown\n\n*/"
+			}
+		],
+		[
+			"description-onstalled\tHTMLElement",
+			{
+				"name": "onstalled",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonstalled\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled\n\n*/"
+			}
+		],
+		[
+			"description-onselect\tHTMLElement",
+			{
+				"name": "onselect",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonselect\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect\n\n*/"
+			}
+		],
+		[
+			"description-onseeked\tHTMLElement",
+			{
+				"name": "onseeked",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonseeked\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked\n\n*/"
+			}
+		],
+		[
+			"description-onchange\tHTMLElement",
+			{
+				"name": "onchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange\n\n*/"
+			}
+		],
+		[
+			"description-oncancel\tHTMLElement",
+			{
+				"name": "oncancel",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toncancel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel\n\n*/"
+			}
+		],
+		[
+			"description-onscroll\tHTMLElement",
+			{
+				"name": "onscroll",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonscroll\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll\n\n*/"
+			}
+		],
+		[
+			"description-onsubmit\tHTMLElement",
+			{
+				"name": "onsubmit",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonsubmit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit\n\n*/"
+			}
+		],
+		[
+			"description-onresize\tHTMLElement",
+			{
+				"name": "onresize",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonresize\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize\n\n*/"
+			}
+		],
+		[
+			"description-ontoggle\tHTMLElement",
+			{
+				"name": "ontoggle",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tontoggle\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle\n\n*/"
+			}
+		],
+		[
+			"description-onpause\tHTMLElement",
+			{
+				"name": "onpause",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonpause\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause\n\n*/"
+			}
+		],
+		[
+			"description-onkeyup\tHTMLElement",
+			{
+				"name": "onkeyup",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonkeyup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup\n\n*/"
+			}
+		],
+		[
+			"description-oninput\tHTMLElement",
+			{
+				"name": "oninput",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput",
+				"full_description": "/*\n\n\tHTMLElement\n\n\toninput\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput\n\n*/"
+			}
+		],
+		[
+			"description-onabort\tHTMLElement",
+			{
+				"name": "onabort",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonabort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort\n\n*/"
+			}
+		],
+		[
+			"description-onclose\tHTMLElement",
+			{
+				"name": "onclose",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonclose\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose\n\n*/"
+			}
+		],
+		[
+			"description-onclick\tHTMLElement",
+			{
+				"name": "onclick",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick\n\n*/"
+			}
+		],
+		[
+			"description-onreset\tHTMLElement",
+			{
+				"name": "onreset",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonreset\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset\n\n*/"
+			}
+		],
+		[
+			"description-onended\tHTMLElement",
+			{
+				"name": "onended",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonended\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended\n\n*/"
+			}
+		],
+		[
+			"description-onfocus\tHTMLElement",
+			{
+				"name": "onfocus",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonfocus\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus\n\n*/"
+			}
+		],
+		[
+			"description-ondrag\tHTMLElement",
+			{
+				"name": "ondrag",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondrag\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag\n\n*/"
+			}
+		],
+		[
+			"description-onplay\tHTMLElement",
+			{
+				"name": "onplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay\n\n*/"
+			}
+		],
+		[
+			"description-onload\tHTMLElement",
+			{
+				"name": "onload",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload\n\n*/"
+			}
+		],
+		[
+			"description-onblur\tHTMLElement",
+			{
+				"name": "onblur",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonblur\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur\n\n*/"
+			}
+		],
+		[
+			"description-onsort\tHTMLElement",
+			{
+				"name": "onsort",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonsort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort\n\n*/"
+			}
+		],
+		[
+			"description-onshow\tHTMLElement",
+			{
+				"name": "onshow",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tonshow\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow\n\n*/"
+			}
+		],
+		[
+			"description-ondrop\tHTMLElement",
+			{
+				"name": "ondrop",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tondrop\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop\n\n*/"
+			}
+		],
+		[
+			"description-properties\tHTMLElement",
+			{
+				"name": "properties",
+				"return_type": "HTMLPropertiesCollection",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#properties",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tproperties\n\n\tReturn Type:\n\tHTMLPropertiesCollection\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#properties\n\n*/"
+			}
+		],
+		[
+			"description-isContentEditable\tHTMLElement",
+			{
+				"name": "isContentEditable",
+				"return_type": "boolean",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#isContentEditable",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tisContentEditable\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#isContentEditable\n\n*/"
+			}
+		],
+		[
+			"description-contentEditable\tHTMLElement",
+			{
+				"name": "contentEditable",
+				"return_type": "DOMString",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#contentEditable",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tcontentEditable\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#contentEditable\n\n*/"
+			}
+		],
+		[
+			"description-accessKeyLabel\tHTMLElement",
+			{
+				"name": "accessKeyLabel",
+				"return_type": "DOMString",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#accessKeyLabel",
+				"full_description": "/*\n\n\tHTMLElement\n\n\taccessKeyLabel\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#accessKeyLabel\n\n*/"
+			}
+		],
+		[
+			"description-forceSpellCheck()\tHTMLElement",
+			{
+				"name": "forceSpellCheck",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#forceSpellCheck",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tforceSpellCheck ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#forceSpellCheck\n\n*/"
+			}
+		],
+		[
+			"description-style\tHTMLElement",
+			{
+				"name": "style",
+				"return_type": "CSSStyleDeclaration",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-elementcssinlinestyle-style",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-elementcssinlinestyle-style\n\n*/"
+			}
+		],
+		[
+			"description-dropzone\tHTMLElement",
+			{
+				"name": "dropzone",
+				"return_type": "DOMSettableTokenList",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#dropzone",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tdropzone\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#dropzone\n\n*/"
+			}
+		],
+		[
+			"description-itemProp\tHTMLElement",
+			{
+				"name": "itemProp",
+				"return_type": "DOMSettableTokenList",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#itemProp",
+				"full_description": "/*\n\n\tHTMLElement\n\n\titemProp\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#itemProp\n\n*/"
+			}
+		],
+		[
+			"description-itemType\tHTMLElement",
+			{
+				"name": "itemType",
+				"return_type": "DOMSettableTokenList",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#itemType",
+				"full_description": "/*\n\n\tHTMLElement\n\n\titemType\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#itemType\n\n*/"
+			}
+		],
+		[
+			"description-itemRef\tHTMLElement",
+			{
+				"name": "itemRef",
+				"return_type": "DOMSettableTokenList",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#itemRef",
+				"full_description": "/*\n\n\tHTMLElement\n\n\titemRef\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#itemRef\n\n*/"
+			}
+		],
+		[
+			"description-accessKey\tHTMLElement",
+			{
+				"name": "accessKey",
+				"return_type": "DOMString",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#accessKey",
+				"full_description": "/*\n\n\tHTMLElement\n\n\taccessKey\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#accessKey\n\n*/"
+			}
+		],
+		[
+			"description-spellcheck\tHTMLElement",
+			{
+				"name": "spellcheck",
+				"return_type": "boolean",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#spellcheck",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tspellcheck\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#spellcheck\n\n*/"
+			}
+		],
+		[
+			"description-itemScope\tHTMLElement",
+			{
+				"name": "itemScope",
+				"return_type": "boolean",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#itemScope",
+				"full_description": "/*\n\n\tHTMLElement\n\n\titemScope\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#itemScope\n\n*/"
+			}
+		],
+		[
+			"description-draggable\tHTMLElement",
+			{
+				"name": "draggable",
+				"return_type": "boolean",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#draggable",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tdraggable\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#draggable\n\n*/"
+			}
+		],
+		[
+			"description-itemId\tHTMLElement",
+			{
+				"name": "itemId",
+				"return_type": "DOMString",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#itemId",
+				"full_description": "/*\n\n\tHTMLElement\n\n\titemId\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#itemId\n\n*/"
+			}
+		],
+		[
+			"description-itemValue\tHTMLElement",
+			{
+				"name": "itemValue",
+				"return_type": "any",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#itemValue",
+				"full_description": "/*\n\n\tHTMLElement\n\n\titemValue\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#itemValue\n\n*/"
+			}
+		],
+		[
+			"description-tabIndex\tHTMLElement",
+			{
+				"name": "tabIndex",
+				"return_type": "long",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#tabIndex",
+				"full_description": "/*\n\n\tHTMLElement\n\n\ttabIndex\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#tabIndex\n\n*/"
+			}
+		],
+		[
+			"description-hidden\tHTMLElement",
+			{
+				"name": "hidden",
+				"return_type": "boolean",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#hidden",
+				"full_description": "/*\n\n\tHTMLElement\n\n\thidden\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#hidden\n\n*/"
+			}
+		],
+		[
+			"description-click()\tHTMLElement",
+			{
+				"name": "click",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#click",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tclick ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#click\n\n*/"
+			}
+		],
+		[
+			"description-focus()\tHTMLElement",
+			{
+				"name": "focus",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#focus",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tfocus ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#focus\n\n*/"
+			}
+		],
+		[
+			"description-blur()\tHTMLElement",
+			{
+				"name": "blur",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLElement.html#blur",
+				"full_description": "/*\n\n\tHTMLElement\n\n\tblur ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLElement.html#blur\n\n*/"
+			}
+		]
+	]
+}

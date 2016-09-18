@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"iterate( callback: PortCollectionCallback ): void\tPortCollection",
+			"iterate(${1:callback: PortCollectionCallback})"
+		],
+		[
+			"new PortCollection(): PortCollection\tPortCollection",
+			"new PortCollection()"
+		],
+		[
+			"remove( port: MessagePort ): void\tPortCollection",
+			"remove(${1:port: MessagePort})"
+		],
+		[
+			"PortCollection(): PortCollection\tPortCollection",
+			"PortCollection()"
+		],
+		[
+			"add( port: MessagePort ): void\tPortCollection",
+			"add(${1:port: MessagePort})"
+		],
+		[
+			"clear(): void\tPortCollection",
+			"clear()"
+		]
+	]
+}

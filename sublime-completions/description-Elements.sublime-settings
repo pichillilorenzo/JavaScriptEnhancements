@@ -1,0 +1,43 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-queryAll()\tElements",
+			{
+				"name": "queryAll",
+				"return_type": "Elements",
+				"parameters": [
+					{
+						"name": "relativeSelectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The queryAll(relativeSelectors) method must return the result of running this.constructor with the result of running match a relative selectors string relativeSelectors against the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Elements.html#queryAll",
+				"full_description": "/*\n\n\tElements\n\n\tqueryAll ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElements\n\n\tDescription:\n\tThe queryAll(relativeSelectors) method must return the result of running this.constructor with the result of running match a relative selectors string relativeSelectors against the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Elements.html#queryAll\n\n*/"
+			}
+		],
+		[
+			"description-query()\tElements",
+			{
+				"name": "query",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "relativeSelectors",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against the context object, and null if the result is an empty list.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Elements.html#query",
+				"full_description": "/*\n\n\tElements\n\n\tquery ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against the context object, and null if the result is an empty list.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Elements.html#query\n\n*/"
+			}
+		]
+	]
+}

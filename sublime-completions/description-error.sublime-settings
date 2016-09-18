@@ -1,14 +1,46 @@
 {
-  "scope": "source.js",
-
-  "completions":
-  [
-    ["description-Error\tError", "/*\n\tDescription:\n\tThe Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types.\n\n\tSyntax:\n\tnew Error([message[, fileName[,lineNumber]]])\n*/"],
-    ["description-RangeError\tRangeError", "/*\n\tDescription:\n\tThe RangeError object indicates an error when a value is not in the set or range of allowed values.\n\n\tSyntax:\n\tnew RangeError([message[, fileName[, lineNumber]]])\n*/"],
-    ["description-ReferenceError\tReferenceError", "/*\n\tDescription:\n\tThe ReferenceError object represents an error when a non-existent variable is referenced.\n\n\tSyntax:\n\tnew ReferenceError([message[, fileName[, linenumber]]])\n*/"],
-    ["description-SyntaxError\tSyntaxError", "/*\n\tDescription:\n\tThe SyntaxError object represents an error when trying to interpret syntactically invalid code.\n\n\tSyntax:\n\tnew SyntaxError([message[, fileName[,lineNumber ]]])\n*/"],
-    ["description-URIError\tURIError", "/*\n\tDescription:\n\tThe URIError object represents an error when a global URI handling function was used in a wrong way.\n\n\tSyntax:\n\tnew URIError([message[, fileName[,lineNumber]]])\n*/"],
-    ["description-TypeError\tTypeError", "/*\n\tDescription:\n\tThe TypeError object represents an error when a value is not of the expected type.\n\n\tSyntax:\n\tnew TypeError([message[, fileName[,lineNumber]]])\n*/"],
-    ["description-EvalError\tEvalError", "/*\n\tDescription:\n\tThe EvalError object indicates an error regarding the global eval() function.\n\n\tSyntax:\n\tnew EvalError([message[, fileName[,lineNumber]]])\n*/"]
-  ]
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-message\tError",
+			{
+				"name": "message",
+				"return_type": "string",
+				"description": "The initial value of Error.prototype.message is the empty String.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Error.html#message",
+				"full_description": "/*\n\n\tError\n\n\tmessage\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe initial value of Error.prototype.message is the empty String.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Error.html#message\n\n*/"
+			}
+		],
+		[
+			"description-name\tError",
+			{
+				"name": "name",
+				"return_type": "string",
+				"description": "The initial value of Error.prototype.name is \"Error\".",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Error.html#name",
+				"full_description": "/*\n\n\tError\n\n\tname\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe initial value of Error.prototype.name is \"Error\".\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Error.html#name\n\n*/"
+			}
+		],
+		[
+			"description-Error()\tError",
+			{
+				"name": "Error",
+				"return_type": "Error",
+				"parameters": [
+					{
+						"name": "message",
+						"type": "string",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Error.html#Error",
+				"full_description": "/*\n\n\tError\n\n\tError ( message: string )\n\n\tReturn Type:\n\tError\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Error.html#Error\n\n*/"
+			}
+		]
+	]
 }

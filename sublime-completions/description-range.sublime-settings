@@ -1,55 +1,502 @@
 {
 	"scope": "source.js",
-
-	"completions":
-	[
-		["description-Range.collapsed\tRange", "/*\n\tDescription:\n\tThe Range.collapsed read-only property returns a Boolean flag indicating whether the start and end points of the Range are at the same position. It returns true if the start and end boundary points of the Range are the same point in the DOM, false if not.\n\n\tSyntax:\n\tisCollapsed = range.collapsed;\n*/"],
-		["description-Range.detach()\tRange", "/*\n\tDescription:\n\tThe Range.detach() method releases a Range from use. This lets the browser choose to release resources associated with this Range. Subsequent attempts to use the detached range will result in a DOMException being thrown with an error code of INVALID_STATE_ERR.\n\n\tSyntax:\n\trange.detach();\n*/"],
-		["description-Range.commonAncestorContainer\tRange", "/*\n\tDescription:\n\tThe Range.commonAncestorContainer read-only property returns the deepest, or further down the document tree, Node that contains both the Range.startContainer and Range.endContainer nodes.\n\n\tSyntax:\n\trangeAncestor = range.commonAncestorContainer;\n*/"],
-		["description-Range.setStartBefore()\tRange", "/*\n\tDescription:\n\tThe Range.setStartBefore() method sets the start position of a Range relative to another Node. The parent Node of the start of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setStartBefore(referenceNode);\n*/"],
-		["description-Range.selectNode()\tRange", "/*\n\tDescription:\n\tThe Range.selectNode() method sets the Range to contain the Node and its contents. The parent Node of the start and end of the Range will be the same as the parent of the referenceNode.\n\n\tSyntax:\n\trange.selectNode(referenceNode);\n*/"],
-		["description-Range.setStartAfter()\tRange", "/*\n\tDescription:\n\tThe Range.setStartAfter() method sets the start position of a Range relative to a Node. The parent Node of the start of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setStartAfter(referenceNode);\n*/"],
-		["description-Range.startContainer\tRange", "/*\n\tDescription:\n\tThe Range.startContainer read-only property returns the Node within which the Range starts. To change the start position of a node, use one of the Range.setStart() methods.\n\n\tSyntax:\n\tstartRangeNode = range.startContainer;\n*/"],
-		["description-Range.setEndBefore()\tRange", "/*\n\tDescription:\n\tThe Range.setEndBefore() method sets the end position of a Range relative to another Node. The parent Node of end of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setEndBefore(referenceNode);\n*/"],
-		["description-Range.endContainer\tRange", "/*\n\tDescription:\n\tThe Range.endContainer read-only property returns the Node within which the Range ends. To change the end position of a node, use the Range.setEnd() method or a similar one.\n\n\tSyntax:\n\tendRangeNode = range.endContainer;\n*/"],
-		["description-Range.setEndAfter()\tRange", "/*\n\tDescription:\n\tThe Range.setEndAfter() method sets the end position of a Range relative to another Node. The parent Node of end of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setEndAfter(referenceNode);\n*/"],
-		["description-Range.surroundContents()\tRange", "/*\n\tDescription:\n\tThe Range.surroundContents() method moves content of the Range into a new node, placing the new node at the start of the specified range.\n\n\tSyntax:\n\trange.surroundContents(newNode);\n*/"],
-		["description-Range.compareBoundaryPoints()\tRange", "/*\n\tDescription:\n\tThe Range.compareBoundaryPoints() method compares the boundary points of the Range with another one.\n\n\tSyntax:\n\tcompare = range.compareBoundaryPoints(how, sourceRange);\n*/"],
-		["description-Range.extractContents()\tRange", "/*\n\tDescription:\n\tThe Range.extractContents() method moves contents of the Range from the document tree into a DocumentFragment.\n\n\tSyntax:\n\tdocumentFragment = range.extractContents();\n*/"],
-		["description-Range.startOffset\tRange", "/*\n\tDescription:\n\tThe Range.startOffset read-only property returns a number representing where in the startContainer the Range starts.\n\n\tSyntax:\n\tstartRangeOffset = range.startOffset;\n*/"],
-		["description-Range.cloneContents()\tRange", "/*\n\tDescription:\n\tThe Range.cloneContents() returns a DocumentFragment copying the objects of type Node included in the Range.\n\n\tSyntax:\n\tdocumentFragment = range.cloneContents();\n*/"],
-		["description-Range.endOffset\tRange", "/*\n\tDescription:\n\tThe Range.endOffset read-only property returns a number representing where in the Range.endContainer the Range ends.\n\n\tSyntax:\n\tendRangeOffset = range.endOffset;\n*/"],
-		["description-Range.selectNodeContents()\tRange", "/*\n\tDescription:\n\tThe Range.selectNodeContents() sets the Range to contain the contents of a Node.\n\n\tSyntax:\n\trange.selectNodeContents(referenceNode);\n*/"],
-		["description-Range.cloneRange()\tRange", "/*\n\tDescription:\n\tThe Range.cloneRange() method returns a Range object with boundary points identical to the cloned Range.\n\n\tSyntax:\n\tclone = range.cloneRange();\n*/"],
-		["description-Range.deleteContents()\tRange", "/*\n\tDescription:\n\tThe Range.deleteContents() removes the contents of the Range from the Document.\n\n\tSyntax:\n\trange.deleteContents()\n*/"],
-		["description-Range.setStart()\tRange", "/*\n\tDescription:\n\tThe Range.setStart() method sets the start position of a Range.\n\n\tSyntax:\n\trange.setStart(startNode, startOffset);\n*/"],
-		["description-Range.collapse()\tRange", "/*\n\tDescription:\n\tThe Range.collapse() method collapses the Range to one of its boundary points.\n\n\tSyntax:\n\trange.collapse(toStart);\n*/"],
-		["description-Range.toString()\tRange", "/*\n\tDescription:\n\tThe Range.toString() method is a stringifier returning the text of the Range.\n\n\tSyntax:\n\ttext = range.toString();\n*/"],
-		["description-Range.insertNode()\tRange", "/*\n\tDescription:\n\tThe Range.insertNode() method inserts a node at the start of the Range.\n\n\tSyntax:\n\trange.insertNode(newNode);\n*/"],
-		["description-Range.setEnd()\tRange", "/*\n\tDescription:\n\tThe Range.setEnd() method sets the end position of a Range.\n\n\tSyntax:\n\trange.setEnd(endNode, endOffset);\n*/"],
-		["description-collapsed\tRange", "/*\n\tDescription:\n\tThe Range.collapsed read-only property returns a Boolean flag indicating whether the start and end points of the Range are at the same position. It returns true if the start and end boundary points of the Range are the same point in the DOM, false if not.\n\n\tSyntax:\n\tisCollapsed = range.collapsed;\n*/"],
-    ["description-detach()\tRange", "/*\n\tDescription:\n\tThe Range.detach() method releases a Range from use. This lets the browser choose to release resources associated with this Range. Subsequent attempts to use the detached range will result in a DOMException being thrown with an error code of INVALID_STATE_ERR.\n\n\tSyntax:\n\trange.detach();\n*/"],
-    ["description-commonAncestorContainer\tRange", "/*\n\tDescription:\n\tThe Range.commonAncestorContainer read-only property returns the deepest, or further down the document tree, Node that contains both the Range.startContainer and Range.endContainer nodes.\n\n\tSyntax:\n\trangeAncestor = range.commonAncestorContainer;\n*/"],
-    ["description-setStartBefore()\tRange", "/*\n\tDescription:\n\tThe Range.setStartBefore() method sets the start position of a Range relative to another Node. The parent Node of the start of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setStartBefore(referenceNode);\n*/"],
-    ["description-selectNode()\tRange", "/*\n\tDescription:\n\tThe Range.selectNode() method sets the Range to contain the Node and its contents. The parent Node of the start and end of the Range will be the same as the parent of the referenceNode.\n\n\tSyntax:\n\trange.selectNode(referenceNode);\n*/"],
-    ["description-setStartAfter()\tRange", "/*\n\tDescription:\n\tThe Range.setStartAfter() method sets the start position of a Range relative to a Node. The parent Node of the start of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setStartAfter(referenceNode);\n*/"],
-    ["description-startContainer\tRange", "/*\n\tDescription:\n\tThe Range.startContainer read-only property returns the Node within which the Range starts. To change the start position of a node, use one of the Range.setStart() methods.\n\n\tSyntax:\n\tstartRangeNode = range.startContainer;\n*/"],
-    ["description-setEndBefore()\tRange", "/*\n\tDescription:\n\tThe Range.setEndBefore() method sets the end position of a Range relative to another Node. The parent Node of end of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setEndBefore(referenceNode);\n*/"],
-    ["description-endContainer\tRange", "/*\n\tDescription:\n\tThe Range.endContainer read-only property returns the Node within which the Range ends. To change the end position of a node, use the Range.setEnd() method or a similar one.\n\n\tSyntax:\n\tendRangeNode = range.endContainer;\n*/"],
-    ["description-setEndAfter()\tRange", "/*\n\tDescription:\n\tThe Range.setEndAfter() method sets the end position of a Range relative to another Node. The parent Node of end of the Range will be the same as that for the referenceNode.\n\n\tSyntax:\n\trange.setEndAfter(referenceNode);\n*/"],
-    ["description-surroundContents()\tRange", "/*\n\tDescription:\n\tThe Range.surroundContents() method moves content of the Range into a new node, placing the new node at the start of the specified range.\n\n\tSyntax:\n\trange.surroundContents(newNode);\n*/"],
-    ["description-compareBoundaryPoints()\tRange", "/*\n\tDescription:\n\tThe Range.compareBoundaryPoints() method compares the boundary points of the Range with another one.\n\n\tSyntax:\n\tcompare = range.compareBoundaryPoints(how, sourceRange);\n*/"],
-    ["description-extractContents()\tRange", "/*\n\tDescription:\n\tThe Range.extractContents() method moves contents of the Range from the document tree into a DocumentFragment.\n\n\tSyntax:\n\tdocumentFragment = range.extractContents();\n*/"],
-    ["description-startOffset\tRange", "/*\n\tDescription:\n\tThe Range.startOffset read-only property returns a number representing where in the startContainer the Range starts.\n\n\tSyntax:\n\tstartRangeOffset = range.startOffset;\n*/"],
-    ["description-cloneContents()\tRange", "/*\n\tDescription:\n\tThe Range.cloneContents() returns a DocumentFragment copying the objects of type Node included in the Range.\n\n\tSyntax:\n\tdocumentFragment = range.cloneContents();\n*/"],
-    ["description-endOffset\tRange", "/*\n\tDescription:\n\tThe Range.endOffset read-only property returns a number representing where in the Range.endContainer the Range ends.\n\n\tSyntax:\n\tendRangeOffset = range.endOffset;\n*/"],
-    ["description-selectNodeContents()\tRange", "/*\n\tDescription:\n\tThe Range.selectNodeContents() sets the Range to contain the contents of a Node.\n\n\tSyntax:\n\trange.selectNodeContents(referenceNode);\n*/"],
-    ["description-cloneRange()\tRange", "/*\n\tDescription:\n\tThe Range.cloneRange() method returns a Range object with boundary points identical to the cloned Range.\n\n\tSyntax:\n\tclone = range.cloneRange();\n*/"],
-    ["description-deleteContents()\tRange", "/*\n\tDescription:\n\tThe Range.deleteContents() removes the contents of the Range from the Document.\n\n\tSyntax:\n\trange.deleteContents()\n*/"],
-    ["description-setStart()\tRange", "/*\n\tDescription:\n\tThe Range.setStart() method sets the start position of a Range.\n\n\tSyntax:\n\trange.setStart(startNode, startOffset);\n*/"],
-    ["description-collapse()\tRange", "/*\n\tDescription:\n\tThe Range.collapse() method collapses the Range to one of its boundary points.\n\n\tSyntax:\n\trange.collapse(toStart);\n*/"],
-    ["description-toString()\tRange", "/*\n\tDescription:\n\tThe Range.toString() method is a stringifier returning the text of the Range.\n\n\tSyntax:\n\ttext = range.toString();\n*/"],
-    ["description-insertNode()\tRange", "/*\n\tDescription:\n\tThe Range.insertNode() method inserts a node at the start of the Range.\n\n\tSyntax:\n\trange.insertNode(newNode);\n*/"],
-    ["description-setEnd()\tRange", "/*\n\tDescription:\n\tThe Range.setEnd() method sets the end position of a Range.\n\n\tSyntax:\n\trange.setEnd(endNode, endOffset);\n*/"]
+	"completions": [
+		[
+			"description-detach()\tRange",
+			{
+				"name": "detach",
+				"return_type": "void",
+				"parameters": [],
+				"description": "The detach() method must do nothing. Its functionality (disabling a Range object) was removed, but the method itself is preserved for compatibility.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#detach",
+				"full_description": "/*\n\n\tRange\n\n\tdetach ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe detach() method must do nothing. Its functionality (disabling a Range object) was removed, but the method itself is preserved for compatibility.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#detach\n\n*/"
+			}
+		],
+		[
+			"description-setStart()\tRange",
+			{
+				"name": "setStart",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "offset",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setStart(node, offset) method must set the start of the context object to boundary point (node, offset).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#setStart",
+				"full_description": "/*\n\n\tRange\n\n\tsetStart ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setStart(node, offset) method must set the start of the context object to boundary point (node, offset).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#setStart\n\n*/"
+			}
+		],
+		[
+			"description-setEnd()\tRange",
+			{
+				"name": "setEnd",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "offset",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setEnd(node, offset) method must set the end of the context object to boundary point (node, offset).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#setEnd",
+				"full_description": "/*\n\n\tRange\n\n\tsetEnd ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setEnd(node, offset) method must set the end of the context object to boundary point (node, offset).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#setEnd\n\n*/"
+			}
+		],
+		[
+			"description-collapse()\tRange",
+			{
+				"name": "collapse",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "toStart",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The collapse(toStart) method must if toStart is true, set end to start, and set start to end otherwise.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#collapse",
+				"full_description": "/*\n\n\tRange\n\n\tcollapse ( toStart?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe collapse(toStart) method must if toStart is true, set end to start, and set start to end otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#collapse\n\n*/"
+			}
+		],
+		[
+			"description-extractContents()\tRange",
+			{
+				"name": "extractContents",
+				"return_type": "DocumentFragment",
+				"parameters": [],
+				"description": "The extractContents() method must return the result of extracting context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#extractContents",
+				"full_description": "/*\n\n\tRange\n\n\textractContents ()\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe extractContents() method must return the result of extracting context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#extractContents\n\n*/"
+			}
+		],
+		[
+			"description-cloneRange()\tRange",
+			{
+				"name": "cloneRange",
+				"return_type": "Range",
+				"parameters": [],
+				"description": "The cloneRange() method must return a new range with the same start and end as the context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#cloneRange",
+				"full_description": "/*\n\n\tRange\n\n\tcloneRange ()\n\n\tReturn Type:\n\tRange\n\n\tDescription:\n\tThe cloneRange() method must return a new range with the same start and end as the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#cloneRange\n\n*/"
+			}
+		],
+		[
+			"description-cloneContents()\tRange",
+			{
+				"name": "cloneContents",
+				"return_type": "DocumentFragment",
+				"parameters": [],
+				"description": "The cloneContents() method must return the result of cloning context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#cloneContents",
+				"full_description": "/*\n\n\tRange\n\n\tcloneContents ()\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe cloneContents() method must return the result of cloning context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#cloneContents\n\n*/"
+			}
+		],
+		[
+			"description-collapsed\tRange",
+			{
+				"name": "collapsed",
+				"return_type": "boolean",
+				"description": "The collapsed attribute must return true if start is the same as end, and false otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#collapsed",
+				"full_description": "/*\n\n\tRange\n\n\tcollapsed\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe collapsed attribute must return true if start is the same as end, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#collapsed\n\n*/"
+			}
+		],
+		[
+			"description-selectNode()\tRange",
+			{
+				"name": "selectNode",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The selectNode(node) method must select node within context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#selectNode",
+				"full_description": "/*\n\n\tRange\n\n\tselectNode ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe selectNode(node) method must select node within context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#selectNode\n\n*/"
+			}
+		],
+		[
+			"description-insertNode()\tRange",
+			{
+				"name": "insertNode",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The insertNode(node) method must insert node into context object.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#insertNode",
+				"full_description": "/*\n\n\tRange\n\n\tinsertNode ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe insertNode(node) method must insert node into context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#insertNode\n\n*/"
+			}
+		],
+		[
+			"description-startOffset\tRange",
+			{
+				"name": "startOffset",
+				"return_type": "unsigned long",
+				"description": "The startOffset attribute must return the start offset.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#startOffset",
+				"full_description": "/*\n\n\tRange\n\n\tstartOffset\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe startOffset attribute must return the start offset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#startOffset\n\n*/"
+			}
+		],
+		[
+			"description-compareBoundaryPoints()\tRange",
+			{
+				"name": "compareBoundaryPoints",
+				"return_type": "short",
+				"parameters": [
+					{
+						"name": "how",
+						"type": "unsigned short",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sourceRange",
+						"type": "Range",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-compareboundarypoints",
+				"full_description": "/*\n\n\tRange\n\n\tcompareBoundaryPoints ( how: unsigned short, sourceRange: Range )\n\n\tReturn Type:\n\tshort\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-compareboundarypoints\n\n*/"
+			}
+		],
+		[
+			"description-startContainer\tRange",
+			{
+				"name": "startContainer",
+				"return_type": "Node",
+				"description": "The startContainer attribute must return the start node.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#startContainer",
+				"full_description": "/*\n\n\tRange\n\n\tstartContainer\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe startContainer attribute must return the start node.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#startContainer\n\n*/"
+			}
+		],
+		[
+			"description-endOffset\tRange",
+			{
+				"name": "endOffset",
+				"return_type": "unsigned long",
+				"description": "The endOffset attribute must return the end offset.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#endOffset",
+				"full_description": "/*\n\n\tRange\n\n\tendOffset\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe endOffset attribute must return the end offset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#endOffset\n\n*/"
+			}
+		],
+		[
+			"description-endContainer\tRange",
+			{
+				"name": "endContainer",
+				"return_type": "Node",
+				"description": "The endContainer attribute must return the end node.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#endContainer",
+				"full_description": "/*\n\n\tRange\n\n\tendContainer\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe endContainer attribute must return the end node.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#endContainer\n\n*/"
+			}
+		],
+		[
+			"description-isPointInRange()\tRange",
+			{
+				"name": "isPointInRange",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "offset",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-ispointinrange",
+				"full_description": "/*\n\n\tRange\n\n\tisPointInRange ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-ispointinrange\n\n*/"
+			}
+		],
+		[
+			"description-comparePoint()\tRange",
+			{
+				"name": "comparePoint",
+				"return_type": "short",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "offset",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-comparepoint",
+				"full_description": "/*\n\n\tRange\n\n\tcomparePoint ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tshort\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-comparepoint\n\n*/"
+			}
+		],
+		[
+			"description-surroundContents()\tRange",
+			{
+				"name": "surroundContents",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "newParent",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-surroundcontents",
+				"full_description": "/*\n\n\tRange\n\n\tsurroundContents ( newParent: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-surroundcontents\n\n*/"
+			}
+		],
+		[
+			"description-selectNodeContents()\tRange",
+			{
+				"name": "selectNodeContents",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-selectnodecontents",
+				"full_description": "/*\n\n\tRange\n\n\tselectNodeContents ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-selectnodecontents\n\n*/"
+			}
+		],
+		[
+			"description-START_TO_START\tRange",
+			{
+				"name": "START_TO_START",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#START_TO_START",
+				"full_description": "/*\n\n\tRange\n\n\tSTART_TO_START\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#START_TO_START\n\n*/"
+			}
+		],
+		[
+			"description-commonAncestorContainer\tRange",
+			{
+				"name": "commonAncestorContainer",
+				"return_type": "Node",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-commonancestorcontainer",
+				"full_description": "/*\n\n\tRange\n\n\tcommonAncestorContainer\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-commonancestorcontainer\n\n*/"
+			}
+		],
+		[
+			"description-intersectsNode()\tRange",
+			{
+				"name": "intersectsNode",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-intersectsnode",
+				"full_description": "/*\n\n\tRange\n\n\tintersectsNode ( node: Node )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-intersectsnode\n\n*/"
+			}
+		],
+		[
+			"description-START_TO_END\tRange",
+			{
+				"name": "START_TO_END",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#START_TO_END",
+				"full_description": "/*\n\n\tRange\n\n\tSTART_TO_END\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#START_TO_END\n\n*/"
+			}
+		],
+		[
+			"description-setStartBefore()\tRange",
+			{
+				"name": "setStartBefore",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setstartbefore",
+				"full_description": "/*\n\n\tRange\n\n\tsetStartBefore ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setstartbefore\n\n*/"
+			}
+		],
+		[
+			"description-END_TO_START\tRange",
+			{
+				"name": "END_TO_START",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#END_TO_START",
+				"full_description": "/*\n\n\tRange\n\n\tEND_TO_START\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#END_TO_START\n\n*/"
+			}
+		],
+		[
+			"description-setStartAfter()\tRange",
+			{
+				"name": "setStartAfter",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setstartafter",
+				"full_description": "/*\n\n\tRange\n\n\tsetStartAfter ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setstartafter\n\n*/"
+			}
+		],
+		[
+			"description-setEndBefore()\tRange",
+			{
+				"name": "setEndBefore",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setendbefore",
+				"full_description": "/*\n\n\tRange\n\n\tsetEndBefore ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setendbefore\n\n*/"
+			}
+		],
+		[
+			"description-END_TO_END\tRange",
+			{
+				"name": "END_TO_END",
+				"return_type": "const unsigned short",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#END_TO_END",
+				"full_description": "/*\n\n\tRange\n\n\tEND_TO_END\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#END_TO_END\n\n*/"
+			}
+		],
+		[
+			"description-setEndAfter()\tRange",
+			{
+				"name": "setEndAfter",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "node",
+						"type": "Node",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setendafter",
+				"full_description": "/*\n\n\tRange\n\n\tsetEndAfter ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setendafter\n\n*/"
+			}
+		],
+		[
+			"description-deleteContents()\tRange",
+			{
+				"name": "deleteContents",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-range-deletecontents",
+				"full_description": "/*\n\n\tRange\n\n\tdeleteContents ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-deletecontents\n\n*/"
+			}
+		],
+		[
+			"description-Range()\tRange",
+			{
+				"name": "Range",
+				"return_type": "Range",
+				"parameters": [],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/DOM%20-%20Range.html#Range",
+				"full_description": "/*\n\n\tRange\n\n\tRange ()\n\n\tReturn Type:\n\tRange\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#Range\n\n*/"
+			}
+		]
 	]
 }

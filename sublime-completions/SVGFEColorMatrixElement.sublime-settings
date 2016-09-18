@@ -1,0 +1,57 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA: const unsigned short\tSVGFEColorMatrixElement",
+			"SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA"
+		],
+		[
+			"SVG_FECOLORMATRIX_TYPE_HUEROTATE: const unsigned short\tSVGFEColorMatrixElement",
+			"SVG_FECOLORMATRIX_TYPE_HUEROTATE"
+		],
+		[
+			"SVG_FECOLORMATRIX_TYPE_SATURATE: const unsigned short\tSVGFEColorMatrixElement",
+			"SVG_FECOLORMATRIX_TYPE_SATURATE"
+		],
+		[
+			"SVG_FECOLORMATRIX_TYPE_UNKNOWN: const unsigned short\tSVGFEColorMatrixElement",
+			"SVG_FECOLORMATRIX_TYPE_UNKNOWN"
+		],
+		[
+			"SVG_FECOLORMATRIX_TYPE_MATRIX: const unsigned short\tSVGFEColorMatrixElement",
+			"SVG_FECOLORMATRIX_TYPE_MATRIX"
+		],
+		[
+			"values: SVGAnimatedNumberList\tSVGFEColorMatrixElement",
+			"values"
+		],
+		[
+			"type: SVGAnimatedEnumeration\tSVGFEColorMatrixElement",
+			"type"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFEColorMatrixElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEColorMatrixElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEColorMatrixElement",
+			"width"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFEColorMatrixElement",
+			"in1"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEColorMatrixElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEColorMatrixElement",
+			"y"
+		]
+	]
+}

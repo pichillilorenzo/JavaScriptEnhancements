@@ -1,0 +1,115 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-height\tSVGFEDiffuseLightingElement",
+			{
+				"name": "height",
+				"return_type": "SVGAnimatedLength",
+				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#height",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#height\n\n*/"
+			}
+		],
+		[
+			"description-width\tSVGFEDiffuseLightingElement",
+			{
+				"name": "width",
+				"return_type": "SVGAnimatedLength",
+				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#width",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#width\n\n*/"
+			}
+		],
+		[
+			"description-x\tSVGFEDiffuseLightingElement",
+			{
+				"name": "x",
+				"return_type": "SVGAnimatedLength",
+				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#x",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#x\n\n*/"
+			}
+		],
+		[
+			"description-y\tSVGFEDiffuseLightingElement",
+			{
+				"name": "y",
+				"return_type": "SVGAnimatedLength",
+				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#y",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#y\n\n*/"
+			}
+		],
+		[
+			"description-kernelUnitLengthX\tSVGFEDiffuseLightingElement",
+			{
+				"name": "kernelUnitLengthX",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#kernelUnitLengthX",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tkernelUnitLengthX\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#kernelUnitLengthX\n\n*/"
+			}
+		],
+		[
+			"description-kernelUnitLengthY\tSVGFEDiffuseLightingElement",
+			{
+				"name": "kernelUnitLengthY",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#kernelUnitLengthY",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tkernelUnitLengthY\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#kernelUnitLengthY\n\n*/"
+			}
+		],
+		[
+			"description-diffuseConstant\tSVGFEDiffuseLightingElement",
+			{
+				"name": "diffuseConstant",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘diffuseConstant’ on the given ‘feDiffuseLighting’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#diffuseConstant",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tdiffuseConstant\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘diffuseConstant’ on the given ‘feDiffuseLighting’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#diffuseConstant\n\n*/"
+			}
+		],
+		[
+			"description-surfaceScale\tSVGFEDiffuseLightingElement",
+			{
+				"name": "surfaceScale",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘surfaceScale’ on the given ‘feDiffuseLighting’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#surfaceScale",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tsurfaceScale\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘surfaceScale’ on the given ‘feDiffuseLighting’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#surfaceScale\n\n*/"
+			}
+		],
+		[
+			"description-in1\tSVGFEDiffuseLightingElement",
+			{
+				"name": "in1",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#in1",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#in1\n\n*/"
+			}
+		],
+		[
+			"description-result\tSVGFEDiffuseLightingElement",
+			{
+				"name": "result",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#result",
+				"full_description": "/*\n\n\tSVGFEDiffuseLightingElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDiffuseLightingElement.html#result\n\n*/"
+			}
+		]
+	]
+}

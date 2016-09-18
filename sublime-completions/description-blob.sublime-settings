@@ -1,14 +1,107 @@
 {
 	"scope": "source.js",
-
-	"completions":
-	[
-    ["description-Blob.slice()\tBlob", "/*\n\tDescription:\n\tThe slice is used to create a new Blob object containing the data in the specified range of bytes of the source Blob.\n\n\tSyntax:\n\tvar blob = instanceOfBlob.slice([start [, end [, contentType]]]);\n*/"],
-    ["description-Blob()\tBlob", "/*\n\tDescription:\n\tThe Blob() constructor returns a new Blob object. The content of the blob consists of the concatenation of the array of values given in parameter.\n\n\tSyntax:\n\tvar aBlob = new Blob( array, options );\n*/"],
-    ["description-Blob.type\tBlob", "/*\n\tDescription:\n\tThe type property provides the MIME type of the file or the empty string if the type couldn't determined.\n\n\tSyntax:\n\tvar mimetype = instanceOfFile.type\n*/"],
-    ["description-Blob.size\tBlob", "/*\n\tDescription:\n\tReturns the size of the file in bytes.\n\n\tSyntax:\n\tvar filesize = instanceOfFile.size\n*/"],
-    ["description-slice()\tBlob", "/*\n\tDescription:\n\tThe slice is used to create a new Blob object containing the data in the specified range of bytes of the source Blob.\n\n\tSyntax:\n\tvar blob = instanceOfBlob.slice([start [, end [, contentType]]]);\n*/"],
-    ["description-type\tBlob", "/*\n\tDescription:\n\tThe type property provides the MIME type of the file or the empty string if the type couldn't determined.\n\n\tSyntax:\n\tvar mimetype = instanceOfFile.type\n*/"],
-    ["description-size\tBlob", "/*\n\tDescription:\n\tReturns the size of the file in bytes.\n\n\tSyntax:\n\tvar filesize = instanceOfFile.size\n*/"]
+	"completions": [
+		[
+			"description-type\tBlob",
+			{
+				"name": "type",
+				"return_type": "DOMString",
+				"description": "The ASCII-encoded string in lower case representing the media type of the Blob. For File objects that are returned from the underlying file system, user agents must return the type of a Blob as an ASCII-encoded string in lower case, such that when it is converted to a corresponding byte sequence, it is a parsable MIME type [MIMESNIFF], or the empty string -- 0 bytes -- if the type cannot be determined.",
+				"type": "property",
+				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#type",
+				"full_description": "/*\n\n\tBlob\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe ASCII-encoded string in lower case representing the media type of the Blob. For File objects that are returned from the underlying file system, user agents must return the type of a Blob as an ASCII-encoded string in lower case, such that when it is converted to a corresponding byte sequence, it is a parsable MIME type [MIMESNIFF], or the empty string -- 0 bytes -- if the type cannot be determined.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#type\n\n*/"
+			}
+		],
+		[
+			"description-size\tBlob",
+			{
+				"name": "size",
+				"return_type": "unsigned long long",
+				"description": "Returns the size of the Blob object in bytes. On getting, conforming user agents must return the total number of bytes that can be read by a FileReader or FileReaderSync object, or 0 if the Blob has no bytes to be read. If the Blob has been neutered with close called on it, then size must return 0.",
+				"type": "property",
+				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#size",
+				"full_description": "/*\n\n\tBlob\n\n\tsize\n\n\tReturn Type:\n\tunsigned long long\n\n\tDescription:\n\tReturns the size of the Blob object in bytes. On getting, conforming user agents must return the total number of bytes that can be read by a FileReader or FileReaderSync object, or 0 if the Blob has no bytes to be read. If the Blob has been neutered with close called on it, then size must return 0.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#size\n\n*/"
+			}
+		],
+		[
+			"description-close()\tBlob",
+			{
+				"name": "close",
+				"return_type": "void",
+				"parameters": [],
+				"description": "Calling the close method must permanently neuter the original Blob object. This is an irreversible and non-idempotent operation; once a Blob has been neutered, it cannot be used again; dereferencing a Blob URL bound to a Blob object on which close has been called results in a network error.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#close",
+				"full_description": "/*\n\n\tBlob\n\n\tclose ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCalling the close method must permanently neuter the original Blob object. This is an irreversible and non-idempotent operation; once a Blob has been neutered, it cannot be used again; dereferencing a Blob URL bound to a Blob object on which close has been called results in a network error.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#close\n\n*/"
+			}
+		],
+		[
+			"description-slice()\tBlob",
+			{
+				"name": "slice",
+				"return_type": "Blob",
+				"parameters": [
+					{
+						"name": "start",
+						"type": "long long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "end",
+						"type": "long long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "contentType",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The slice method returns a new Blob object with bytes ranging from the optional start parameter upto but not including the optional end parameter, and with a type attribute that is the value of the optional contentType parameter.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#slice",
+				"full_description": "/*\n\n\tBlob\n\n\tslice ( start?: long long, end?: long long, contentType?: DOMString )\n\n\tReturn Type:\n\tBlob\n\n\tDescription:\n\tThe slice method returns a new Blob object with bytes ranging from the optional start parameter upto but not including the optional end parameter, and with a type attribute that is the value of the optional contentType parameter.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#slice\n\n*/"
+			}
+		],
+		[
+			"description-Blob()\tBlob",
+			{
+				"name": "Blob",
+				"return_type": "Blob",
+				"parameters": [
+					{
+						"name": "> blobParts",
+						"type": "ArrayBuffer|ArrayBufferView|Blob|DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "options",
+						"type": "BlobPropertyBag",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#Blob",
+				"full_description": "/*\n\n\tBlob\n\n\tBlob ( > blobParts: ArrayBuffer|ArrayBufferView|Blob|DOMString, options?: BlobPropertyBag )\n\n\tReturn Type:\n\tBlob\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#Blob\n\n*/"
+			}
+		],
+		[
+			"description-Blob()\tBlob",
+			{
+				"name": "Blob",
+				"return_type": "Blob",
+				"parameters": [],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#Blob",
+				"full_description": "/*\n\n\tBlob\n\n\tBlob ()\n\n\tReturn Type:\n\tBlob\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#Blob\n\n*/"
+			}
+		]
 	]
 }

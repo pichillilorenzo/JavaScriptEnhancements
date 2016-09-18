@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setContext( context: RenderingContext ): void\tCanvasProxy",
+			"setContext(${1:context: RenderingContext})"
+		]
+	]
+}

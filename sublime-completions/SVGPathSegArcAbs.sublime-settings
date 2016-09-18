@@ -1,0 +1,33 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"largeArcFlag: boolean\tSVGPathSegArcAbs",
+			"largeArcFlag"
+		],
+		[
+			"sweepFlag: boolean\tSVGPathSegArcAbs",
+			"sweepFlag"
+		],
+		[
+			"angle: float\tSVGPathSegArcAbs",
+			"angle"
+		],
+		[
+			"r1: float\tSVGPathSegArcAbs",
+			"r1"
+		],
+		[
+			"r2: float\tSVGPathSegArcAbs",
+			"r2"
+		],
+		[
+			"x: float\tSVGPathSegArcAbs",
+			"x"
+		],
+		[
+			"y: float\tSVGPathSegArcAbs",
+			"y"
+		]
+	]
+}

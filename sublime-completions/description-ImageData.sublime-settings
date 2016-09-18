@@ -1,0 +1,94 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-data\tImageData",
+			{
+				"name": "data",
+				"return_type": "Uint8ClampedArray",
+				"description": "New ImageData objects must be initialized so that their width attribute is set to the number of pixels per row in the image data, their height attribute is set to the number of rows in the image data, and their data attribute, except where an existing array is provided, is initialized to a new Uint8ClampedArray object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20ImageData.html#data",
+				"full_description": "/*\n\n\tImageData\n\n\tdata\n\n\tReturn Type:\n\tUint8ClampedArray\n\n\tDescription:\n\tNew ImageData objects must be initialized so that their width attribute is set to the number of pixels per row in the image data, their height attribute is set to the number of rows in the image data, and their data attribute, except where an existing array is provided, is initialized to a new Uint8ClampedArray object.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20ImageData.html#data\n\n*/"
+			}
+		],
+		[
+			"description-height\tImageData",
+			{
+				"name": "height",
+				"return_type": "unsigned long",
+				"description": "The height attribute, on getting, must return the height of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the current width of the rendering context's scratch bitmap in CSS pixels and the new value, respectively.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20ImageData.html#height",
+				"full_description": "/*\n\n\tImageData\n\n\theight\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe height attribute, on getting, must return the height of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the current width of the rendering context's scratch bitmap in CSS pixels and the new value, respectively.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20ImageData.html#height\n\n*/"
+			}
+		],
+		[
+			"description-width\tImageData",
+			{
+				"name": "width",
+				"return_type": "unsigned long",
+				"description": "The width attribute, on getting, must return the width of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the new value and the current height of the rendering context's scratch bitmap in CSS pixels, respectively.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20ImageData.html#width",
+				"full_description": "/*\n\n\tImageData\n\n\twidth\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe width attribute, on getting, must return the width of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the new value and the current height of the rendering context's scratch bitmap in CSS pixels, respectively.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20ImageData.html#width\n\n*/"
+			}
+		],
+		[
+			"description-ImageData()\tImageData",
+			{
+				"name": "ImageData",
+				"return_type": "ImageData",
+				"parameters": [
+					{
+						"name": "data",
+						"type": "Uint8ClampedArray",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sw",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sh",
+						"type": "unsigned long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/Canvas%20-%20ImageData.html#ImageData",
+				"full_description": "/*\n\n\tImageData\n\n\tImageData ( data: Uint8ClampedArray, sw: unsigned long, sh?: unsigned long )\n\n\tReturn Type:\n\tImageData\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20ImageData.html#ImageData\n\n*/"
+			}
+		],
+		[
+			"description-ImageData()\tImageData",
+			{
+				"name": "ImageData",
+				"return_type": "ImageData",
+				"parameters": [
+					{
+						"name": "sw",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sh",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/Canvas%20-%20ImageData.html#ImageData",
+				"full_description": "/*\n\n\tImageData\n\n\tImageData ( sw: unsigned long, sh: unsigned long )\n\n\tReturn Type:\n\tImageData\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20ImageData.html#ImageData\n\n*/"
+			}
+		]
+	]
+}

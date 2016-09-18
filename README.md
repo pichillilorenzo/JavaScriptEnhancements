@@ -8,10 +8,8 @@ JavaScript Completions for sublime text
 
 It helps you to write your scripts more quickly with hints and completions.
 
-In the next updates I will add the newest APIs of HTML5
-
-<strong>jQuery</strong> and <strong>NativeScript</strong> completions added! They are disabled by default!
-You can enable them on Preferences -> Package Settings -> JavaScript Completions and here you can set your settings.
+<strong>jQuery</strong> and <strong>NativeScript</strong> completions disabled by default!
+You can enable them on Preferences -> Package Settings -> JavaScript Completions.
 
 <h2>Usage</h2>
 
@@ -25,112 +23,64 @@ Examples:
 
 <code>description-Name_of_function/property/method</code> shows to you the explanation of the function/property/method and its syntax.
 
-Information about the description of function/property/method has been taken on the site https://developer.mozilla.org
-Information about the description of jQuery's function/property/method has been taken on the official site. 
-Information about the description of NativeScript's function/property/method has been taken on the official site. 
+Information about the description of function/property/method has been taken on this sites:
 
-<h3>"Show Description" Feature</h3>
+- [http://html5index.org/index.html](http://html5index.org/index.html)
+- [https://html.spec.whatwg.org/](https://html.spec.whatwg.org/)
+- [http://www.ecma-international.org/ecma-262/5.1/](http://www.ecma-international.org/ecma-262/5.1/)
+- [https://www.w3.org](https://www.w3.org)
+- [http://api.jquery.com/](http://api.jquery.com/)
+- [https://docs.nativescript.org/api-reference/globals.html](https://docs.nativescript.org/api-reference/globals.html)
 
-Now you can check the description of function/property/method by selecting the word you want find and "right-click" of your mouse and click on "Find JavaScript Description" or, alternately, with "ctrl+super+c" from your keyboard!
+<h3>"Find JavaScript Description" Feature</h3>
 
+<strong>Supported only by Sublime Text 3</strong>
+
+<strong>key-map</strong> of this feature disabled by default!
+
+You can check the description of function/property/method by selecting the word (or, in case, it will take the first word near the blinking cursor) you want find. "right-click" on your mouse and click on "Find JavaScript Description".
 It will show a popup with the list of possible descriptions or, in some case, the direct description. 
 
-<img src="https://s22.postimg.io/xslsughdt/Schermata_2016_09_12_alle_02_53_20.png" alt="example #1 'Show Description' Feature"> 
+In case, you can also use "key-map"! Just go to Preferences -> Package Settings -> JavaScript Completions and enable it.
 
-<img src="https://s22.postimg.io/jaolmgq2p/Schermata_2016_09_12_alle_02_58_27.png" alt="example #2 'Show Description' Feature"> 
+<img src="https://s17.postimg.io/stsylwwn3/Schermata_2016_09_18_alle_17_41_17.png" alt="example #1 Find JavaScript Description Feature"> 
+
+<img src="https://s17.postimg.io/pyfvf1sn3/Schermata_2016_09_18_alle_17_40_28.png" alt="example #2 Find JavaScript Description Feature"> 
+
+<h3>"Evaluate JavaScript" Feature</h3>
+
+<strong>Supported only by Sublime Text 3</strong>
+
+This feature uses node.js (v6.6.0) executable.
+You can change the node version on Preferences -> Package Settings -> Evaluate JavaScript settings
+
+It will download automaticaly the binary for your OS.
+A message will appear on the "status bar" of Sublime Text.
+
+<strong>context menu option</strong> of this feature disabled by default!
+<strong>key-map</strong> of this feature disabled by default!
+
+You can evaluate the entire text selection or the current line! 
+If you select a text region and evaluate it, in the gutter of the editor will appear 2 white dots.
+The first white dot represents the start of the region and the second white dot represents the end of the region.
+You can eventually modify the region and, without reselect the same region, you can evaluate it again! 
+If you want hide this 2 dots, there is an entry on the context menu "Evaluate JavaScript".
+
+When you evaluate code, this plugin will prepend <code>"use strict";</code> automaticaly!
+
+There are two main mode to evaluate code:
+- [eval](https://nodejs.org/dist/latest-v6.x/docs/api/cli.html#cli_e_eval_script)
+- [print](https://nodejs.org/dist/latest-v6.x/docs/api/cli.html#cli_p_print_script)
+
+To enable this feature on context menu, go to Preferences -> Package Settings -> Evaluate JavaScript and enable it.
+In case, you can also use "key-map"! Just go to Preferences -> Package Settings -> Evaluate JavaScript and enable it.
+
+<img src="https://s17.postimg.io/c7becu3pb/Schermata_2016_09_18_alle_18_07_00.png" alt="example #1 Evaluate JavaScript Feature"> 
+
+<img src="https://s17.postimg.io/fs79w288v/Schermata_2016_09_18_alle_18_08_55.png" alt="example #2 Evaluate JavaScript Feature"> 
 
 <h3>ENABLE or DISABLE completions</h3>
 
-Now you can also ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions and set your settings!
-
-Default settings are:
-
-```json
-{
-    // --------------------
-    // Setup
-    // --------------------
-    // `true` means enable it.
-    // `false` means disable it.
-
-    "completion_active_list": {
-
-        "ajax": true,
-        "description-ajax": true,
-
-        "array-string-and-regexp": true,
-        "description-array-string-and-regexp": true,
-
-        "date": true,
-        "description-date": true,
-
-        "blob": true,
-        "description-blob": true,
-
-        "document": true,
-        "description-document": true,
-
-        "element": true,
-        "description-element": true,
-
-        "event": true,
-        "description-event": true,
-
-        "event-target": true,
-        "description-event-target": true,
-
-        "file": true,
-        "description-file": true,
-
-        "node": true,
-        "description-node": true,
-
-        "range": true,
-        "description-range": true,
-
-        "style-css": true,
-        "description-style-css": true,
-
-        "text": true,
-        "description-text": true,
-
-        "treewalker": true,
-        "description-treewalker": true,
-
-        "url": true,
-        "description-url": true,
-
-        "window": true,
-        "description-window": true,
-
-        "worker": true,
-        "description-worker": true,
-
-        "error": true,
-        "description-error": true,
-
-        "function": true,
-        "description-function": true,
-
-        "math": true,
-        "description-math": true,
-
-        "miscellaneous": true,
-        "description-miscellaneous": true,
-
-        "number": true,
-        "description-number": true,
-
-        "object": true,
-        "description-object": true,
-
-        "nativescript": false,
-        "description-nativescript": false,
-
-        "jquery": false,
-        "description-jquery": false
-    }
-}
-```
+You can ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions
 
 <i>MIT License</i>

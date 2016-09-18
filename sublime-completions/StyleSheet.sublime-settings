@@ -1,0 +1,33 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"ownerNode: (Element or ProcessingInstruction)\tStyleSheet",
+			"ownerNode"
+		],
+		[
+			"parentStyleSheet: StyleSheet\tStyleSheet",
+			"parentStyleSheet"
+		],
+		[
+			"disabled: boolean\tStyleSheet",
+			"disabled"
+		],
+		[
+			"media: MediaList\tStyleSheet",
+			"media"
+		],
+		[
+			"title: DOMString\tStyleSheet",
+			"title"
+		],
+		[
+			"href: DOMString\tStyleSheet",
+			"href"
+		],
+		[
+			"type: DOMString\tStyleSheet",
+			"type"
+		]
+	]
+}
