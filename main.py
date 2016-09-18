@@ -50,6 +50,10 @@ class JavaScriptCompletionsPackageEventListener(sublime_plugin.EventListener):
   global javascriptCompletions
 
   def on_query_completions(self, view, prefix, locations):
+    
+    if not prefix.strip() :
+      return 
+    
     self.completions = []
 
     for API_Keyword in javascriptCompletions.api:
