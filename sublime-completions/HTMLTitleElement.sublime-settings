@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"text: DOMString\tHTMLTitleElement",
-			"text"
-		]
-	]
-}

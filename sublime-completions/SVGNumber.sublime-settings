@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"value: float\tSVGNumber",
-			"value"
-		]
-	]
-}

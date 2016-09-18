@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"open: boolean\tHTMLDetailsElement",
-			"open"
-		]
-	]
-}
