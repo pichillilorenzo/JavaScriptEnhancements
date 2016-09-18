@@ -1,8 +1,8 @@
 <h1>JavaScript Completions</h1>
 
 [![Sublime Text](https://img.shields.io/badge/Sublime%20Text-2%20%2F%203-brightgreen.svg)](https://www.sublimetext.com/)
-[![Package Control](https://img.shields.io/packagecontrol/dt/JavaScript%20Completions.svg?maxAge=2592000)](https://packagecontrol.io/packages/JavaScript%20Completions) 
-[![Package Control](https://img.shields.io/packagecontrol/dd/JavaScript%20Completions.svg?maxAge=2592000)](https://packagecontrol.io/packages/JavaScript%20Completions)
+[![Package Control](https://img.shields.io/packagecontrol/dt/JavaScript%20Completions.svg)](https://packagecontrol.io/packages/JavaScript%20Completions) 
+[![Package Control](https://img.shields.io/packagecontrol/dd/JavaScript%20Completions.svg)](https://packagecontrol.io/packages/JavaScript%20Completions)
 
 JavaScript Completions for sublime text
 
