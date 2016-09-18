@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"sorted: DOMString\tHTMLTableHeaderCellElement",
+			"sorted"
+		],
+		[
+			"scope: DOMString\tHTMLTableHeaderCellElement",
+			"scope"
+		],
+		[
+			"abbr: DOMString\tHTMLTableHeaderCellElement",
+			"abbr"
+		],
+		[
+			"sort(): void\tHTMLTableHeaderCellElement",
+			"sort()"
+		]
+	]
+}

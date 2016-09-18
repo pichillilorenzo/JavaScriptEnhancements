@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"limitingConeAngle: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"limitingConeAngle"
+		],
+		[
+			"specularExponent: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"specularExponent"
+		],
+		[
+			"pointsAtX: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"pointsAtX"
+		],
+		[
+			"pointsAtY: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"pointsAtY"
+		],
+		[
+			"pointsAtZ: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"pointsAtZ"
+		],
+		[
+			"x: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"y"
+		],
+		[
+			"z: SVGAnimatedNumber\tSVGFESpotLightElement",
+			"z"
+		]
+	]
+}

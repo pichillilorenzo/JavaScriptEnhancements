@@ -1,0 +1,28 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-yieldForStorageUpdates()\tNavigatorStorageUtils",
+			{
+				"name": "yieldForStorageUpdates",
+				"return_type": "void",
+				"parameters": [],
+				"description": "The yieldForStorageUpdates() method, when invoked, must, if the storage mutex is owned by the event loop of the task that resulted in the method being called, release the storage mutex so that it is once again free. Otherwise, it must do nothing.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorStorageUtils.html#yieldForStorageUpdates",
+				"full_description": "/*\n\n\tNavigatorStorageUtils\n\n\tyieldForStorageUpdates ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe yieldForStorageUpdates() method, when invoked, must, if the storage mutex is owned by the event loop of the task that resulted in the method being called, release the storage mutex so that it is once again free. Otherwise, it must do nothing.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorStorageUtils.html#yieldForStorageUpdates\n\n*/"
+			}
+		],
+		[
+			"description-cookieEnabled\tNavigatorStorageUtils",
+			{
+				"name": "cookieEnabled",
+				"return_type": "boolean",
+				"description": "The cookieEnabled attribute must return true if the user agent attempts to handle cookies according to the cookie specification, and false if it ignores cookie change requests. [COOKIES]",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20NavigatorStorageUtils.html#cookieEnabled",
+				"full_description": "/*\n\n\tNavigatorStorageUtils\n\n\tcookieEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe cookieEnabled attribute must return true if the user agent attempts to handle cookies according to the cookie specification, and false if it ignores cookie change requests. [COOKIES]\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20NavigatorStorageUtils.html#cookieEnabled\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"JSON.stringify( value: any, replacer?: any, space?: any ): static string\tJSON",
+			"JSON.stringify(${1:value: any}, ${2:replacer?: any}, ${3:space?: any})"
+		],
+		[
+			"stringify( value: any, replacer?: any, space?: any ): static string\tJSON",
+			"stringify(${1:value: any}, ${2:replacer?: any}, ${3:space?: any})"
+		],
+		[
+			"JSON.parse( json: string ): static any\tJSON",
+			"JSON.parse(${1:json: string})"
+		],
+		[
+			"parse( json: string ): static any\tJSON",
+			"parse(${1:json: string})"
+		]
+	]
+}

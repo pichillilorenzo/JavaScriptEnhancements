@@ -1,0 +1,41 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-relatedTarget\tRelatedEvent",
+			{
+				"name": "relatedTarget",
+				"return_type": "EventTarget",
+				"description": "The relatedTarget attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the other event target that is related to the event.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20RelatedEvent.html#relatedTarget",
+				"full_description": "/*\n\n\tRelatedEvent\n\n\trelatedTarget\n\n\tReturn Type:\n\tEventTarget\n\n\tDescription:\n\tThe relatedTarget attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the other event target that is related to the event.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20RelatedEvent.html#relatedTarget\n\n*/"
+			}
+		],
+		[
+			"description-RelatedEvent()\tRelatedEvent",
+			{
+				"name": "RelatedEvent",
+				"return_type": "RelatedEvent",
+				"parameters": [
+					{
+						"name": "type",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "eventInitDict",
+						"type": "RelatedEventInit",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/DOM%20-%20RelatedEvent.html#RelatedEvent",
+				"full_description": "/*\n\n\tRelatedEvent\n\n\tRelatedEvent ( type: DOMString, eventInitDict?: RelatedEventInit )\n\n\tReturn Type:\n\tRelatedEvent\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20RelatedEvent.html#RelatedEvent\n\n*/"
+			}
+		]
+	]
+}

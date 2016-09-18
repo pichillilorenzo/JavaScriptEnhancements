@@ -1,0 +1,257 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"onautocompleteerror: EventHandler\tGlobalEventHandlers",
+			"onautocompleteerror"
+		],
+		[
+			"ondurationchange: EventHandler\tGlobalEventHandlers",
+			"ondurationchange"
+		],
+		[
+			"oncanplaythrough: EventHandler\tGlobalEventHandlers",
+			"oncanplaythrough"
+		],
+		[
+			"onloadedmetadata: EventHandler\tGlobalEventHandlers",
+			"onloadedmetadata"
+		],
+		[
+			"onautocomplete: EventHandler\tGlobalEventHandlers",
+			"onautocomplete"
+		],
+		[
+			"onerror: OnErrorEventHandler\tGlobalEventHandlers",
+			"onerror"
+		],
+		[
+			"onvolumechange: EventHandler\tGlobalEventHandlers",
+			"onvolumechange"
+		],
+		[
+			"oncontextmenu: EventHandler\tGlobalEventHandlers",
+			"oncontextmenu"
+		],
+		[
+			"onloadeddata: EventHandler\tGlobalEventHandlers",
+			"onloadeddata"
+		],
+		[
+			"onmousewheel: EventHandler\tGlobalEventHandlers",
+			"onmousewheel"
+		],
+		[
+			"onmouseleave: EventHandler\tGlobalEventHandlers",
+			"onmouseleave"
+		],
+		[
+			"onmouseenter: EventHandler\tGlobalEventHandlers",
+			"onmouseenter"
+		],
+		[
+			"onratechange: EventHandler\tGlobalEventHandlers",
+			"onratechange"
+		],
+		[
+			"ontimeupdate: EventHandler\tGlobalEventHandlers",
+			"ontimeupdate"
+		],
+		[
+			"onmousedown: EventHandler\tGlobalEventHandlers",
+			"onmousedown"
+		],
+		[
+			"ondragstart: EventHandler\tGlobalEventHandlers",
+			"ondragstart"
+		],
+		[
+			"ondragleave: EventHandler\tGlobalEventHandlers",
+			"ondragleave"
+		],
+		[
+			"onmouseover: EventHandler\tGlobalEventHandlers",
+			"onmouseover"
+		],
+		[
+			"ondragenter: EventHandler\tGlobalEventHandlers",
+			"ondragenter"
+		],
+		[
+			"onmousemove: EventHandler\tGlobalEventHandlers",
+			"onmousemove"
+		],
+		[
+			"onloadstart: EventHandler\tGlobalEventHandlers",
+			"onloadstart"
+		],
+		[
+			"oncuechange: EventHandler\tGlobalEventHandlers",
+			"oncuechange"
+		],
+		[
+			"ondblclick: EventHandler\tGlobalEventHandlers",
+			"ondblclick"
+		],
+		[
+			"ondragover: EventHandler\tGlobalEventHandlers",
+			"ondragover"
+		],
+		[
+			"onprogress: EventHandler\tGlobalEventHandlers",
+			"onprogress"
+		],
+		[
+			"onmouseout: EventHandler\tGlobalEventHandlers",
+			"onmouseout"
+		],
+		[
+			"ondragexit: EventHandler\tGlobalEventHandlers",
+			"ondragexit"
+		],
+		[
+			"onkeypress: EventHandler\tGlobalEventHandlers",
+			"onkeypress"
+		],
+		[
+			"oninvalid: EventHandler\tGlobalEventHandlers",
+			"oninvalid"
+		],
+		[
+			"onkeydown: EventHandler\tGlobalEventHandlers",
+			"onkeydown"
+		],
+		[
+			"onwaiting: EventHandler\tGlobalEventHandlers",
+			"onwaiting"
+		],
+		[
+			"onseeking: EventHandler\tGlobalEventHandlers",
+			"onseeking"
+		],
+		[
+			"oncanplay: EventHandler\tGlobalEventHandlers",
+			"oncanplay"
+		],
+		[
+			"onemptied: EventHandler\tGlobalEventHandlers",
+			"onemptied"
+		],
+		[
+			"onmouseup: EventHandler\tGlobalEventHandlers",
+			"onmouseup"
+		],
+		[
+			"ondragend: EventHandler\tGlobalEventHandlers",
+			"ondragend"
+		],
+		[
+			"onsuspend: EventHandler\tGlobalEventHandlers",
+			"onsuspend"
+		],
+		[
+			"onplaying: EventHandler\tGlobalEventHandlers",
+			"onplaying"
+		],
+		[
+			"onstalled: EventHandler\tGlobalEventHandlers",
+			"onstalled"
+		],
+		[
+			"ontoggle: EventHandler\tGlobalEventHandlers",
+			"ontoggle"
+		],
+		[
+			"onchange: EventHandler\tGlobalEventHandlers",
+			"onchange"
+		],
+		[
+			"onresize: EventHandler\tGlobalEventHandlers",
+			"onresize"
+		],
+		[
+			"onscroll: EventHandler\tGlobalEventHandlers",
+			"onscroll"
+		],
+		[
+			"onseeked: EventHandler\tGlobalEventHandlers",
+			"onseeked"
+		],
+		[
+			"oncancel: EventHandler\tGlobalEventHandlers",
+			"oncancel"
+		],
+		[
+			"onselect: EventHandler\tGlobalEventHandlers",
+			"onselect"
+		],
+		[
+			"onsubmit: EventHandler\tGlobalEventHandlers",
+			"onsubmit"
+		],
+		[
+			"onfocus: EventHandler\tGlobalEventHandlers",
+			"onfocus"
+		],
+		[
+			"onreset: EventHandler\tGlobalEventHandlers",
+			"onreset"
+		],
+		[
+			"oninput: EventHandler\tGlobalEventHandlers",
+			"oninput"
+		],
+		[
+			"onclose: EventHandler\tGlobalEventHandlers",
+			"onclose"
+		],
+		[
+			"onabort: EventHandler\tGlobalEventHandlers",
+			"onabort"
+		],
+		[
+			"onpause: EventHandler\tGlobalEventHandlers",
+			"onpause"
+		],
+		[
+			"onended: EventHandler\tGlobalEventHandlers",
+			"onended"
+		],
+		[
+			"onkeyup: EventHandler\tGlobalEventHandlers",
+			"onkeyup"
+		],
+		[
+			"onclick: EventHandler\tGlobalEventHandlers",
+			"onclick"
+		],
+		[
+			"onsort: EventHandler\tGlobalEventHandlers",
+			"onsort"
+		],
+		[
+			"onshow: EventHandler\tGlobalEventHandlers",
+			"onshow"
+		],
+		[
+			"onplay: EventHandler\tGlobalEventHandlers",
+			"onplay"
+		],
+		[
+			"ondrop: EventHandler\tGlobalEventHandlers",
+			"ondrop"
+		],
+		[
+			"ondrag: EventHandler\tGlobalEventHandlers",
+			"ondrag"
+		],
+		[
+			"onblur: EventHandler\tGlobalEventHandlers",
+			"onblur"
+		],
+		[
+			"onload: EventHandler\tGlobalEventHandlers",
+			"onload"
+		]
+	]
+}

@@ -1,0 +1,247 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-PATHSEG_UNKNOWN\tSVGPathSeg",
+			{
+				"name": "PATHSEG_UNKNOWN",
+				"return_type": "const unsigned short",
+				"description": "The unit type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_UNKNOWN",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe unit type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_UNKNOWN\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative smooth quadratic curveto\" (t) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_QUADRATIC_SMOOTH_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative smooth quadratic curveto\" (t) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute smooth quadratic curveto\" (T) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute smooth quadratic curveto\" (T) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_CUBIC_SMOOTH_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_CUBIC_SMOOTH_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute smooth cubic curveto\" (S) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_SMOOTH_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_CUBIC_SMOOTH_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute smooth cubic curveto\" (S) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_SMOOTH_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_CUBIC_SMOOTH_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_CUBIC_SMOOTH_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative smooth cubic curveto\" (s) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_SMOOTH_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_CUBIC_SMOOTH_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative smooth cubic curveto\" (s) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_SMOOTH_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_QUADRATIC_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_QUADRATIC_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute quadratic Bézier curveto\" (Q) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_QUADRATIC_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute quadratic Bézier curveto\" (Q) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_QUADRATIC_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_QUADRATIC_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative quadratic Bézier curveto\" (q) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_QUADRATIC_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative quadratic Bézier curveto\" (q) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_QUADRATIC_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_LINETO_HORIZONTAL_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_LINETO_HORIZONTAL_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute horizontal lineto\" (H) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_HORIZONTAL_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_LINETO_HORIZONTAL_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute horizontal lineto\" (H) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_HORIZONTAL_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_LINETO_HORIZONTAL_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_LINETO_HORIZONTAL_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative horizontal lineto\" (h) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_HORIZONTAL_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_LINETO_HORIZONTAL_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative horizontal lineto\" (h) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_HORIZONTAL_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_CUBIC_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_CUBIC_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute cubic Bézier curveto\" (C) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_CUBIC_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute cubic Bézier curveto\" (C) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CURVETO_CUBIC_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CURVETO_CUBIC_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative cubic Bézier curveto\" (c) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CURVETO_CUBIC_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative cubic Bézier curveto\" (c) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CURVETO_CUBIC_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_LINETO_VERTICAL_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_LINETO_VERTICAL_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute vertical lineto\" (V) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_VERTICAL_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_LINETO_VERTICAL_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute vertical lineto\" (V) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_VERTICAL_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_LINETO_VERTICAL_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_LINETO_VERTICAL_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative vertical lineto\" (v) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_VERTICAL_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_LINETO_VERTICAL_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative vertical lineto\" (v) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_VERTICAL_REL\n\n*/"
+			}
+		],
+		[
+			"description-pathSegTypeAsLetter\tSVGPathSeg",
+			{
+				"name": "pathSegTypeAsLetter",
+				"return_type": "DOMString",
+				"description": "The type of the path segment, specified by the corresponding one character command name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#pathSegTypeAsLetter",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tpathSegTypeAsLetter\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type of the path segment, specified by the corresponding one character command name.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#pathSegTypeAsLetter\n\n*/"
+			}
+		],
+		[
+			"description-pathSegType\tSVGPathSeg",
+			{
+				"name": "pathSegType",
+				"return_type": "unsigned short",
+				"description": "The type of the path segment as specified by one of the constants defined on this interface.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#pathSegType",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tpathSegType\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe type of the path segment as specified by one of the constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#pathSegType\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_LINETO_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_LINETO_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute lineto\" (L) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_LINETO_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute lineto\" (L) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_LINETO_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_LINETO_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative lineto\" (l) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_LINETO_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative lineto\" (l) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_LINETO_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_MOVETO_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_MOVETO_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute moveto\" (M) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_MOVETO_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_MOVETO_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute moveto\" (M) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_MOVETO_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_MOVETO_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_MOVETO_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative moveto\" (m) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_MOVETO_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_MOVETO_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative moveto\" (m) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_MOVETO_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_ARC_REL\tSVGPathSeg",
+			{
+				"name": "PATHSEG_ARC_REL",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"relative arcto\" (a) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_ARC_REL",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_ARC_REL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"relative arcto\" (a) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_ARC_REL\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_ARC_ABS\tSVGPathSeg",
+			{
+				"name": "PATHSEG_ARC_ABS",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"absolute arcto\" (A) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_ARC_ABS",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_ARC_ABS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"absolute arcto\" (A) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_ARC_ABS\n\n*/"
+			}
+		],
+		[
+			"description-PATHSEG_CLOSEPATH\tSVGPathSeg",
+			{
+				"name": "PATHSEG_CLOSEPATH",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to a \"closepath\" (z) path data command.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CLOSEPATH",
+				"full_description": "/*\n\n\tSVGPathSeg\n\n\tPATHSEG_CLOSEPATH\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a \"closepath\" (z) path data command.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSeg.html#PATHSEG_CLOSEPATH\n\n*/"
+			}
+		]
+	]
+}

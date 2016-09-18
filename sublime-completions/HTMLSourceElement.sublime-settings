@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"type: DOMString\tHTMLSourceElement",
+			"type"
+		],
+		[
+			"src: DOMString\tHTMLSourceElement",
+			"src"
+		]
+	]
+}

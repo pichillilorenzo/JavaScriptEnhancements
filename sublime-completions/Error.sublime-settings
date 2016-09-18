@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new Error( message: string ): Error\tError",
+			"new Error(${1:message: string})"
+		],
+		[
+			"Error( message: string ): Error\tError",
+			"Error(${1:message: string})"
+		],
+		[
+			"message: string\tError",
+			"message"
+		],
+		[
+			"name: string\tError",
+			"name"
+		]
+	]
+}

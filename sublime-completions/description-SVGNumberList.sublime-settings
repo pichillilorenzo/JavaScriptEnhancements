@@ -1,0 +1,154 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-insertItemBefore()\tSVGNumberList",
+			{
+				"name": "insertItemBefore",
+				"return_type": "SVGNumber",
+				"parameters": [
+					{
+						"name": "newItem",
+						"type": "SVGNumber",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Inserts a new item into the list at the specified position. The first item is number 0. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to insert before is before the removal of the item.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#insertItemBefore",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tinsertItemBefore ( newItem: SVGNumber, index: unsigned long )\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tInserts a new item into the list at the specified position. The first item is number 0. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to insert before is before the removal of the item.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#insertItemBefore\n\n*/"
+			}
+		],
+		[
+			"description-replaceItem()\tSVGNumberList",
+			{
+				"name": "replaceItem",
+				"return_type": "SVGNumber",
+				"parameters": [
+					{
+						"name": "newItem",
+						"type": "SVGNumber",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Replaces an existing item in the list with a new item. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to replace is before the removal of the item.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#replaceItem",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\treplaceItem ( newItem: SVGNumber, index: unsigned long )\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tReplaces an existing item in the list with a new item. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to replace is before the removal of the item.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#replaceItem\n\n*/"
+			}
+		],
+		[
+			"description-initialize()\tSVGNumberList",
+			{
+				"name": "initialize",
+				"return_type": "SVGNumber",
+				"parameters": [
+					{
+						"name": "newItem",
+						"type": "SVGNumber",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Clears all existing current items from the list and re-initializes the list to hold the single item specified by the parameter. If the inserted item is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#initialize",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tinitialize ( newItem: SVGNumber )\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tClears all existing current items from the list and re-initializes the list to hold the single item specified by the parameter. If the inserted item is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#initialize\n\n*/"
+			}
+		],
+		[
+			"description-removeItem()\tSVGNumberList",
+			{
+				"name": "removeItem",
+				"return_type": "SVGNumber",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Removes an existing item from the list. Parametersunsigned long index The index of the item which is to be removed. The first item is number 0. Returns The removed item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#removeItem",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tremoveItem ( index: unsigned long )\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tRemoves an existing item from the list. Parametersunsigned long index The index of the item which is to be removed. The first item is number 0. Returns The removed item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#removeItem\n\n*/"
+			}
+		],
+		[
+			"description-appendItem()\tSVGNumberList",
+			{
+				"name": "appendItem",
+				"return_type": "SVGNumber",
+				"parameters": [
+					{
+						"name": "newItem",
+						"type": "SVGNumber",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Inserts a new item at the end of the list. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. ParametersSVGNumber newItem The item which is to be inserted.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#appendItem",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tappendItem ( newItem: SVGNumber )\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tInserts a new item at the end of the list. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. ParametersSVGNumber newItem The item which is to be inserted.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#appendItem\n\n*/"
+			}
+		],
+		[
+			"description-getItem()\tSVGNumberList",
+			{
+				"name": "getItem",
+				"return_type": "SVGNumber",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns the specified item from the list. The returned item is the item itself and not a copy. Any changes made to the item are immediately reflected in the list. Parametersunsigned long index The index of the item from the list which is to be returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#getItem",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tgetItem ( index: unsigned long )\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tReturns the specified item from the list. The returned item is the item itself and not a copy. Any changes made to the item are immediately reflected in the list. Parametersunsigned long index The index of the item from the list which is to be returned.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#getItem\n\n*/"
+			}
+		],
+		[
+			"description-clear()\tSVGNumberList",
+			{
+				"name": "clear",
+				"return_type": "void",
+				"parameters": [],
+				"description": "Clears all existing current items from the list, with the result being an empty list. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list corresponds to a read only attribute or when the object itself is read only.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#clear",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tclear ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tClears all existing current items from the list, with the result being an empty list. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#clear\n\n*/"
+			}
+		],
+		[
+			"description-numberOfItems\tSVGNumberList",
+			{
+				"name": "numberOfItems",
+				"return_type": "unsigned long",
+				"description": "The number of items in the list.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGNumberList.html#numberOfItems",
+				"full_description": "/*\n\n\tSVGNumberList\n\n\tnumberOfItems\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe number of items in the list.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGNumberList.html#numberOfItems\n\n*/"
+			}
+		]
+	]
+}

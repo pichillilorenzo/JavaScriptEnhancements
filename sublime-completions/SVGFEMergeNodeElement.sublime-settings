@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"in1: SVGAnimatedString\tSVGFEMergeNodeElement",
+			"in1"
+		]
+	]
+}

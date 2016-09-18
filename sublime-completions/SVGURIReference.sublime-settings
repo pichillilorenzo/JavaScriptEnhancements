@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"href: SVGAnimatedString\tSVGURIReference",
+			"href"
+		]
+	]
+}

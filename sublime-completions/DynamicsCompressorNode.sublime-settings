@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"reduction: AudioParam\tDynamicsCompressorNode",
+			"reduction"
+		],
+		[
+			"threshold: AudioParam\tDynamicsCompressorNode",
+			"threshold"
+		],
+		[
+			"release: AudioParam\tDynamicsCompressorNode",
+			"release"
+		],
+		[
+			"attack: AudioParam\tDynamicsCompressorNode",
+			"attack"
+		],
+		[
+			"ratio: AudioParam\tDynamicsCompressorNode",
+			"ratio"
+		],
+		[
+			"knee: AudioParam\tDynamicsCompressorNode",
+			"knee"
+		]
+	]
+}

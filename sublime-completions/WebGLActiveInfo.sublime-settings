@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"name: DOMString\tWebGLActiveInfo",
+			"name"
+		],
+		[
+			"type: GLenum\tWebGLActiveInfo",
+			"type"
+		],
+		[
+			"size: GLint\tWebGLActiveInfo",
+			"size"
+		]
+	]
+}

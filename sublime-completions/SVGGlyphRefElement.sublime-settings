@@ -1,0 +1,45 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGGlyphRefElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"className: SVGAnimatedString\tSVGGlyphRefElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGGlyphRefElement",
+			"style"
+		],
+		[
+			"href: SVGAnimatedString\tSVGGlyphRefElement",
+			"href"
+		],
+		[
+			"glyphRef: DOMString\tSVGGlyphRefElement",
+			"glyphRef"
+		],
+		[
+			"format: DOMString\tSVGGlyphRefElement",
+			"format"
+		],
+		[
+			"dx: float\tSVGGlyphRefElement",
+			"dx"
+		],
+		[
+			"dy: float\tSVGGlyphRefElement",
+			"dy"
+		],
+		[
+			"x: float\tSVGGlyphRefElement",
+			"x"
+		],
+		[
+			"y: float\tSVGGlyphRefElement",
+			"y"
+		]
+	]
+}

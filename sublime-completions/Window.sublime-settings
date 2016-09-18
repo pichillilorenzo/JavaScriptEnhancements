@@ -1,0 +1,501 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"open( url?: DOMString, target?: DOMString, features?: DOMString, replace?: boolean ): WindowProxy\tWindow",
+			"open(${1:url?: DOMString}, ${2:target?: DOMString}, ${3:features?: DOMString}, ${4:replace?: boolean})"
+		],
+		[
+			"createImageBitmap( image: ImageBitmapSource, sx?: long, sy: long, sw: long, sh: long ): Promise\tWindow",
+			"createImageBitmap(${1:image: ImageBitmapSource}, ${2:sx?: long}, ${3:sy: long}, ${4:sw: long}, ${5:sh: long})"
+		],
+		[
+			"postMessage( message: any, targetOrigin: DOMString, transfer?: sequence<Transferable> ): void\tWindow",
+			"postMessage(${1:message: any}, ${2:targetOrigin: DOMString}, ${3:transfer?: sequence<Transferable>})"
+		],
+		[
+			"getComputedStyle( elt: Element, pseudoElt?: DOMString ): CSSStyleDeclaration\tWindow",
+			"getComputedStyle(${1:elt: Element}, ${2:pseudoElt?: DOMString})"
+		],
+		[
+			"setInterval( handler: any, timeout?: long, arguments...: any ): long\tWindow",
+			"setInterval(${1:handler: any}, ${2:timeout?: long}, ${3:arguments...: any})"
+		],
+		[
+			"setTimeout( handler: any, timeout?: long, arguments...: any ): long\tWindow",
+			"setTimeout(${1:handler: any}, ${2:timeout?: long}, ${3:arguments...: any})"
+		],
+		[
+			"requestAnimationFrame( callback: FrameRequestCallback ): long\tWindow",
+			"requestAnimationFrame(${1:callback: FrameRequestCallback})"
+		],
+		[
+			"prompt( message?: DOMString, default?: DOMString ): DOMString\tWindow",
+			"prompt(${1:message?: DOMString}, ${2:default?: DOMString})"
+		],
+		[
+			"showModalDialog( url: DOMString, argument?: any ): any\tWindow",
+			"showModalDialog(${1:url: DOMString}, ${2:argument?: any})"
+		],
+		[
+			"cancelAnimationFrame( handle: long ): void\tWindow",
+			"cancelAnimationFrame(${1:handle: long})"
+		],
+		[
+			"onbeforeunload: OnBeforeUnloadEventHandler\tWindow",
+			"onbeforeunload"
+		],
+		[
+			"confirm( message?: DOMString ): boolean\tWindow",
+			"confirm(${1:message?: DOMString})"
+		],
+		[
+			"getter( index_name: any ): WindowProxy\tWindow",
+			"getter(${1:index_name: any})"
+		],
+		[
+			"clearInterval( handle?: long ): void\tWindow",
+			"clearInterval(${1:handle?: long})"
+		],
+		[
+			"clearTimeout( handle?: long ): void\tWindow",
+			"clearTimeout(${1:handle?: long})"
+		],
+		[
+			"btoa( btoa: DOMString ): DOMString\tWindow",
+			"btoa(${1:btoa: DOMString})"
+		],
+		[
+			"atob( atob: DOMString ): DOMString\tWindow",
+			"atob(${1:atob: DOMString})"
+		],
+		[
+			"alert( message?: DOMString ): void\tWindow",
+			"alert(${1:message?: DOMString})"
+		],
+		[
+			"applicationCache: ApplicationCache\tWindow",
+			"applicationCache"
+		],
+		[
+			"onautocompleteerror: EventHandler\tWindow",
+			"onautocompleteerror"
+		],
+		[
+			"onloadedmetadata: EventHandler\tWindow",
+			"onloadedmetadata"
+		],
+		[
+			"onlanguagechange: EventHandler\tWindow",
+			"onlanguagechange"
+		],
+		[
+			"oncanplaythrough: EventHandler\tWindow",
+			"oncanplaythrough"
+		],
+		[
+			"ondurationchange: EventHandler\tWindow",
+			"ondurationchange"
+		],
+		[
+			"onerror: OnErrorEventHandler\tWindow",
+			"onerror"
+		],
+		[
+			"onautocomplete: EventHandler\tWindow",
+			"onautocomplete"
+		],
+		[
+			"onvolumechange: EventHandler\tWindow",
+			"onvolumechange"
+		],
+		[
+			"oncontextmenu: EventHandler\tWindow",
+			"oncontextmenu"
+		],
+		[
+			"onbeforeprint: EventHandler\tWindow",
+			"onbeforeprint"
+		],
+		[
+			"onloadeddata: EventHandler\tWindow",
+			"onloadeddata"
+		],
+		[
+			"ontimeupdate: EventHandler\tWindow",
+			"ontimeupdate"
+		],
+		[
+			"onmouseenter: EventHandler\tWindow",
+			"onmouseenter"
+		],
+		[
+			"onmousewheel: EventHandler\tWindow",
+			"onmousewheel"
+		],
+		[
+			"onhashchange: EventHandler\tWindow",
+			"onhashchange"
+		],
+		[
+			"onmouseleave: EventHandler\tWindow",
+			"onmouseleave"
+		],
+		[
+			"onratechange: EventHandler\tWindow",
+			"onratechange"
+		],
+		[
+			"onafterprint: EventHandler\tWindow",
+			"onafterprint"
+		],
+		[
+			"ondragleave: EventHandler\tWindow",
+			"ondragleave"
+		],
+		[
+			"onloadstart: EventHandler\tWindow",
+			"onloadstart"
+		],
+		[
+			"onmousedown: EventHandler\tWindow",
+			"onmousedown"
+		],
+		[
+			"oncuechange: EventHandler\tWindow",
+			"oncuechange"
+		],
+		[
+			"ondragstart: EventHandler\tWindow",
+			"ondragstart"
+		],
+		[
+			"onmousemove: EventHandler\tWindow",
+			"onmousemove"
+		],
+		[
+			"onmouseover: EventHandler\tWindow",
+			"onmouseover"
+		],
+		[
+			"ondragenter: EventHandler\tWindow",
+			"ondragenter"
+		],
+		[
+			"onkeypress: EventHandler\tWindow",
+			"onkeypress"
+		],
+		[
+			"ondragover: EventHandler\tWindow",
+			"ondragover"
+		],
+		[
+			"onmouseout: EventHandler\tWindow",
+			"onmouseout"
+		],
+		[
+			"ondragexit: EventHandler\tWindow",
+			"ondragexit"
+		],
+		[
+			"onprogress: EventHandler\tWindow",
+			"onprogress"
+		],
+		[
+			"ondblclick: EventHandler\tWindow",
+			"ondblclick"
+		],
+		[
+			"onpopstate: EventHandler\tWindow",
+			"onpopstate"
+		],
+		[
+			"onpagehide: EventHandler\tWindow",
+			"onpagehide"
+		],
+		[
+			"onpageshow: EventHandler\tWindow",
+			"onpageshow"
+		],
+		[
+			"sessionStorage: Storage\tWindow",
+			"sessionStorage"
+		],
+		[
+			"onmessage: EventHandler\tWindow",
+			"onmessage"
+		],
+		[
+			"onstorage: EventHandler\tWindow",
+			"onstorage"
+		],
+		[
+			"onwaiting: EventHandler\tWindow",
+			"onwaiting"
+		],
+		[
+			"onstalled: EventHandler\tWindow",
+			"onstalled"
+		],
+		[
+			"oninvalid: EventHandler\tWindow",
+			"oninvalid"
+		],
+		[
+			"onkeydown: EventHandler\tWindow",
+			"onkeydown"
+		],
+		[
+			"ondragend: EventHandler\tWindow",
+			"ondragend"
+		],
+		[
+			"onseeking: EventHandler\tWindow",
+			"onseeking"
+		],
+		[
+			"onmouseup: EventHandler\tWindow",
+			"onmouseup"
+		],
+		[
+			"onoffline: EventHandler\tWindow",
+			"onoffline"
+		],
+		[
+			"oncanplay: EventHandler\tWindow",
+			"oncanplay"
+		],
+		[
+			"onemptied: EventHandler\tWindow",
+			"onemptied"
+		],
+		[
+			"onsuspend: EventHandler\tWindow",
+			"onsuspend"
+		],
+		[
+			"onplaying: EventHandler\tWindow",
+			"onplaying"
+		],
+		[
+			"onsubmit: EventHandler\tWindow",
+			"onsubmit"
+		],
+		[
+			"onchange: EventHandler\tWindow",
+			"onchange"
+		],
+		[
+			"oncancel: EventHandler\tWindow",
+			"oncancel"
+		],
+		[
+			"onunload: EventHandler\tWindow",
+			"onunload"
+		],
+		[
+			"onresize: EventHandler\tWindow",
+			"onresize"
+		],
+		[
+			"onscroll: EventHandler\tWindow",
+			"onscroll"
+		],
+		[
+			"onseeked: EventHandler\tWindow",
+			"onseeked"
+		],
+		[
+			"ontoggle: EventHandler\tWindow",
+			"ontoggle"
+		],
+		[
+			"onselect: EventHandler\tWindow",
+			"onselect"
+		],
+		[
+			"ononline: EventHandler\tWindow",
+			"ononline"
+		],
+		[
+			"indexedDB: IDBFactory\tWindow",
+			"indexedDB"
+		],
+		[
+			"onfocus: EventHandler\tWindow",
+			"onfocus"
+		],
+		[
+			"onended: EventHandler\tWindow",
+			"onended"
+		],
+		[
+			"onkeyup: EventHandler\tWindow",
+			"onkeyup"
+		],
+		[
+			"onreset: EventHandler\tWindow",
+			"onreset"
+		],
+		[
+			"onclose: EventHandler\tWindow",
+			"onclose"
+		],
+		[
+			"oninput: EventHandler\tWindow",
+			"oninput"
+		],
+		[
+			"length: unsigned long\tWindow",
+			"length"
+		],
+		[
+			"localStorage: Storage\tWindow",
+			"localStorage"
+		],
+		[
+			"onpause: EventHandler\tWindow",
+			"onpause"
+		],
+		[
+			"onabort: EventHandler\tWindow",
+			"onabort"
+		],
+		[
+			"frameElement: Element\tWindow",
+			"frameElement"
+		],
+		[
+			"onclick: EventHandler\tWindow",
+			"onclick"
+		],
+		[
+			"ondrop: EventHandler\tWindow",
+			"ondrop"
+		],
+		[
+			"personalbar: BarProp\tWindow",
+			"personalbar"
+		],
+		[
+			"onplay: EventHandler\tWindow",
+			"onplay"
+		],
+		[
+			"locationbar: BarProp\tWindow",
+			"locationbar"
+		],
+		[
+			"onload: EventHandler\tWindow",
+			"onload"
+		],
+		[
+			"navigator: Navigator\tWindow",
+			"navigator"
+		],
+		[
+			"ondrag: EventHandler\tWindow",
+			"ondrag"
+		],
+		[
+			"onblur: EventHandler\tWindow",
+			"onblur"
+		],
+		[
+			"onshow: EventHandler\tWindow",
+			"onshow"
+		],
+		[
+			"onsort: EventHandler\tWindow",
+			"onsort"
+		],
+		[
+			"window: WindowProxy\tWindow",
+			"window"
+		],
+		[
+			"frames: WindowProxy\tWindow",
+			"frames"
+		],
+		[
+			"opener: WindowProxy\tWindow",
+			"opener"
+		],
+		[
+			"parent: WindowProxy\tWindow",
+			"parent"
+		],
+		[
+			"scrollbars: BarProp\tWindow",
+			"scrollbars"
+		],
+		[
+			"location: Location\tWindow",
+			"location"
+		],
+		[
+			"document: Document\tWindow",
+			"document"
+		],
+		[
+			"external: External\tWindow",
+			"external"
+		],
+		[
+			"statusbar: BarProp\tWindow",
+			"statusbar"
+		],
+		[
+			"self: WindowProxy\tWindow",
+			"self"
+		],
+		[
+			"status: DOMString\tWindow",
+			"status"
+		],
+		[
+			"top: WindowProxy\tWindow",
+			"top"
+		],
+		[
+			"menubar: BarProp\tWindow",
+			"menubar"
+		],
+		[
+			"history: History\tWindow",
+			"history"
+		],
+		[
+			"toolbar: BarProp\tWindow",
+			"toolbar"
+		],
+		[
+			"name: DOMString\tWindow",
+			"name"
+		],
+		[
+			"closed: boolean\tWindow",
+			"closed"
+		],
+		[
+			"print(): void\tWindow",
+			"print()"
+		],
+		[
+			"focus(): void\tWindow",
+			"focus()"
+		],
+		[
+			"close(): void\tWindow",
+			"close()"
+		],
+		[
+			"blur(): void\tWindow",
+			"blur()"
+		],
+		[
+			"stop(): void\tWindow",
+			"stop()"
+		]
+	]
+}

@@ -1,0 +1,71 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-height\tSVGFEComponentTransferElement",
+			{
+				"name": "height",
+				"return_type": "SVGAnimatedLength",
+				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#height",
+				"full_description": "/*\n\n\tSVGFEComponentTransferElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#height\n\n*/"
+			}
+		],
+		[
+			"description-width\tSVGFEComponentTransferElement",
+			{
+				"name": "width",
+				"return_type": "SVGAnimatedLength",
+				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#width",
+				"full_description": "/*\n\n\tSVGFEComponentTransferElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#width\n\n*/"
+			}
+		],
+		[
+			"description-x\tSVGFEComponentTransferElement",
+			{
+				"name": "x",
+				"return_type": "SVGAnimatedLength",
+				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#x",
+				"full_description": "/*\n\n\tSVGFEComponentTransferElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#x\n\n*/"
+			}
+		],
+		[
+			"description-y\tSVGFEComponentTransferElement",
+			{
+				"name": "y",
+				"return_type": "SVGAnimatedLength",
+				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#y",
+				"full_description": "/*\n\n\tSVGFEComponentTransferElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#y\n\n*/"
+			}
+		],
+		[
+			"description-in1\tSVGFEComponentTransferElement",
+			{
+				"name": "in1",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#in1",
+				"full_description": "/*\n\n\tSVGFEComponentTransferElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#in1\n\n*/"
+			}
+		],
+		[
+			"description-result\tSVGFEComponentTransferElement",
+			{
+				"name": "result",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#result",
+				"full_description": "/*\n\n\tSVGFEComponentTransferElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEComponentTransferElement.html#result\n\n*/"
+			}
+		]
+	]
+}

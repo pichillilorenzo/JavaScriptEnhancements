@@ -1,0 +1,76 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-sectionRowIndex\tHTMLTableRowElement",
+			{
+				"name": "sectionRowIndex",
+				"return_type": "long",
+				"description": "The sectionRowIndex attribute must, if the element has a parent table, tbody, thead, or tfoot element, return the index of the tr element in the parent element's rows collection (for tables, that's the HTMLTableElement.rows collection; for table sections, that's the HTMLTableRowElement.rows collection).",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableRowElement.html#sectionRowIndex",
+				"full_description": "/*\n\n\tHTMLTableRowElement\n\n\tsectionRowIndex\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe sectionRowIndex attribute must, if the element has a parent table, tbody, thead, or tfoot element, return the index of the tr element in the parent element's rows collection (for tables, that's the HTMLTableElement.rows collection; for table sections, that's the HTMLTableRowElement.rows collection).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableRowElement.html#sectionRowIndex\n\n*/"
+			}
+		],
+		[
+			"description-rowIndex\tHTMLTableRowElement",
+			{
+				"name": "rowIndex",
+				"return_type": "long",
+				"description": "The rowIndex attribute must, if the element has a parent table element, or a parent tbody, thead, or tfoot element and a grandparent table element, return the index of the tr element in that table element's rows collection. If there is no such table element, then the attribute must return −1.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableRowElement.html#rowIndex",
+				"full_description": "/*\n\n\tHTMLTableRowElement\n\n\trowIndex\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe rowIndex attribute must, if the element has a parent table element, or a parent tbody, thead, or tfoot element and a grandparent table element, return the index of the tr element in that table element's rows collection. If there is no such table element, then the attribute must return −1.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableRowElement.html#rowIndex\n\n*/"
+			}
+		],
+		[
+			"description-deleteCell()\tHTMLTableRowElement",
+			{
+				"name": "deleteCell",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The deleteCell(index) method must remove the indexth element in the cells collection from its parent. If index is less than zero or greater than or equal to the number of elements in the cells collection, the method must instead throw an IndexSizeError exception.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableRowElement.html#deleteCell",
+				"full_description": "/*\n\n\tHTMLTableRowElement\n\n\tdeleteCell ( index: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe deleteCell(index) method must remove the indexth element in the cells collection from its parent. If index is less than zero or greater than or equal to the number of elements in the cells collection, the method must instead throw an IndexSizeError exception.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableRowElement.html#deleteCell\n\n*/"
+			}
+		],
+		[
+			"description-cells\tHTMLTableRowElement",
+			{
+				"name": "cells",
+				"return_type": "HTMLCollection",
+				"description": "The cells attribute must return an HTMLCollection rooted at the tr element, whose filter matches only td and th elements that are children of the tr element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLTableRowElement.html#cells",
+				"full_description": "/*\n\n\tHTMLTableRowElement\n\n\tcells\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe cells attribute must return an HTMLCollection rooted at the tr element, whose filter matches only td and th elements that are children of the tr element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTableRowElement.html#cells\n\n*/"
+			}
+		],
+		[
+			"description-insertCell()\tHTMLTableRowElement",
+			{
+				"name": "insertCell",
+				"return_type": "HTMLElement",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#dom-tr-insertcell",
+				"full_description": "/*\n\n\tHTMLTableRowElement\n\n\tinsertCell ( index?: long )\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#dom-tr-insertcell\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"add( data: any, type?: DOMString ): DataTransferItem\tDataTransferItemList",
+			"add(${1:data: any}, ${2:type?: DOMString})"
+		],
+		[
+			"getter( index: unsigned long ): DataTransferItem\tDataTransferItemList",
+			"getter(${1:index: unsigned long})"
+		],
+		[
+			"remove( index: unsigned long ): void\tDataTransferItemList",
+			"remove(${1:index: unsigned long})"
+		],
+		[
+			"length: unsigned long\tDataTransferItemList",
+			"length"
+		],
+		[
+			"clear(): void\tDataTransferItemList",
+			"clear()"
+		]
+	]
+}

@@ -1,0 +1,875 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-setDate()\tDate",
+			{
+				"name": "setDate",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "15.9.5.36 Date.prototype.setDate\r\n            (date)\r\n        \r\n          Let t be the result of LocalTime(this time value).\r\n          Let dt be ToNumber(date).\r\n          Let newDate be MakeDate(MakeDay(YearFromTime(t), MonthFromTime(t), dt), TimeWithinDay(t)).\r\n          Let u be TimeClip(UTC(newDate)).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to u.\r\n          Return u.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.36",
+				"full_description": "/*\n\n\tDate\n\n\tsetDate ( date: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.36 Date.prototype.setDate\r\n            (date)\r\n        \r\n          Let t be the result of LocalTime(this time value).\r\n          Let dt be ToNumber(date).\r\n          Let newDate be MakeDate(MakeDay(YearFromTime(t), MonthFromTime(t), dt), TimeWithinDay(t)).\r\n          Let u be TimeClip(UTC(newDate)).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to u.\r\n          Return u.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.36\n\n*/"
+			}
+		],
+		[
+			"description-setMilliseconds()\tDate",
+			{
+				"name": "setMilliseconds",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "15.9.5.28\r\n            Date.prototype.setMilliseconds (ms)\r\n        \r\n          Let t be the result of LocalTime(this time value).\r\n          Let time be MakeTime(HourFromTime(t), MinFromTime(t), SecFromTime(t), ToNumber(ms)).\r\n          Let u be TimeClip(UTC(MakeDate(Day(t), time))).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to u.\r\n          Return u.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.28",
+				"full_description": "/*\n\n\tDate\n\n\tsetMilliseconds ( ms: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.28\r\n            Date.prototype.setMilliseconds (ms)\r\n        \r\n          Let t be the result of LocalTime(this time value).\r\n          Let time be MakeTime(HourFromTime(t), MinFromTime(t), SecFromTime(t), ToNumber(ms)).\r\n          Let u be TimeClip(UTC(MakeDate(Day(t), time))).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to u.\r\n          Return u.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.28\n\n*/"
+			}
+		],
+		[
+			"description-setUTCDate()\tDate",
+			{
+				"name": "setUTCDate",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "15.9.5.37\r\n            Date.prototype.setUTCDate (date)\r\n        \r\n          Let t be this time value.\r\n          Let dt be ToNumber(date).\r\n          Let newDate be MakeDate(MakeDay(YearFromTime(t), MonthFromTime(t), dt), TimeWithinDay(t)).\r\n          Let v be TimeClip(newDate).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to v.\r\n          Return v.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.37",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCDate ( date: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.37\r\n            Date.prototype.setUTCDate (date)\r\n        \r\n          Let t be this time value.\r\n          Let dt be ToNumber(date).\r\n          Let newDate be MakeDate(MakeDay(YearFromTime(t), MonthFromTime(t), dt), TimeWithinDay(t)).\r\n          Let v be TimeClip(newDate).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to v.\r\n          Return v.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.37\n\n*/"
+			}
+		],
+		[
+			"description-setUTCMilliseconds()\tDate",
+			{
+				"name": "setUTCMilliseconds",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "15.9.5.29\r\n            Date.prototype.setUTCMilliseconds (ms)\r\n        \r\n          Let t be this time value.\r\n          Let time be MakeTime(HourFromTime(t), MinFromTime(t), SecFromTime(t), ToNumber(ms)).\r\n          Let v be TimeClip(MakeDate(Day(t), time)).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to v.\r\n          Return v.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.29",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCMilliseconds ( ms: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.29\r\n            Date.prototype.setUTCMilliseconds (ms)\r\n        \r\n          Let t be this time value.\r\n          Let time be MakeTime(HourFromTime(t), MinFromTime(t), SecFromTime(t), ToNumber(ms)).\r\n          Let v be TimeClip(MakeDate(Day(t), time)).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to v.\r\n          Return v.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.29\n\n*/"
+			}
+		],
+		[
+			"description-Date.UTC\tDate",
+			{
+				"name": "UTC",
+				"return_type": "static Date",
+				"parameters": [
+					{
+						"name": "year",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "month",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "hours",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "minutes",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "seconds",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "When the UTC function is called with fewer than two arguments, the behaviour is implementation-dependent. When the UTC function is called with two to seven arguments, it computes the date from year, month and (optionally) date, hours, minutes, seconds and ms.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#UTC",
+				"full_description": "/*\n\n\tDate\n\n\tUTC ( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int )\n\n\tReturn Type:\n\tstatic Date\n\n\tDescription:\n\tWhen the UTC function is called with fewer than two arguments, the behaviour is implementation-dependent. When the UTC function is called with two to seven arguments, it computes the date from year, month and (optionally) date, hours, minutes, seconds and ms.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#UTC\n\n*/"
+			}
+		],
+		[
+			"description-toLocaleDateString()\tDate",
+			{
+				"name": "toLocaleDateString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “date” portion of the Date in the current time zone in a convenient, human-readable form that corresponds to the conventions of the host environment’s current locale.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toLocaleDateString",
+				"full_description": "/*\n\n\tDate\n\n\ttoLocaleDateString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “date” portion of the Date in the current time zone in a convenient, human-readable form that corresponds to the conventions of the host environment’s current locale.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toLocaleDateString\n\n*/"
+			}
+		],
+		[
+			"description-toLocaleTimeString()\tDate",
+			{
+				"name": "toLocaleTimeString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “time” portion of the Date in the current time zone in a convenient, human-readable form that corresponds to the conventions of the host environment’s current locale.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toLocaleTimeString",
+				"full_description": "/*\n\n\tDate\n\n\ttoLocaleTimeString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “time” portion of the Date in the current time zone in a convenient, human-readable form that corresponds to the conventions of the host environment’s current locale.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toLocaleTimeString\n\n*/"
+			}
+		],
+		[
+			"description-toLocaleString()\tDate",
+			{
+				"name": "toLocaleString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in the current time zone in a convenient, human-readable form that corresponds to the conventions of the host environment’s current locale.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toLocaleString",
+				"full_description": "/*\n\n\tDate\n\n\ttoLocaleString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in the current time zone in a convenient, human-readable form that corresponds to the conventions of the host environment’s current locale.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toLocaleString\n\n*/"
+			}
+		],
+		[
+			"description-toISOString()\tDate",
+			{
+				"name": "toISOString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value represent the instance in time represented by this Date object. The format of the String is the Date Time string format defined in 15.9.1.15. All fields are present in the String. The time zone is always UTC, denoted by the suffix Z.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toISOString",
+				"full_description": "/*\n\n\tDate\n\n\ttoISOString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value represent the instance in time represented by this Date object. The format of the String is the Date Time string format defined in 15.9.1.15. All fields are present in the String. The time zone is always UTC, denoted by the suffix Z.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toISOString\n\n*/"
+			}
+		],
+		[
+			"description-setTime()\tDate",
+			{
+				"name": "setTime",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "time",
+						"type": "number",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "15.9.5.27 Date.prototype.setTime\r\n            (time)\r\n        \r\n          Let v be TimeClip(ToNumber(time)).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to v.\r\n          Return v.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.27",
+				"full_description": "/*\n\n\tDate\n\n\tsetTime ( time: number )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.27 Date.prototype.setTime\r\n            (time)\r\n        \r\n          Let v be TimeClip(ToNumber(time)).\r\n          Set the [[PrimitiveValue]] internal property of this Date object to v.\r\n          Return v.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.27\n\n*/"
+			}
+		],
+		[
+			"description-toDateString()\tDate",
+			{
+				"name": "toDateString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “date” portion of the Date in the current time zone in a convenient, human-readable form.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toDateString",
+				"full_description": "/*\n\n\tDate\n\n\ttoDateString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “date” portion of the Date in the current time zone in a convenient, human-readable form.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toDateString\n\n*/"
+			}
+		],
+		[
+			"description-toTimeString()\tDate",
+			{
+				"name": "toTimeString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “time” portion of the Date in the current time zone in a convenient, human-readable form.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toTimeString",
+				"full_description": "/*\n\n\tDate\n\n\ttoTimeString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the “time” portion of the Date in the current time zone in a convenient, human-readable form.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toTimeString\n\n*/"
+			}
+		],
+		[
+			"description-toString()\tDate",
+			{
+				"name": "toString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in the current time zone in a convenient, human-readable form.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toString",
+				"full_description": "/*\n\n\tDate\n\n\ttoString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in the current time zone in a convenient, human-readable form.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toString\n\n*/"
+			}
+		],
+		[
+			"description-getMilliseconds()\tDate",
+			{
+				"name": "getMilliseconds",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.24\r\n            Date.prototype.getMilliseconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return msFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.24",
+				"full_description": "/*\n\n\tDate\n\n\tgetMilliseconds ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.24\r\n            Date.prototype.getMilliseconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return msFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.24\n\n*/"
+			}
+		],
+		[
+			"description-getUTCMilliseconds()\tDate",
+			{
+				"name": "getUTCMilliseconds",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.25\r\n            Date.prototype.getUTCMilliseconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return msFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.25",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCMilliseconds ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.25\r\n            Date.prototype.getUTCMilliseconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return msFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.25\n\n*/"
+			}
+		],
+		[
+			"description-getFullYear()\tDate",
+			{
+				"name": "getFullYear",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.10\r\n            Date.prototype.getFullYear ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return YearFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.10",
+				"full_description": "/*\n\n\tDate\n\n\tgetFullYear ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.10\r\n            Date.prototype.getFullYear ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return YearFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.10\n\n*/"
+			}
+		],
+		[
+			"description-toUTCString()\tDate",
+			{
+				"name": "toUTCString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in a convenient, human-readable form in UTC.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toUTCString",
+				"full_description": "/*\n\n\tDate\n\n\ttoUTCString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in a convenient, human-readable form in UTC.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toUTCString\n\n*/"
+			}
+		],
+		[
+			"description-getMinutes()\tDate",
+			{
+				"name": "getMinutes",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.20\r\n            Date.prototype.getMinutes ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MinFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.20",
+				"full_description": "/*\n\n\tDate\n\n\tgetMinutes ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.20\r\n            Date.prototype.getMinutes ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MinFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.20\n\n*/"
+			}
+		],
+		[
+			"description-getSeconds()\tDate",
+			{
+				"name": "getSeconds",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.22\r\n            Date.prototype.getSeconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return SecFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.22",
+				"full_description": "/*\n\n\tDate\n\n\tgetSeconds ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.22\r\n            Date.prototype.getSeconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return SecFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.22\n\n*/"
+			}
+		],
+		[
+			"description-getDate()\tDate",
+			{
+				"name": "getDate",
+				"return_type": "number",
+				"parameters": [],
+				"description": "15.9.5.14 Date.prototype.getDate\r\n            ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return DateFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.14",
+				"full_description": "/*\n\n\tDate\n\n\tgetDate ()\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.14 Date.prototype.getDate\r\n            ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return DateFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.14\n\n*/"
+			}
+		],
+		[
+			"description-getUTCFullYear()\tDate",
+			{
+				"name": "getUTCFullYear",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.11\r\n            Date.prototype.getUTCFullYear ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return YearFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.11",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCFullYear ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.11\r\n            Date.prototype.getUTCFullYear ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return YearFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.11\n\n*/"
+			}
+		],
+		[
+			"description-getMonth()\tDate",
+			{
+				"name": "getMonth",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.12\r\n            Date.prototype.getMonth ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MonthFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.12",
+				"full_description": "/*\n\n\tDate\n\n\tgetMonth ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.12\r\n            Date.prototype.getMonth ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MonthFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.12\n\n*/"
+			}
+		],
+		[
+			"description-getHours()\tDate",
+			{
+				"name": "getHours",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.18\r\n            Date.prototype.getHours ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return HourFromTime(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.18",
+				"full_description": "/*\n\n\tDate\n\n\tgetHours ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.18\r\n            Date.prototype.getHours ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return HourFromTime(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.18\n\n*/"
+			}
+		],
+		[
+			"description-getUTCSeconds()\tDate",
+			{
+				"name": "getUTCSeconds",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.23\r\n            Date.prototype.getUTCSeconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return SecFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.23",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCSeconds ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.23\r\n            Date.prototype.getUTCSeconds ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return SecFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.23\n\n*/"
+			}
+		],
+		[
+			"description-getUTCMinutes()\tDate",
+			{
+				"name": "getUTCMinutes",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.21\r\n            Date.prototype.getUTCMinutes ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MinFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.21",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCMinutes ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.21\r\n            Date.prototype.getUTCMinutes ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MinFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.21\n\n*/"
+			}
+		],
+		[
+			"description-getUTCDate()\tDate",
+			{
+				"name": "getUTCDate",
+				"return_type": "number",
+				"parameters": [],
+				"description": "15.9.5.15\r\n            Date.prototype.getUTCDate ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return DateFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.15",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCDate ()\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.15\r\n            Date.prototype.getUTCDate ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return DateFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.15\n\n*/"
+			}
+		],
+		[
+			"description-getUTCMonth()\tDate",
+			{
+				"name": "getUTCMonth",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.13\r\n            Date.prototype.getUTCMonth ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MonthFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.13",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCMonth ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.13\r\n            Date.prototype.getUTCMonth ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return MonthFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.13\n\n*/"
+			}
+		],
+		[
+			"description-getUTCHours()\tDate",
+			{
+				"name": "getUTCHours",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.19\r\n            Date.prototype.getUTCHours ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return HourFromTime(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.19",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCHours ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.19\r\n            Date.prototype.getUTCHours ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return HourFromTime(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.19\n\n*/"
+			}
+		],
+		[
+			"description-getDay()\tDate",
+			{
+				"name": "getDay",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.16 Date.prototype.getDay\r\n            ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return WeekDay(LocalTime(t)).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.16",
+				"full_description": "/*\n\n\tDate\n\n\tgetDay ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.16 Date.prototype.getDay\r\n            ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return WeekDay(LocalTime(t)).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.16\n\n*/"
+			}
+		],
+		[
+			"description-getUTCDay()\tDate",
+			{
+				"name": "getUTCDay",
+				"return_type": "int",
+				"parameters": [],
+				"description": "15.9.5.17\r\n            Date.prototype.getUTCDay ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return WeekDay(t).",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.17",
+				"full_description": "/*\n\n\tDate\n\n\tgetUTCDay ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\t15.9.5.17\r\n            Date.prototype.getUTCDay ( )\r\n        \r\n          Let t be this time value.\r\n          If t is NaN, return NaN.\r\n          Return WeekDay(t).\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.17\n\n*/"
+			}
+		],
+		[
+			"description-setUTCFullYear()\tDate",
+			{
+				"name": "setUTCFullYear",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "year",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "month",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If month is not specified, this behaves as if month were specified with the value getUTCMonth().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setUTCFullYear",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCFullYear ( year: int, month?: int, date?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf month is not specified, this behaves as if month were specified with the value getUTCMonth().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setUTCFullYear\n\n*/"
+			}
+		],
+		[
+			"description-setUTCHours()\tDate",
+			{
+				"name": "setUTCHours",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "hour",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "min",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "sec",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If min is not specified, this behaves as if min were specified with the value getUTCMinutes().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setUTCHours",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCHours ( hour: int, min?: int, sec?: int, ms?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf min is not specified, this behaves as if min were specified with the value getUTCMinutes().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setUTCHours\n\n*/"
+			}
+		],
+		[
+			"description-setFullYear()\tDate",
+			{
+				"name": "setFullYear",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "year",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "month",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If month is not specified, this behaves as if month were specified with the value getMonth().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setFullYear",
+				"full_description": "/*\n\n\tDate\n\n\tsetFullYear ( year: int, month?: int, date?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf month is not specified, this behaves as if month were specified with the value getMonth().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setFullYear\n\n*/"
+			}
+		],
+		[
+			"description-setUTCMinutes()\tDate",
+			{
+				"name": "setUTCMinutes",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "min",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sec",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If sec is not specified, this behaves as if sec were specified with the value getUTCSeconds().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setUTCMinutes",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCMinutes ( min: int, sec?: int, ms?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf sec is not specified, this behaves as if sec were specified with the value getUTCSeconds().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setUTCMinutes\n\n*/"
+			}
+		],
+		[
+			"description-setHours()\tDate",
+			{
+				"name": "setHours",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "hour",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "min",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "sec",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If min is not specified, this behaves as if min were specified with the value getMinutes().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setHours",
+				"full_description": "/*\n\n\tDate\n\n\tsetHours ( hour: int, min?: int, sec?: int, ms?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf min is not specified, this behaves as if min were specified with the value getMinutes().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setHours\n\n*/"
+			}
+		],
+		[
+			"description-Date.now\tDate",
+			{
+				"name": "now",
+				"return_type": "static Date",
+				"parameters": [],
+				"description": "The now function return a Number value that is the time value designating the UTC date and time of the occurrence of the call to now.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#now",
+				"full_description": "/*\n\n\tDate\n\n\tnow ()\n\n\tReturn Type:\n\tstatic Date\n\n\tDescription:\n\tThe now function return a Number value that is the time value designating the UTC date and time of the occurrence of the call to now.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#now\n\n*/"
+			}
+		],
+		[
+			"description-setUTCSeconds()\tDate",
+			{
+				"name": "setUTCSeconds",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "sec",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If ms is not specified, this behaves as if ms were specified with the value getUTCMilliseconds().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setUTCSeconds",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCSeconds ( sec: int, ms?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf ms is not specified, this behaves as if ms were specified with the value getUTCMilliseconds().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setUTCSeconds\n\n*/"
+			}
+		],
+		[
+			"description-setMinutes()\tDate",
+			{
+				"name": "setMinutes",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "min",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sec",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If sec is not specified, this behaves as if sec were specified with the value getSeconds().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setMinutes",
+				"full_description": "/*\n\n\tDate\n\n\tsetMinutes ( min: int, sec?: int, ms?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf sec is not specified, this behaves as if sec were specified with the value getSeconds().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setMinutes\n\n*/"
+			}
+		],
+		[
+			"description-setUTCMonth()\tDate",
+			{
+				"name": "setUTCMonth",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "month",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If date is not specified, this behaves as if date were specified with the value getUTCDate().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setUTCMonth",
+				"full_description": "/*\n\n\tDate\n\n\tsetUTCMonth ( month: int, date?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf date is not specified, this behaves as if date were specified with the value getUTCDate().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setUTCMonth\n\n*/"
+			}
+		],
+		[
+			"description-setSeconds()\tDate",
+			{
+				"name": "setSeconds",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "sec",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If ms is not specified, this behaves as if ms were specified with the value getMilliseconds().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setSeconds",
+				"full_description": "/*\n\n\tDate\n\n\tsetSeconds ( sec: int, ms?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf ms is not specified, this behaves as if ms were specified with the value getMilliseconds().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setSeconds\n\n*/"
+			}
+		],
+		[
+			"description-setMonth()\tDate",
+			{
+				"name": "setMonth",
+				"return_type": "number",
+				"parameters": [
+					{
+						"name": "month",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "If date is not specified, this behaves as if date were specified with the value getDate().",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#setMonth",
+				"full_description": "/*\n\n\tDate\n\n\tsetMonth ( month: int, date?: int )\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tIf date is not specified, this behaves as if date were specified with the value getDate().\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#setMonth\n\n*/"
+			}
+		],
+		[
+			"description-toJSON()\tDate",
+			{
+				"name": "toJSON",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "key",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "This function provides a String representation of a Date object for use by JSON.stringify (15.12.3).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#toJSON",
+				"full_description": "/*\n\n\tDate\n\n\ttoJSON ( key: any )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThis function provides a String representation of a Date object for use by JSON.stringify (15.12.3).\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#toJSON\n\n*/"
+			}
+		],
+		[
+			"description-getTime()\tDate",
+			{
+				"name": "getTime",
+				"return_type": "number",
+				"parameters": [],
+				"description": "15.9.5.9 Date.prototype.getTime (\r\n            )\r\n        \r\n          Return this time value.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.9",
+				"full_description": "/*\n\n\tDate\n\n\tgetTime ()\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\t15.9.5.9 Date.prototype.getTime (\r\n            )\r\n        \r\n          Return this time value.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.9\n\n*/"
+			}
+		],
+		[
+			"description-getTimezoneOffset()\tDate",
+			{
+				"name": "getTimezoneOffset",
+				"return_type": "int",
+				"parameters": [],
+				"description": "Returns the difference between local time and UTC time in minutes.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#getTimezoneOffset",
+				"full_description": "/*\n\n\tDate\n\n\tgetTimezoneOffset ()\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\tReturns the difference between local time and UTC time in minutes.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#getTimezoneOffset\n\n*/"
+			}
+		],
+		[
+			"description-Date()\tDate",
+			{
+				"name": "Date",
+				"return_type": "Date",
+				"parameters": [
+					{
+						"name": "year",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "month",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "date",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "hours",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "minutes",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "seconds",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "ms",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#Date",
+				"full_description": "/*\n\n\tDate\n\n\tDate ( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int )\n\n\tReturn Type:\n\tDate\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#Date\n\n*/"
+			}
+		],
+		[
+			"description-valueOf()\tDate",
+			{
+				"name": "valueOf",
+				"return_type": "number",
+				"parameters": [],
+				"description": "The valueOf function returns a Number, which is this time value.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#valueOf",
+				"full_description": "/*\n\n\tDate\n\n\tvalueOf ()\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tThe valueOf function returns a Number, which is this time value.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#valueOf\n\n*/"
+			}
+		],
+		[
+			"description-Date()\tDate",
+			{
+				"name": "Date",
+				"return_type": "Date",
+				"parameters": [],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Date.html#Date",
+				"full_description": "/*\n\n\tDate\n\n\tDate ()\n\n\tReturn Type:\n\tDate\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Date.html#Date\n\n*/"
+			}
+		]
+	]
+}

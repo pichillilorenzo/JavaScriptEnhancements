@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"animVal: SVGLengthList\tSVGAnimatedLengthList",
+			"animVal"
+		],
+		[
+			"baseVal: SVGLengthList\tSVGAnimatedLengthList",
+			"baseVal"
+		]
+	]
+}

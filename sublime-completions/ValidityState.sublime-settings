@@ -1,0 +1,49 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"patternMismatch: boolean\tValidityState",
+			"patternMismatch"
+		],
+		[
+			"rangeUnderflow: boolean\tValidityState",
+			"rangeUnderflow"
+		],
+		[
+			"rangeOverflow: boolean\tValidityState",
+			"rangeOverflow"
+		],
+		[
+			"stepMismatch: boolean\tValidityState",
+			"stepMismatch"
+		],
+		[
+			"valueMissing: boolean\tValidityState",
+			"valueMissing"
+		],
+		[
+			"typeMismatch: boolean\tValidityState",
+			"typeMismatch"
+		],
+		[
+			"customError: boolean\tValidityState",
+			"customError"
+		],
+		[
+			"tooShort: boolean\tValidityState",
+			"tooShort"
+		],
+		[
+			"badInput: boolean\tValidityState",
+			"badInput"
+		],
+		[
+			"tooLong: boolean\tValidityState",
+			"tooLong"
+		],
+		[
+			"valid: boolean\tValidityState",
+			"valid"
+		]
+	]
+}

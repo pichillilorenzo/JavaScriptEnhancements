@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new WebGLContextEvent( type: DOMString, eventInit?: WebGLContextEventInit ): WebGLContextEvent\tWebGLContextEvent",
+			"new WebGLContextEvent(${1:type: DOMString}, ${2:eventInit?: WebGLContextEventInit})"
+		],
+		[
+			"WebGLContextEvent( type: DOMString, eventInit?: WebGLContextEventInit ): WebGLContextEvent\tWebGLContextEvent",
+			"WebGLContextEvent(${1:type: DOMString}, ${2:eventInit?: WebGLContextEventInit})"
+		],
+		[
+			"statusMessage: DOMString\tWebGLContextEvent",
+			"statusMessage"
+		]
+	]
+}

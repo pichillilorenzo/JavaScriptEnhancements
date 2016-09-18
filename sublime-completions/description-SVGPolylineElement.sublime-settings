@@ -1,0 +1,164 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-getPresentationAttribute()\tSVGPolylineElement",
+			{
+				"name": "getPresentationAttribute",
+				"return_type": "CSSValue",
+				"parameters": [
+					{
+						"name": "name",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#getPresentationAttribute",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\tgetPresentationAttribute ( name: DOMString )\n\n\tReturn Type:\n\tCSSValue\n\n\tDescription:\n\tReturns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#getPresentationAttribute\n\n*/"
+			}
+		],
+		[
+			"description-externalResourcesRequired\tSVGPolylineElement",
+			{
+				"name": "externalResourcesRequired",
+				"return_type": "SVGAnimatedBoolean",
+				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#externalResourcesRequired",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#externalResourcesRequired\n\n*/"
+			}
+		],
+		[
+			"description-animatedPoints\tSVGPolylineElement",
+			{
+				"name": "animatedPoints",
+				"return_type": "SVGPointList",
+				"description": "Provides access to the current animated contents of the ‘points’ attribute. If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as points.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#animatedPoints",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\tanimatedPoints\n\n\tReturn Type:\n\tSVGPointList\n\n\tDescription:\n\tProvides access to the current animated contents of the ‘points’ attribute. If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as points.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#animatedPoints\n\n*/"
+			}
+		],
+		[
+			"description-hasExtension()\tSVGPolylineElement",
+			{
+				"name": "hasExtension",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "extension",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#hasExtension",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#hasExtension\n\n*/"
+			}
+		],
+		[
+			"description-xmlspace\tSVGPolylineElement",
+			{
+				"name": "xmlspace",
+				"return_type": "DOMString",
+				"description": "Corresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#xmlspace",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\txmlspace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#xmlspace\n\n*/"
+			}
+		],
+		[
+			"description-xmllang\tSVGPolylineElement",
+			{
+				"name": "xmllang",
+				"return_type": "DOMString",
+				"description": "Corresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#xmllang",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\txmllang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#xmllang\n\n*/"
+			}
+		],
+		[
+			"description-style\tSVGPolylineElement",
+			{
+				"name": "style",
+				"return_type": "CSSStyleDeclaration",
+				"description": "Corresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#style",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\tCorresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#style\n\n*/"
+			}
+		],
+		[
+			"description-requiredExtensions\tSVGPolylineElement",
+			{
+				"name": "requiredExtensions",
+				"return_type": "SVGStringList",
+				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#requiredExtensions",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#requiredExtensions\n\n*/"
+			}
+		],
+		[
+			"description-requiredFeatures\tSVGPolylineElement",
+			{
+				"name": "requiredFeatures",
+				"return_type": "SVGStringList",
+				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#requiredFeatures",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#requiredFeatures\n\n*/"
+			}
+		],
+		[
+			"description-systemLanguage\tSVGPolylineElement",
+			{
+				"name": "systemLanguage",
+				"return_type": "SVGStringList",
+				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#systemLanguage",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#systemLanguage\n\n*/"
+			}
+		],
+		[
+			"description-points\tSVGPolylineElement",
+			{
+				"name": "points",
+				"return_type": "SVGPointList",
+				"description": "Provides access to the base (i.e., static) contents of the ‘points’ attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#points",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\tpoints\n\n\tReturn Type:\n\tSVGPointList\n\n\tDescription:\n\tProvides access to the base (i.e., static) contents of the ‘points’ attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#points\n\n*/"
+			}
+		],
+		[
+			"description-transform\tSVGPolylineElement",
+			{
+				"name": "transform",
+				"return_type": "SVGAnimatedTransformList",
+				"description": "Corresponds to attribute ‘transform’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#transform",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\ttransform\n\n\tReturn Type:\n\tSVGAnimatedTransformList\n\n\tDescription:\n\tCorresponds to attribute ‘transform’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#transform\n\n*/"
+			}
+		],
+		[
+			"description-className\tSVGPolylineElement",
+			{
+				"name": "className",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘class’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGPolylineElement.html#className",
+				"full_description": "/*\n\n\tSVGPolylineElement\n\n\tclassName\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘class’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPolylineElement.html#className\n\n*/"
+			}
+		]
+	]
+}

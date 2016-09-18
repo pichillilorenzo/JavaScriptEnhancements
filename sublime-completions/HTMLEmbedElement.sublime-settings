@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"legacycaller( arguments...: any ): any\tHTMLEmbedElement",
+			"legacycaller(${1:arguments...: any})"
+		],
+		[
+			"height: DOMString\tHTMLEmbedElement",
+			"height"
+		],
+		[
+			"width: DOMString\tHTMLEmbedElement",
+			"width"
+		],
+		[
+			"type: DOMString\tHTMLEmbedElement",
+			"type"
+		],
+		[
+			"src: DOMString\tHTMLEmbedElement",
+			"src"
+		]
+	]
+}

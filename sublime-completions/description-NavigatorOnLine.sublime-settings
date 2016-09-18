@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-onLine\tNavigatorOnLine",
+			{
+				"name": "onLine",
+				"return_type": "boolean",
+				"description": "The navigator.onLine attribute must return false if the user agent will not contact the network when the user follows links or when a script requests a remote page (or knows that such an attempt would fail), and must return true otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Offline%20-%20NavigatorOnLine.html#onLine",
+				"full_description": "/*\n\n\tNavigatorOnLine\n\n\tonLine\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe navigator.onLine attribute must return false if the user agent will not contact the network when the user follows links or when a script requests a remote page (or knows that such an attempt would fail), and must return true otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Offline%20-%20NavigatorOnLine.html#onLine\n\n*/"
+			}
+		]
+	]
+}

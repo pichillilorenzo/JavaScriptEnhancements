@@ -1,0 +1,137 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-ideographicBaseline\tTextMetrics",
+			{
+				"name": "ideographicBaseline",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the ideographic baseline of the line box, in CSS pixels; positive numbers indicating that the given baseline is below the ideographic baseline. (Zero if the given baseline is the ideographic baseline.)",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#ideographicBaseline",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tideographicBaseline\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the ideographic baseline of the line box, in CSS pixels; positive numbers indicating that the given baseline is below the ideographic baseline. (Zero if the given baseline is the ideographic baseline.)\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#ideographicBaseline\n\n*/"
+			}
+		],
+		[
+			"description-alphabeticBaseline\tTextMetrics",
+			{
+				"name": "alphabeticBaseline",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the alphabetic baseline of the line box, in CSS pixels; positive numbers indicating that the given baseline is below the alphabetic baseline. (Zero if the given baseline is the alphabetic baseline.)",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#alphabeticBaseline",
+				"full_description": "/*\n\n\tTextMetrics\n\n\talphabeticBaseline\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the alphabetic baseline of the line box, in CSS pixels; positive numbers indicating that the given baseline is below the alphabetic baseline. (Zero if the given baseline is the alphabetic baseline.)\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#alphabeticBaseline\n\n*/"
+			}
+		],
+		[
+			"description-emHeightDescent\tTextMetrics",
+			{
+				"name": "emHeightDescent",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the lowest bottom of the em squares in the line box, in CSS pixels; positive numbers indicating that the given baseline is below the bottom of that em square (so this value will usually be negative).",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#emHeightDescent",
+				"full_description": "/*\n\n\tTextMetrics\n\n\temHeightDescent\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the lowest bottom of the em squares in the line box, in CSS pixels; positive numbers indicating that the given baseline is below the bottom of that em square (so this value will usually be negative).\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#emHeightDescent\n\n*/"
+			}
+		],
+		[
+			"description-emHeightAscent\tTextMetrics",
+			{
+				"name": "emHeightAscent",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the highest top of the em squares in the line box, in CSS pixels; positive numbers indicating that the given baseline is below the top of that em square (so this value will usually be positive).",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#emHeightAscent",
+				"full_description": "/*\n\n\tTextMetrics\n\n\temHeightAscent\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the highest top of the em squares in the line box, in CSS pixels; positive numbers indicating that the given baseline is below the top of that em square (so this value will usually be positive).\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#emHeightAscent\n\n*/"
+			}
+		],
+		[
+			"description-actualBoundingBoxRight\tTextMetrics",
+			{
+				"name": "actualBoundingBoxRight",
+				"return_type": "double",
+				"description": "The distance parallel to the baseline from the alignment point given by the textAlign attribute to the right side of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going right from the given alignment point.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxRight",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tactualBoundingBoxRight\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance parallel to the baseline from the alignment point given by the textAlign attribute to the right side of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going right from the given alignment point.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxRight\n\n*/"
+			}
+		],
+		[
+			"description-fontBoundingBoxDescent\tTextMetrics",
+			{
+				"name": "fontBoundingBoxDescent",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the bottom of the lowest bounding rectangle of all the fonts used to render the text, in CSS pixels; positive numbers indicating a distance going down from the given baseline.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#fontBoundingBoxDescent",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tfontBoundingBoxDescent\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the bottom of the lowest bounding rectangle of all the fonts used to render the text, in CSS pixels; positive numbers indicating a distance going down from the given baseline.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#fontBoundingBoxDescent\n\n*/"
+			}
+		],
+		[
+			"description-hangingBaseline\tTextMetrics",
+			{
+				"name": "hangingBaseline",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the hanging baseline of the line box, in CSS pixels; positive numbers indicating that the given baseline is below the hanging baseline. (Zero if the given baseline is the hanging baseline.)",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#hangingBaseline",
+				"full_description": "/*\n\n\tTextMetrics\n\n\thangingBaseline\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the hanging baseline of the line box, in CSS pixels; positive numbers indicating that the given baseline is below the hanging baseline. (Zero if the given baseline is the hanging baseline.)\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#hangingBaseline\n\n*/"
+			}
+		],
+		[
+			"description-actualBoundingBoxLeft\tTextMetrics",
+			{
+				"name": "actualBoundingBoxLeft",
+				"return_type": "double",
+				"description": "The distance parallel to the baseline from the alignment point given by the textAlign attribute to the left side of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going left from the given alignment point.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxLeft",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tactualBoundingBoxLeft\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance parallel to the baseline from the alignment point given by the textAlign attribute to the left side of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going left from the given alignment point.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxLeft\n\n*/"
+			}
+		],
+		[
+			"description-fontBoundingBoxAscent\tTextMetrics",
+			{
+				"name": "fontBoundingBoxAscent",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the top of the highest bounding rectangle of all the fonts used to render the text, in CSS pixels; positive numbers indicating a distance going up from the given baseline.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#fontBoundingBoxAscent",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tfontBoundingBoxAscent\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the top of the highest bounding rectangle of all the fonts used to render the text, in CSS pixels; positive numbers indicating a distance going up from the given baseline.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#fontBoundingBoxAscent\n\n*/"
+			}
+		],
+		[
+			"description-width\tTextMetrics",
+			{
+				"name": "width",
+				"return_type": "double",
+				"description": "The width attribute, on getting, must return the width of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the new value and the current height of the rendering context's scratch bitmap in CSS pixels, respectively.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#width",
+				"full_description": "/*\n\n\tTextMetrics\n\n\twidth\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe width attribute, on getting, must return the width of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the new value and the current height of the rendering context's scratch bitmap in CSS pixels, respectively.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#width\n\n*/"
+			}
+		],
+		[
+			"description-actualBoundingBoxDescent\tTextMetrics",
+			{
+				"name": "actualBoundingBoxDescent",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the bottom of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going down from the given baseline.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxDescent",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tactualBoundingBoxDescent\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the bottom of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going down from the given baseline.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxDescent\n\n*/"
+			}
+		],
+		[
+			"description-actualBoundingBoxAscent\tTextMetrics",
+			{
+				"name": "actualBoundingBoxAscent",
+				"return_type": "double",
+				"description": "The distance from the horizontal line indicated by the textBaseline attribute to the top of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going up from the given baseline.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxAscent",
+				"full_description": "/*\n\n\tTextMetrics\n\n\tactualBoundingBoxAscent\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe distance from the horizontal line indicated by the textBaseline attribute to the top of the bounding rectangle of the given text, in CSS pixels; positive numbers indicating a distance going up from the given baseline.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20TextMetrics.html#actualBoundingBoxAscent\n\n*/"
+			}
+		]
+	]
+}

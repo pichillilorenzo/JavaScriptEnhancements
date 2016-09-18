@@ -1,0 +1,115 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-TEXTPATH_SPACINGTYPE_UNKNOWN\tSVGTextPathElement",
+			{
+				"name": "TEXTPATH_SPACINGTYPE_UNKNOWN",
+				"return_type": "const unsigned short",
+				"description": "The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_SPACINGTYPE_UNKNOWN",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tTEXTPATH_SPACINGTYPE_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_SPACINGTYPE_UNKNOWN\n\n*/"
+			}
+		],
+		[
+			"description-TEXTPATH_METHODTYPE_UNKNOWN\tSVGTextPathElement",
+			{
+				"name": "TEXTPATH_METHODTYPE_UNKNOWN",
+				"return_type": "const unsigned short",
+				"description": "The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_METHODTYPE_UNKNOWN",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tTEXTPATH_METHODTYPE_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_METHODTYPE_UNKNOWN\n\n*/"
+			}
+		],
+		[
+			"description-startOffset\tSVGTextPathElement",
+			{
+				"name": "startOffset",
+				"return_type": "SVGAnimatedLength",
+				"description": "Corresponds to attribute ‘startOffset’ on the given ‘textPath’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#startOffset",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tstartOffset\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘startOffset’ on the given ‘textPath’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#startOffset\n\n*/"
+			}
+		],
+		[
+			"description-TEXTPATH_METHODTYPE_STRETCH\tSVGTextPathElement",
+			{
+				"name": "TEXTPATH_METHODTYPE_STRETCH",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'stretch'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_METHODTYPE_STRETCH",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tTEXTPATH_METHODTYPE_STRETCH\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'stretch'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_METHODTYPE_STRETCH\n\n*/"
+			}
+		],
+		[
+			"description-spacing\tSVGTextPathElement",
+			{
+				"name": "spacing",
+				"return_type": "SVGAnimatedEnumeration",
+				"description": "Corresponds to attribute ‘spacing’ on the given ‘textPath’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#spacing",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tspacing\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘spacing’ on the given ‘textPath’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#spacing\n\n*/"
+			}
+		],
+		[
+			"description-TEXTPATH_SPACINGTYPE_EXACT\tSVGTextPathElement",
+			{
+				"name": "TEXTPATH_SPACINGTYPE_EXACT",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'exact'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_SPACINGTYPE_EXACT",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tTEXTPATH_SPACINGTYPE_EXACT\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'exact'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_SPACINGTYPE_EXACT\n\n*/"
+			}
+		],
+		[
+			"description-method\tSVGTextPathElement",
+			{
+				"name": "method",
+				"return_type": "SVGAnimatedEnumeration",
+				"description": "Corresponds to attribute ‘method’ on the given ‘textPath’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#method",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tmethod\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘method’ on the given ‘textPath’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#method\n\n*/"
+			}
+		],
+		[
+			"description-TEXTPATH_METHODTYPE_ALIGN\tSVGTextPathElement",
+			{
+				"name": "TEXTPATH_METHODTYPE_ALIGN",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'align'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_METHODTYPE_ALIGN",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tTEXTPATH_METHODTYPE_ALIGN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'align'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_METHODTYPE_ALIGN\n\n*/"
+			}
+		],
+		[
+			"description-TEXTPATH_SPACINGTYPE_AUTO\tSVGTextPathElement",
+			{
+				"name": "TEXTPATH_SPACINGTYPE_AUTO",
+				"return_type": "const unsigned short",
+				"description": "Corresponds to value 'auto'.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_SPACINGTYPE_AUTO",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\tTEXTPATH_SPACINGTYPE_AUTO\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'auto'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#TEXTPATH_SPACINGTYPE_AUTO\n\n*/"
+			}
+		],
+		[
+			"description-href\tSVGTextPathElement",
+			{
+				"name": "href",
+				"return_type": "SVGAnimatedString",
+				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGTextPathElement.html#href",
+				"full_description": "/*\n\n\tSVGTextPathElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextPathElement.html#href\n\n*/"
+			}
+		]
+	]
+}

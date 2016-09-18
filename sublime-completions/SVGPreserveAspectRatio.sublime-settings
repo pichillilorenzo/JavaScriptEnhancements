@@ -1,0 +1,69 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_PRESERVEASPECTRATIO_XMAXYMIN: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMAXYMIN"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMIDYMAX: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMIDYMAX"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMINYMID: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMINYMID"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMINYMAX: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMINYMAX"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMAXYMAX: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMAXYMAX"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMAXYMID: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMAXYMID"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMIDYMIN: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMIDYMIN"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMIDYMID: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMIDYMID"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_XMINYMIN: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_XMINYMIN"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_UNKNOWN: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_UNKNOWN"
+		],
+		[
+			"SVG_PRESERVEASPECTRATIO_NONE: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_PRESERVEASPECTRATIO_NONE"
+		],
+		[
+			"SVG_MEETORSLICE_UNKNOWN: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_MEETORSLICE_UNKNOWN"
+		],
+		[
+			"SVG_MEETORSLICE_SLICE: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_MEETORSLICE_SLICE"
+		],
+		[
+			"SVG_MEETORSLICE_MEET: const unsigned short\tSVGPreserveAspectRatio",
+			"SVG_MEETORSLICE_MEET"
+		],
+		[
+			"meetOrSlice: unsigned short\tSVGPreserveAspectRatio",
+			"meetOrSlice"
+		],
+		[
+			"align: unsigned short\tSVGPreserveAspectRatio",
+			"align"
+		]
+	]
+}

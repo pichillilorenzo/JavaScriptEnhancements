@@ -1,0 +1,132 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-go()\tHistory",
+			{
+				"name": "go",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "delta",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "When the go(delta) method is invoked, if the argument to the method was omitted or has the value zero, the user agent must act as if the location.reload() method was called instead. Otherwise, the user agent must traverse the history by a delta whose value is the value of the method's argument.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#go",
+				"full_description": "/*\n\n\tHistory\n\n\tgo ( delta?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the go(delta) method is invoked, if the argument to the method was omitted or has the value zero, the user agent must act as if the location.reload() method was called instead. Otherwise, the user agent must traverse the history by a delta whose value is the value of the method's argument.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#go\n\n*/"
+			}
+		],
+		[
+			"description-replaceState()\tHistory",
+			{
+				"name": "replaceState",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "data",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "title",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The replaceState(data, title, url) method updates the state object, title, and optionally the URL of the current entry in the history.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#replaceState",
+				"full_description": "/*\n\n\tHistory\n\n\treplaceState ( data: any, title: DOMString, url?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe replaceState(data, title, url) method updates the state object, title, and optionally the URL of the current entry in the history.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#replaceState\n\n*/"
+			}
+		],
+		[
+			"description-length\tHistory",
+			{
+				"name": "length",
+				"return_type": "long",
+				"description": "The length attribute of the History interface must return the number of entries in the top-level browsing context's joint session history.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#length",
+				"full_description": "/*\n\n\tHistory\n\n\tlength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe length attribute of the History interface must return the number of entries in the top-level browsing context's joint session history.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#length\n\n*/"
+			}
+		],
+		[
+			"description-state\tHistory",
+			{
+				"name": "state",
+				"return_type": "any",
+				"description": "The state attribute of the History interface must return the last value it was set to by the user agent. Initially, its value must be null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#state",
+				"full_description": "/*\n\n\tHistory\n\n\tstate\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe state attribute of the History interface must return the last value it was set to by the user agent. Initially, its value must be null.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#state\n\n*/"
+			}
+		],
+		[
+			"description-pushState()\tHistory",
+			{
+				"name": "pushState",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "data",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "title",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The pushState(data, title, url) method adds a state object entry to the history.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#pushState",
+				"full_description": "/*\n\n\tHistory\n\n\tpushState ( data: any, title: DOMString, url?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe pushState(data, title, url) method adds a state object entry to the history.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#pushState\n\n*/"
+			}
+		],
+		[
+			"description-forward()\tHistory",
+			{
+				"name": "forward",
+				"return_type": "void",
+				"parameters": [],
+				"description": "When the forward()method is invoked, the user agent must traverse the history by a delta +1.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#forward",
+				"full_description": "/*\n\n\tHistory\n\n\tforward ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the forward()method is invoked, the user agent must traverse the history by a delta +1.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#forward\n\n*/"
+			}
+		],
+		[
+			"description-back()\tHistory",
+			{
+				"name": "back",
+				"return_type": "void",
+				"parameters": [],
+				"description": "When the back() method is invoked, the user agent must traverse the history by a delta −1.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20History.html#back",
+				"full_description": "/*\n\n\tHistory\n\n\tback ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the back() method is invoked, the user agent must traverse the history by a delta −1.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20History.html#back\n\n*/"
+			}
+		]
+	]
+}

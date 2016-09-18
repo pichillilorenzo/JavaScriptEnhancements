@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"rootElement: SVGSVGElement\tSVGDocument",
+			"rootElement"
+		],
+		[
+			"referrer: DOMString\tSVGDocument",
+			"referrer"
+		],
+		[
+			"domain: DOMString\tSVGDocument",
+			"domain"
+		],
+		[
+			"title: DOMString\tSVGDocument",
+			"title"
+		],
+		[
+			"URL: DOMString\tSVGDocument",
+			"URL"
+		]
+	]
+}

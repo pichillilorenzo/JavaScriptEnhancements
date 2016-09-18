@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"insertItemBefore( newItem: DOMString, index: unsigned long ): DOMString\tSVGStringList",
+			"insertItemBefore(${1:newItem: DOMString}, ${2:index: unsigned long})"
+		],
+		[
+			"replaceItem( newItem: DOMString, index: unsigned long ): DOMString\tSVGStringList",
+			"replaceItem(${1:newItem: DOMString}, ${2:index: unsigned long})"
+		],
+		[
+			"removeItem( index: unsigned long ): DOMString\tSVGStringList",
+			"removeItem(${1:index: unsigned long})"
+		],
+		[
+			"appendItem( newItem: DOMString ): DOMString\tSVGStringList",
+			"appendItem(${1:newItem: DOMString})"
+		],
+		[
+			"initialize( newItem: DOMString ): DOMString\tSVGStringList",
+			"initialize(${1:newItem: DOMString})"
+		],
+		[
+			"getItem( index: unsigned long ): DOMString\tSVGStringList",
+			"getItem(${1:index: unsigned long})"
+		],
+		[
+			"numberOfItems: unsigned long\tSVGStringList",
+			"numberOfItems"
+		],
+		[
+			"clear(): void\tSVGStringList",
+			"clear()"
+		]
+	]
+}

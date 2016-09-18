@@ -1,0 +1,29 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"x1: float\tSVGPathSegCurvetoCubicAbs",
+			"x1"
+		],
+		[
+			"x2: float\tSVGPathSegCurvetoCubicAbs",
+			"x2"
+		],
+		[
+			"y1: float\tSVGPathSegCurvetoCubicAbs",
+			"y1"
+		],
+		[
+			"y2: float\tSVGPathSegCurvetoCubicAbs",
+			"y2"
+		],
+		[
+			"x: float\tSVGPathSegCurvetoCubicAbs",
+			"x"
+		],
+		[
+			"y: float\tSVGPathSegCurvetoCubicAbs",
+			"y"
+		]
+	]
+}

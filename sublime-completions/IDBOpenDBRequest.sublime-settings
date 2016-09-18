@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"onupgradeneeded: EventHandler\tIDBOpenDBRequest",
+			"onupgradeneeded"
+		],
+		[
+			"onblocked: EventHandler\tIDBOpenDBRequest",
+			"onblocked"
+		]
+	]
+}

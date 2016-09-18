@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"height: SVGAnimatedLength\tSVGFilterPrimitiveStandardAttributes",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFilterPrimitiveStandardAttributes",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFilterPrimitiveStandardAttributes",
+			"width"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFilterPrimitiveStandardAttributes",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFilterPrimitiveStandardAttributes",
+			"y"
+		]
+	]
+}

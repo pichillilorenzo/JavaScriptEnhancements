@@ -1,0 +1,58 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-type\tDataTransferItem",
+			{
+				"name": "type",
+				"return_type": "DOMString",
+				"description": "The type attribute must return the empty string if the DataTransferItem object is in the disabled mode; otherwise it must return the drag data item type string of the item represented by the DataTransferItem object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Drag%20and%20Drop%20-%20DataTransferItem.html#type",
+				"full_description": "/*\n\n\tDataTransferItem\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type attribute must return the empty string if the DataTransferItem object is in the disabled mode; otherwise it must return the drag data item type string of the item represented by the DataTransferItem object.\n\n\tURL doc:\n\thttp://html5index.org/Drag%20and%20Drop%20-%20DataTransferItem.html#type\n\n*/"
+			}
+		],
+		[
+			"description-getAsString()\tDataTransferItem",
+			{
+				"name": "getAsString",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "_callback",
+						"type": "FunctionStringCallback",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dom-datatransferitem-getasstring",
+				"full_description": "/*\n\n\tDataTransferItem\n\n\tgetAsString ( _callback: FunctionStringCallback )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dom-datatransferitem-getasstring\n\n*/"
+			}
+		],
+		[
+			"description-getAsFile()\tDataTransferItem",
+			{
+				"name": "getAsFile",
+				"return_type": "File",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dom-datatransferitem-getasfile",
+				"full_description": "/*\n\n\tDataTransferItem\n\n\tgetAsFile ()\n\n\tReturn Type:\n\tFile\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dom-datatransferitem-getasfile\n\n*/"
+			}
+		],
+		[
+			"description-kind\tDataTransferItem",
+			{
+				"name": "kind",
+				"return_type": "DOMString",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dom-datatransferitem-kind",
+				"full_description": "/*\n\n\tDataTransferItem\n\n\tkind\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dom-datatransferitem-kind\n\n*/"
+			}
+		]
+	]
+}

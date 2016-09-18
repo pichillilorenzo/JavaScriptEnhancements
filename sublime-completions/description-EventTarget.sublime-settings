@@ -1,0 +1,86 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-removeEventListener()\tEventTarget",
+			{
+				"name": "removeEventListener",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "type",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "callback",
+						"type": "EventListener",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "capture",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-eventtarget-removeeventlistener",
+				"full_description": "/*\n\n\tEventTarget\n\n\tremoveEventListener ( type: DOMString, callback: EventListener, capture?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-eventtarget-removeeventlistener\n\n*/"
+			}
+		],
+		[
+			"description-addEventListener()\tEventTarget",
+			{
+				"name": "addEventListener",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "type",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "callback",
+						"type": "EventListener",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "capture",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener",
+				"full_description": "/*\n\n\tEventTarget\n\n\taddEventListener ( type: DOMString, callback: EventListener, capture?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener\n\n*/"
+			}
+		],
+		[
+			"description-dispatchEvent()\tEventTarget",
+			{
+				"name": "dispatchEvent",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "event",
+						"type": "Event",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://dom.spec.whatwg.org/#dom-eventtarget-dispatchevent",
+				"full_description": "/*\n\n\tEventTarget\n\n\tdispatchEvent ( event: Event )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-eventtarget-dispatchevent\n\n*/"
+			}
+		]
+	]
+}

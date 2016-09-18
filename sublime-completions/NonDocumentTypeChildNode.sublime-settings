@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"previousElementSibling: Element\tNonDocumentTypeChildNode",
+			"previousElementSibling"
+		],
+		[
+			"nextElementSibling: Element\tNonDocumentTypeChildNode",
+			"nextElementSibling"
+		]
+	]
+}

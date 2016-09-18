@@ -1,0 +1,289 @@
+{
+  "scope": "source.js",
+  "completions": [
+    [
+      "ajax request",
+      "var ajax = new XMLHttpRequest();\najax.onreadystatechange = function() {\n\tif (ajax.readyState == 4 && ajax.status == 200) {\n\t\t${1:var response = ajax.responseText;}\n\t}\n};\najax.open(${2:method}, ${3:URL}, ${4:true});\najax.setRequestHeader(\"Content-type\", ${5:\"application/json\"});\najax.send(${6:data});"
+    ],
+    [
+      "switch()",
+      "switch (${1:expression}) {\n\tcase ${2:label_1}:\n\t\t${3:// statements_1}\n\t\tbreak;\n\tdefault:\n\t\t${4:// statements_def}\n\t\tbreak;\n}"
+    ],
+    [
+      "try catch finally",
+      "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n} finally {\n\t${3:// statements}\n}"
+    ],
+    [
+      "try catch",
+      "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n}"
+    ],
+    [
+      "if else",
+      "if (${1:condition}) {\n\t${2:// statement}\n} else {\n\t${3:// statement}\n}"
+    ],
+    [
+      "prototype",
+      "${1:class_name}.prototype.${2:method_name} = function(${3:argument}){\n\t${4:// body... }\n};"
+    ],
+    [
+      "forEach",
+      "${1:array}.forEach( function(${2:element}, ${3:index}) {\n\t${4:// statements}\n});"
+    ],
+    [
+      "function with name",
+      "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
+    ],
+    [
+      "for()",
+      "for(var i = 0, length1 = ${1:array}.length; i < length1; i++){\n\t${1:array}[i]${2:}\n}"
+    ],
+    [
+      "for-k",
+      "for(var k = 0, length3 = ${1:array}.length; k < length3; k++){\n\t${1:array}[k]${2:}\n}"
+    ],
+    [
+      "for-j",
+      "for(var j = 0, length2 = ${1:array}.length; j < length2; j++){\n\t${1:array}[j]${2:}\n}"
+    ],
+    [
+      "function without name",
+      "function (${1:argument}) {\n\t${2:/* body... */}\n}"
+    ],
+    [
+      "for of",
+      "for (${1:variable} of object) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "for in",
+      "for (${1:variable} in object) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "do while()",
+      "do{\n\t// statement\n} while (${1:condition});"
+    ],
+    [
+      "while()",
+      "while (${1:condition}) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "if()",
+      "if (${1:condition}) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "anonymous function",
+      ";(function(){\n\t$1\n})();"
+    ],
+    [
+      "else if()",
+      "else if (${1:condition}) {\n\t\n}"
+    ],
+    [
+      "Conditional operator",
+      "(${1:condition}) ? ${2:val1} : ${3:val2};"
+    ],
+    [
+      "PostIncrement (expr++)",
+      "${1:expr}++"
+    ],
+    [
+      "PreIncrement (++expr)",
+      "++${1:expr}"
+    ],
+    [
+      "\\u000D",
+      "\\u000D"
+    ],
+    [
+      "\\u000A",
+      "\\u000A"
+    ],
+    [
+      "\\u000C",
+      "\\u000C"
+    ],
+    [
+      "\\u0020",
+      "\\u0020"
+    ],
+    [
+      "\\u0009",
+      "\\u0009"
+    ],
+    [
+      "\\u000B",
+      "\\u000B"
+    ],
+    [
+      "\\u0022",
+      "\\u0022"
+    ],
+    [
+      "\\u005C",
+      "\\u005C"
+    ],
+    [
+      "\\u0008",
+      "\\u0008"
+    ],
+    [
+      "\\u0027",
+      "\\u0027"
+    ],
+    [
+      "Modulus (%)",
+      "${1:expr1} % ${2:expr2}"
+    ],
+    [
+      "Sign-propagating right shift (>>)",
+      "${1:expr1} >> ${2:expr2}"
+    ],
+    [
+      "else",
+      "else {\n\t$1\n}"
+    ],
+    [
+      "Zero-fill right shift (>>>)",
+      "${1:expr1} >>> ${2:expr2}"
+    ],
+    [
+      "Greater than or equal (>=)",
+      "${1:expr1} >= ${2:expr2}"
+    ],
+    [
+      "Strict not equal (!==)",
+      "${1:expr1} !=== ${2:expr2}"
+    ],
+    [
+      "Less than or equal (<=)",
+      "${1:expr1} <= ${2:expr2}"
+    ],
+    [
+      "new FormData(${1:form})",
+      "new FormData(${1:form})"
+    ],
+    [
+      "Strict equal (===)",
+      "${1:expr1} === ${2:expr2}"
+    ],
+    [
+      "Logical AND (&&)",
+      "${1:expr1} && ${2:expr2}"
+    ],
+    [
+      "Left shift (<<)",
+      "${1:expr1} << ${2:expr2}"
+    ],
+    [
+      "Logical OR (||)",
+      "${1:expr1} || ${2:expr2}"
+    ],
+    [
+      "Greater than (>)",
+      "${1:expr1} > ${2:expr2}"
+    ],
+    [
+      "Bitwise NOT (~)",
+      "${1:expr1} ~ ${2:expr2}"
+    ],
+    [
+      "Bitwise AND (&)",
+      "${1:expr1} & ${2:expr2}"
+    ],
+    [
+      "Bitwise XOR (^)",
+      "${1:expr1} ^ ${2:expr2}"
+    ],
+    [
+      "Not equal (!=)",
+      "${1:expr1} != ${2:expr2}"
+    ],
+    [
+      "Bitwise OR (|)",
+      "${1:expr1} | ${2:expr2}"
+    ],
+    [
+      "Less than (<)",
+      "${1:expr1} < ${2:expr2}"
+    ],
+    [
+      "Equal (==)",
+      "${1:expr1} == ${2:expr2}"
+    ],
+    [
+      "console.log()",
+      "console.log(${1:''})"
+    ],
+    [
+      "PostDecrement (expr--)",
+      "${1:expr}--"
+    ],
+    [
+      "PreDecrement (--expr)",
+      "--${1:expr}"
+    ],
+    [
+      "Unary negation (-)",
+      "-${1:expr}"
+    ],
+    [
+      "'use strict';",
+      "'use strict';"
+    ],
+    [
+      "Logical NOT (!)",
+      "!${1:expr}"
+    ],
+    [
+      "new Option()",
+      "new Option()"
+    ],
+    [
+      "new Image()",
+      "new Image()"
+    ],
+    [
+      "void()",
+      "void(${1:''})"
+    ],
+    [
+      "continue;",
+      "continue;"
+    ],
+    [
+      "throw",
+      "throw $1"
+    ],
+    [
+      "const ",
+      "const "
+    ],
+    [
+      "break;",
+      "break;"
+    ],
+    [
+      "return",
+      "return"
+    ],
+    [
+      "false",
+      "false"
+    ],
+    [
+      "let ",
+      "let "
+    ],
+    [
+      "null",
+      "null"
+    ],
+    [
+      "true",
+      "true"
+    ],
+    [
+      "var ",
+      "var "
+    ]
+  ]
+}

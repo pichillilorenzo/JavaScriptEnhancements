@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"item( index: unsigned long ): CSSRule\tCSSRuleList",
+			"item(${1:index: unsigned long})"
+		],
+		[
+			"length: unsigned long\tCSSRuleList",
+			"length"
+		]
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-animatedPoints\tSVGAnimatedPoints",
+			{
+				"name": "animatedPoints",
+				"return_type": "SVGPointList",
+				"description": "Provides access to the current animated contents of the ‘points’ attribute. If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as points.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedPoints.html#animatedPoints",
+				"full_description": "/*\n\n\tSVGAnimatedPoints\n\n\tanimatedPoints\n\n\tReturn Type:\n\tSVGPointList\n\n\tDescription:\n\tProvides access to the current animated contents of the ‘points’ attribute. If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as points.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedPoints.html#animatedPoints\n\n*/"
+			}
+		],
+		[
+			"description-points\tSVGAnimatedPoints",
+			{
+				"name": "points",
+				"return_type": "SVGPointList",
+				"description": "Provides access to the base (i.e., static) contents of the ‘points’ attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedPoints.html#points",
+				"full_description": "/*\n\n\tSVGAnimatedPoints\n\n\tpoints\n\n\tReturn Type:\n\tSVGPointList\n\n\tDescription:\n\tProvides access to the base (i.e., static) contents of the ‘points’ attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedPoints.html#points\n\n*/"
+			}
+		]
+	]
+}

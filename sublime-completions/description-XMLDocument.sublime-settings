@@ -1,0 +1,24 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-load()\tXMLDocument",
+			{
+				"name": "load",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-xmldocument-load",
+				"full_description": "/*\n\n\tXMLDocument\n\n\tload ( url: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-xmldocument-load\n\n*/"
+			}
+		]
+	]
+}

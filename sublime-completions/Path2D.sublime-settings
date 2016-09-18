@@ -1,0 +1,89 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"ellipse( x: unrestricted double, y: unrestricted double, radiusX: unrestricted double, radiusY: unrestricted double, rotation: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean ): void\tPath2D",
+			"ellipse(${1:x: unrestricted double}, ${2:y: unrestricted double}, ${3:radiusX: unrestricted double}, ${4:radiusY: unrestricted double}, ${5:rotation: unrestricted double}, ${6:startAngle: unrestricted double}, ${7:endAngle: unrestricted double}, ${8:anticlockwise?: boolean})"
+		],
+		[
+			"arcTo( x1: unrestricted double, y1: unrestricted double, x2: unrestricted double, y2: unrestricted double, radius: unrestricted double, radiusY?: unrestricted double, rotation?: unrestricted double ): void\tPath2D",
+			"arcTo(${1:x1: unrestricted double}, ${2:y1: unrestricted double}, ${3:x2: unrestricted double}, ${4:y2: unrestricted double}, ${5:radius: unrestricted double}, ${6:radiusY?: unrestricted double}, ${7:rotation?: unrestricted double})"
+		],
+		[
+			"bezierCurveTo( cp1x: unrestricted double, cp1y: unrestricted double, cp2x: unrestricted double, cp2y: unrestricted double, x: unrestricted double, y: unrestricted double ): void\tPath2D",
+			"bezierCurveTo(${1:cp1x: unrestricted double}, ${2:cp1y: unrestricted double}, ${3:cp2x: unrestricted double}, ${4:cp2y: unrestricted double}, ${5:x: unrestricted double}, ${6:y: unrestricted double})"
+		],
+		[
+			"arc( x: unrestricted double, y: unrestricted double, radius: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean ): void\tPath2D",
+			"arc(${1:x: unrestricted double}, ${2:y: unrestricted double}, ${3:radius: unrestricted double}, ${4:startAngle: unrestricted double}, ${5:endAngle: unrestricted double}, ${6:anticlockwise?: boolean})"
+		],
+		[
+			"addPathByStrokingText( text: DOMString, styles: CanvasDrawingStyles, transformation: any, x_path: any, y_maxWidth?: unrestricted double, maxWidth?: unrestricted double ): void\tPath2D",
+			"addPathByStrokingText(${1:text: DOMString}, ${2:styles: CanvasDrawingStyles}, ${3:transformation: any}, ${4:x_path: any}, ${5:y_maxWidth?: unrestricted double}, ${6:maxWidth?: unrestricted double})"
+		],
+		[
+			"addText( text: DOMString, styles: CanvasDrawingStyles, transformation: any, x_path: any, y_maxWidth?: unrestricted double, maxWidth?: unrestricted double ): void\tPath2D",
+			"addText(${1:text: DOMString}, ${2:styles: CanvasDrawingStyles}, ${3:transformation: any}, ${4:x_path: any}, ${5:y_maxWidth?: unrestricted double}, ${6:maxWidth?: unrestricted double})"
+		],
+		[
+			"quadraticCurveTo( cpx: unrestricted double, cpy: unrestricted double, x: unrestricted double, y: unrestricted double ): void\tPath2D",
+			"quadraticCurveTo(${1:cpx: unrestricted double}, ${2:cpy: unrestricted double}, ${3:x: unrestricted double}, ${4:y: unrestricted double})"
+		],
+		[
+			"rect( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double ): void\tPath2D",
+			"rect(${1:x: unrestricted double}, ${2:y: unrestricted double}, ${3:w: unrestricted double}, ${4:h: unrestricted double})"
+		],
+		[
+			"addPathByStrokingPath( path: Path2D, styles: CanvasDrawingStyles, transformation?: SVGMatrix ): void\tPath2D",
+			"addPathByStrokingPath(${1:path: Path2D}, ${2:styles: CanvasDrawingStyles}, ${3:transformation?: SVGMatrix})"
+		],
+		[
+			"new Path2D( paths: Path2D[], fillRule: CanvasFillRule ): Path2D\tPath2D",
+			"new Path2D(${1:paths: Path2D[]}, ${2:fillRule: CanvasFillRule})"
+		],
+		[
+			"moveTo( x: unrestricted double, y: unrestricted double ): void\tPath2D",
+			"moveTo(${1:x: unrestricted double}, ${2:y: unrestricted double})"
+		],
+		[
+			"lineTo( x: unrestricted double, y: unrestricted double ): void\tPath2D",
+			"lineTo(${1:x: unrestricted double}, ${2:y: unrestricted double})"
+		],
+		[
+			"Path2D( paths: Path2D[], fillRule: CanvasFillRule ): Path2D\tPath2D",
+			"Path2D(${1:paths: Path2D[]}, ${2:fillRule: CanvasFillRule})"
+		],
+		[
+			"addPath( path: Path2D, transformation?: SVGMatrix ): void\tPath2D",
+			"addPath(${1:path: Path2D}, ${2:transformation?: SVGMatrix})"
+		],
+		[
+			"new Path2D( path: Path2D ): Path2D\tPath2D",
+			"new Path2D(${1:path: Path2D})"
+		],
+		[
+			"new Path2D( d: DOMString ): Path2D\tPath2D",
+			"new Path2D(${1:d: DOMString})"
+		],
+		[
+			"Path2D( d: DOMString ): Path2D\tPath2D",
+			"Path2D(${1:d: DOMString})"
+		],
+		[
+			"Path2D( path: Path2D ): Path2D\tPath2D",
+			"Path2D(${1:path: Path2D})"
+		],
+		[
+			"new Path2D(): Path2D\tPath2D",
+			"new Path2D()"
+		],
+		[
+			"closePath(): void\tPath2D",
+			"closePath()"
+		],
+		[
+			"Path2D(): Path2D\tPath2D",
+			"Path2D()"
+		]
+	]
+}

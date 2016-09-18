@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"scaleNonUniform( scaleFactorX: float, scaleFactorY: float ): SVGMatrix\tSVGMatrix",
+			"scaleNonUniform(${1:scaleFactorX: float}, ${2:scaleFactorY: float})"
+		],
+		[
+			"rotateFromVector( x: float, y: float ): SVGMatrix\tSVGMatrix",
+			"rotateFromVector(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"multiply( secondMatrix: SVGMatrix ): SVGMatrix\tSVGMatrix",
+			"multiply(${1:secondMatrix: SVGMatrix})"
+		],
+		[
+			"translate( x: float, y: float ): SVGMatrix\tSVGMatrix",
+			"translate(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"scale( scaleFactor: float ): SVGMatrix\tSVGMatrix",
+			"scale(${1:scaleFactor: float})"
+		],
+		[
+			"rotate( angle: float ): SVGMatrix\tSVGMatrix",
+			"rotate(${1:angle: float})"
+		],
+		[
+			"skewY( angle: float ): SVGMatrix\tSVGMatrix",
+			"skewY(${1:angle: float})"
+		],
+		[
+			"skewX( angle: float ): SVGMatrix\tSVGMatrix",
+			"skewX(${1:angle: float})"
+		],
+		[
+			"inverse(): SVGMatrix\tSVGMatrix",
+			"inverse()"
+		],
+		[
+			"flipY(): SVGMatrix\tSVGMatrix",
+			"flipY()"
+		],
+		[
+			"flipX(): SVGMatrix\tSVGMatrix",
+			"flipX()"
+		],
+		[
+			"b: float\tSVGMatrix",
+			"b"
+		],
+		[
+			"f: float\tSVGMatrix",
+			"f"
+		],
+		[
+			"e: float\tSVGMatrix",
+			"e"
+		],
+		[
+			"d: float\tSVGMatrix",
+			"d"
+		],
+		[
+			"c: float\tSVGMatrix",
+			"c"
+		],
+		[
+			"a: float\tSVGMatrix",
+			"a"
+		]
+	]
+}

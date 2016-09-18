@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-dialogArguments\tWindowModal",
+			{
+				"name": "dialogArguments",
+				"return_type": "any",
+				"description": "The dialogArguments IDL attribute, on getting, must check whether its browsing context's active document's effective script origin is the same as the dialog arguments' origin. If it is, then the browsing context's dialog arguments must be returned unchanged.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowModal.html#dialogArguments",
+				"full_description": "/*\n\n\tWindowModal\n\n\tdialogArguments\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe dialogArguments IDL attribute, on getting, must check whether its browsing context's active document's effective script origin is the same as the dialog arguments' origin. If it is, then the browsing context's dialog arguments must be returned unchanged.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowModal.html#dialogArguments\n\n*/"
+			}
+		],
+		[
+			"description-returnValue\tWindowModal",
+			{
+				"name": "returnValue",
+				"return_type": "any",
+				"description": "The returnValue IDL attribute, on getting, must check whether its browsing context's active document's effective script origin is the same as the current return value origin. If it is, then the browsing context's return value must be returned unchanged.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20WindowModal.html#returnValue",
+				"full_description": "/*\n\n\tWindowModal\n\n\treturnValue\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe returnValue IDL attribute, on getting, must check whether its browsing context's active document's effective script origin is the same as the current return value origin. If it is, then the browsing context's return value must be returned unchanged.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20WindowModal.html#returnValue\n\n*/"
+			}
+		]
+	]
+}

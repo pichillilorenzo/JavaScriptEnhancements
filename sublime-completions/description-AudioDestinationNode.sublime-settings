@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-maxChannelCount\tAudioDestinationNode",
+			{
+				"name": "maxChannelCount",
+				"return_type": "unsigned long",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioDestinationNode.html#maxChannelCount",
+				"full_description": "/*\n\n\tAudioDestinationNode\n\n\tmaxChannelCount\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioDestinationNode.html#maxChannelCount\n\n*/"
+			}
+		]
+	]
+}

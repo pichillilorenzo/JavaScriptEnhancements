@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"precision: GLint\tWebGLShaderPrecisionFormat",
+			"precision"
+		],
+		[
+			"rangeMax: GLint\tWebGLShaderPrecisionFormat",
+			"rangeMax"
+		],
+		[
+			"rangeMin: GLint\tWebGLShaderPrecisionFormat",
+			"rangeMin"
+		]
+	]
+}

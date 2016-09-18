@@ -1,0 +1,24 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-getElementById()\tNonElementParentNode",
+			{
+				"name": "getElementById",
+				"return_type": "Element",
+				"parameters": [
+					{
+						"name": "elementId",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20NonElementParentNode.html#getElementById",
+				"full_description": "/*\n\n\tNonElementParentNode\n\n\tgetElementById ( elementId: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NonElementParentNode.html#getElementById\n\n*/"
+			}
+		]
+	]
+}

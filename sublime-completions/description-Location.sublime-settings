@@ -1,0 +1,55 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-replace()\tLocation",
+			{
+				"name": "replace",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "When the replace(url) method is invoked, the UA must resolve the argument, relative to the API base URL specified by the entry settings object, and if that is successful, navigate the browsing context to the specified url with replacement enabled and exceptions enabled.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Location.html#replace",
+				"full_description": "/*\n\n\tLocation\n\n\treplace ( url: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the replace(url) method is invoked, the UA must resolve the argument, relative to the API base URL specified by the entry settings object, and if that is successful, navigate the browsing context to the specified url with replacement enabled and exceptions enabled.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Location.html#replace\n\n*/"
+			}
+		],
+		[
+			"description-assign()\tLocation",
+			{
+				"name": "assign",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "When the assign(url) method is invoked, the UA must resolve the argument, relative to the API base URL specified by the entry settings object, and if that is successful, must navigate the browsing context to the specified url, with exceptions enabled.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Location.html#assign",
+				"full_description": "/*\n\n\tLocation\n\n\tassign ( url: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the assign(url) method is invoked, the UA must resolve the argument, relative to the API base URL specified by the entry settings object, and if that is successful, must navigate the browsing context to the specified url, with exceptions enabled.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Location.html#assign\n\n*/"
+			}
+		],
+		[
+			"description-reload()\tLocation",
+			{
+				"name": "reload",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#dom-location-reload",
+				"full_description": "/*\n\n\tLocation\n\n\treload ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#dom-location-reload\n\n*/"
+			}
+		]
+	]
+}

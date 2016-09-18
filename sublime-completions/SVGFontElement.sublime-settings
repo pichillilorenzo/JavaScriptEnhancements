@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGFontElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGFontElement",
+			"externalResourcesRequired"
+		],
+		[
+			"className: SVGAnimatedString\tSVGFontElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGFontElement",
+			"style"
+		]
+	]
+}

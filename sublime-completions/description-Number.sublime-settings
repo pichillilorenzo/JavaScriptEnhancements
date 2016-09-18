@@ -1,0 +1,179 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-toExponential()\tNumber",
+			{
+				"name": "toExponential",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "fractionDigits",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Return a String containing this Number value represented in decimal exponential notation with one digit before the significand's decimal point and fractionDigits digits after the significand's decimal point. If fractionDigits is undefined, include as many significand digits as necessary to uniquely specify the Number (just like in ToString except that in this case the Number is always output in exponential notation).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#toExponential",
+				"full_description": "/*\n\n\tNumber\n\n\ttoExponential ( fractionDigits: int )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tReturn a String containing this Number value represented in decimal exponential notation with one digit before the significand's decimal point and fractionDigits digits after the significand's decimal point. If fractionDigits is undefined, include as many significand digits as necessary to uniquely specify the Number (just like in ToString except that in this case the Number is always output in exponential notation).\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#toExponential\n\n*/"
+			}
+		],
+		[
+			"description-toString()\tNumber",
+			{
+				"name": "toString",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "radix",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The optional radix should be an integer value in the inclusive range 2 to 36. If radix not present or is undefined the Number 10 is used as the value of radix. If ToInteger(radix) is the Number 10 then this Number value is given as an argument to the ToString abstract operation; the resulting String value is returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#toString",
+				"full_description": "/*\n\n\tNumber\n\n\ttoString ( radix?: int )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe optional radix should be an integer value in the inclusive range 2 to 36. If radix not present or is undefined the Number 10 is used as the value of radix. If ToInteger(radix) is the Number 10 then this Number value is given as an argument to the ToString abstract operation; the resulting String value is returned.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#toString\n\n*/"
+			}
+		],
+		[
+			"description-toPrecision()\tNumber",
+			{
+				"name": "toPrecision",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "precision",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Return a String containing this Number value represented either in decimal exponential notation with one digit before the significand's decimal point and precision–1 digits after the significand's decimal point or in decimal fixed notation with precision significant digits.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#toPrecision",
+				"full_description": "/*\n\n\tNumber\n\n\ttoPrecision ( precision: int )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tReturn a String containing this Number value represented either in decimal exponential notation with one digit before the significand's decimal point and precision–1 digits after the significand's decimal point or in decimal fixed notation with precision significant digits.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#toPrecision\n\n*/"
+			}
+		],
+		[
+			"description-toLocaleString()\tNumber",
+			{
+				"name": "toLocaleString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "Produces a String value that represents this Number value formatted according to the conventions of the host environment’s current locale. This function is implementation-dependent, and it is permissible, but not encouraged, for it to return the same thing as toString.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#toLocaleString",
+				"full_description": "/*\n\n\tNumber\n\n\ttoLocaleString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tProduces a String value that represents this Number value formatted according to the conventions of the host environment’s current locale. This function is implementation-dependent, and it is permissible, but not encouraged, for it to return the same thing as toString.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#toLocaleString\n\n*/"
+			}
+		],
+		[
+			"description-toFixed()\tNumber",
+			{
+				"name": "toFixed",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "fractionDigits",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Return a String containing this Number value represented in decimal fixed-point notation with fractionDigits digits after the decimal point. If fractionDigits is undefined, 0 is assumed.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#toFixed",
+				"full_description": "/*\n\n\tNumber\n\n\ttoFixed ( fractionDigits: int )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tReturn a String containing this Number value represented in decimal fixed-point notation with fractionDigits digits after the decimal point. If fractionDigits is undefined, 0 is assumed.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#toFixed\n\n*/"
+			}
+		],
+		[
+			"description-MAX_VALUE\tNumber",
+			{
+				"name": "MAX_VALUE",
+				"return_type": "const number",
+				"description": "The value of Number.MAX_VALUE is the largest positive finite value of the Number type, which is approximately 1.7976931348623157 × 10308.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#MAX_VALUE",
+				"full_description": "/*\n\n\tNumber\n\n\tMAX_VALUE\n\n\tReturn Type:\n\tconst number\n\n\tDescription:\n\tThe value of Number.MAX_VALUE is the largest positive finite value of the Number type, which is approximately 1.7976931348623157 × 10308.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#MAX_VALUE\n\n*/"
+			}
+		],
+		[
+			"description-MIN_VALUE\tNumber",
+			{
+				"name": "MIN_VALUE",
+				"return_type": "const number",
+				"description": "The value of Number.MIN_VALUE is the smallest positive value of the Number type, which is approximately 5 × 10‑324.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#MIN_VALUE",
+				"full_description": "/*\n\n\tNumber\n\n\tMIN_VALUE\n\n\tReturn Type:\n\tconst number\n\n\tDescription:\n\tThe value of Number.MIN_VALUE is the smallest positive value of the Number type, which is approximately 5 × 10‑324.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#MIN_VALUE\n\n*/"
+			}
+		],
+		[
+			"description-NEGATIVE_INFINITY\tNumber",
+			{
+				"name": "NEGATIVE_INFINITY",
+				"return_type": "const number",
+				"description": "The value of Number.NEGATIVE_INFINITY is −∞.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#NEGATIVE_INFINITY",
+				"full_description": "/*\n\n\tNumber\n\n\tNEGATIVE_INFINITY\n\n\tReturn Type:\n\tconst number\n\n\tDescription:\n\tThe value of Number.NEGATIVE_INFINITY is −∞.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#NEGATIVE_INFINITY\n\n*/"
+			}
+		],
+		[
+			"description-POSITIVE_INFINITY\tNumber",
+			{
+				"name": "POSITIVE_INFINITY",
+				"return_type": "const number",
+				"description": "The value of Number.POSITIVE_INFINITY is +∞.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#POSITIVE_INFINITY",
+				"full_description": "/*\n\n\tNumber\n\n\tPOSITIVE_INFINITY\n\n\tReturn Type:\n\tconst number\n\n\tDescription:\n\tThe value of Number.POSITIVE_INFINITY is +∞.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#POSITIVE_INFINITY\n\n*/"
+			}
+		],
+		[
+			"description-NaN\tNumber",
+			{
+				"name": "NaN",
+				"return_type": "const number",
+				"description": "The value of Number.NaN is NaN.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#NaN",
+				"full_description": "/*\n\n\tNumber\n\n\tNaN\n\n\tReturn Type:\n\tconst number\n\n\tDescription:\n\tThe value of Number.NaN is NaN.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#NaN\n\n*/"
+			}
+		],
+		[
+			"description-valueOf()\tNumber",
+			{
+				"name": "valueOf",
+				"return_type": "number",
+				"parameters": [],
+				"description": "Returns this Number value.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#valueOf",
+				"full_description": "/*\n\n\tNumber\n\n\tvalueOf ()\n\n\tReturn Type:\n\tnumber\n\n\tDescription:\n\tReturns this Number value.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#valueOf\n\n*/"
+			}
+		],
+		[
+			"description-Number()\tNumber",
+			{
+				"name": "Number",
+				"return_type": "Number",
+				"parameters": [
+					{
+						"name": "value",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Number.html#Number",
+				"full_description": "/*\n\n\tNumber\n\n\tNumber ( value: any )\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Number.html#Number\n\n*/"
+			}
+		]
+	]
+}

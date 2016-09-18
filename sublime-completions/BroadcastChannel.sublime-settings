@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new BroadcastChannel( channel: DOMString ): BroadcastChannel\tBroadcastChannel",
+			"new BroadcastChannel(${1:channel: DOMString})"
+		],
+		[
+			"BroadcastChannel( channel: DOMString ): BroadcastChannel\tBroadcastChannel",
+			"BroadcastChannel(${1:channel: DOMString})"
+		],
+		[
+			"postMessage( message: any ): void\tBroadcastChannel",
+			"postMessage(${1:message: any})"
+		],
+		[
+			"onmessage: EventHandler\tBroadcastChannel",
+			"onmessage"
+		],
+		[
+			"name: DOMString\tBroadcastChannel",
+			"name"
+		]
+	]
+}

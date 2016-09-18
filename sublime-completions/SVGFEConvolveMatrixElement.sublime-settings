@@ -1,0 +1,89 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_EDGEMODE_DUPLICATE: const unsigned short\tSVGFEConvolveMatrixElement",
+			"SVG_EDGEMODE_DUPLICATE"
+		],
+		[
+			"SVG_EDGEMODE_UNKNOWN: const unsigned short\tSVGFEConvolveMatrixElement",
+			"SVG_EDGEMODE_UNKNOWN"
+		],
+		[
+			"SVG_EDGEMODE_WRAP: const unsigned short\tSVGFEConvolveMatrixElement",
+			"SVG_EDGEMODE_WRAP"
+		],
+		[
+			"SVG_EDGEMODE_NONE: const unsigned short\tSVGFEConvolveMatrixElement",
+			"SVG_EDGEMODE_NONE"
+		],
+		[
+			"kernelUnitLengthY: SVGAnimatedNumber\tSVGFEConvolveMatrixElement",
+			"kernelUnitLengthY"
+		],
+		[
+			"kernelUnitLengthX: SVGAnimatedNumber\tSVGFEConvolveMatrixElement",
+			"kernelUnitLengthX"
+		],
+		[
+			"kernelMatrix: SVGAnimatedNumberList\tSVGFEConvolveMatrixElement",
+			"kernelMatrix"
+		],
+		[
+			"preserveAlpha: SVGAnimatedBoolean\tSVGFEConvolveMatrixElement",
+			"preserveAlpha"
+		],
+		[
+			"edgeMode: SVGAnimatedEnumeration\tSVGFEConvolveMatrixElement",
+			"edgeMode"
+		],
+		[
+			"targetY: SVGAnimatedInteger\tSVGFEConvolveMatrixElement",
+			"targetY"
+		],
+		[
+			"targetX: SVGAnimatedInteger\tSVGFEConvolveMatrixElement",
+			"targetX"
+		],
+		[
+			"orderY: SVGAnimatedInteger\tSVGFEConvolveMatrixElement",
+			"orderY"
+		],
+		[
+			"orderX: SVGAnimatedInteger\tSVGFEConvolveMatrixElement",
+			"orderX"
+		],
+		[
+			"divisor: SVGAnimatedNumber\tSVGFEConvolveMatrixElement",
+			"divisor"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFEConvolveMatrixElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEConvolveMatrixElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEConvolveMatrixElement",
+			"width"
+		],
+		[
+			"bias: SVGAnimatedNumber\tSVGFEConvolveMatrixElement",
+			"bias"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFEConvolveMatrixElement",
+			"in1"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEConvolveMatrixElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEConvolveMatrixElement",
+			"y"
+		]
+	]
+}

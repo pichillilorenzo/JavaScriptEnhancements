@@ -1,0 +1,209 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"Date.UTC( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): static Date\tDate",
+			"Date.UTC(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
+		],
+		[
+			"UTC( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): static Date\tDate",
+			"UTC(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
+		],
+		[
+			"new Date( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): Date\tDate",
+			"new Date(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
+		],
+		[
+			"Date( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): Date\tDate",
+			"Date(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
+		],
+		[
+			"setUTCHours( hour: int, min?: int, sec?: int, ms?: int ): number\tDate",
+			"setUTCHours(${1:hour: int}, ${2:min?: int}, ${3:sec?: int}, ${4:ms?: int})"
+		],
+		[
+			"setHours( hour: int, min?: int, sec?: int, ms?: int ): number\tDate",
+			"setHours(${1:hour: int}, ${2:min?: int}, ${3:sec?: int}, ${4:ms?: int})"
+		],
+		[
+			"setUTCFullYear( year: int, month?: int, date?: int ): number\tDate",
+			"setUTCFullYear(${1:year: int}, ${2:month?: int}, ${3:date?: int})"
+		],
+		[
+			"setFullYear( year: int, month?: int, date?: int ): number\tDate",
+			"setFullYear(${1:year: int}, ${2:month?: int}, ${3:date?: int})"
+		],
+		[
+			"setUTCMinutes( min: int, sec?: int, ms?: int ): number\tDate",
+			"setUTCMinutes(${1:min: int}, ${2:sec?: int}, ${3:ms?: int})"
+		],
+		[
+			"setMinutes( min: int, sec?: int, ms?: int ): number\tDate",
+			"setMinutes(${1:min: int}, ${2:sec?: int}, ${3:ms?: int})"
+		],
+		[
+			"setUTCMonth( month: int, date?: int ): number\tDate",
+			"setUTCMonth(${1:month: int}, ${2:date?: int})"
+		],
+		[
+			"setUTCSeconds( sec: int, ms?: int ): number\tDate",
+			"setUTCSeconds(${1:sec: int}, ${2:ms?: int})"
+		],
+		[
+			"setMonth( month: int, date?: int ): number\tDate",
+			"setMonth(${1:month: int}, ${2:date?: int})"
+		],
+		[
+			"setSeconds( sec: int, ms?: int ): number\tDate",
+			"setSeconds(${1:sec: int}, ${2:ms?: int})"
+		],
+		[
+			"setUTCMilliseconds( ms: int ): number\tDate",
+			"setUTCMilliseconds(${1:ms: int})"
+		],
+		[
+			"setMilliseconds( ms: int ): number\tDate",
+			"setMilliseconds(${1:ms: int})"
+		],
+		[
+			"setUTCDate( date: int ): number\tDate",
+			"setUTCDate(${1:date: int})"
+		],
+		[
+			"setTime( time: number ): number\tDate",
+			"setTime(${1:time: number})"
+		],
+		[
+			"setDate( date: int ): number\tDate",
+			"setDate(${1:date: int})"
+		],
+		[
+			"toLocaleTimeString(): string\tDate",
+			"toLocaleTimeString()"
+		],
+		[
+			"toLocaleDateString(): string\tDate",
+			"toLocaleDateString()"
+		],
+		[
+			"toJSON( key: any ): string\tDate",
+			"toJSON(${1:key: any})"
+		],
+		[
+			"getUTCMilliseconds(): int\tDate",
+			"getUTCMilliseconds()"
+		],
+		[
+			"toLocaleString(): string\tDate",
+			"toLocaleString()"
+		],
+		[
+			"getTimezoneOffset(): int\tDate",
+			"getTimezoneOffset()"
+		],
+		[
+			"Date.now(): static Date\tDate",
+			"Date.now()"
+		],
+		[
+			"toTimeString(): string\tDate",
+			"toTimeString()"
+		],
+		[
+			"getMilliseconds(): int\tDate",
+			"getMilliseconds()"
+		],
+		[
+			"toDateString(): string\tDate",
+			"toDateString()"
+		],
+		[
+			"getUTCFullYear(): int\tDate",
+			"getUTCFullYear()"
+		],
+		[
+			"toISOString(): string\tDate",
+			"toISOString()"
+		],
+		[
+			"toUTCString(): string\tDate",
+			"toUTCString()"
+		],
+		[
+			"getUTCMinutes(): int\tDate",
+			"getUTCMinutes()"
+		],
+		[
+			"getUTCSeconds(): int\tDate",
+			"getUTCSeconds()"
+		],
+		[
+			"getUTCDate(): number\tDate",
+			"getUTCDate()"
+		],
+		[
+			"now(): static Date\tDate",
+			"now()"
+		],
+		[
+			"getFullYear(): int\tDate",
+			"getFullYear()"
+		],
+		[
+			"toString(): string\tDate",
+			"toString()"
+		],
+		[
+			"getUTCHours(): int\tDate",
+			"getUTCHours()"
+		],
+		[
+			"getUTCMonth(): int\tDate",
+			"getUTCMonth()"
+		],
+		[
+			"getSeconds(): int\tDate",
+			"getSeconds()"
+		],
+		[
+			"getTime(): number\tDate",
+			"getTime()"
+		],
+		[
+			"getDate(): number\tDate",
+			"getDate()"
+		],
+		[
+			"getMinutes(): int\tDate",
+			"getMinutes()"
+		],
+		[
+			"valueOf(): number\tDate",
+			"valueOf()"
+		],
+		[
+			"new Date(): Date\tDate",
+			"new Date()"
+		],
+		[
+			"getUTCDay(): int\tDate",
+			"getUTCDay()"
+		],
+		[
+			"getMonth(): int\tDate",
+			"getMonth()"
+		],
+		[
+			"getHours(): int\tDate",
+			"getHours()"
+		],
+		[
+			"getDay(): int\tDate",
+			"getDay()"
+		],
+		[
+			"Date(): Date\tDate",
+			"Date()"
+		]
+	]
+}

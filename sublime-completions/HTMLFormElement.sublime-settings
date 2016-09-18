@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"elements: HTMLFormControlsCollection\tHTMLFormElement",
+			"elements"
+		],
+		[
+			"getter( index_name: any ): Element\tHTMLFormElement",
+			"getter(${1:index_name: any})"
+		],
+		[
+			"requestAutocomplete(): void\tHTMLFormElement",
+			"requestAutocomplete()"
+		],
+		[
+			"reportValidity(): boolean\tHTMLFormElement",
+			"reportValidity()"
+		],
+		[
+			"checkValidity(): boolean\tHTMLFormElement",
+			"checkValidity()"
+		],
+		[
+			"acceptCharset: DOMString\tHTMLFormElement",
+			"acceptCharset"
+		],
+		[
+			"autocomplete: DOMString\tHTMLFormElement",
+			"autocomplete"
+		],
+		[
+			"noValidate: boolean\tHTMLFormElement",
+			"noValidate"
+		],
+		[
+			"encoding: DOMString\tHTMLFormElement",
+			"encoding"
+		],
+		[
+			"enctype: DOMString\tHTMLFormElement",
+			"enctype"
+		],
+		[
+			"action: DOMString\tHTMLFormElement",
+			"action"
+		],
+		[
+			"target: DOMString\tHTMLFormElement",
+			"target"
+		],
+		[
+			"method: DOMString\tHTMLFormElement",
+			"method"
+		],
+		[
+			"name: DOMString\tHTMLFormElement",
+			"name"
+		],
+		[
+			"submit(): void\tHTMLFormElement",
+			"submit()"
+		],
+		[
+			"reset(): void\tHTMLFormElement",
+			"reset()"
+		],
+		[
+			"length: long\tHTMLFormElement",
+			"length"
+		]
+	]
+}

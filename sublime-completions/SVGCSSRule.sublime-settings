@@ -1,0 +1,9 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"COLOR_PROFILE_RULE: const unsigned short\tSVGCSSRule",
+			"COLOR_PROFILE_RULE"
+		]
+	]
+}

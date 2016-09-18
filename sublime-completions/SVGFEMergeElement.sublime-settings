@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"height: SVGAnimatedLength\tSVGFEMergeElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEMergeElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEMergeElement",
+			"width"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEMergeElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEMergeElement",
+			"y"
+		]
+	]
+}

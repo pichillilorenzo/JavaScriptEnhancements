@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"insertItemBefore( newItem: SVGNumber, index: unsigned long ): SVGNumber\tSVGNumberList",
+			"insertItemBefore(${1:newItem: SVGNumber}, ${2:index: unsigned long})"
+		],
+		[
+			"replaceItem( newItem: SVGNumber, index: unsigned long ): SVGNumber\tSVGNumberList",
+			"replaceItem(${1:newItem: SVGNumber}, ${2:index: unsigned long})"
+		],
+		[
+			"removeItem( index: unsigned long ): SVGNumber\tSVGNumberList",
+			"removeItem(${1:index: unsigned long})"
+		],
+		[
+			"appendItem( newItem: SVGNumber ): SVGNumber\tSVGNumberList",
+			"appendItem(${1:newItem: SVGNumber})"
+		],
+		[
+			"initialize( newItem: SVGNumber ): SVGNumber\tSVGNumberList",
+			"initialize(${1:newItem: SVGNumber})"
+		],
+		[
+			"getItem( index: unsigned long ): SVGNumber\tSVGNumberList",
+			"getItem(${1:index: unsigned long})"
+		],
+		[
+			"numberOfItems: unsigned long\tSVGNumberList",
+			"numberOfItems"
+		],
+		[
+			"clear(): void\tSVGNumberList",
+			"clear()"
+		]
+	]
+}

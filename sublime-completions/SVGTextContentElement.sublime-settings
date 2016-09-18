@@ -1,0 +1,101 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getSubStringLength( charnum: unsigned long, nchars: unsigned long ): float\tSVGTextContentElement",
+			"getSubStringLength(${1:charnum: unsigned long}, ${2:nchars: unsigned long})"
+		],
+		[
+			"selectSubString( charnum: unsigned long, nchars: unsigned long ): void\tSVGTextContentElement",
+			"selectSubString(${1:charnum: unsigned long}, ${2:nchars: unsigned long})"
+		],
+		[
+			"getStartPositionOfChar( charnum: unsigned long ): SVGPoint\tSVGTextContentElement",
+			"getStartPositionOfChar(${1:charnum: unsigned long})"
+		],
+		[
+			"getEndPositionOfChar( charnum: unsigned long ): SVGPoint\tSVGTextContentElement",
+			"getEndPositionOfChar(${1:charnum: unsigned long})"
+		],
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGTextContentElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"LENGTHADJUST_SPACINGANDGLYPHS: const unsigned short\tSVGTextContentElement",
+			"LENGTHADJUST_SPACINGANDGLYPHS"
+		],
+		[
+			"getExtentOfChar( charnum: unsigned long ): SVGRect\tSVGTextContentElement",
+			"getExtentOfChar(${1:charnum: unsigned long})"
+		],
+		[
+			"getRotationOfChar( charnum: unsigned long ): float\tSVGTextContentElement",
+			"getRotationOfChar(${1:charnum: unsigned long})"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGTextContentElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGTextContentElement",
+			"externalResourcesRequired"
+		],
+		[
+			"getCharNumAtPosition( point: SVGPoint ): long\tSVGTextContentElement",
+			"getCharNumAtPosition(${1:point: SVGPoint})"
+		],
+		[
+			"LENGTHADJUST_SPACING: const unsigned short\tSVGTextContentElement",
+			"LENGTHADJUST_SPACING"
+		],
+		[
+			"LENGTHADJUST_UNKNOWN: const unsigned short\tSVGTextContentElement",
+			"LENGTHADJUST_UNKNOWN"
+		],
+		[
+			"lengthAdjust: SVGAnimatedEnumeration\tSVGTextContentElement",
+			"lengthAdjust"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGTextContentElement",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGTextContentElement",
+			"requiredFeatures"
+		],
+		[
+			"getComputedTextLength(): float\tSVGTextContentElement",
+			"getComputedTextLength()"
+		],
+		[
+			"textLength: SVGAnimatedLength\tSVGTextContentElement",
+			"textLength"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGTextContentElement",
+			"systemLanguage"
+		],
+		[
+			"className: SVGAnimatedString\tSVGTextContentElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGTextContentElement",
+			"style"
+		],
+		[
+			"getNumberOfChars(): long\tSVGTextContentElement",
+			"getNumberOfChars()"
+		],
+		[
+			"xmlspace: DOMString\tSVGTextContentElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGTextContentElement",
+			"xmllang"
+		]
+	]
+}

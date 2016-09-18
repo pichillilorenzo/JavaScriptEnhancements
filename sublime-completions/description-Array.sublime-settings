@@ -1,0 +1,509 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-toString()\tArray",
+			{
+				"name": "toString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "15.4.4.2 Array.prototype.toString\r\n            ( )\r\n\r\n        When the toString method is called, the following steps are taken:\r\n\r\n        \r\n          Let array be the result of calling ToObject on the this value.\r\n          Let func be the result of calling the [[Get]] internal method of array with argument\r\n              \"join\".\r\n          If IsCallable(func) is false, then let func be the standard built-in\r\n              method Object.prototype.toString (15.2.4.2).\r\n          Return  the result of calling the [[Call]] internal method of func providing array as the this\r\n              value and an empty arguments list.\r\n        \r\n\r\n        \r\n          NOTE The toString function is intentionally generic; it does not require that\r\n          its this value be an Array object. Therefore it can be transferred to other kinds of objects for use as a method.\r\n          Whether the toString function can be applied successfully to a host object is implementation-dependent.",
+				"type": "operation",
+				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.2",
+				"full_description": "/*\n\n\tArray\n\n\ttoString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\t15.4.4.2 Array.prototype.toString\r\n            ( )\r\n\r\n        When the toString method is called, the following steps are taken:\r\n\r\n        \r\n          Let array be the result of calling ToObject on the this value.\r\n          Let func be the result of calling the [[Get]] internal method of array with argument\r\n              \"join\".\r\n          If IsCallable(func) is false, then let func be the standard built-in\r\n              method Object.prototype.toString (15.2.4.2).\r\n          Return  the result of calling the [[Call]] internal method of func providing array as the this\r\n              value and an empty arguments list.\r\n        \r\n\r\n        \r\n          NOTE The toString function is intentionally generic; it does not require that\r\n          its this value be an Array object. Therefore it can be transferred to other kinds of objects for use as a method.\r\n          Whether the toString function can be applied successfully to a host object is implementation-dependent.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.2\n\n*/"
+			}
+		],
+		[
+			"description-sort()\tArray",
+			{
+				"name": "sort",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "compareFn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The elements of this array are sorted. The sort is not necessarily stable (that is, elements that compare equal do not necessarily remain in their original order). If comparefn is not undefined, it should be a function that accepts two arguments x and y and returns a negative value if x < y, zero if x = y, or a positive value if x > y.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#sort",
+				"full_description": "/*\n\n\tArray\n\n\tsort ( compareFn: Function )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tThe elements of this array are sorted. The sort is not necessarily stable (that is, elements that compare equal do not necessarily remain in their original order). If comparefn is not undefined, it should be a function that accepts two arguments x and y and returns a negative value if x < y, zero if x = y, or a positive value if x > y.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#sort\n\n*/"
+			}
+		],
+		[
+			"description-splice()\tArray",
+			{
+				"name": "splice",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "start",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "deleteCount",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "items...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "When the splice method is called with two or more arguments start, deleteCount and (optionally) item1, item2, etc., the deleteCount elements of the array starting at array index start are replaced by the arguments item1, item2, etc. An Array object containing the deleted elements (if any) is returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#splice",
+				"full_description": "/*\n\n\tArray\n\n\tsplice ( start: int, deleteCount: int, items...: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tWhen the splice method is called with two or more arguments start, deleteCount and (optionally) item1, item2, etc., the deleteCount elements of the array starting at array index start are replaced by the arguments item1, item2, etc. An Array object containing the deleted elements (if any) is returned.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#splice\n\n*/"
+			}
+		],
+		[
+			"description-map()\tArray",
+			{
+				"name": "map",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "thisArg",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that accepts three arguments. map calls callbackfn once for each element in the array, in ascending order, and constructs a new Array from the results. callbackfn is called only for elements of the array which actually exist; it is not called for missing elements of the array.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#map",
+				"full_description": "/*\n\n\tArray\n\n\tmap ( callbackfn: Function, thisArg?: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tcallbackfn should be a function that accepts three arguments. map calls callbackfn once for each element in the array, in ascending order, and constructs a new Array from the results. callbackfn is called only for elements of the array which actually exist; it is not called for missing elements of the array.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#map\n\n*/"
+			}
+		],
+		[
+			"description-slice()\tArray",
+			{
+				"name": "slice",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "start",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "end",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The slice method takes two arguments, start and end, and returns an array containing the elements of the array from element start up to, but not including, element end (or through the end of the array if end is undefined). If start is negative, it is treated as length+start where length is the length of the array.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#slice",
+				"full_description": "/*\n\n\tArray\n\n\tslice ( start: int, end: int )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tThe slice method takes two arguments, start and end, and returns an array containing the elements of the array from element start up to, but not including, element end (or through the end of the array if end is undefined). If start is negative, it is treated as length+start where length is the length of the array.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#slice\n\n*/"
+			}
+		],
+		[
+			"description-filter()\tArray",
+			{
+				"name": "filter",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "thisArg",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that accepts three arguments and returns a value that is coercible to the Boolean value true or false. filter calls callbackfn once for each element in the array, in ascending order, and constructs a new array of all the values for which callbackfn returns true.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#filter",
+				"full_description": "/*\n\n\tArray\n\n\tfilter ( callbackfn: Function, thisArg?: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tcallbackfn should be a function that accepts three arguments and returns a value that is coercible to the Boolean value true or false. filter calls callbackfn once for each element in the array, in ascending order, and constructs a new array of all the values for which callbackfn returns true.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#filter\n\n*/"
+			}
+		],
+		[
+			"description-forEach()\tArray",
+			{
+				"name": "forEach",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "thisArg",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that accepts three arguments. forEach calls callbackfn once for each element present in the array, in ascending order. callbackfn is called only for elements of the array which actually exist; it is not called for missing elements of the array.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#forEach",
+				"full_description": "/*\n\n\tArray\n\n\tforEach ( callbackfn: Function, thisArg?: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tcallbackfn should be a function that accepts three arguments. forEach calls callbackfn once for each element present in the array, in ascending order. callbackfn is called only for elements of the array which actually exist; it is not called for missing elements of the array.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#forEach\n\n*/"
+			}
+		],
+		[
+			"description-every()\tArray",
+			{
+				"name": "every",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "thisArg",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that accepts three arguments and returns a value that is coercible to the Boolean value true or false. every calls callbackfn once for each element present in the array, in ascending order, until it finds one where callbackfn returns false.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#every",
+				"full_description": "/*\n\n\tArray\n\n\tevery ( callbackfn: Function, thisArg?: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tcallbackfn should be a function that accepts three arguments and returns a value that is coercible to the Boolean value true or false. every calls callbackfn once for each element present in the array, in ascending order, until it finds one where callbackfn returns false.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#every\n\n*/"
+			}
+		],
+		[
+			"description-lastIndexOf()\tArray",
+			{
+				"name": "lastIndexOf",
+				"return_type": "int",
+				"parameters": [
+					{
+						"name": "searchElement",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "fromIndex",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "lastIndexOf compares searchElement to the elements of the array in descending order using the internal Strict Equality Comparison Algorithm (11.9.6), and if found at one or more positions, returns the index of the last such position; otherwise, -1 is returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#lastIndexOf",
+				"full_description": "/*\n\n\tArray\n\n\tlastIndexOf ( searchElement: any, fromIndex?: int )\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\tlastIndexOf compares searchElement to the elements of the array in descending order using the internal Strict Equality Comparison Algorithm (11.9.6), and if found at one or more positions, returns the index of the last such position; otherwise, -1 is returned.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#lastIndexOf\n\n*/"
+			}
+		],
+		[
+			"description-some()\tArray",
+			{
+				"name": "some",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "thisArg",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that accepts three arguments and returns a value that is coercible to the Boolean value true or false. some calls callbackfn once for each element present in the array, in ascending order, until it finds one where callbackfn returns true.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#some",
+				"full_description": "/*\n\n\tArray\n\n\tsome ( callbackfn: Function, thisArg?: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tcallbackfn should be a function that accepts three arguments and returns a value that is coercible to the Boolean value true or false. some calls callbackfn once for each element present in the array, in ascending order, until it finds one where callbackfn returns true.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#some\n\n*/"
+			}
+		],
+		[
+			"description-indexOf()\tArray",
+			{
+				"name": "indexOf",
+				"return_type": "int",
+				"parameters": [
+					{
+						"name": "searchElement",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "fromIndex",
+						"type": "int",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "indexOf compares searchElement to the elements of the array, in ascending order, using the internal Strict Equality Comparison Algorithm (11.9.6), and if found at one or more positions, returns the index of the first such position; otherwise, -1 is returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#indexOf",
+				"full_description": "/*\n\n\tArray\n\n\tindexOf ( searchElement: any, fromIndex?: int )\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\tindexOf compares searchElement to the elements of the array, in ascending order, using the internal Strict Equality Comparison Algorithm (11.9.6), and if found at one or more positions, returns the index of the first such position; otherwise, -1 is returned.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#indexOf\n\n*/"
+			}
+		],
+		[
+			"description-toLocaleString()\tArray",
+			{
+				"name": "toLocaleString",
+				"return_type": "string",
+				"parameters": [],
+				"description": "The elements of the array are converted to Strings using their toLocaleString methods, and these Strings are then concatenated, separated by occurrences of a separator String that has been derived in an implementation-defined locale-specific way.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#toLocaleString",
+				"full_description": "/*\n\n\tArray\n\n\ttoLocaleString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe elements of the array are converted to Strings using their toLocaleString methods, and these Strings are then concatenated, separated by occurrences of a separator String that has been derived in an implementation-defined locale-specific way.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#toLocaleString\n\n*/"
+			}
+		],
+		[
+			"description-join()\tArray",
+			{
+				"name": "join",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "separator",
+						"type": "string",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The elements of the array are converted to Strings, and these Strings are then concatenated, separated by occurrences of the separator. If no separator is provided, a single comma is used as the separator.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#join",
+				"full_description": "/*\n\n\tArray\n\n\tjoin ( separator: string )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe elements of the array are converted to Strings, and these Strings are then concatenated, separated by occurrences of the separator. If no separator is provided, a single comma is used as the separator.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#join\n\n*/"
+			}
+		],
+		[
+			"description-reduceRight()\tArray",
+			{
+				"name": "reduceRight",
+				"return_type": "any",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "initialValue",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that takes four arguments. reduceRight calls the callback, as a function, once for each element present in the array, in descending order.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#reduceRight",
+				"full_description": "/*\n\n\tArray\n\n\treduceRight ( callbackfn: Function, initialValue?: any )\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tcallbackfn should be a function that takes four arguments. reduceRight calls the callback, as a function, once for each element present in the array, in descending order.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#reduceRight\n\n*/"
+			}
+		],
+		[
+			"description-concat()\tArray",
+			{
+				"name": "concat",
+				"return_type": "string",
+				"parameters": [
+					{
+						"name": "items...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "When the concat method is called with zero or more arguments item1, item2, etc., it returns an array containing the array elements of the object followed by the array elements of each argument in order.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#concat",
+				"full_description": "/*\n\n\tArray\n\n\tconcat ( items...: any )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tWhen the concat method is called with zero or more arguments item1, item2, etc., it returns an array containing the array elements of the object followed by the array elements of each argument in order.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#concat\n\n*/"
+			}
+		],
+		[
+			"description-reduce()\tArray",
+			{
+				"name": "reduce",
+				"return_type": "any",
+				"parameters": [
+					{
+						"name": "callbackfn",
+						"type": "Function",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "initialValue",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "callbackfn should be a function that takes four arguments. reduce calls the callback, as a function, once for each element present in the array, in ascending order.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#reduce",
+				"full_description": "/*\n\n\tArray\n\n\treduce ( callbackfn: Function, initialValue?: any )\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tcallbackfn should be a function that takes four arguments. reduce calls the callback, as a function, once for each element present in the array, in ascending order.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#reduce\n\n*/"
+			}
+		],
+		[
+			"description-Array.isArray\tArray",
+			{
+				"name": "isArray",
+				"return_type": "static boolean",
+				"parameters": [
+					{
+						"name": "arg",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The isArray function takes one argument arg, and returns the Boolean value true if the argument is an object whose class internal property is \"Array\"; otherwise it returns false.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#isArray",
+				"full_description": "/*\n\n\tArray\n\n\tisArray ( arg: any )\n\n\tReturn Type:\n\tstatic boolean\n\n\tDescription:\n\tThe isArray function takes one argument arg, and returns the Boolean value true if the argument is an object whose class internal property is \"Array\"; otherwise it returns false.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#isArray\n\n*/"
+			}
+		],
+		[
+			"description-unshift()\tArray",
+			{
+				"name": "unshift",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "items...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The arguments are prepended to the start of the array, such that their order within the array is the same as the order in which they appear in the argument list.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#unshift",
+				"full_description": "/*\n\n\tArray\n\n\tunshift ( items...: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tThe arguments are prepended to the start of the array, such that their order within the array is the same as the order in which they appear in the argument list.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#unshift\n\n*/"
+			}
+		],
+		[
+			"description-length\tArray",
+			{
+				"name": "length",
+				"return_type": "int",
+				"description": "The length property of this Array object is a data property whose value is always numerically greater than the name of every deletable property whose name is an array index.",
+				"type": "property",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#length",
+				"full_description": "/*\n\n\tArray\n\n\tlength\n\n\tReturn Type:\n\tint\n\n\tDescription:\n\tThe length property of this Array object is a data property whose value is always numerically greater than the name of every deletable property whose name is an array index.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#length\n\n*/"
+			}
+		],
+		[
+			"description-push()\tArray",
+			{
+				"name": "push",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "items...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The arguments are appended to the end of the array, in the order in which they appear. The new length of the array is returned as the result of the call.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#push",
+				"full_description": "/*\n\n\tArray\n\n\tpush ( items...: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tThe arguments are appended to the end of the array, in the order in which they appear. The new length of the array is returned as the result of the call.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#push\n\n*/"
+			}
+		],
+		[
+			"description-reverse()\tArray",
+			{
+				"name": "reverse",
+				"return_type": "Array",
+				"parameters": [],
+				"description": "The elements of the array are rearranged so as to reverse their order. The object is returned as the result of the call.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#reverse",
+				"full_description": "/*\n\n\tArray\n\n\treverse ()\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tThe elements of the array are rearranged so as to reverse their order. The object is returned as the result of the call.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#reverse\n\n*/"
+			}
+		],
+		[
+			"description-shift()\tArray",
+			{
+				"name": "shift",
+				"return_type": "Array",
+				"parameters": [],
+				"description": "The first element of the array is removed from the array and returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#shift",
+				"full_description": "/*\n\n\tArray\n\n\tshift ()\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tThe first element of the array is removed from the array and returned.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#shift\n\n*/"
+			}
+		],
+		[
+			"description-pop()\tArray",
+			{
+				"name": "pop",
+				"return_type": "any",
+				"parameters": [],
+				"description": "The last element of the array is removed from the array and returned.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#pop",
+				"full_description": "/*\n\n\tArray\n\n\tpop ()\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe last element of the array is removed from the array and returned.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#pop\n\n*/"
+			}
+		],
+		[
+			"description-Array()\tArray",
+			{
+				"name": "Array",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "params...",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#Array",
+				"full_description": "/*\n\n\tArray\n\n\tArray ( params...?: any )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#Array\n\n*/"
+			}
+		],
+		[
+			"description-Array()\tArray",
+			{
+				"name": "Array",
+				"return_type": "Array",
+				"parameters": [
+					{
+						"name": "size",
+						"type": "int",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/ECMAScript%20-%20Array.html#Array",
+				"full_description": "/*\n\n\tArray\n\n\tArray ( size: int )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Array.html#Array\n\n*/"
+			}
+		]
+	]
+}

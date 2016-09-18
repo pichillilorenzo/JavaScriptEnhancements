@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_ZOOMANDPAN_DISABLE: const unsigned short\tSVGZoomAndPan",
+			"SVG_ZOOMANDPAN_DISABLE"
+		],
+		[
+			"SVG_ZOOMANDPAN_MAGNIFY: const unsigned short\tSVGZoomAndPan",
+			"SVG_ZOOMANDPAN_MAGNIFY"
+		],
+		[
+			"SVG_ZOOMANDPAN_UNKNOWN: const unsigned short\tSVGZoomAndPan",
+			"SVG_ZOOMANDPAN_UNKNOWN"
+		],
+		[
+			"zoomAndPan: unsigned short\tSVGZoomAndPan",
+			"zoomAndPan"
+		]
+	]
+}

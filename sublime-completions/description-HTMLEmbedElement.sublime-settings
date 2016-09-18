@@ -1,0 +1,68 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-legacycaller()\tHTMLEmbedElement",
+			{
+				"name": "legacycaller",
+				"return_type": "any",
+				"parameters": [
+					{
+						"name": "arguments...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The HTMLEmbedElement object representing the element must expose the scriptable interface of the plugin instantiated for the embed element, if any. At a minimum, this interface must implement the legacy caller operation. (It is suggested that the default behavior of this legacy caller operation, e.g.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLEmbedElement.html#legacycaller",
+				"full_description": "/*\n\n\tHTMLEmbedElement\n\n\tlegacycaller ( arguments...: any )\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe HTMLEmbedElement object representing the element must expose the scriptable interface of the plugin instantiated for the embed element, if any. At a minimum, this interface must implement the legacy caller operation. (It is suggested that the default behavior of this legacy caller operation, e.g.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLEmbedElement.html#legacycaller\n\n*/"
+			}
+		],
+		[
+			"description-height\tHTMLEmbedElement",
+			{
+				"name": "height",
+				"return_type": "DOMString",
+				"description": "The width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLEmbedElement.html#height",
+				"full_description": "/*\n\n\tHTMLEmbedElement\n\n\theight\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLEmbedElement.html#height\n\n*/"
+			}
+		],
+		[
+			"description-width\tHTMLEmbedElement",
+			{
+				"name": "width",
+				"return_type": "DOMString",
+				"description": "The width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLEmbedElement.html#width",
+				"full_description": "/*\n\n\tHTMLEmbedElement\n\n\twidth\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLEmbedElement.html#width\n\n*/"
+			}
+		],
+		[
+			"description-type\tHTMLEmbedElement",
+			{
+				"name": "type",
+				"return_type": "DOMString",
+				"description": "The IDL attributes src and type each must reflect the respective content attributes of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLEmbedElement.html#type",
+				"full_description": "/*\n\n\tHTMLEmbedElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src and type each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLEmbedElement.html#type\n\n*/"
+			}
+		],
+		[
+			"description-src\tHTMLEmbedElement",
+			{
+				"name": "src",
+				"return_type": "DOMString",
+				"description": "The IDL attributes src and type each must reflect the respective content attributes of the same name.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLEmbedElement.html#src",
+				"full_description": "/*\n\n\tHTMLEmbedElement\n\n\tsrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src and type each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLEmbedElement.html#src\n\n*/"
+			}
+		]
+	]
+}

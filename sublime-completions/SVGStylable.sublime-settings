@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGStylable",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"className: SVGAnimatedString\tSVGStylable",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGStylable",
+			"style"
+		]
+	]
+}

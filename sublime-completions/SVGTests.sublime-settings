@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGTests",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGTests",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGTests",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGTests",
+			"systemLanguage"
+		]
+	]
+}

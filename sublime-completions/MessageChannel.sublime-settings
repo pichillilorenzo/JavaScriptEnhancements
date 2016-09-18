@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new MessageChannel(): MessageChannel\tMessageChannel",
+			"new MessageChannel()"
+		],
+		[
+			"MessageChannel(): MessageChannel\tMessageChannel",
+			"MessageChannel()"
+		],
+		[
+			"port1: MessagePort\tMessageChannel",
+			"port1"
+		],
+		[
+			"port2: MessagePort\tMessageChannel",
+			"port2"
+		]
+	]
+}

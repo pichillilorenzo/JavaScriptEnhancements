@@ -1,0 +1,54 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-getCueById()\tTextTrackCueList",
+			{
+				"name": "getCueById",
+				"return_type": "TextTrackCue",
+				"parameters": [
+					{
+						"name": "id",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The getCueById(id) method, when called with an argument other than the empty string, must return the first text track cue in the list represented by the TextTrackCueList object whose text track cue identifier is id, if any, or null otherwise. If the argument is the empty string, then the method must return null.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20TextTrackCueList.html#getCueById",
+				"full_description": "/*\n\n\tTextTrackCueList\n\n\tgetCueById ( id: DOMString )\n\n\tReturn Type:\n\tTextTrackCue\n\n\tDescription:\n\tThe getCueById(id) method, when called with an argument other than the empty string, must return the first text track cue in the list represented by the TextTrackCueList object whose text track cue identifier is id, if any, or null otherwise. If the argument is the empty string, then the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TextTrackCueList.html#getCueById\n\n*/"
+			}
+		],
+		[
+			"description-length\tTextTrackCueList",
+			{
+				"name": "length",
+				"return_type": "unsigned long",
+				"description": "The length attribute must return the number of cues in the list represented by the TextTrackCueList object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20TextTrackCueList.html#length",
+				"full_description": "/*\n\n\tTextTrackCueList\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length attribute must return the number of cues in the list represented by the TextTrackCueList object.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TextTrackCueList.html#length\n\n*/"
+			}
+		],
+		[
+			"description-getter()\tTextTrackCueList",
+			{
+				"name": "getter",
+				"return_type": "TextTrackCue",
+				"parameters": [
+					{
+						"name": "index",
+						"type": "unsigned long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20TextTrackCueList.html#getter",
+				"full_description": "/*\n\n\tTextTrackCueList\n\n\tgetter ( index: unsigned long )\n\n\tReturn Type:\n\tTextTrackCue\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TextTrackCueList.html#getter\n\n*/"
+			}
+		]
+	]
+}

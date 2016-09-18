@@ -1,0 +1,62 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-URL.createFor\tURL",
+			{
+				"name": "createFor",
+				"return_type": "static DOMString",
+				"parameters": [
+					{
+						"name": "blob",
+						"type": "Blob",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns a unique Blob URL each time it is called on a valid blob argument. Blob URLs created with this method are said to be auto-revoking since user-agents are responsible for the revocation of Blob URLs created with this method, subject to the lifetime stipulation for Blob URLs.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/File%20API%20-%20URL.html#createFor",
+				"full_description": "/*\n\n\tURL\n\n\tcreateFor ( blob: Blob )\n\n\tReturn Type:\n\tstatic DOMString\n\n\tDescription:\n\tReturns a unique Blob URL each time it is called on a valid blob argument. Blob URLs created with this method are said to be auto-revoking since user-agents are responsible for the revocation of Blob URLs created with this method, subject to the lifetime stipulation for Blob URLs.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20URL.html#createFor\n\n*/"
+			}
+		],
+		[
+			"description-URL.createObjectURL\tURL",
+			{
+				"name": "createObjectURL",
+				"return_type": "static DOMString",
+				"parameters": [
+					{
+						"name": "blob",
+						"type": "Blob",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Returns a unique Blob URL each time it is called on a valid blob argument, which is a non-null Blob in scope of the global object's URL property from which this static method is called.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/File%20API%20-%20URL.html#createObjectURL",
+				"full_description": "/*\n\n\tURL\n\n\tcreateObjectURL ( blob: Blob )\n\n\tReturn Type:\n\tstatic DOMString\n\n\tDescription:\n\tReturns a unique Blob URL each time it is called on a valid blob argument, which is a non-null Blob in scope of the global object's URL property from which this static method is called.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20URL.html#createObjectURL\n\n*/"
+			}
+		],
+		[
+			"description-URL.revokeObjectURL\tURL",
+			{
+				"name": "revokeObjectURL",
+				"return_type": "static void",
+				"parameters": [
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Revokes the Blob URL provided in the string url argument, and removes the corresponding entry from the Blob URL Store.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/File%20API%20-%20URL.html#revokeObjectURL",
+				"full_description": "/*\n\n\tURL\n\n\trevokeObjectURL ( url: DOMString )\n\n\tReturn Type:\n\tstatic void\n\n\tDescription:\n\tRevokes the Blob URL provided in the string url argument, and removes the corresponding entry from the Blob URL Store.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20URL.html#revokeObjectURL\n\n*/"
+			}
+		]
+	]
+}

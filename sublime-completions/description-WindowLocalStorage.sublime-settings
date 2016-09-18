@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-localStorage\tWindowLocalStorage",
+			{
+				"name": "localStorage",
+				"return_type": "Storage",
+				"description": "The localStorage object provides a Storage object for an origin.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Web%20Storage%20-%20WindowLocalStorage.html#localStorage",
+				"full_description": "/*\n\n\tWindowLocalStorage\n\n\tlocalStorage\n\n\tReturn Type:\n\tStorage\n\n\tDescription:\n\tThe localStorage object provides a Storage object for an origin.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Storage%20-%20WindowLocalStorage.html#localStorage\n\n*/"
+			}
+		]
+	]
+}

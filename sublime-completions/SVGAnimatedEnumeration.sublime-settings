@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"animVal: unsigned short\tSVGAnimatedEnumeration",
+			"animVal"
+		],
+		[
+			"baseVal: unsigned short\tSVGAnimatedEnumeration",
+			"baseVal"
+		]
+	]
+}

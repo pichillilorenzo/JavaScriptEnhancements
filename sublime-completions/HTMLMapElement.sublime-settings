@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"images: HTMLCollection\tHTMLMapElement",
+			"images"
+		],
+		[
+			"areas: HTMLCollection\tHTMLMapElement",
+			"areas"
+		],
+		[
+			"name: DOMString\tHTMLMapElement",
+			"name"
+		]
+	]
+}

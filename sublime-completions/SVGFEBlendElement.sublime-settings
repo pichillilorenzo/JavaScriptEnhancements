@@ -1,0 +1,61 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_FEBLEND_MODE_MULTIPLY: const unsigned short\tSVGFEBlendElement",
+			"SVG_FEBLEND_MODE_MULTIPLY"
+		],
+		[
+			"SVG_FEBLEND_MODE_UNKNOWN: const unsigned short\tSVGFEBlendElement",
+			"SVG_FEBLEND_MODE_UNKNOWN"
+		],
+		[
+			"SVG_FEBLEND_MODE_LIGHTEN: const unsigned short\tSVGFEBlendElement",
+			"SVG_FEBLEND_MODE_LIGHTEN"
+		],
+		[
+			"SVG_FEBLEND_MODE_DARKEN: const unsigned short\tSVGFEBlendElement",
+			"SVG_FEBLEND_MODE_DARKEN"
+		],
+		[
+			"SVG_FEBLEND_MODE_NORMAL: const unsigned short\tSVGFEBlendElement",
+			"SVG_FEBLEND_MODE_NORMAL"
+		],
+		[
+			"SVG_FEBLEND_MODE_SCREEN: const unsigned short\tSVGFEBlendElement",
+			"SVG_FEBLEND_MODE_SCREEN"
+		],
+		[
+			"mode: SVGAnimatedEnumeration\tSVGFEBlendElement",
+			"mode"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFEBlendElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFEBlendElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFEBlendElement",
+			"width"
+		],
+		[
+			"in2: SVGAnimatedString\tSVGFEBlendElement",
+			"in2"
+		],
+		[
+			"in1: SVGAnimatedString\tSVGFEBlendElement",
+			"in1"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFEBlendElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFEBlendElement",
+			"y"
+		]
+	]
+}

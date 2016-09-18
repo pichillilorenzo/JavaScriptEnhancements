@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"elevation: SVGAnimatedNumber\tSVGFEDistantLightElement",
+			"elevation"
+		],
+		[
+			"azimuth: SVGAnimatedNumber\tSVGFEDistantLightElement",
+			"azimuth"
+		]
+	]
+}

@@ -1,0 +1,41 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"ellipse( x: unrestricted double, y: unrestricted double, radiusX: unrestricted double, radiusY: unrestricted double, rotation: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean ): void\tCanvasPathMethods",
+			"ellipse(${1:x: unrestricted double}, ${2:y: unrestricted double}, ${3:radiusX: unrestricted double}, ${4:radiusY: unrestricted double}, ${5:rotation: unrestricted double}, ${6:startAngle: unrestricted double}, ${7:endAngle: unrestricted double}, ${8:anticlockwise?: boolean})"
+		],
+		[
+			"arcTo( x1: unrestricted double, y1: unrestricted double, x2: unrestricted double, y2: unrestricted double, radius: unrestricted double, radiusY?: unrestricted double, rotation?: unrestricted double ): void\tCanvasPathMethods",
+			"arcTo(${1:x1: unrestricted double}, ${2:y1: unrestricted double}, ${3:x2: unrestricted double}, ${4:y2: unrestricted double}, ${5:radius: unrestricted double}, ${6:radiusY?: unrestricted double}, ${7:rotation?: unrestricted double})"
+		],
+		[
+			"arc( x: unrestricted double, y: unrestricted double, radius: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean ): void\tCanvasPathMethods",
+			"arc(${1:x: unrestricted double}, ${2:y: unrestricted double}, ${3:radius: unrestricted double}, ${4:startAngle: unrestricted double}, ${5:endAngle: unrestricted double}, ${6:anticlockwise?: boolean})"
+		],
+		[
+			"bezierCurveTo( cp1x: unrestricted double, cp1y: unrestricted double, cp2x: unrestricted double, cp2y: unrestricted double, x: unrestricted double, y: unrestricted double ): void\tCanvasPathMethods",
+			"bezierCurveTo(${1:cp1x: unrestricted double}, ${2:cp1y: unrestricted double}, ${3:cp2x: unrestricted double}, ${4:cp2y: unrestricted double}, ${5:x: unrestricted double}, ${6:y: unrestricted double})"
+		],
+		[
+			"quadraticCurveTo( cpx: unrestricted double, cpy: unrestricted double, x: unrestricted double, y: unrestricted double ): void\tCanvasPathMethods",
+			"quadraticCurveTo(${1:cpx: unrestricted double}, ${2:cpy: unrestricted double}, ${3:x: unrestricted double}, ${4:y: unrestricted double})"
+		],
+		[
+			"rect( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double ): void\tCanvasPathMethods",
+			"rect(${1:x: unrestricted double}, ${2:y: unrestricted double}, ${3:w: unrestricted double}, ${4:h: unrestricted double})"
+		],
+		[
+			"lineTo( x: unrestricted double, y: unrestricted double ): void\tCanvasPathMethods",
+			"lineTo(${1:x: unrestricted double}, ${2:y: unrestricted double})"
+		],
+		[
+			"moveTo( x: unrestricted double, y: unrestricted double ): void\tCanvasPathMethods",
+			"moveTo(${1:x: unrestricted double}, ${2:y: unrestricted double})"
+		],
+		[
+			"closePath(): void\tCanvasPathMethods",
+			"closePath()"
+		]
+	]
+}

@@ -1,0 +1,45 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"sandbox: DOMSettableTokenList\tHTMLIFrameElement",
+			"sandbox"
+		],
+		[
+			"contentWindow: WindowProxy\tHTMLIFrameElement",
+			"contentWindow"
+		],
+		[
+			"contentDocument: Document\tHTMLIFrameElement",
+			"contentDocument"
+		],
+		[
+			"allowFullscreen: boolean\tHTMLIFrameElement",
+			"allowFullscreen"
+		],
+		[
+			"height: DOMString\tHTMLIFrameElement",
+			"height"
+		],
+		[
+			"seamless: boolean\tHTMLIFrameElement",
+			"seamless"
+		],
+		[
+			"srcdoc: DOMString\tHTMLIFrameElement",
+			"srcdoc"
+		],
+		[
+			"width: DOMString\tHTMLIFrameElement",
+			"width"
+		],
+		[
+			"name: DOMString\tHTMLIFrameElement",
+			"name"
+		],
+		[
+			"src: DOMString\tHTMLIFrameElement",
+			"src"
+		]
+	]
+}

@@ -1,0 +1,25 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGDescElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"className: SVGAnimatedString\tSVGDescElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGDescElement",
+			"style"
+		],
+		[
+			"xmlspace: DOMString\tSVGDescElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGDescElement",
+			"xmllang"
+		]
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"dialogArguments: any\tWindowModal",
+			"dialogArguments"
+		],
+		[
+			"returnValue: any\tWindowModal",
+			"returnValue"
+		]
+	]
+}

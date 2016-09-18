@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"newValueSpecifiedUnits( unitType: unsigned short, valueInSpecifiedUnits: float ): void\tSVGLength",
+			"newValueSpecifiedUnits(${1:unitType: unsigned short}, ${2:valueInSpecifiedUnits: float})"
+		],
+		[
+			"convertToSpecifiedUnits( unitType: unsigned short ): void\tSVGLength",
+			"convertToSpecifiedUnits(${1:unitType: unsigned short})"
+		],
+		[
+			"SVG_LENGTHTYPE_PERCENTAGE: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_PERCENTAGE"
+		],
+		[
+			"SVG_LENGTHTYPE_UNKNOWN: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_UNKNOWN"
+		],
+		[
+			"SVG_LENGTHTYPE_NUMBER: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_NUMBER"
+		],
+		[
+			"SVG_LENGTHTYPE_EXS: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_EXS"
+		],
+		[
+			"SVG_LENGTHTYPE_EMS: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_EMS"
+		],
+		[
+			"SVG_LENGTHTYPE_IN: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_IN"
+		],
+		[
+			"SVG_LENGTHTYPE_MM: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_MM"
+		],
+		[
+			"SVG_LENGTHTYPE_PX: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_PX"
+		],
+		[
+			"SVG_LENGTHTYPE_CM: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_CM"
+		],
+		[
+			"SVG_LENGTHTYPE_PC: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_PC"
+		],
+		[
+			"SVG_LENGTHTYPE_PT: const unsigned short\tSVGLength",
+			"SVG_LENGTHTYPE_PT"
+		],
+		[
+			"valueInSpecifiedUnits: float\tSVGLength",
+			"valueInSpecifiedUnits"
+		],
+		[
+			"valueAsString: DOMString\tSVGLength",
+			"valueAsString"
+		],
+		[
+			"unitType: unsigned short\tSVGLength",
+			"unitType"
+		],
+		[
+			"value: float\tSVGLength",
+			"value"
+		]
+	]
+}

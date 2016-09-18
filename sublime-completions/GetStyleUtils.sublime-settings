@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"rawComputedStyle: CSSStyleDeclaration\tGetStyleUtils",
+			"rawComputedStyle"
+		],
+		[
+			"cascadedStyle: CSSStyleDeclaration\tGetStyleUtils",
+			"cascadedStyle"
+		],
+		[
+			"usedStyle: CSSStyleDeclaration\tGetStyleUtils",
+			"usedStyle"
+		]
+	]
+}

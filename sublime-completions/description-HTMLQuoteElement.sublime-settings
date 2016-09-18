@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-cite\tHTMLQuoteElement",
+			{
+				"name": "cite",
+				"return_type": "DOMString",
+				"description": "The cite IDL attribute must reflect the element's cite content attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20HTMLQuoteElement.html#cite",
+				"full_description": "/*\n\n\tHTMLQuoteElement\n\n\tcite\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cite IDL attribute must reflect the element's cite content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLQuoteElement.html#cite\n\n*/"
+			}
+		]
+	]
+}

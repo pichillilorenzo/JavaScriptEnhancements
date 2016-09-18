@@ -1,0 +1,57 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGPolygonElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGPolygonElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGPolygonElement",
+			"externalResourcesRequired"
+		],
+		[
+			"transform: SVGAnimatedTransformList\tSVGPolygonElement",
+			"transform"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGPolygonElement",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGPolygonElement",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGPolygonElement",
+			"systemLanguage"
+		],
+		[
+			"animatedPoints: SVGPointList\tSVGPolygonElement",
+			"animatedPoints"
+		],
+		[
+			"className: SVGAnimatedString\tSVGPolygonElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGPolygonElement",
+			"style"
+		],
+		[
+			"points: SVGPointList\tSVGPolygonElement",
+			"points"
+		],
+		[
+			"xmlspace: DOMString\tSVGPolygonElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGPolygonElement",
+			"xmllang"
+		]
+	]
+}

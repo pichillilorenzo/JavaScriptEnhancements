@@ -1,0 +1,1606 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-requestAnimationFrame()\tWindow",
+			{
+				"name": "requestAnimationFrame",
+				"return_type": "long",
+				"parameters": [
+					{
+						"name": "callback",
+						"type": "FrameRequestCallback",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The requestAnimationFrame method is used to signal to the user agent that a script-based animation needs to be resampled. When requestAnimationFrame(callback) is called, the user agent MUST schedule a script-based animation resampling by appending to the end of the animation frame request callback list an entry whose handle is a user-agent-defined integer greater than zero that uniquely identifies the entry in the list and whose callback is callback.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#requestAnimationFrame",
+				"full_description": "/*\n\n\tWindow\n\n\trequestAnimationFrame ( callback: FrameRequestCallback )\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe requestAnimationFrame method is used to signal to the user agent that a script-based animation needs to be resampled. When requestAnimationFrame(callback) is called, the user agent MUST schedule a script-based animation resampling by appending to the end of the animation frame request callback list an entry whose handle is a user-agent-defined integer greater than zero that uniquely identifies the entry in the list and whose callback is callback.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#requestAnimationFrame\n\n*/"
+			}
+		],
+		[
+			"description-getter()\tWindow",
+			{
+				"name": "getter",
+				"return_type": "WindowProxy",
+				"parameters": [
+					{
+						"name": "index_name",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "To determine the value of an indexed property index of a Window object, the user agent must return the WindowProxy object of the indexth child browsing context of the Document that is nested through an element that is in the Document, sorted in the order that the elements nesting those browsing contexts were most recently inserted into the Document, the WindowProxy object of the most recently inserted browsing context container's nested browsing context being last.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#getter",
+				"full_description": "/*\n\n\tWindow\n\n\tgetter ( index_name: any )\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tTo determine the value of an indexed property index of a Window object, the user agent must return the WindowProxy object of the indexth child browsing context of the Document that is nested through an element that is in the Document, sorted in the order that the elements nesting those browsing contexts were most recently inserted into the Document, the WindowProxy object of the most recently inserted browsing context container's nested browsing context being last.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#getter\n\n*/"
+			}
+		],
+		[
+			"description-btoa()\tWindow",
+			{
+				"name": "btoa",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "btoa",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The btoa() method must throw an InvalidCharacterError exception if the method's first argument contains any character whose code point is greater than U+00FF. Otherwise, the user agent must convert that argument to a sequence of octets whose nth octet is the eight-bit representation of the code point of the nth character of the argument, and then must apply the base64 algorithm to that sequence of octets, and return the result.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#btoa",
+				"full_description": "/*\n\n\tWindow\n\n\tbtoa ( btoa: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe btoa() method must throw an InvalidCharacterError exception if the method's first argument contains any character whose code point is greater than U+00FF. Otherwise, the user agent must convert that argument to a sequence of octets whose nth octet is the eight-bit representation of the code point of the nth character of the argument, and then must apply the base64 algorithm to that sequence of octets, and return the result.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#btoa\n\n*/"
+			}
+		],
+		[
+			"description-clearInterval()\tWindow",
+			{
+				"name": "clearInterval",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "handle",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#clearInterval",
+				"full_description": "/*\n\n\tWindow\n\n\tclearInterval ( handle?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#clearInterval\n\n*/"
+			}
+		],
+		[
+			"description-clearTimeout()\tWindow",
+			{
+				"name": "clearTimeout",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "handle",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#clearTimeout",
+				"full_description": "/*\n\n\tWindow\n\n\tclearTimeout ( handle?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe clearTimeout() and clearInterval() methods must clear the entry identified as handle from the list of active timers of the WindowTimers object on which the method was invoked, if any, where handle is the argument passed to the method. (If handle does not identify an entry in the list of active timers of the WindowTimers object on which the method was invoked, the method does nothing.)\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#clearTimeout\n\n*/"
+			}
+		],
+		[
+			"description-length\tWindow",
+			{
+				"name": "length",
+				"return_type": "unsigned long",
+				"description": "The length IDL attribute on the Window interface must return the number of child browsing contexts that are nested through elements that are in the Document that is the active document of that Window object, if that Window's browsing context shares the same event loop as the responsible document specified by the entry settings object accessing the IDL attribute; otherwise, it must return zero.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#length",
+				"full_description": "/*\n\n\tWindow\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length IDL attribute on the Window interface must return the number of child browsing contexts that are nested through elements that are in the Document that is the active document of that Window object, if that Window's browsing context shares the same event loop as the responsible document specified by the entry settings object accessing the IDL attribute; otherwise, it must return zero.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#length\n\n*/"
+			}
+		],
+		[
+			"description-setInterval()\tWindow",
+			{
+				"name": "setInterval",
+				"return_type": "long",
+				"parameters": [
+					{
+						"name": "handler",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "timeout",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "arguments...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setInterval() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to true.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#setInterval",
+				"full_description": "/*\n\n\tWindow\n\n\tsetInterval ( handler: any, timeout?: long, arguments...: any )\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe setInterval() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to true.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#setInterval\n\n*/"
+			}
+		],
+		[
+			"description-setTimeout()\tWindow",
+			{
+				"name": "setTimeout",
+				"return_type": "long",
+				"parameters": [
+					{
+						"name": "handler",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "timeout",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "arguments...",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setTimeout() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to false.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#setTimeout",
+				"full_description": "/*\n\n\tWindow\n\n\tsetTimeout ( handler: any, timeout?: long, arguments...: any )\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe setTimeout() method must return the value returned by the timer initialization steps, passing them the method's arguments, the object on which the method for which the algorithm is running is implemented (a Window or WorkerGlobalScope object) as the method context, and the repeat flag set to false.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#setTimeout\n\n*/"
+			}
+		],
+		[
+			"description-opener\tWindow",
+			{
+				"name": "opener",
+				"return_type": "WindowProxy",
+				"description": "The opener IDL attribute on the Window object, on getting, must return the WindowProxy object of the browsing context from which the current browsing context was created (its opener browsing context), if there is one, if it is still available, and if the current browsing context has not disowned its opener; otherwise, it must return null.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#opener",
+				"full_description": "/*\n\n\tWindow\n\n\topener\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe opener IDL attribute on the Window object, on getting, must return the WindowProxy object of the browsing context from which the current browsing context was created (its opener browsing context), if there is one, if it is still available, and if the current browsing context has not disowned its opener; otherwise, it must return null.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#opener\n\n*/"
+			}
+		],
+		[
+			"description-cancelAnimationFrame()\tWindow",
+			{
+				"name": "cancelAnimationFrame",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "handle",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The cancelAnimationFrame method is used to cancel a previously made request to schedule an animation frame update. When cancelAnimationFrame(handle) is called, the user agent MUST set the cancelled flag to true for the callback registered on this Document whose handle is handle.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#cancelAnimationFrame",
+				"full_description": "/*\n\n\tWindow\n\n\tcancelAnimationFrame ( handle: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe cancelAnimationFrame method is used to cancel a previously made request to schedule an animation frame update. When cancelAnimationFrame(handle) is called, the user agent MUST set the cancelled flag to true for the callback registered on this Document whose handle is handle.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#cancelAnimationFrame\n\n*/"
+			}
+		],
+		[
+			"description-stop()\tWindow",
+			{
+				"name": "stop",
+				"return_type": "void",
+				"parameters": [],
+				"description": "The stop() method on Window objects should, if there is an existing attempt to navigate the browsing context and that attempt is not currently running the unload a document algorithm, cancel that navigation; then, it must abort the active document of the browsing context of the Window object on which it was invoked.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#stop",
+				"full_description": "/*\n\n\tWindow\n\n\tstop ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe stop() method on Window objects should, if there is an existing attempt to navigate the browsing context and that attempt is not currently running the unload a document algorithm, cancel that navigation; then, it must abort the active document of the browsing context of the Window object on which it was invoked.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#stop\n\n*/"
+			}
+		],
+		[
+			"description-top\tWindow",
+			{
+				"name": "top",
+				"return_type": "WindowProxy",
+				"description": "The top IDL attribute on the Window object of a Document in a browsing context b must return the WindowProxy object of its top-level browsing context (which would be its own WindowProxy object if it was a top-level browsing context itself), if it has one, or its own WindowProxy object otherwise (e.g.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#top",
+				"full_description": "/*\n\n\tWindow\n\n\ttop\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe top IDL attribute on the Window object of a Document in a browsing context b must return the WindowProxy object of its top-level browsing context (which would be its own WindowProxy object if it was a top-level browsing context itself), if it has one, or its own WindowProxy object otherwise (e.g.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#top\n\n*/"
+			}
+		],
+		[
+			"description-parent\tWindow",
+			{
+				"name": "parent",
+				"return_type": "WindowProxy",
+				"description": "The parent IDL attribute on the Window object of a Document in a browsing context b must return the WindowProxy object of the parent browsing context, if there is one (i.e. if b is a child browsing context), or the WindowProxy object of the browsing context b itself, otherwise (i.e.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#parent",
+				"full_description": "/*\n\n\tWindow\n\n\tparent\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe parent IDL attribute on the Window object of a Document in a browsing context b must return the WindowProxy object of the parent browsing context, if there is one (i.e. if b is a child browsing context), or the WindowProxy object of the browsing context b itself, otherwise (i.e.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#parent\n\n*/"
+			}
+		],
+		[
+			"description-status\tWindow",
+			{
+				"name": "status",
+				"return_type": "DOMString",
+				"description": "For historical reasons, the status attribute on the Window object must, on getting, return the last string it was set to, and on setting, must set itself to the new value. When the Window object is created, the attribute must be set to the empty string.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#status",
+				"full_description": "/*\n\n\tWindow\n\n\tstatus\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tFor historical reasons, the status attribute on the Window object must, on getting, return the last string it was set to, and on setting, must set itself to the new value. When the Window object is created, the attribute must be set to the empty string.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#status\n\n*/"
+			}
+		],
+		[
+			"description-open()\tWindow",
+			{
+				"name": "open",
+				"return_type": "WindowProxy",
+				"parameters": [
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "target",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "features",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "replace",
+						"type": "boolean",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "The open() method on Window objects provides a mechanism for navigating an existing browsing context or opening and navigating an auxiliary browsing context.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#open",
+				"full_description": "/*\n\n\tWindow\n\n\topen ( url?: DOMString, target?: DOMString, features?: DOMString, replace?: boolean )\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe open() method on Window objects provides a mechanism for navigating an existing browsing context or opening and navigating an auxiliary browsing context.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#open\n\n*/"
+			}
+		],
+		[
+			"description-print()\tWindow",
+			{
+				"name": "print",
+				"return_type": "void",
+				"parameters": [],
+				"description": "When the print() method is invoked, if the Document is ready for post-load tasks, then the user agent must synchronously run the printing steps. Otherwise, the user agent must only set the print when loaded flag on the Document.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#print",
+				"full_description": "/*\n\n\tWindow\n\n\tprint ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the print() method is invoked, if the Document is ready for post-load tasks, then the user agent must synchronously run the printing steps. Otherwise, the user agent must only set the print when loaded flag on the Document.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#print\n\n*/"
+			}
+		],
+		[
+			"description-name\tWindow",
+			{
+				"name": "name",
+				"return_type": "DOMString",
+				"description": "The name attribute of the Window object must, on getting, return the current name of the browsing context, if one is set, or the empty string otherwise; and, on setting, set the name of the browsing context to the new value.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#name",
+				"full_description": "/*\n\n\tWindow\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name attribute of the Window object must, on getting, return the current name of the browsing context, if one is set, or the empty string otherwise; and, on setting, set the name of the browsing context to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#name\n\n*/"
+			}
+		],
+		[
+			"description-createImageBitmap()\tWindow",
+			{
+				"name": "createImageBitmap",
+				"return_type": "Promise",
+				"parameters": [
+					{
+						"name": "image",
+						"type": "ImageBitmapSource",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sx",
+						"type": "long",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "sy",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sw",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "sh",
+						"type": "long",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "An ImageBitmap object can be obtained from a variety of different objects, using the createImageBitmap() method.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#createImageBitmap",
+				"full_description": "/*\n\n\tWindow\n\n\tcreateImageBitmap ( image: ImageBitmapSource, sx?: long, sy: long, sw: long, sh: long )\n\n\tReturn Type:\n\tPromise\n\n\tDescription:\n\tAn ImageBitmap object can be obtained from a variety of different objects, using the createImageBitmap() method.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#createImageBitmap\n\n*/"
+			}
+		],
+		[
+			"description-history\tWindow",
+			{
+				"name": "history",
+				"return_type": "History",
+				"description": "The history attribute of the Window interface must return the object implementing the History interface for that Window object's newest Document.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#history",
+				"full_description": "/*\n\n\tWindow\n\n\thistory\n\n\tReturn Type:\n\tHistory\n\n\tDescription:\n\tThe history attribute of the Window interface must return the object implementing the History interface for that Window object's newest Document.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#history\n\n*/"
+			}
+		],
+		[
+			"description-external\tWindow",
+			{
+				"name": "external",
+				"return_type": "External",
+				"description": "The external attribute of the Window interface must return an instance of the External interface. The same object must be returned each time.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#external",
+				"full_description": "/*\n\n\tWindow\n\n\texternal\n\n\tReturn Type:\n\tExternal\n\n\tDescription:\n\tThe external attribute of the Window interface must return an instance of the External interface. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#external\n\n*/"
+			}
+		],
+		[
+			"description-closed\tWindow",
+			{
+				"name": "closed",
+				"return_type": "boolean",
+				"description": "The closed attribute on Window objects must return true if the Window object's browsing context has been discarded, and false otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#closed",
+				"full_description": "/*\n\n\tWindow\n\n\tclosed\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe closed attribute on Window objects must return true if the Window object's browsing context has been discarded, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#closed\n\n*/"
+			}
+		],
+		[
+			"description-sessionStorage\tWindow",
+			{
+				"name": "sessionStorage",
+				"return_type": "Storage",
+				"description": "The sessionStorage attribute represents the set of storage areas specific to the current top-level browsing context.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#sessionStorage",
+				"full_description": "/*\n\n\tWindow\n\n\tsessionStorage\n\n\tReturn Type:\n\tStorage\n\n\tDescription:\n\tThe sessionStorage attribute represents the set of storage areas specific to the current top-level browsing context.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#sessionStorage\n\n*/"
+			}
+		],
+		[
+			"description-window\tWindow",
+			{
+				"name": "window",
+				"return_type": "WindowProxy",
+				"description": "The window, frames, and self IDL attributes must all return the Window object's browsing context's WindowProxy object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#window",
+				"full_description": "/*\n\n\tWindow\n\n\twindow\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe window, frames, and self IDL attributes must all return the Window object's browsing context's WindowProxy object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#window\n\n*/"
+			}
+		],
+		[
+			"description-frames\tWindow",
+			{
+				"name": "frames",
+				"return_type": "WindowProxy",
+				"description": "The window, frames, and self IDL attributes must all return the Window object's browsing context's WindowProxy object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#frames",
+				"full_description": "/*\n\n\tWindow\n\n\tframes\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe window, frames, and self IDL attributes must all return the Window object's browsing context's WindowProxy object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#frames\n\n*/"
+			}
+		],
+		[
+			"description-self\tWindow",
+			{
+				"name": "self",
+				"return_type": "WindowProxy",
+				"description": "The window, frames, and self IDL attributes must all return the Window object's browsing context's WindowProxy object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#self",
+				"full_description": "/*\n\n\tWindow\n\n\tself\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe window, frames, and self IDL attributes must all return the Window object's browsing context's WindowProxy object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#self\n\n*/"
+			}
+		],
+		[
+			"description-location\tWindow",
+			{
+				"name": "location",
+				"return_type": "Location",
+				"description": "The location attribute of the Window interface must return the Location object for that Window object's Document.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#location",
+				"full_description": "/*\n\n\tWindow\n\n\tlocation\n\n\tReturn Type:\n\tLocation\n\n\tDescription:\n\tThe location attribute of the Window interface must return the Location object for that Window object's Document.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#location\n\n*/"
+			}
+		],
+		[
+			"description-indexedDB\tWindow",
+			{
+				"name": "indexedDB",
+				"return_type": "IDBFactory",
+				"description": "This attribute provides applications a mechanism for accessing capabilities of indexed databases.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#indexedDB",
+				"full_description": "/*\n\n\tWindow\n\n\tindexedDB\n\n\tReturn Type:\n\tIDBFactory\n\n\tDescription:\n\tThis attribute provides applications a mechanism for accessing capabilities of indexed databases.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#indexedDB\n\n*/"
+			}
+		],
+		[
+			"description-document\tWindow",
+			{
+				"name": "document",
+				"return_type": "Document",
+				"description": "The document IDL attribute must return the Window object's newest Document object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#document",
+				"full_description": "/*\n\n\tWindow\n\n\tdocument\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\tThe document IDL attribute must return the Window object's newest Document object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#document\n\n*/"
+			}
+		],
+		[
+			"description-postMessage()\tWindow",
+			{
+				"name": "postMessage",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "message",
+						"type": "any",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "targetOrigin",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "transfer",
+						"type": "sequence<Transferable>",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#postMessage",
+				"full_description": "/*\n\n\tWindow\n\n\tpostMessage ( message: any, targetOrigin: DOMString, transfer?: sequence<Transferable> )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#postMessage\n\n*/"
+			}
+		],
+		[
+			"description-locationbar\tWindow",
+			{
+				"name": "locationbar",
+				"return_type": "BarProp",
+				"description": "The locationbar attribute must return the location bar BarProp object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#locationbar",
+				"full_description": "/*\n\n\tWindow\n\n\tlocationbar\n\n\tReturn Type:\n\tBarProp\n\n\tDescription:\n\tThe locationbar attribute must return the location bar BarProp object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#locationbar\n\n*/"
+			}
+		],
+		[
+			"description-personalbar\tWindow",
+			{
+				"name": "personalbar",
+				"return_type": "BarProp",
+				"description": "The personalbar attribute must return the personal bar BarProp object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#personalbar",
+				"full_description": "/*\n\n\tWindow\n\n\tpersonalbar\n\n\tReturn Type:\n\tBarProp\n\n\tDescription:\n\tThe personalbar attribute must return the personal bar BarProp object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#personalbar\n\n*/"
+			}
+		],
+		[
+			"description-onbeforeunload\tWindow",
+			{
+				"name": "onbeforeunload",
+				"return_type": "OnBeforeUnloadEventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeunload",
+				"full_description": "/*\n\n\tWindow\n\n\tonbeforeunload\n\n\tReturn Type:\n\tOnBeforeUnloadEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeunload\n\n*/"
+			}
+		],
+		[
+			"description-showModalDialog()\tWindow",
+			{
+				"name": "showModalDialog",
+				"return_type": "any",
+				"parameters": [
+					{
+						"name": "url",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "argument",
+						"type": "any",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-showmodaldialog",
+				"full_description": "/*\n\n\tWindow\n\n\tshowModalDialog ( url: DOMString, argument?: any )\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-showmodaldialog\n\n*/"
+			}
+		],
+		[
+			"description-prompt()\tWindow",
+			{
+				"name": "prompt",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "message",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					},
+					{
+						"name": "default",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-prompt",
+				"full_description": "/*\n\n\tWindow\n\n\tprompt ( message?: DOMString, default?: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-prompt\n\n*/"
+			}
+		],
+		[
+			"description-localStorage\tWindow",
+			{
+				"name": "localStorage",
+				"return_type": "Storage",
+				"description": "The localStorage object provides a Storage object for an origin.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#localStorage",
+				"full_description": "/*\n\n\tWindow\n\n\tlocalStorage\n\n\tReturn Type:\n\tStorage\n\n\tDescription:\n\tThe localStorage object provides a Storage object for an origin.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#localStorage\n\n*/"
+			}
+		],
+		[
+			"description-scrollbars\tWindow",
+			{
+				"name": "scrollbars",
+				"return_type": "BarProp",
+				"description": "The scrollbars attribute must return the scrollbar BarProp object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#scrollbars",
+				"full_description": "/*\n\n\tWindow\n\n\tscrollbars\n\n\tReturn Type:\n\tBarProp\n\n\tDescription:\n\tThe scrollbars attribute must return the scrollbar BarProp object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#scrollbars\n\n*/"
+			}
+		],
+		[
+			"description-statusbar\tWindow",
+			{
+				"name": "statusbar",
+				"return_type": "BarProp",
+				"description": "The statusbar attribute must return the status bar BarProp object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#statusbar",
+				"full_description": "/*\n\n\tWindow\n\n\tstatusbar\n\n\tReturn Type:\n\tBarProp\n\n\tDescription:\n\tThe statusbar attribute must return the status bar BarProp object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#statusbar\n\n*/"
+			}
+		],
+		[
+			"description-onlanguagechange\tWindow",
+			{
+				"name": "onlanguagechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onlanguagechange",
+				"full_description": "/*\n\n\tWindow\n\n\tonlanguagechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onlanguagechange\n\n*/"
+			}
+		],
+		[
+			"description-onautocompleteerror\tWindow",
+			{
+				"name": "onautocompleteerror",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror",
+				"full_description": "/*\n\n\tWindow\n\n\tonautocompleteerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror\n\n*/"
+			}
+		],
+		[
+			"description-getComputedStyle()\tWindow",
+			{
+				"name": "getComputedStyle",
+				"return_type": "CSSStyleDeclaration",
+				"parameters": [
+					{
+						"name": "elt",
+						"type": "Element",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "pseudoElt",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-window-getcomputedstyle",
+				"full_description": "/*\n\n\tWindow\n\n\tgetComputedStyle ( elt: Element, pseudoElt?: DOMString )\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-window-getcomputedstyle\n\n*/"
+			}
+		],
+		[
+			"description-atob()\tWindow",
+			{
+				"name": "atob",
+				"return_type": "DOMString",
+				"parameters": [
+					{
+						"name": "atob",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-windowbase64-atob",
+				"full_description": "/*\n\n\tWindow\n\n\tatob ( atob: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-windowbase64-atob\n\n*/"
+			}
+		],
+		[
+			"description-menubar\tWindow",
+			{
+				"name": "menubar",
+				"return_type": "BarProp",
+				"description": "The menubar attribute must return the menu bar BarProp object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#menubar",
+				"full_description": "/*\n\n\tWindow\n\n\tmenubar\n\n\tReturn Type:\n\tBarProp\n\n\tDescription:\n\tThe menubar attribute must return the menu bar BarProp object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#menubar\n\n*/"
+			}
+		],
+		[
+			"description-onbeforeprint\tWindow",
+			{
+				"name": "onbeforeprint",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeprint",
+				"full_description": "/*\n\n\tWindow\n\n\tonbeforeprint\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeprint\n\n*/"
+			}
+		],
+		[
+			"description-onloadedmetadata\tWindow",
+			{
+				"name": "onloadedmetadata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata",
+				"full_description": "/*\n\n\tWindow\n\n\tonloadedmetadata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata\n\n*/"
+			}
+		],
+		[
+			"description-toolbar\tWindow",
+			{
+				"name": "toolbar",
+				"return_type": "BarProp",
+				"description": "The toolbar attribute must return the toolbar BarProp object.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#toolbar",
+				"full_description": "/*\n\n\tWindow\n\n\ttoolbar\n\n\tReturn Type:\n\tBarProp\n\n\tDescription:\n\tThe toolbar attribute must return the toolbar BarProp object.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#toolbar\n\n*/"
+			}
+		],
+		[
+			"description-oncanplaythrough\tWindow",
+			{
+				"name": "oncanplaythrough",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough",
+				"full_description": "/*\n\n\tWindow\n\n\toncanplaythrough\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough\n\n*/"
+			}
+		],
+		[
+			"description-ondurationchange\tWindow",
+			{
+				"name": "ondurationchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange",
+				"full_description": "/*\n\n\tWindow\n\n\tondurationchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange\n\n*/"
+			}
+		],
+		[
+			"description-onafterprint\tWindow",
+			{
+				"name": "onafterprint",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onafterprint",
+				"full_description": "/*\n\n\tWindow\n\n\tonafterprint\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onafterprint\n\n*/"
+			}
+		],
+		[
+			"description-onhashchange\tWindow",
+			{
+				"name": "onhashchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onhashchange",
+				"full_description": "/*\n\n\tWindow\n\n\tonhashchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onhashchange\n\n*/"
+			}
+		],
+		[
+			"description-onautocomplete\tWindow",
+			{
+				"name": "onautocomplete",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete",
+				"full_description": "/*\n\n\tWindow\n\n\tonautocomplete\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete\n\n*/"
+			}
+		],
+		[
+			"description-onvolumechange\tWindow",
+			{
+				"name": "onvolumechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange",
+				"full_description": "/*\n\n\tWindow\n\n\tonvolumechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange\n\n*/"
+			}
+		],
+		[
+			"description-onpopstate\tWindow",
+			{
+				"name": "onpopstate",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpopstate",
+				"full_description": "/*\n\n\tWindow\n\n\tonpopstate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpopstate\n\n*/"
+			}
+		],
+		[
+			"description-onpagehide\tWindow",
+			{
+				"name": "onpagehide",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpagehide",
+				"full_description": "/*\n\n\tWindow\n\n\tonpagehide\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpagehide\n\n*/"
+			}
+		],
+		[
+			"description-onpageshow\tWindow",
+			{
+				"name": "onpageshow",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpageshow",
+				"full_description": "/*\n\n\tWindow\n\n\tonpageshow\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpageshow\n\n*/"
+			}
+		],
+		[
+			"description-oncontextmenu\tWindow",
+			{
+				"name": "oncontextmenu",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu",
+				"full_description": "/*\n\n\tWindow\n\n\toncontextmenu\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu\n\n*/"
+			}
+		],
+		[
+			"description-confirm()\tWindow",
+			{
+				"name": "confirm",
+				"return_type": "boolean",
+				"parameters": [
+					{
+						"name": "message",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-confirm",
+				"full_description": "/*\n\n\tWindow\n\n\tconfirm ( message?: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-confirm\n\n*/"
+			}
+		],
+		[
+			"description-onoffline\tWindow",
+			{
+				"name": "onoffline",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onoffline",
+				"full_description": "/*\n\n\tWindow\n\n\tonoffline\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onoffline\n\n*/"
+			}
+		],
+		[
+			"description-onstorage\tWindow",
+			{
+				"name": "onstorage",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onstorage",
+				"full_description": "/*\n\n\tWindow\n\n\tonstorage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onstorage\n\n*/"
+			}
+		],
+		[
+			"description-onmessage\tWindow",
+			{
+				"name": "onmessage",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onmessage",
+				"full_description": "/*\n\n\tWindow\n\n\tonmessage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onmessage\n\n*/"
+			}
+		],
+		[
+			"description-onmouseleave\tWindow",
+			{
+				"name": "onmouseleave",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave",
+				"full_description": "/*\n\n\tWindow\n\n\tonmouseleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave\n\n*/"
+			}
+		],
+		[
+			"description-onloadeddata\tWindow",
+			{
+				"name": "onloadeddata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata",
+				"full_description": "/*\n\n\tWindow\n\n\tonloadeddata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata\n\n*/"
+			}
+		],
+		[
+			"description-ontimeupdate\tWindow",
+			{
+				"name": "ontimeupdate",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate",
+				"full_description": "/*\n\n\tWindow\n\n\tontimeupdate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate\n\n*/"
+			}
+		],
+		[
+			"description-onmouseenter\tWindow",
+			{
+				"name": "onmouseenter",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter",
+				"full_description": "/*\n\n\tWindow\n\n\tonmouseenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter\n\n*/"
+			}
+		],
+		[
+			"description-onmousewheel\tWindow",
+			{
+				"name": "onmousewheel",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel",
+				"full_description": "/*\n\n\tWindow\n\n\tonmousewheel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel\n\n*/"
+			}
+		],
+		[
+			"description-onratechange\tWindow",
+			{
+				"name": "onratechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange",
+				"full_description": "/*\n\n\tWindow\n\n\tonratechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange\n\n*/"
+			}
+		],
+		[
+			"description-ononline\tWindow",
+			{
+				"name": "ononline",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-ononline",
+				"full_description": "/*\n\n\tWindow\n\n\tononline\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-ononline\n\n*/"
+			}
+		],
+		[
+			"description-onunload\tWindow",
+			{
+				"name": "onunload",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onunload",
+				"full_description": "/*\n\n\tWindow\n\n\tonunload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onunload\n\n*/"
+			}
+		],
+		[
+			"description-ondragleave\tWindow",
+			{
+				"name": "ondragleave",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave",
+				"full_description": "/*\n\n\tWindow\n\n\tondragleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave\n\n*/"
+			}
+		],
+		[
+			"description-ondragstart\tWindow",
+			{
+				"name": "ondragstart",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart",
+				"full_description": "/*\n\n\tWindow\n\n\tondragstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart\n\n*/"
+			}
+		],
+		[
+			"description-onmousemove\tWindow",
+			{
+				"name": "onmousemove",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove",
+				"full_description": "/*\n\n\tWindow\n\n\tonmousemove\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove\n\n*/"
+			}
+		],
+		[
+			"description-ondragenter\tWindow",
+			{
+				"name": "ondragenter",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter",
+				"full_description": "/*\n\n\tWindow\n\n\tondragenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter\n\n*/"
+			}
+		],
+		[
+			"description-onmousedown\tWindow",
+			{
+				"name": "onmousedown",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown",
+				"full_description": "/*\n\n\tWindow\n\n\tonmousedown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown\n\n*/"
+			}
+		],
+		[
+			"description-oncuechange\tWindow",
+			{
+				"name": "oncuechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange",
+				"full_description": "/*\n\n\tWindow\n\n\toncuechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange\n\n*/"
+			}
+		],
+		[
+			"description-onmouseover\tWindow",
+			{
+				"name": "onmouseover",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover",
+				"full_description": "/*\n\n\tWindow\n\n\tonmouseover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover\n\n*/"
+			}
+		],
+		[
+			"description-onloadstart\tWindow",
+			{
+				"name": "onloadstart",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart",
+				"full_description": "/*\n\n\tWindow\n\n\tonloadstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart\n\n*/"
+			}
+		],
+		[
+			"description-onerror\tWindow",
+			{
+				"name": "onerror",
+				"return_type": "OnErrorEventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror",
+				"full_description": "/*\n\n\tWindow\n\n\tonerror\n\n\tReturn Type:\n\tOnErrorEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror\n\n*/"
+			}
+		],
+		[
+			"description-ondblclick\tWindow",
+			{
+				"name": "ondblclick",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick",
+				"full_description": "/*\n\n\tWindow\n\n\tondblclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick\n\n*/"
+			}
+		],
+		[
+			"description-ondragexit\tWindow",
+			{
+				"name": "ondragexit",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit",
+				"full_description": "/*\n\n\tWindow\n\n\tondragexit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit\n\n*/"
+			}
+		],
+		[
+			"description-onprogress\tWindow",
+			{
+				"name": "onprogress",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress",
+				"full_description": "/*\n\n\tWindow\n\n\tonprogress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress\n\n*/"
+			}
+		],
+		[
+			"description-ondragover\tWindow",
+			{
+				"name": "ondragover",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover",
+				"full_description": "/*\n\n\tWindow\n\n\tondragover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover\n\n*/"
+			}
+		],
+		[
+			"description-onmouseout\tWindow",
+			{
+				"name": "onmouseout",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout",
+				"full_description": "/*\n\n\tWindow\n\n\tonmouseout\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout\n\n*/"
+			}
+		],
+		[
+			"description-onkeypress\tWindow",
+			{
+				"name": "onkeypress",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress",
+				"full_description": "/*\n\n\tWindow\n\n\tonkeypress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress\n\n*/"
+			}
+		],
+		[
+			"description-onstalled\tWindow",
+			{
+				"name": "onstalled",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled",
+				"full_description": "/*\n\n\tWindow\n\n\tonstalled\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled\n\n*/"
+			}
+		],
+		[
+			"description-ondragend\tWindow",
+			{
+				"name": "ondragend",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend",
+				"full_description": "/*\n\n\tWindow\n\n\tondragend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend\n\n*/"
+			}
+		],
+		[
+			"description-alert()\tWindow",
+			{
+				"name": "alert",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "message",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-alert",
+				"full_description": "/*\n\n\tWindow\n\n\talert ( message?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-alert\n\n*/"
+			}
+		],
+		[
+			"description-onsuspend\tWindow",
+			{
+				"name": "onsuspend",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend",
+				"full_description": "/*\n\n\tWindow\n\n\tonsuspend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend\n\n*/"
+			}
+		],
+		[
+			"description-onmouseup\tWindow",
+			{
+				"name": "onmouseup",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup",
+				"full_description": "/*\n\n\tWindow\n\n\tonmouseup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup\n\n*/"
+			}
+		],
+		[
+			"description-onemptied\tWindow",
+			{
+				"name": "onemptied",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied",
+				"full_description": "/*\n\n\tWindow\n\n\tonemptied\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied\n\n*/"
+			}
+		],
+		[
+			"description-oncanplay\tWindow",
+			{
+				"name": "oncanplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay",
+				"full_description": "/*\n\n\tWindow\n\n\toncanplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay\n\n*/"
+			}
+		],
+		[
+			"description-onseeking\tWindow",
+			{
+				"name": "onseeking",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking",
+				"full_description": "/*\n\n\tWindow\n\n\tonseeking\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking\n\n*/"
+			}
+		],
+		[
+			"description-onwaiting\tWindow",
+			{
+				"name": "onwaiting",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting",
+				"full_description": "/*\n\n\tWindow\n\n\tonwaiting\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting\n\n*/"
+			}
+		],
+		[
+			"description-onplaying\tWindow",
+			{
+				"name": "onplaying",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying",
+				"full_description": "/*\n\n\tWindow\n\n\tonplaying\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying\n\n*/"
+			}
+		],
+		[
+			"description-oninvalid\tWindow",
+			{
+				"name": "oninvalid",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid",
+				"full_description": "/*\n\n\tWindow\n\n\toninvalid\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid\n\n*/"
+			}
+		],
+		[
+			"description-onkeydown\tWindow",
+			{
+				"name": "onkeydown",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown",
+				"full_description": "/*\n\n\tWindow\n\n\tonkeydown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown\n\n*/"
+			}
+		],
+		[
+			"description-ontoggle\tWindow",
+			{
+				"name": "ontoggle",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle",
+				"full_description": "/*\n\n\tWindow\n\n\tontoggle\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle\n\n*/"
+			}
+		],
+		[
+			"description-oncancel\tWindow",
+			{
+				"name": "oncancel",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel",
+				"full_description": "/*\n\n\tWindow\n\n\toncancel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel\n\n*/"
+			}
+		],
+		[
+			"description-onselect\tWindow",
+			{
+				"name": "onselect",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect",
+				"full_description": "/*\n\n\tWindow\n\n\tonselect\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect\n\n*/"
+			}
+		],
+		[
+			"description-onseeked\tWindow",
+			{
+				"name": "onseeked",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked",
+				"full_description": "/*\n\n\tWindow\n\n\tonseeked\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked\n\n*/"
+			}
+		],
+		[
+			"description-onscroll\tWindow",
+			{
+				"name": "onscroll",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll",
+				"full_description": "/*\n\n\tWindow\n\n\tonscroll\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll\n\n*/"
+			}
+		],
+		[
+			"description-onresize\tWindow",
+			{
+				"name": "onresize",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize",
+				"full_description": "/*\n\n\tWindow\n\n\tonresize\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize\n\n*/"
+			}
+		],
+		[
+			"description-onchange\tWindow",
+			{
+				"name": "onchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange",
+				"full_description": "/*\n\n\tWindow\n\n\tonchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange\n\n*/"
+			}
+		],
+		[
+			"description-onsubmit\tWindow",
+			{
+				"name": "onsubmit",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit",
+				"full_description": "/*\n\n\tWindow\n\n\tonsubmit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit\n\n*/"
+			}
+		],
+		[
+			"description-onabort\tWindow",
+			{
+				"name": "onabort",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort",
+				"full_description": "/*\n\n\tWindow\n\n\tonabort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort\n\n*/"
+			}
+		],
+		[
+			"description-onclick\tWindow",
+			{
+				"name": "onclick",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick",
+				"full_description": "/*\n\n\tWindow\n\n\tonclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick\n\n*/"
+			}
+		],
+		[
+			"description-onpause\tWindow",
+			{
+				"name": "onpause",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause",
+				"full_description": "/*\n\n\tWindow\n\n\tonpause\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause\n\n*/"
+			}
+		],
+		[
+			"description-onclose\tWindow",
+			{
+				"name": "onclose",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose",
+				"full_description": "/*\n\n\tWindow\n\n\tonclose\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose\n\n*/"
+			}
+		],
+		[
+			"description-onkeyup\tWindow",
+			{
+				"name": "onkeyup",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup",
+				"full_description": "/*\n\n\tWindow\n\n\tonkeyup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup\n\n*/"
+			}
+		],
+		[
+			"description-onended\tWindow",
+			{
+				"name": "onended",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended",
+				"full_description": "/*\n\n\tWindow\n\n\tonended\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended\n\n*/"
+			}
+		],
+		[
+			"description-onreset\tWindow",
+			{
+				"name": "onreset",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset",
+				"full_description": "/*\n\n\tWindow\n\n\tonreset\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset\n\n*/"
+			}
+		],
+		[
+			"description-onfocus\tWindow",
+			{
+				"name": "onfocus",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus",
+				"full_description": "/*\n\n\tWindow\n\n\tonfocus\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus\n\n*/"
+			}
+		],
+		[
+			"description-oninput\tWindow",
+			{
+				"name": "oninput",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput",
+				"full_description": "/*\n\n\tWindow\n\n\toninput\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput\n\n*/"
+			}
+		],
+		[
+			"description-frameElement\tWindow",
+			{
+				"name": "frameElement",
+				"return_type": "Element",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-frameelement",
+				"full_description": "/*\n\n\tWindow\n\n\tframeElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-frameelement\n\n*/"
+			}
+		],
+		[
+			"description-onsort\tWindow",
+			{
+				"name": "onsort",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort",
+				"full_description": "/*\n\n\tWindow\n\n\tonsort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort\n\n*/"
+			}
+		],
+		[
+			"description-ondrop\tWindow",
+			{
+				"name": "ondrop",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop",
+				"full_description": "/*\n\n\tWindow\n\n\tondrop\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop\n\n*/"
+			}
+		],
+		[
+			"description-ondrag\tWindow",
+			{
+				"name": "ondrag",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag",
+				"full_description": "/*\n\n\tWindow\n\n\tondrag\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag\n\n*/"
+			}
+		],
+		[
+			"description-onload\tWindow",
+			{
+				"name": "onload",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload",
+				"full_description": "/*\n\n\tWindow\n\n\tonload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload\n\n*/"
+			}
+		],
+		[
+			"description-onplay\tWindow",
+			{
+				"name": "onplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay",
+				"full_description": "/*\n\n\tWindow\n\n\tonplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay\n\n*/"
+			}
+		],
+		[
+			"description-onshow\tWindow",
+			{
+				"name": "onshow",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow",
+				"full_description": "/*\n\n\tWindow\n\n\tonshow\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow\n\n*/"
+			}
+		],
+		[
+			"description-onblur\tWindow",
+			{
+				"name": "onblur",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur",
+				"full_description": "/*\n\n\tWindow\n\n\tonblur\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur\n\n*/"
+			}
+		],
+		[
+			"description-navigator\tWindow",
+			{
+				"name": "navigator",
+				"return_type": "Navigator",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-navigator",
+				"full_description": "/*\n\n\tWindow\n\n\tnavigator\n\n\tReturn Type:\n\tNavigator\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-navigator\n\n*/"
+			}
+		],
+		[
+			"description-close()\tWindow",
+			{
+				"name": "close",
+				"return_type": "void",
+				"parameters": [],
+				"description": "\n\n",
+				"type": "operation",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-window-close",
+				"full_description": "/*\n\n\tWindow\n\n\tclose ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#dom-window-close\n\n*/"
+			}
+		],
+		[
+			"description-applicationCache\tWindow",
+			{
+				"name": "applicationCache",
+				"return_type": "ApplicationCache",
+				"description": "",
+				"type": "property",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#applicationCache",
+				"full_description": "/*\n\n\tWindow\n\n\tapplicationCache\n\n\tReturn Type:\n\tApplicationCache\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#applicationCache\n\n*/"
+			}
+		],
+		[
+			"description-focus()\tWindow",
+			{
+				"name": "focus",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#focus",
+				"full_description": "/*\n\n\tWindow\n\n\tfocus ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#focus\n\n*/"
+			}
+		],
+		[
+			"description-blur()\tWindow",
+			{
+				"name": "blur",
+				"return_type": "void",
+				"parameters": [],
+				"description": "",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Browser%20-%20Window.html#blur",
+				"full_description": "/*\n\n\tWindow\n\n\tblur ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Window.html#blur\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,61 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setCustomValidity( error: DOMString ): void\tHTMLKeygenElement",
+			"setCustomValidity(${1:error: DOMString})"
+		],
+		[
+			"validationMessage: DOMString\tHTMLKeygenElement",
+			"validationMessage"
+		],
+		[
+			"reportValidity(): boolean\tHTMLKeygenElement",
+			"reportValidity()"
+		],
+		[
+			"checkValidity(): boolean\tHTMLKeygenElement",
+			"checkValidity()"
+		],
+		[
+			"validity: ValidityState\tHTMLKeygenElement",
+			"validity"
+		],
+		[
+			"form: HTMLFormElement\tHTMLKeygenElement",
+			"form"
+		],
+		[
+			"willValidate: boolean\tHTMLKeygenElement",
+			"willValidate"
+		],
+		[
+			"challenge: DOMString\tHTMLKeygenElement",
+			"challenge"
+		],
+		[
+			"keytype: DOMString\tHTMLKeygenElement",
+			"keytype"
+		],
+		[
+			"autofocus: boolean\tHTMLKeygenElement",
+			"autofocus"
+		],
+		[
+			"disabled: boolean\tHTMLKeygenElement",
+			"disabled"
+		],
+		[
+			"labels: NodeList\tHTMLKeygenElement",
+			"labels"
+		],
+		[
+			"name: DOMString\tHTMLKeygenElement",
+			"name"
+		],
+		[
+			"type: DOMString\tHTMLKeygenElement",
+			"type"
+		]
+	]
+}

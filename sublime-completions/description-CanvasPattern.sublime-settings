@@ -1,0 +1,24 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-setTransform()\tCanvasPattern",
+			{
+				"name": "setTransform",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "transform",
+						"type": "SVGMatrix",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "The setTransform(a, b, c, d, e, f) method must reset the current transform to the identity matrix, and then invoke the transform(a, b, c, d, e, f) method with the same arguments.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Canvas%20-%20CanvasPattern.html#setTransform",
+				"full_description": "/*\n\n\tCanvasPattern\n\n\tsetTransform ( transform: SVGMatrix )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setTransform(a, b, c, d, e, f) method must reset the current transform to the identity matrix, and then invoke the transform(a, b, c, d, e, f) method with the same arguments.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasPattern.html#setTransform\n\n*/"
+			}
+		]
+	]
+}

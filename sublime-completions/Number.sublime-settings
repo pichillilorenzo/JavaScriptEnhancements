@@ -1,0 +1,57 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"toExponential( fractionDigits: int ): string\tNumber",
+			"toExponential(${1:fractionDigits: int})"
+		],
+		[
+			"toFixed( fractionDigits: int ): string\tNumber",
+			"toFixed(${1:fractionDigits: int})"
+		],
+		[
+			"toPrecision( precision: int ): string\tNumber",
+			"toPrecision(${1:precision: int})"
+		],
+		[
+			"new Number( value: any ): Number\tNumber",
+			"new Number(${1:value: any})"
+		],
+		[
+			"POSITIVE_INFINITY: const number\tNumber",
+			"POSITIVE_INFINITY"
+		],
+		[
+			"toString( radix?: int ): string\tNumber",
+			"toString(${1:radix?: int})"
+		],
+		[
+			"NEGATIVE_INFINITY: const number\tNumber",
+			"NEGATIVE_INFINITY"
+		],
+		[
+			"Number( value: any ): Number\tNumber",
+			"Number(${1:value: any})"
+		],
+		[
+			"toLocaleString(): string\tNumber",
+			"toLocaleString()"
+		],
+		[
+			"MIN_VALUE: const number\tNumber",
+			"MIN_VALUE"
+		],
+		[
+			"MAX_VALUE: const number\tNumber",
+			"MAX_VALUE"
+		],
+		[
+			"NaN: const number\tNumber",
+			"NaN"
+		],
+		[
+			"valueOf(): number\tNumber",
+			"valueOf()"
+		]
+	]
+}

@@ -1,0 +1,339 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-played\tMediaController",
+			{
+				"name": "played",
+				"return_type": "TimeRanges",
+				"description": "The played attribute must return a new static normalized TimeRanges object that represents the union of the ranges of points on the media timelines of the media resources of the slaved media elements that the user agent has so far reached through the usual monotonic increase of their current playback positions during normal playback, at the time the attribute is evaluated.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#played",
+				"full_description": "/*\n\n\tMediaController\n\n\tplayed\n\n\tReturn Type:\n\tTimeRanges\n\n\tDescription:\n\tThe played attribute must return a new static normalized TimeRanges object that represents the union of the ranges of points on the media timelines of the media resources of the slaved media elements that the user agent has so far reached through the usual monotonic increase of their current playback positions during normal playback, at the time the attribute is evaluated.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#played\n\n*/"
+			}
+		],
+		[
+			"description-volume\tMediaController",
+			{
+				"name": "volume",
+				"return_type": "double",
+				"description": "The volume attribute, on getting, must return the MediaController's media controller volume multiplier, and on setting, if the new value is in the range 0.0 to 1.0 inclusive, must set the MediaController's media controller volume multiplier to the new value and queue a task to fire a simple event named volumechange at the MediaController.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#volume",
+				"full_description": "/*\n\n\tMediaController\n\n\tvolume\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe volume attribute, on getting, must return the MediaController's media controller volume multiplier, and on setting, if the new value is in the range 0.0 to 1.0 inclusive, must set the MediaController's media controller volume multiplier to the new value and queue a task to fire a simple event named volumechange at the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#volume\n\n*/"
+			}
+		],
+		[
+			"description-defaultPlaybackRate\tMediaController",
+			{
+				"name": "defaultPlaybackRate",
+				"return_type": "double",
+				"description": "The defaultPlaybackRate attribute, on getting, must return the MediaController's media controller default playback rate, and on setting, must set the MediaController's media controller default playback rate to the new value, then queue a task to fire a simple event named ratechange at the MediaController.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#defaultPlaybackRate",
+				"full_description": "/*\n\n\tMediaController\n\n\tdefaultPlaybackRate\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe defaultPlaybackRate attribute, on getting, must return the MediaController's media controller default playback rate, and on setting, must set the MediaController's media controller default playback rate to the new value, then queue a task to fire a simple event named ratechange at the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#defaultPlaybackRate\n\n*/"
+			}
+		],
+		[
+			"description-unpause()\tMediaController",
+			{
+				"name": "unpause",
+				"return_type": "void",
+				"parameters": [],
+				"description": "When the unpause() method is invoked, if the MediaController is a paused media controller, the user agent must change the MediaController into a playing media controller, queue a task to fire a simple event named play at the MediaController, and then report the controller state of the MediaController.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#unpause",
+				"full_description": "/*\n\n\tMediaController\n\n\tunpause ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the unpause() method is invoked, if the MediaController is a paused media controller, the user agent must change the MediaController into a playing media controller, queue a task to fire a simple event named play at the MediaController, and then report the controller state of the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#unpause\n\n*/"
+			}
+		],
+		[
+			"description-pause()\tMediaController",
+			{
+				"name": "pause",
+				"return_type": "void",
+				"parameters": [],
+				"description": "When the pause() method is invoked, if the MediaController is a playing media controller then the user agent must change the MediaController into a paused media controller, queue a task to fire a simple event named pause at the MediaController, and then report the controller state of the MediaController.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#pause",
+				"full_description": "/*\n\n\tMediaController\n\n\tpause ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the pause() method is invoked, if the MediaController is a playing media controller then the user agent must change the MediaController into a paused media controller, queue a task to fire a simple event named pause at the MediaController, and then report the controller state of the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#pause\n\n*/"
+			}
+		],
+		[
+			"description-playbackRate\tMediaController",
+			{
+				"name": "playbackRate",
+				"return_type": "double",
+				"description": "The playbackRate attribute, on getting, must return the MediaController's media controller playback rate, and on setting, must set the MediaController's media controller playback rate to the new value, then queue a task to fire a simple event named ratechange at the MediaController.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#playbackRate",
+				"full_description": "/*\n\n\tMediaController\n\n\tplaybackRate\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe playbackRate attribute, on getting, must return the MediaController's media controller playback rate, and on setting, must set the MediaController's media controller playback rate to the new value, then queue a task to fire a simple event named ratechange at the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#playbackRate\n\n*/"
+			}
+		],
+		[
+			"description-playbackState\tMediaController",
+			{
+				"name": "playbackState",
+				"return_type": "MediaControllerPlaybackState",
+				"description": "The playbackState attribute must return the value to which it was most recently set. When the MediaController object is created, the attribute must be set to the value \"waiting\". The value is updated by the report the controller state algorithm below.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#playbackState",
+				"full_description": "/*\n\n\tMediaController\n\n\tplaybackState\n\n\tReturn Type:\n\tMediaControllerPlaybackState\n\n\tDescription:\n\tThe playbackState attribute must return the value to which it was most recently set. When the MediaController object is created, the attribute must be set to the value \"waiting\". The value is updated by the report the controller state algorithm below.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#playbackState\n\n*/"
+			}
+		],
+		[
+			"description-muted\tMediaController",
+			{
+				"name": "muted",
+				"return_type": "boolean",
+				"description": "The muted attribute, on getting, must return the MediaController's media controller mute override, and on setting, must set the MediaController's media controller mute override to the new value and queue a task to fire a simple event named volumechange at the MediaController.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#muted",
+				"full_description": "/*\n\n\tMediaController\n\n\tmuted\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe muted attribute, on getting, must return the MediaController's media controller mute override, and on setting, must set the MediaController's media controller mute override to the new value and queue a task to fire a simple event named volumechange at the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#muted\n\n*/"
+			}
+		],
+		[
+			"description-readyState\tMediaController",
+			{
+				"name": "readyState",
+				"return_type": "unsigned short",
+				"description": "The readyState attribute must return the value to which it was most recently set. When the MediaController object is created, the attribute must be set to the value 0 (HAVE_NOTHING). The value is updated by the report the controller state algorithm below.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#readyState",
+				"full_description": "/*\n\n\tMediaController\n\n\treadyState\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe readyState attribute must return the value to which it was most recently set. When the MediaController object is created, the attribute must be set to the value 0 (HAVE_NOTHING). The value is updated by the report the controller state algorithm below.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#readyState\n\n*/"
+			}
+		],
+		[
+			"description-seekable\tMediaController",
+			{
+				"name": "seekable",
+				"return_type": "TimeRanges",
+				"description": "The seekable attribute must return a new static normalized TimeRanges object that represents the intersection of the ranges of the media resources of the slaved media elements that the user agent is able to seek to, at the time the attribute is evaluated.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#seekable",
+				"full_description": "/*\n\n\tMediaController\n\n\tseekable\n\n\tReturn Type:\n\tTimeRanges\n\n\tDescription:\n\tThe seekable attribute must return a new static normalized TimeRanges object that represents the intersection of the ranges of the media resources of the slaved media elements that the user agent is able to seek to, at the time the attribute is evaluated.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#seekable\n\n*/"
+			}
+		],
+		[
+			"description-buffered\tMediaController",
+			{
+				"name": "buffered",
+				"return_type": "TimeRanges",
+				"description": "The buffered attribute must return a new static normalized TimeRanges object that represents the intersection of the ranges of the media resources of the slaved media elements that the user agent has buffered, at the time the attribute is evaluated.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#buffered",
+				"full_description": "/*\n\n\tMediaController\n\n\tbuffered\n\n\tReturn Type:\n\tTimeRanges\n\n\tDescription:\n\tThe buffered attribute must return a new static normalized TimeRanges object that represents the intersection of the ranges of the media resources of the slaved media elements that the user agent has buffered, at the time the attribute is evaluated.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#buffered\n\n*/"
+			}
+		],
+		[
+			"description-play()\tMediaController",
+			{
+				"name": "play",
+				"return_type": "void",
+				"parameters": [],
+				"description": "When the play() method is invoked, the user agent must invoke the play() method of each slaved media element in turn, and then invoke the unpause method of the MediaController.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#play",
+				"full_description": "/*\n\n\tMediaController\n\n\tplay ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the play() method is invoked, the user agent must invoke the play() method of each slaved media element in turn, and then invoke the unpause method of the MediaController.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#play\n\n*/"
+			}
+		],
+		[
+			"description-currentTime\tMediaController",
+			{
+				"name": "currentTime",
+				"return_type": "double",
+				"description": "The currentTime attribute must return the media controller position on getting, and on setting must seek the media controller to the new value.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#currentTime",
+				"full_description": "/*\n\n\tMediaController\n\n\tcurrentTime\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe currentTime attribute must return the media controller position on getting, and on setting must seek the media controller to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#currentTime\n\n*/"
+			}
+		],
+		[
+			"description-paused\tMediaController",
+			{
+				"name": "paused",
+				"return_type": "boolean",
+				"description": "The paused attribute must return true if the MediaController object is a paused media controller, and false otherwise.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#paused",
+				"full_description": "/*\n\n\tMediaController\n\n\tpaused\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe paused attribute must return true if the MediaController object is a paused media controller, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#paused\n\n*/"
+			}
+		],
+		[
+			"description-duration\tMediaController",
+			{
+				"name": "duration",
+				"return_type": "unrestricted double",
+				"description": "The duration attribute must return the media controller duration.",
+				"type": "property",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#duration",
+				"full_description": "/*\n\n\tMediaController\n\n\tduration\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe duration attribute must return the media controller duration.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#duration\n\n*/"
+			}
+		],
+		[
+			"description-onloadedmetadata\tMediaController",
+			{
+				"name": "onloadedmetadata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onloadedmetadata",
+				"full_description": "/*\n\n\tMediaController\n\n\tonloadedmetadata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onloadedmetadata\n\n*/"
+			}
+		],
+		[
+			"description-oncanplaythrough\tMediaController",
+			{
+				"name": "oncanplaythrough",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-oncanplaythrough",
+				"full_description": "/*\n\n\tMediaController\n\n\toncanplaythrough\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-oncanplaythrough\n\n*/"
+			}
+		],
+		[
+			"description-ondurationchange\tMediaController",
+			{
+				"name": "ondurationchange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-ondurationchange",
+				"full_description": "/*\n\n\tMediaController\n\n\tondurationchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-ondurationchange\n\n*/"
+			}
+		],
+		[
+			"description-onvolumechange\tMediaController",
+			{
+				"name": "onvolumechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onvolumechange",
+				"full_description": "/*\n\n\tMediaController\n\n\tonvolumechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onvolumechange\n\n*/"
+			}
+		],
+		[
+			"description-onloadeddata\tMediaController",
+			{
+				"name": "onloadeddata",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onloadeddata",
+				"full_description": "/*\n\n\tMediaController\n\n\tonloadeddata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onloadeddata\n\n*/"
+			}
+		],
+		[
+			"description-ontimeupdate\tMediaController",
+			{
+				"name": "ontimeupdate",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-ontimeupdate",
+				"full_description": "/*\n\n\tMediaController\n\n\tontimeupdate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-ontimeupdate\n\n*/"
+			}
+		],
+		[
+			"description-onratechange\tMediaController",
+			{
+				"name": "onratechange",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onratechange",
+				"full_description": "/*\n\n\tMediaController\n\n\tonratechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onratechange\n\n*/"
+			}
+		],
+		[
+			"description-onemptied\tMediaController",
+			{
+				"name": "onemptied",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onemptied",
+				"full_description": "/*\n\n\tMediaController\n\n\tonemptied\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onemptied\n\n*/"
+			}
+		],
+		[
+			"description-onwaiting\tMediaController",
+			{
+				"name": "onwaiting",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onwaiting",
+				"full_description": "/*\n\n\tMediaController\n\n\tonwaiting\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onwaiting\n\n*/"
+			}
+		],
+		[
+			"description-onplaying\tMediaController",
+			{
+				"name": "onplaying",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onplaying",
+				"full_description": "/*\n\n\tMediaController\n\n\tonplaying\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onplaying\n\n*/"
+			}
+		],
+		[
+			"description-oncanplay\tMediaController",
+			{
+				"name": "oncanplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-oncanplay",
+				"full_description": "/*\n\n\tMediaController\n\n\toncanplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-oncanplay\n\n*/"
+			}
+		],
+		[
+			"description-onpause\tMediaController",
+			{
+				"name": "onpause",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onpause",
+				"full_description": "/*\n\n\tMediaController\n\n\tonpause\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onpause\n\n*/"
+			}
+		],
+		[
+			"description-onended\tMediaController",
+			{
+				"name": "onended",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onended",
+				"full_description": "/*\n\n\tMediaController\n\n\tonended\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onended\n\n*/"
+			}
+		],
+		[
+			"description-onplay\tMediaController",
+			{
+				"name": "onplay",
+				"return_type": "EventHandler",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onplay",
+				"full_description": "/*\n\n\tMediaController\n\n\tonplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-mediacontroller-onplay\n\n*/"
+			}
+		],
+		[
+			"description-MediaController()\tMediaController",
+			{
+				"name": "MediaController",
+				"return_type": "MediaController",
+				"parameters": [],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/Media%20-%20MediaController.html#MediaController",
+				"full_description": "/*\n\n\tMediaController\n\n\tMediaController ()\n\n\tReturn Type:\n\tMediaController\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20MediaController.html#MediaController\n\n*/"
+			}
+		]
+	]
+}

@@ -1,0 +1,53 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"setProperty( property: DOMString, value: DOMString, priority?: DOMString ): void\tCSSStyleDeclaration",
+			"setProperty(${1:property: DOMString}, ${2:value: DOMString}, ${3:priority?: DOMString})"
+		],
+		[
+			"setPropertyPriority( property: DOMString, priority: DOMString ): void\tCSSStyleDeclaration",
+			"setPropertyPriority(${1:property: DOMString}, ${2:priority: DOMString})"
+		],
+		[
+			"setPropertyValue( property: DOMString, value: DOMString ): void\tCSSStyleDeclaration",
+			"setPropertyValue(${1:property: DOMString}, ${2:value: DOMString})"
+		],
+		[
+			"getPropertyPriority( property: DOMString ): DOMString\tCSSStyleDeclaration",
+			"getPropertyPriority(${1:property: DOMString})"
+		],
+		[
+			"getPropertyValue( property: DOMString ): DOMString\tCSSStyleDeclaration",
+			"getPropertyValue(${1:property: DOMString})"
+		],
+		[
+			"removeProperty( property: DOMString ): DOMString\tCSSStyleDeclaration",
+			"removeProperty(${1:property: DOMString})"
+		],
+		[
+			"item( index: unsigned long ): DOMString\tCSSStyleDeclaration",
+			"item(${1:index: unsigned long})"
+		],
+		[
+			"_camel_cased_attribute: DOMString\tCSSStyleDeclaration",
+			"_camel_cased_attribute"
+		],
+		[
+			"length: unsigned long\tCSSStyleDeclaration",
+			"length"
+		],
+		[
+			"parentRule: CSSRule\tCSSStyleDeclaration",
+			"parentRule"
+		],
+		[
+			"cssFloat: DOMString\tCSSStyleDeclaration",
+			"cssFloat"
+		],
+		[
+			"cssText: DOMString\tCSSStyleDeclaration",
+			"cssText"
+		]
+	]
+}

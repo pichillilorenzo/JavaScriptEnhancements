@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGCursorElement",
+			"externalResourcesRequired"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGCursorElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGCursorElement",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGCursorElement",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGCursorElement",
+			"systemLanguage"
+		],
+		[
+			"href: SVGAnimatedString\tSVGCursorElement",
+			"href"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGCursorElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGCursorElement",
+			"y"
+		]
+	]
+}

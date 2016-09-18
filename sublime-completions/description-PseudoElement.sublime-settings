@@ -1,0 +1,38 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-rawComputedStyle\tPseudoElement",
+			{
+				"name": "rawComputedStyle",
+				"return_type": "CSSStyleDeclaration",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-getstyleutils-rawcomputedstyle",
+				"full_description": "/*\n\n\tPseudoElement\n\n\trawComputedStyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-getstyleutils-rawcomputedstyle\n\n*/"
+			}
+		],
+		[
+			"description-cascadedStyle\tPseudoElement",
+			{
+				"name": "cascadedStyle",
+				"return_type": "CSSStyleDeclaration",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-getstyleutils-cascadedstyle",
+				"full_description": "/*\n\n\tPseudoElement\n\n\tcascadedStyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-getstyleutils-cascadedstyle\n\n*/"
+			}
+		],
+		[
+			"description-usedStyle\tPseudoElement",
+			{
+				"name": "usedStyle",
+				"return_type": "CSSStyleDeclaration",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-getstyleutils-usedstyle",
+				"full_description": "/*\n\n\tPseudoElement\n\n\tusedStyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-getstyleutils-usedstyle\n\n*/"
+			}
+		]
+	]
+}

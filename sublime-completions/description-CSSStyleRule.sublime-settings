@@ -1,0 +1,27 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-selectorText\tCSSStyleRule",
+			{
+				"name": "selectorText",
+				"return_type": "DOMString",
+				"description": "The selectorText attribute, on getting, must return the result of serializing the associated group of selectors.",
+				"type": "property",
+				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleRule.html#selectorText",
+				"full_description": "/*\n\n\tCSSStyleRule\n\n\tselectorText\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe selectorText attribute, on getting, must return the result of serializing the associated group of selectors.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleRule.html#selectorText\n\n*/"
+			}
+		],
+		[
+			"description-style\tCSSStyleRule",
+			{
+				"name": "style",
+				"return_type": "CSSStyleDeclaration",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstylerule-style",
+				"full_description": "/*\n\n\tCSSStyleRule\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstylerule-style\n\n*/"
+			}
+		]
+	]
+}

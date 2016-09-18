@@ -1,0 +1,38 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-x\tSVGFEPointLightElement",
+			{
+				"name": "x",
+				"return_type": "SVGAnimatedNumber",
+				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEPointLightElement.html#x",
+				"full_description": "/*\n\n\tSVGFEPointLightElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEPointLightElement.html#x\n\n*/"
+			}
+		],
+		[
+			"description-y\tSVGFEPointLightElement",
+			{
+				"name": "y",
+				"return_type": "SVGAnimatedNumber",
+				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEPointLightElement.html#y",
+				"full_description": "/*\n\n\tSVGFEPointLightElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEPointLightElement.html#y\n\n*/"
+			}
+		],
+		[
+			"description-z\tSVGFEPointLightElement",
+			{
+				"name": "z",
+				"return_type": "SVGAnimatedNumber",
+				"description": "Corresponds to attribute ‘z’ on the given ‘fePointLight’ element.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGFEPointLightElement.html#z",
+				"full_description": "/*\n\n\tSVGFEPointLightElement\n\n\tz\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘z’ on the given ‘fePointLight’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEPointLightElement.html#z\n\n*/"
+			}
+		]
+	]
+}

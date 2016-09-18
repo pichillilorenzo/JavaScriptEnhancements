@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new IDBVersionChangeEvent( type: DOMString, eventInitDict?: IDBVersionChangeEventInit ): IDBVersionChangeEvent\tIDBVersionChangeEvent",
+			"new IDBVersionChangeEvent(${1:type: DOMString}, ${2:eventInitDict?: IDBVersionChangeEventInit})"
+		],
+		[
+			"IDBVersionChangeEvent( type: DOMString, eventInitDict?: IDBVersionChangeEventInit ): IDBVersionChangeEvent\tIDBVersionChangeEvent",
+			"IDBVersionChangeEvent(${1:type: DOMString}, ${2:eventInitDict?: IDBVersionChangeEventInit})"
+		],
+		[
+			"newVersion: unsigned long long\tIDBVersionChangeEvent",
+			"newVersion"
+		],
+		[
+			"oldVersion: unsigned long long\tIDBVersionChangeEvent",
+			"oldVersion"
+		]
+	]
+}

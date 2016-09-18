@@ -1,0 +1,57 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"onbeforeunload: OnBeforeUnloadEventHandler\tHTMLBodyElement",
+			"onbeforeunload"
+		],
+		[
+			"onlanguagechange: EventHandler\tHTMLBodyElement",
+			"onlanguagechange"
+		],
+		[
+			"onbeforeprint: EventHandler\tHTMLBodyElement",
+			"onbeforeprint"
+		],
+		[
+			"onafterprint: EventHandler\tHTMLBodyElement",
+			"onafterprint"
+		],
+		[
+			"onhashchange: EventHandler\tHTMLBodyElement",
+			"onhashchange"
+		],
+		[
+			"onpagehide: EventHandler\tHTMLBodyElement",
+			"onpagehide"
+		],
+		[
+			"onpageshow: EventHandler\tHTMLBodyElement",
+			"onpageshow"
+		],
+		[
+			"onpopstate: EventHandler\tHTMLBodyElement",
+			"onpopstate"
+		],
+		[
+			"onmessage: EventHandler\tHTMLBodyElement",
+			"onmessage"
+		],
+		[
+			"onoffline: EventHandler\tHTMLBodyElement",
+			"onoffline"
+		],
+		[
+			"onstorage: EventHandler\tHTMLBodyElement",
+			"onstorage"
+		],
+		[
+			"ononline: EventHandler\tHTMLBodyElement",
+			"ononline"
+		],
+		[
+			"onunload: EventHandler\tHTMLBodyElement",
+			"onunload"
+		]
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"labels: NodeList\tHTMLProgressElement",
+			"labels"
+		],
+		[
+			"position: double\tHTMLProgressElement",
+			"position"
+		],
+		[
+			"value: double\tHTMLProgressElement",
+			"value"
+		],
+		[
+			"max: double\tHTMLProgressElement",
+			"max"
+		]
+	]
+}

@@ -1,0 +1,89 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"new DataView( buffer: ArrayBuffer, byteOffset?: unsigned long, byteLength?: unsigned long ): DataView\tDataView",
+			"new DataView(${1:buffer: ArrayBuffer}, ${2:byteOffset?: unsigned long}, ${3:byteLength?: unsigned long})"
+		],
+		[
+			"DataView( buffer: ArrayBuffer, byteOffset?: unsigned long, byteLength?: unsigned long ): DataView\tDataView",
+			"DataView(${1:buffer: ArrayBuffer}, ${2:byteOffset?: unsigned long}, ${3:byteLength?: unsigned long})"
+		],
+		[
+			"setFloat64( byteOffset: unsigned long, value: unrestricted double, littleEndian?: boolean ): void\tDataView",
+			"setFloat64(${1:byteOffset: unsigned long}, ${2:value: unrestricted double}, ${3:littleEndian?: boolean})"
+		],
+		[
+			"setFloat32( byteOffset: unsigned long, value: unrestricted float, littleEndian?: boolean ): void\tDataView",
+			"setFloat32(${1:byteOffset: unsigned long}, ${2:value: unrestricted float}, ${3:littleEndian?: boolean})"
+		],
+		[
+			"setUint16( byteOffset: unsigned long, value: unsigned short, littleEndian?: boolean ): void\tDataView",
+			"setUint16(${1:byteOffset: unsigned long}, ${2:value: unsigned short}, ${3:littleEndian?: boolean})"
+		],
+		[
+			"setUint32( byteOffset: unsigned long, value: unsigned long, littleEndian?: boolean ): void\tDataView",
+			"setUint32(${1:byteOffset: unsigned long}, ${2:value: unsigned long}, ${3:littleEndian?: boolean})"
+		],
+		[
+			"getFloat64( byteOffset: unsigned long, littleEndian?: boolean ): unrestricted double\tDataView",
+			"getFloat64(${1:byteOffset: unsigned long}, ${2:littleEndian?: boolean})"
+		],
+		[
+			"getFloat32( byteOffset: unsigned long, littleEndian?: boolean ): unrestricted float\tDataView",
+			"getFloat32(${1:byteOffset: unsigned long}, ${2:littleEndian?: boolean})"
+		],
+		[
+			"setInt16( byteOffset: unsigned long, value: short, littleEndian?: boolean ): void\tDataView",
+			"setInt16(${1:byteOffset: unsigned long}, ${2:value: short}, ${3:littleEndian?: boolean})"
+		],
+		[
+			"setInt32( byteOffset: unsigned long, value: long, littleEndian?: boolean ): void\tDataView",
+			"setInt32(${1:byteOffset: unsigned long}, ${2:value: long}, ${3:littleEndian?: boolean})"
+		],
+		[
+			"getUint16( byteOffset: unsigned long, littleEndian?: boolean ): unsigned short\tDataView",
+			"getUint16(${1:byteOffset: unsigned long}, ${2:littleEndian?: boolean})"
+		],
+		[
+			"getUint32( byteOffset: unsigned long, littleEndian?: boolean ): unsigned long\tDataView",
+			"getUint32(${1:byteOffset: unsigned long}, ${2:littleEndian?: boolean})"
+		],
+		[
+			"getInt16( byteOffset: unsigned long, littleEndian?: boolean ): short\tDataView",
+			"getInt16(${1:byteOffset: unsigned long}, ${2:littleEndian?: boolean})"
+		],
+		[
+			"getInt32( byteOffset: unsigned long, littleEndian?: boolean ): long\tDataView",
+			"getInt32(${1:byteOffset: unsigned long}, ${2:littleEndian?: boolean})"
+		],
+		[
+			"setUint8( byteOffset: unsigned long, value: octet ): void\tDataView",
+			"setUint8(${1:byteOffset: unsigned long}, ${2:value: octet})"
+		],
+		[
+			"setInt8( byteOffset: unsigned long, value: byte ): void\tDataView",
+			"setInt8(${1:byteOffset: unsigned long}, ${2:value: byte})"
+		],
+		[
+			"getUint8( byteOffset: unsigned long ): octet\tDataView",
+			"getUint8(${1:byteOffset: unsigned long})"
+		],
+		[
+			"getInt8( byteOffset: unsigned long ): byte\tDataView",
+			"getInt8(${1:byteOffset: unsigned long})"
+		],
+		[
+			"byteOffset: unsigned long\tDataView",
+			"byteOffset"
+		],
+		[
+			"byteLength: unsigned long\tDataView",
+			"byteLength"
+		],
+		[
+			"buffer: ArrayBuffer\tDataView",
+			"buffer"
+		]
+	]
+}

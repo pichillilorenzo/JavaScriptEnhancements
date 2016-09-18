@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGRectElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGRectElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGRectElement",
+			"externalResourcesRequired"
+		],
+		[
+			"transform: SVGAnimatedTransformList\tSVGRectElement",
+			"transform"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGRectElement",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGRectElement",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGRectElement",
+			"systemLanguage"
+		],
+		[
+			"className: SVGAnimatedString\tSVGRectElement",
+			"className"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGRectElement",
+			"style"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGRectElement",
+			"height"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGRectElement",
+			"width"
+		],
+		[
+			"ry: SVGAnimatedLength\tSVGRectElement",
+			"ry"
+		],
+		[
+			"rx: SVGAnimatedLength\tSVGRectElement",
+			"rx"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGRectElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGRectElement",
+			"y"
+		],
+		[
+			"xmlspace: DOMString\tSVGRectElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGRectElement",
+			"xmllang"
+		]
+	]
+}

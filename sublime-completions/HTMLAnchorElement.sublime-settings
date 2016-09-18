@@ -1,0 +1,37 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"ping: DOMSettableTokenList\tHTMLAnchorElement",
+			"ping"
+		],
+		[
+			"relList: DOMTokenList\tHTMLAnchorElement",
+			"relList"
+		],
+		[
+			"download: DOMString\tHTMLAnchorElement",
+			"download"
+		],
+		[
+			"hreflang: DOMString\tHTMLAnchorElement",
+			"hreflang"
+		],
+		[
+			"target: DOMString\tHTMLAnchorElement",
+			"target"
+		],
+		[
+			"text: DOMString\tHTMLAnchorElement",
+			"text"
+		],
+		[
+			"type: DOMString\tHTMLAnchorElement",
+			"type"
+		],
+		[
+			"rel: DOMString\tHTMLAnchorElement",
+			"rel"
+		]
+	]
+}

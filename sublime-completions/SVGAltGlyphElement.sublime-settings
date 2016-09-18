@@ -1,0 +1,17 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"href: SVGAnimatedString\tSVGAltGlyphElement",
+			"href"
+		],
+		[
+			"glyphRef: DOMString\tSVGAltGlyphElement",
+			"glyphRef"
+		],
+		[
+			"format: DOMString\tSVGAltGlyphElement",
+			"format"
+		]
+	]
+}

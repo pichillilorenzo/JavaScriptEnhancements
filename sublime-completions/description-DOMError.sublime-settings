@@ -1,0 +1,52 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-message\tDOMError",
+			{
+				"name": "message",
+				"return_type": "DOMString",
+				"description": "The message attribute must return the value it was initialized to.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20DOMError.html#message",
+				"full_description": "/*\n\n\tDOMError\n\n\tmessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe message attribute must return the value it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DOMError.html#message\n\n*/"
+			}
+		],
+		[
+			"description-name\tDOMError",
+			{
+				"name": "name",
+				"return_type": "DOMString",
+				"description": "The name attribute must return the value it was initialized to.",
+				"type": "property",
+				"url_doc": "http://html5index.org/DOM%20-%20DOMError.html#name",
+				"full_description": "/*\n\n\tDOMError\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name attribute must return the value it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DOMError.html#name\n\n*/"
+			}
+		],
+		[
+			"description-DOMError()\tDOMError",
+			{
+				"name": "DOMError",
+				"return_type": "DOMError",
+				"parameters": [
+					{
+						"name": "name",
+						"type": "DOMString",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "message",
+						"type": "DOMString",
+						"is_optional": true,
+						"description": ""
+					}
+				],
+				"description": "",
+				"type": "constructor",
+				"url_doc": "http://html5index.org/DOM%20-%20DOMError.html#DOMError",
+				"full_description": "/*\n\n\tDOMError\n\n\tDOMError ( name: DOMString, message?: DOMString )\n\n\tReturn Type:\n\tDOMError\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DOMError.html#DOMError\n\n*/"
+			}
+		]
+	]
+}

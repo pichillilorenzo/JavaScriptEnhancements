@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SHOW_PROCESSING_INSTRUCTION: const unsigned long\tNodeFilter",
+			"SHOW_PROCESSING_INSTRUCTION"
+		],
+		[
+			"SHOW_DOCUMENT_FRAGMENT: const unsigned long\tNodeFilter",
+			"SHOW_DOCUMENT_FRAGMENT"
+		],
+		[
+			"SHOW_ENTITY_REFERENCE: const unsigned long\tNodeFilter",
+			"SHOW_ENTITY_REFERENCE"
+		],
+		[
+			"acceptNode( node: Node ): unsigned short\tNodeFilter",
+			"acceptNode(${1:node: Node})"
+		],
+		[
+			"SHOW_CDATA_SECTION: const unsigned long\tNodeFilter",
+			"SHOW_CDATA_SECTION"
+		],
+		[
+			"SHOW_DOCUMENT_TYPE: const unsigned long\tNodeFilter",
+			"SHOW_DOCUMENT_TYPE"
+		],
+		[
+			"SHOW_ATTRIBUTE: const unsigned long\tNodeFilter",
+			"SHOW_ATTRIBUTE"
+		],
+		[
+			"FILTER_ACCEPT: const unsigned short\tNodeFilter",
+			"FILTER_ACCEPT"
+		],
+		[
+			"FILTER_REJECT: const unsigned short\tNodeFilter",
+			"FILTER_REJECT"
+		],
+		[
+			"SHOW_DOCUMENT: const unsigned long\tNodeFilter",
+			"SHOW_DOCUMENT"
+		],
+		[
+			"SHOW_NOTATION: const unsigned long\tNodeFilter",
+			"SHOW_NOTATION"
+		],
+		[
+			"SHOW_COMMENT: const unsigned long\tNodeFilter",
+			"SHOW_COMMENT"
+		],
+		[
+			"FILTER_SKIP: const unsigned short\tNodeFilter",
+			"FILTER_SKIP"
+		],
+		[
+			"SHOW_ELEMENT: const unsigned long\tNodeFilter",
+			"SHOW_ELEMENT"
+		],
+		[
+			"SHOW_ENTITY: const unsigned long\tNodeFilter",
+			"SHOW_ENTITY"
+		],
+		[
+			"SHOW_TEXT: const unsigned long\tNodeFilter",
+			"SHOW_TEXT"
+		],
+		[
+			"SHOW_ALL: const unsigned long\tNodeFilter",
+			"SHOW_ALL"
+		]
+	]
+}

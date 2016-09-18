@@ -1,0 +1,73 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"SVG_TURBULENCE_TYPE_FRACTALNOISE: const unsigned short\tSVGFETurbulenceElement",
+			"SVG_TURBULENCE_TYPE_FRACTALNOISE"
+		],
+		[
+			"SVG_TURBULENCE_TYPE_TURBULENCE: const unsigned short\tSVGFETurbulenceElement",
+			"SVG_TURBULENCE_TYPE_TURBULENCE"
+		],
+		[
+			"SVG_TURBULENCE_TYPE_UNKNOWN: const unsigned short\tSVGFETurbulenceElement",
+			"SVG_TURBULENCE_TYPE_UNKNOWN"
+		],
+		[
+			"SVG_STITCHTYPE_NOSTITCH: const unsigned short\tSVGFETurbulenceElement",
+			"SVG_STITCHTYPE_NOSTITCH"
+		],
+		[
+			"SVG_STITCHTYPE_UNKNOWN: const unsigned short\tSVGFETurbulenceElement",
+			"SVG_STITCHTYPE_UNKNOWN"
+		],
+		[
+			"SVG_STITCHTYPE_STITCH: const unsigned short\tSVGFETurbulenceElement",
+			"SVG_STITCHTYPE_STITCH"
+		],
+		[
+			"stitchTiles: SVGAnimatedEnumeration\tSVGFETurbulenceElement",
+			"stitchTiles"
+		],
+		[
+			"baseFrequencyY: SVGAnimatedNumber\tSVGFETurbulenceElement",
+			"baseFrequencyY"
+		],
+		[
+			"baseFrequencyX: SVGAnimatedNumber\tSVGFETurbulenceElement",
+			"baseFrequencyX"
+		],
+		[
+			"numOctaves: SVGAnimatedInteger\tSVGFETurbulenceElement",
+			"numOctaves"
+		],
+		[
+			"type: SVGAnimatedEnumeration\tSVGFETurbulenceElement",
+			"type"
+		],
+		[
+			"height: SVGAnimatedLength\tSVGFETurbulenceElement",
+			"height"
+		],
+		[
+			"result: SVGAnimatedString\tSVGFETurbulenceElement",
+			"result"
+		],
+		[
+			"width: SVGAnimatedLength\tSVGFETurbulenceElement",
+			"width"
+		],
+		[
+			"seed: SVGAnimatedNumber\tSVGFETurbulenceElement",
+			"seed"
+		],
+		[
+			"x: SVGAnimatedLength\tSVGFETurbulenceElement",
+			"x"
+		],
+		[
+			"y: SVGAnimatedLength\tSVGFETurbulenceElement",
+			"y"
+		]
+	]
+}

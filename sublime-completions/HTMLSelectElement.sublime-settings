@@ -1,0 +1,105 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"add( element: HTMLOptionElement|HTMLOptGroupElement, before?: HTMLElement|long ): void\tHTMLSelectElement",
+			"add(${1:element: HTMLOptionElement|HTMLOptGroupElement}, ${2:before?: HTMLElement|long})"
+		],
+		[
+			"setter creator( index: unsigned long, option: HTMLOptionElement ): void\tHTMLSelectElement",
+			"setter creator(${1:index: unsigned long}, ${2:option: HTMLOptionElement})"
+		],
+		[
+			"namedItem( name: DOMString ): HTMLOptionElement\tHTMLSelectElement",
+			"namedItem(${1:name: DOMString})"
+		],
+		[
+			"setCustomValidity( error: DOMString ): void\tHTMLSelectElement",
+			"setCustomValidity(${1:error: DOMString})"
+		],
+		[
+			"item( index: unsigned long ): Element\tHTMLSelectElement",
+			"item(${1:index: unsigned long})"
+		],
+		[
+			"selectedOptions: HTMLCollection\tHTMLSelectElement",
+			"selectedOptions"
+		],
+		[
+			"options: HTMLOptionsCollection\tHTMLSelectElement",
+			"options"
+		],
+		[
+			"validationMessage: DOMString\tHTMLSelectElement",
+			"validationMessage"
+		],
+		[
+			"remove( index?: long ): void\tHTMLSelectElement",
+			"remove(${1:index?: long})"
+		],
+		[
+			"reportValidity(): boolean\tHTMLSelectElement",
+			"reportValidity()"
+		],
+		[
+			"checkValidity(): boolean\tHTMLSelectElement",
+			"checkValidity()"
+		],
+		[
+			"validity: ValidityState\tHTMLSelectElement",
+			"validity"
+		],
+		[
+			"length: unsigned long\tHTMLSelectElement",
+			"length"
+		],
+		[
+			"form: HTMLFormElement\tHTMLSelectElement",
+			"form"
+		],
+		[
+			"willValidate: boolean\tHTMLSelectElement",
+			"willValidate"
+		],
+		[
+			"size: unsigned long\tHTMLSelectElement",
+			"size"
+		],
+		[
+			"selectedIndex: long\tHTMLSelectElement",
+			"selectedIndex"
+		],
+		[
+			"autofocus: boolean\tHTMLSelectElement",
+			"autofocus"
+		],
+		[
+			"disabled: boolean\tHTMLSelectElement",
+			"disabled"
+		],
+		[
+			"required: boolean\tHTMLSelectElement",
+			"required"
+		],
+		[
+			"multiple: boolean\tHTMLSelectElement",
+			"multiple"
+		],
+		[
+			"value: DOMString\tHTMLSelectElement",
+			"value"
+		],
+		[
+			"labels: NodeList\tHTMLSelectElement",
+			"labels"
+		],
+		[
+			"name: DOMString\tHTMLSelectElement",
+			"name"
+		],
+		[
+			"type: DOMString\tHTMLSelectElement",
+			"type"
+		]
+	]
+}

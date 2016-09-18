@@ -1,0 +1,157 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"createSVGPathSegArcRel( x: float, y: float, r1: float, r2: float, angle: float, largeArcFlag: boolean, sweepFlag: boolean ): SVGPathSegArcRel\tSVGPathElement",
+			"createSVGPathSegArcRel(${1:x: float}, ${2:y: float}, ${3:r1: float}, ${4:r2: float}, ${5:angle: float}, ${6:largeArcFlag: boolean}, ${7:sweepFlag: boolean})"
+		],
+		[
+			"createSVGPathSegArcAbs( x: float, y: float, r1: float, r2: float, angle: float, largeArcFlag: boolean, sweepFlag: boolean ): SVGPathSegArcAbs\tSVGPathElement",
+			"createSVGPathSegArcAbs(${1:x: float}, ${2:y: float}, ${3:r1: float}, ${4:r2: float}, ${5:angle: float}, ${6:largeArcFlag: boolean}, ${7:sweepFlag: boolean})"
+		],
+		[
+			"createSVGPathSegCurvetoCubicRel( x: float, y: float, x1: float, y1: float, x2: float, y2: float ): SVGPathSegCurvetoCubicRel\tSVGPathElement",
+			"createSVGPathSegCurvetoCubicRel(${1:x: float}, ${2:y: float}, ${3:x1: float}, ${4:y1: float}, ${5:x2: float}, ${6:y2: float})"
+		],
+		[
+			"createSVGPathSegCurvetoCubicAbs( x: float, y: float, x1: float, y1: float, x2: float, y2: float ): SVGPathSegCurvetoCubicAbs\tSVGPathElement",
+			"createSVGPathSegCurvetoCubicAbs(${1:x: float}, ${2:y: float}, ${3:x1: float}, ${4:y1: float}, ${5:x2: float}, ${6:y2: float})"
+		],
+		[
+			"createSVGPathSegCurvetoCubicSmoothAbs( x: float, y: float, x2: float, y2: float ): SVGPathSegCurvetoCubicSmoothAbs\tSVGPathElement",
+			"createSVGPathSegCurvetoCubicSmoothAbs(${1:x: float}, ${2:y: float}, ${3:x2: float}, ${4:y2: float})"
+		],
+		[
+			"createSVGPathSegCurvetoCubicSmoothRel( x: float, y: float, x2: float, y2: float ): SVGPathSegCurvetoCubicSmoothRel\tSVGPathElement",
+			"createSVGPathSegCurvetoCubicSmoothRel(${1:x: float}, ${2:y: float}, ${3:x2: float}, ${4:y2: float})"
+		],
+		[
+			"createSVGPathSegCurvetoQuadraticRel( x: float, y: float, x1: float, y1: float ): SVGPathSegCurvetoQuadraticRel\tSVGPathElement",
+			"createSVGPathSegCurvetoQuadraticRel(${1:x: float}, ${2:y: float}, ${3:x1: float}, ${4:y1: float})"
+		],
+		[
+			"createSVGPathSegCurvetoQuadraticAbs( x: float, y: float, x1: float, y1: float ): SVGPathSegCurvetoQuadraticAbs\tSVGPathElement",
+			"createSVGPathSegCurvetoQuadraticAbs(${1:x: float}, ${2:y: float}, ${3:x1: float}, ${4:y1: float})"
+		],
+		[
+			"createSVGPathSegCurvetoQuadraticSmoothAbs( x: float, y: float ): SVGPathSegCurvetoQuadraticSmoothAbs\tSVGPathElement",
+			"createSVGPathSegCurvetoQuadraticSmoothAbs(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"createSVGPathSegCurvetoQuadraticSmoothRel( x: float, y: float ): SVGPathSegCurvetoQuadraticSmoothRel\tSVGPathElement",
+			"createSVGPathSegCurvetoQuadraticSmoothRel(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"createSVGPathSegLinetoHorizontalRel( x: float ): SVGPathSegLinetoHorizontalRel\tSVGPathElement",
+			"createSVGPathSegLinetoHorizontalRel(${1:x: float})"
+		],
+		[
+			"createSVGPathSegLinetoHorizontalAbs( x: float ): SVGPathSegLinetoHorizontalAbs\tSVGPathElement",
+			"createSVGPathSegLinetoHorizontalAbs(${1:x: float})"
+		],
+		[
+			"createSVGPathSegLinetoVerticalAbs( y: float ): SVGPathSegLinetoVerticalAbs\tSVGPathElement",
+			"createSVGPathSegLinetoVerticalAbs(${1:y: float})"
+		],
+		[
+			"createSVGPathSegLinetoVerticalRel( y: float ): SVGPathSegLinetoVerticalRel\tSVGPathElement",
+			"createSVGPathSegLinetoVerticalRel(${1:y: float})"
+		],
+		[
+			"createSVGPathSegLinetoRel( x: float, y: float ): SVGPathSegLinetoRel\tSVGPathElement",
+			"createSVGPathSegLinetoRel(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"createSVGPathSegLinetoAbs( x: float, y: float ): SVGPathSegLinetoAbs\tSVGPathElement",
+			"createSVGPathSegLinetoAbs(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"createSVGPathSegMovetoRel( x: float, y: float ): SVGPathSegMovetoRel\tSVGPathElement",
+			"createSVGPathSegMovetoRel(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"createSVGPathSegMovetoAbs( x: float, y: float ): SVGPathSegMovetoAbs\tSVGPathElement",
+			"createSVGPathSegMovetoAbs(${1:x: float}, ${2:y: float})"
+		],
+		[
+			"getPresentationAttribute( name: DOMString ): CSSValue\tSVGPathElement",
+			"getPresentationAttribute(${1:name: DOMString})"
+		],
+		[
+			"getPathSegAtLength( distance: float ): unsigned long\tSVGPathElement",
+			"getPathSegAtLength(${1:distance: float})"
+		],
+		[
+			"createSVGPathSegClosePath(): SVGPathSegClosePath\tSVGPathElement",
+			"createSVGPathSegClosePath()"
+		],
+		[
+			"externalResourcesRequired: SVGAnimatedBoolean\tSVGPathElement",
+			"externalResourcesRequired"
+		],
+		[
+			"getPointAtLength( distance: float ): SVGPoint\tSVGPathElement",
+			"getPointAtLength(${1:distance: float})"
+		],
+		[
+			"animatedNormalizedPathSegList: SVGPathSegList\tSVGPathElement",
+			"animatedNormalizedPathSegList"
+		],
+		[
+			"hasExtension( extension: DOMString ): boolean\tSVGPathElement",
+			"hasExtension(${1:extension: DOMString})"
+		],
+		[
+			"normalizedPathSegList: SVGPathSegList\tSVGPathElement",
+			"normalizedPathSegList"
+		],
+		[
+			"animatedPathSegList: SVGPathSegList\tSVGPathElement",
+			"animatedPathSegList"
+		],
+		[
+			"transform: SVGAnimatedTransformList\tSVGPathElement",
+			"transform"
+		],
+		[
+			"requiredExtensions: SVGStringList\tSVGPathElement",
+			"requiredExtensions"
+		],
+		[
+			"requiredFeatures: SVGStringList\tSVGPathElement",
+			"requiredFeatures"
+		],
+		[
+			"systemLanguage: SVGStringList\tSVGPathElement",
+			"systemLanguage"
+		],
+		[
+			"pathLength: SVGAnimatedNumber\tSVGPathElement",
+			"pathLength"
+		],
+		[
+			"className: SVGAnimatedString\tSVGPathElement",
+			"className"
+		],
+		[
+			"pathSegList: SVGPathSegList\tSVGPathElement",
+			"pathSegList"
+		],
+		[
+			"style: CSSStyleDeclaration\tSVGPathElement",
+			"style"
+		],
+		[
+			"getTotalLength(): float\tSVGPathElement",
+			"getTotalLength()"
+		],
+		[
+			"xmlspace: DOMString\tSVGPathElement",
+			"xmlspace"
+		],
+		[
+			"xmllang: DOMString\tSVGPathElement",
+			"xmllang"
+		]
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-style\tElementCSSInlineStyle",
+			{
+				"name": "style",
+				"return_type": "CSSStyleDeclaration",
+				"description": "\n\n",
+				"type": "property",
+				"url_doc": "http://www.w3.org/TR/cssom/#dom-elementcssinlinestyle-style",
+				"full_description": "/*\n\n\tElementCSSInlineStyle\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-elementcssinlinestyle-style\n\n*/"
+			}
+		]
+	]
+}

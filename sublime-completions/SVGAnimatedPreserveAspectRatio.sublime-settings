@@ -1,0 +1,13 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"animVal: SVGPreserveAspectRatio\tSVGAnimatedPreserveAspectRatio",
+			"animVal"
+		],
+		[
+			"baseVal: SVGPreserveAspectRatio\tSVGAnimatedPreserveAspectRatio",
+			"baseVal"
+		]
+	]
+}

@@ -1,0 +1,148 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"description-valueInSpecifiedUnits\tSVGAngle",
+			{
+				"name": "valueInSpecifiedUnits",
+				"return_type": "float",
+				"description": "The value as a floating point value, in the units expressed by unitType. Setting this attribute will cause value and valueAsString to be updated automatically to reflect this setting. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the length corresponds to a read only attribute or when the object itself is read only.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#valueInSpecifiedUnits",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tvalueInSpecifiedUnits\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe value as a floating point value, in the units expressed by unitType. Setting this attribute will cause value and valueAsString to be updated automatically to reflect this setting. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the length corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#valueInSpecifiedUnits\n\n*/"
+			}
+		],
+		[
+			"description-convertToSpecifiedUnits()\tSVGAngle",
+			{
+				"name": "convertToSpecifiedUnits",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "unitType",
+						"type": "unsigned short",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Preserve the same underlying stored value, but reset the stored unit identifier to the given unitType. Object attributes unitType, valueInSpecifiedUnits and valueAsString might be modified as a result of this method. Parametersunsigned short unitType The unit type to switch to (e.g., SVG_ANGLETYPE_DEG).",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#convertToSpecifiedUnits",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tconvertToSpecifiedUnits ( unitType: unsigned short )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tPreserve the same underlying stored value, but reset the stored unit identifier to the given unitType. Object attributes unitType, valueInSpecifiedUnits and valueAsString might be modified as a result of this method. Parametersunsigned short unitType The unit type to switch to (e.g., SVG_ANGLETYPE_DEG).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#convertToSpecifiedUnits\n\n*/"
+			}
+		],
+		[
+			"description-newValueSpecifiedUnits()\tSVGAngle",
+			{
+				"name": "newValueSpecifiedUnits",
+				"return_type": "void",
+				"parameters": [
+					{
+						"name": "unitType",
+						"type": "unsigned short",
+						"is_optional": false,
+						"description": ""
+					},
+					{
+						"name": "valueInSpecifiedUnits",
+						"type": "float",
+						"is_optional": false,
+						"description": ""
+					}
+				],
+				"description": "Reset the value as a number with an associated unitType, thereby replacing the values for all of the attributes on the object. Parametersunsigned short unitType The unit type for the value (e.g., SVG_ANGLETYPE_DEG). float valueInSpecifiedUnits The angle value.",
+				"type": "operation",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#newValueSpecifiedUnits",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tnewValueSpecifiedUnits ( unitType: unsigned short, valueInSpecifiedUnits: float )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tReset the value as a number with an associated unitType, thereby replacing the values for all of the attributes on the object. Parametersunsigned short unitType The unit type for the value (e.g., SVG_ANGLETYPE_DEG). float valueInSpecifiedUnits The angle value.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#newValueSpecifiedUnits\n\n*/"
+			}
+		],
+		[
+			"description-valueAsString\tSVGAngle",
+			{
+				"name": "valueAsString",
+				"return_type": "DOMString",
+				"description": "The value as a string value, in the units expressed by unitType. Setting this attribute will cause value, valueInSpecifiedUnits and unitType to be updated automatically to reflect this setting. Exceptions on settingDOMException, code SYNTAX_ERR Raised if the assigned string cannot be parsed as a valid <length>.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#valueAsString",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tvalueAsString\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe value as a string value, in the units expressed by unitType. Setting this attribute will cause value, valueInSpecifiedUnits and unitType to be updated automatically to reflect this setting. Exceptions on settingDOMException, code SYNTAX_ERR Raised if the assigned string cannot be parsed as a valid <length>.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#valueAsString\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ANGLETYPE_UNKNOWN\tSVGAngle",
+			{
+				"name": "SVG_ANGLETYPE_UNKNOWN",
+				"return_type": "const unsigned short",
+				"description": "The unit type is not one of predefined unit types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_UNKNOWN",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tSVG_ANGLETYPE_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe unit type is not one of predefined unit types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_UNKNOWN\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ANGLETYPE_UNSPECIFIED\tSVGAngle",
+			{
+				"name": "SVG_ANGLETYPE_UNSPECIFIED",
+				"return_type": "const unsigned short",
+				"description": "No unit type was provided (i.e., a unitless value was specified). For angles, a unitless value is treated the same as if degrees were specified.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_UNSPECIFIED",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tSVG_ANGLETYPE_UNSPECIFIED\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tNo unit type was provided (i.e., a unitless value was specified). For angles, a unitless value is treated the same as if degrees were specified.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_UNSPECIFIED\n\n*/"
+			}
+		],
+		[
+			"description-value\tSVGAngle",
+			{
+				"name": "value",
+				"return_type": "float",
+				"description": "The value of the given attribute. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#value",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tvalue\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe value of the given attribute. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#value\n\n*/"
+			}
+		],
+		[
+			"description-unitType\tSVGAngle",
+			{
+				"name": "unitType",
+				"return_type": "unsigned short",
+				"description": "The type of the value as specified by one of the SVG_LENGTHTYPE_* constants defined on this interface.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#unitType",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tunitType\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe type of the value as specified by one of the SVG_LENGTHTYPE_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#unitType\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ANGLETYPE_DEG\tSVGAngle",
+			{
+				"name": "SVG_ANGLETYPE_DEG",
+				"return_type": "const unsigned short",
+				"description": "The unit type was explicitly set to degrees.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_DEG",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tSVG_ANGLETYPE_DEG\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe unit type was explicitly set to degrees.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_DEG\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ANGLETYPE_GRAD\tSVGAngle",
+			{
+				"name": "SVG_ANGLETYPE_GRAD",
+				"return_type": "const unsigned short",
+				"description": "The unit type is radians.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_GRAD",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tSVG_ANGLETYPE_GRAD\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe unit type is radians.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_GRAD\n\n*/"
+			}
+		],
+		[
+			"description-SVG_ANGLETYPE_RAD\tSVGAngle",
+			{
+				"name": "SVG_ANGLETYPE_RAD",
+				"return_type": "const unsigned short",
+				"description": "The unit type is radians.",
+				"type": "property",
+				"url_doc": "http://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_RAD",
+				"full_description": "/*\n\n\tSVGAngle\n\n\tSVG_ANGLETYPE_RAD\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe unit type is radians.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAngle.html#SVG_ANGLETYPE_RAD\n\n*/"
+			}
+		]
+	]
+}

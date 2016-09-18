@@ -1,0 +1,33 @@
+{
+	"scope": "source.js",
+	"completions": [
+		[
+			"replaceState( data: any, title: DOMString, url?: DOMString ): void\tHistory",
+			"replaceState(${1:data: any}, ${2:title: DOMString}, ${3:url?: DOMString})"
+		],
+		[
+			"pushState( data: any, title: DOMString, url?: DOMString ): void\tHistory",
+			"pushState(${1:data: any}, ${2:title: DOMString}, ${3:url?: DOMString})"
+		],
+		[
+			"go( delta?: long ): void\tHistory",
+			"go(${1:delta?: long})"
+		],
+		[
+			"forward(): void\tHistory",
+			"forward()"
+		],
+		[
+			"length: long\tHistory",
+			"length"
+		],
+		[
+			"back(): void\tHistory",
+			"back()"
+		],
+		[
+			"state: any\tHistory",
+			"state"
+		]
+	]
+}
