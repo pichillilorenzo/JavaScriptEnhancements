@@ -1,5 +1,5 @@
 import subprocess
-import sys, imp, codecs
+import sys, imp, codecs, shlex
 import node_variables
 
 class NodeJS(object):
@@ -8,7 +8,14 @@ class NodeJS(object):
     js = ("'use strict'; " if strict_mode else "") + js
     eval_type = "--eval" if eval_type == "eval" else "--print"
 
-    p = subprocess.Popen([node_variables.NODE_JS_PATH_EXECUTABLE, eval_type, js],  shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    args = ""
+
+    if node_variables.NODE_JS_OS == 'win':
+      args = [node_variables.NODE_JS_PATH_EXECUTABLE, eval_type, js]
+    else :
+      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(eval_type)+" "+shlex.quote(js)
+
+    p = subprocess.Popen(args,  shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
@@ -28,7 +35,14 @@ class NodeJS(object):
 
   def getCurrentNodeJSVersion(self) :
 
-    p = subprocess.Popen([node_variables.NODE_JS_PATH_EXECUTABLE, '-v'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    args = ""
+
+    if node_variables.NODE_JS_OS == 'win':
+      args = [node_variables.NODE_JS_PATH_EXECUTABLE, "-v"]
+    else :
+      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" -v"
+
+    p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
