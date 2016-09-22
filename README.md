@@ -153,7 +153,7 @@ This options works also on multiple selections at once.
 
 Examples of usage:
 
-<img src="https://media.giphy.com/media/l3vRaIGOjaYzFf94I/giphy.gif" alt="example #1 Other Context menu option"> 
+<img src="https://media.giphy.com/media/3o7TKOwWEYUGPX4G6Q/giphy.gif" alt="example #1 Other Context menu option"> 
 
 <img id="context-menu-option-example-2" src="https://media.giphy.com/media/l3vR1DjPDWRFfl3LG/giphy.gif" alt="example #2 Other Context menu option"> 
 
