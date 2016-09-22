@@ -7,6 +7,7 @@
 				"name": "labels",
 				"return_type": "NodeList",
 				"description": "Labelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#labels",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\tlabels\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tLabelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#labels\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "optimum",
 				"return_type": "double",
 				"description": "The optimum IDL attribute, on getting, must return the optimum value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the optimum content attribute must be set to that string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#optimum",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\toptimum\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe optimum IDL attribute, on getting, must return the optimum value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the optimum content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#optimum\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "value",
 				"return_type": "double",
 				"description": "The value IDL attribute, on getting, must return the actual value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the value content attribute must be set to that string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#value",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\tvalue\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe value IDL attribute, on getting, must return the actual value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the value content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#value\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "high",
 				"return_type": "double",
 				"description": "The high IDL attribute, on getting, must return the high boundary. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the high content attribute must be set to that string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#high",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\thigh\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe high IDL attribute, on getting, must return the high boundary. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the high content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#high\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "max",
 				"return_type": "double",
 				"description": "The max IDL attribute, on getting, must return the maximum value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the max content attribute must be set to that string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#max",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\tmax\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe max IDL attribute, on getting, must return the maximum value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the max content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#max\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "min",
 				"return_type": "double",
 				"description": "The min IDL attribute, on getting, must return the minimum value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the min content attribute must be set to that string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#min",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\tmin\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe min IDL attribute, on getting, must return the minimum value. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the min content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#min\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "low",
 				"return_type": "double",
 				"description": "The low IDL attribute, on getting, must return the low boundary. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the low content attribute must be set to that string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMeterElement.html#low",
 				"full_description": "/*\n\n\tHTMLMeterElement\n\n\tlow\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe low IDL attribute, on getting, must return the low boundary. On setting, the given value must be converted to the best representation of the number as a floating-point number and then the low content attribute must be set to that string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMeterElement.html#low\n\n*/"

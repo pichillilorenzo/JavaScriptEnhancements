@@ -109,6 +109,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#subarray",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tsubarray ( start: long, end: long )\n\n\tReturn Type:\n\tFloat64Array\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#subarray\n\n*/"
@@ -134,6 +135,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#set",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tset ( index_array: any, value_offset?: any )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#set\n\n*/"
@@ -153,6 +155,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#get",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tget ( index: unsigned long )\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#get\n\n*/"
@@ -164,6 +167,7 @@
 				"name": "BYTES_PER_ELEMENT",
 				"return_type": "const long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#BYTES_PER_ELEMENT",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tBYTES_PER_ELEMENT\n\n\tReturn Type:\n\tconst long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#BYTES_PER_ELEMENT\n\n*/"
@@ -175,6 +179,7 @@
 				"name": "byteOffset",
 				"return_type": "unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#byteOffset",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tbyteOffset\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#byteOffset\n\n*/"
@@ -186,6 +191,7 @@
 				"name": "byteLength",
 				"return_type": "unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#byteLength",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tbyteLength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#byteLength\n\n*/"
@@ -197,6 +203,7 @@
 				"name": "length",
 				"return_type": "unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#length",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#length\n\n*/"
@@ -208,6 +215,7 @@
 				"name": "buffer",
 				"return_type": "ArrayBuffer",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20Float64Array.html#buffer",
 				"full_description": "/*\n\n\tFloat64Array\n\n\tbuffer\n\n\tReturn Type:\n\tArrayBuffer\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20Float64Array.html#buffer\n\n*/"

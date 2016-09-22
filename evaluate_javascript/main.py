@@ -62,6 +62,40 @@ if int(sublime.version()) >= 3000 :
   </style>
   """
 
+  gulp_js = ""
+  lines_js = ""
+
+  class testin_gulpCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+      global gulp_js
+      global lines_js
+      view = self.view
+      sel = view.sel()[0]
+      view.replace(edit, sel, gulp_js)
+
+
+  def testing(error, lines, data) :
+    global gulp_js
+    global lines_js
+    print(error, lines, data)
+    gulp_js = data
+    lines_js = lines
+    view = sublime.active_window().active_view()
+    view.run_command("testin_gulp")
+
+  class testCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+      from gulp.main import GulpJS
+
+      view = self.view
+      sel = view.sel()[0]
+      str_selected = view.substr(sel).strip()
+
+      gulp = GulpJS()
+      gulp.uglify(str_selected, testing)
+
   def action_result(action):
     global result_js
     global region_selected

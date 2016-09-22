@@ -7,6 +7,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The ASCII-encoded string in lower case representing the media type of the Blob. For File objects that are returned from the underlying file system, user agents must return the type of a Blob as an ASCII-encoded string in lower case, such that when it is converted to a corresponding byte sequence, it is a parsable MIME type [MIMESNIFF], or the empty string -- 0 bytes -- if the type cannot be determined.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#type",
 				"full_description": "/*\n\n\tBlob\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe ASCII-encoded string in lower case representing the media type of the Blob. For File objects that are returned from the underlying file system, user agents must return the type of a Blob as an ASCII-encoded string in lower case, such that when it is converted to a corresponding byte sequence, it is a parsable MIME type [MIMESNIFF], or the empty string -- 0 bytes -- if the type cannot be determined.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#type\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "size",
 				"return_type": "unsigned long long",
 				"description": "Returns the size of the Blob object in bytes. On getting, conforming user agents must return the total number of bytes that can be read by a FileReader or FileReaderSync object, or 0 if the Blob has no bytes to be read. If the Blob has been neutered with close called on it, then size must return 0.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#size",
 				"full_description": "/*\n\n\tBlob\n\n\tsize\n\n\tReturn Type:\n\tunsigned long long\n\n\tDescription:\n\tReturns the size of the Blob object in bytes. On getting, conforming user agents must return the total number of bytes that can be read by a FileReader or FileReaderSync object, or 0 if the Blob has no bytes to be read. If the Blob has been neutered with close called on it, then size must return 0.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#size\n\n*/"
@@ -30,6 +32,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Calling the close method must permanently neuter the original Blob object. This is an irreversible and non-idempotent operation; once a Blob has been neutered, it cannot be used again; dereferencing a Blob URL bound to a Blob object on which close has been called results in a network error.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#close",
 				"full_description": "/*\n\n\tBlob\n\n\tclose ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCalling the close method must permanently neuter the original Blob object. This is an irreversible and non-idempotent operation; once a Blob has been neutered, it cannot be used again; dereferencing a Blob URL bound to a Blob object on which close has been called results in a network error.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#close\n\n*/"
@@ -61,6 +64,7 @@
 					}
 				],
 				"description": "The slice method returns a new Blob object with bytes ranging from the optional start parameter upto but not including the optional end parameter, and with a type attribute that is the value of the optional contentType parameter.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/File%20API%20-%20Blob.html#slice",
 				"full_description": "/*\n\n\tBlob\n\n\tslice ( start?: long long, end?: long long, contentType?: DOMString )\n\n\tReturn Type:\n\tBlob\n\n\tDescription:\n\tThe slice method returns a new Blob object with bytes ranging from the optional start parameter upto but not including the optional end parameter, and with a type attribute that is the value of the optional contentType parameter.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20Blob.html#slice\n\n*/"

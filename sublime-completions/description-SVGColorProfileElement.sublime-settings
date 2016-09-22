@@ -7,6 +7,7 @@
 				"name": "renderingIntent",
 				"return_type": "unsigned short",
 				"description": "Corresponds to attribute ‘rendering-intent’ on the given element. The value of this attribute is the value of the the RENDERING_INTENT_* constant defined on SVGRenderingIntent that corresponds to the value of the ‘rendering-intent’ attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#renderingIntent",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\trenderingIntent\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tCorresponds to attribute ‘rendering-intent’ on the given element. The value of this attribute is the value of the the RENDERING_INTENT_* constant defined on SVGRenderingIntent that corresponds to the value of the ‘rendering-intent’ attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#renderingIntent\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "RENDERING_INTENT_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_UNKNOWN",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tRENDERING_INTENT_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_UNKNOWN\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "RENDERING_INTENT_ABSOLUTE_COLORIMETRIC",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'absolute-colorimetric'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_ABSOLUTE_COLORIMETRIC",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tRENDERING_INTENT_ABSOLUTE_COLORIMETRIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'absolute-colorimetric'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_ABSOLUTE_COLORIMETRIC\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "RENDERING_INTENT_RELATIVE_COLORIMETRIC",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'relative-colorimetric'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_RELATIVE_COLORIMETRIC",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tRENDERING_INTENT_RELATIVE_COLORIMETRIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'relative-colorimetric'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_RELATIVE_COLORIMETRIC\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "RENDERING_INTENT_PERCEPTUAL",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'perceptual'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_PERCEPTUAL",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tRENDERING_INTENT_PERCEPTUAL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'perceptual'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_PERCEPTUAL\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "RENDERING_INTENT_SATURATION",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'saturation'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_SATURATION",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tRENDERING_INTENT_SATURATION\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'saturation'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_SATURATION\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "RENDERING_INTENT_AUTO",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'auto'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_AUTO",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tRENDERING_INTENT_AUTO\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'auto'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#RENDERING_INTENT_AUTO\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "href",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#href",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#href\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "local",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘local’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#local",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tlocal\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘local’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#local\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘name’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGColorProfileElement.html#name",
 				"full_description": "/*\n\n\tSVGColorProfileElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘name’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGColorProfileElement.html#name\n\n*/"

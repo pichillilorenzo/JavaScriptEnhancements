@@ -40,6 +40,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#slice",
 				"full_description": "/*\n\n\tArrayBuffer\n\n\tslice ( begin: long, end?: long )\n\n\tReturn Type:\n\tArrayBuffer\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#slice\n\n*/"
@@ -49,7 +50,7 @@
 			"description-ArrayBuffer.isView\tArrayBuffer",
 			{
 				"name": "isView",
-				"return_type": "static boolean",
+				"return_type": "boolean",
 				"parameters": [
 					{
 						"name": "value",
@@ -59,9 +60,10 @@
 					}
 				],
 				"description": "",
+				"is_static": true,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#isView",
-				"full_description": "/*\n\n\tArrayBuffer\n\n\tisView ( value: any )\n\n\tReturn Type:\n\tstatic boolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#isView\n\n*/"
+				"full_description": "/*\n\n\tArrayBuffer\n\n\tisView ( value: any )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#isView\n\n*/"
 			}
 		],
 		[
@@ -70,6 +72,7 @@
 				"name": "byteLength",
 				"return_type": "unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#byteLength",
 				"full_description": "/*\n\n\tArrayBuffer\n\n\tbyteLength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Typed%20Arrays%20-%20ArrayBuffer.html#byteLength\n\n*/"

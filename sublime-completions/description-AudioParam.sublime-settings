@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#exponentialRampToValueAtTime",
 				"full_description": "/*\n\n\tAudioParam\n\n\texponentialRampToValueAtTime ( value: float, endTime: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#exponentialRampToValueAtTime\n\n*/"
@@ -52,6 +53,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#setTargetAtTime",
 				"full_description": "/*\n\n\tAudioParam\n\n\tsetTargetAtTime ( target: float, startTime: double, timeConstant: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#setTargetAtTime\n\n*/"
@@ -77,6 +79,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#linearRampToValueAtTime",
 				"full_description": "/*\n\n\tAudioParam\n\n\tlinearRampToValueAtTime ( value: float, endTime: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#linearRampToValueAtTime\n\n*/"
@@ -96,6 +99,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#cancelScheduledValues",
 				"full_description": "/*\n\n\tAudioParam\n\n\tcancelScheduledValues ( startTime: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#cancelScheduledValues\n\n*/"
@@ -121,6 +125,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#setValueAtTime",
 				"full_description": "/*\n\n\tAudioParam\n\n\tsetValueAtTime ( value: float, startTime: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#setValueAtTime\n\n*/"
@@ -152,6 +157,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "Typed Arrays - Float32Array.html",
 				"full_description": "/*\n\n\tAudioParam\n\n\tsetValueCurveAtTime ( values: Float32Array, startTime: double, duration: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\tTyped Arrays - Float32Array.html\n\n*/"
@@ -163,6 +169,7 @@
 				"name": "defaultValue",
 				"return_type": "float",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#defaultValue",
 				"full_description": "/*\n\n\tAudioParam\n\n\tdefaultValue\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#defaultValue\n\n*/"
@@ -174,6 +181,7 @@
 				"name": "value",
 				"return_type": "float",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioParam.html#value",
 				"full_description": "/*\n\n\tAudioParam\n\n\tvalue\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioParam.html#value\n\n*/"

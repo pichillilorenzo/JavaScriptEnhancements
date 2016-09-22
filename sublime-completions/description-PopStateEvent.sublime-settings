@@ -7,6 +7,7 @@
 				"name": "state",
 				"return_type": "any",
 				"description": "The state attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the context information for the event, or null, if the state represented is the initial state of the Document.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20PopStateEvent.html#state",
 				"full_description": "/*\n\n\tPopStateEvent\n\n\tstate\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe state attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the context information for the event, or null, if the state represented is the initial state of the Document.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20PopStateEvent.html#state\n\n*/"

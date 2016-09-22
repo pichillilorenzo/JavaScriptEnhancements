@@ -7,6 +7,7 @@
 				"name": "attributeNamespace",
 				"return_type": "DOMString",
 				"description": "The previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#attributeNamespace",
 				"full_description": "/*\n\n\tMutationRecord\n\n\tattributeNamespace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#attributeNamespace\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "attributeName",
 				"return_type": "DOMString",
 				"description": "The previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#attributeName",
 				"full_description": "/*\n\n\tMutationRecord\n\n\tattributeName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#attributeName\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "previousSibling",
 				"return_type": "Node",
 				"description": "The previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#previousSibling",
 				"full_description": "/*\n\n\tMutationRecord\n\n\tpreviousSibling\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#previousSibling\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "nextSibling",
 				"return_type": "Node",
 				"description": "The previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#nextSibling",
 				"full_description": "/*\n\n\tMutationRecord\n\n\tnextSibling\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#nextSibling\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "oldValue",
 				"return_type": "DOMString",
 				"description": "The previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#oldValue",
 				"full_description": "/*\n\n\tMutationRecord\n\n\toldValue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe previousSibling, nextSibling, attributeName, attributeNamespace, and oldValue attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#oldValue\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "removedNodes",
 				"return_type": "NodeList",
 				"description": "The addedNodes and removedNodes attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must both be initialized to an empty NodeList.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#removedNodes",
 				"full_description": "/*\n\n\tMutationRecord\n\n\tremovedNodes\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe addedNodes and removedNodes attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must both be initialized to an empty NodeList.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#removedNodes\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "addedNodes",
 				"return_type": "NodeList",
 				"description": "The addedNodes and removedNodes attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must both be initialized to an empty NodeList.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#addedNodes",
 				"full_description": "/*\n\n\tMutationRecord\n\n\taddedNodes\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe addedNodes and removedNodes attributes must return the values they were initialized to. Unless stated otherwise, when a MutationRecord object is created, they must both be initialized to an empty NodeList.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#addedNodes\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The type and target attributes must return the values they were initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#type",
 				"full_description": "/*\n\n\tMutationRecord\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type and target attributes must return the values they were initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#type\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "target",
 				"return_type": "Node",
 				"description": "The type and target attributes must return the values they were initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationRecord.html#target",
 				"full_description": "/*\n\n\tMutationRecord\n\n\ttarget\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe type and target attributes must return the values they were initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationRecord.html#target\n\n*/"

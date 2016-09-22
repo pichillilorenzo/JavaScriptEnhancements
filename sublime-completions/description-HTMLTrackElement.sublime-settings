@@ -7,6 +7,7 @@
 				"name": "srclang",
 				"return_type": "DOMString",
 				"description": "The src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#srclang",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tsrclang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#srclang\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "default",
 				"return_type": "boolean",
 				"description": "The src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#default",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tdefault\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#default\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "label",
 				"return_type": "DOMString",
 				"description": "The src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#label",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tlabel\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#label\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "kind",
 				"return_type": "DOMString",
 				"description": "The src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#kind",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tkind\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#kind\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "src",
 				"return_type": "DOMString",
 				"description": "The src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#src",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tsrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe src, srclang, label, and default IDL attributes must reflect the respective content attributes of the same name. The kind IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#src\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "track",
 				"return_type": "TextTrack",
 				"description": "The track IDL attribute must, on getting, return the track element's text track's corresponding TextTrack object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#track",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\ttrack\n\n\tReturn Type:\n\tTextTrack\n\n\tDescription:\n\tThe track IDL attribute must, on getting, return the track element's text track's corresponding TextTrack object.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#track\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "readyState",
 				"return_type": "unsigned short",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-track-readystate",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\treadyState\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-track-readystate\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "ERROR",
 				"return_type": "const unsigned short",
 				"description": "The text track failed to load state.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#ERROR",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tERROR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe text track failed to load state.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#ERROR\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "LOADING",
 				"return_type": "const unsigned short",
 				"description": "The text track loading state.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#LOADING",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tLOADING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe text track loading state.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#LOADING\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "LOADED",
 				"return_type": "const unsigned short",
 				"description": "The text track loaded state.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#LOADED",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tLOADED\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe text track loaded state.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#LOADED\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "NONE",
 				"return_type": "const unsigned short",
 				"description": "The text track not loaded state.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLTrackElement.html#NONE",
 				"full_description": "/*\n\n\tHTMLTrackElement\n\n\tNONE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe text track not loaded state.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLTrackElement.html#NONE\n\n*/"

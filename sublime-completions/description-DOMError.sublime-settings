@@ -7,6 +7,7 @@
 				"name": "message",
 				"return_type": "DOMString",
 				"description": "The message attribute must return the value it was initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20DOMError.html#message",
 				"full_description": "/*\n\n\tDOMError\n\n\tmessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe message attribute must return the value it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DOMError.html#message\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "The name attribute must return the value it was initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20DOMError.html#name",
 				"full_description": "/*\n\n\tDOMError\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name attribute must return the value it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DOMError.html#name\n\n*/"

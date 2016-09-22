@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "The setSelectionRange(start, end, direction) method must set the selection of the text field to the sequence of characters starting with the character at the startth position (in logical order) and ending with the character at the (end-1)th position. Arguments greater than the length of the value of the text field must be treated as pointing at the end of the text field.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#setSelectionRange",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tsetSelectionRange ( start: unsigned long, end: unsigned long, direction?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setSelectionRange(start, end, direction) method must set the selection of the text field to the sequence of characters starting with the character at the startth position (in logical order) and ending with the character at the (end-1)th position. Arguments greater than the length of the value of the text field must be treated as pointing at the end of the text field.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#setSelectionRange\n\n*/"
@@ -39,6 +40,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "When the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#reportValidity",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\treportValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#reportValidity\n\n*/"
@@ -51,6 +53,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The select() method must cause the contents of the text field to be fully selected, with the selection direction being none, if the platform support selections with the direction none, or otherwise forward. The user agent must then queue a task to fire a simple event that bubbles named select at the element, using the user interaction task source as the task source.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#select",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tselect ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe select() method must cause the contents of the text field to be fully selected, with the selection direction being none, if the platform support selections with the direction none, or otherwise forward. The user agent must then queue a task to fire a simple event that bubbles named select at the element, using the user interaction task source as the task source.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#select\n\n*/"
@@ -62,6 +65,7 @@
 				"name": "validationMessage",
 				"return_type": "DOMString",
 				"description": "The validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#validationMessage",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalidationMessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#validationMessage\n\n*/"
@@ -73,6 +77,7 @@
 				"name": "height",
 				"return_type": "unsigned long",
 				"description": "The IDL attributes width and height must return the rendered width and height of the image, in CSS pixels, if an image is being rendered, and is being rendered to a visual medium; or else the intrinsic width and height of the image, in CSS pixels, if an image is available but not being rendered to a visual medium; or else 0, if no image is available.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#height",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\theight\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe IDL attributes width and height must return the rendered width and height of the image, in CSS pixels, if an image is being rendered, and is being rendered to a visual medium; or else the intrinsic width and height of the image, in CSS pixels, if an image is available but not being rendered to a visual medium; or else 0, if no image is available.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#height\n\n*/"
@@ -84,6 +89,7 @@
 				"name": "width",
 				"return_type": "unsigned long",
 				"description": "The IDL attributes width and height must return the rendered width and height of the image, in CSS pixels, if an image is being rendered, and is being rendered to a visual medium; or else the intrinsic width and height of the image, in CSS pixels, if an image is available but not being rendered to a visual medium; or else 0, if no image is available.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#width",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\twidth\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe IDL attributes width and height must return the rendered width and height of the image, in CSS pixels, if an image is being rendered, and is being rendered to a visual medium; or else the intrinsic width and height of the image, in CSS pixels, if an image is available but not being rendered to a visual medium; or else 0, if no image is available.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#width\n\n*/"
@@ -95,6 +101,7 @@
 				"name": "inputMode",
 				"return_type": "DOMString",
 				"description": "The type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#inputMode",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tinputMode\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#inputMode\n\n*/"
@@ -106,6 +113,7 @@
 				"name": "minLength",
 				"return_type": "long",
 				"description": "The type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#minLength",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tminLength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#minLength\n\n*/"
@@ -117,6 +125,7 @@
 				"name": "maxLength",
 				"return_type": "long",
 				"description": "The type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#maxLength",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tmaxLength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#maxLength\n\n*/"
@@ -128,6 +137,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#type",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type IDL attribute must reflect the respective content attribute of the same name, limited to only known values. The inputMode IDL attribute must reflect the inputmode content attribute, limited to only known values. The maxLength IDL attribute must reflect the maxlength content attribute, limited to only non-negative numbers.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#type\n\n*/"
@@ -139,6 +149,7 @@
 				"name": "defaultChecked",
 				"return_type": "boolean",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#defaultChecked",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tdefaultChecked\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#defaultChecked\n\n*/"
@@ -150,6 +161,7 @@
 				"name": "defaultValue",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#defaultValue",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tdefaultValue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#defaultValue\n\n*/"
@@ -161,6 +173,7 @@
 				"name": "placeholder",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#placeholder",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tplaceholder\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#placeholder\n\n*/"
@@ -172,6 +185,7 @@
 				"name": "formNoValidate",
 				"return_type": "boolean",
 				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#formNoValidate",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tformNoValidate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#formNoValidate\n\n*/"
@@ -183,6 +197,7 @@
 				"name": "selectionStart",
 				"return_type": "unsigned long",
 				"description": "The selectionStart attribute must, on getting, return the offset (in logical order) to the character that immediately follows the start of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#selectionStart",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tselectionStart\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe selectionStart attribute must, on getting, return the offset (in logical order) to the character that immediately follows the start of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#selectionStart\n\n*/"
@@ -194,6 +209,7 @@
 				"name": "readOnly",
 				"return_type": "boolean",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#readOnly",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\treadOnly\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#readOnly\n\n*/"
@@ -205,6 +221,7 @@
 				"name": "required",
 				"return_type": "boolean",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#required",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\trequired\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#required\n\n*/"
@@ -216,6 +233,7 @@
 				"name": "multiple",
 				"return_type": "boolean",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#multiple",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tmultiple\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#multiple\n\n*/"
@@ -227,6 +245,7 @@
 				"name": "dirName",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#dirName",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tdirName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#dirName\n\n*/"
@@ -238,6 +257,7 @@
 				"name": "pattern",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#pattern",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tpattern\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#pattern\n\n*/"
@@ -249,6 +269,7 @@
 				"name": "size",
 				"return_type": "unsigned long",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#size",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tsize\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#size\n\n*/"
@@ -260,6 +281,7 @@
 				"name": "formEnctype",
 				"return_type": "DOMString",
 				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#formEnctype",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tformEnctype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#formEnctype\n\n*/"
@@ -271,6 +293,7 @@
 				"name": "accept",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#accept",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\taccept\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#accept\n\n*/"
@@ -282,6 +305,7 @@
 				"name": "formTarget",
 				"return_type": "DOMString",
 				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#formTarget",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tformTarget\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#formTarget\n\n*/"
@@ -293,6 +317,7 @@
 				"name": "formAction",
 				"return_type": "DOMString",
 				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#formAction",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tformAction\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#formAction\n\n*/"
@@ -304,6 +329,7 @@
 				"name": "formMethod",
 				"return_type": "DOMString",
 				"description": "The action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#formMethod",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tformMethod\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe action IDL attribute must reflect the content attribute of the same name, except that on getting, when the content attribute is missing or its value is the empty string, the document's address must be returned instead. The target IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#formMethod\n\n*/"
@@ -315,6 +341,7 @@
 				"name": "step",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#step",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tstep\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#step\n\n*/"
@@ -326,6 +353,7 @@
 				"name": "selectionEnd",
 				"return_type": "unsigned long",
 				"description": "The selectionEnd attribute must, on getting, return the offset (in logical order) to the character that immediately follows the end of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#selectionEnd",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tselectionEnd\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe selectionEnd attribute must, on getting, return the offset (in logical order) to the character that immediately follows the end of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#selectionEnd\n\n*/"
@@ -337,6 +365,7 @@
 				"name": "alt",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#alt",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\talt\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#alt\n\n*/"
@@ -348,6 +377,7 @@
 				"name": "max",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#max",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tmax\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#max\n\n*/"
@@ -359,6 +389,7 @@
 				"name": "src",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#src",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tsrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#src\n\n*/"
@@ -370,6 +401,7 @@
 				"name": "min",
 				"return_type": "DOMString",
 				"description": "The accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#min",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tmin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe accept, alt, max, min, multiple, pattern, placeholder, required, size, src, and step IDL attributes must reflect the respective content attributes of the same name. The dirName IDL attribute must reflect the dirname content attribute. The readOnly IDL attribute must reflect the readonly content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#min\n\n*/"
@@ -382,6 +414,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "When the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#checkValidity",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tcheckValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#checkValidity\n\n*/"
@@ -393,6 +426,7 @@
 				"name": "labels",
 				"return_type": "NodeList",
 				"description": "Labelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#labels",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tlabels\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tLabelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#labels\n\n*/"
@@ -404,6 +438,7 @@
 				"name": "indeterminate",
 				"return_type": "boolean",
 				"description": "The indeterminate IDL attribute must initially be set to false. On getting, it must return the last value it was set to. On setting, it must be set to the new value. It has no effect except for changing the appearance of checkbox controls.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#indeterminate",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tindeterminate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe indeterminate IDL attribute must initially be set to false. On getting, it must return the last value it was set to. On setting, it must be set to the new value. It has no effect except for changing the appearance of checkbox controls.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#indeterminate\n\n*/"
@@ -415,6 +450,7 @@
 				"name": "selectionDirection",
 				"return_type": "DOMString",
 				"description": "The selectionDirection attribute must, on getting, return the string corresponding to the current selection direction: if the direction is forward, \"forward\"; if the direction is backward, \"backward\"; and otherwise, \"none\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#selectionDirection",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tselectionDirection\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe selectionDirection attribute must, on getting, return the string corresponding to the current selection direction: if the direction is forward, \"forward\"; if the direction is backward, \"backward\"; and otherwise, \"none\".\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#selectionDirection\n\n*/"
@@ -426,6 +462,7 @@
 				"name": "validity",
 				"return_type": "ValidityState",
 				"description": "The validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#validity",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalidity\n\n\tReturn Type:\n\tValidityState\n\n\tDescription:\n\tThe validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#validity\n\n*/"
@@ -437,6 +474,7 @@
 				"name": "willValidate",
 				"return_type": "boolean",
 				"description": "The willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#willValidate",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\twillValidate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#willValidate\n\n*/"
@@ -448,6 +486,7 @@
 				"name": "autocomplete",
 				"return_type": "DOMString",
 				"description": "The autocomplete IDL attribute, on getting, must return the element's IDL-exposed autofill value, and on setting, must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#autocomplete",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tautocomplete\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe autocomplete IDL attribute, on getting, must return the element's IDL-exposed autofill value, and on setting, must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#autocomplete\n\n*/"
@@ -485,6 +524,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#dom-textarea/input-setrangetext",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tsetRangeText ( replacement: DOMString, start?: unsigned long, end?: unsigned long, selectionMode?: SelectionMode )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#dom-textarea/input-setrangetext\n\n*/"
@@ -504,6 +544,7 @@
 					}
 				],
 				"description": "The setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#setCustomValidity",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tsetCustomValidity ( error: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#setCustomValidity\n\n*/"
@@ -515,6 +556,7 @@
 				"name": "form",
 				"return_type": "HTMLFormElement",
 				"description": "Reassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#form",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tReassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#form\n\n*/"
@@ -526,6 +568,7 @@
 				"name": "autofocus",
 				"return_type": "boolean",
 				"description": "The autofocus IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#autofocus",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tautofocus\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe autofocus IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#autofocus\n\n*/"
@@ -537,6 +580,7 @@
 				"name": "disabled",
 				"return_type": "boolean",
 				"description": "The disabled IDL attribute must reflect the disabled content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#disabled",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tdisabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe disabled IDL attribute must reflect the disabled content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#disabled\n\n*/"
@@ -548,6 +592,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "The name IDL attribute must reflect the name content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#name",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name IDL attribute must reflect the name content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#name\n\n*/"
@@ -559,6 +604,7 @@
 				"name": "valueAsNumber",
 				"return_type": "unrestricted double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#valueAsNumber",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalueAsNumber\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#valueAsNumber\n\n*/"
@@ -578,6 +624,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#stepDown",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tstepDown ( n?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#stepDown\n\n*/"
@@ -597,6 +644,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#stepUp",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tstepUp ( n?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#stepUp\n\n*/"
@@ -608,6 +656,7 @@
 				"name": "valueAsDate",
 				"return_type": "Date",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#valueAsDate",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalueAsDate\n\n\tReturn Type:\n\tDate\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#valueAsDate\n\n*/"
@@ -619,6 +668,7 @@
 				"name": "valueHigh",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#valueHigh",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalueHigh\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#valueHigh\n\n*/"
@@ -630,6 +680,7 @@
 				"name": "valueLow",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#valueLow",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalueLow\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#valueLow\n\n*/"
@@ -641,6 +692,7 @@
 				"name": "checked",
 				"return_type": "boolean",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#checked",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tchecked\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#checked\n\n*/"
@@ -652,6 +704,7 @@
 				"name": "list",
 				"return_type": "HTMLElement",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#list",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tlist\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#list\n\n*/"
@@ -663,6 +716,7 @@
 				"name": "value",
 				"return_type": "DOMString",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#value",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tvalue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#value\n\n*/"
@@ -674,6 +728,7 @@
 				"name": "files",
 				"return_type": "FileList",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLInputElement.html#files",
 				"full_description": "/*\n\n\tHTMLInputElement\n\n\tfiles\n\n\tReturn Type:\n\tFileList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLInputElement.html#files\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#height",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#height\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#width",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#width\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#y",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#y\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#x",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#x\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "SVG_EDGEMODE_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_UNKNOWN",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tSVG_EDGEMODE_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_UNKNOWN\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "edgeMode",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘edgeMode’ on the given ‘feConvolveMatrix’ element. Takes one of the SVG_EDGEMODE_* constants defined on this interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#edgeMode",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tedgeMode\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘edgeMode’ on the given ‘feConvolveMatrix’ element. Takes one of the SVG_EDGEMODE_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#edgeMode\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "kernelUnitLengthX",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#kernelUnitLengthX",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tkernelUnitLengthX\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#kernelUnitLengthX\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "kernelUnitLengthY",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#kernelUnitLengthY",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tkernelUnitLengthY\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘kernelUnitLength’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#kernelUnitLengthY\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "preserveAlpha",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘preserveAlpha’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#preserveAlpha",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tpreserveAlpha\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘preserveAlpha’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#preserveAlpha\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "kernelMatrix",
 				"return_type": "SVGAnimatedNumberList",
 				"description": "Corresponds to attribute ‘kernelMatrix’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#kernelMatrix",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tkernelMatrix\n\n\tReturn Type:\n\tSVGAnimatedNumberList\n\n\tDescription:\n\tCorresponds to attribute ‘kernelMatrix’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#kernelMatrix\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "targetY",
 				"return_type": "SVGAnimatedInteger",
 				"description": "Corresponds to attribute ‘targetY’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#targetY",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\ttargetY\n\n\tReturn Type:\n\tSVGAnimatedInteger\n\n\tDescription:\n\tCorresponds to attribute ‘targetY’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#targetY\n\n*/"
@@ -128,6 +139,7 @@
 				"name": "targetX",
 				"return_type": "SVGAnimatedInteger",
 				"description": "Corresponds to attribute ‘targetX’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#targetX",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\ttargetX\n\n\tReturn Type:\n\tSVGAnimatedInteger\n\n\tDescription:\n\tCorresponds to attribute ‘targetX’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#targetX\n\n*/"
@@ -139,6 +151,7 @@
 				"name": "divisor",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘divisor’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#divisor",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tdivisor\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘divisor’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#divisor\n\n*/"
@@ -150,6 +163,7 @@
 				"name": "orderX",
 				"return_type": "SVGAnimatedInteger",
 				"description": "Corresponds to attribute ‘order’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#orderX",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\torderX\n\n\tReturn Type:\n\tSVGAnimatedInteger\n\n\tDescription:\n\tCorresponds to attribute ‘order’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#orderX\n\n*/"
@@ -161,6 +175,7 @@
 				"name": "orderY",
 				"return_type": "SVGAnimatedInteger",
 				"description": "Corresponds to attribute ‘order’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#orderY",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\torderY\n\n\tReturn Type:\n\tSVGAnimatedInteger\n\n\tDescription:\n\tCorresponds to attribute ‘order’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#orderY\n\n*/"
@@ -172,6 +187,7 @@
 				"name": "SVG_EDGEMODE_DUPLICATE",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'duplicate'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_DUPLICATE",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tSVG_EDGEMODE_DUPLICATE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'duplicate'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_DUPLICATE\n\n*/"
@@ -183,6 +199,7 @@
 				"name": "bias",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘bias’ on the given ‘feConvolveMatrix’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#bias",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tbias\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘bias’ on the given ‘feConvolveMatrix’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#bias\n\n*/"
@@ -194,6 +211,7 @@
 				"name": "result",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#result",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#result\n\n*/"
@@ -205,6 +223,7 @@
 				"name": "in1",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#in1",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#in1\n\n*/"
@@ -216,6 +235,7 @@
 				"name": "SVG_EDGEMODE_NONE",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'none'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_NONE",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tSVG_EDGEMODE_NONE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'none'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_NONE\n\n*/"
@@ -227,6 +247,7 @@
 				"name": "SVG_EDGEMODE_WRAP",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'wrap'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_WRAP",
 				"full_description": "/*\n\n\tSVGFEConvolveMatrixElement\n\n\tSVG_EDGEMODE_WRAP\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'wrap'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEConvolveMatrixElement.html#SVG_EDGEMODE_WRAP\n\n*/"

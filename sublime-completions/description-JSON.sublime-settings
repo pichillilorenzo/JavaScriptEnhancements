@@ -5,7 +5,7 @@
 			"description-JSON.stringify\tJSON",
 			{
 				"name": "stringify",
-				"return_type": "static string",
+				"return_type": "string",
 				"parameters": [
 					{
 						"name": "value",
@@ -27,16 +27,17 @@
 					}
 				],
 				"description": "The stringify function returns a String in JSON format representing an ECMAScript value. It can take three parameters. The first parameter is required. The value parameter is an ECMAScript value, which is usually an object or array, although it can also be a String, Boolean, Number or null.",
+				"is_static": true,
 				"type": "operation",
 				"url_doc": "http://html5index.org/ECMAScript%20-%20JSON.html#stringify",
-				"full_description": "/*\n\n\tJSON\n\n\tstringify ( value: any, replacer?: any, space?: any )\n\n\tReturn Type:\n\tstatic string\n\n\tDescription:\n\tThe stringify function returns a String in JSON format representing an ECMAScript value. It can take three parameters. The first parameter is required. The value parameter is an ECMAScript value, which is usually an object or array, although it can also be a String, Boolean, Number or null.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20JSON.html#stringify\n\n*/"
+				"full_description": "/*\n\n\tJSON\n\n\tstringify ( value: any, replacer?: any, space?: any )\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe stringify function returns a String in JSON format representing an ECMAScript value. It can take three parameters. The first parameter is required. The value parameter is an ECMAScript value, which is usually an object or array, although it can also be a String, Boolean, Number or null.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20JSON.html#stringify\n\n*/"
 			}
 		],
 		[
 			"description-JSON.parse\tJSON",
 			{
 				"name": "parse",
-				"return_type": "static any",
+				"return_type": "any",
 				"parameters": [
 					{
 						"name": "json",
@@ -46,9 +47,10 @@
 					}
 				],
 				"description": "The parse function parses a JSON text (a JSON-formatted String) and produces an ECMAScript value. The JSON format is a restricted form of ECMAScript literal. JSON objects are realized as ECMAScript objects. JSON arrays are realized as ECMAScript arrays.",
+				"is_static": true,
 				"type": "operation",
 				"url_doc": "http://html5index.org/ECMAScript%20-%20JSON.html#parse",
-				"full_description": "/*\n\n\tJSON\n\n\tparse ( json: string )\n\n\tReturn Type:\n\tstatic any\n\n\tDescription:\n\tThe parse function parses a JSON text (a JSON-formatted String) and produces an ECMAScript value. The JSON format is a restricted form of ECMAScript literal. JSON objects are realized as ECMAScript objects. JSON arrays are realized as ECMAScript arrays.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20JSON.html#parse\n\n*/"
+				"full_description": "/*\n\n\tJSON\n\n\tparse ( json: string )\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe parse function parses a JSON text (a JSON-formatted String) and produces an ECMAScript value. The JSON format is a restricted form of ECMAScript literal. JSON objects are realized as ECMAScript objects. JSON arrays are realized as ECMAScript arrays.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20JSON.html#parse\n\n*/"
 			}
 		]
 	]

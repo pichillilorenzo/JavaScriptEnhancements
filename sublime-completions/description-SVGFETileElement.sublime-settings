@@ -7,6 +7,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFETileElement.html#height",
 				"full_description": "/*\n\n\tSVGFETileElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFETileElement.html#height\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFETileElement.html#width",
 				"full_description": "/*\n\n\tSVGFETileElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFETileElement.html#width\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFETileElement.html#x",
 				"full_description": "/*\n\n\tSVGFETileElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFETileElement.html#x\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFETileElement.html#y",
 				"full_description": "/*\n\n\tSVGFETileElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFETileElement.html#y\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "in1",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFETileElement.html#in1",
 				"full_description": "/*\n\n\tSVGFETileElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFETileElement.html#in1\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "result",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFETileElement.html#result",
 				"full_description": "/*\n\n\tSVGFETileElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFETileElement.html#result\n\n*/"

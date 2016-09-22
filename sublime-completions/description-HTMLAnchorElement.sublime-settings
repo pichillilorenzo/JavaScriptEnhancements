@@ -7,6 +7,7 @@
 				"name": "text",
 				"return_type": "DOMString",
 				"description": "The text IDL attribute, on getting, must return the same value as the textContent IDL attribute on the element, and on setting, must act as if the textContent IDL attribute on the element had been set to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#text",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\ttext\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe text IDL attribute, on getting, must return the same value as the textContent IDL attribute on the element, and on setting, must act as if the textContent IDL attribute on the element had been set to the new value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#text\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "ping",
 				"return_type": "DOMSettableTokenList",
 				"description": "The IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#ping",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\tping\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\tThe IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#ping\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "download",
 				"return_type": "DOMString",
 				"description": "The IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#download",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\tdownload\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#download\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "hreflang",
 				"return_type": "DOMString",
 				"description": "The IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#hreflang",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\threflang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#hreflang\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "target",
 				"return_type": "DOMString",
 				"description": "The IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#target",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\ttarget\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#target\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#type",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#type\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "rel",
 				"return_type": "DOMString",
 				"description": "The IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#rel",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\trel\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes download, ping, target, rel, hreflang, and type, must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#rel\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "relList",
 				"return_type": "DOMTokenList",
 				"description": "The IDL attribute relList must reflect the rel content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLAnchorElement.html#relList",
 				"full_description": "/*\n\n\tHTMLAnchorElement\n\n\trelList\n\n\tReturn Type:\n\tDOMTokenList\n\n\tDescription:\n\tThe IDL attribute relList must reflect the rel content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLAnchorElement.html#relList\n\n*/"

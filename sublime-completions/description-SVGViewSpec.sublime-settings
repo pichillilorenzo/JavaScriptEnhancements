@@ -7,6 +7,7 @@
 				"name": "preserveAspectRatio",
 				"return_type": "SVGAnimatedPreserveAspectRatio",
 				"description": "Corresponds to attribute ‘preserveAspectRatio’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#preserveAspectRatio",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\tpreserveAspectRatio\n\n\tReturn Type:\n\tSVGAnimatedPreserveAspectRatio\n\n\tDescription:\n\tCorresponds to attribute ‘preserveAspectRatio’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#preserveAspectRatio\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "preserveAspectRatioString",
 				"return_type": "DOMString",
 				"description": "Corresponds to the preserveAspectRatio setting on the SVG View Specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#preserveAspectRatioString",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\tpreserveAspectRatioString\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to the preserveAspectRatio setting on the SVG View Specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#preserveAspectRatioString\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "viewTargetString",
 				"return_type": "DOMString",
 				"description": "Corresponds to the viewTarget setting on the SVG View Specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#viewTargetString",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\tviewTargetString\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to the viewTarget setting on the SVG View Specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#viewTargetString\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "transformString",
 				"return_type": "DOMString",
 				"description": "Corresponds to the transform setting on the SVG View Specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#transformString",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\ttransformString\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to the transform setting on the SVG View Specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#transformString\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "viewBoxString",
 				"return_type": "DOMString",
 				"description": "Corresponds to the viewBox setting on the SVG View Specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#viewBoxString",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\tviewBoxString\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to the viewBox setting on the SVG View Specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#viewBoxString\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "viewTarget",
 				"return_type": "SVGElement",
 				"description": "Corresponds to the viewTarget setting on the SVG View Specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#viewTarget",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\tviewTarget\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tCorresponds to the viewTarget setting on the SVG View Specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#viewTarget\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "transform",
 				"return_type": "SVGTransformList",
 				"description": "Corresponds to attribute ‘transform’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#transform",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\ttransform\n\n\tReturn Type:\n\tSVGTransformList\n\n\tDescription:\n\tCorresponds to attribute ‘transform’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#transform\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "viewBox",
 				"return_type": "SVGAnimatedRect",
 				"description": "Corresponds to attribute ‘viewBox’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGViewSpec.html#viewBox",
 				"full_description": "/*\n\n\tSVGViewSpec\n\n\tviewBox\n\n\tReturn Type:\n\tSVGAnimatedRect\n\n\tDescription:\n\tCorresponds to attribute ‘viewBox’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGViewSpec.html#viewBox\n\n*/"

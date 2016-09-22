@@ -7,6 +7,7 @@
 				"name": "content",
 				"return_type": "DocumentFragment",
 				"description": "The content IDL attribute must return the template element's template contents.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTemplateElement.html#content",
 				"full_description": "/*\n\n\tHTMLTemplateElement\n\n\tcontent\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe content IDL attribute must return the template element's template contents.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTemplateElement.html#content\n\n*/"

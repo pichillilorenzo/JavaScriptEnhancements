@@ -7,6 +7,7 @@
 				"name": "elevation",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘elevation’ on the given ‘feDistantLight’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDistantLightElement.html#elevation",
 				"full_description": "/*\n\n\tSVGFEDistantLightElement\n\n\televation\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘elevation’ on the given ‘feDistantLight’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDistantLightElement.html#elevation\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "azimuth",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘azimuth’ on the given ‘feDistantLight’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDistantLightElement.html#azimuth",
 				"full_description": "/*\n\n\tSVGFEDistantLightElement\n\n\tazimuth\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘azimuth’ on the given ‘feDistantLight’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDistantLightElement.html#azimuth\n\n*/"

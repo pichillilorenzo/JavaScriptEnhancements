@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "The querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#querySelectorAll",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#querySelectorAll\n\n*/"
@@ -34,6 +35,7 @@
 					}
 				],
 				"description": "The querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#querySelector",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#querySelector\n\n*/"
@@ -53,6 +55,7 @@
 					}
 				],
 				"description": "The query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against a set consisting of context object, and null if the result is an empty list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#query",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tquery ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against a set consisting of context object, and null if the result is an empty list.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#query\n\n*/"
@@ -72,6 +75,7 @@
 					}
 				],
 				"description": "The queryAll(relativeSelectors) method must return an Elements array initialized with the result of running match a relative selectors string relativeSelectors against a set consisting of context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#queryAll",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tqueryAll ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElements\n\n\tDescription:\n\tThe queryAll(relativeSelectors) method must return an Elements array initialized with the result of running match a relative selectors string relativeSelectors against a set consisting of context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#queryAll\n\n*/"
@@ -91,6 +95,7 @@
 					}
 				],
 				"description": "The querySelector(selectors) method must return the first result of running scope-match a selectors string selectors against the context object, and null if the result is an empty list otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#querySelector",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector(selectors) method must return the first result of running scope-match a selectors string selectors against the context object, and null if the result is an empty list otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#querySelector\n\n*/"
@@ -110,6 +115,7 @@
 					}
 				],
 				"description": "The getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#getElementById",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tgetElementById ( elementId: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#getElementById\n\n*/"
@@ -129,6 +135,7 @@
 					}
 				],
 				"description": "The querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#querySelectorAll",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#querySelectorAll\n\n*/"
@@ -140,6 +147,7 @@
 				"name": "childElementCount",
 				"return_type": "unsigned long",
 				"description": "The childElementCount attribute must return the number of children of the context object that are elements.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#childElementCount",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tchildElementCount\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe childElementCount attribute must return the number of children of the context object that are elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#childElementCount\n\n*/"
@@ -151,6 +159,7 @@
 				"name": "children",
 				"return_type": "HTMLCollection",
 				"description": "The children attribute must return an HTMLCollection collection rooted at the context object matching only element children.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#children",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tchildren\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe children attribute must return an HTMLCollection collection rooted at the context object matching only element children.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#children\n\n*/"
@@ -162,6 +171,7 @@
 				"name": "firstElementChild",
 				"return_type": "Element",
 				"description": "The firstElementChild attribute must return the first child that is an element, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#firstElementChild",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tfirstElementChild\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe firstElementChild attribute must return the first child that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#firstElementChild\n\n*/"
@@ -173,6 +183,7 @@
 				"name": "lastElementChild",
 				"return_type": "Element",
 				"description": "The lastElementChild attribute must return the last child that is an element, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20DocumentFragment.html#lastElementChild",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tlastElementChild\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe lastElementChild attribute must return the last child that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20DocumentFragment.html#lastElementChild\n\n*/"
@@ -204,6 +215,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-parentnode-prepend",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tprepend ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-parentnode-prepend\n\n*/"
@@ -223,6 +235,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-parentnode-append",
 				"full_description": "/*\n\n\tDocumentFragment\n\n\tappend ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-parentnode-append\n\n*/"

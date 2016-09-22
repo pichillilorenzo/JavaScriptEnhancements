@@ -7,6 +7,7 @@
 				"name": "result",
 				"return_type": "any",
 				"description": "When the done flag is true, getting this property MUST return the result of the request. This is undefined when the request resulted in an error. When the done flag is false, getting this property MUST throw a DOMException of type InvalidStateError.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#result",
 				"full_description": "/*\n\n\tIDBRequest\n\n\tresult\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tWhen the done flag is true, getting this property MUST return the result of the request. This is undefined when the request resulted in an error. When the done flag is false, getting this property MUST throw a DOMException of type InvalidStateError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#result\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "error",
 				"return_type": "DOMError",
 				"description": "When the done flag is true, getting this property MUST return the error of the request. This is null when no error occurred. When the done flag is false, getting this property MUST throw a DOMException of type InvalidStateError.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#error",
 				"full_description": "/*\n\n\tIDBRequest\n\n\terror\n\n\tReturn Type:\n\tDOMError\n\n\tDescription:\n\tWhen the done flag is true, getting this property MUST return the error of the request. This is null when no error occurred. When the done flag is false, getting this property MUST throw a DOMException of type InvalidStateError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#error\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "transaction",
 				"return_type": "IDBTransaction",
 				"description": "Getting this property MUST return the transaction for the request. This property can be null for certain requests, such as for request returned from IDBFactory.open.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#transaction",
 				"full_description": "/*\n\n\tIDBRequest\n\n\ttransaction\n\n\tReturn Type:\n\tIDBTransaction\n\n\tDescription:\n\tGetting this property MUST return the transaction for the request. This property can be null for certain requests, such as for request returned from IDBFactory.open.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#transaction\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "source",
 				"return_type": "(IDBObjectStore or IDBIndex or IDBCursor)",
 				"description": "Getting this property MUST return the source for the request. Returns null when there is no source set.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#source",
 				"full_description": "/*\n\n\tIDBRequest\n\n\tsource\n\n\tReturn Type:\n\t(IDBObjectStore or IDBIndex or IDBCursor)\n\n\tDescription:\n\tGetting this property MUST return the source for the request. Returns null when there is no source set.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#source\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "readyState",
 				"return_type": "IDBRequestReadyState",
 				"description": "When the done flag is false, returns \"pending\", otherwise returns \"done\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#readyState",
 				"full_description": "/*\n\n\tIDBRequest\n\n\treadyState\n\n\tReturn Type:\n\tIDBRequestReadyState\n\n\tDescription:\n\tWhen the done flag is false, returns \"pending\", otherwise returns \"done\".\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#readyState\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "onsuccess",
 				"return_type": "EventHandler",
 				"description": "The event handler for the success event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#onsuccess",
 				"full_description": "/*\n\n\tIDBRequest\n\n\tonsuccess\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tThe event handler for the success event.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#onsuccess\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "onerror",
 				"return_type": "EventHandler",
 				"description": "The event handler for the error event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBRequest.html#onerror",
 				"full_description": "/*\n\n\tIDBRequest\n\n\tonerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tThe event handler for the error event.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBRequest.html#onerror\n\n*/"

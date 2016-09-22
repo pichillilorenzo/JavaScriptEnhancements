@@ -39,6 +39,7 @@ Information about the description of function/property/method has been taken on 
 <strong>key-map</strong> of this feature disabled by default!
 
 You can check the description of function/property/method by selecting the word (or, in case, it will take the first word near the blinking cursor) you want find. "right-click" on your mouse and click on "Find JavaScript Description".
+
 It will show a popup with the list of possible descriptions or, in some case, the direct description. 
 
 In case, you can also use "key-map"! Just go to Preferences -> Package Settings -> JavaScript Completions and enable it.
@@ -52,12 +53,15 @@ In case, you can also use "key-map"! Just go to Preferences -> Package Settings 
 <strong>Supported only by Sublime Text 3</strong>
 
 This feature uses node.js (v6.6.0) executable.
+
 You can change the node version on Preferences -> Package Settings -> Evaluate JavaScript settings
 
 It will download automaticaly the binary for your OS.
+
 A message will appear on the "status bar" of Sublime Text.
 
 <strong>context menu option</strong> of this feature disabled by default!
+
 <strong>key-map</strong> of this feature disabled by default!
 
 You can evaluate the entire text selection or the current line! 
@@ -73,6 +77,7 @@ There are two main mode to evaluate code:
 - [print](https://nodejs.org/dist/latest-v6.x/docs/api/cli.html#cli_p_print_script)
 
 To enable this feature on context menu, go to Preferences -> Package Settings -> Evaluate JavaScript and enable it.
+
 In case, you can also use "key-map"! Just go to Preferences -> Package Settings -> Evaluate JavaScript and enable it.
 
 <img src="https://s17.postimg.io/c7becu3pb/Schermata_2016_09_18_alle_18_07_00.png" alt="example #1 Evaluate JavaScript Feature"> 
@@ -82,5 +87,74 @@ In case, you can also use "key-map"! Just go to Preferences -> Package Settings 
 <h3>ENABLE or DISABLE completions</h3>
 
 You can ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions
+
+<h3>Other Context menu options</h3>
+
+Context menu options:
+- <a href="#surround-with">Surround With</a>
+- <a href="#delete-surround">Delete Surrounded</a>
+- <a href="#create-class-from-object-literal">Create Class from object literal</a>
+- <a href="#sort-array">Sort array</a>
+
+<h4 id="surround-with">Surround With</h4>
+
+You MUST first select text to "enable" these options.
+
+You can surround code with:
+- if statement
+- if else statement (this works only if you selected 2 regions, see <a href="#context-menu-option-example-2">example</a>)
+- while statement
+- do while statement
+- for statement
+- try catch statement
+- try catch finally statement
+- Multi-line comment
+- Single-line comment
+
+This options works also on multiple selections at once.
+
+<h4 id="delete-surround">Delete Surrounded</h4>
+
+Options are:
+- Delete multi-line comment
+- Delete single-line comment
+- Strip quoted string
+
+This options works also on multiple selections at once.
+
+<h4 id="create-class-from-object-literal">Create Class from object literal</h4>
+
+This option create a JavaScript Class from an object literal (Constructor with all setter and getter for each field).
+
+You can set default values or use the string <code>"required"</code> to say that a field hasn't a default value.
+
+To work properly, you MUST declare a variable and assign an object literal to it, like this example:
+
+```javascript
+var Person = {
+  name: "required",
+  surname: "required",
+  email: "",
+  age: 18
+}
+```
+
+This options works also on multiple selections at once.
+
+<h4 id="sort-array">Sort array</h4>
+
+Just put the cursor between brackets and will appear a menu with this options:
+- Sort array ASC ( compare function: <code>function(x,y){return x-y;}</code> )
+- Sort array DESC ( compare function: <code>function(x,y){return y-x;}</code> )
+- Sort array alphabetically ASC
+- Sort array alphabetically DESC
+
+This options works also on multiple selections at once.
+
+Examples of usage:
+
+<img src="https://media.giphy.com/media/l3vRaIGOjaYzFf94I/giphy.gif" alt="example #1 Other Context menu option"> 
+
+<img id="context-menu-option-example-2" src="https://media.giphy.com/media/l3vR1DjPDWRFfl3LG/giphy.gif" alt="example #2 Other Context menu option"> 
 
 <i>MIT License</i>

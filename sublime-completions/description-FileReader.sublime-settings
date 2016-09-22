@@ -7,6 +7,7 @@
 				"name": "DONE",
 				"return_type": "const unsigned short",
 				"description": "The entire File or Blob has been read into memory, OR a file error occurred during read, OR the read was aborted using abort(). The FileReader is no longer reading a File or Blob. If readyState is set to DONE it means at least one of the read methods have been called on this FileReader.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#DONE",
 				"full_description": "/*\n\n\tFileReader\n\n\tDONE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe entire File or Blob has been read into memory, OR a file error occurred during read, OR the read was aborted using abort(). The FileReader is no longer reading a File or Blob. If readyState is set to DONE it means at least one of the read methods have been called on this FileReader.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#DONE\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "EMPTY",
 				"return_type": "const unsigned short",
 				"description": "The FileReader object has been constructed, and there are no pending reads. None of the read methods have been called. This is the default state of a newly minted FileReader object, until one of the read methods have been called on it.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#EMPTY",
 				"full_description": "/*\n\n\tFileReader\n\n\tEMPTY\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe FileReader object has been constructed, and there are no pending reads. None of the read methods have been called. This is the default state of a newly minted FileReader object, until one of the read methods have been called on it.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#EMPTY\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "result",
 				"return_type": "(DOMString or ArrayBuffer)",
 				"description": "On getting, the result attribute returns a Blob's data as a DOMString, or as an ArrayBuffer [TypedArrays], or null, depending on the read method that has been called on the FileReader, and any errors that may have occurred.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#result",
 				"full_description": "/*\n\n\tFileReader\n\n\tresult\n\n\tReturn Type:\n\t(DOMString or ArrayBuffer)\n\n\tDescription:\n\tOn getting, the result attribute returns a Blob's data as a DOMString, or as an ArrayBuffer [TypedArrays], or null, depending on the read method that has been called on the FileReader, and any errors that may have occurred.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#result\n\n*/"
@@ -54,6 +57,7 @@
 					}
 				],
 				"description": "When the readAsText(blob, label) method is called (the label argument is optional), the user agent must run the steps below (unless otherwise indicated).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#readAsText",
 				"full_description": "/*\n\n\tFileReader\n\n\treadAsText ( blob: Blob, label?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the readAsText(blob, label) method is called (the label argument is optional), the user agent must run the steps below (unless otherwise indicated).\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#readAsText\n\n*/"
@@ -65,6 +69,7 @@
 				"name": "error",
 				"return_type": "DOMError",
 				"description": "The error attribute of the FileReader object must return a DOMError object [DOM4] of the most appropriate type from the table below if there has been an error, and otherwise returns null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#error",
 				"full_description": "/*\n\n\tFileReader\n\n\terror\n\n\tReturn Type:\n\tDOMError\n\n\tDescription:\n\tThe error attribute of the FileReader object must return a DOMError object [DOM4] of the most appropriate type from the table below if there has been an error, and otherwise returns null.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#error\n\n*/"
@@ -84,6 +89,7 @@
 					}
 				],
 				"description": "When the readAsArrayBuffer(blob) method is called, the user agent must run the steps below (unless otherwise indicated).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#readAsArrayBuffer",
 				"full_description": "/*\n\n\tFileReader\n\n\treadAsArrayBuffer ( blob: Blob )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the readAsArrayBuffer(blob) method is called, the user agent must run the steps below (unless otherwise indicated).\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#readAsArrayBuffer\n\n*/"
@@ -103,6 +109,7 @@
 					}
 				],
 				"description": "When the readAsDataURL(blob) method is called, the user agent must run the steps below (unless otherwise indicated).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#readAsDataURL",
 				"full_description": "/*\n\n\tFileReader\n\n\treadAsDataURL ( blob: Blob )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the readAsDataURL(blob) method is called, the user agent must run the steps below (unless otherwise indicated).\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#readAsDataURL\n\n*/"
@@ -114,6 +121,7 @@
 				"name": "LOADING",
 				"return_type": "const unsigned short",
 				"description": "A File or Blob is being read. One of the read methods is being processed, and no error has occurred during the read.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#LOADING",
 				"full_description": "/*\n\n\tFileReader\n\n\tLOADING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tA File or Blob is being read. One of the read methods is being processed, and no error has occurred during the read.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#LOADING\n\n*/"
@@ -125,6 +133,7 @@
 				"name": "readyState",
 				"return_type": "unsigned short",
 				"description": "The FileReader object can be in one of 3 states.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/File%20API%20-%20FileReader.html#readyState",
 				"full_description": "/*\n\n\tFileReader\n\n\treadyState\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe FileReader object can be in one of 3 states.\n\n\tURL doc:\n\thttp://html5index.org/File%20API%20-%20FileReader.html#readyState\n\n*/"
@@ -148,6 +157,7 @@
 				"name": "onloadstart",
 				"return_type": "EventHandler",
 				"description": "onloadstart\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-onloadstart",
 				"full_description": "/*\n\n\tFileReader\n\n\tonloadstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tonloadstart\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-onloadstart\n\n*/"
@@ -159,6 +169,7 @@
 				"name": "onprogress",
 				"return_type": "EventHandler",
 				"description": "onprogress\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-onprogress",
 				"full_description": "/*\n\n\tFileReader\n\n\tonprogress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tonprogress\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-onprogress\n\n*/"
@@ -170,6 +181,7 @@
 				"name": "onloadend",
 				"return_type": "EventHandler",
 				"description": "onloadend\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-onloadend",
 				"full_description": "/*\n\n\tFileReader\n\n\tonloadend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tonloadend\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-onloadend\n\n*/"
@@ -181,6 +193,7 @@
 				"name": "onerror",
 				"return_type": "EventHandler",
 				"description": "onerror\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-onerror",
 				"full_description": "/*\n\n\tFileReader\n\n\tonerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tonerror\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-onerror\n\n*/"
@@ -192,6 +205,7 @@
 				"name": "onabort",
 				"return_type": "EventHandler",
 				"description": "onabort\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-onabort",
 				"full_description": "/*\n\n\tFileReader\n\n\tonabort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tonabort\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-onabort\n\n*/"
@@ -203,6 +217,7 @@
 				"name": "onload",
 				"return_type": "EventHandler",
 				"description": "onload\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-onload",
 				"full_description": "/*\n\n\tFileReader\n\n\tonload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tonload\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-onload\n\n*/"
@@ -215,6 +230,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "abort()\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-abort",
 				"full_description": "/*\n\n\tFileReader\n\n\tabort ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tabort()\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-abort\n\n*/"

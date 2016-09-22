@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "Inserts a new item into the list at the specified position. The first item is number 0. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to insert before is before the removal of the item.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#insertItemBefore",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tinsertItemBefore ( newItem: SVGTransform, index: unsigned long )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tInserts a new item into the list at the specified position. The first item is number 0. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to insert before is before the removal of the item.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#insertItemBefore\n\n*/"
@@ -46,6 +47,7 @@
 					}
 				],
 				"description": "Replaces an existing item in the list with a new item. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to replace is before the removal of the item.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#replaceItem",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\treplaceItem ( newItem: SVGTransform, index: unsigned long )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tReplaces an existing item in the list with a new item. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. If the item is already in this list, note that the index of the item to replace is before the removal of the item.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#replaceItem\n\n*/"
@@ -65,6 +67,7 @@
 					}
 				],
 				"description": "Creates an SVGTransform object which is initialized to transform of type SVG_TRANSFORM_MATRIX and whose values are the given matrix. The values from the parameter matrix are copied, the matrix parameter is not adopted as SVGTransform::matrix. ParametersSVGMatrix matrix The matrix which defines the transformation.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#createSVGTransformFromMatrix",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tcreateSVGTransformFromMatrix ( matrix: SVGMatrix )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tCreates an SVGTransform object which is initialized to transform of type SVG_TRANSFORM_MATRIX and whose values are the given matrix. The values from the parameter matrix are copied, the matrix parameter is not adopted as SVGTransform::matrix. ParametersSVGMatrix matrix The matrix which defines the transformation.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#createSVGTransformFromMatrix\n\n*/"
@@ -84,6 +87,7 @@
 					}
 				],
 				"description": "Removes an existing item from the list. Parametersunsigned long index The index of the item which is to be removed. The first item is number 0. Returns The removed item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#removeItem",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tremoveItem ( index: unsigned long )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tRemoves an existing item from the list. Parametersunsigned long index The index of the item which is to be removed. The first item is number 0. Returns The removed item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#removeItem\n\n*/"
@@ -103,6 +107,7 @@
 					}
 				],
 				"description": "Clears all existing current items from the list and re-initializes the list to hold the single item specified by the parameter. If the inserted item is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#initialize",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tinitialize ( newItem: SVGTransform )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tClears all existing current items from the list and re-initializes the list to hold the single item specified by the parameter. If the inserted item is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#initialize\n\n*/"
@@ -115,6 +120,7 @@
 				"return_type": "SVGTransform",
 				"parameters": [],
 				"description": "Consolidates the list of separate SVGTransform objects by multiplying the equivalent transformation matrices together to result in a list consisting of a single SVGTransform object of type SVG_TRANSFORM_MATRIX. The consolidation operation creates new SVGTransform object as the first and only item in the list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#consolidate",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tconsolidate ()\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tConsolidates the list of separate SVGTransform objects by multiplying the equivalent transformation matrices together to result in a list consisting of a single SVGTransform object of type SVG_TRANSFORM_MATRIX. The consolidation operation creates new SVGTransform object as the first and only item in the list.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#consolidate\n\n*/"
@@ -134,6 +140,7 @@
 					}
 				],
 				"description": "Inserts a new item at the end of the list. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. ParametersSVGTransform newItem The item which is to be inserted.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#appendItem",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tappendItem ( newItem: SVGTransform )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tInserts a new item at the end of the list. If newItem is already in a list, it is removed from its previous list before it is inserted into this list. The inserted item is the item itself and not a copy. ParametersSVGTransform newItem The item which is to be inserted.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#appendItem\n\n*/"
@@ -153,6 +160,7 @@
 					}
 				],
 				"description": "Returns the specified item from the list. The returned item is the item itself and not a copy. Any changes made to the item are immediately reflected in the list. Parametersunsigned long index The index of the item from the list which is to be returned.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#getItem",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tgetItem ( index: unsigned long )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tReturns the specified item from the list. The returned item is the item itself and not a copy. Any changes made to the item are immediately reflected in the list. Parametersunsigned long index The index of the item from the list which is to be returned.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#getItem\n\n*/"
@@ -165,6 +173,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Clears all existing current items from the list, with the result being an empty list. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#clear",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tclear ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tClears all existing current items from the list, with the result being an empty list. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#clear\n\n*/"
@@ -176,6 +185,7 @@
 				"name": "numberOfItems",
 				"return_type": "unsigned long",
 				"description": "The number of items in the list.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTransformList.html#numberOfItems",
 				"full_description": "/*\n\n\tSVGTransformList\n\n\tnumberOfItems\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe number of items in the list.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTransformList.html#numberOfItems\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "port",
 				"return_type": "MessagePort",
 				"description": "The port attribute must return the value it was assigned by the object's constructor. It represents the MessagePort for communicating with the shared worker.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20SharedWorker.html#port",
 				"full_description": "/*\n\n\tSharedWorker\n\n\tport\n\n\tReturn Type:\n\tMessagePort\n\n\tDescription:\n\tThe port attribute must return the value it was assigned by the object's constructor. It represents the MessagePort for communicating with the shared worker.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20SharedWorker.html#port\n\n*/"
@@ -43,6 +44,7 @@
 				"name": "onerror",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-abstractworker-onerror",
 				"full_description": "/*\n\n\tSharedWorker\n\n\tonerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-abstractworker-onerror\n\n*/"

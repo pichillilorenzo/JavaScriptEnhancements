@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "Returns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#getPresentationAttribute",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\tgetPresentationAttribute ( name: DOMString )\n\n\tReturn Type:\n\tCSSValue\n\n\tDescription:\n\tReturns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#getPresentationAttribute\n\n*/"
@@ -26,6 +27,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#externalResourcesRequired\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "xmlspace",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#xmlspace",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\txmlspace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#xmlspace\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "xmllang",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#xmllang",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\txmllang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#xmllang\n\n*/"
@@ -59,6 +63,7 @@
 				"name": "style",
 				"return_type": "CSSStyleDeclaration",
 				"description": "Corresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#style",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\tCorresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#style\n\n*/"
@@ -70,6 +75,7 @@
 				"name": "preserveAspectRatio",
 				"return_type": "SVGAnimatedPreserveAspectRatio",
 				"description": "Corresponds to attribute ‘preserveAspectRatio’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#preserveAspectRatio",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\tpreserveAspectRatio\n\n\tReturn Type:\n\tSVGAnimatedPreserveAspectRatio\n\n\tDescription:\n\tCorresponds to attribute ‘preserveAspectRatio’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#preserveAspectRatio\n\n*/"
@@ -81,6 +87,7 @@
 				"name": "className",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘class’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#className",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\tclassName\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘class’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#className\n\n*/"
@@ -92,6 +99,7 @@
 				"name": "viewBox",
 				"return_type": "SVGAnimatedRect",
 				"description": "Corresponds to attribute ‘viewBox’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSymbolElement.html#viewBox",
 				"full_description": "/*\n\n\tSVGSymbolElement\n\n\tviewBox\n\n\tReturn Type:\n\tSVGAnimatedRect\n\n\tDescription:\n\tCorresponds to attribute ‘viewBox’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSymbolElement.html#viewBox\n\n*/"

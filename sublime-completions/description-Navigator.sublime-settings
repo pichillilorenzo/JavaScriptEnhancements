@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "The registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#registerProtocolHandler",
 				"full_description": "/*\n\n\tNavigator\n\n\tregisterProtocolHandler ( scheme: DOMString, url: DOMString, title: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#registerProtocolHandler\n\n*/"
@@ -58,6 +59,7 @@
 					}
 				],
 				"description": "The registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#registerContentHandler",
 				"full_description": "/*\n\n\tNavigator\n\n\tregisterContentHandler ( mimeType: DOMString, url: DOMString, title: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe registerProtocolHandler() method allows Web sites to register themselves as possible handlers for particular schemes. For example, an online telephone messaging service could register itself as a handler of the sms: scheme, so that if the user clicks on such a link, he is given the opportunity to use that Web site.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#registerContentHandler\n\n*/"
@@ -83,6 +85,7 @@
 					}
 				],
 				"description": "The isContentHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#isContentHandlerRegistered",
 				"full_description": "/*\n\n\tNavigator\n\n\tisContentHandlerRegistered ( mimeType: DOMString, url: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe isContentHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#isContentHandlerRegistered\n\n*/"
@@ -108,6 +111,7 @@
 					}
 				],
 				"description": "The isProtocolHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#isProtocolHandlerRegistered",
 				"full_description": "/*\n\n\tNavigator\n\n\tisProtocolHandlerRegistered ( scheme: DOMString, url: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe isProtocolHandlerRegistered() method must return the handler state string that most closely describes the current state of the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#isProtocolHandlerRegistered\n\n*/"
@@ -119,6 +123,7 @@
 				"name": "languages",
 				"return_type": "DOMString[]",
 				"description": "Must return a read only array of valid BCP 47 language tags representing either one or more plausible languages, or the user's preferred languages, ordered by preference with the most preferred language first. The same object must be returned until the user agent needs to return different values, or values in a different order.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#languages",
 				"full_description": "/*\n\n\tNavigator\n\n\tlanguages\n\n\tReturn Type:\n\tDOMString[]\n\n\tDescription:\n\tMust return a read only array of valid BCP 47 language tags representing either one or more plausible languages, or the user's preferred languages, ordered by preference with the most preferred language first. The same object must be returned until the user agent needs to return different values, or values in a different order.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#languages\n\n*/"
@@ -144,6 +149,7 @@
 					}
 				],
 				"description": "The unregisterContentHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#unregisterContentHandler",
 				"full_description": "/*\n\n\tNavigator\n\n\tunregisterContentHandler ( mimeType: DOMString, url: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe unregisterContentHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the MIME type and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#unregisterContentHandler\n\n*/"
@@ -169,6 +175,7 @@
 					}
 				],
 				"description": "The unregisterProtocolHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#unregisterProtocolHandler",
 				"full_description": "/*\n\n\tNavigator\n\n\tunregisterProtocolHandler ( scheme: DOMString, url: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe unregisterProtocolHandler() method must unregister the handler described by the two arguments to the method, where the first argument gives the scheme and the second gives the string used to build the URL of the page that will handle the requests.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#unregisterProtocolHandler\n\n*/"
@@ -181,6 +188,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The yieldForStorageUpdates() method, when invoked, must, if the storage mutex is owned by the event loop of the task that resulted in the method being called, release the storage mutex so that it is once again free. Otherwise, it must do nothing.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#yieldForStorageUpdates",
 				"full_description": "/*\n\n\tNavigator\n\n\tyieldForStorageUpdates ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe yieldForStorageUpdates() method, when invoked, must, if the storage mutex is owned by the event loop of the task that resulted in the method being called, release the storage mutex so that it is once again free. Otherwise, it must do nothing.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#yieldForStorageUpdates\n\n*/"
@@ -192,6 +200,7 @@
 				"name": "onLine",
 				"return_type": "boolean",
 				"description": "The navigator.onLine attribute must return false if the user agent will not contact the network when the user follows links or when a script requests a remote page (or knows that such an attempt would fail), and must return true otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#onLine",
 				"full_description": "/*\n\n\tNavigator\n\n\tonLine\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe navigator.onLine attribute must return false if the user agent will not contact the network when the user follows links or when a script requests a remote page (or knows that such an attempt would fail), and must return true otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#onLine\n\n*/"
@@ -203,6 +212,7 @@
 				"name": "cookieEnabled",
 				"return_type": "boolean",
 				"description": "The cookieEnabled attribute must return true if the user agent attempts to handle cookies according to the cookie specification, and false if it ignores cookie change requests. [COOKIES]",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#cookieEnabled",
 				"full_description": "/*\n\n\tNavigator\n\n\tcookieEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe cookieEnabled attribute must return true if the user agent attempts to handle cookies according to the cookie specification, and false if it ignores cookie change requests. [COOKIES]\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#cookieEnabled\n\n*/"
@@ -214,6 +224,7 @@
 				"name": "javaEnabled",
 				"return_type": "boolean",
 				"description": "The navigator.javaEnabled attribute must return true if the user agent supports a plugin that supports the MIME type \"application/x-java-vm\"; otherwise it must return false.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#javaEnabled",
 				"full_description": "/*\n\n\tNavigator\n\n\tjavaEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe navigator.javaEnabled attribute must return true if the user agent supports a plugin that supports the MIME type \"application/x-java-vm\"; otherwise it must return false.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#javaEnabled\n\n*/"
@@ -225,6 +236,7 @@
 				"name": "platform",
 				"return_type": "DOMString",
 				"description": "Must return either the empty string or a string representing the platform on which the browser is executing, e.g. \"MacIntel\", \"Win32\", \"FreeBSD i386\", \"WebTV OS\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#platform",
 				"full_description": "/*\n\n\tNavigator\n\n\tplatform\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return either the empty string or a string representing the platform on which the browser is executing, e.g. \"MacIntel\", \"Win32\", \"FreeBSD i386\", \"WebTV OS\".\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#platform\n\n*/"
@@ -236,6 +248,7 @@
 				"name": "appVersion",
 				"return_type": "DOMString",
 				"description": "Must return either the string \"4.0\" or a string representing the version of the browser in detail, e.g. \"1.0 (VMS; en-US) Mellblomenator/9000\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#appVersion",
 				"full_description": "/*\n\n\tNavigator\n\n\tappVersion\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return either the string \"4.0\" or a string representing the version of the browser in detail, e.g. \"1.0 (VMS; en-US) Mellblomenator/9000\".\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#appVersion\n\n*/"
@@ -247,6 +260,7 @@
 				"name": "userAgent",
 				"return_type": "DOMString",
 				"description": "Must return the string used for the value of the \"User-Agent\" header in HTTP requests, or the empty string if no such header is ever sent.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#userAgent",
 				"full_description": "/*\n\n\tNavigator\n\n\tuserAgent\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return the string used for the value of the \"User-Agent\" header in HTTP requests, or the empty string if no such header is ever sent.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#userAgent\n\n*/"
@@ -258,6 +272,7 @@
 				"name": "language",
 				"return_type": "DOMString",
 				"description": "Must return a valid BCP 47 language tag representing either a plausible language or the user's most preferred language. [BCP47]",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#language",
 				"full_description": "/*\n\n\tNavigator\n\n\tlanguage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return a valid BCP 47 language tag representing either a plausible language or the user's most preferred language. [BCP47]\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#language\n\n*/"
@@ -269,6 +284,7 @@
 				"name": "mimeTypes",
 				"return_type": "MimeTypeArray",
 				"description": "The navigator.mimeTypes attribute must return a MimeTypeArray object. The same object must be returned each time.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#mimeTypes",
 				"full_description": "/*\n\n\tNavigator\n\n\tmimeTypes\n\n\tReturn Type:\n\tMimeTypeArray\n\n\tDescription:\n\tThe navigator.mimeTypes attribute must return a MimeTypeArray object. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#mimeTypes\n\n*/"
@@ -280,6 +296,7 @@
 				"name": "plugins",
 				"return_type": "PluginArray",
 				"description": "The navigator.plugins attribute must return a PluginArray object. The same object must be returned each time.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#plugins",
 				"full_description": "/*\n\n\tNavigator\n\n\tplugins\n\n\tReturn Type:\n\tPluginArray\n\n\tDescription:\n\tThe navigator.plugins attribute must return a PluginArray object. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#plugins\n\n*/"
@@ -291,6 +308,7 @@
 				"name": "appName",
 				"return_type": "DOMString",
 				"description": "Must return either the string \"Netscape\" or the full name of the browser, e.g. \"Mellblom Browsernator\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#appName",
 				"full_description": "/*\n\n\tNavigator\n\n\tappName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return either the string \"Netscape\" or the full name of the browser, e.g. \"Mellblom Browsernator\".\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#appName\n\n*/"
@@ -302,6 +320,7 @@
 				"name": "appCodeName",
 				"return_type": "DOMString",
 				"description": "Must return the string \"Mozilla\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#appCodeName",
 				"full_description": "/*\n\n\tNavigator\n\n\tappCodeName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return the string \"Mozilla\".\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#appCodeName\n\n*/"
@@ -313,6 +332,7 @@
 				"name": "product",
 				"return_type": "DOMString",
 				"description": "Must return the string \"Gecko\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#product",
 				"full_description": "/*\n\n\tNavigator\n\n\tproduct\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return the string \"Gecko\".\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#product\n\n*/"
@@ -325,6 +345,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "Must return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Browser%20-%20Navigator.html#taintEnabled",
 				"full_description": "/*\n\n\tNavigator\n\n\ttaintEnabled ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tMust return false.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20Navigator.html#taintEnabled\n\n*/"

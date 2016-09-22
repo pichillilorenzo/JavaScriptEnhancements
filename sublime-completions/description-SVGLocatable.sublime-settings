@@ -8,6 +8,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Returns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the parent user agent's notice of a \"pixel\". For display devices, ideally this represents a physical screen pixel. For other devices or environments where physical pixel sizes are not known, then an algorithm similar to the CSS2 definition of a \"pixel\" can be used instead.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGLocatable.html#getScreenCTM",
 				"full_description": "/*\n\n\tSVGLocatable\n\n\tgetScreenCTM ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the parent user agent's notice of a \"pixel\". For display devices, ideally this represents a physical screen pixel. For other devices or environments where physical pixel sizes are not known, then an algorithm similar to the CSS2 definition of a \"pixel\" can be used instead.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGLocatable.html#getScreenCTM\n\n*/"
@@ -20,6 +21,7 @@
 				"return_type": "SVGRect",
 				"parameters": [],
 				"description": "Returns the tight bounding box in current user space (i.e., after application of the ‘transform’ attribute, if any) on the geometry of all contained graphics elements, exclusive of stroking, clipping, masking and filter effects). Note that getBBox must return the actual bounding box at the time the method was called, even in case the element has not yet been rendered.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGLocatable.html#getBBox",
 				"full_description": "/*\n\n\tSVGLocatable\n\n\tgetBBox ()\n\n\tReturn Type:\n\tSVGRect\n\n\tDescription:\n\tReturns the tight bounding box in current user space (i.e., after application of the ‘transform’ attribute, if any) on the geometry of all contained graphics elements, exclusive of stroking, clipping, masking and filter effects). Note that getBBox must return the actual bounding box at the time the method was called, even in case the element has not yet been rendered.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGLocatable.html#getBBox\n\n*/"
@@ -39,6 +41,7 @@
 					}
 				],
 				"description": "Returns the transformation matrix from the user coordinate system on the current element (after application of the ‘transform’ attribute, if any) to the user coordinate system on parameter element (after application of its ‘transform’ attribute, if any).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGLocatable.html#getTransformToElement",
 				"full_description": "/*\n\n\tSVGLocatable\n\n\tgetTransformToElement ( element: SVGElement )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the transformation matrix from the user coordinate system on the current element (after application of the ‘transform’ attribute, if any) to the user coordinate system on parameter element (after application of its ‘transform’ attribute, if any).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGLocatable.html#getTransformToElement\n\n*/"
@@ -51,6 +54,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Returns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the viewport coordinate system for the nearestViewportElement. Returns An SVGMatrix object that defines the CTM.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGLocatable.html#getCTM",
 				"full_description": "/*\n\n\tSVGLocatable\n\n\tgetCTM ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the viewport coordinate system for the nearestViewportElement. Returns An SVGMatrix object that defines the CTM.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGLocatable.html#getCTM\n\n*/"
@@ -62,6 +66,7 @@
 				"name": "nearestViewportElement",
 				"return_type": "SVGElement",
 				"description": "The element which established the current viewport. Often, the nearest ancestor ‘svg’ element. Null if the current element is the outermost svg element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGLocatable.html#nearestViewportElement",
 				"full_description": "/*\n\n\tSVGLocatable\n\n\tnearestViewportElement\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tThe element which established the current viewport. Often, the nearest ancestor ‘svg’ element. Null if the current element is the outermost svg element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGLocatable.html#nearestViewportElement\n\n*/"
@@ -73,6 +78,7 @@
 				"name": "farthestViewportElement",
 				"return_type": "SVGElement",
 				"description": "The farthest ancestor ‘svg’ element. Null if the current element is the outermost svg element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGLocatable.html#farthestViewportElement",
 				"full_description": "/*\n\n\tSVGLocatable\n\n\tfarthestViewportElement\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tThe farthest ancestor ‘svg’ element. Null if the current element is the outermost svg element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGLocatable.html#farthestViewportElement\n\n*/"

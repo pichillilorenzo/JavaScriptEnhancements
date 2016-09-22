@@ -7,6 +7,7 @@
 				"name": "id",
 				"return_type": "DOMString",
 				"description": "The value of the ‘id’ attribute on the given element, or the empty string if ‘id’ is not present. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGElement.html#id",
 				"full_description": "/*\n\n\tSVGElement\n\n\tid\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe value of the ‘id’ attribute on the given element, or the empty string if ‘id’ is not present. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGElement.html#id\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "xmlbase",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:base’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGElement.html#xmlbase",
 				"full_description": "/*\n\n\tSVGElement\n\n\txmlbase\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:base’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGElement.html#xmlbase\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "viewportElement",
 				"return_type": "SVGElement",
 				"description": "The element which established the current viewport. Often, the nearest ancestor ‘svg’ element. Null if the given element is the outermost svg element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGElement.html#viewportElement",
 				"full_description": "/*\n\n\tSVGElement\n\n\tviewportElement\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tThe element which established the current viewport. Often, the nearest ancestor ‘svg’ element. Null if the given element is the outermost svg element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGElement.html#viewportElement\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "ownerSVGElement",
 				"return_type": "SVGSVGElement",
 				"description": "The nearest ancestor ‘svg’ element. Null if the given element is the outermost svg element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGElement.html#ownerSVGElement",
 				"full_description": "/*\n\n\tSVGElement\n\n\townerSVGElement\n\n\tReturn Type:\n\tSVGSVGElement\n\n\tDescription:\n\tThe nearest ancestor ‘svg’ element. Null if the given element is the outermost svg element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGElement.html#ownerSVGElement\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "style",
 				"return_type": "CSSStyleDeclaration",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-elementcssinlinestyle-style",
 				"full_description": "/*\n\n\tSVGElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-elementcssinlinestyle-style\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "timeStamp",
 				"return_type": "DOMTimeStamp",
 				"description": "The timeStamp attribute must return the value it was initialized to. When an event is created the attribute must be initialized to the number of milliseconds that have passed since 00:00:00 UTC on 1 January 1970, ignoring leap seconds.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#timeStamp",
 				"full_description": "/*\n\n\tEvent\n\n\ttimeStamp\n\n\tReturn Type:\n\tDOMTimeStamp\n\n\tDescription:\n\tThe timeStamp attribute must return the value it was initialized to. When an event is created the attribute must be initialized to the number of milliseconds that have passed since 00:00:00 UTC on 1 January 1970, ignoring leap seconds.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#timeStamp\n\n*/"
@@ -38,6 +39,7 @@
 					}
 				],
 				"description": "The initEvent(type, bubbles, cancelable) method must initialize the context object with type, bubbles, and cancelable.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#initEvent",
 				"full_description": "/*\n\n\tEvent\n\n\tinitEvent ( type: DOMString, bubbles: boolean, cancelable: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe initEvent(type, bubbles, cancelable) method must initialize the context object with type, bubbles, and cancelable.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#initEvent\n\n*/"
@@ -49,6 +51,7 @@
 				"name": "currentTarget",
 				"return_type": "EventTarget",
 				"description": "The target and currentTarget attributes must return the values they were initialized to. When an event is created the attributes must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#currentTarget",
 				"full_description": "/*\n\n\tEvent\n\n\tcurrentTarget\n\n\tReturn Type:\n\tEventTarget\n\n\tDescription:\n\tThe target and currentTarget attributes must return the values they were initialized to. When an event is created the attributes must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#currentTarget\n\n*/"
@@ -60,6 +63,7 @@
 				"name": "CAPTURING_PHASE",
 				"return_type": "const unsigned short",
 				"description": "When an event is dispatched to an object that participates in a tree it will be in this phase before it reaches its target attribute value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#CAPTURING_PHASE",
 				"full_description": "/*\n\n\tEvent\n\n\tCAPTURING_PHASE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tWhen an event is dispatched to an object that participates in a tree it will be in this phase before it reaches its target attribute value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#CAPTURING_PHASE\n\n*/"
@@ -71,6 +75,7 @@
 				"name": "BUBBLING_PHASE",
 				"return_type": "const unsigned short",
 				"description": "When an event is dispatched to an object that participates in a tree it will be in this phase after it reaches its target attribute value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#BUBBLING_PHASE",
 				"full_description": "/*\n\n\tEvent\n\n\tBUBBLING_PHASE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tWhen an event is dispatched to an object that participates in a tree it will be in this phase after it reaches its target attribute value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#BUBBLING_PHASE\n\n*/"
@@ -82,6 +87,7 @@
 				"name": "target",
 				"return_type": "EventTarget",
 				"description": "The target and currentTarget attributes must return the values they were initialized to. When an event is created the attributes must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#target",
 				"full_description": "/*\n\n\tEvent\n\n\ttarget\n\n\tReturn Type:\n\tEventTarget\n\n\tDescription:\n\tThe target and currentTarget attributes must return the values they were initialized to. When an event is created the attributes must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#target\n\n*/"
@@ -94,6 +100,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The stopImmediatePropagation() method must set both the stop propagation flag and stop immediate propagation flag.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#stopImmediatePropagation",
 				"full_description": "/*\n\n\tEvent\n\n\tstopImmediatePropagation ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe stopImmediatePropagation() method must set both the stop propagation flag and stop immediate propagation flag.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#stopImmediatePropagation\n\n*/"
@@ -105,6 +112,7 @@
 				"name": "isTrusted",
 				"return_type": "boolean",
 				"description": "The isTrusted attribute must return the value it was initialized to. When an event is created the attribute must be initialized to false.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#isTrusted",
 				"full_description": "/*\n\n\tEvent\n\n\tisTrusted\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe isTrusted attribute must return the value it was initialized to. When an event is created the attribute must be initialized to false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#isTrusted\n\n*/"
@@ -116,6 +124,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The type attribute must return the value it was initialized to. When an event is created the attribute must be initialized to the empty string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#type",
 				"full_description": "/*\n\n\tEvent\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type attribute must return the value it was initialized to. When an event is created the attribute must be initialized to the empty string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#type\n\n*/"
@@ -127,6 +136,7 @@
 				"name": "defaultPrevented",
 				"return_type": "boolean",
 				"description": "The defaultPrevented attribute must return true if the canceled flag is set and false otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#defaultPrevented",
 				"full_description": "/*\n\n\tEvent\n\n\tdefaultPrevented\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe defaultPrevented attribute must return true if the canceled flag is set and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#defaultPrevented\n\n*/"
@@ -139,6 +149,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The preventDefault() method must set the canceled flag if the cancelable attribute value is true.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#preventDefault",
 				"full_description": "/*\n\n\tEvent\n\n\tpreventDefault ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe preventDefault() method must set the canceled flag if the cancelable attribute value is true.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#preventDefault\n\n*/"
@@ -150,6 +161,7 @@
 				"name": "AT_TARGET",
 				"return_type": "const unsigned short",
 				"description": "When an event is dispatched it will be in this phase on its target attribute value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#AT_TARGET",
 				"full_description": "/*\n\n\tEvent\n\n\tAT_TARGET\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tWhen an event is dispatched it will be in this phase on its target attribute value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#AT_TARGET\n\n*/"
@@ -161,6 +173,7 @@
 				"name": "cancelable",
 				"return_type": "boolean",
 				"description": "The bubbles and cancelable attributes must return the values they were initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#cancelable",
 				"full_description": "/*\n\n\tEvent\n\n\tcancelable\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe bubbles and cancelable attributes must return the values they were initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#cancelable\n\n*/"
@@ -172,6 +185,7 @@
 				"name": "bubbles",
 				"return_type": "boolean",
 				"description": "The bubbles and cancelable attributes must return the values they were initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#bubbles",
 				"full_description": "/*\n\n\tEvent\n\n\tbubbles\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe bubbles and cancelable attributes must return the values they were initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#bubbles\n\n*/"
@@ -184,6 +198,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The stopPropagation() method must set the stop propagation flag.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#stopPropagation",
 				"full_description": "/*\n\n\tEvent\n\n\tstopPropagation ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe stopPropagation() method must set the stop propagation flag.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#stopPropagation\n\n*/"
@@ -195,6 +210,7 @@
 				"name": "NONE",
 				"return_type": "const unsigned short",
 				"description": "Events not currently dispatched are in this phase.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Event.html#NONE",
 				"full_description": "/*\n\n\tEvent\n\n\tNONE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tEvents not currently dispatched are in this phase.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Event.html#NONE\n\n*/"
@@ -231,6 +247,7 @@
 				"name": "eventPhase",
 				"return_type": "unsigned short",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-event-eventphase",
 				"full_description": "/*\n\n\tEvent\n\n\teventPhase\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-event-eventphase\n\n*/"

@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, sys, imp, platform, json, traceback
+import os, sys, imp, platform, json, traceback, threading
 from shutil import copyfile
 from threading import Timer
 
@@ -7,7 +7,7 @@ PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
  
-sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'evaluate_javascript', 'javascript_completions']]
+sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'helper', 'evaluate_javascript', 'javascript_completions']]
 
 sublime_version = int(sublime.version())
 
@@ -20,7 +20,7 @@ platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-_plugins = ["javascript_completions", "evaluate_javascript"]
+_plugins = ["javascript_completions", "evaluate_javascript", "helper"]
 
 
 class handle_settingCommand(sublime_plugin.WindowCommand) :
@@ -90,9 +90,9 @@ class startPlugin():
       node_js_version = sublime.load_settings('Evaluate-JavaScript.sublime-settings').get("node_js_version") or eval_js_json.get("node_js_version") or node_variables.NODE_JS_VERSION
       
       installer.install(node_js_version)
-
+    
     self.handle_plugins()
-
+ 
   def load_plugins(self):
     global _plugins
     for _plugin in _plugins :

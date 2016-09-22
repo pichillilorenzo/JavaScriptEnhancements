@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "When invoked, this method MUST create a request and return it. The created request must implement the IDBOpenDBRequest interface and have its source set to null. The method then queues up an operation to run the steps for deleting a database. Let origin be the origin of the IDBEnvironment used to access this IDBFactory and name be the name parameter passed to this function.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBFactory.html#deleteDatabase",
 				"full_description": "/*\n\n\tIDBFactory\n\n\tdeleteDatabase ( name: DOMString )\n\n\tReturn Type:\n\tIDBOpenDBRequest\n\n\tDescription:\n\tWhen invoked, this method MUST create a request and return it. The created request must implement the IDBOpenDBRequest interface and have its source set to null. The method then queues up an operation to run the steps for deleting a database. Let origin be the origin of the IDBEnvironment used to access this IDBFactory and name be the name parameter passed to this function.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBFactory.html#deleteDatabase\n\n*/"
@@ -40,6 +41,7 @@
 					}
 				],
 				"description": "If the value of version is 0 (zero), the implementation MUST throw a TypeError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBFactory.html#open",
 				"full_description": "/*\n\n\tIDBFactory\n\n\topen ( name: DOMString, version?: unsigned long long )\n\n\tReturn Type:\n\tIDBOpenDBRequest\n\n\tDescription:\n\tIf the value of version is 0 (zero), the implementation MUST throw a TypeError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBFactory.html#open\n\n*/"
@@ -65,6 +67,7 @@
 					}
 				],
 				"description": "If either first or second is not a valid key, the implementation MUST throw a DOMException of type DataError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBFactory.html#cmp",
 				"full_description": "/*\n\n\tIDBFactory\n\n\tcmp ( first: any, second: any )\n\n\tReturn Type:\n\tshort\n\n\tDescription:\n\tIf either first or second is not a valid key, the implementation MUST throw a DOMException of type DataError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBFactory.html#cmp\n\n*/"

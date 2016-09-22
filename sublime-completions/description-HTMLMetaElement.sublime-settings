@@ -7,6 +7,7 @@
 				"name": "httpEquiv",
 				"return_type": "DOMString",
 				"description": "The name and content IDL attributes must reflect the respective content attributes of the same name. The IDL attribute httpEquiv must reflect the content attribute http-equiv.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMetaElement.html#httpEquiv",
 				"full_description": "/*\n\n\tHTMLMetaElement\n\n\thttpEquiv\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name and content IDL attributes must reflect the respective content attributes of the same name. The IDL attribute httpEquiv must reflect the content attribute http-equiv.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMetaElement.html#httpEquiv\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "content",
 				"return_type": "DOMString",
 				"description": "The name and content IDL attributes must reflect the respective content attributes of the same name. The IDL attribute httpEquiv must reflect the content attribute http-equiv.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMetaElement.html#content",
 				"full_description": "/*\n\n\tHTMLMetaElement\n\n\tcontent\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name and content IDL attributes must reflect the respective content attributes of the same name. The IDL attribute httpEquiv must reflect the content attribute http-equiv.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMetaElement.html#content\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "The name and content IDL attributes must reflect the respective content attributes of the same name. The IDL attribute httpEquiv must reflect the content attribute http-equiv.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLMetaElement.html#name",
 				"full_description": "/*\n\n\tHTMLMetaElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name and content IDL attributes must reflect the respective content attributes of the same name. The IDL attribute httpEquiv must reflect the content attribute http-equiv.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLMetaElement.html#name\n\n*/"

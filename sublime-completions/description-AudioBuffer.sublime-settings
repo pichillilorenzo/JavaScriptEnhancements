@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBuffer.html#getChannelData",
 				"full_description": "/*\n\n\tAudioBuffer\n\n\tgetChannelData ( channel: unsigned long )\n\n\tReturn Type:\n\tFloat32Array\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBuffer.html#getChannelData\n\n*/"
@@ -26,6 +27,7 @@
 				"name": "numberOfChannels",
 				"return_type": "long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBuffer.html#numberOfChannels",
 				"full_description": "/*\n\n\tAudioBuffer\n\n\tnumberOfChannels\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBuffer.html#numberOfChannels\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "sampleRate",
 				"return_type": "float",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBuffer.html#sampleRate",
 				"full_description": "/*\n\n\tAudioBuffer\n\n\tsampleRate\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBuffer.html#sampleRate\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "duration",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBuffer.html#duration",
 				"full_description": "/*\n\n\tAudioBuffer\n\n\tduration\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBuffer.html#duration\n\n*/"
@@ -59,6 +63,7 @@
 				"name": "length",
 				"return_type": "long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBuffer.html#length",
 				"full_description": "/*\n\n\tAudioBuffer\n\n\tlength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBuffer.html#length\n\n*/"

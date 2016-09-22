@@ -8,6 +8,7 @@
 				"return_type": "string",
 				"parameters": [],
 				"description": "15.6.4.2\r\n            Boolean.prototype.toString ( )\r\n\r\n        The following steps are taken:\r\n\r\n        \r\n          Let B be the this value.\r\n          If Type(B) is Boolean, then let b be B.\r\n          Else if Type(B) is Object and the value of the [[Class]] internal property of B\r\n              is \"Boolean\", then let b be the value of the [[PrimitiveValue]] internal property of\r\n              B.\r\n          Else throw a TypeError exception.\r\n          If b is true, then return \"true\"; else return \"false\".",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.6.4.2",
 				"full_description": "/*\n\n\tBoolean\n\n\ttoString ()\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\t15.6.4.2\r\n            Boolean.prototype.toString ( )\r\n\r\n        The following steps are taken:\r\n\r\n        \r\n          Let B be the this value.\r\n          If Type(B) is Boolean, then let b be B.\r\n          Else if Type(B) is Object and the value of the [[Class]] internal property of B\r\n              is \"Boolean\", then let b be the value of the [[PrimitiveValue]] internal property of\r\n              B.\r\n          Else throw a TypeError exception.\r\n          If b is true, then return \"true\"; else return \"false\".\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.6.4.2\n\n*/"
@@ -20,6 +21,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "15.6.4.3\r\n            Boolean.prototype.valueOf ( )\r\n\r\n        The following steps are taken:\r\n\r\n        \r\n          Let B be the this value.\r\n          If Type(B) is Boolean, then let b be B.\r\n          Else if Type(B) is Object and the value of the [[Class]] internal property of B\r\n              is \"Boolean\", then let b be the value of the [[PrimitiveValue]] internal property of\r\n              B.\r\n          Else throw a TypeError exception.\r\n          Return b.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.ecma-international.org/ecma-262/5.1/#sec-15.6.4.3",
 				"full_description": "/*\n\n\tBoolean\n\n\tvalueOf ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t15.6.4.3\r\n            Boolean.prototype.valueOf ( )\r\n\r\n        The following steps are taken:\r\n\r\n        \r\n          Let B be the this value.\r\n          If Type(B) is Boolean, then let b be B.\r\n          Else if Type(B) is Object and the value of the [[Class]] internal property of B\r\n              is \"Boolean\", then let b be the value of the [[PrimitiveValue]] internal property of\r\n              B.\r\n          Else throw a TypeError exception.\r\n          Return b.\n\n\tURL doc:\n\thttp://www.ecma-international.org/ecma-262/5.1/#sec-15.6.4.3\n\n*/"

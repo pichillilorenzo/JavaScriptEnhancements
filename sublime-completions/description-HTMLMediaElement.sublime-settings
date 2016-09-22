@@ -7,6 +7,7 @@
 				"name": "currentTime",
 				"return_type": "double",
 				"description": "The currentTime attribute must, on getting, return the media element's default playback start position, unless that is zero, in which case it must return the element's official playback position. The returned value must be expressed in seconds. On setting, if the media element has a current media controller, then the user agent must throw an InvalidStateError exception; otherwise, if the media element's readyState is HAVE_NOTHING, then it must set the media element's default playback start position to the new value; otherwise, it must set the official playback position to the new value and then seek to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#currentTime",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tcurrentTime\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe currentTime attribute must, on getting, return the media element's default playback start position, unless that is zero, in which case it must return the element's official playback position. The returned value must be expressed in seconds. On setting, if the media element has a current media controller, then the user agent must throw an InvalidStateError exception; otherwise, if the media element's readyState is HAVE_NOTHING, then it must set the media element's default playback start position to the new value; otherwise, it must set the official playback position to the new value and then seek to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#currentTime\n\n*/"
@@ -26,6 +27,7 @@
 					}
 				],
 				"description": "The canPlayType(type) method must return the empty string if type is a type that the user agent knows it cannot render or is the type \"application/octet-stream\"; it must return \"probably\" if the user agent is confident that the type represents a media resource that it can render if used in with this audio or video element; and it must return \"maybe\" otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#canPlayType",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tcanPlayType ( type: DOMString )\n\n\tReturn Type:\n\tCanPlayTypeResult\n\n\tDescription:\n\tThe canPlayType(type) method must return the empty string if type is a type that the user agent knows it cannot render or is the type \"application/octet-stream\"; it must return \"probably\" if the user agent is confident that the type represents a media resource that it can render if used in with this audio or video element; and it must return \"maybe\" otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#canPlayType\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "playbackRate",
 				"return_type": "double",
 				"description": "The playbackRate attribute gives the effective playback rate (assuming there is no current media controller overriding it), which is the speed at which the media resource plays, as a multiple of its intrinsic speed. If it is not equal to the defaultPlaybackRate, then the implication is that the user is using a feature such as fast forward or slow motion playback.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#playbackRate",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tplaybackRate\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe playbackRate attribute gives the effective playback rate (assuming there is no current media controller overriding it), which is the speed at which the media resource plays, as a multiple of its intrinsic speed. If it is not equal to the defaultPlaybackRate, then the implication is that the user is using a feature such as fast forward or slow motion playback.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#playbackRate\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "HAVE_CURRENT_DATA",
 				"return_type": "const unsigned short",
 				"description": "Data for the immediate current playback position is available, but either not enough data is available that the user agent could successfully advance the current playback position in the direction of playback at all without immediately reverting to the HAVE_METADATA state, or there is no more data to obtain in the direction of playback.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_CURRENT_DATA",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tHAVE_CURRENT_DATA\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tData for the immediate current playback position is available, but either not enough data is available that the user agent could successfully advance the current playback position in the direction of playback at all without immediately reverting to the HAVE_METADATA state, or there is no more data to obtain in the direction of playback.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_CURRENT_DATA\n\n*/"
@@ -59,6 +63,7 @@
 				"name": "volume",
 				"return_type": "double",
 				"description": "The volume IDL attribute must return the playback volume of any audio portions of the media element. On setting, if the new value is in the range 0.0 to 1.0 inclusive, the media element's playback volume must be set to the new value. If the new value is outside the range 0.0 to 1.0 inclusive, then, on setting, an IndexSizeError exception must be thrown instead.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#volume",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tvolume\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe volume IDL attribute must return the playback volume of any audio portions of the media element. On setting, if the new value is in the range 0.0 to 1.0 inclusive, the media element's playback volume must be set to the new value. If the new value is outside the range 0.0 to 1.0 inclusive, then, on setting, an IndexSizeError exception must be thrown instead.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#volume\n\n*/"
@@ -70,6 +75,7 @@
 				"name": "buffered",
 				"return_type": "TimeRanges",
 				"description": "The buffered attribute must return a new static normalized TimeRanges object that represents the ranges of the media resource, if any, that the user agent has buffered, at the time the attribute is evaluated. Users agents must accurately determine the ranges available, even for media streams where this can only be determined by tedious inspection.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#buffered",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tbuffered\n\n\tReturn Type:\n\tTimeRanges\n\n\tDescription:\n\tThe buffered attribute must return a new static normalized TimeRanges object that represents the ranges of the media resource, if any, that the user agent has buffered, at the time the attribute is evaluated. Users agents must accurately determine the ranges available, even for media streams where this can only be determined by tedious inspection.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#buffered\n\n*/"
@@ -81,6 +87,7 @@
 				"name": "defaultPlaybackRate",
 				"return_type": "double",
 				"description": "The defaultPlaybackRate attribute gives the desired speed at which the media resource is to play, as a multiple of its intrinsic speed. The attribute is mutable: on getting it must return the last value it was set to, or 1.0 if it hasn't yet been set; on setting the attribute must be set to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#defaultPlaybackRate",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tdefaultPlaybackRate\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\tThe defaultPlaybackRate attribute gives the desired speed at which the media resource is to play, as a multiple of its intrinsic speed. The attribute is mutable: on getting it must return the last value it was set to, or 1.0 if it hasn't yet been set; on setting the attribute must be set to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#defaultPlaybackRate\n\n*/"
@@ -92,6 +99,7 @@
 				"name": "HAVE_METADATA",
 				"return_type": "const unsigned short",
 				"description": "Enough of the resource has been obtained that the duration of the resource is available. In the case of a video element, the dimensions of the video are also available. The API will no longer throw an exception when seeking. No media data is available for the immediate current playback position.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_METADATA",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tHAVE_METADATA\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tEnough of the resource has been obtained that the duration of the resource is available. In the case of a video element, the dimensions of the video are also available. The API will no longer throw an exception when seeking. No media data is available for the immediate current playback position.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_METADATA\n\n*/"
@@ -103,6 +111,7 @@
 				"name": "HAVE_FUTURE_DATA",
 				"return_type": "const unsigned short",
 				"description": "Data for the immediate current playback position is available, as well as enough data for the user agent to advance the current playback position in the direction of playback at least a little without immediately reverting to the HAVE_METADATA state, and the text tracks are ready.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_FUTURE_DATA",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tHAVE_FUTURE_DATA\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tData for the immediate current playback position is available, as well as enough data for the user agent to advance the current playback position in the direction of playback at least a little without immediately reverting to the HAVE_METADATA state, and the text tracks are ready.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_FUTURE_DATA\n\n*/"
@@ -114,6 +123,7 @@
 				"name": "textTracks",
 				"return_type": "TextTrackList",
 				"description": "The textTracks attribute of media elements must return a TextTrackList object representing the TextTrack objects of the text tracks in the media element's list of text tracks, in the same order as in the list of text tracks. The same object must be returned each time the attribute is accessed.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#textTracks",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\ttextTracks\n\n\tReturn Type:\n\tTextTrackList\n\n\tDescription:\n\tThe textTracks attribute of media elements must return a TextTrackList object representing the TextTrack objects of the text tracks in the media element's list of text tracks, in the same order as in the list of text tracks. The same object must be returned each time the attribute is accessed.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#textTracks\n\n*/"
@@ -125,6 +135,7 @@
 				"name": "played",
 				"return_type": "TimeRanges",
 				"description": "The played attribute must return a new static normalized TimeRanges object that represents the ranges of points on the media timeline of the media resource reached through the usual monotonic increase of the current playback position during normal playback, if any, at the time the attribute is evaluated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#played",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tplayed\n\n\tReturn Type:\n\tTimeRanges\n\n\tDescription:\n\tThe played attribute must return a new static normalized TimeRanges object that represents the ranges of points on the media timeline of the media resource reached through the usual monotonic increase of the current playback position during normal playback, if any, at the time the attribute is evaluated.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#played\n\n*/"
@@ -136,6 +147,7 @@
 				"name": "error",
 				"return_type": "MediaError",
 				"description": "All media elements have an associated error status, which records the last error the element encountered since its resource selection algorithm was last invoked. The error attribute, on getting, must return the MediaError object created for this last error, or null if there has not been an error.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#error",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\terror\n\n\tReturn Type:\n\tMediaError\n\n\tDescription:\n\tAll media elements have an associated error status, which records the last error the element encountered since its resource selection algorithm was last invoked. The error attribute, on getting, must return the MediaError object created for this last error, or null if there has not been an error.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#error\n\n*/"
@@ -147,6 +159,7 @@
 				"name": "muted",
 				"return_type": "boolean",
 				"description": "The muted IDL attribute must return the value to which it was last set. When a media element is created, if the element has a muted content attribute specified, then the muted IDL attribute should be set to true; otherwise, the user agents may set the value to the user's preferred value (e.g.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#muted",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tmuted\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe muted IDL attribute must return the value to which it was last set. When a media element is created, if the element has a muted content attribute specified, then the muted IDL attribute should be set to true; otherwise, the user agents may set the value to the user's preferred value (e.g.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#muted\n\n*/"
@@ -158,6 +171,7 @@
 				"name": "duration",
 				"return_type": "unrestricted double",
 				"description": "The duration attribute must return the time of the end of the media resource, in seconds, on the media timeline. If no media data is available, then the attributes must return the Not-a-Number (NaN) value. If the media resource is not known to be bounded (e.g.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#duration",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tduration\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe duration attribute must return the time of the end of the media resource, in seconds, on the media timeline. If no media data is available, then the attributes must return the Not-a-Number (NaN) value. If the media resource is not known to be bounded (e.g.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#duration\n\n*/"
@@ -169,6 +183,7 @@
 				"name": "HAVE_NOTHING",
 				"return_type": "const unsigned short",
 				"description": "No information regarding the media resource is available. No data for the current playback position is available. Media elements whose networkState attribute are set to NETWORK_EMPTY are always in the HAVE_NOTHING state.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_NOTHING",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tHAVE_NOTHING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tNo information regarding the media resource is available. No data for the current playback position is available. Media elements whose networkState attribute are set to NETWORK_EMPTY are always in the HAVE_NOTHING state.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#HAVE_NOTHING\n\n*/"
@@ -180,6 +195,7 @@
 				"name": "videoTracks",
 				"return_type": "VideoTrackList",
 				"description": "The videoTracks attribute of a media element must return a live VideoTrackList object representing the video tracks available in the media element's media resource. The same object must be returned each time.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#videoTracks",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tvideoTracks\n\n\tReturn Type:\n\tVideoTrackList\n\n\tDescription:\n\tThe videoTracks attribute of a media element must return a live VideoTrackList object representing the video tracks available in the media element's media resource. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#videoTracks\n\n*/"
@@ -191,6 +207,7 @@
 				"name": "audioTracks",
 				"return_type": "AudioTrackList",
 				"description": "The audioTracks attribute of a media element must return a live AudioTrackList object representing the audio tracks available in the media element's media resource. The same object must be returned each time.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#audioTracks",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\taudioTracks\n\n\tReturn Type:\n\tAudioTrackList\n\n\tDescription:\n\tThe audioTracks attribute of a media element must return a live AudioTrackList object representing the audio tracks available in the media element's media resource. The same object must be returned each time.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#audioTracks\n\n*/"
@@ -202,6 +219,7 @@
 				"name": "seekable",
 				"return_type": "TimeRanges",
 				"description": "The seekable attribute must return a new static normalized TimeRanges object that represents the ranges of the media resource, if any, that the user agent is able to seek to, at the time the attribute is evaluated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#seekable",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tseekable\n\n\tReturn Type:\n\tTimeRanges\n\n\tDescription:\n\tThe seekable attribute must return a new static normalized TimeRanges object that represents the ranges of the media resource, if any, that the user agent is able to seek to, at the time the attribute is evaluated.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#seekable\n\n*/"
@@ -213,6 +231,7 @@
 				"name": "ended",
 				"return_type": "boolean",
 				"description": "The ended attribute must return true if, the last time the event loop reached step 1, the media element had ended playback and the direction of playback was forwards, and false otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#ended",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tended\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe ended attribute must return true if, the last time the event loop reached step 1, the media element had ended playback and the direction of playback was forwards, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#ended\n\n*/"
@@ -224,6 +243,7 @@
 				"name": "NETWORK_IDLE",
 				"return_type": "const unsigned short",
 				"description": "The element's resource selection algorithm is active and has selected a resource, but it is not actually using the network at this time.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_IDLE",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tNETWORK_IDLE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe element's resource selection algorithm is active and has selected a resource, but it is not actually using the network at this time.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_IDLE\n\n*/"
@@ -235,6 +255,7 @@
 				"name": "readyState",
 				"return_type": "unsigned short",
 				"description": "The readyState IDL attribute must, on getting, return the value described above that describes the current ready state of the media element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#readyState",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\treadyState\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe readyState IDL attribute must, on getting, return the value described above that describes the current ready state of the media element.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#readyState\n\n*/"
@@ -246,6 +267,7 @@
 				"name": "controller",
 				"return_type": "MediaController",
 				"description": "The controller attribute on a media element, on getting, must return the element's current media controller, if any, or null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#controller",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tcontroller\n\n\tReturn Type:\n\tMediaController\n\n\tDescription:\n\tThe controller attribute on a media element, on getting, must return the element's current media controller, if any, or null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#controller\n\n*/"
@@ -257,6 +279,7 @@
 				"name": "currentSrc",
 				"return_type": "DOMString",
 				"description": "The currentSrc IDL attribute is initially the empty string. Its value is changed by the resource selection algorithm defined below.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#currentSrc",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tcurrentSrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe currentSrc IDL attribute is initially the empty string. Its value is changed by the resource selection algorithm defined below.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#currentSrc\n\n*/"
@@ -268,6 +291,7 @@
 				"name": "networkState",
 				"return_type": "unsigned short",
 				"description": "As media elements interact with the network, their current network activity is represented by the networkState attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#networkState",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tnetworkState\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tAs media elements interact with the network, their current network activity is represented by the networkState attribute.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#networkState\n\n*/"
@@ -287,6 +311,7 @@
 					}
 				],
 				"description": "The fastSeek() method must seek to the time given by the method's argument, with the approximate-for-speed flag set.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#fastSeek",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tfastSeek ( time: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe fastSeek() method must seek to the time given by the method's argument, with the approximate-for-speed flag set.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#fastSeek\n\n*/"
@@ -298,6 +323,7 @@
 				"name": "NETWORK_NO_SOURCE",
 				"return_type": "const unsigned short",
 				"description": "The element's resource selection algorithm is active, but it has not yet found a resource to use.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_NO_SOURCE",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tNETWORK_NO_SOURCE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe element's resource selection algorithm is active, but it has not yet found a resource to use.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_NO_SOURCE\n\n*/"
@@ -309,6 +335,7 @@
 				"name": "crossOrigin",
 				"return_type": "DOMString",
 				"description": "The crossOrigin IDL attribute must reflect the crossorigin content attribute, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#crossOrigin",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tcrossOrigin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe crossOrigin IDL attribute must reflect the crossorigin content attribute, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#crossOrigin\n\n*/"
@@ -340,6 +367,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-media-addtexttrack",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\taddTextTrack ( kind: TextTrackKind, label?: DOMString, language?: DOMString )\n\n\tReturn Type:\n\tTextTrack\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-media-addtexttrack\n\n*/"
@@ -351,6 +379,7 @@
 				"name": "paused",
 				"return_type": "boolean",
 				"description": "The paused attribute represents whether the media element is paused or not. The attribute must initially be true.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#paused",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tpaused\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe paused attribute represents whether the media element is paused or not. The attribute must initially be true.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#paused\n\n*/"
@@ -362,6 +391,7 @@
 				"name": "preload",
 				"return_type": "DOMString",
 				"description": "The preload IDL attribute must reflect the content attribute of the same name, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#preload",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tpreload\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe preload IDL attribute must reflect the content attribute of the same name, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#preload\n\n*/"
@@ -373,6 +403,7 @@
 				"name": "NETWORK_EMPTY",
 				"return_type": "const unsigned short",
 				"description": "The element has not yet been initialized. All attributes are in their initial states.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_EMPTY",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tNETWORK_EMPTY\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe element has not yet been initialized. All attributes are in their initial states.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_EMPTY\n\n*/"
@@ -385,6 +416,7 @@
 				"return_type": "Date",
 				"parameters": [],
 				"description": "The getStartDate() method must return a new Date object representing the current timeline offset.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#getStartDate",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tgetStartDate ()\n\n\tReturn Type:\n\tDate\n\n\tDescription:\n\tThe getStartDate() method must return a new Date object representing the current timeline offset.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#getStartDate\n\n*/"
@@ -397,6 +429,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "When the load() method on a media element is invoked, the user agent must run the media element load algorithm.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#load",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tload ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the load() method on a media element is invoked, the user agent must run the media element load algorithm.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#load\n\n*/"
@@ -408,6 +441,7 @@
 				"name": "mediaGroup",
 				"return_type": "DOMString",
 				"description": "The mediaGroup IDL attribute on media elements must reflect the mediagroup content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#mediaGroup",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tmediaGroup\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe mediaGroup IDL attribute on media elements must reflect the mediagroup content attribute.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#mediaGroup\n\n*/"
@@ -420,6 +454,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "When the play() method on a media element is invoked, the user agent must run the following steps.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#play",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tplay ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tWhen the play() method on a media element is invoked, the user agent must run the following steps.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#play\n\n*/"
@@ -431,6 +466,7 @@
 				"name": "src",
 				"return_type": "DOMString",
 				"description": "The src IDL attribute on media elements must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#src",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tsrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe src IDL attribute on media elements must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#src\n\n*/"
@@ -442,6 +478,7 @@
 				"name": "defaultMuted",
 				"return_type": "boolean",
 				"description": "The defaultMuted IDL attribute must reflect the muted content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#defaultMuted",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tdefaultMuted\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe defaultMuted IDL attribute must reflect the muted content attribute.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#defaultMuted\n\n*/"
@@ -453,6 +490,7 @@
 				"name": "controls",
 				"return_type": "boolean",
 				"description": "The controls IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#controls",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tcontrols\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe controls IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#controls\n\n*/"
@@ -464,6 +502,7 @@
 				"name": "autoplay",
 				"return_type": "boolean",
 				"description": "The autoplay IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#autoplay",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tautoplay\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe autoplay IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#autoplay\n\n*/"
@@ -475,6 +514,7 @@
 				"name": "NETWORK_LOADING",
 				"return_type": "const unsigned short",
 				"description": "The user agent is actively trying to download data.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_LOADING",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tNETWORK_LOADING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe user agent is actively trying to download data.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#NETWORK_LOADING\n\n*/"
@@ -486,6 +526,7 @@
 				"name": "HAVE_ENOUGH_DATA",
 				"return_type": "const unsigned short",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-media-have_enough_data",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tHAVE_ENOUGH_DATA\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-media-have_enough_data\n\n*/"
@@ -497,6 +538,7 @@
 				"name": "loop",
 				"return_type": "boolean",
 				"description": "The loop IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#loop",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tloop\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe loop IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#loop\n\n*/"
@@ -508,6 +550,7 @@
 				"name": "seeking",
 				"return_type": "boolean",
 				"description": "The seeking attribute must initially have the value false.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLMediaElement.html#seeking",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tseeking\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe seeking attribute must initially have the value false.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLMediaElement.html#seeking\n\n*/"
@@ -520,6 +563,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-media-pause",
 				"full_description": "/*\n\n\tHTMLMediaElement\n\n\tpause ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#dom-media-pause\n\n*/"

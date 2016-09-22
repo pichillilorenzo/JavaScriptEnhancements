@@ -7,6 +7,7 @@
 				"name": "onupgradeneeded",
 				"return_type": "EventHandler",
 				"description": "The event handler for the upgradeneeded event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBOpenDBRequest.html#onupgradeneeded",
 				"full_description": "/*\n\n\tIDBOpenDBRequest\n\n\tonupgradeneeded\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tThe event handler for the upgradeneeded event.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBOpenDBRequest.html#onupgradeneeded\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "onblocked",
 				"return_type": "EventHandler",
 				"description": "The event handler for the blocked event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBOpenDBRequest.html#onblocked",
 				"full_description": "/*\n\n\tIDBOpenDBRequest\n\n\tonblocked\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tThe event handler for the blocked event.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBOpenDBRequest.html#onblocked\n\n*/"

@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTests.html#hasExtension",
 				"full_description": "/*\n\n\tSVGTests\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTests.html#hasExtension\n\n*/"
@@ -26,6 +27,7 @@
 				"name": "requiredExtensions",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTests.html#requiredExtensions",
 				"full_description": "/*\n\n\tSVGTests\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTests.html#requiredExtensions\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "requiredFeatures",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTests.html#requiredFeatures",
 				"full_description": "/*\n\n\tSVGTests\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTests.html#requiredFeatures\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "systemLanguage",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTests.html#systemLanguage",
 				"full_description": "/*\n\n\tSVGTests\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTests.html#systemLanguage\n\n*/"

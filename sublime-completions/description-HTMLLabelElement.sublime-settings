@@ -7,6 +7,7 @@
 				"name": "form",
 				"return_type": "HTMLFormElement",
 				"description": "Reassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLabelElement.html#form",
 				"full_description": "/*\n\n\tHTMLLabelElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tReassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLabelElement.html#form\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "control",
 				"return_type": "HTMLElement",
 				"description": "The control IDL attribute must return the label element's labeled control, if any, or null if there isn't one.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLabelElement.html#control",
 				"full_description": "/*\n\n\tHTMLLabelElement\n\n\tcontrol\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\tThe control IDL attribute must return the label element's labeled control, if any, or null if there isn't one.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLabelElement.html#control\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "htmlFor",
 				"return_type": "DOMString",
 				"description": "The htmlFor IDL attribute must reflect the for content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLabelElement.html#htmlFor",
 				"full_description": "/*\n\n\tHTMLLabelElement\n\n\thtmlFor\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe htmlFor IDL attribute must reflect the for content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLabelElement.html#htmlFor\n\n*/"

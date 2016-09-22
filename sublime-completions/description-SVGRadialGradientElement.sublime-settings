@@ -7,6 +7,7 @@
 				"name": "fx",
 				"return_type": "SVGAnimatedLength",
 				"description": "Corresponds to attribute ‘fx’ on the given ‘radialGradient’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRadialGradientElement.html#fx",
 				"full_description": "/*\n\n\tSVGRadialGradientElement\n\n\tfx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘fx’ on the given ‘radialGradient’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRadialGradientElement.html#fx\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "fy",
 				"return_type": "SVGAnimatedLength",
 				"description": "Corresponds to attribute ‘fy’ on the given ‘radialGradient’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRadialGradientElement.html#fy",
 				"full_description": "/*\n\n\tSVGRadialGradientElement\n\n\tfy\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘fy’ on the given ‘radialGradient’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRadialGradientElement.html#fy\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "cx",
 				"return_type": "SVGAnimatedLength",
 				"description": "Corresponds to attribute ‘cx’ on the given ‘circle’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRadialGradientElement.html#cx",
 				"full_description": "/*\n\n\tSVGRadialGradientElement\n\n\tcx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘cx’ on the given ‘circle’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRadialGradientElement.html#cx\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "cy",
 				"return_type": "SVGAnimatedLength",
 				"description": "Corresponds to attribute ‘cy’ on the given ‘circle’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRadialGradientElement.html#cy",
 				"full_description": "/*\n\n\tSVGRadialGradientElement\n\n\tcy\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘cy’ on the given ‘circle’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRadialGradientElement.html#cy\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "r",
 				"return_type": "SVGAnimatedLength",
 				"description": "Corresponds to attribute ‘r’ on the given ‘circle’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRadialGradientElement.html#r",
 				"full_description": "/*\n\n\tSVGRadialGradientElement\n\n\tr\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘r’ on the given ‘circle’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRadialGradientElement.html#r\n\n*/"

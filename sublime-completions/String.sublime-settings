@@ -14,16 +14,12 @@
 			"indexOf(${1:searchString: string}, ${2:position?: int})"
 		],
 		[
-			"String.fromCharCode( chars...: int ): static string\tString",
-			"String.fromCharCode(${1:chars...: int})"
-		],
-		[
 			"split( separator: string, limit: int ): string\tString",
 			"split(${1:separator: string}, ${2:limit: int})"
 		],
 		[
-			"fromCharCode( chars...: int ): static string\tString",
-			"fromCharCode(${1:chars...: int})"
+			"String.fromCharCode( chars...: int ): string\tString",
+			"String.fromCharCode(${1:chars...: int})"
 		],
 		[
 			"substring( start: int, end: int ): string\tString",
@@ -32,6 +28,10 @@
 		[
 			"slice( start: int, end: int ): string\tString",
 			"slice(${1:start: int}, ${2:end: int})"
+		],
+		[
+			"fromCharCode( chars...: int ): string\tString",
+			"fromCharCode(${1:chars...: int})"
 		],
 		[
 			"concat( strings...: string ): string\tString",

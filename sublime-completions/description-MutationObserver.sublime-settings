@@ -8,6 +8,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The disconnect() method must, for each node node in the context object's list of nodes, remove any registered observer on node for which the context object is the observer, and also empty context object's record queue.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationObserver.html#disconnect",
 				"full_description": "/*\n\n\tMutationObserver\n\n\tdisconnect ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe disconnect() method must, for each node node in the context object's list of nodes, remove any registered observer on node for which the context object is the observer, and also empty context object's record queue.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationObserver.html#disconnect\n\n*/"
@@ -20,6 +21,7 @@
 				"return_type": "sequence<MutationRecord>",
 				"parameters": [],
 				"description": "The takeRecords() method must return a copy of the record queue and then empty the record queue.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20MutationObserver.html#takeRecords",
 				"full_description": "/*\n\n\tMutationObserver\n\n\ttakeRecords ()\n\n\tReturn Type:\n\tsequence<MutationRecord>\n\n\tDescription:\n\tThe takeRecords() method must return a copy of the record queue and then empty the record queue.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20MutationObserver.html#takeRecords\n\n*/"
@@ -64,6 +66,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-mutationobserver-observe",
 				"full_description": "/*\n\n\tMutationObserver\n\n\tobserve ( target: Node, options: MutationObserverInit )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-mutationobserver-observe\n\n*/"

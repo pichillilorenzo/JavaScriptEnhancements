@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "The replaceData(offset, count, data) method must replace data with node context object, offset offset, count count, and data data.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#replaceData",
 				"full_description": "/*\n\n\tCharacterData\n\n\treplaceData ( offset: unsigned long, count: unsigned long, data: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe replaceData(offset, count, data) method must replace data with node context object, offset offset, count count, and data data.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#replaceData\n\n*/"
@@ -52,6 +53,7 @@
 					}
 				],
 				"description": "The deleteData(offset, count) method must replace data with node context object, offset offset, count count, and data the empty string.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#deleteData",
 				"full_description": "/*\n\n\tCharacterData\n\n\tdeleteData ( offset: unsigned long, count: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe deleteData(offset, count) method must replace data with node context object, offset offset, count count, and data the empty string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#deleteData\n\n*/"
@@ -77,6 +79,7 @@
 					}
 				],
 				"description": "The substringData(offset, count) method must substring data with node context object, offset offset, and count count.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#substringData",
 				"full_description": "/*\n\n\tCharacterData\n\n\tsubstringData ( offset: unsigned long, count: unsigned long )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe substringData(offset, count) method must substring data with node context object, offset offset, and count count.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#substringData\n\n*/"
@@ -102,6 +105,7 @@
 					}
 				],
 				"description": "The insertData(offset, data) method must replace data with node context object, offset offset, count 0, and data data.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#insertData",
 				"full_description": "/*\n\n\tCharacterData\n\n\tinsertData ( offset: unsigned long, data: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe insertData(offset, data) method must replace data with node context object, offset offset, count 0, and data data.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#insertData\n\n*/"
@@ -113,6 +117,7 @@
 				"name": "data",
 				"return_type": "DOMString",
 				"description": "The data attribute must return data, and on setting, must replace data with node context object offset 0, count length attribute value, and data new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#data",
 				"full_description": "/*\n\n\tCharacterData\n\n\tdata\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe data attribute must return data, and on setting, must replace data with node context object offset 0, count length attribute value, and data new value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#data\n\n*/"
@@ -132,6 +137,7 @@
 					}
 				],
 				"description": "The appendData(data) method must replace data with node context object, offset length attribute value, count 0, and data data.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#appendData",
 				"full_description": "/*\n\n\tCharacterData\n\n\tappendData ( data: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe appendData(data) method must replace data with node context object, offset length attribute value, count 0, and data data.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#appendData\n\n*/"
@@ -143,6 +149,7 @@
 				"name": "previousElementSibling",
 				"return_type": "Element",
 				"description": "The previousElementSibling attribute must return the first preceding sibling that is an element, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#previousElementSibling",
 				"full_description": "/*\n\n\tCharacterData\n\n\tpreviousElementSibling\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe previousElementSibling attribute must return the first preceding sibling that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#previousElementSibling\n\n*/"
@@ -154,6 +161,7 @@
 				"name": "nextElementSibling",
 				"return_type": "Element",
 				"description": "The nextElementSibling attribute must return the first following sibling that is an element, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#nextElementSibling",
 				"full_description": "/*\n\n\tCharacterData\n\n\tnextElementSibling\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe nextElementSibling attribute must return the first following sibling that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#nextElementSibling\n\n*/"
@@ -165,6 +173,7 @@
 				"name": "length",
 				"return_type": "unsigned long",
 				"description": "The length attribute must return the number of code units in data.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20CharacterData.html#length",
 				"full_description": "/*\n\n\tCharacterData\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length attribute must return the number of code units in data.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CharacterData.html#length\n\n*/"
@@ -184,6 +193,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-replace",
 				"full_description": "/*\n\n\tCharacterData\n\n\treplace ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-replace\n\n*/"
@@ -203,6 +213,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-before",
 				"full_description": "/*\n\n\tCharacterData\n\n\tbefore ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-before\n\n*/"
@@ -222,6 +233,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-after",
 				"full_description": "/*\n\n\tCharacterData\n\n\tafter ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-after\n\n*/"
@@ -234,6 +246,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-childnode-remove",
 				"full_description": "/*\n\n\tCharacterData\n\n\tremove ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-childnode-remove\n\n*/"

@@ -8,6 +8,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "When the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#reportValidity",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\treportValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#reportValidity\n\n*/"
@@ -19,6 +20,7 @@
 				"name": "validationMessage",
 				"return_type": "DOMString",
 				"description": "The validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#validationMessage",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tvalidationMessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#validationMessage\n\n*/"
@@ -31,6 +33,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "When the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#checkValidity",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tcheckValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#checkValidity\n\n*/"
@@ -50,6 +53,7 @@
 					}
 				],
 				"description": "The remove() method must act like its namesake method on that same options collection when it has arguments, and like its namesake method on the ChildNode interface implemented by the HTMLSelectElement ancestor interface Element when it has no arguments.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#remove",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tremove ( index?: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe remove() method must act like its namesake method on that same options collection when it has arguments, and like its namesake method on the ChildNode interface implemented by the HTMLSelectElement ancestor interface Element when it has no arguments.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#remove\n\n*/"
@@ -61,6 +65,7 @@
 				"name": "labels",
 				"return_type": "NodeList",
 				"description": "Labelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#labels",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tlabels\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tLabelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#labels\n\n*/"
@@ -72,6 +77,7 @@
 				"name": "validity",
 				"return_type": "ValidityState",
 				"description": "The validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#validity",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tvalidity\n\n\tReturn Type:\n\tValidityState\n\n\tDescription:\n\tThe validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#validity\n\n*/"
@@ -83,6 +89,7 @@
 				"name": "selectedIndex",
 				"return_type": "long",
 				"description": "The selectedIndex IDL attribute, on getting, must return the index of the first option element in the list of options in tree order that has its selectedness set to true, if any. If there isn't one, then it must return −1.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#selectedIndex",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tselectedIndex\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe selectedIndex IDL attribute, on getting, must return the index of the first option element in the list of options in tree order that has its selectedness set to true, if any. If there isn't one, then it must return −1.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#selectedIndex\n\n*/"
@@ -94,6 +101,7 @@
 				"name": "value",
 				"return_type": "DOMString",
 				"description": "The value IDL attribute, on getting, must return the value of the first option element in the list of options in tree order that has its selectedness set to true, if any. If there isn't one, then it must return the empty string.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#value",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tvalue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe value IDL attribute, on getting, must return the value of the first option element in the list of options in tree order that has its selectedness set to true, if any. If there isn't one, then it must return the empty string.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#value\n\n*/"
@@ -105,6 +113,7 @@
 				"name": "selectedOptions",
 				"return_type": "HTMLCollection",
 				"description": "The selectedOptions IDL attribute must return an HTMLCollection rooted at the select node, whose filter matches the elements in the list of options that have their selectedness set to true.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#selectedOptions",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tselectedOptions\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe selectedOptions IDL attribute must return an HTMLCollection rooted at the select node, whose filter matches the elements in the list of options that have their selectedness set to true.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#selectedOptions\n\n*/"
@@ -116,6 +125,7 @@
 				"name": "willValidate",
 				"return_type": "boolean",
 				"description": "The willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#willValidate",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\twillValidate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#willValidate\n\n*/"
@@ -135,6 +145,7 @@
 					}
 				],
 				"description": "The namedItem(name) method must return the value returned by the method of the same name on the options collection, when invoked with the same argument.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#namedItem",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tnamedItem ( name: DOMString )\n\n\tReturn Type:\n\tHTMLOptionElement\n\n\tDescription:\n\tThe namedItem(name) method must return the value returned by the method of the same name on the options collection, when invoked with the same argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#namedItem\n\n*/"
@@ -146,6 +157,7 @@
 				"name": "length",
 				"return_type": "unsigned long",
 				"description": "The length IDL attribute must return the number of nodes represented by the options collection. On setting, it must act like the attribute of the same name on the options collection.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#length",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length IDL attribute must return the number of nodes represented by the options collection. On setting, it must act like the attribute of the same name on the options collection.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#length\n\n*/"
@@ -157,6 +169,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The type IDL attribute, on getting, must return the string \"select-one\" if the multiple attribute is absent, and the string \"select-multiple\" if the multiple attribute is present.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#type",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type IDL attribute, on getting, must return the string \"select-one\" if the multiple attribute is absent, and the string \"select-multiple\" if the multiple attribute is present.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#type\n\n*/"
@@ -176,6 +189,7 @@
 					}
 				],
 				"description": "The setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#setCustomValidity",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tsetCustomValidity ( error: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#setCustomValidity\n\n*/"
@@ -195,6 +209,7 @@
 					}
 				],
 				"description": "The item(index) method must return the value returned by the method of the same name on the options collection, when invoked with the same argument.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#item",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\titem ( index: unsigned long )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe item(index) method must return the value returned by the method of the same name on the options collection, when invoked with the same argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#item\n\n*/"
@@ -206,6 +221,7 @@
 				"name": "required",
 				"return_type": "boolean",
 				"description": "The multiple, required, and size IDL attributes must reflect the respective content attributes of the same name. The size IDL attribute has a default value of zero.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#required",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\trequired\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe multiple, required, and size IDL attributes must reflect the respective content attributes of the same name. The size IDL attribute has a default value of zero.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#required\n\n*/"
@@ -217,6 +233,7 @@
 				"name": "multiple",
 				"return_type": "boolean",
 				"description": "The multiple, required, and size IDL attributes must reflect the respective content attributes of the same name. The size IDL attribute has a default value of zero.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#multiple",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tmultiple\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe multiple, required, and size IDL attributes must reflect the respective content attributes of the same name. The size IDL attribute has a default value of zero.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#multiple\n\n*/"
@@ -228,6 +245,7 @@
 				"name": "size",
 				"return_type": "unsigned long",
 				"description": "The multiple, required, and size IDL attributes must reflect the respective content attributes of the same name. The size IDL attribute has a default value of zero.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#size",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tsize\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe multiple, required, and size IDL attributes must reflect the respective content attributes of the same name. The size IDL attribute has a default value of zero.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#size\n\n*/"
@@ -239,6 +257,7 @@
 				"name": "options",
 				"return_type": "HTMLOptionsCollection",
 				"description": "The options IDL attribute must return an HTMLOptionsCollection rooted at the select node, whose filter matches the elements in the list of options.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#options",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\toptions\n\n\tReturn Type:\n\tHTMLOptionsCollection\n\n\tDescription:\n\tThe options IDL attribute must return an HTMLOptionsCollection rooted at the select node, whose filter matches the elements in the list of options.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#options\n\n*/"
@@ -264,6 +283,7 @@
 					}
 				],
 				"description": "Similarly, the add() method must act like its namesake method on that same options collection.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#add",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tadd ( element: HTMLOptionElement|HTMLOptGroupElement, before?: HTMLElement|long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tSimilarly, the add() method must act like its namesake method on that same options collection.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#add\n\n*/"
@@ -275,6 +295,7 @@
 				"name": "form",
 				"return_type": "HTMLFormElement",
 				"description": "Reassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#form",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tReassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#form\n\n*/"
@@ -286,6 +307,7 @@
 				"name": "autofocus",
 				"return_type": "boolean",
 				"description": "The autofocus IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#autofocus",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tautofocus\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe autofocus IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#autofocus\n\n*/"
@@ -297,6 +319,7 @@
 				"name": "disabled",
 				"return_type": "boolean",
 				"description": "The disabled IDL attribute must reflect the disabled content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#disabled",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tdisabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe disabled IDL attribute must reflect the disabled content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#disabled\n\n*/"
@@ -308,6 +331,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "The name IDL attribute must reflect the name content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLSelectElement.html#name",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name IDL attribute must reflect the name content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLSelectElement.html#name\n\n*/"
@@ -333,6 +357,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "DOM - HTMLOptionElement.html",
 				"full_description": "/*\n\n\tHTMLSelectElement\n\n\tsetter creator ( index: unsigned long, option: HTMLOptionElement )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\tDOM - HTMLOptionElement.html\n\n*/"

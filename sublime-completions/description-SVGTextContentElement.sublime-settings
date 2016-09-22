@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "Returns the current text position after rendering the character in the user coordinate system for rendering the glyph(s) that correspond to the specified character. This current text position does not take into account the effects of any inter-character adjustments to prepare for the next character, such as properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘x’, ‘y’, ‘dx’ and ‘dy’.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getEndPositionOfChar",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetEndPositionOfChar ( charnum: unsigned long )\n\n\tReturn Type:\n\tSVGPoint\n\n\tDescription:\n\tReturns the current text position after rendering the character in the user coordinate system for rendering the glyph(s) that correspond to the specified character. This current text position does not take into account the effects of any inter-character adjustments to prepare for the next character, such as properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘x’, ‘y’, ‘dx’ and ‘dy’.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getEndPositionOfChar\n\n*/"
@@ -34,6 +35,7 @@
 					}
 				],
 				"description": "Returns the rotation value relative to the current user coordinate system used to render the glyph(s) corresponding to the specified character. If multiple glyph(s) are used to render the given character and the glyphs each have different rotations (e.g., due to text-on-a-path), the user agent shall return an average value (e.g., the rotation angle at the midpoint along the path for all glyphs used to render this character).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getRotationOfChar",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetRotationOfChar ( charnum: unsigned long )\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tReturns the rotation value relative to the current user coordinate system used to render the glyph(s) corresponding to the specified character. If multiple glyph(s) are used to render the given character and the glyphs each have different rotations (e.g., due to text-on-a-path), the user agent shall return an average value (e.g., the rotation angle at the midpoint along the path for all glyphs used to render this character).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getRotationOfChar\n\n*/"
@@ -53,6 +55,7 @@
 					}
 				],
 				"description": "Returns the current text position before rendering the character in the user coordinate system for rendering the glyph(s) that correspond to the specified character. The current text position has already taken into account the effects of any inter-character adjustments due to properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘x’, ‘y’, ‘dx’ and ‘dy’.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getStartPositionOfChar",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetStartPositionOfChar ( charnum: unsigned long )\n\n\tReturn Type:\n\tSVGPoint\n\n\tDescription:\n\tReturns the current text position before rendering the character in the user coordinate system for rendering the glyph(s) that correspond to the specified character. The current text position has already taken into account the effects of any inter-character adjustments due to properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘x’, ‘y’, ‘dx’ and ‘dy’.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getStartPositionOfChar\n\n*/"
@@ -72,6 +75,7 @@
 					}
 				],
 				"description": "Returns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getPresentationAttribute",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetPresentationAttribute ( name: DOMString )\n\n\tReturn Type:\n\tCSSValue\n\n\tDescription:\n\tReturns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getPresentationAttribute\n\n*/"
@@ -84,6 +88,7 @@
 				"return_type": "long",
 				"parameters": [],
 				"description": "Returns the total number of characters available for rendering within the current element, which includes referenced characters from ‘tref’ reference, regardless of whether they will be rendered. Effectively, this is equivalent to the length of the Node::textContent attribute from DOM Level 3 Core ([DOM3], section 1.4), if that attribute also expanded ‘tref’ elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getNumberOfChars",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetNumberOfChars ()\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tReturns the total number of characters available for rendering within the current element, which includes referenced characters from ‘tref’ reference, regardless of whether they will be rendered. Effectively, this is equivalent to the length of the Node::textContent attribute from DOM Level 3 Core ([DOM3], section 1.4), if that attribute also expanded ‘tref’ elements.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getNumberOfChars\n\n*/"
@@ -109,6 +114,7 @@
 					}
 				],
 				"description": "The total sum of all of the advance values from rendering the specified substring of the characters, including the advance value on the glyphs (horizontal or vertical), the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getSubStringLength",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetSubStringLength ( charnum: unsigned long, nchars: unsigned long )\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe total sum of all of the advance values from rendering the specified substring of the characters, including the advance value on the glyphs (horizontal or vertical), the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getSubStringLength\n\n*/"
@@ -134,6 +140,7 @@
 					}
 				],
 				"description": "Causes the specified substring to be selected just as if the user selected the substring interactively. Parametersunsigned long charnum The index of the start character which is at the given point, where the first character has an index of 0. unsigned long nchars The number of characters in the substring.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#selectSubString",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tselectSubString ( charnum: unsigned long, nchars: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCauses the specified substring to be selected just as if the user selected the substring interactively. Parametersunsigned long charnum The index of the start character which is at the given point, where the first character has an index of 0. unsigned long nchars The number of characters in the substring.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#selectSubString\n\n*/"
@@ -146,6 +153,7 @@
 				"return_type": "float",
 				"parameters": [],
 				"description": "The total sum of all of the advance values from rendering all of the characters within this element, including the advance value on the glyphs (horizontal or vertical), the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getComputedTextLength",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetComputedTextLength ()\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe total sum of all of the advance values from rendering all of the characters within this element, including the advance value on the glyphs (horizontal or vertical), the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getComputedTextLength\n\n*/"
@@ -157,6 +165,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#externalResourcesRequired\n\n*/"
@@ -176,6 +185,7 @@
 					}
 				],
 				"description": "Returns a tightest rectangle which defines the minimum and maximum X and Y values in the user coordinate system for rendering the glyph(s) that correspond to the specified character. The calculations assume that all glyphs occupy the full standard glyph cell for the font.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getExtentOfChar",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetExtentOfChar ( charnum: unsigned long )\n\n\tReturn Type:\n\tSVGRect\n\n\tDescription:\n\tReturns a tightest rectangle which defines the minimum and maximum X and Y values in the user coordinate system for rendering the glyph(s) that correspond to the specified character. The calculations assume that all glyphs occupy the full standard glyph cell for the font.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getExtentOfChar\n\n*/"
@@ -195,6 +205,7 @@
 					}
 				],
 				"description": "Returns the index of the character whose corresponding glyph cell bounding box contains the specified point. The calculations assume that all glyphs occupy the full standard glyph cell for the font. If no such character exists, a value of -1 is returned.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#getCharNumAtPosition",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tgetCharNumAtPosition ( point: SVGPoint )\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tReturns the index of the character whose corresponding glyph cell bounding box contains the specified point. The calculations assume that all glyphs occupy the full standard glyph cell for the font. If no such character exists, a value of -1 is returned.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#getCharNumAtPosition\n\n*/"
@@ -214,6 +225,7 @@
 					}
 				],
 				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#hasExtension",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#hasExtension\n\n*/"
@@ -225,6 +237,7 @@
 				"name": "LENGTHADJUST_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#LENGTHADJUST_UNKNOWN",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tLENGTHADJUST_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#LENGTHADJUST_UNKNOWN\n\n*/"
@@ -236,6 +249,7 @@
 				"name": "xmlspace",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#xmlspace",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\txmlspace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#xmlspace\n\n*/"
@@ -247,6 +261,7 @@
 				"name": "xmllang",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#xmllang",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\txmllang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#xmllang\n\n*/"
@@ -258,6 +273,7 @@
 				"name": "style",
 				"return_type": "CSSStyleDeclaration",
 				"description": "Corresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#style",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\tCorresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#style\n\n*/"
@@ -269,6 +285,7 @@
 				"name": "lengthAdjust",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘lengthAdjust’ on the given element. The value must be one of the length adjust constants defined on this interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#lengthAdjust",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tlengthAdjust\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘lengthAdjust’ on the given element. The value must be one of the length adjust constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#lengthAdjust\n\n*/"
@@ -280,6 +297,7 @@
 				"name": "LENGTHADJUST_SPACINGANDGLYPHS",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'spacingAndGlyphs'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#LENGTHADJUST_SPACINGANDGLYPHS",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tLENGTHADJUST_SPACINGANDGLYPHS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'spacingAndGlyphs'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#LENGTHADJUST_SPACINGANDGLYPHS\n\n*/"
@@ -291,6 +309,7 @@
 				"name": "requiredExtensions",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#requiredExtensions",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#requiredExtensions\n\n*/"
@@ -302,6 +321,7 @@
 				"name": "requiredFeatures",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#requiredFeatures",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#requiredFeatures\n\n*/"
@@ -313,6 +333,7 @@
 				"name": "systemLanguage",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#systemLanguage",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#systemLanguage\n\n*/"
@@ -324,6 +345,7 @@
 				"name": "textLength",
 				"return_type": "SVGAnimatedLength",
 				"description": "Corresponds to attribute ‘textLength’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#textLength",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\ttextLength\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tCorresponds to attribute ‘textLength’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#textLength\n\n*/"
@@ -335,6 +357,7 @@
 				"name": "LENGTHADJUST_SPACING",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'spacing'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#LENGTHADJUST_SPACING",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tLENGTHADJUST_SPACING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'spacing'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#LENGTHADJUST_SPACING\n\n*/"
@@ -346,6 +369,7 @@
 				"name": "className",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘class’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGTextContentElement.html#className",
 				"full_description": "/*\n\n\tSVGTextContentElement\n\n\tclassName\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘class’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGTextContentElement.html#className\n\n*/"

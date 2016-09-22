@@ -1,0 +1,107 @@
+[
+  { "caption": "-" },
+  {
+    "caption": "Sort array ASC",
+    "command": "sort_array",
+    "id": "sort_array_asc",
+    "args": {"case": "compare_func_asc"}
+  },
+  {
+    "caption": "Sort array DESC",
+    "command": "sort_array",
+    "id": "sort_array_desc",
+    "args": {"case": "compare_func_desc"}
+  },
+  {
+    "caption": "Sort array alphabetically ASC",
+    "command": "sort_array",
+    "id": "sort_array_desc",
+    "args": {"case": "alpha_asc"}
+  },
+  {
+    "caption": "Sort array alphabetically DESC",
+    "command": "sort_array",
+    "id": "sort_array_desc",
+    "args": {"case": "alpha_desc"}
+  },
+  { "caption": "-" },
+  {
+    "caption": "Create Class from object literal",
+    "command": "create_class_from_object_literal",
+    "id": "create_class_from_object_literal"
+  },
+  { "caption": "-" },
+  {
+    "caption": "Surround With",
+    "id": "surround_with",
+    "children": [
+      {
+        "caption": "if statement",
+        "command": "surround_with",
+        "args": {"case": "if_statement"}
+      },
+      {
+        "caption": "if else statement (2 selections)",
+        "command": "surround_with",
+        "args": {"case": "if_else_statement"}
+      },
+      {
+        "caption": "while statement",
+        "command": "surround_with",
+        "args": {"case": "while_statement"}
+      },
+      {
+        "caption": "do while statement",
+        "command": "surround_with",
+        "args": {"case": "do_while_statement"}
+      },
+      {
+        "caption": "for statement",
+        "command": "surround_with",
+        "args": {"case": "for_statement"}
+      },
+      {
+        "caption": "try catch statement",
+        "command": "surround_with",
+        "args": {"case": "try_catch_statement"}
+      },
+      {
+        "caption": "try catch finally statement",
+        "command": "surround_with",
+        "args": {"case": "try_catch_finally_statement"}
+      },
+      {
+        "caption": "Multi-line comment",
+        "command": "surround_with",
+        "args": {"case": "multi_line_comment"}
+      },
+      {
+        "caption": "Single-line comment",
+        "command": "surround_with",
+        "args": {"case": "single_line_comment"}
+      }
+    ]
+  },
+  {
+    "caption": "Delete Surrounded",
+    "id": "delete_surrounded",
+    "children": [
+      {
+        "caption": "Delete multi-line comment",
+        "command": "delete_surrounded",
+        "args": {"case": "del_multi_line_comment"}
+      },
+      {
+        "caption": "Delete single line comment",
+        "command": "delete_surrounded",
+        "args": {"case": "del_single_line_comment"}
+      },
+      {
+        "caption": "Strip quoted string",
+        "command": "delete_surrounded",
+        "args": {"case": "strip_quoted_string"}
+      }
+    ]
+  },
+  { "caption": "-" }
+]

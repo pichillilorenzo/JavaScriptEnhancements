@@ -7,6 +7,7 @@
 				"name": "oldURL",
 				"return_type": "DOMString",
 				"description": "The oldURL attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents context information for the event, specifically the URL of the session history entry that was traversed from.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20HashChangeEvent.html#oldURL",
 				"full_description": "/*\n\n\tHashChangeEvent\n\n\toldURL\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe oldURL attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents context information for the event, specifically the URL of the session history entry that was traversed from.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20HashChangeEvent.html#oldURL\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "newURL",
 				"return_type": "DOMString",
 				"description": "The newURL attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents context information for the event, specifically the URL of the session history entry that was traversed to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20HashChangeEvent.html#newURL",
 				"full_description": "/*\n\n\tHashChangeEvent\n\n\tnewURL\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe newURL attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents context information for the event, specifically the URL of the session history entry that was traversed to.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20HashChangeEvent.html#newURL\n\n*/"

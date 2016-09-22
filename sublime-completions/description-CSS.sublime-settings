@@ -5,7 +5,7 @@
 			"description-CSS.escape\tCSS",
 			{
 				"name": "escape",
-				"return_type": "static DOMString",
+				"return_type": "DOMString",
 				"parameters": [
 					{
 						"name": "ident",
@@ -15,9 +15,10 @@
 					}
 				],
 				"description": "The escape(ident) method must return the result of invoking serialize an identifier of ident. Any exceptions thrown must be re-thrown.",
+				"is_static": true,
 				"type": "operation",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSS.html#escape",
-				"full_description": "/*\n\n\tCSS\n\n\tescape ( ident: DOMString )\n\n\tReturn Type:\n\tstatic DOMString\n\n\tDescription:\n\tThe escape(ident) method must return the result of invoking serialize an identifier of ident. Any exceptions thrown must be re-thrown.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSS.html#escape\n\n*/"
+				"full_description": "/*\n\n\tCSS\n\n\tescape ( ident: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe escape(ident) method must return the result of invoking serialize an identifier of ident. Any exceptions thrown must be re-thrown.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSS.html#escape\n\n*/"
 			}
 		]
 	]

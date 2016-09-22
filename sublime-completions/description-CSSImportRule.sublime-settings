@@ -7,6 +7,7 @@
 				"name": "media",
 				"return_type": "MediaList",
 				"description": "The media attribute must return the value of the media attribute of the associated CSS style sheet.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSImportRule.html#media",
 				"full_description": "/*\n\n\tCSSImportRule\n\n\tmedia\n\n\tReturn Type:\n\tMediaList\n\n\tDescription:\n\tThe media attribute must return the value of the media attribute of the associated CSS style sheet.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSImportRule.html#media\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "styleSheet",
 				"return_type": "CSSStyleSheet",
 				"description": "The styleSheet attribute must return the associated CSS style sheet.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSImportRule.html#styleSheet",
 				"full_description": "/*\n\n\tCSSImportRule\n\n\tstyleSheet\n\n\tReturn Type:\n\tCSSStyleSheet\n\n\tDescription:\n\tThe styleSheet attribute must return the associated CSS style sheet.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSImportRule.html#styleSheet\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "href",
 				"return_type": "DOMString",
 				"description": "The href attribute must return the URL specified by the @import at-rule.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSImportRule.html#href",
 				"full_description": "/*\n\n\tCSSImportRule\n\n\thref\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe href attribute must return the URL specified by the @import at-rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSImportRule.html#href\n\n*/"

@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "Sets the values for attribute ‘stdDeviation’. Parametersfloat stdDeviationX The X component of attribute ‘stdDeviation’. float stdDeviationY The Y component of attribute ‘stdDeviation’. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#setStdDeviation",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\tsetStdDeviation ( stdDeviationX: float, stdDeviationY: float )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tSets the values for attribute ‘stdDeviation’. Parametersfloat stdDeviationX The X component of attribute ‘stdDeviation’. float stdDeviationY The Y component of attribute ‘stdDeviation’. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#setStdDeviation\n\n*/"
@@ -32,6 +33,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#height",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#height\n\n*/"
@@ -43,6 +45,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#width",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#width\n\n*/"
@@ -54,6 +57,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#x",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#x\n\n*/"
@@ -65,6 +69,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#y",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#y\n\n*/"
@@ -76,6 +81,7 @@
 				"name": "stdDeviationY",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘stdDeviation’ on the given ‘feGaussianBlur’ element. Contains the Y component (possibly computed automatically) of attribute ‘stdDeviation’.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#stdDeviationY",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\tstdDeviationY\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘stdDeviation’ on the given ‘feGaussianBlur’ element. Contains the Y component (possibly computed automatically) of attribute ‘stdDeviation’.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#stdDeviationY\n\n*/"
@@ -87,6 +93,7 @@
 				"name": "stdDeviationX",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘stdDeviation’ on the given ‘feGaussianBlur’ element. Contains the X component of attribute ‘stdDeviation’.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#stdDeviationX",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\tstdDeviationX\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘stdDeviation’ on the given ‘feGaussianBlur’ element. Contains the X component of attribute ‘stdDeviation’.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#stdDeviationX\n\n*/"
@@ -98,6 +105,7 @@
 				"name": "in1",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#in1",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#in1\n\n*/"
@@ -109,6 +117,7 @@
 				"name": "result",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#result",
 				"full_description": "/*\n\n\tSVGFEGaussianBlurElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEGaussianBlurElement.html#result\n\n*/"

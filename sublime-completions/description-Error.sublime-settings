@@ -7,6 +7,7 @@
 				"name": "message",
 				"return_type": "string",
 				"description": "The initial value of Error.prototype.message is the empty String.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/ECMAScript%20-%20Error.html#message",
 				"full_description": "/*\n\n\tError\n\n\tmessage\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe initial value of Error.prototype.message is the empty String.\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Error.html#message\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "name",
 				"return_type": "string",
 				"description": "The initial value of Error.prototype.name is \"Error\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/ECMAScript%20-%20Error.html#name",
 				"full_description": "/*\n\n\tError\n\n\tname\n\n\tReturn Type:\n\tstring\n\n\tDescription:\n\tThe initial value of Error.prototype.name is \"Error\".\n\n\tURL doc:\n\thttp://html5index.org/ECMAScript%20-%20Error.html#name\n\n*/"

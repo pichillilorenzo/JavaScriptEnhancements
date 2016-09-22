@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "The postMessage() method on DedicatedWorkerGlobalScope objects must act as if, when invoked, it immediately invoked the method of the same name on the port, with the same arguments, and returned the same return value.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20DedicatedWorkerGlobalScope.html#postMessage",
 				"full_description": "/*\n\n\tDedicatedWorkerGlobalScope\n\n\tpostMessage ( message: any, transfer?: sequence<Transferable> )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe postMessage() method on DedicatedWorkerGlobalScope objects must act as if, when invoked, it immediately invoked the method of the same name on the port, with the same arguments, and returned the same return value.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20DedicatedWorkerGlobalScope.html#postMessage\n\n*/"
@@ -32,6 +33,7 @@
 				"name": "onmessage",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-dedicatedworkerglobalscope-onmessage",
 				"full_description": "/*\n\n\tDedicatedWorkerGlobalScope\n\n\tonmessage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-dedicatedworkerglobalscope-onmessage\n\n*/"

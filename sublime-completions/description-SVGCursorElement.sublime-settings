@@ -7,6 +7,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#externalResourcesRequired\n\n*/"
@@ -26,6 +27,7 @@
 					}
 				],
 				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#hasExtension",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#hasExtension\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#x",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#x\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#y",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#y\n\n*/"
@@ -59,6 +63,7 @@
 				"name": "requiredExtensions",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#requiredExtensions",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#requiredExtensions\n\n*/"
@@ -70,6 +75,7 @@
 				"name": "requiredFeatures",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#requiredFeatures",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#requiredFeatures\n\n*/"
@@ -81,6 +87,7 @@
 				"name": "systemLanguage",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#systemLanguage",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#systemLanguage\n\n*/"
@@ -92,6 +99,7 @@
 				"name": "href",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGCursorElement.html#href",
 				"full_description": "/*\n\n\tSVGCursorElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGCursorElement.html#href\n\n*/"

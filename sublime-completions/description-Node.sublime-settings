@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "The contains(other) method must return true if other is an inclusive descendant of the context object, and false otherwise (including when other is null).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#contains",
 				"full_description": "/*\n\n\tNode\n\n\tcontains ( other: Node )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe contains(other) method must return true if other is an inclusive descendant of the context object, and false otherwise (including when other is null).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#contains\n\n*/"
@@ -40,6 +41,7 @@
 					}
 				],
 				"description": "The insertBefore(node, child) method must return the result of pre-inserting node into the context object before child.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#insertBefore",
 				"full_description": "/*\n\n\tNode\n\n\tinsertBefore ( node: Node, child: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe insertBefore(node, child) method must return the result of pre-inserting node into the context object before child.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#insertBefore\n\n*/"
@@ -65,6 +67,7 @@
 					}
 				],
 				"description": "The replaceChild(node, child) method must return the result of replacing child with node within the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#replaceChild",
 				"full_description": "/*\n\n\tNode\n\n\treplaceChild ( node: Node, child: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe replaceChild(node, child) method must return the result of replacing child with node within the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#replaceChild\n\n*/"
@@ -76,6 +79,7 @@
 				"name": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC (32, 20 in hexadecimal).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC (32, 20 in hexadecimal).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC\n\n*/"
@@ -95,6 +99,7 @@
 					}
 				],
 				"description": "The isEqualNode(node) method must return true if node is not null and context object equals node, and false otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#isEqualNode",
 				"full_description": "/*\n\n\tNode\n\n\tisEqualNode ( node: Node )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe isEqualNode(node) method must return true if node is not null and context object equals node, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#isEqualNode\n\n*/"
@@ -114,6 +119,7 @@
 					}
 				],
 				"description": "The cloneNode(deep) method must return a clone of the context object, with the clone children flag set if deep is true.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#cloneNode",
 				"full_description": "/*\n\n\tNode\n\n\tcloneNode ( deep?: boolean )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe cloneNode(deep) method must return a clone of the context object, with the clone children flag set if deep is true.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#cloneNode\n\n*/"
@@ -133,6 +139,7 @@
 					}
 				],
 				"description": "The removeChild(child) method must return the result of pre-removing child from the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#removeChild",
 				"full_description": "/*\n\n\tNode\n\n\tremoveChild ( child: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe removeChild(child) method must return the result of pre-removing child from the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#removeChild\n\n*/"
@@ -145,6 +152,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "The hasChildNodes() method must return true if the context object has children, and false otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#hasChildNodes",
 				"full_description": "/*\n\n\tNode\n\n\thasChildNodes ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe hasChildNodes() method must return true if the context object has children, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#hasChildNodes\n\n*/"
@@ -156,6 +164,7 @@
 				"name": "DOCUMENT_POSITION_CONTAINED_BY",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_POSITION_CONTAINED_BY (16, 10 in hexadecimal);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINED_BY",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_CONTAINED_BY\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_CONTAINED_BY (16, 10 in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINED_BY\n\n*/"
@@ -175,6 +184,7 @@
 					}
 				],
 				"description": "The appendChild(node) method must return the result of appending node to the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#appendChild",
 				"full_description": "/*\n\n\tNode\n\n\tappendChild ( node: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe appendChild(node) method must return the result of appending node to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#appendChild\n\n*/"
@@ -186,6 +196,7 @@
 				"name": "childNodes",
 				"return_type": "NodeList",
 				"description": "The childNodes attribute must return a NodeList rooted at the context object matching only children.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#childNodes",
 				"full_description": "/*\n\n\tNode\n\n\tchildNodes\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe childNodes attribute must return a NodeList rooted at the context object matching only children.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#childNodes\n\n*/"
@@ -197,6 +208,7 @@
 				"name": "DOCUMENT_POSITION_DISCONNECTED",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_POSITION_DISCONNECTED (1);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_DISCONNECTED",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_DISCONNECTED\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_DISCONNECTED (1);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_DISCONNECTED\n\n*/"
@@ -208,6 +220,7 @@
 				"name": "DOCUMENT_POSITION_PRECEDING",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_POSITION_PRECEDING (2);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_PRECEDING",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_PRECEDING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_PRECEDING (2);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_PRECEDING\n\n*/"
@@ -219,6 +232,7 @@
 				"name": "DOCUMENT_POSITION_FOLLOWING",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_POSITION_FOLLOWING (4);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_FOLLOWING",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_FOLLOWING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_FOLLOWING (4);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_FOLLOWING\n\n*/"
@@ -230,6 +244,7 @@
 				"name": "PROCESSING_INSTRUCTION_NODE",
 				"return_type": "const unsigned short",
 				"description": "PROCESSING_INSTRUCTION_NODE (7);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#PROCESSING_INSTRUCTION_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tPROCESSING_INSTRUCTION_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tPROCESSING_INSTRUCTION_NODE (7);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#PROCESSING_INSTRUCTION_NODE\n\n*/"
@@ -241,6 +256,7 @@
 				"name": "DOCUMENT_POSITION_CONTAINS",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_POSITION_CONTAINS (8);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINS",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_POSITION_CONTAINS\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_POSITION_CONTAINS (8);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_POSITION_CONTAINS\n\n*/"
@@ -252,6 +268,7 @@
 				"name": "previousSibling",
 				"return_type": "Node",
 				"description": "The previousSibling attribute must return the previous sibling.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#previousSibling",
 				"full_description": "/*\n\n\tNode\n\n\tpreviousSibling\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe previousSibling attribute must return the previous sibling.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#previousSibling\n\n*/"
@@ -263,6 +280,7 @@
 				"name": "DOCUMENT_FRAGMENT_NODE",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_FRAGMENT_NODE (11).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_FRAGMENT_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_FRAGMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_FRAGMENT_NODE (11).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_FRAGMENT_NODE\n\n*/"
@@ -274,6 +292,7 @@
 				"name": "parentElement",
 				"return_type": "Element",
 				"description": "The parentElement attribute must return the parent element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#parentElement",
 				"full_description": "/*\n\n\tNode\n\n\tparentElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe parentElement attribute must return the parent element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#parentElement\n\n*/"
@@ -285,6 +304,7 @@
 				"name": "nextSibling",
 				"return_type": "Node",
 				"description": "The nextSibling attribute must return the next sibling.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#nextSibling",
 				"full_description": "/*\n\n\tNode\n\n\tnextSibling\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe nextSibling attribute must return the next sibling.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#nextSibling\n\n*/"
@@ -296,6 +316,7 @@
 				"name": "baseURI",
 				"return_type": "DOMString",
 				"description": "The baseURI attribute must return the associated base URL.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#baseURI",
 				"full_description": "/*\n\n\tNode\n\n\tbaseURI\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe baseURI attribute must return the associated base URL.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#baseURI\n\n*/"
@@ -307,6 +328,7 @@
 				"name": "DOCUMENT_TYPE_NODE",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_TYPE_NODE (10);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_TYPE_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_TYPE_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_TYPE_NODE (10);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_TYPE_NODE\n\n*/"
@@ -318,6 +340,7 @@
 				"name": "firstChild",
 				"return_type": "Node",
 				"description": "The firstChild attribute must return the first child.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#firstChild",
 				"full_description": "/*\n\n\tNode\n\n\tfirstChild\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe firstChild attribute must return the first child.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#firstChild\n\n*/"
@@ -329,6 +352,7 @@
 				"name": "lastChild",
 				"return_type": "Node",
 				"description": "The lastChild attribute must return the last child.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#lastChild",
 				"full_description": "/*\n\n\tNode\n\n\tlastChild\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe lastChild attribute must return the last child.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#lastChild\n\n*/"
@@ -348,6 +372,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-comparedocumentposition",
 				"full_description": "/*\n\n\tNode\n\n\tcompareDocumentPosition ( other: Node )\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-comparedocumentposition\n\n*/"
@@ -359,6 +384,7 @@
 				"name": "parentNode",
 				"return_type": "Node",
 				"description": "The parentNode attribute must return the parent.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#parentNode",
 				"full_description": "/*\n\n\tNode\n\n\tparentNode\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe parentNode attribute must return the parent.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#parentNode\n\n*/"
@@ -378,6 +404,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-isdefaultnamespace",
 				"full_description": "/*\n\n\tNode\n\n\tisDefaultNamespace ( namespace: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-isdefaultnamespace\n\n*/"
@@ -397,6 +424,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-lookupnamespaceuri",
 				"full_description": "/*\n\n\tNode\n\n\tlookupNamespaceURI ( prefix: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-lookupnamespaceuri\n\n*/"
@@ -408,6 +436,7 @@
 				"name": "DOCUMENT_NODE",
 				"return_type": "const unsigned short",
 				"description": "DOCUMENT_NODE (9);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#DOCUMENT_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tDOCUMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tDOCUMENT_NODE (9);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#DOCUMENT_NODE\n\n*/"
@@ -419,6 +448,7 @@
 				"name": "ENTITY_REFERENCE_NODE",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ENTITY_REFERENCE_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tENTITY_REFERENCE_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ENTITY_REFERENCE_NODE\n\n*/"
@@ -430,6 +460,7 @@
 				"name": "ELEMENT_NODE",
 				"return_type": "const unsigned short",
 				"description": "ELEMENT_NODE (1);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ELEMENT_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tELEMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tELEMENT_NODE (1);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ELEMENT_NODE\n\n*/"
@@ -441,6 +472,7 @@
 				"name": "COMMENT_NODE",
 				"return_type": "const unsigned short",
 				"description": "COMMENT_NODE (8);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#COMMENT_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tCOMMENT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCOMMENT_NODE (8);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#COMMENT_NODE\n\n*/"
@@ -452,6 +484,7 @@
 				"name": "CDATA_SECTION_NODE",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#CDATA_SECTION_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tCDATA_SECTION_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#CDATA_SECTION_NODE\n\n*/"
@@ -471,6 +504,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-lookupprefix",
 				"full_description": "/*\n\n\tNode\n\n\tlookupPrefix ( namespace: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-lookupprefix\n\n*/"
@@ -482,6 +516,7 @@
 				"name": "TEXT_NODE",
 				"return_type": "const unsigned short",
 				"description": "TEXT_NODE (3);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#TEXT_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tTEXT_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tTEXT_NODE (3);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#TEXT_NODE\n\n*/"
@@ -493,6 +528,7 @@
 				"name": "ATTRIBUTE_NODE",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ATTRIBUTE_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tATTRIBUTE_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ATTRIBUTE_NODE\n\n*/"
@@ -504,6 +540,7 @@
 				"name": "NOTATION_NODE",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#NOTATION_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tNOTATION_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#NOTATION_NODE\n\n*/"
@@ -515,6 +552,7 @@
 				"name": "ENTITY_NODE",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Node.html#ENTITY_NODE",
 				"full_description": "/*\n\n\tNode\n\n\tENTITY_NODE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Node.html#ENTITY_NODE\n\n*/"
@@ -526,6 +564,7 @@
 				"name": "ownerDocument",
 				"return_type": "Document",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-ownerdocument",
 				"full_description": "/*\n\n\tNode\n\n\townerDocument\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-ownerdocument\n\n*/"
@@ -537,6 +576,7 @@
 				"name": "textContent",
 				"return_type": "DOMString",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-textcontent",
 				"full_description": "/*\n\n\tNode\n\n\ttextContent\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-textcontent\n\n*/"
@@ -548,6 +588,7 @@
 				"name": "nodeType",
 				"return_type": "unsigned short",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-nodetype",
 				"full_description": "/*\n\n\tNode\n\n\tnodeType\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-nodetype\n\n*/"
@@ -559,6 +600,7 @@
 				"name": "nodeValue",
 				"return_type": "DOMString",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-nodevalue",
 				"full_description": "/*\n\n\tNode\n\n\tnodeValue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-nodevalue\n\n*/"
@@ -570,6 +612,7 @@
 				"name": "nodeName",
 				"return_type": "DOMString",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-nodename",
 				"full_description": "/*\n\n\tNode\n\n\tnodeName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-nodename\n\n*/"
@@ -582,6 +625,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-node-normalize",
 				"full_description": "/*\n\n\tNode\n\n\tnormalize ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-node-normalize\n\n*/"

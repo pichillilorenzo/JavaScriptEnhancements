@@ -7,6 +7,7 @@
 				"name": "value",
 				"return_type": "long",
 				"description": "The value IDL attribute must reflect the value of the value content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLIElement.html#value",
 				"full_description": "/*\n\n\tHTMLLIElement\n\n\tvalue\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe value IDL attribute must reflect the value of the value content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLIElement.html#value\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "text",
 				"return_type": "DOMString",
 				"description": "The text IDL attribute, on getting, must return the result of stripping and collapsing whitespace from the concatenation of data of all the Text node descendants of the option element, in tree order, excluding any that are descendants of descendants of the option element that are themselves script elements in the HTML namespace or script elements in the SVG namespace.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#text",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\ttext\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe text IDL attribute, on getting, must return the result of stripping and collapsing whitespace from the concatenation of data of all the Text node descendants of the option element, in tree order, excluding any that are descendants of descendants of the option element that are themselves script elements in the HTML namespace or script elements in the SVG namespace.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#text\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "form",
 				"return_type": "HTMLFormElement",
 				"description": "The form IDL attribute's behavior depends on whether the option element is in a select element or not. If the option has a select element as its parent, or has an optgroup element as its parent and that optgroup element has a select element as its parent, then the form IDL attribute must return the same value as the form IDL attribute on that select element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#form",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tThe form IDL attribute's behavior depends on whether the option element is in a select element or not. If the option has a select element as its parent, or has an optgroup element as its parent and that optgroup element has a select element as its parent, then the form IDL attribute must return the same value as the form IDL attribute on that select element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#form\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "selected",
 				"return_type": "boolean",
 				"description": "The selected IDL attribute, on getting, must return true if the element's selectedness is true, and false otherwise. On setting, it must set the element's selectedness to the new value, set its dirtiness to true, and then cause the element to ask for a reset.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#selected",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tselected\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe selected IDL attribute, on getting, must return true if the element's selectedness is true, and false otherwise. On setting, it must set the element's selectedness to the new value, set its dirtiness to true, and then cause the element to ask for a reset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#selected\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "defaultSelected",
 				"return_type": "boolean",
 				"description": "The disabled IDL attribute must reflect the content attribute of the same name. The defaultSelected IDL attribute must reflect the selected content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#defaultSelected",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tdefaultSelected\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe disabled IDL attribute must reflect the content attribute of the same name. The defaultSelected IDL attribute must reflect the selected content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#defaultSelected\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "disabled",
 				"return_type": "boolean",
 				"description": "The disabled IDL attribute must reflect the content attribute of the same name. The defaultSelected IDL attribute must reflect the selected content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#disabled",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tdisabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe disabled IDL attribute must reflect the content attribute of the same name. The defaultSelected IDL attribute must reflect the selected content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#disabled\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "label",
 				"return_type": "DOMString",
 				"description": "The label IDL attribute, on getting, must return the element's label. On setting, the element's label content attribute must be set to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#label",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tlabel\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe label IDL attribute, on getting, must return the element's label. On setting, the element's label content attribute must be set to the new value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#label\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "value",
 				"return_type": "DOMString",
 				"description": "The value IDL attribute, on getting, must return the element's value. On setting, the element's value content attribute must be set to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#value",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tvalue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe value IDL attribute, on getting, must return the element's value. On setting, the element's value content attribute must be set to the new value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#value\n\n*/"
@@ -121,6 +128,7 @@
 				"name": "index",
 				"return_type": "long",
 				"description": "The index IDL attribute must return the element's index.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLOptionElement.html#index",
 				"full_description": "/*\n\n\tHTMLOptionElement\n\n\tindex\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe index IDL attribute must return the element's index.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLOptionElement.html#index\n\n*/"

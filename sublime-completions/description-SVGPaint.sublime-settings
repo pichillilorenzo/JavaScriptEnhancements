@@ -33,6 +33,7 @@
 					}
 				],
 				"description": "Sets the paint as specified by the parameters. If paintType requires a URI, then uri must be non-null; otherwise, uri must be null. If paintType requires an RGBColor, then rgbColor must be a string that matches <color>; otherwise, rgbColor must be null.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#setPaint",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tsetPaint ( paintType: unsigned short, uri: DOMString, rgbColor: DOMString, iccColor: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tSets the paint as specified by the parameters. If paintType requires a URI, then uri must be non-null; otherwise, uri must be null. If paintType requires an RGBColor, then rgbColor must be a string that matches <color>; otherwise, rgbColor must be null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#setPaint\n\n*/"
@@ -44,6 +45,7 @@
 				"name": "SVG_PAINTTYPE_URI_RGBCOLOR_ICCCOLOR",
 				"return_type": "const unsigned short",
 				"description": "A URI has been specified, along with both an sRGB color and alternate ICC color as the backup paint method in case the URI is unavailable or invalid.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_RGBCOLOR_ICCCOLOR",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_URI_RGBCOLOR_ICCCOLOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tA URI has been specified, along with both an sRGB color and alternate ICC color as the backup paint method in case the URI is unavailable or invalid.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_RGBCOLOR_ICCCOLOR\n\n*/"
@@ -55,6 +57,7 @@
 				"name": "SVG_PAINTTYPE_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The paint type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_UNKNOWN",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe paint type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_UNKNOWN\n\n*/"
@@ -66,6 +69,7 @@
 				"name": "SVG_PAINTTYPE_URI_CURRENTCOLOR",
 				"return_type": "const unsigned short",
 				"description": "A URI has been specified, along with an sRGB color as the backup paint method in case the URI is unavailable or invalid.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_CURRENTCOLOR",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_URI_CURRENTCOLOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tA URI has been specified, along with an sRGB color as the backup paint method in case the URI is unavailable or invalid.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_CURRENTCOLOR\n\n*/"
@@ -77,6 +81,7 @@
 				"name": "SVG_PAINTTYPE_URI_RGBCOLOR",
 				"return_type": "const unsigned short",
 				"description": "A URI has been specified, along with an sRGB color as the backup paint method in case the URI is unavailable or invalid.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_RGBCOLOR",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_URI_RGBCOLOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tA URI has been specified, along with an sRGB color as the backup paint method in case the URI is unavailable or invalid.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_RGBCOLOR\n\n*/"
@@ -88,6 +93,7 @@
 				"name": "SVG_PAINTTYPE_URI_NONE",
 				"return_type": "const unsigned short",
 				"description": "A URI has been specified, along with an explicit none as the backup paint method in case the URI is unavailable or invalid.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_NONE",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_URI_NONE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tA URI has been specified, along with an explicit none as the backup paint method in case the URI is unavailable or invalid.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI_NONE\n\n*/"
@@ -107,6 +113,7 @@
 					}
 				],
 				"description": "Sets the paintType to SVG_PAINTTYPE_URI_NONE and sets uri to the specified value. ParametersDOMString uri The URI for the desired paint server.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#setUri",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tsetUri ( uri: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tSets the paintType to SVG_PAINTTYPE_URI_NONE and sets uri to the specified value. ParametersDOMString uri The URI for the desired paint server.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#setUri\n\n*/"
@@ -118,6 +125,7 @@
 				"name": "SVG_PAINTTYPE_RGBCOLOR_ICCCOLOR",
 				"return_type": "const unsigned short",
 				"description": "An sRGB color has been specified along with an alternative ICC color specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_RGBCOLOR_ICCCOLOR",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_RGBCOLOR_ICCCOLOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tAn sRGB color has been specified along with an alternative ICC color specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_RGBCOLOR_ICCCOLOR\n\n*/"
@@ -129,6 +137,7 @@
 				"name": "uri",
 				"return_type": "DOMString",
 				"description": "When the paintType specifies a URI, this attribute holds the URI string. When the paintType does not specify a URI, this attribute is null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#uri",
 				"full_description": "/*\n\n\tSVGPaint\n\n\turi\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tWhen the paintType specifies a URI, this attribute holds the URI string. When the paintType does not specify a URI, this attribute is null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#uri\n\n*/"
@@ -140,6 +149,7 @@
 				"name": "SVG_PAINTTYPE_RGBCOLOR",
 				"return_type": "const unsigned short",
 				"description": "An sRGB color has been specified without an alternative ICC color specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_RGBCOLOR",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_RGBCOLOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tAn sRGB color has been specified without an alternative ICC color specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_RGBCOLOR\n\n*/"
@@ -151,6 +161,7 @@
 				"name": "SVG_PAINTTYPE_CURRENTCOLOR",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a currentColor value on a <paint> specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_CURRENTCOLOR",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_CURRENTCOLOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a currentColor value on a <paint> specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_CURRENTCOLOR\n\n*/"
@@ -162,6 +173,7 @@
 				"name": "paintType",
 				"return_type": "unsigned short",
 				"description": "The type of paint, identified by one of the SVG_PAINTTYPE_* constants defined on this interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#paintType",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tpaintType\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe type of paint, identified by one of the SVG_PAINTTYPE_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#paintType\n\n*/"
@@ -173,6 +185,7 @@
 				"name": "SVG_PAINTTYPE_NONE",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a none value on a <paint> specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_NONE",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_NONE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a none value on a <paint> specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_NONE\n\n*/"
@@ -184,6 +197,7 @@
 				"name": "SVG_PAINTTYPE_URI",
 				"return_type": "const unsigned short",
 				"description": "Only a URI has been specified.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI",
 				"full_description": "/*\n\n\tSVGPaint\n\n\tSVG_PAINTTYPE_URI\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tOnly a URI has been specified.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPaint.html#SVG_PAINTTYPE_URI\n\n*/"

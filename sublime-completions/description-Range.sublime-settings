@@ -8,6 +8,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The detach() method must do nothing. Its functionality (disabling a Range object) was removed, but the method itself is preserved for compatibility.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#detach",
 				"full_description": "/*\n\n\tRange\n\n\tdetach ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe detach() method must do nothing. Its functionality (disabling a Range object) was removed, but the method itself is preserved for compatibility.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#detach\n\n*/"
@@ -33,6 +34,7 @@
 					}
 				],
 				"description": "The setStart(node, offset) method must set the start of the context object to boundary point (node, offset).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#setStart",
 				"full_description": "/*\n\n\tRange\n\n\tsetStart ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setStart(node, offset) method must set the start of the context object to boundary point (node, offset).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#setStart\n\n*/"
@@ -58,6 +60,7 @@
 					}
 				],
 				"description": "The setEnd(node, offset) method must set the end of the context object to boundary point (node, offset).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#setEnd",
 				"full_description": "/*\n\n\tRange\n\n\tsetEnd ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setEnd(node, offset) method must set the end of the context object to boundary point (node, offset).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#setEnd\n\n*/"
@@ -77,6 +80,7 @@
 					}
 				],
 				"description": "The collapse(toStart) method must if toStart is true, set end to start, and set start to end otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#collapse",
 				"full_description": "/*\n\n\tRange\n\n\tcollapse ( toStart?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe collapse(toStart) method must if toStart is true, set end to start, and set start to end otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#collapse\n\n*/"
@@ -89,6 +93,7 @@
 				"return_type": "DocumentFragment",
 				"parameters": [],
 				"description": "The extractContents() method must return the result of extracting context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#extractContents",
 				"full_description": "/*\n\n\tRange\n\n\textractContents ()\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe extractContents() method must return the result of extracting context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#extractContents\n\n*/"
@@ -101,6 +106,7 @@
 				"return_type": "Range",
 				"parameters": [],
 				"description": "The cloneRange() method must return a new range with the same start and end as the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#cloneRange",
 				"full_description": "/*\n\n\tRange\n\n\tcloneRange ()\n\n\tReturn Type:\n\tRange\n\n\tDescription:\n\tThe cloneRange() method must return a new range with the same start and end as the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#cloneRange\n\n*/"
@@ -113,6 +119,7 @@
 				"return_type": "DocumentFragment",
 				"parameters": [],
 				"description": "The cloneContents() method must return the result of cloning context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#cloneContents",
 				"full_description": "/*\n\n\tRange\n\n\tcloneContents ()\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe cloneContents() method must return the result of cloning context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#cloneContents\n\n*/"
@@ -124,6 +131,7 @@
 				"name": "collapsed",
 				"return_type": "boolean",
 				"description": "The collapsed attribute must return true if start is the same as end, and false otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#collapsed",
 				"full_description": "/*\n\n\tRange\n\n\tcollapsed\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe collapsed attribute must return true if start is the same as end, and false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#collapsed\n\n*/"
@@ -143,6 +151,7 @@
 					}
 				],
 				"description": "The selectNode(node) method must select node within context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#selectNode",
 				"full_description": "/*\n\n\tRange\n\n\tselectNode ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe selectNode(node) method must select node within context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#selectNode\n\n*/"
@@ -162,6 +171,7 @@
 					}
 				],
 				"description": "The insertNode(node) method must insert node into context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#insertNode",
 				"full_description": "/*\n\n\tRange\n\n\tinsertNode ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe insertNode(node) method must insert node into context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#insertNode\n\n*/"
@@ -173,6 +183,7 @@
 				"name": "startOffset",
 				"return_type": "unsigned long",
 				"description": "The startOffset attribute must return the start offset.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#startOffset",
 				"full_description": "/*\n\n\tRange\n\n\tstartOffset\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe startOffset attribute must return the start offset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#startOffset\n\n*/"
@@ -198,6 +209,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-compareboundarypoints",
 				"full_description": "/*\n\n\tRange\n\n\tcompareBoundaryPoints ( how: unsigned short, sourceRange: Range )\n\n\tReturn Type:\n\tshort\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-compareboundarypoints\n\n*/"
@@ -209,6 +221,7 @@
 				"name": "startContainer",
 				"return_type": "Node",
 				"description": "The startContainer attribute must return the start node.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#startContainer",
 				"full_description": "/*\n\n\tRange\n\n\tstartContainer\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe startContainer attribute must return the start node.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#startContainer\n\n*/"
@@ -220,6 +233,7 @@
 				"name": "endOffset",
 				"return_type": "unsigned long",
 				"description": "The endOffset attribute must return the end offset.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#endOffset",
 				"full_description": "/*\n\n\tRange\n\n\tendOffset\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe endOffset attribute must return the end offset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#endOffset\n\n*/"
@@ -231,6 +245,7 @@
 				"name": "endContainer",
 				"return_type": "Node",
 				"description": "The endContainer attribute must return the end node.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#endContainer",
 				"full_description": "/*\n\n\tRange\n\n\tendContainer\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\tThe endContainer attribute must return the end node.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#endContainer\n\n*/"
@@ -256,6 +271,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-ispointinrange",
 				"full_description": "/*\n\n\tRange\n\n\tisPointInRange ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-ispointinrange\n\n*/"
@@ -281,6 +297,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-comparepoint",
 				"full_description": "/*\n\n\tRange\n\n\tcomparePoint ( node: Node, offset: unsigned long )\n\n\tReturn Type:\n\tshort\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-comparepoint\n\n*/"
@@ -300,6 +317,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-surroundcontents",
 				"full_description": "/*\n\n\tRange\n\n\tsurroundContents ( newParent: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-surroundcontents\n\n*/"
@@ -319,6 +337,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-selectnodecontents",
 				"full_description": "/*\n\n\tRange\n\n\tselectNodeContents ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-selectnodecontents\n\n*/"
@@ -330,6 +349,7 @@
 				"name": "START_TO_START",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#START_TO_START",
 				"full_description": "/*\n\n\tRange\n\n\tSTART_TO_START\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#START_TO_START\n\n*/"
@@ -341,6 +361,7 @@
 				"name": "commonAncestorContainer",
 				"return_type": "Node",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-commonancestorcontainer",
 				"full_description": "/*\n\n\tRange\n\n\tcommonAncestorContainer\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-commonancestorcontainer\n\n*/"
@@ -360,6 +381,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-intersectsnode",
 				"full_description": "/*\n\n\tRange\n\n\tintersectsNode ( node: Node )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-intersectsnode\n\n*/"
@@ -371,6 +393,7 @@
 				"name": "START_TO_END",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#START_TO_END",
 				"full_description": "/*\n\n\tRange\n\n\tSTART_TO_END\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#START_TO_END\n\n*/"
@@ -390,6 +413,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setstartbefore",
 				"full_description": "/*\n\n\tRange\n\n\tsetStartBefore ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setstartbefore\n\n*/"
@@ -401,6 +425,7 @@
 				"name": "END_TO_START",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#END_TO_START",
 				"full_description": "/*\n\n\tRange\n\n\tEND_TO_START\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#END_TO_START\n\n*/"
@@ -420,6 +445,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setstartafter",
 				"full_description": "/*\n\n\tRange\n\n\tsetStartAfter ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setstartafter\n\n*/"
@@ -439,6 +465,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setendbefore",
 				"full_description": "/*\n\n\tRange\n\n\tsetEndBefore ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setendbefore\n\n*/"
@@ -450,6 +477,7 @@
 				"name": "END_TO_END",
 				"return_type": "const unsigned short",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Range.html#END_TO_END",
 				"full_description": "/*\n\n\tRange\n\n\tEND_TO_END\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Range.html#END_TO_END\n\n*/"
@@ -469,6 +497,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-setendafter",
 				"full_description": "/*\n\n\tRange\n\n\tsetEndAfter ( node: Node )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-setendafter\n\n*/"
@@ -481,6 +510,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-range-deletecontents",
 				"full_description": "/*\n\n\tRange\n\n\tdeleteContents ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-range-deletecontents\n\n*/"

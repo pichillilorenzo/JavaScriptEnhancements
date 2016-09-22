@@ -7,6 +7,7 @@
 				"name": "HOST_RULE",
 				"return_type": "const unsigned short",
 				"description": "When the value of the type attribute is HOST_RULE, then the object that implements this interface must implement CSSHostRule interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#HOST_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tHOST_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tWhen the value of the type attribute is HOST_RULE, then the object that implements this interface must implement CSSHostRule interface.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#HOST_RULE\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "parentStyleSheet",
 				"return_type": "CSSStyleSheet",
 				"description": "The parentStyleSheet attribute must return the parent CSS style sheet.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#parentStyleSheet",
 				"full_description": "/*\n\n\tCSSRule\n\n\tparentStyleSheet\n\n\tReturn Type:\n\tCSSStyleSheet\n\n\tDescription:\n\tThe parentStyleSheet attribute must return the parent CSS style sheet.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#parentStyleSheet\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "NAMESPACE_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return NAMESPACE_RULE (numeric value 10).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#NAMESPACE_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tNAMESPACE_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn NAMESPACE_RULE (numeric value 10).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#NAMESPACE_RULE\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "cssText",
 				"return_type": "DOMString",
 				"description": "The cssText attribute must return a serialization of the CSS rule.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#cssText",
 				"full_description": "/*\n\n\tCSSRule\n\n\tcssText\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cssText attribute must return a serialization of the CSS rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#cssText\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "FONT_FACE_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return FONT_FACE_RULE (numeric value 5).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#FONT_FACE_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tFONT_FACE_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn FONT_FACE_RULE (numeric value 5).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#FONT_FACE_RULE\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "parentRule",
 				"return_type": "CSSRule",
 				"description": "The parentRule attribute must return the parent CSS rule.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#parentRule",
 				"full_description": "/*\n\n\tCSSRule\n\n\tparentRule\n\n\tReturn Type:\n\tCSSRule\n\n\tDescription:\n\tThe parentRule attribute must return the parent CSS rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#parentRule\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "CHARSET_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return CHARSET_RULE (numberic value 2).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#CHARSET_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tCHARSET_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn CHARSET_RULE (numberic value 2).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#CHARSET_RULE\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "IMPORT_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return IMPORT_RULE (numberic value 3).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#IMPORT_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tIMPORT_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn IMPORT_RULE (numberic value 3).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#IMPORT_RULE\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "MARGIN_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return MARGIN_RULE (numeric value 9).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#MARGIN_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tMARGIN_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn MARGIN_RULE (numeric value 9).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#MARGIN_RULE\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "STYLE_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return STYLE_RULE (numeric value 1).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#STYLE_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tSTYLE_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn STYLE_RULE (numeric value 1).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#STYLE_RULE\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "MEDIA_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return MEDIA_RULE (numeric value 4).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#MEDIA_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tMEDIA_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn MEDIA_RULE (numeric value 4).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#MEDIA_RULE\n\n*/"
@@ -128,6 +139,7 @@
 				"name": "PAGE_RULE",
 				"return_type": "const unsigned short",
 				"description": "Return PAGE_RULE (numeric value 6).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#PAGE_RULE",
 				"full_description": "/*\n\n\tCSSRule\n\n\tPAGE_RULE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tReturn PAGE_RULE (numeric value 6).\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSRule.html#PAGE_RULE\n\n*/"
@@ -139,6 +151,7 @@
 				"name": "type",
 				"return_type": "unsigned short",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssrule-type",
 				"full_description": "/*\n\n\tCSSRule\n\n\ttype\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssrule-type\n\n*/"

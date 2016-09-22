@@ -7,6 +7,7 @@
 				"name": "form",
 				"return_type": "HTMLFormElement",
 				"description": "The form IDL attribute's behavior depends on whether the legend element is in a fieldset element or not. If the legend has a fieldset element as its parent, then the form IDL attribute must return the same value as the form IDL attribute on that fieldset element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLegendElement.html#form",
 				"full_description": "/*\n\n\tHTMLLegendElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tThe form IDL attribute's behavior depends on whether the legend element is in a fieldset element or not. If the legend has a fieldset element as its parent, then the form IDL attribute must return the same value as the form IDL attribute on that fieldset element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLegendElement.html#form\n\n*/"

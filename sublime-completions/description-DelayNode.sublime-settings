@@ -7,6 +7,7 @@
 				"name": "delayTime",
 				"return_type": "AudioParam",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20DelayNode.html#delayTime",
 				"full_description": "/*\n\n\tDelayNode\n\n\tdelayTime\n\n\tReturn Type:\n\tAudioParam\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20DelayNode.html#delayTime\n\n*/"

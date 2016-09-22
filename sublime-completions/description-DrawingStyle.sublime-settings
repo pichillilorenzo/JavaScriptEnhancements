@@ -7,6 +7,7 @@
 				"name": "miterLimit",
 				"return_type": "unrestricted double",
 				"description": "When the lineJoin attribute has the value miter, strokes use the miter limit ratio to decide how to render joins. The miter limit ratio can be explicitly set using the miterLimit attribute. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#miterLimit",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tmiterLimit\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tWhen the lineJoin attribute has the value miter, strokes use the miter limit ratio to decide how to render joins. The miter limit ratio can be explicitly set using the miterLimit attribute. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#miterLimit\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "font",
 				"return_type": "DOMString",
 				"description": "The font IDL attribute, on setting, must be parsed the same way as the 'font' property of CSS (but without supporting property-independent style sheet syntax like 'inherit'), and the resulting font must be assigned to the context, with the 'line-height' component forced to 'normal', with the 'font-size' component converted to CSS pixels, and with system fonts being computed to explicit values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#font",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tfont\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe font IDL attribute, on setting, must be parsed the same way as the 'font' property of CSS (but without supporting property-independent style sheet syntax like 'inherit'), and the resulting font must be assigned to the context, with the 'line-height' component forced to 'normal', with the 'font-size' component converted to CSS pixels, and with system fonts being computed to explicit values.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#font\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "lineDashOffset",
 				"return_type": "unrestricted double",
 				"description": "It is sometimes useful to change the \"phase\" of the dash pattern, e.g. to achieve a \"marching ants\" effect. The phase can be set using the lineDashOffset attribute. On getting, it must return the current value. On setting, infinite and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#lineDashOffset",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tlineDashOffset\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tIt is sometimes useful to change the \"phase\" of the dash pattern, e.g. to achieve a \"marching ants\" effect. The phase can be set using the lineDashOffset attribute. On getting, it must return the current value. On setting, infinite and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#lineDashOffset\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "textAlign",
 				"return_type": "DOMString",
 				"description": "The textAlign IDL attribute, on getting, must return the current value. On setting, if the value is one of start, end, left, right, or center, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the textAlign attribute must initially have the value start.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#textAlign",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\ttextAlign\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe textAlign IDL attribute, on getting, must return the current value. On setting, if the value is one of start, end, left, right, or center, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the textAlign attribute must initially have the value start.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#textAlign\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "direction",
 				"return_type": "DOMString",
 				"description": "The direction IDL attribute, on getting, must return the current value. On setting, if the value is one of ltr, rtl, or inherit, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the direction attribute must initially have the value inherit.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#direction",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tdirection\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe direction IDL attribute, on getting, must return the current value. On setting, if the value is one of ltr, rtl, or inherit, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the direction attribute must initially have the value inherit.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#direction\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "lineWidth",
 				"return_type": "unrestricted double",
 				"description": "The lineWidth attribute gives the width of lines, in coordinate space units. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#lineWidth",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tlineWidth\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe lineWidth attribute gives the width of lines, in coordinate space units. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#lineWidth\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "textBaseline",
 				"return_type": "DOMString",
 				"description": "The textBaseline IDL attribute, on getting, must return the current value. On setting, if the value is one of top, hanging, middle, alphabetic, ideographic, or bottom, then the value must be changed to the new value. Otherwise, the new value must be ignored.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#textBaseline",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\ttextBaseline\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe textBaseline IDL attribute, on getting, must return the current value. On setting, if the value is one of top, hanging, middle, alphabetic, ideographic, or bottom, then the value must be changed to the new value. Otherwise, the new value must be ignored.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#textBaseline\n\n*/"
@@ -85,6 +92,7 @@
 				"return_type": "sequence<unrestricted double>",
 				"parameters": [],
 				"description": "When the getLineDash() method is invoked, it must return a sequence whose values are the values of the object's dash list, in the same order.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#getLineDash",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tgetLineDash ()\n\n\tReturn Type:\n\tsequence<unrestricted double>\n\n\tDescription:\n\tWhen the getLineDash() method is invoked, it must return a sequence whose values are the values of the object's dash list, in the same order.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#getLineDash\n\n*/"
@@ -96,6 +104,7 @@
 				"name": "lineJoin",
 				"return_type": "DOMString",
 				"description": "The lineJoin attribute defines the type of corners that UAs will place where two lines meet. The three valid values are bevel, round, and miter.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#lineJoin",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tlineJoin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lineJoin attribute defines the type of corners that UAs will place where two lines meet. The three valid values are bevel, round, and miter.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#lineJoin\n\n*/"
@@ -107,6 +116,7 @@
 				"name": "lineCap",
 				"return_type": "DOMString",
 				"description": "The lineCap attribute defines the type of endings that UAs will place on the end of lines. The three valid values are butt, round, and square.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20DrawingStyle.html#lineCap",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tlineCap\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lineCap attribute defines the type of endings that UAs will place on the end of lines. The three valid values are butt, round, and square.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20DrawingStyle.html#lineCap\n\n*/"
@@ -126,6 +136,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash",
 				"full_description": "/*\n\n\tDrawingStyle\n\n\tsetLineDash ( segments: sequence<unrestricted double> )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash\n\n*/"

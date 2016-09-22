@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "Post-multiplies a rotation transformation on the current matrix and returns the resulting matrix. The rotation angle is determined by taking (+/-) atan(y/x). The direction of the vector (x, y) determines whether the positive or negative angle value is used.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#rotateFromVector",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\trotateFromVector ( x: float, y: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a rotation transformation on the current matrix and returns the resulting matrix. The rotation angle is determined by taking (+/-) atan(y/x). The direction of the vector (x, y) determines whether the positive or negative angle value is used.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#rotateFromVector\n\n*/"
@@ -46,6 +47,7 @@
 					}
 				],
 				"description": "Post-multiplies a non-uniform scale transformation on the current matrix and returns the resulting matrix. Parametersfloat scaleFactorX Scale factor in X. float scaleFactorY Scale factor in Y. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#scaleNonUniform",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tscaleNonUniform ( scaleFactorX: float, scaleFactorY: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a non-uniform scale transformation on the current matrix and returns the resulting matrix. Parametersfloat scaleFactorX Scale factor in X. float scaleFactorY Scale factor in Y. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#scaleNonUniform\n\n*/"
@@ -71,6 +73,7 @@
 					}
 				],
 				"description": "Post-multiplies a translation transformation on the current matrix and returns the resulting matrix. Parametersfloat x The distance to translate along the x-axis. float y The distance to translate along the y-axis. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#translate",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\ttranslate ( x: float, y: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a translation transformation on the current matrix and returns the resulting matrix. Parametersfloat x The distance to translate along the x-axis. float y The distance to translate along the y-axis. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#translate\n\n*/"
@@ -90,6 +93,7 @@
 					}
 				],
 				"description": "Performs matrix multiplication. This matrix is post-multiplied by another matrix, returning the resulting new matrix. ParametersSVGMatrix secondMatrix The matrix which is post-multiplied to this matrix. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#multiply",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tmultiply ( secondMatrix: SVGMatrix )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPerforms matrix multiplication. This matrix is post-multiplied by another matrix, returning the resulting new matrix. ParametersSVGMatrix secondMatrix The matrix which is post-multiplied to this matrix. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#multiply\n\n*/"
@@ -109,6 +113,7 @@
 					}
 				],
 				"description": "Post-multiplies a uniform scale transformation on the current matrix and returns the resulting matrix. Parametersfloat scaleFactor Scale factor in both X and Y. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#scale",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tscale ( scaleFactor: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a uniform scale transformation on the current matrix and returns the resulting matrix. Parametersfloat scaleFactor Scale factor in both X and Y. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#scale\n\n*/"
@@ -128,6 +133,7 @@
 					}
 				],
 				"description": "Post-multiplies a rotation transformation on the current matrix and returns the resulting matrix. Parametersfloat angle Rotation angle. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#rotate",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\trotate ( angle: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a rotation transformation on the current matrix and returns the resulting matrix. Parametersfloat angle Rotation angle. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#rotate\n\n*/"
@@ -147,6 +153,7 @@
 					}
 				],
 				"description": "Post-multiplies a skewY transformation on the current matrix and returns the resulting matrix. Parametersfloat angle Skew angle. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#skewY",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tskewY ( angle: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a skewY transformation on the current matrix and returns the resulting matrix. Parametersfloat angle Skew angle. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#skewY\n\n*/"
@@ -166,6 +173,7 @@
 					}
 				],
 				"description": "Post-multiplies a skewX transformation on the current matrix and returns the resulting matrix. Parametersfloat angle Skew angle. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#skewX",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tskewX ( angle: float )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies a skewX transformation on the current matrix and returns the resulting matrix. Parametersfloat angle Skew angle. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#skewX\n\n*/"
@@ -178,6 +186,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Returns the inverse matrix. Returns The inverse matrix. ExceptionsSVGException, code SVG_MATRIX_NOT_INVERTABLE Raised if this matrix is not invertable.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#inverse",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tinverse ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the inverse matrix. Returns The inverse matrix. ExceptionsSVGException, code SVG_MATRIX_NOT_INVERTABLE Raised if this matrix is not invertable.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#inverse\n\n*/"
@@ -189,6 +198,7 @@
 				"name": "b",
 				"return_type": "float",
 				"description": "The b component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#b",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tb\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe b component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#b\n\n*/"
@@ -200,6 +210,7 @@
 				"name": "f",
 				"return_type": "float",
 				"description": "The f component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#f",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tf\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe f component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#f\n\n*/"
@@ -211,6 +222,7 @@
 				"name": "e",
 				"return_type": "float",
 				"description": "The e component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#e",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\te\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe e component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#e\n\n*/"
@@ -222,6 +234,7 @@
 				"name": "d",
 				"return_type": "float",
 				"description": "The d component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#d",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\td\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe d component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#d\n\n*/"
@@ -233,6 +246,7 @@
 				"name": "c",
 				"return_type": "float",
 				"description": "The c component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#c",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tc\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe c component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#c\n\n*/"
@@ -244,6 +258,7 @@
 				"name": "a",
 				"return_type": "float",
 				"description": "The a component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#a",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\ta\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe a component of the matrix. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#a\n\n*/"
@@ -256,6 +271,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Post-multiplies the transformation [1 0 0 -1 0 0] and returns the resulting matrix. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#flipY",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tflipY ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies the transformation [1 0 0 -1 0 0] and returns the resulting matrix. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#flipY\n\n*/"
@@ -268,6 +284,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Post-multiplies the transformation [-1 0 0 1 0 0] and returns the resulting matrix. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGMatrix.html#flipX",
 				"full_description": "/*\n\n\tSVGMatrix\n\n\tflipX ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tPost-multiplies the transformation [-1 0 0 1 0 0] and returns the resulting matrix. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGMatrix.html#flipX\n\n*/"

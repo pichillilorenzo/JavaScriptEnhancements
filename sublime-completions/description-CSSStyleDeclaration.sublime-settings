@@ -7,6 +7,7 @@
 				"name": "cssFloat",
 				"return_type": "DOMString",
 				"description": "The cssFloat attribute, on getting, must return the result of invoking getPropertyValue() with float as argument. On setting, the attribute must invoke setProperty() with float as first argument, as second argument the given value, and no third argument. Any exceptions thrown must be re-thrown.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#cssFloat",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tcssFloat\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cssFloat attribute, on getting, must return the result of invoking getPropertyValue() with float as argument. On setting, the attribute must invoke setProperty() with float as first argument, as second argument the given value, and no third argument. Any exceptions thrown must be re-thrown.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#cssFloat\n\n*/"
@@ -26,6 +27,7 @@
 					}
 				],
 				"description": "The item(index) method must return the property name of the CSS declaration at position index.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#item",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\titem ( index: unsigned long )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe item(index) method must return the property name of the CSS declaration at position index.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#item\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "length",
 				"return_type": "unsigned long",
 				"description": "The length attribute must return the number of CSS declarations in the declarations.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#length",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tlength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe length attribute must return the number of CSS declarations in the declarations.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#length\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "cssText",
 				"return_type": "DOMString",
 				"description": "The cssText attribute must return the result of serializing the declarations.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#cssText",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tcssText\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cssText attribute must return the result of serializing the declarations.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#cssText\n\n*/"
@@ -59,6 +63,7 @@
 				"name": "parentRule",
 				"return_type": "CSSRule",
 				"description": "The parentRule attribute must return the parent CSS rule.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#parentRule",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tparentRule\n\n\tReturn Type:\n\tCSSRule\n\n\tDescription:\n\tThe parentRule attribute must return the parent CSS rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#parentRule\n\n*/"
@@ -90,6 +95,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstyledeclaration-setproperty",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tsetProperty ( property: DOMString, value: DOMString, priority?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstyledeclaration-setproperty\n\n*/"
@@ -115,6 +121,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstyledeclaration-setpropertypriority",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tsetPropertyPriority ( property: DOMString, priority: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstyledeclaration-setpropertypriority\n\n*/"
@@ -140,6 +147,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstyledeclaration-setpropertyvalue",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tsetPropertyValue ( property: DOMString, value: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstyledeclaration-setpropertyvalue\n\n*/"
@@ -151,6 +159,7 @@
 				"name": "_camel_cased_attribute",
 				"return_type": "DOMString",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#_camel_cased_attribute",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\t_camel_cased_attribute\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleDeclaration.html#_camel_cased_attribute\n\n*/"
@@ -170,6 +179,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstyledeclaration-getpropertypriority",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tgetPropertyPriority ( property: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstyledeclaration-getpropertypriority\n\n*/"
@@ -189,6 +199,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstyledeclaration-getpropertyvalue",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tgetPropertyValue ( property: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstyledeclaration-getpropertyvalue\n\n*/"
@@ -208,6 +219,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstyledeclaration-removeproperty",
 				"full_description": "/*\n\n\tCSSStyleDeclaration\n\n\tremoveProperty ( property: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstyledeclaration-removeproperty\n\n*/"

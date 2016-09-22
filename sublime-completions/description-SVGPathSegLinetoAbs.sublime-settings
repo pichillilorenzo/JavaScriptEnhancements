@@ -7,6 +7,7 @@
 				"name": "x",
 				"return_type": "float",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSegLinetoAbs.html#x",
 				"full_description": "/*\n\n\tSVGPathSegLinetoAbs\n\n\tx\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSegLinetoAbs.html#x\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "y",
 				"return_type": "float",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPathSegLinetoAbs.html#y",
 				"full_description": "/*\n\n\tSVGPathSegLinetoAbs\n\n\ty\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPathSegLinetoAbs.html#y\n\n*/"

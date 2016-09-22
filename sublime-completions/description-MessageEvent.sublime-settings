@@ -7,6 +7,7 @@
 				"name": "source",
 				"return_type": "(WindowProxy or MessagePort)",
 				"description": "The source attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents, in cross-document messaging, the WindowProxy of the browsing context of the Window object from which the message came; and in the connect events used by shared workers, the newly connecting MessagePort.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#source",
 				"full_description": "/*\n\n\tMessageEvent\n\n\tsource\n\n\tReturn Type:\n\t(WindowProxy or MessagePort)\n\n\tDescription:\n\tThe source attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents, in cross-document messaging, the WindowProxy of the browsing context of the Window object from which the message came; and in the connect events used by shared workers, the newly connecting MessagePort.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#source\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "origin",
 				"return_type": "DOMString",
 				"description": "The origin attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents, in server-sent events and cross-document messaging, the origin of the document that sent the message (typically the scheme, hostname, and port of the document, but not its path or fragment identifier).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#origin",
 				"full_description": "/*\n\n\tMessageEvent\n\n\torigin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe origin attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents, in server-sent events and cross-document messaging, the origin of the document that sent the message (typically the scheme, hostname, and port of the document, but not its path or fragment identifier).\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#origin\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "lastEventId",
 				"return_type": "DOMString",
 				"description": "The lastEventId attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents, in server-sent events, the last event ID string of the event source.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#lastEventId",
 				"full_description": "/*\n\n\tMessageEvent\n\n\tlastEventId\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lastEventId attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents, in server-sent events, the last event ID string of the event source.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#lastEventId\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "ports",
 				"return_type": "MessagePort[]",
 				"description": "The ports attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents, in cross-document messaging and channel messaging, the MessagePort array being sent, if any.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#ports",
 				"full_description": "/*\n\n\tMessageEvent\n\n\tports\n\n\tReturn Type:\n\tMessagePort[]\n\n\tDescription:\n\tThe ports attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents, in cross-document messaging and channel messaging, the MessagePort array being sent, if any.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#ports\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "data",
 				"return_type": "any",
 				"description": "The data attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the message being sent.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#data",
 				"full_description": "/*\n\n\tMessageEvent\n\n\tdata\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe data attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the message being sent.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageEvent.html#data\n\n*/"

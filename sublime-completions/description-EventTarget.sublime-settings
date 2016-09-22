@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-eventtarget-removeeventlistener",
 				"full_description": "/*\n\n\tEventTarget\n\n\tremoveEventListener ( type: DOMString, callback: EventListener, capture?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-eventtarget-removeeventlistener\n\n*/"
@@ -58,6 +59,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener",
 				"full_description": "/*\n\n\tEventTarget\n\n\taddEventListener ( type: DOMString, callback: EventListener, capture?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener\n\n*/"
@@ -77,6 +79,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-eventtarget-dispatchevent",
 				"full_description": "/*\n\n\tEventTarget\n\n\tdispatchEvent ( event: Event )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-eventtarget-dispatchevent\n\n*/"

@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "Applies a 2x3 matrix transformation on this SVGPoint object and returns a new, transformed SVGPoint object: newpoint = matrix * thispoint ParametersSVGMatrix matrix The matrix which is to be applied to this SVGPoint object. Returns A new SVGPoint object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPoint.html#matrixTransform",
 				"full_description": "/*\n\n\tSVGPoint\n\n\tmatrixTransform ( matrix: SVGMatrix )\n\n\tReturn Type:\n\tSVGPoint\n\n\tDescription:\n\tApplies a 2x3 matrix transformation on this SVGPoint object and returns a new, transformed SVGPoint object: newpoint = matrix * thispoint ParametersSVGMatrix matrix The matrix which is to be applied to this SVGPoint object. Returns A new SVGPoint object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPoint.html#matrixTransform\n\n*/"
@@ -26,6 +27,7 @@
 				"name": "x",
 				"return_type": "float",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPoint.html#x",
 				"full_description": "/*\n\n\tSVGPoint\n\n\tx\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPoint.html#x\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "y",
 				"return_type": "float",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPoint.html#y",
 				"full_description": "/*\n\n\tSVGPoint\n\n\ty\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPoint.html#y\n\n*/"

@@ -8,6 +8,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Initiates an exit from pointer lock state if currently locked to a target in this document, and sends a pointerlockchange event when the lock state has been exited. The system mouse cursor must be displayed again and positioned at the same location that it was when pointer lock was entered (the same location that is reported in screenX/Y when the pointer is locked).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#exitPointerLock",
 				"full_description": "/*\n\n\tDocument\n\n\texitPointerLock ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tInitiates an exit from pointer lock state if currently locked to a target in this document, and sends a pointerlockchange event when the lock state has been exited. The system mouse cursor must be displayed again and positioned at the same location that it was when pointer lock was entered (the same location that is reported in screenX/Y when the pointer is locked).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#exitPointerLock\n\n*/"
@@ -27,6 +28,7 @@
 					}
 				],
 				"description": "The querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelectorAll",
 				"full_description": "/*\n\n\tDocument\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelectorAll\n\n*/"
@@ -46,6 +48,7 @@
 					}
 				],
 				"description": "The getElementsByName(name) method takes a string name, and must return a live NodeList containing all the HTML elements in that document that have a name attribute whose value is equal to the name argument (in a case-sensitive manner), in tree order.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByName",
 				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByName ( elementName: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe getElementsByName(name) method takes a string name, and must return a live NodeList containing all the HTML elements in that document that have a name attribute whose value is equal to the name argument (in a case-sensitive manner), in tree order.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByName\n\n*/"
@@ -57,6 +60,7 @@
 				"name": "styleSheetSets",
 				"return_type": "DOMString[]",
 				"description": "The styleSheetSets attribute must return a read only array of the CSS style sheet set names of the CSS style sheet sets, in order of the document CSS style sheets. The array is live; if the document CSS style sheets change, the array must be updated as appropriate.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#styleSheetSets",
 				"full_description": "/*\n\n\tDocument\n\n\tstyleSheetSets\n\n\tReturn Type:\n\tDOMString[]\n\n\tDescription:\n\tThe styleSheetSets attribute must return a read only array of the CSS style sheet set names of the CSS style sheet sets, in order of the document CSS style sheets. The array is live; if the document CSS style sheets change, the array must be updated as appropriate.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#styleSheetSets\n\n*/"
@@ -76,6 +80,7 @@
 					}
 				],
 				"description": "The querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelector",
 				"full_description": "/*\n\n\tDocument\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelector\n\n*/"
@@ -101,6 +106,7 @@
 					}
 				],
 				"description": "The getElementsByTagNameNS(namespace, localName) method must return the list of elements with namespace namespace and local name localName for the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByTagNameNS",
 				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByTagNameNS ( namespace: DOMString, localName: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByTagNameNS(namespace, localName) method must return the list of elements with namespace namespace and local name localName for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByTagNameNS\n\n*/"
@@ -120,6 +126,7 @@
 					}
 				],
 				"description": "The query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against a set consisting of context object, and null if the result is an empty list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#query",
 				"full_description": "/*\n\n\tDocument\n\n\tquery ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe query(relativeSelectors) method must return the first result of running match a relative selectors string relativeSelectors against a set consisting of context object, and null if the result is an empty list.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#query\n\n*/"
@@ -139,6 +146,7 @@
 					}
 				],
 				"description": "The queryAll(relativeSelectors) method must return an Elements array initialized with the result of running match a relative selectors string relativeSelectors against a set consisting of context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryAll",
 				"full_description": "/*\n\n\tDocument\n\n\tqueryAll ( relativeSelectors: DOMString )\n\n\tReturn Type:\n\tElements\n\n\tDescription:\n\tThe queryAll(relativeSelectors) method must return an Elements array initialized with the result of running match a relative selectors string relativeSelectors against a set consisting of context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryAll\n\n*/"
@@ -150,6 +158,7 @@
 				"name": "dir",
 				"return_type": "DOMString",
 				"description": "The dir IDL attribute on Document objects must reflect the dir content attribute of the html element, if any, limited to only known values. If there is no such element, then the attribute must return the empty string and do nothing on setting.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#dir",
 				"full_description": "/*\n\n\tDocument\n\n\tdir\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe dir IDL attribute on Document objects must reflect the dir content attribute of the html element, if any, limited to only known values. If there is no such element, then the attribute must return the empty string and do nothing on setting.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#dir\n\n*/"
@@ -169,6 +178,7 @@
 					}
 				],
 				"description": "The querySelector(selectors) method must return the first result of running scope-match a selectors string selectors against the context object, and null if the result is an empty list otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelector",
 				"full_description": "/*\n\n\tDocument\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector(selectors) method must return the first result of running scope-match a selectors string selectors against the context object, and null if the result is an empty list otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelector\n\n*/"
@@ -188,6 +198,7 @@
 					}
 				],
 				"description": "The getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementById",
 				"full_description": "/*\n\n\tDocument\n\n\tgetElementById ( elementId: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe getElementById(elementId) method must return the first element, in tree order, within context object's descendants, whose ID is elementId, and null if there is no such element otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementById\n\n*/"
@@ -199,6 +210,7 @@
 				"name": "pointerLockElement",
 				"return_type": "Element (Pointer Lock)",
 				"description": "Returns the element set as the target for mouse events while the pointer is locked. Null if lock is pending, pointer is unlocked, or if the target is in another document.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#pointerLockElement",
 				"full_description": "/*\n\n\tDocument\n\n\tpointerLockElement\n\n\tReturn Type:\n\tElement (Pointer Lock)\n\n\tDescription:\n\tReturns the element set as the target for mouse events while the pointer is locked. Null if lock is pending, pointer is unlocked, or if the target is in another document.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#pointerLockElement\n\n*/"
@@ -210,6 +222,7 @@
 				"name": "currentScript",
 				"return_type": "HTMLScriptElement",
 				"description": "The currentScript attribute, on getting, must return the value to which it was most recently initialized. When the Document is created, the currentScript must be initialized to null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#currentScript",
 				"full_description": "/*\n\n\tDocument\n\n\tcurrentScript\n\n\tReturn Type:\n\tHTMLScriptElement\n\n\tDescription:\n\tThe currentScript attribute, on getting, must return the value to which it was most recently initialized. When the Document is created, the currentScript must be initialized to null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#currentScript\n\n*/"
@@ -221,6 +234,7 @@
 				"name": "cssElementMap",
 				"return_type": "DOMElementMap",
 				"description": "The cssElementMap IDL attribute allows authors to define CSS element reference identifiers, which are used in certain CSS features to override the normal ID-based mapping. [CSSIMAGES]",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#cssElementMap",
 				"full_description": "/*\n\n\tDocument\n\n\tcssElementMap\n\n\tReturn Type:\n\tDOMElementMap\n\n\tDescription:\n\tThe cssElementMap IDL attribute allows authors to define CSS element reference identifiers, which are used in certain CSS features to override the normal ID-based mapping. [CSSIMAGES]\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#cssElementMap\n\n*/"
@@ -232,6 +246,7 @@
 				"name": "commands",
 				"return_type": "HTMLCollection",
 				"description": "The commands attribute of the document's Document interface must return an HTMLCollection rooted at the Document node, whose filter matches only elements that define commands and have IDs.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#commands",
 				"full_description": "/*\n\n\tDocument\n\n\tcommands\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe commands attribute of the document's Document interface must return an HTMLCollection rooted at the Document node, whose filter matches only elements that define commands and have IDs.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#commands\n\n*/"
@@ -243,6 +258,7 @@
 				"name": "fullscreenEnabled",
 				"return_type": "boolean",
 				"description": "The fullscreenEnabled attribute must return true if the context object and all ancestor browsing context's documents have their fullscreen enabled flag set, or false otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#fullscreenEnabled",
 				"full_description": "/*\n\n\tDocument\n\n\tfullscreenEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe fullscreenEnabled attribute must return true if the context object and all ancestor browsing context's documents have their fullscreen enabled flag set, or false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#fullscreenEnabled\n\n*/"
@@ -262,6 +278,7 @@
 					}
 				],
 				"description": "The getElementsByClassName(classNames) method must return the list of elements with class names classNames for the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByClassName",
 				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByClassName ( classNames: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByClassName(classNames) method must return the list of elements with class names classNames for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByClassName\n\n*/"
@@ -281,6 +298,7 @@
 					}
 				],
 				"description": "The querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelectorAll",
 				"full_description": "/*\n\n\tDocument\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelectorAll\n\n*/"
@@ -300,6 +318,7 @@
 					}
 				],
 				"description": "The getElementsByTagName(localName) method must return the list of elements with local name localName for the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByTagName",
 				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByTagName ( localName: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByTagName(localName) method must return the list of elements with local name localName for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByTagName\n\n*/"
@@ -311,6 +330,7 @@
 				"name": "links",
 				"return_type": "HTMLCollection",
 				"description": "The links attribute must return an HTMLCollection rooted at the Document node, whose filter matches only a elements with href attributes and area elements with href attributes.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#links",
 				"full_description": "/*\n\n\tDocument\n\n\tlinks\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe links attribute must return an HTMLCollection rooted at the Document node, whose filter matches only a elements with href attributes and area elements with href attributes.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#links\n\n*/"
@@ -323,6 +343,7 @@
 				"return_type": "DocumentFragment",
 				"parameters": [],
 				"description": "The createDocumentFragment() method must return a new DocumentFragment node with its node document set to the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createDocumentFragment",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateDocumentFragment ()\n\n\tReturn Type:\n\tDocumentFragment\n\n\tDescription:\n\tThe createDocumentFragment() method must return a new DocumentFragment node with its node document set to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createDocumentFragment\n\n*/"
@@ -342,6 +363,7 @@
 					}
 				],
 				"description": "The createComment(data) method must return a new Comment node with its data set to data and node document set to the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createComment",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateComment ( data: DOMString )\n\n\tReturn Type:\n\tComment\n\n\tDescription:\n\tThe createComment(data) method must return a new Comment node with its data set to data and node document set to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createComment\n\n*/"
@@ -361,6 +383,7 @@
 					}
 				],
 				"description": "The createTextNode(data) method must return a new Text node with its data set to data and node document set to the context object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createTextNode",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateTextNode ( data: DOMString )\n\n\tReturn Type:\n\tText\n\n\tDescription:\n\tThe createTextNode(data) method must return a new Text node with its data set to data and node document set to the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createTextNode\n\n*/"
@@ -372,6 +395,7 @@
 				"name": "fullscreenElement",
 				"return_type": "Element (Fullscreen)",
 				"description": "The fullscreenElement attribute must return the top element of the context object's fullscreen element stack, or null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#fullscreenElement",
 				"full_description": "/*\n\n\tDocument\n\n\tfullscreenElement\n\n\tReturn Type:\n\tElement (Fullscreen)\n\n\tDescription:\n\tThe fullscreenElement attribute must return the top element of the context object's fullscreen element stack, or null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#fullscreenElement\n\n*/"
@@ -383,6 +407,7 @@
 				"name": "children",
 				"return_type": "HTMLCollection",
 				"description": "The children attribute must return an HTMLCollection collection rooted at the context object matching only element children.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#children",
 				"full_description": "/*\n\n\tDocument\n\n\tchildren\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe children attribute must return an HTMLCollection collection rooted at the context object matching only element children.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#children\n\n*/"
@@ -394,6 +419,7 @@
 				"name": "childElementCount",
 				"return_type": "unsigned long",
 				"description": "The childElementCount attribute must return the number of children of the context object that are elements.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#childElementCount",
 				"full_description": "/*\n\n\tDocument\n\n\tchildElementCount\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe childElementCount attribute must return the number of children of the context object that are elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#childElementCount\n\n*/"
@@ -405,6 +431,7 @@
 				"name": "implementation",
 				"return_type": "DOMImplementation",
 				"description": "The implementation attribute must return the DOMImplementation object that is associated with the document.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#implementation",
 				"full_description": "/*\n\n\tDocument\n\n\timplementation\n\n\tReturn Type:\n\tDOMImplementation\n\n\tDescription:\n\tThe implementation attribute must return the DOMImplementation object that is associated with the document.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#implementation\n\n*/"
@@ -416,6 +443,7 @@
 				"name": "scripts",
 				"return_type": "HTMLCollection",
 				"description": "The scripts attribute must return an HTMLCollection rooted at the Document node, whose filter matches only script elements.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#scripts",
 				"full_description": "/*\n\n\tDocument\n\n\tscripts\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe scripts attribute must return an HTMLCollection rooted at the Document node, whose filter matches only script elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#scripts\n\n*/"
@@ -427,6 +455,7 @@
 				"name": "body",
 				"return_type": "HTMLElement",
 				"description": "The body attribute, on getting, must return the body element of the document (either a body element, a frameset element, or null).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#body",
 				"full_description": "/*\n\n\tDocument\n\n\tbody\n\n\tReturn Type:\n\tHTMLElement\n\n\tDescription:\n\tThe body attribute, on getting, must return the body element of the document (either a body element, a frameset element, or null).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#body\n\n*/"
@@ -438,6 +467,7 @@
 				"name": "embeds",
 				"return_type": "HTMLCollection",
 				"description": "The embeds attribute must return an HTMLCollection rooted at the Document node, whose filter matches only embed elements.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#embeds",
 				"full_description": "/*\n\n\tDocument\n\n\tembeds\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe embeds attribute must return an HTMLCollection rooted at the Document node, whose filter matches only embed elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#embeds\n\n*/"
@@ -449,6 +479,7 @@
 				"name": "compatMode",
 				"return_type": "DOMString",
 				"description": "The compatMode attribute must return \"BackCompat\" if the context object is in quirks mode, and \"CSS1Compat\" otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#compatMode",
 				"full_description": "/*\n\n\tDocument\n\n\tcompatMode\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe compatMode attribute must return \"BackCompat\" if the context object is in quirks mode, and \"CSS1Compat\" otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#compatMode\n\n*/"
@@ -460,6 +491,7 @@
 				"name": "styleSheets",
 				"return_type": "StyleSheetList",
 				"description": "The styleSheets attribute must return a StyleSheetList collection representing the document CSS style sheets.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#styleSheets",
 				"full_description": "/*\n\n\tDocument\n\n\tstyleSheets\n\n\tReturn Type:\n\tStyleSheetList\n\n\tDescription:\n\tThe styleSheets attribute must return a StyleSheetList collection representing the document CSS style sheets.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#styleSheets\n\n*/"
@@ -471,6 +503,7 @@
 				"name": "images",
 				"return_type": "HTMLCollection",
 				"description": "The images attribute must return an HTMLCollection rooted at the Document node, whose filter matches only img elements.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#images",
 				"full_description": "/*\n\n\tDocument\n\n\timages\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe images attribute must return an HTMLCollection rooted at the Document node, whose filter matches only img elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#images\n\n*/"
@@ -482,6 +515,7 @@
 				"name": "forms",
 				"return_type": "HTMLCollection",
 				"description": "The forms attribute must return an HTMLCollection rooted at the Document node, whose filter matches only form elements.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#forms",
 				"full_description": "/*\n\n\tDocument\n\n\tforms\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe forms attribute must return an HTMLCollection rooted at the Document node, whose filter matches only form elements.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#forms\n\n*/"
@@ -493,6 +527,7 @@
 				"name": "preferredStyleSheetSet",
 				"return_type": "DOMString",
 				"description": "The preferredStyleSheetSet attribute must return the preferred CSS style sheet set name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#preferredStyleSheetSet",
 				"full_description": "/*\n\n\tDocument\n\n\tpreferredStyleSheetSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe preferredStyleSheetSet attribute must return the preferred CSS style sheet set name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#preferredStyleSheetSet\n\n*/"
@@ -504,6 +539,7 @@
 				"name": "firstElementChild",
 				"return_type": "Element",
 				"description": "The firstElementChild attribute must return the first child that is an element, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#firstElementChild",
 				"full_description": "/*\n\n\tDocument\n\n\tfirstElementChild\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe firstElementChild attribute must return the first child that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#firstElementChild\n\n*/"
@@ -515,6 +551,7 @@
 				"name": "lastElementChild",
 				"return_type": "Element",
 				"description": "The lastElementChild attribute must return the last child that is an element, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#lastElementChild",
 				"full_description": "/*\n\n\tDocument\n\n\tlastElementChild\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe lastElementChild attribute must return the last child that is an element, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#lastElementChild\n\n*/"
@@ -526,6 +563,7 @@
 				"name": "head",
 				"return_type": "HTMLHeadElement",
 				"description": "The head attribute, on getting, must return the head element of the document (a head element or null).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#head",
 				"full_description": "/*\n\n\tDocument\n\n\thead\n\n\tReturn Type:\n\tHTMLHeadElement\n\n\tDescription:\n\tThe head attribute, on getting, must return the head element of the document (a head element or null).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#head\n\n*/"
@@ -538,6 +576,7 @@
 				"return_type": "Range",
 				"parameters": [],
 				"description": "The createRange() method must return a new range with (context object, 0) as its start and end.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#createRange",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateRange ()\n\n\tReturn Type:\n\tRange\n\n\tDescription:\n\tThe createRange() method must return a new range with (context object, 0) as its start and end.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#createRange\n\n*/"
@@ -549,6 +588,7 @@
 				"name": "doctype",
 				"return_type": "DocumentType",
 				"description": "The doctype attribute must return the child of the document that is a doctype, and null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#doctype",
 				"full_description": "/*\n\n\tDocument\n\n\tdoctype\n\n\tReturn Type:\n\tDocumentType\n\n\tDescription:\n\tThe doctype attribute must return the child of the document that is a doctype, and null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#doctype\n\n*/"
@@ -560,6 +600,7 @@
 				"name": "readyState",
 				"return_type": "DocumentReadyState",
 				"description": "The readyState IDL attribute must, on getting, return the current document readiness.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#readyState",
 				"full_description": "/*\n\n\tDocument\n\n\treadyState\n\n\tReturn Type:\n\tDocumentReadyState\n\n\tDescription:\n\tThe readyState IDL attribute must, on getting, return the current document readiness.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#readyState\n\n*/"
@@ -571,6 +612,7 @@
 				"name": "lastStyleSheetSet",
 				"return_type": "DOMString",
 				"description": "The lastStyleSheetSet attribute must return the last CSS style sheet set name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#lastStyleSheetSet",
 				"full_description": "/*\n\n\tDocument\n\n\tlastStyleSheetSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lastStyleSheetSet attribute must return the last CSS style sheet set name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#lastStyleSheetSet\n\n*/"
@@ -582,6 +624,7 @@
 				"name": "plugins",
 				"return_type": "HTMLCollection",
 				"description": "The plugins attribute must return the same object as that returned by the embeds attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#plugins",
 				"full_description": "/*\n\n\tDocument\n\n\tplugins\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe plugins attribute must return the same object as that returned by the embeds attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#plugins\n\n*/"
@@ -593,6 +636,7 @@
 				"name": "cookie",
 				"return_type": "DOMString",
 				"description": "The cookie attribute represents the cookies of the resource identified by the document's address.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#cookie",
 				"full_description": "/*\n\n\tDocument\n\n\tcookie\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cookie attribute represents the cookies of the resource identified by the document's address.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#cookie\n\n*/"
@@ -604,6 +648,7 @@
 				"name": "origin",
 				"return_type": "DOMString",
 				"description": "The origin attribute must return the Unicode serialization of context object's origin. [ORIGIN]",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#origin",
 				"full_description": "/*\n\n\tDocument\n\n\torigin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe origin attribute must return the Unicode serialization of context object's origin. [ORIGIN]\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#origin\n\n*/"
@@ -629,6 +674,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createprocessinginstruction",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateProcessingInstruction ( target: DOMString, data: DOMString )\n\n\tReturn Type:\n\tProcessingInstruction\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createprocessinginstruction\n\n*/"
@@ -660,6 +706,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createnodeiterator",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateNodeIterator ( root: Node, whatToShow?: unsigned long, filter?: NodeFilter )\n\n\tReturn Type:\n\tNodeIterator\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createnodeiterator\n\n*/"
@@ -697,6 +744,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#open",
 				"full_description": "/*\n\n\tDocument\n\n\topen ( type_url?: DOMString, replace_name?: DOMString, features?: DOMString, replace?: boolean )\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#open\n\n*/"
@@ -728,6 +776,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createtreewalker",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateTreeWalker ( root: Node, whatToShow?: unsigned long, filter?: NodeFilter )\n\n\tReturn Type:\n\tTreeWalker\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createtreewalker\n\n*/"
@@ -739,6 +788,7 @@
 				"name": "documentElement",
 				"return_type": "Element",
 				"description": "The documentElement attribute must return the document element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#documentElement",
 				"full_description": "/*\n\n\tDocument\n\n\tdocumentElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe documentElement attribute must return the document element.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#documentElement\n\n*/"
@@ -750,6 +800,7 @@
 				"name": "characterSet",
 				"return_type": "DOMString",
 				"description": "The characterSet attribute must return the name of the encoding.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#characterSet",
 				"full_description": "/*\n\n\tDocument\n\n\tcharacterSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe characterSet attribute must return the name of the encoding.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#characterSet\n\n*/"
@@ -761,6 +812,7 @@
 				"name": "onpointerlockchange",
 				"return_type": "EventHandler",
 				"description": "An event handler for pointerlockchange events.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#onpointerlockchange",
 				"full_description": "/*\n\n\tDocument\n\n\tonpointerlockchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tAn event handler for pointerlockchange events.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#onpointerlockchange\n\n*/"
@@ -772,6 +824,7 @@
 				"name": "onpointerlockerror",
 				"return_type": "EventHandler",
 				"description": "An event handler for pointerlockerror events.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#onpointerlockerror",
 				"full_description": "/*\n\n\tDocument\n\n\tonpointerlockerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\tAn event handler for pointerlockerror events.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#onpointerlockerror\n\n*/"
@@ -803,6 +856,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#execCommand",
 				"full_description": "/*\n\n\tDocument\n\n\texecCommand ( commandId: DOMString, showUI?: boolean, value?: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#execCommand\n\n*/"
@@ -814,6 +868,7 @@
 				"name": "onautocompleteerror",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror",
 				"full_description": "/*\n\n\tDocument\n\n\tonautocompleteerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocompleteerror\n\n*/"
@@ -825,6 +880,7 @@
 				"name": "contentType",
 				"return_type": "DOMString",
 				"description": "The contentType attribute must return the content type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#contentType",
 				"full_description": "/*\n\n\tDocument\n\n\tcontentType\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe contentType attribute must return the content type.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#contentType\n\n*/"
@@ -836,6 +892,7 @@
 				"name": "documentURI",
 				"return_type": "DOMString",
 				"description": "The URL and documentURI attributes must return the URL.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#documentURI",
 				"full_description": "/*\n\n\tDocument\n\n\tdocumentURI\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe URL and documentURI attributes must return the URL.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#documentURI\n\n*/"
@@ -861,6 +918,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createelementns",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateElementNS ( namespace: DOMString, qualifiedName: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createelementns\n\n*/"
@@ -872,6 +930,7 @@
 				"name": "onloadedmetadata",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata",
 				"full_description": "/*\n\n\tDocument\n\n\tonloadedmetadata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadedmetadata\n\n*/"
@@ -883,6 +942,7 @@
 				"name": "referrer",
 				"return_type": "DOMString",
 				"description": "The referrer attribute must return the document's referrer.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#referrer",
 				"full_description": "/*\n\n\tDocument\n\n\treferrer\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe referrer attribute must return the document's referrer.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#referrer\n\n*/"
@@ -894,6 +954,7 @@
 				"name": "ondurationchange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange",
 				"full_description": "/*\n\n\tDocument\n\n\tondurationchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondurationchange\n\n*/"
@@ -905,6 +966,7 @@
 				"name": "oncanplaythrough",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough",
 				"full_description": "/*\n\n\tDocument\n\n\toncanplaythrough\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplaythrough\n\n*/"
@@ -916,6 +978,7 @@
 				"name": "onvolumechange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange",
 				"full_description": "/*\n\n\tDocument\n\n\tonvolumechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onvolumechange\n\n*/"
@@ -927,6 +990,7 @@
 				"name": "onautocomplete",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete",
 				"full_description": "/*\n\n\tDocument\n\n\tonautocomplete\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onautocomplete\n\n*/"
@@ -946,6 +1010,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-nameditem",
 				"full_description": "/*\n\n\tDocument\n\n\tgetter ( name: DOMString )\n\n\tReturn Type:\n\tobject\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-nameditem\n\n*/"
@@ -957,6 +1022,7 @@
 				"name": "oncontextmenu",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu",
 				"full_description": "/*\n\n\tDocument\n\n\toncontextmenu\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncontextmenu\n\n*/"
@@ -968,6 +1034,7 @@
 				"name": "onmouseleave",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave",
 				"full_description": "/*\n\n\tDocument\n\n\tonmouseleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseleave\n\n*/"
@@ -979,6 +1046,7 @@
 				"name": "onmouseenter",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter",
 				"full_description": "/*\n\n\tDocument\n\n\tonmouseenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseenter\n\n*/"
@@ -990,6 +1058,7 @@
 				"name": "onmousewheel",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel",
 				"full_description": "/*\n\n\tDocument\n\n\tonmousewheel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousewheel\n\n*/"
@@ -1001,6 +1070,7 @@
 				"name": "onloadeddata",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata",
 				"full_description": "/*\n\n\tDocument\n\n\tonloadeddata\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadeddata\n\n*/"
@@ -1012,6 +1082,7 @@
 				"name": "ontimeupdate",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate",
 				"full_description": "/*\n\n\tDocument\n\n\tontimeupdate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontimeupdate\n\n*/"
@@ -1023,6 +1094,7 @@
 				"name": "onratechange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange",
 				"full_description": "/*\n\n\tDocument\n\n\tonratechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onratechange\n\n*/"
@@ -1042,6 +1114,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandSupported",
 				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandSupported ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandSupported\n\n*/"
@@ -1053,6 +1126,7 @@
 				"name": "oncuechange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange",
 				"full_description": "/*\n\n\tDocument\n\n\toncuechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncuechange\n\n*/"
@@ -1064,6 +1138,7 @@
 				"name": "onloadstart",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart",
 				"full_description": "/*\n\n\tDocument\n\n\tonloadstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onloadstart\n\n*/"
@@ -1075,6 +1150,7 @@
 				"name": "onmousedown",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown",
 				"full_description": "/*\n\n\tDocument\n\n\tonmousedown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousedown\n\n*/"
@@ -1086,6 +1162,7 @@
 				"name": "ondragleave",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave",
 				"full_description": "/*\n\n\tDocument\n\n\tondragleave\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragleave\n\n*/"
@@ -1097,6 +1174,7 @@
 				"name": "onmousemove",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove",
 				"full_description": "/*\n\n\tDocument\n\n\tonmousemove\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmousemove\n\n*/"
@@ -1108,6 +1186,7 @@
 				"name": "ondragstart",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart",
 				"full_description": "/*\n\n\tDocument\n\n\tondragstart\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragstart\n\n*/"
@@ -1119,6 +1198,7 @@
 				"name": "ondragenter",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter",
 				"full_description": "/*\n\n\tDocument\n\n\tondragenter\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragenter\n\n*/"
@@ -1130,6 +1210,7 @@
 				"name": "onmouseover",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover",
 				"full_description": "/*\n\n\tDocument\n\n\tonmouseover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseover\n\n*/"
@@ -1141,6 +1222,7 @@
 				"name": "onerror",
 				"return_type": "OnErrorEventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror",
 				"full_description": "/*\n\n\tDocument\n\n\tonerror\n\n\tReturn Type:\n\tOnErrorEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onerror\n\n*/"
@@ -1152,6 +1234,7 @@
 				"name": "onmouseout",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout",
 				"full_description": "/*\n\n\tDocument\n\n\tonmouseout\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseout\n\n*/"
@@ -1163,6 +1246,7 @@
 				"name": "ondragexit",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit",
 				"full_description": "/*\n\n\tDocument\n\n\tondragexit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragexit\n\n*/"
@@ -1174,6 +1258,7 @@
 				"name": "ondragover",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover",
 				"full_description": "/*\n\n\tDocument\n\n\tondragover\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragover\n\n*/"
@@ -1185,6 +1270,7 @@
 				"name": "ondblclick",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick",
 				"full_description": "/*\n\n\tDocument\n\n\tondblclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondblclick\n\n*/"
@@ -1204,6 +1290,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandIndeterm",
 				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandIndeterm ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandIndeterm\n\n*/"
@@ -1215,6 +1302,7 @@
 				"name": "onkeypress",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress",
 				"full_description": "/*\n\n\tDocument\n\n\tonkeypress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeypress\n\n*/"
@@ -1226,6 +1314,7 @@
 				"name": "onprogress",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress",
 				"full_description": "/*\n\n\tDocument\n\n\tonprogress\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onprogress\n\n*/"
@@ -1237,6 +1326,7 @@
 				"name": "lastModified",
 				"return_type": "DOMString",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-lastmodified",
 				"full_description": "/*\n\n\tDocument\n\n\tlastModified\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#dom-document-lastmodified\n\n*/"
@@ -1248,6 +1338,7 @@
 				"name": "onsuspend",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend",
 				"full_description": "/*\n\n\tDocument\n\n\tonsuspend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsuspend\n\n*/"
@@ -1259,6 +1350,7 @@
 				"name": "ondragend",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend",
 				"full_description": "/*\n\n\tDocument\n\n\tondragend\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondragend\n\n*/"
@@ -1270,6 +1362,7 @@
 				"name": "onplaying",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying",
 				"full_description": "/*\n\n\tDocument\n\n\tonplaying\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplaying\n\n*/"
@@ -1281,6 +1374,7 @@
 				"name": "onwaiting",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting",
 				"full_description": "/*\n\n\tDocument\n\n\tonwaiting\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onwaiting\n\n*/"
@@ -1292,6 +1386,7 @@
 				"name": "onseeking",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking",
 				"full_description": "/*\n\n\tDocument\n\n\tonseeking\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeking\n\n*/"
@@ -1303,6 +1398,7 @@
 				"name": "onemptied",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied",
 				"full_description": "/*\n\n\tDocument\n\n\tonemptied\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onemptied\n\n*/"
@@ -1314,6 +1410,7 @@
 				"name": "onmouseup",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup",
 				"full_description": "/*\n\n\tDocument\n\n\tonmouseup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onmouseup\n\n*/"
@@ -1333,6 +1430,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandEnabled",
 				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandEnabled ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandEnabled\n\n*/"
@@ -1344,6 +1442,7 @@
 				"name": "oncanplay",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay",
 				"full_description": "/*\n\n\tDocument\n\n\toncanplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncanplay\n\n*/"
@@ -1355,6 +1454,7 @@
 				"name": "onstalled",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled",
 				"full_description": "/*\n\n\tDocument\n\n\tonstalled\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onstalled\n\n*/"
@@ -1366,6 +1466,7 @@
 				"name": "onkeydown",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown",
 				"full_description": "/*\n\n\tDocument\n\n\tonkeydown\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeydown\n\n*/"
@@ -1377,6 +1478,7 @@
 				"name": "URL",
 				"return_type": "DOMString",
 				"description": "The URL and documentURI attributes must return the URL.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#URL",
 				"full_description": "/*\n\n\tDocument\n\n\tURL\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe URL and documentURI attributes must return the URL.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#URL\n\n*/"
@@ -1388,6 +1490,7 @@
 				"name": "oninvalid",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid",
 				"full_description": "/*\n\n\tDocument\n\n\toninvalid\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninvalid\n\n*/"
@@ -1399,6 +1502,7 @@
 				"name": "onchange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange",
 				"full_description": "/*\n\n\tDocument\n\n\tonchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onchange\n\n*/"
@@ -1410,6 +1514,7 @@
 				"name": "onresize",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize",
 				"full_description": "/*\n\n\tDocument\n\n\tonresize\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onresize\n\n*/"
@@ -1421,6 +1526,7 @@
 				"name": "onscroll",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll",
 				"full_description": "/*\n\n\tDocument\n\n\tonscroll\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onscroll\n\n*/"
@@ -1440,6 +1546,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandValue",
 				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandValue ( commandId: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandValue\n\n*/"
@@ -1451,6 +1558,7 @@
 				"name": "onsubmit",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit",
 				"full_description": "/*\n\n\tDocument\n\n\tonsubmit\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsubmit\n\n*/"
@@ -1462,6 +1570,7 @@
 				"name": "oncancel",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel",
 				"full_description": "/*\n\n\tDocument\n\n\toncancel\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oncancel\n\n*/"
@@ -1473,6 +1582,7 @@
 				"name": "onseeked",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked",
 				"full_description": "/*\n\n\tDocument\n\n\tonseeked\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onseeked\n\n*/"
@@ -1484,6 +1594,7 @@
 				"name": "ontoggle",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle",
 				"full_description": "/*\n\n\tDocument\n\n\tontoggle\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ontoggle\n\n*/"
@@ -1495,6 +1606,7 @@
 				"name": "onselect",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect",
 				"full_description": "/*\n\n\tDocument\n\n\tonselect\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onselect\n\n*/"
@@ -1514,6 +1626,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-document-enablestylesheetsforset",
 				"full_description": "/*\n\n\tDocument\n\n\tenableStyleSheetsForSet ( name: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-document-enablestylesheetsforset\n\n*/"
@@ -1525,6 +1638,7 @@
 				"name": "onended",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended",
 				"full_description": "/*\n\n\tDocument\n\n\tonended\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onended\n\n*/"
@@ -1536,6 +1650,7 @@
 				"name": "onclose",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose",
 				"full_description": "/*\n\n\tDocument\n\n\tonclose\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclose\n\n*/"
@@ -1547,6 +1662,7 @@
 				"name": "onpause",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause",
 				"full_description": "/*\n\n\tDocument\n\n\tonpause\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onpause\n\n*/"
@@ -1558,6 +1674,7 @@
 				"name": "oninput",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput",
 				"full_description": "/*\n\n\tDocument\n\n\toninput\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-oninput\n\n*/"
@@ -1569,6 +1686,7 @@
 				"name": "onkeyup",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup",
 				"full_description": "/*\n\n\tDocument\n\n\tonkeyup\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onkeyup\n\n*/"
@@ -1588,6 +1706,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#queryCommandState",
 				"full_description": "/*\n\n\tDocument\n\n\tqueryCommandState ( commandId: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#queryCommandState\n\n*/"
@@ -1599,6 +1718,7 @@
 				"name": "onfocus",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus",
 				"full_description": "/*\n\n\tDocument\n\n\tonfocus\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onfocus\n\n*/"
@@ -1610,6 +1730,7 @@
 				"name": "onabort",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort",
 				"full_description": "/*\n\n\tDocument\n\n\tonabort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onabort\n\n*/"
@@ -1621,6 +1742,7 @@
 				"name": "onclick",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick",
 				"full_description": "/*\n\n\tDocument\n\n\tonclick\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onclick\n\n*/"
@@ -1632,6 +1754,7 @@
 				"name": "onreset",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset",
 				"full_description": "/*\n\n\tDocument\n\n\tonreset\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onreset\n\n*/"
@@ -1643,6 +1766,7 @@
 				"name": "ondrag",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag",
 				"full_description": "/*\n\n\tDocument\n\n\tondrag\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrag\n\n*/"
@@ -1654,6 +1778,7 @@
 				"name": "onshow",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow",
 				"full_description": "/*\n\n\tDocument\n\n\tonshow\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onshow\n\n*/"
@@ -1665,6 +1790,7 @@
 				"name": "onsort",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort",
 				"full_description": "/*\n\n\tDocument\n\n\tonsort\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onsort\n\n*/"
@@ -1676,6 +1802,7 @@
 				"name": "onblur",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur",
 				"full_description": "/*\n\n\tDocument\n\n\tonblur\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onblur\n\n*/"
@@ -1687,6 +1814,7 @@
 				"name": "onload",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload",
 				"full_description": "/*\n\n\tDocument\n\n\tonload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onload\n\n*/"
@@ -1698,6 +1826,7 @@
 				"name": "ondrop",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop",
 				"full_description": "/*\n\n\tDocument\n\n\tondrop\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-ondrop\n\n*/"
@@ -1709,6 +1838,7 @@
 				"name": "onplay",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay",
 				"full_description": "/*\n\n\tDocument\n\n\tonplay\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-onplay\n\n*/"
@@ -1728,6 +1858,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createelement",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateElement ( localName: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createelement\n\n*/"
@@ -1739,6 +1870,7 @@
 				"name": "title",
 				"return_type": "DOMString",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title",
 				"full_description": "/*\n\n\tDocument\n\n\ttitle\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document.title\n\n*/"
@@ -1764,6 +1896,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-importnode",
 				"full_description": "/*\n\n\tDocument\n\n\timportNode ( node: Node, deep?: boolean )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-importnode\n\n*/"
@@ -1783,6 +1916,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getItems",
 				"full_description": "/*\n\n\tDocument\n\n\tgetItems ( typeNames?: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getItems\n\n*/"
@@ -1802,6 +1936,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-createevent",
 				"full_description": "/*\n\n\tDocument\n\n\tcreateEvent ( interface: DOMString )\n\n\tReturn Type:\n\tEvent\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-createevent\n\n*/"
@@ -1813,6 +1948,7 @@
 				"name": "onreadystatechange",
 				"return_type": "EventHandler",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#onreadystatechange",
 				"full_description": "/*\n\n\tDocument\n\n\tonreadystatechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#onreadystatechange\n\n*/"
@@ -1824,6 +1960,7 @@
 				"name": "selectedStyleSheetSet",
 				"return_type": "DOMString",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-document-selectedstylesheetset",
 				"full_description": "/*\n\n\tDocument\n\n\tselectedStyleSheetSet\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-document-selectedstylesheetset\n\n*/"
@@ -1843,6 +1980,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-parentnode-prepend",
 				"full_description": "/*\n\n\tDocument\n\n\tprepend ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-parentnode-prepend\n\n*/"
@@ -1862,6 +2000,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-parentnode-append",
 				"full_description": "/*\n\n\tDocument\n\n\tappend ( nodes...: Node|DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-parentnode-append\n\n*/"
@@ -1881,6 +2020,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#writeln",
 				"full_description": "/*\n\n\tDocument\n\n\twriteln ( text...: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#writeln\n\n*/"
@@ -1900,6 +2040,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#write",
 				"full_description": "/*\n\n\tDocument\n\n\twrite ( text...: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#write\n\n*/"
@@ -1912,6 +2053,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/fullscreen/#dom-document-exitfullscreen",
 				"full_description": "/*\n\n\tDocument\n\n\texitFullscreen ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/fullscreen/#dom-document-exitfullscreen\n\n*/"
@@ -1931,6 +2073,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://dom.spec.whatwg.org/#dom-document-adoptnode",
 				"full_description": "/*\n\n\tDocument\n\n\tadoptNode ( node: Node )\n\n\tReturn Type:\n\tNode\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://dom.spec.whatwg.org/#dom-document-adoptnode\n\n*/"
@@ -1942,6 +2085,7 @@
 				"name": "activeElement",
 				"return_type": "Element",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#activeElement",
 				"full_description": "/*\n\n\tDocument\n\n\tactiveElement\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#activeElement\n\n*/"
@@ -1953,6 +2097,7 @@
 				"name": "defaultView",
 				"return_type": "WindowProxy",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#defaultView",
 				"full_description": "/*\n\n\tDocument\n\n\tdefaultView\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#defaultView\n\n*/"
@@ -1964,6 +2109,7 @@
 				"name": "designMode",
 				"return_type": "DOMString",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#designMode",
 				"full_description": "/*\n\n\tDocument\n\n\tdesignMode\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#designMode\n\n*/"
@@ -1988,6 +2134,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#hasFocus",
 				"full_description": "/*\n\n\tDocument\n\n\thasFocus ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#hasFocus\n\n*/"
@@ -1999,6 +2146,7 @@
 				"name": "location",
 				"return_type": "Location",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#location",
 				"full_description": "/*\n\n\tDocument\n\n\tlocation\n\n\tReturn Type:\n\tLocation\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#location\n\n*/"
@@ -2010,6 +2158,7 @@
 				"name": "domain",
 				"return_type": "DOMString",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#domain",
 				"full_description": "/*\n\n\tDocument\n\n\tdomain\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#domain\n\n*/"
@@ -2022,6 +2171,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#close",
 				"full_description": "/*\n\n\tDocument\n\n\tclose ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#close\n\n*/"

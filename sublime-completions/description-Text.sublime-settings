@@ -7,6 +7,7 @@
 				"name": "wholeText",
 				"return_type": "DOMString",
 				"description": "The wholeText attribute must return a concatenation of the data of the contiguous Text nodes of the context object, in tree order.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20Text.html#wholeText",
 				"full_description": "/*\n\n\tText\n\n\twholeText\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe wholeText attribute must return a concatenation of the data of the contiguous Text nodes of the context object, in tree order.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Text.html#wholeText\n\n*/"
@@ -26,6 +27,7 @@
 					}
 				],
 				"description": "The splitText(offset) method must split the context object with offset offset.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Text.html#splitText",
 				"full_description": "/*\n\n\tText\n\n\tsplitText ( offset: unsigned long )\n\n\tReturn Type:\n\tText\n\n\tDescription:\n\tThe splitText(offset) method must split the context object with offset offset.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Text.html#splitText\n\n*/"

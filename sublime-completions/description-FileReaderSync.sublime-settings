@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "readAsText(blob, label)\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-readAsTextSync",
 				"full_description": "/*\n\n\tFileReaderSync\n\n\treadAsText ( blob: Blob, label?: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\treadAsText(blob, label)\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-readAsTextSync\n\n*/"
@@ -40,6 +41,7 @@
 					}
 				],
 				"description": "readAsArrayBuffer(blob)\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBufferSync",
 				"full_description": "/*\n\n\tFileReaderSync\n\n\treadAsArrayBuffer ( blob: Blob )\n\n\tReturn Type:\n\tArrayBuffer\n\n\tDescription:\n\treadAsArrayBuffer(blob)\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-readAsArrayBufferSync\n\n*/"
@@ -59,6 +61,7 @@
 					}
 				],
 				"description": "readAsDataURL(blob)\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/FileAPI/#dfn-readAsDataURLSync",
 				"full_description": "/*\n\n\tFileReaderSync\n\n\treadAsDataURL ( blob: Blob )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\treadAsDataURL(blob)\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/FileAPI/#dfn-readAsDataURLSync\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "dateTime",
 				"return_type": "DOMString",
 				"description": "The dateTime IDL attribute must reflect the element's datetime content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTimeElement.html#dateTime",
 				"full_description": "/*\n\n\tHTMLTimeElement\n\n\tdateTime\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe dateTime IDL attribute must reflect the element's datetime content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTimeElement.html#dateTime\n\n*/"

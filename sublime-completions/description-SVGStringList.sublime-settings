@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "Inserts a new item into the list at the specified position. The first item is number 0. ParametersDOMString newItem The item which is to be inserted into the list. unsigned long index The index of the item before which the new item is to be inserted. The first item is number 0.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#insertItemBefore",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tinsertItemBefore ( newItem: DOMString, index: unsigned long )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tInserts a new item into the list at the specified position. The first item is number 0. ParametersDOMString newItem The item which is to be inserted into the list. unsigned long index The index of the item before which the new item is to be inserted. The first item is number 0.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#insertItemBefore\n\n*/"
@@ -40,6 +41,7 @@
 					}
 				],
 				"description": "Returns the specified item from the list. Parametersunsigned long index The index of the item from the list which is to be returned. The first item is number 0. Returns The selected item. ExceptionsDOMException, code INDEX_SIZE_ERR Raised if the index number is greater than or equal to numberOfItems.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#getItem",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tgetItem ( index: unsigned long )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tReturns the specified item from the list. Parametersunsigned long index The index of the item from the list which is to be returned. The first item is number 0. Returns The selected item. ExceptionsDOMException, code INDEX_SIZE_ERR Raised if the index number is greater than or equal to numberOfItems.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#getItem\n\n*/"
@@ -65,6 +67,7 @@
 					}
 				],
 				"description": "Replaces an existing item in the list with a new item. ParametersDOMString newItem The item which is to be inserted into the list. unsigned long index The index of the item which is to be replaced. The first item is number 0. Returns The inserted item.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#replaceItem",
 				"full_description": "/*\n\n\tSVGStringList\n\n\treplaceItem ( newItem: DOMString, index: unsigned long )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tReplaces an existing item in the list with a new item. ParametersDOMString newItem The item which is to be inserted into the list. unsigned long index The index of the item which is to be replaced. The first item is number 0. Returns The inserted item.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#replaceItem\n\n*/"
@@ -84,6 +87,7 @@
 					}
 				],
 				"description": "Removes an existing item from the list. Parametersunsigned long index The index of the item which is to be removed. The first item is number 0. Returns The removed item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#removeItem",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tremoveItem ( index: unsigned long )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tRemoves an existing item from the list. Parametersunsigned long index The index of the item which is to be removed. The first item is number 0. Returns The removed item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#removeItem\n\n*/"
@@ -103,6 +107,7 @@
 					}
 				],
 				"description": "Clears all existing current items from the list and re-initializes the list to hold the single item specified by the parameter. ParametersDOMString newItem The item which should become the only member of the list. Returns The item being inserted into the list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#initialize",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tinitialize ( newItem: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tClears all existing current items from the list and re-initializes the list to hold the single item specified by the parameter. ParametersDOMString newItem The item which should become the only member of the list. Returns The item being inserted into the list.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#initialize\n\n*/"
@@ -122,6 +127,7 @@
 					}
 				],
 				"description": "Inserts a new item at the end of the list. ParametersDOMString newItem The item which is to be inserted. The first item is number 0. Returns The inserted item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#appendItem",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tappendItem ( newItem: DOMString )\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tInserts a new item at the end of the list. ParametersDOMString newItem The item which is to be inserted. The first item is number 0. Returns The inserted item. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#appendItem\n\n*/"
@@ -134,6 +140,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Clears all existing current items from the list, with the result being an empty list. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#clear",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tclear ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tClears all existing current items from the list, with the result being an empty list. ExceptionsDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the list cannot be modified.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#clear\n\n*/"
@@ -145,6 +152,7 @@
 				"name": "numberOfItems",
 				"return_type": "unsigned long",
 				"description": "The number of items in the list.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStringList.html#numberOfItems",
 				"full_description": "/*\n\n\tSVGStringList\n\n\tnumberOfItems\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe number of items in the list.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStringList.html#numberOfItems\n\n*/"

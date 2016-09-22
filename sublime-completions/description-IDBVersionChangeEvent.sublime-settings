@@ -7,6 +7,7 @@
 				"name": "newVersion",
 				"return_type": "unsigned long long",
 				"description": "Returns the new version of the database. See the steps for running a \"versionchange\" transaction.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBVersionChangeEvent.html#newVersion",
 				"full_description": "/*\n\n\tIDBVersionChangeEvent\n\n\tnewVersion\n\n\tReturn Type:\n\tunsigned long long\n\n\tDescription:\n\tReturns the new version of the database. See the steps for running a \"versionchange\" transaction.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBVersionChangeEvent.html#newVersion\n\n*/"
@@ -43,6 +44,7 @@
 				"name": "oldVersion",
 				"return_type": "unsigned long long",
 				"description": "Returns the old version of the database.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBVersionChangeEvent.html#oldVersion",
 				"full_description": "/*\n\n\tIDBVersionChangeEvent\n\n\toldVersion\n\n\tReturn Type:\n\tunsigned long long\n\n\tDescription:\n\tReturns the old version of the database.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBVersionChangeEvent.html#oldVersion\n\n*/"

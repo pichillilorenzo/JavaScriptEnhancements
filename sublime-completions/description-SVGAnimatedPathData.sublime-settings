@@ -7,6 +7,7 @@
 				"name": "animatedNormalizedPathSegList",
 				"return_type": "SVGPathSegList",
 				"description": "Provides access to the current animated contents of the ‘d’ attribute in a form where all path data commands are expressed in terms of the following subset of SVGPathSeg types: SVG_PATHSEG_MOVETO_ABS (M), SVG_PATHSEG_LINETO_ABS (L), SVG_PATHSEG_CURVETO_CUBIC_ABS (C) and SVG_PATHSEG_CLOSEPATH (z).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedPathData.html#animatedNormalizedPathSegList",
 				"full_description": "/*\n\n\tSVGAnimatedPathData\n\n\tanimatedNormalizedPathSegList\n\n\tReturn Type:\n\tSVGPathSegList\n\n\tDescription:\n\tProvides access to the current animated contents of the ‘d’ attribute in a form where all path data commands are expressed in terms of the following subset of SVGPathSeg types: SVG_PATHSEG_MOVETO_ABS (M), SVG_PATHSEG_LINETO_ABS (L), SVG_PATHSEG_CURVETO_CUBIC_ABS (C) and SVG_PATHSEG_CLOSEPATH (z).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedPathData.html#animatedNormalizedPathSegList\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "normalizedPathSegList",
 				"return_type": "SVGPathSegList",
 				"description": "Provides access to the base (i.e., static) contents of the ‘d’ attribute in a form where all path data commands are expressed in terms of the following subset of SVGPathSeg types: SVG_PATHSEG_MOVETO_ABS (M), SVG_PATHSEG_LINETO_ABS (L), SVG_PATHSEG_CURVETO_CUBIC_ABS (C) and SVG_PATHSEG_CLOSEPATH (z).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedPathData.html#normalizedPathSegList",
 				"full_description": "/*\n\n\tSVGAnimatedPathData\n\n\tnormalizedPathSegList\n\n\tReturn Type:\n\tSVGPathSegList\n\n\tDescription:\n\tProvides access to the base (i.e., static) contents of the ‘d’ attribute in a form where all path data commands are expressed in terms of the following subset of SVGPathSeg types: SVG_PATHSEG_MOVETO_ABS (M), SVG_PATHSEG_LINETO_ABS (L), SVG_PATHSEG_CURVETO_CUBIC_ABS (C) and SVG_PATHSEG_CLOSEPATH (z).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedPathData.html#normalizedPathSegList\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "animatedPathSegList",
 				"return_type": "SVGPathSegList",
 				"description": "Provides access to the current animated contents of the ‘d’ attribute in a form which matches one-for-one with SVG's syntax. If the given attribute or property is being animated, contains the current animated value of the attribute or property, and both the object itself and its contents are read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedPathData.html#animatedPathSegList",
 				"full_description": "/*\n\n\tSVGAnimatedPathData\n\n\tanimatedPathSegList\n\n\tReturn Type:\n\tSVGPathSegList\n\n\tDescription:\n\tProvides access to the current animated contents of the ‘d’ attribute in a form which matches one-for-one with SVG's syntax. If the given attribute or property is being animated, contains the current animated value of the attribute or property, and both the object itself and its contents are read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedPathData.html#animatedPathSegList\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "pathSegList",
 				"return_type": "SVGPathSegList",
 				"description": "Provides access to the base (i.e., static) contents of the ‘d’ attribute in a form which matches one-for-one with SVG's syntax. Thus, if the ‘d’ attribute has an \"absolute moveto (M)\" and an \"absolute arcto (A)\" command, then pathSegList will have two entries: a SVG_PATHSEG_MOVETO_ABS and a SVG_PATHSEG_ARC_ABS.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAnimatedPathData.html#pathSegList",
 				"full_description": "/*\n\n\tSVGAnimatedPathData\n\n\tpathSegList\n\n\tReturn Type:\n\tSVGPathSegList\n\n\tDescription:\n\tProvides access to the base (i.e., static) contents of the ‘d’ attribute in a form which matches one-for-one with SVG's syntax. Thus, if the ‘d’ attribute has an \"absolute moveto (M)\" and an \"absolute arcto (A)\" command, then pathSegList will have two entries: a SVG_PATHSEG_MOVETO_ABS and a SVG_PATHSEG_ARC_ABS.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAnimatedPathData.html#pathSegList\n\n*/"

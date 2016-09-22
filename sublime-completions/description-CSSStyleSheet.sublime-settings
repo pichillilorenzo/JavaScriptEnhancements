@@ -7,6 +7,7 @@
 				"name": "ownerRule",
 				"return_type": "CSSRule",
 				"description": "The ownerRule attribute must return the owner CSS rule. If a value other than null is ever returned, then that same value must always be returned on each get access.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSStyleSheet.html#ownerRule",
 				"full_description": "/*\n\n\tCSSStyleSheet\n\n\townerRule\n\n\tReturn Type:\n\tCSSRule\n\n\tDescription:\n\tThe ownerRule attribute must return the owner CSS rule. If a value other than null is ever returned, then that same value must always be returned on each get access.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSStyleSheet.html#ownerRule\n\n*/"
@@ -32,6 +33,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstylesheet-insertrule",
 				"full_description": "/*\n\n\tCSSStyleSheet\n\n\tinsertRule ( rule: DOMString, index: unsigned long )\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstylesheet-insertrule\n\n*/"
@@ -51,6 +53,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstylesheet-deleterule",
 				"full_description": "/*\n\n\tCSSStyleSheet\n\n\tdeleteRule ( index: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstylesheet-deleterule\n\n*/"
@@ -62,6 +65,7 @@
 				"name": "cssRules",
 				"return_type": "CSSRuleList",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.w3.org/TR/cssom/#dom-cssstylesheet-cssrules",
 				"full_description": "/*\n\n\tCSSStyleSheet\n\n\tcssRules\n\n\tReturn Type:\n\tCSSRuleList\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.w3.org/TR/cssom/#dom-cssstylesheet-cssrules\n\n*/"

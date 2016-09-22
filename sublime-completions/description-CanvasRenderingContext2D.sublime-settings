@@ -33,6 +33,7 @@
 					}
 				],
 				"description": "The getImageData(sx, sy, sw, sh) method must, if either the sw or sh arguments are zero, throw an IndexSizeError exception; otherwise, if the scratch bitmap's origin-clean flag is set to false, it must throw a SecurityError exception; otherwise, it must return an ImageData object with width sw and height sh representing the scratch bitmap for the area of that bitmap denoted by the rectangle whose corners are the four points (sx, sy), (sx+sw, sy), (sx+sw, sy+sh), (sx, sy+sh), in the bitmap's coordinate space units.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#getImageData",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tgetImageData ( sx: double, sy: double, sw: double, sh: double )\n\n\tReturn Type:\n\tImageData\n\n\tDescription:\n\tThe getImageData(sx, sy, sw, sh) method must, if either the sw or sh arguments are zero, throw an IndexSizeError exception; otherwise, if the scratch bitmap's origin-clean flag is set to false, it must throw a SecurityError exception; otherwise, it must return an ImageData object with width sw and height sh representing the scratch bitmap for the area of that bitmap denoted by the rectangle whose corners are the four points (sx, sy), (sx+sw, sy), (sx+sw, sy+sh), (sx, sy+sh), in the bitmap's coordinate space units.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#getImageData\n\n*/"
@@ -64,6 +65,7 @@
 					}
 				],
 				"description": "The isPointInStroke() method must return true if the point given by the x and y coordinates passed to the method, when treated as coordinates in the canvas coordinate space unaffected by the current transformation, is inside the path that results from tracing the intended path, using the non-zero winding rule, and using the CanvasRenderingContext2D object for the line styles; and must return false otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#isPointInStroke",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tisPointInStroke ( x_path: any, y_x: unrestricted double, y?: unrestricted double )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe isPointInStroke() method must return true if the point given by the x and y coordinates passed to the method, when treated as coordinates in the canvas coordinate space unaffected by the current transformation, is inside the path that results from tracing the intended path, using the non-zero winding rule, and using the CanvasRenderingContext2D object for the line styles; and must return false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#isPointInStroke\n\n*/"
@@ -101,6 +103,7 @@
 					}
 				],
 				"description": "The isPointInPath() method must return true if the point given by the x and y coordinates passed to the method, when treated as coordinates in the canvas coordinate space unaffected by the current transformation, is inside the intended path as determined by the fill rule indicated by the fillRule argument; and must return false otherwise.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#isPointInPath",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tisPointInPath ( x_path: any, y_x: unrestricted double, fillRule_y?: any, fillRule?: CanvasFillRule )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe isPointInPath() method must return true if the point given by the x and y coordinates passed to the method, when treated as coordinates in the canvas coordinate space unaffected by the current transformation, is inside the intended path as determined by the fill rule indicated by the fillRule argument; and must return false otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#isPointInPath\n\n*/"
@@ -150,6 +153,7 @@
 					}
 				],
 				"description": "The bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) method must ensure there is a subpath for (cp1x, cp1y), and then must connect the last point in the subpath to the given point (x, y) using a cubic Bézier curve with control points (cp1x, cp1y) and (cp2x, cp2y).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#bezierCurveTo",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tbezierCurveTo ( cp1x: unrestricted double, cp1y: unrestricted double, cp2x: unrestricted double, cp2y: unrestricted double, x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) method must ensure there is a subpath for (cp1x, cp1y), and then must connect the last point in the subpath to the given point (x, y) using a cubic Bézier curve with control points (cp1x, cp1y) and (cp2x, cp2y).\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#bezierCurveTo\n\n*/"
@@ -161,6 +165,7 @@
 				"name": "globalAlpha",
 				"return_type": "unrestricted double",
 				"description": "The globalAlpha attribute gives an alpha value that is applied to shapes and images before they are composited onto the scratch bitmap. The value must be in the range from 0.0 (fully transparent) to 1.0 (no additional transparency). If an attempt is made to set the attribute to a value outside this range, including Infinity and Not-a-Number (NaN) values, the attribute must retain its previous value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#globalAlpha",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tglobalAlpha\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe globalAlpha attribute gives an alpha value that is applied to shapes and images before they are composited onto the scratch bitmap. The value must be in the range from 0.0 (fully transparent) to 1.0 (no additional transparency). If an attempt is made to set the attribute to a value outside this range, including Infinity and Not-a-Number (NaN) values, the attribute must retain its previous value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#globalAlpha\n\n*/"
@@ -198,6 +203,7 @@
 					}
 				],
 				"description": "The rect(x, y, w, h) method must create a new subpath containing just the four points (x, y), (x+w, y), (x+w, y+h), (x, y+h), in that order, with those four points connected by straight lines, and must then mark the subpath as closed. It must then create a new subpath with the point (x, y) as the only point in the subpath.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#rect",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\trect ( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe rect(x, y, w, h) method must create a new subpath containing just the four points (x, y), (x+w, y), (x+w, y+h), (x, y+h), in that order, with those four points connected by straight lines, and must then mark the subpath as closed. It must then create a new subpath with the point (x, y) as the only point in the subpath.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#rect\n\n*/"
@@ -209,6 +215,7 @@
 				"name": "miterLimit",
 				"return_type": "unrestricted double",
 				"description": "When the lineJoin attribute has the value miter, strokes use the miter limit ratio to decide how to render joins. The miter limit ratio can be explicitly set using the miterLimit attribute. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#miterLimit",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tmiterLimit\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tWhen the lineJoin attribute has the value miter, strokes use the miter limit ratio to decide how to render joins. The miter limit ratio can be explicitly set using the miterLimit attribute. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#miterLimit\n\n*/"
@@ -246,6 +253,7 @@
 					}
 				],
 				"description": "The quadraticCurveTo(cpx, cpy, x, y) method must ensure there is a subpath for (cpx, cpy), and then must connect the last point in the subpath to the given point (x, y) using a quadratic Bézier curve with control point (cpx, cpy), and must then add the given point (x, y) to the subpath.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#quadraticCurveTo",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tquadraticCurveTo ( cpx: unrestricted double, cpy: unrestricted double, x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe quadraticCurveTo(cpx, cpy, x, y) method must ensure there is a subpath for (cpx, cpy), and then must connect the last point in the subpath to the given point (x, y) using a quadratic Bézier curve with control point (cpx, cpy), and must then add the given point (x, y) to the subpath.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#quadraticCurveTo\n\n*/"
@@ -301,6 +309,7 @@
 					}
 				],
 				"description": "The arcTo(x1, y1, x2, y2, radiusX, radiusY, rotation) method must first ensure there is a subpath for (x1, y1). Then, the behavior depends on the arguments and the last point in the subpath, as described below.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#arcTo",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tarcTo ( x1: unrestricted double, y1: unrestricted double, x2: unrestricted double, y2: unrestricted double, radius: unrestricted double, radiusY?: unrestricted double, rotation?: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe arcTo(x1, y1, x2, y2, radiusX, radiusY, rotation) method must first ensure there is a subpath for (x1, y1). Then, the behavior depends on the arguments and the last point in the subpath, as described below.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#arcTo\n\n*/"
@@ -312,6 +321,7 @@
 				"name": "font",
 				"return_type": "DOMString",
 				"description": "The font IDL attribute, on setting, must be parsed the same way as the 'font' property of CSS (but without supporting property-independent style sheet syntax like 'inherit'), and the resulting font must be assigned to the context, with the 'line-height' component forced to 'normal', with the 'font-size' component converted to CSS pixels, and with system fonts being computed to explicit values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#font",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tfont\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe font IDL attribute, on setting, must be parsed the same way as the 'font' property of CSS (but without supporting property-independent style sheet syntax like 'inherit'), and the resulting font must be assigned to the context, with the 'line-height' component forced to 'normal', with the 'font-size' component converted to CSS pixels, and with system fonts being computed to explicit values.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#font\n\n*/"
@@ -361,6 +371,7 @@
 					}
 				],
 				"description": "The createRadialGradient(x0, y0, r0, x1, y1, r1) method takes six arguments, the first three representing the start circle with origin (x0, y0) and radius r0, and the last three representing the end circle with origin (x1, y1) and radius r1. The values are in coordinate space units.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createRadialGradient",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcreateRadialGradient ( x0: double, y0: double, r0: double, x1: double, y1: double, r1: double )\n\n\tReturn Type:\n\tCanvasGradient\n\n\tDescription:\n\tThe createRadialGradient(x0, y0, r0, x1, y1, r1) method takes six arguments, the first three representing the start circle with origin (x0, y0) and radius r0, and the last three representing the end circle with origin (x1, y1) and radius r1. The values are in coordinate space units.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createRadialGradient\n\n*/"
@@ -398,6 +409,7 @@
 					}
 				],
 				"description": "The fillText() and strokeText() methods take three or four arguments, text, x, y, and optionally maxWidth, and render the given text at the given (x, y) coordinates ensuring that the text isn't wider than maxWidth if specified, using the current font, textAlign, and textBaseline values.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#strokeText",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tstrokeText ( text: DOMString, x: unrestricted double, y: unrestricted double, maxWidth?: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe fillText() and strokeText() methods take three or four arguments, text, x, y, and optionally maxWidth, and render the given text at the given (x, y) coordinates ensuring that the text isn't wider than maxWidth if specified, using the current font, textAlign, and textBaseline values.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#strokeText\n\n*/"
@@ -459,6 +471,7 @@
 					}
 				],
 				"description": "The arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#ellipse",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tellipse ( x: unrestricted double, y: unrestricted double, radiusX: unrestricted double, radiusY: unrestricted double, rotation: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#ellipse\n\n*/"
@@ -496,6 +509,7 @@
 					}
 				],
 				"description": "The fillText() and strokeText() methods take three or four arguments, text, x, y, and optionally maxWidth, and render the given text at the given (x, y) coordinates ensuring that the text isn't wider than maxWidth if specified, using the current font, textAlign, and textBaseline values.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fillText",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tfillText ( text: DOMString, x: unrestricted double, y: unrestricted double, maxWidth?: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe fillText() and strokeText() methods take three or four arguments, text, x, y, and optionally maxWidth, and render the given text at the given (x, y) coordinates ensuring that the text isn't wider than maxWidth if specified, using the current font, textAlign, and textBaseline values.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fillText\n\n*/"
@@ -507,6 +521,7 @@
 				"name": "currentTransform",
 				"return_type": "SVGMatrix",
 				"description": "The currentTransform, on getting, must return the last object that it was set to. On setting, its value must be changed to the new value, and the transformation matrix must be updated to match the matrix described by the new value. When the CanvasRenderingContext2D object is created, the currentTransform attribute must be set a newly created SVGMatrix object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#currentTransform",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcurrentTransform\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tThe currentTransform, on getting, must return the last object that it was set to. On setting, its value must be changed to the new value, and the transformation matrix must be updated to match the matrix described by the new value. When the CanvasRenderingContext2D object is created, the currentTransform attribute must be set a newly created SVGMatrix object.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#currentTransform\n\n*/"
@@ -518,6 +533,7 @@
 				"name": "lineDashOffset",
 				"return_type": "unrestricted double",
 				"description": "It is sometimes useful to change the \"phase\" of the dash pattern, e.g. to achieve a \"marching ants\" effect. The phase can be set using the lineDashOffset attribute. On getting, it must return the current value. On setting, infinite and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineDashOffset",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tlineDashOffset\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tIt is sometimes useful to change the \"phase\" of the dash pattern, e.g. to achieve a \"marching ants\" effect. The phase can be set using the lineDashOffset attribute. On getting, it must return the current value. On setting, infinite and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineDashOffset\n\n*/"
@@ -529,6 +545,7 @@
 				"name": "textAlign",
 				"return_type": "DOMString",
 				"description": "The textAlign IDL attribute, on getting, must return the current value. On setting, if the value is one of start, end, left, right, or center, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the textAlign attribute must initially have the value start.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#textAlign",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\ttextAlign\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe textAlign IDL attribute, on getting, must return the current value. On setting, if the value is one of start, end, left, right, or center, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the textAlign attribute must initially have the value start.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#textAlign\n\n*/"
@@ -554,6 +571,7 @@
 					}
 				],
 				"description": "The clip() method must create a new clipping region by calculating the intersection of the current clipping region and the area described by the intended path, using the fill rule indicated by the fillRule argument. Open subpaths must be implicitly closed when computing the clipping region, without affecting the actual subpaths.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#clip",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tclip ( fillRule_path?: any, fillRule?: CanvasFillRule )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe clip() method must create a new clipping region by calculating the intersection of the current clipping region and the area described by the intended path, using the fill rule indicated by the fillRule argument. Open subpaths must be implicitly closed when computing the clipping region, without affecting the actual subpaths.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#clip\n\n*/"
@@ -565,6 +583,7 @@
 				"name": "direction",
 				"return_type": "DOMString",
 				"description": "The direction IDL attribute, on getting, must return the current value. On setting, if the value is one of ltr, rtl, or inherit, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the direction attribute must initially have the value inherit.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#direction",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tdirection\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe direction IDL attribute, on getting, must return the current value. On setting, if the value is one of ltr, rtl, or inherit, then the value must be changed to the new value. Otherwise, the new value must be ignored. When the object implementing the CanvasDrawingStyles interface is created, the direction attribute must initially have the value inherit.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#direction\n\n*/"
@@ -584,6 +603,7 @@
 					}
 				],
 				"description": "The measureText() method takes one argument, text. When the method is invoked, the user agent must run the text preparation algorithm, passing it text and the CanvasRenderingContext2D object, and then using the returned inline box must create a new TextMetrics object with its attributes set as described in the following list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#measureText",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tmeasureText ( text: DOMString )\n\n\tReturn Type:\n\tTextMetrics\n\n\tDescription:\n\tThe measureText() method takes one argument, text. When the method is invoked, the user agent must run the text preparation algorithm, passing it text and the CanvasRenderingContext2D object, and then using the returned inline box must create a new TextMetrics object with its attributes set as described in the following list.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#measureText\n\n*/"
@@ -595,6 +615,7 @@
 				"name": "globalCompositeOperation",
 				"return_type": "DOMString",
 				"description": "The globalCompositeOperation attribute sets the current composition operator, which controls how shapes and images are drawn onto the scratch bitmap, once they have had globalAlpha and the current transformation matrix applied. The possible values are those defined in the Compositing and Blending specification.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#globalCompositeOperation",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tglobalCompositeOperation\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe globalCompositeOperation attribute sets the current composition operator, which controls how shapes and images are drawn onto the scratch bitmap, once they have had globalAlpha and the current transformation matrix applied. The possible values are those defined in the Compositing and Blending specification.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#globalCompositeOperation\n\n*/"
@@ -620,6 +641,7 @@
 					}
 				],
 				"description": "The translate(x, y) method must add the translation transformation described by the arguments to the transformation matrix. The x argument represents the translation distance in the horizontal direction and the y argument represents the translation distance in the vertical direction.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#translate",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\ttranslate ( x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe translate(x, y) method must add the translation transformation described by the arguments to the transformation matrix. The x argument represents the translation distance in the horizontal direction and the y argument represents the translation distance in the vertical direction.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#translate\n\n*/"
@@ -669,6 +691,7 @@
 					}
 				],
 				"description": "The setTransform(a, b, c, d, e, f) method must reset the current transform to the identity matrix, and then invoke the transform(a, b, c, d, e, f) method with the same arguments.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#setTransform",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tsetTransform ( a: unrestricted double, b: unrestricted double, c: unrestricted double, d: unrestricted double, e: unrestricted double, f: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setTransform(a, b, c, d, e, f) method must reset the current transform to the identity matrix, and then invoke the transform(a, b, c, d, e, f) method with the same arguments.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#setTransform\n\n*/"
@@ -724,6 +747,7 @@
 					}
 				],
 				"description": "The putImageData() method writes data from ImageData structures back to the rendering context's scratch bitmap. Its arguments are: imagedata, dx, dy, dirtyX, dirtyY, dirtyWidth, and dirtyHeight.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#putImageData",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tputImageData ( imagedata: ImageData, dx: double, dy: double, dirtyX?: double, dirtyY?: double, dirtyWidth?: double, dirtyHeight?: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe putImageData() method writes data from ImageData structures back to the rendering context's scratch bitmap. Its arguments are: imagedata, dx, dy, dirtyX, dirtyY, dirtyWidth, and dirtyHeight.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#putImageData\n\n*/"
@@ -773,6 +797,7 @@
 					}
 				],
 				"description": "The arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#arc",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tarc ( x: unrestricted double, y: unrestricted double, radius: unrestricted double, startAngle: unrestricted double, endAngle: unrestricted double, anticlockwise?: boolean )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe arc(x, y, radius, startAngle, endAngle, anticlockwise) and ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) methods draw arcs.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#arc\n\n*/"
@@ -810,6 +835,7 @@
 					}
 				],
 				"description": "The createLinearGradient(x0, y0, x1, y1) method takes four arguments that represent the start point (x0, y0) and end point (x1, y1) of the gradient. The method must return a linear CanvasGradient initialized with the specified line.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createLinearGradient",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcreateLinearGradient ( x0: double, y0: double, x1: double, y1: double )\n\n\tReturn Type:\n\tCanvasGradient\n\n\tDescription:\n\tThe createLinearGradient(x0, y0, x1, y1) method takes four arguments that represent the start point (x0, y0) and end point (x1, y1) of the gradient. The method must return a linear CanvasGradient initialized with the specified line.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createLinearGradient\n\n*/"
@@ -835,6 +861,7 @@
 					}
 				],
 				"description": "The lineTo(x, y) method must ensure there is a subpath for (x, y) if the object's path has no subpaths. Otherwise, it must connect the last point in the subpath to the given point (x, y) using a straight line, and must then add the given point (x, y) to the subpath.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineTo",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tlineTo ( x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe lineTo(x, y) method must ensure there is a subpath for (x, y) if the object's path has no subpaths. Otherwise, it must connect the last point in the subpath to the given point (x, y) using a straight line, and must then add the given point (x, y) to the subpath.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineTo\n\n*/"
@@ -860,6 +887,7 @@
 					}
 				],
 				"description": "The scale(x, y) method must add the scaling transformation described by the arguments to the transformation matrix. The x argument represents the scale factor in the horizontal direction and the y argument represents the scale factor in the vertical direction.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#scale",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tscale ( x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe scale(x, y) method must add the scaling transformation described by the arguments to the transformation matrix. The x argument represents the scale factor in the horizontal direction and the y argument represents the scale factor in the vertical direction.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#scale\n\n*/"
@@ -871,6 +899,7 @@
 				"name": "shadowOffsetX",
 				"return_type": "unrestricted double",
 				"description": "The shadowOffsetX and shadowOffsetY attributes specify the distance that the shadow will be offset in the positive horizontal and positive vertical distance respectively. Their values are in coordinate space units. They are not affected by the current transformation matrix.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowOffsetX",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tshadowOffsetX\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe shadowOffsetX and shadowOffsetY attributes specify the distance that the shadow will be offset in the positive horizontal and positive vertical distance respectively. Their values are in coordinate space units. They are not affected by the current transformation matrix.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowOffsetX\n\n*/"
@@ -882,6 +911,7 @@
 				"name": "lineWidth",
 				"return_type": "unrestricted double",
 				"description": "The lineWidth attribute gives the width of lines, in coordinate space units. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineWidth",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tlineWidth\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe lineWidth attribute gives the width of lines, in coordinate space units. On getting, it must return the current value. On setting, zero, negative, infinite, and NaN values must be ignored, leaving the value unchanged; other values must change the current value to the new value.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineWidth\n\n*/"
@@ -893,6 +923,7 @@
 				"name": "shadowOffsetY",
 				"return_type": "unrestricted double",
 				"description": "The shadowOffsetX and shadowOffsetY attributes specify the distance that the shadow will be offset in the positive horizontal and positive vertical distance respectively. Their values are in coordinate space units. They are not affected by the current transformation matrix.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowOffsetY",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tshadowOffsetY\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe shadowOffsetX and shadowOffsetY attributes specify the distance that the shadow will be offset in the positive horizontal and positive vertical distance respectively. Their values are in coordinate space units. They are not affected by the current transformation matrix.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowOffsetY\n\n*/"
@@ -960,6 +991,7 @@
 					}
 				],
 				"description": "To draw images, the drawImage method can be used.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#drawImage",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tdrawImage ( image: CanvasImageSource, dx_sx: unrestricted double, dy_sy: unrestricted double, dw_sw?: unrestricted double, dh_sh?: unrestricted double, dx?: unrestricted double, dy?: unrestricted double, dw?: unrestricted double, dh?: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tTo draw images, the drawImage method can be used.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#drawImage\n\n*/"
@@ -985,6 +1017,7 @@
 					}
 				],
 				"description": "The fill() method must fill all the subpaths of the intended path, using fillStyle, and using the fill rule indicated by the fillRule argument. Open subpaths must be implicitly closed when being filled (without affecting the actual subpaths).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fill",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tfill ( fillRule_path?: any, fillRule?: CanvasFillRule )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe fill() method must fill all the subpaths of the intended path, using fillStyle, and using the fill rule indicated by the fillRule argument. Open subpaths must be implicitly closed when being filled (without affecting the actual subpaths).\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fill\n\n*/"
@@ -1022,6 +1055,7 @@
 					}
 				],
 				"description": "The strokeRect(x, y, w, h) method must take the result of tracing the path described below, using the CanvasRenderingContext2D object's line styles, and fill it with the strokeStyle.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#strokeRect",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tstrokeRect ( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe strokeRect(x, y, w, h) method must take the result of tracing the path described below, using the CanvasRenderingContext2D object's line styles, and fill it with the strokeStyle.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#strokeRect\n\n*/"
@@ -1033,6 +1067,7 @@
 				"name": "height",
 				"return_type": "unsigned long",
 				"description": "The height attribute, on getting, must return the height of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the current width of the rendering context's scratch bitmap in CSS pixels and the new value, respectively.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#height",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\theight\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe height attribute, on getting, must return the height of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the current width of the rendering context's scratch bitmap in CSS pixels and the new value, respectively.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#height\n\n*/"
@@ -1044,6 +1079,7 @@
 				"name": "textBaseline",
 				"return_type": "DOMString",
 				"description": "The textBaseline IDL attribute, on getting, must return the current value. On setting, if the value is one of top, hanging, middle, alphabetic, ideographic, or bottom, then the value must be changed to the new value. Otherwise, the new value must be ignored.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#textBaseline",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\ttextBaseline\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe textBaseline IDL attribute, on getting, must return the current value. On setting, if the value is one of top, hanging, middle, alphabetic, ideographic, or bottom, then the value must be changed to the new value. Otherwise, the new value must be ignored.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#textBaseline\n\n*/"
@@ -1056,6 +1092,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The closePath() method must do nothing if the object's path has no subpaths. Otherwise, it must mark the last subpath as closed, create a new subpath whose first point is the same as the previous subpath's first point, and finally add this new subpath to the path.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#closePath",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tclosePath ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe closePath() method must do nothing if the object's path has no subpaths. Otherwise, it must mark the last subpath as closed, create a new subpath whose first point is the same as the previous subpath's first point, and finally add this new subpath to the path.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#closePath\n\n*/"
@@ -1067,6 +1104,7 @@
 				"name": "width",
 				"return_type": "unsigned long",
 				"description": "The width attribute, on getting, must return the width of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the new value and the current height of the rendering context's scratch bitmap in CSS pixels, respectively.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#width",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\twidth\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe width attribute, on getting, must return the width of the rendering context's scratch bitmap, in CSS pixels. On setting, it must set bitmap dimensions to the new value and the current height of the rendering context's scratch bitmap in CSS pixels, respectively.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#width\n\n*/"
@@ -1104,6 +1142,7 @@
 					}
 				],
 				"description": "The fillRect(x, y, w, h) method must paint the specified rectangular area using the fillStyle. If either height or width are zero, this method has no effect.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fillRect",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tfillRect ( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe fillRect(x, y, w, h) method must paint the specified rectangular area using the fillStyle. If either height or width are zero, this method has no effect.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fillRect\n\n*/"
@@ -1115,6 +1154,7 @@
 				"name": "imageSmoothingEnabled",
 				"return_type": "boolean",
 				"description": "The imageSmoothingEnabled attribute, on getting, must return the last value it was set to. On setting, it must be set to the new value. When the CanvasRenderingContext2D object is created, the attribute must be set to true.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#imageSmoothingEnabled",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\timageSmoothingEnabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe imageSmoothingEnabled attribute, on getting, must return the last value it was set to. On setting, it must be set to the new value. When the CanvasRenderingContext2D object is created, the attribute must be set to true.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#imageSmoothingEnabled\n\n*/"
@@ -1134,6 +1174,7 @@
 					}
 				],
 				"description": "The stroke() method must trace the intended path, using the CanvasRenderingContext2D object for the line styles, and then fill the resulting path using the strokeStyle attribute, using the non-zero winding rule.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#stroke",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tstroke ( path?: Path2D )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe stroke() method must trace the intended path, using the CanvasRenderingContext2D object for the line styles, and then fill the resulting path using the strokeStyle attribute, using the non-zero winding rule.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#stroke\n\n*/"
@@ -1153,6 +1194,7 @@
 					}
 				],
 				"description": "The rotate(angle) method must add the rotation transformation described by the argument to the transformation matrix. The angle argument represents a clockwise rotation angle expressed in radians.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#rotate",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\trotate ( angle: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe rotate(angle) method must add the rotation transformation described by the argument to the transformation matrix. The angle argument represents a clockwise rotation angle expressed in radians.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#rotate\n\n*/"
@@ -1164,6 +1206,7 @@
 				"name": "strokeStyle",
 				"return_type": "(DOMString or CanvasGradient or CanvasPattern)",
 				"description": "The fillStyle attribute represents the color or style to use inside shapes, and the strokeStyle attribute represents the color or style to use for the lines around the shapes.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#strokeStyle",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tstrokeStyle\n\n\tReturn Type:\n\t(DOMString or CanvasGradient or CanvasPattern)\n\n\tDescription:\n\tThe fillStyle attribute represents the color or style to use inside shapes, and the strokeStyle attribute represents the color or style to use for the lines around the shapes.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#strokeStyle\n\n*/"
@@ -1175,6 +1218,7 @@
 				"name": "fillStyle",
 				"return_type": "(DOMString or CanvasGradient or CanvasPattern)",
 				"description": "The fillStyle attribute represents the color or style to use inside shapes, and the strokeStyle attribute represents the color or style to use for the lines around the shapes.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fillStyle",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tfillStyle\n\n\tReturn Type:\n\t(DOMString or CanvasGradient or CanvasPattern)\n\n\tDescription:\n\tThe fillStyle attribute represents the color or style to use inside shapes, and the strokeStyle attribute represents the color or style to use for the lines around the shapes.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#fillStyle\n\n*/"
@@ -1186,6 +1230,7 @@
 				"name": "shadowBlur",
 				"return_type": "unrestricted double",
 				"description": "The shadowBlur attribute specifies the level of the blurring effect. (The units do not map to coordinate space units, and are not affected by the current transformation matrix.)",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowBlur",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tshadowBlur\n\n\tReturn Type:\n\tunrestricted double\n\n\tDescription:\n\tThe shadowBlur attribute specifies the level of the blurring effect. (The units do not map to coordinate space units, and are not affected by the current transformation matrix.)\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowBlur\n\n*/"
@@ -1235,6 +1280,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-transform",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\ttransform ( a: unrestricted double, b: unrestricted double, c: unrestricted double, d: unrestricted double, e: unrestricted double, f: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-transform\n\n*/"
@@ -1247,6 +1293,7 @@
 				"return_type": "sequence<unrestricted double>",
 				"parameters": [],
 				"description": "When the getLineDash() method is invoked, it must return a sequence whose values are the values of the object's dash list, in the same order.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#getLineDash",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tgetLineDash ()\n\n\tReturn Type:\n\tsequence<unrestricted double>\n\n\tDescription:\n\tWhen the getLineDash() method is invoked, it must return a sequence whose values are the values of the object's dash list, in the same order.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#getLineDash\n\n*/"
@@ -1259,6 +1306,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The restore() method must pop the top entry in the drawing state stack, and reset the drawing state it describes. If there is no saved state, the method must do nothing.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#restore",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\trestore ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe restore() method must pop the top entry in the drawing state stack, and reset the drawing state it describes. If there is no saved state, the method must do nothing.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#restore\n\n*/"
@@ -1284,6 +1332,7 @@
 					}
 				],
 				"description": "The ImageData() constructors and the createImageData() methods are used to instantiate new ImageData objects.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createImageData",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcreateImageData ( sw_imagedata: any, sh?: double )\n\n\tReturn Type:\n\tImageData\n\n\tDescription:\n\tThe ImageData() constructors and the createImageData() methods are used to instantiate new ImageData objects.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createImageData\n\n*/"
@@ -1296,6 +1345,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The resetClip() method must create a new clipping region that is the largest infinite surface. The new clipping region replaces the current clipping region.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#resetClip",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tresetClip ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe resetClip() method must create a new clipping region that is the largest infinite surface. The new clipping region replaces the current clipping region.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#resetClip\n\n*/"
@@ -1321,6 +1371,7 @@
 					}
 				],
 				"description": "To create objects of this type, the createPattern(image, repetition) method is used.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createPattern",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcreatePattern ( image: CanvasImageSource, repetition: DOMString )\n\n\tReturn Type:\n\tCanvasPattern\n\n\tDescription:\n\tTo create objects of this type, the createPattern(image, repetition) method is used.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#createPattern\n\n*/"
@@ -1346,6 +1397,7 @@
 					}
 				],
 				"description": "The moveTo(x, y) method must create a new subpath with the specified point as its first (and only) point.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#moveTo",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tmoveTo ( x: unrestricted double, y: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe moveTo(x, y) method must create a new subpath with the specified point as its first (and only) point.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#moveTo\n\n*/"
@@ -1357,6 +1409,7 @@
 				"name": "lineJoin",
 				"return_type": "DOMString",
 				"description": "The lineJoin attribute defines the type of corners that UAs will place where two lines meet. The three valid values are bevel, round, and miter.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineJoin",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tlineJoin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lineJoin attribute defines the type of corners that UAs will place where two lines meet. The three valid values are bevel, round, and miter.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineJoin\n\n*/"
@@ -1368,6 +1421,7 @@
 				"name": "lineCap",
 				"return_type": "DOMString",
 				"description": "The lineCap attribute defines the type of endings that UAs will place on the end of lines. The three valid values are butt, round, and square.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineCap",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tlineCap\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe lineCap attribute defines the type of endings that UAs will place on the end of lines. The three valid values are butt, round, and square.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#lineCap\n\n*/"
@@ -1380,6 +1434,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The beginPath() method must empty the list of subpaths in the context's current default path so that the it once again has zero subpaths.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#beginPath",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tbeginPath ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe beginPath() method must empty the list of subpaths in the context's current default path so that the it once again has zero subpaths.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#beginPath\n\n*/"
@@ -1417,6 +1472,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-clearrect",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tclearRect ( x: unrestricted double, y: unrestricted double, w: unrestricted double, h: unrestricted double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-clearrect\n\n*/"
@@ -1428,6 +1484,7 @@
 				"name": "canvas",
 				"return_type": "HTMLCanvasElement",
 				"description": "The canvas attribute must return the value it was initialized to when the object was created.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#canvas",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcanvas\n\n\tReturn Type:\n\tHTMLCanvasElement\n\n\tDescription:\n\tThe canvas attribute must return the value it was initialized to when the object was created.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#canvas\n\n*/"
@@ -1453,6 +1510,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-drawcustomfocusring",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tdrawCustomFocusRing ( element_path: any, element?: Element )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-drawcustomfocusring\n\n*/"
@@ -1503,6 +1561,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-drawsystemfocusring",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tdrawSystemFocusRing ( element_path: any, element?: Element )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-drawsystemfocusring\n\n*/"
@@ -1515,6 +1574,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The resetTransform() method must reset the current transform to the identity matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#resetTransform",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tresetTransform ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe resetTransform() method must reset the current transform to the identity matrix.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#resetTransform\n\n*/"
@@ -1527,6 +1587,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The save() method must push a copy of the current drawing state onto the drawing state stack.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#save",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tsave ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe save() method must push a copy of the current drawing state onto the drawing state stack.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#save\n\n*/"
@@ -1546,6 +1607,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tsetLineDash ( segments: sequence<unrestricted double> )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash\n\n*/"
@@ -1565,6 +1627,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-addhitregion",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\taddHitRegion ( options?: HitRegionOptions )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-addhitregion\n\n*/"
@@ -1584,6 +1647,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-scrollpathintoview",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tscrollPathIntoView ( path?: Path2D )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-scrollpathintoview\n\n*/"
@@ -1603,6 +1667,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-removehitregion",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tremoveHitRegion ( id: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-removehitregion\n\n*/"
@@ -1614,6 +1679,7 @@
 				"name": "shadowColor",
 				"return_type": "DOMString",
 				"description": "The shadowColor attribute sets the color of the shadow.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowColor",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tshadowColor\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe shadowColor attribute sets the color of the shadow.\n\n\tURL doc:\n\thttp://html5index.org/Canvas%20-%20CanvasRenderingContext2D.html#shadowColor\n\n*/"
@@ -1626,6 +1692,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-commit",
 				"full_description": "/*\n\n\tCanvasRenderingContext2D\n\n\tcommit ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-commit\n\n*/"

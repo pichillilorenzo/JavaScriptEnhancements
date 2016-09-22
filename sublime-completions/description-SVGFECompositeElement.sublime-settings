@@ -7,6 +7,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#height",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#height\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#width",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#width\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_UNKNOWN",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_UNKNOWN\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#y",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#y\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#x",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#x\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "operator",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘operator’ on the given ‘feComposite’ element. Takes one of the SVG_FECOMPOSITE_OPERATOR_* constants defined on this interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#operator",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\toperator\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘operator’ on the given ‘feComposite’ element. Takes one of the SVG_FECOMPOSITE_OPERATOR_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#operator\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_ARITHMETIC",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'arithmetic'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_ARITHMETIC",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_ARITHMETIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'arithmetic'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_ARITHMETIC\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_ATOP",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'atop'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_ATOP",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_ATOP\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'atop'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_ATOP\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_OVER",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'over'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_OVER",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_OVER\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'over'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_OVER\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_XOR",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'xor'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_XOR",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_XOR\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'xor'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_XOR\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_OUT",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'out'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_OUT",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_OUT\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'out'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_OUT\n\n*/"
@@ -128,6 +139,7 @@
 				"name": "SVG_FECOMPOSITE_OPERATOR_IN",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'in'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_IN",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tSVG_FECOMPOSITE_OPERATOR_IN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'in'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#SVG_FECOMPOSITE_OPERATOR_IN\n\n*/"
@@ -139,6 +151,7 @@
 				"name": "k3",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘k3’ on the given ‘feComposite’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#k3",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tk3\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘k3’ on the given ‘feComposite’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#k3\n\n*/"
@@ -150,6 +163,7 @@
 				"name": "k4",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘k4’ on the given ‘feComposite’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#k4",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tk4\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘k4’ on the given ‘feComposite’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#k4\n\n*/"
@@ -161,6 +175,7 @@
 				"name": "k1",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘k1’ on the given ‘feComposite’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#k1",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tk1\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘k1’ on the given ‘feComposite’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#k1\n\n*/"
@@ -172,6 +187,7 @@
 				"name": "k2",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘k2’ on the given ‘feComposite’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#k2",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tk2\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘k2’ on the given ‘feComposite’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#k2\n\n*/"
@@ -183,6 +199,7 @@
 				"name": "in2",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in2’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#in2",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tin2\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in2’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#in2\n\n*/"
@@ -194,6 +211,7 @@
 				"name": "result",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#result",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#result\n\n*/"
@@ -205,6 +223,7 @@
 				"name": "in1",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFECompositeElement.html#in1",
 				"full_description": "/*\n\n\tSVGFECompositeElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFECompositeElement.html#in1\n\n*/"

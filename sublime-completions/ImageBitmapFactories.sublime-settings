@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"createImageBitmap( image: ImageBitmapSource, sx?: long, sy: long, sw: long, sh: long ): Promise\tImageBitmapFactories",
-			"createImageBitmap(${1:image: ImageBitmapSource}, ${2:sx?: long}, ${3:sy: long}, ${4:sw: long}, ${5:sh: long})"
-		]
-	]
-}

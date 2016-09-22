@@ -7,6 +7,7 @@
 				"name": "SHOW_PROCESSING_INSTRUCTION",
 				"return_type": "const unsigned long",
 				"description": "SHOW_PROCESSING_INSTRUCTION (64, 40 in hexadecimal);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_PROCESSING_INSTRUCTION",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_PROCESSING_INSTRUCTION\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_PROCESSING_INSTRUCTION (64, 40 in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_PROCESSING_INSTRUCTION\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "SHOW_DOCUMENT_FRAGMENT",
 				"return_type": "const unsigned long",
 				"description": "SHOW_DOCUMENT_FRAGMENT (1024, 400 in hexadecimal).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_DOCUMENT_FRAGMENT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_DOCUMENT_FRAGMENT\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_DOCUMENT_FRAGMENT (1024, 400 in hexadecimal).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_DOCUMENT_FRAGMENT\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "SHOW_DOCUMENT_TYPE",
 				"return_type": "const unsigned long",
 				"description": "SHOW_DOCUMENT_TYPE (512, 200 in hexadecimal);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_DOCUMENT_TYPE",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_DOCUMENT_TYPE\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_DOCUMENT_TYPE (512, 200 in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_DOCUMENT_TYPE\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "SHOW_DOCUMENT",
 				"return_type": "const unsigned long",
 				"description": "SHOW_DOCUMENT (256, 100 in hexadecimal);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_DOCUMENT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_DOCUMENT\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_DOCUMENT (256, 100 in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_DOCUMENT\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "SHOW_ALL",
 				"return_type": "const unsigned long",
 				"description": "SHOW_ALL (4294967295, FFFFFFFF in hexadecimal);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ALL",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_ALL\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_ALL (4294967295, FFFFFFFF in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ALL\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "SHOW_COMMENT",
 				"return_type": "const unsigned long",
 				"description": "SHOW_COMMENT (128, 80 in hexadecimal);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_COMMENT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_COMMENT\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_COMMENT (128, 80 in hexadecimal);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_COMMENT\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "FILTER_ACCEPT",
 				"return_type": "const unsigned short",
 				"description": "FILTER_ACCEPT (1);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#FILTER_ACCEPT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tFILTER_ACCEPT\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tFILTER_ACCEPT (1);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#FILTER_ACCEPT\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "FILTER_REJECT",
 				"return_type": "const unsigned short",
 				"description": "FILTER_REJECT (2);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#FILTER_REJECT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tFILTER_REJECT\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tFILTER_REJECT (2);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#FILTER_REJECT\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "SHOW_ENTITY_REFERENCE",
 				"return_type": "const unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ENTITY_REFERENCE",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_ENTITY_REFERENCE\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ENTITY_REFERENCE\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "SHOW_ELEMENT",
 				"return_type": "const unsigned long",
 				"description": "SHOW_ELEMENT (1);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ELEMENT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_ELEMENT\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_ELEMENT (1);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ELEMENT\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "FILTER_SKIP",
 				"return_type": "const unsigned short",
 				"description": "FILTER_SKIP (3).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#FILTER_SKIP",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tFILTER_SKIP\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tFILTER_SKIP (3).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#FILTER_SKIP\n\n*/"
@@ -128,6 +139,7 @@
 				"name": "SHOW_CDATA_SECTION",
 				"return_type": "const unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_CDATA_SECTION",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_CDATA_SECTION\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_CDATA_SECTION\n\n*/"
@@ -139,6 +151,7 @@
 				"name": "SHOW_TEXT",
 				"return_type": "const unsigned long",
 				"description": "SHOW_TEXT (4);",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_TEXT",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_TEXT\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\tSHOW_TEXT (4);\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_TEXT\n\n*/"
@@ -150,6 +163,7 @@
 				"name": "SHOW_ATTRIBUTE",
 				"return_type": "const unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ATTRIBUTE",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_ATTRIBUTE\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ATTRIBUTE\n\n*/"
@@ -161,6 +175,7 @@
 				"name": "SHOW_NOTATION",
 				"return_type": "const unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_NOTATION",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_NOTATION\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_NOTATION\n\n*/"
@@ -172,6 +187,7 @@
 				"name": "SHOW_ENTITY",
 				"return_type": "const unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ENTITY",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tSHOW_ENTITY\n\n\tReturn Type:\n\tconst unsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20NodeFilter.html#SHOW_ENTITY\n\n*/"
@@ -191,6 +207,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "DOM - Node.html",
 				"full_description": "/*\n\n\tNodeFilter\n\n\tacceptNode ( node: Node )\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\t\n\n\tURL doc:\n\tDOM - Node.html\n\n*/"

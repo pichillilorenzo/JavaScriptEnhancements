@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "Description: A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.each/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\teach ( array: Array, callback: Function( Integer indexInArray, Object value ) )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.each/\n\n*/"
@@ -40,6 +41,7 @@
 					}
 				],
 				"description": "Description: Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.param/",
 				"full_description": "/*\n\n\tjQuery - Miscellaneous > Collection Manipulation | Forms | Ajax > Helper Functions\n\n\tparam ( obj: Array or PlainObject or jQuery )\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.param/\n\n*/"
@@ -59,6 +61,7 @@
 					}
 				],
 				"description": "Description: Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns a number (without \"px\") representation of the value or null if called on an empty set of elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/outerHeight/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\touterHeight ( includeMargin (default: false)?: Boolean )\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns a number (without \"px\") representation of the value or null if called on an empty set of elements.\n\n\tURL doc:\n\thttp://api.jquery.com/outerHeight/\n\n*/"
@@ -78,6 +81,7 @@
 					}
 				],
 				"description": "Description:  A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.Deferred/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tDeferred ( beforeStart?: Function( Deferred deferred ) )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.Deferred/\n\n*/"
@@ -103,6 +107,7 @@
 					}
 				],
 				"description": "Description: Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.ajaxPrefilter/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Low-Level Interface\n\n\tajaxPrefilter ( dataTypes?: String, handler: Function( PlainObject options, PlainObject originalOptions, jqXHR jqXHR ) )\n\n\tReturn Type:\n\tundefined\n\n\tDescription:\n\tDescription: Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.ajaxPrefilter/\n\n*/"
@@ -128,6 +133,7 @@
 					}
 				],
 				"description": "Description: Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prepend/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Inside\n\n\tprepend ( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/prepend/\n\n*/"
@@ -153,6 +159,7 @@
 					}
 				],
 				"description": "Description: Insert content, specified by the parameter, to the end of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/append/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Inside\n\n\tappend ( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert content, specified by the parameter, to the end of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/append/\n\n*/"
@@ -178,6 +185,7 @@
 					}
 				],
 				"description": "Description: Insert content, specified by the parameter, before each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/before/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Outside\n\n\tbefore ( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert content, specified by the parameter, before each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/before/\n\n*/"
@@ -203,6 +211,7 @@
 					}
 				],
 				"description": "Description: Insert content, specified by the parameter, after each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/after/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Outside\n\n\tafter ( content: htmlString or Element or Text or Array or jQuery, content?: htmlString or Element or Text or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert content, specified by the parameter, after each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/after/\n\n*/"
@@ -228,6 +237,7 @@
 					}
 				],
 				"description": "Description: Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/parentsUntil/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tparentsUntil ( selector?: Selector, filter?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.\n\n\tURL doc:\n\thttp://api.jquery.com/parentsUntil/\n\n*/"
@@ -247,6 +257,7 @@
 					}
 				],
 				"description": "Description: Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/toggleClass/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > Class Attribute | CSS\n\n\ttoggleClass ( className: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.\n\n\tURL doc:\n\thttp://api.jquery.com/toggleClass/\n\n*/"
@@ -266,6 +277,7 @@
 					}
 				],
 				"description": "Description: Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ajaxSuccess/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Global Ajax Event Handlers\n\n\tajaxSuccess ( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions, PlainObject data ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.\n\n\tURL doc:\n\thttp://api.jquery.com/ajaxSuccess/\n\n*/"
@@ -297,6 +309,7 @@
 					}
 				],
 				"description": "Description: Finds the elements of an array which satisfy a filter function. The original array is not affected.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.grep/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tgrep ( array: ArrayLikeObject, function: Function( Object elementOfArray, Integer indexInArray )\n\t\t\t=>\n\t\t\tBoolean, invert?: Boolean )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Finds the elements of an array which satisfy a filter function. The original array is not affected.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.grep/\n\n*/"
@@ -334,6 +347,7 @@
 					}
 				],
 				"description": "Description: Attach an event handler function for one or more events to the selected elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/on/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Handler Attachment\n\n\ton ( events: String, selector?: String, data?: Anything, handler: Function( Event eventObject [, Anything extraParameter ] [, ... ] ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Attach an event handler function for one or more events to the selected elements.\n\n\tURL doc:\n\thttp://api.jquery.com/on/\n\n*/"
@@ -346,6 +360,7 @@
 				"return_type": "Number",
 				"parameters": [],
 				"description": "Description: Get the current vertical position of the scroll bar for the first element in the set of matched elements or set the vertical position of the scroll bar for every matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/scrollTop/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\tscrollTop ()\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current vertical position of the scroll bar for the first element in the set of matched elements or set the vertical position of the scroll bar for every matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/scrollTop/\n\n*/"
@@ -365,6 +380,7 @@
 					}
 				],
 				"description": "Description: Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ajaxError/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Global Ajax Event Handlers\n\n\tajaxError ( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxSettings, String thrownError ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.\n\n\tURL doc:\n\thttp://api.jquery.com/ajaxError/\n\n*/"
@@ -384,6 +400,7 @@
 					}
 				],
 				"description": "Description: Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prev/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tprev ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.\n\n\tURL doc:\n\thttp://api.jquery.com/prev/\n\n*/"
@@ -403,6 +420,7 @@
 					}
 				],
 				"description": "Description: Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/replaceWith/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Replacement\n\n\treplaceWith ( newContent: htmlString or Element or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.\n\n\tURL doc:\n\thttp://api.jquery.com/replaceWith/\n\n*/"
@@ -422,6 +440,7 @@
 					}
 				],
 				"description": "Description: Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/next/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tnext ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.\n\n\tURL doc:\n\thttp://api.jquery.com/next/\n\n*/"
@@ -447,6 +466,7 @@
 					}
 				],
 				"description": "Description: Creates an object that handles the actual transmission of Ajax data.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.ajaxTransport/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Low-Level Interface\n\n\tajaxTransport ( dataType: String, handler: Function( PlainObject options, PlainObject originalOptions, jqXHR jqXHR ) )\n\n\tReturn Type:\n\tundefined\n\n\tDescription:\n\tDescription: Creates an object that handles the actual transmission of Ajax data.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.ajaxTransport/\n\n*/"
@@ -478,6 +498,7 @@
 					}
 				],
 				"description": "Description: Load data from the server and place the returned HTML into the matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/load/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Shorthand Methods\n\n\tload ( url: String, data?: PlainObject or String, complete?: Function( String responseText, String textStatus, jqXHR jqXHR ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Load data from the server and place the returned HTML into the matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/load/\n\n*/"
@@ -503,6 +524,7 @@
 					}
 				],
 				"description": "Description: Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/hover/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\thover ( handlerIn: Function( Event eventObject ), handlerOut: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements.\n\n\tURL doc:\n\thttp://api.jquery.com/hover/\n\n*/"
@@ -534,6 +556,7 @@
 					}
 				],
 				"description": "Description: Attach a handler to an event for the elements. The handler is executed at most once per element per event type.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/one/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Handler Attachment\n\n\tone ( events: String, data?: PlainObject, handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Attach a handler to an event for the elements. The handler is executed at most once per element per event type.\n\n\tURL doc:\n\thttp://api.jquery.com/one/\n\n*/"
@@ -553,6 +576,7 @@
 					}
 				],
 				"description": "Description: Get the current computed width for the first element in the set of matched elements, including padding and border.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/outerWidth/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\touterWidth ( includeMargin (default: false)?: Boolean )\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current computed width for the first element in the set of matched elements, including padding and border.\n\n\tURL doc:\n\thttp://api.jquery.com/outerWidth/\n\n*/"
@@ -572,6 +596,7 @@
 					}
 				],
 				"description": "Description: Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/map/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\tmap ( callback: Function( Integer index, Element domElement )\n\t\t\t=>\n\t\t\tObject )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n\n\tURL doc:\n\thttp://api.jquery.com/map/\n\n*/"
@@ -591,6 +616,7 @@
 					}
 				],
 				"description": "Description: For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/closest/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tclosest ( selector: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.\n\n\tURL doc:\n\thttp://api.jquery.com/closest/\n\n*/"
@@ -628,6 +654,7 @@
 					}
 				],
 				"description": "Description: Load data from the server using a HTTP POST request.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.post/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Shorthand Methods\n\n\tpost ( url: String, data?: PlainObject or String, success?: Function( PlainObject data, String textStatus, jqXHR jqXHR ), dataType?: String )\n\n\tReturn Type:\n\tjqXHR\n\n\tDescription:\n\tDescription: Load data from the server using a HTTP POST request.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.post/\n\n*/"
@@ -659,6 +686,7 @@
 					}
 				],
 				"description": "Description: Load JSON-encoded data from the server using a GET HTTP request.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.getJSON/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Shorthand Methods\n\n\tgetJSON ( url: String, data?: PlainObject or String, success?: Function( PlainObject data, String textStatus, jqXHR jqXHR ) )\n\n\tReturn Type:\n\tjqXHR\n\n\tDescription:\n\tDescription: Load JSON-encoded data from the server using a GET HTTP request.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.getJSON/\n\n*/"
@@ -684,6 +712,7 @@
 					}
 				],
 				"description": "Description: Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/nextUntil/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tnextUntil ( selector?: Selector, filter?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.\n\n\tURL doc:\n\thttp://api.jquery.com/nextUntil/\n\n*/"
@@ -721,6 +750,7 @@
 					}
 				],
 				"description": "Description: Load data from the server using a HTTP GET request.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.get/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Shorthand Methods\n\n\tget ( url: String, data?: PlainObject or String, success?: Function( PlainObject data, String textStatus, jqXHR jqXHR ), dataType?: String )\n\n\tReturn Type:\n\tjqXHR\n\n\tDescription:\n\tDescription: Load data from the server using a HTTP GET request.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.get/\n\n*/"
@@ -746,6 +776,7 @@
 					}
 				],
 				"description": "Description: Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prevUntil/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tprevUntil ( selector?: Selector, filter?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.\n\n\tURL doc:\n\thttp://api.jquery.com/prevUntil/\n\n*/"
@@ -757,6 +788,7 @@
 				"name": "cssNumber",
 				"return_type": "Object",
 				"description": "Description: An object containing all CSS properties that may be used without a unit. The .css() method uses this object to see if it may append px to unitless values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/jQuery.cssNumber/",
 				"full_description": "/*\n\n\tjQuery - CSS | Manipulation > Style Properties\n\n\tcssNumber\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: An object containing all CSS properties that may be used without a unit. The .css() method uses this object to see if it may append px to unitless values.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.cssNumber/\n\n*/"
@@ -776,6 +808,7 @@
 					}
 				],
 				"description": "Description: Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/is/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\tis ( selector: Selector )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.\n\n\tURL doc:\n\thttp://api.jquery.com/is/\n\n*/"
@@ -801,6 +834,7 @@
 					}
 				],
 				"description": "Description: Load a JavaScript file from the server using a GET HTTP request, then execute it.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.getScript/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Shorthand Methods\n\n\tgetScript ( url: String, success?: Function( String script, String textStatus, jqXHR jqXHR ) )\n\n\tReturn Type:\n\tjqXHR\n\n\tDescription:\n\tDescription: Load a JavaScript file from the server using a GET HTTP request, then execute it.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.getScript/\n\n*/"
@@ -832,6 +866,7 @@
 					}
 				],
 				"description": "Description: Display or hide the matched elements by animating their opacity.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/fadeToggle/",
 				"full_description": "/*\n\n\tjQuery - Effects | Effects > Fading\n\n\tfadeToggle ( duration (default: 400)?: Number or String, easing (default: swing)?: String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Display or hide the matched elements by animating their opacity.\n\n\tURL doc:\n\thttp://api.jquery.com/fadeToggle/\n\n*/"
@@ -857,6 +892,7 @@
 					}
 				],
 				"description": "Description: Creates an object containing a set of properties ready to be used in the definition of custom animations.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.speed/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom\n\n\tspeed ( duration (default: 400)?: Number or String, settings?: PlainObject )\n\n\tReturn Type:\n\tPlainObject\n\n\tDescription:\n\tDescription: Creates an object containing a set of properties ready to be used in the definition of custom animations.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.speed/\n\n*/"
@@ -876,6 +912,7 @@
 					}
 				],
 				"description": "Description: Register a handler to be called when Ajax requests complete. This is an AjaxEvent.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ajaxComplete/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Global Ajax Event Handlers\n\n\tajaxComplete ( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Register a handler to be called when Ajax requests complete. This is an AjaxEvent.\n\n\tURL doc:\n\thttp://api.jquery.com/ajaxComplete/\n\n*/"
@@ -913,6 +950,7 @@
 					}
 				],
 				"description": "Description: Perform a custom animation of a set of CSS properties.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/animate/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom\n\n\tanimate ( properties: PlainObject, duration (default: 400)?: Number or String, easing (default: swing)?: String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Perform a custom animation of a set of CSS properties.\n\n\tURL doc:\n\thttp://api.jquery.com/animate/\n\n*/"
@@ -932,6 +970,7 @@
 					}
 				],
 				"description": "Description: Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ajaxSend/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Global Ajax Event Handlers\n\n\tajaxSend ( handler: Function( Event event, jqXHR jqXHR, PlainObject ajaxOptions ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.\n\n\tURL doc:\n\thttp://api.jquery.com/ajaxSend/\n\n*/"
@@ -957,6 +996,7 @@
 					}
 				],
 				"description": "Description:  Add handlers to be called when the Deferred object generates progress notifications.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.progress/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tprogress ( progressCallbacks: Function() or Array, progressCallbacks?: Function() or Array )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Add handlers to be called when the Deferred object generates progress notifications.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.progress/\n\n*/"
@@ -982,6 +1022,7 @@
 					}
 				],
 				"description": "Description:  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/promise/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tpromise ( type (default: fx)?: String, target?: PlainObject )\n\n\tReturn Type:\n\tPromise\n\n\tDescription:\n\tDescription:  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n\n\tURL doc:\n\thttp://api.jquery.com/promise/\n\n*/"
@@ -1013,6 +1054,7 @@
 					}
 				],
 				"description": "Description: Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.then/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tthen ( doneFilter: Function(), failFilter?: Function(), progressFilter?: Function() )\n\n\tReturn Type:\n\tPromise\n\n\tDescription:\n\tDescription: Add handlers to be called when the Deferred object is resolved, rejected, or still in progress.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.then/\n\n*/"
@@ -1032,6 +1074,7 @@
 					}
 				],
 				"description": "Description: Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/data/",
 				"full_description": "/*\n\n\tjQuery - Data | Miscellaneous > Data Storage\n\n\tdata ( key: String )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.\n\n\tURL doc:\n\thttp://api.jquery.com/data/\n\n*/"
@@ -1051,6 +1094,7 @@
 					}
 				],
 				"description": "Description: Wrap an HTML structure around the content of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/wrapInner/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Around\n\n\twrapInner ( wrappingElement: htmlString or Selector or jQuery or Element )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Wrap an HTML structure around the content of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/wrapInner/\n\n*/"
@@ -1076,6 +1120,7 @@
 					}
 				],
 				"description": "Description: Execute all handlers and behaviors attached to the matched elements for the given event type.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/trigger/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Handler Attachment\n\n\ttrigger ( eventType: String, extraParameters?: Array or PlainObject )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Execute all handlers and behaviors attached to the matched elements for the given event type.\n\n\tURL doc:\n\thttp://api.jquery.com/trigger/\n\n*/"
@@ -1095,6 +1140,7 @@
 					}
 				],
 				"description": "Description: Insert every element in the set of matched elements to the beginning of the target.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prependTo/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Inside\n\n\tprependTo ( target: Selector or htmlString or Element or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert every element in the set of matched elements to the beginning of the target.\n\n\tURL doc:\n\thttp://api.jquery.com/prependTo/\n\n*/"
@@ -1120,6 +1166,7 @@
 					}
 				],
 				"description": "Description: Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.data/",
 				"full_description": "/*\n\n\tjQuery - Data | Utilities\n\n\tdata ( element: Element, key: String )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.data/\n\n*/"
@@ -1139,6 +1186,7 @@
 					}
 				],
 				"description": "Description: Remove a single class, multiple classes, or all classes from each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/removeClass/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > Class Attribute | CSS\n\n\tremoveClass ( className?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove a single class, multiple classes, or all classes from each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/removeClass/\n\n*/"
@@ -1158,6 +1206,7 @@
 					}
 				],
 				"description": "Description: Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.uniqueSort/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tuniqueSort ( array: Array )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.uniqueSort/\n\n*/"
@@ -1177,6 +1226,7 @@
 					}
 				],
 				"description": "Description: Provides a way to execute callback functions based on zero or more objects, usually Deferred objects that represent asynchronous events.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.when/",
 				"full_description": "/*\n\n\tjQuery - Core | Deferred Object\n\n\twhen ( deferreds: Deferred )\n\n\tReturn Type:\n\tPromise\n\n\tDescription:\n\tDescription: Provides a way to execute callback functions based on zero or more objects, usually Deferred objects that represent asynchronous events.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.when/\n\n*/"
@@ -1196,6 +1246,7 @@
 					}
 				],
 				"description": "Description: Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.has/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\thas ( callback?: Function() )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.has/\n\n*/"
@@ -1208,6 +1259,7 @@
 				"return_type": "Number",
 				"parameters": [],
 				"description": "Description: Get the current computed inner width for the first element in the set of matched elements, including padding but not border.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/innerWidth/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\tinnerWidth ()\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current computed inner width for the first element in the set of matched elements, including padding but not border.\n\n\tURL doc:\n\thttp://api.jquery.com/innerWidth/\n\n*/"
@@ -1227,6 +1279,7 @@
 					}
 				],
 				"description": "Description: Insert every element in the set of matched elements before the target.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/insertBefore/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Outside\n\n\tinsertBefore ( target: Selector or htmlString or Element or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert every element in the set of matched elements before the target.\n\n\tURL doc:\n\thttp://api.jquery.com/insertBefore/\n\n*/"
@@ -1246,6 +1299,7 @@
 					}
 				],
 				"description": "Description: Bind a single handler to the matched elements, to be executed when the mouse pointer enters or leaves the elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/hover/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\thover ( handlerInOut: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind a single handler to the matched elements, to be executed when the mouse pointer enters or leaves the elements.\n\n\tURL doc:\n\thttp://api.jquery.com/hover/\n\n*/"
@@ -1258,6 +1312,7 @@
 				"return_type": "Number",
 				"parameters": [],
 				"description": "Description: Get the current computed height for the first element in the set of matched elements, including padding but not border.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/innerHeight/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\tinnerHeight ()\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current computed height for the first element in the set of matched elements, including padding but not border.\n\n\tURL doc:\n\thttp://api.jquery.com/innerHeight/\n\n*/"
@@ -1277,6 +1332,7 @@
 					}
 				],
 				"description": "Description: Insert every element in the set of matched elements to the end of the target.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/appendTo/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Inside\n\n\tappendTo ( target: Selector or htmlString or Element or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert every element in the set of matched elements to the end of the target.\n\n\tURL doc:\n\thttp://api.jquery.com/appendTo/\n\n*/"
@@ -1296,6 +1352,7 @@
 					}
 				],
 				"description": "Description: Insert every element in the set of matched elements after the target.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/insertAfter/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Outside\n\n\tinsertAfter ( target: Selector or htmlString or Element or Array or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Insert every element in the set of matched elements after the target.\n\n\tURL doc:\n\thttp://api.jquery.com/insertAfter/\n\n*/"
@@ -1315,6 +1372,7 @@
 					}
 				],
 				"description": "Description: Iterate over a jQuery object, executing a function for each matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/each/",
 				"full_description": "/*\n\n\tjQuery - Miscellaneous > Collection Manipulation | Traversing\n\n\teach ( function: Function( Integer index, Element element ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Iterate over a jQuery object, executing a function for each matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/each/\n\n*/"
@@ -1340,6 +1398,7 @@
 					}
 				],
 				"description": "Description: Takes a function and returns a new one that will always have a particular context.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.proxy/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Handler Attachment | Utilities\n\n\tproxy ( function: Function(), context: PlainObject )\n\n\tReturn Type:\n\tFunction\n\n\tDescription:\n\tDescription: Takes a function and returns a new one that will always have a particular context.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.proxy/\n\n*/"
@@ -1359,6 +1418,7 @@
 					}
 				],
 				"description": "Description: Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.unique/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tunique ( array: Array )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.unique/\n\n*/"
@@ -1378,6 +1438,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to be fired when the mouse enters an element, or trigger that handler on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mouseenter/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmouseenter ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to be fired when the mouse enters an element, or trigger that handler on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mouseenter/\n\n*/"
@@ -1397,6 +1458,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to be fired when the mouse leaves an element, or trigger that handler on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mouseleave/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmouseleave ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to be fired when the mouse leaves an element, or trigger that handler on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mouseleave/\n\n*/"
@@ -1416,6 +1478,7 @@
 					}
 				],
 				"description": "Description: Set the current coordinates of every element in the set of matched elements, relative to the document.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/offset/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\toffset ( coordinates: PlainObject )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the current coordinates of every element in the set of matched elements, relative to the document.\n\n\tURL doc:\n\thttp://api.jquery.com/offset/\n\n*/"
@@ -1435,6 +1498,7 @@
 					}
 				],
 				"description": "Description: Wrap an HTML structure around all elements in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/wrapAll/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Around\n\n\twrapAll ( wrappingElement: Selector or htmlString or Element or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Wrap an HTML structure around all elements in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/wrapAll/\n\n*/"
@@ -1447,6 +1511,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/unwrap/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Around | Manipulation > DOM Removal\n\n\tunwrap ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.\n\n\tURL doc:\n\thttp://api.jquery.com/unwrap/\n\n*/"
@@ -1472,6 +1537,7 @@
 					}
 				],
 				"description": "Description: Get an array of all the elements and selectors matched against the current element up through the DOM tree.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/closest/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tclosest ( selectors: Array, context?: Element )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Get an array of all the elements and selectors matched against the current element up through the DOM tree.\n\n\tURL doc:\n\thttp://api.jquery.com/closest/\n\n*/"
@@ -1497,6 +1563,7 @@
 					}
 				],
 				"description": "Description: Translate all items in an array or object to new array of items.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.map/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tmap ( array: Array, callback: Function( Object elementOfArray, Integer indexInArray )\n\t\t\t=>\n\t\t\tObject )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Translate all items in an array or object to new array of items.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.map/\n\n*/"
@@ -1516,6 +1583,7 @@
 					}
 				],
 				"description": "Description: Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/finish/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom\n\n\tfinish ( queue (default: 'fx')?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/finish/\n\n*/"
@@ -1535,6 +1603,7 @@
 					}
 				],
 				"description": "Description: Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/find/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tfind ( selector: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.\n\n\tURL doc:\n\thttp://api.jquery.com/find/\n\n*/"
@@ -1554,6 +1623,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"contextmenu\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/contextmenu/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tcontextmenu ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"contextmenu\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/contextmenu/\n\n*/"
@@ -1573,6 +1643,7 @@
 					}
 				],
 				"description": "Description: Wrap an HTML structure around each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/wrap/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Around\n\n\twrap ( wrappingElement: Selector or htmlString or Element or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Wrap an HTML structure around each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/wrap/\n\n*/"
@@ -1598,6 +1669,7 @@
 					}
 				],
 				"description": "Description:  Add handlers to be called when the Deferred object is either resolved or rejected.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.always/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\talways ( alwaysCallbacks: Function(), alwaysCallbacks?: Function() )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Add handlers to be called when the Deferred object is either resolved or rejected.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.always/\n\n*/"
@@ -1623,6 +1695,7 @@
 					}
 				],
 				"description": "Description: Execute all handlers attached to an element for an event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/triggerHandler/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Handler Attachment\n\n\ttriggerHandler ( eventType: String, extraParameters?: Array or PlainObject )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Execute all handlers attached to an element for an event.\n\n\tURL doc:\n\thttp://api.jquery.com/triggerHandler/\n\n*/"
@@ -1642,6 +1715,7 @@
 					}
 				],
 				"description": "Description: Set the current horizontal position of the scroll bar for each of the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/scrollLeft/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\tscrollLeft ( value: Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the current horizontal position of the scroll bar for each of the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/scrollLeft/\n\n*/"
@@ -1661,6 +1735,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"mouseover\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mouseover/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmouseover ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"mouseover\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mouseover/\n\n*/"
@@ -1673,6 +1748,7 @@
 				"return_type": "Integer",
 				"parameters": [],
 				"description": "Description: Get the current horizontal position of the scroll bar for the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/scrollLeft/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\tscrollLeft ()\n\n\tReturn Type:\n\tInteger\n\n\tDescription:\n\tDescription: Get the current horizontal position of the scroll bar for the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/scrollLeft/\n\n*/"
@@ -1692,6 +1768,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"mousemove\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mousemove/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmousemove ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"mousemove\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mousemove/\n\n*/"
@@ -1711,6 +1788,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"keypress\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/keypress/",
 				"full_description": "/*\n\n\tjQuery - Events > Keyboard Events\n\n\tkeypress ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"keypress\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/keypress/\n\n*/"
@@ -1723,6 +1801,7 @@
 				"return_type": "Boolean",
 				"parameters": [],
 				"description": "Description:   Returns whether event.stopImmediatePropagation() was ever called on this event object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/event.isImmediatePropagationStopped/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tisImmediatePropagationStopped ()\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription:   Returns whether event.stopImmediatePropagation() was ever called on this event object.\n\n\tURL doc:\n\thttp://api.jquery.com/event.isImmediatePropagationStopped/\n\n*/"
@@ -1742,6 +1821,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"mousedown\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mousedown/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmousedown ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"mousedown\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mousedown/\n\n*/"
@@ -1754,6 +1834,7 @@
 				"return_type": "",
 				"parameters": [],
 				"description": "Description: Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/event.stopImmediatePropagation/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tstopImmediatePropagation ()\n\n\tReturn Type:\n\t\n\n\tDescription:\n\tDescription: Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.\n\n\tURL doc:\n\thttp://api.jquery.com/event.stopImmediatePropagation/\n\n*/"
@@ -1766,6 +1847,7 @@
 				"return_type": "Object",
 				"parameters": [],
 				"description": "Description: Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/position/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\tposition ()\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.\n\n\tURL doc:\n\thttp://api.jquery.com/position/\n\n*/"
@@ -1777,6 +1859,7 @@
 				"name": "cssHooks",
 				"return_type": "Object",
 				"description": "Description: Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/jQuery.cssHooks/",
 				"full_description": "/*\n\n\tjQuery - CSS\n\n\tcssHooks\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.cssHooks/\n\n*/"
@@ -1796,6 +1879,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"change\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/change/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tchange ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"change\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/change/\n\n*/"
@@ -1815,6 +1899,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"select\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/select/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tselect ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"select\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/select/\n\n*/"
@@ -1834,6 +1919,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"submit\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/submit/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tsubmit ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"submit\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/submit/\n\n*/"
@@ -1853,6 +1939,7 @@
 					}
 				],
 				"description": "Description: Add the previous set of elements on the stack to the current set, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/addBack/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Miscellaneous Traversing\n\n\taddBack ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Add the previous set of elements on the stack to the current set, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/addBack/\n\n*/"
@@ -1872,6 +1959,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"keydown\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/keydown/",
 				"full_description": "/*\n\n\tjQuery - Events > Keyboard Events\n\n\tkeydown ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"keydown\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/keydown/\n\n*/"
@@ -1891,6 +1979,7 @@
 					}
 				],
 				"description": "Description: Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prevAll/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tprevAll ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/prevAll/\n\n*/"
@@ -1910,6 +1999,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"mouseout\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mouseout/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmouseout ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"mouseout\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mouseout/\n\n*/"
@@ -1929,6 +2019,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"dblclick\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/dblclick/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tdblclick ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"dblclick\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/dblclick/\n\n*/"
@@ -1948,6 +2039,7 @@
 					}
 				],
 				"description": "Description: Set the current vertical position of the scroll bar for each of the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/scrollTop/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\tscrollTop ( value: Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the current vertical position of the scroll bar for each of the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/scrollTop/\n\n*/"
@@ -1979,6 +2071,7 @@
 					}
 				],
 				"description": "Description: Store arbitrary data associated with the specified element. Returns the value that was set.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.data/",
 				"full_description": "/*\n\n\tjQuery - Data | Utilities\n\n\tdata ( element: Element, key: String, value: Anything )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Store arbitrary data associated with the specified element. Returns the value that was set.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.data/\n\n*/"
@@ -1998,6 +2091,7 @@
 					}
 				],
 				"description": "Description: Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/parents/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tparents ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/parents/\n\n*/"
@@ -2017,6 +2111,7 @@
 					}
 				],
 				"description": "Description: Set the CSS inner height of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/innerHeight/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\tinnerHeight ( value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the CSS inner height of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/innerHeight/\n\n*/"
@@ -2036,6 +2131,7 @@
 					}
 				],
 				"description": "Description: Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/nextAll/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tnextAll ( selector?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/nextAll/\n\n*/"
@@ -2067,6 +2163,7 @@
 					}
 				],
 				"description": "Description: Parses a string into an array of DOM nodes.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.parseHTML/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tparseHTML ( data: String, context (default: document)?: Element, keepScripts (default: false)?: Boolean )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Parses a string into an array of DOM nodes.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.parseHTML/\n\n*/"
@@ -2086,6 +2183,7 @@
 					}
 				],
 				"description": "Description: Set the CSS outer Height of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/outerHeight/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\touterHeight ( value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the CSS outer Height of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/outerHeight/\n\n*/"
@@ -2105,6 +2203,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"focus\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/focus/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tfocus ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"focus\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/focus/\n\n*/"
@@ -2130,6 +2229,7 @@
 					}
 				],
 				"description": "Description: Set one or more attributes for the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/attr/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > General Attributes\n\n\tattr ( attributeName: String, value: String or Number or Null )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set one or more attributes for the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/attr/\n\n*/"
@@ -2149,6 +2249,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"mouseup\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/mouseup/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tmouseup ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"mouseup\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/mouseup/\n\n*/"
@@ -2180,6 +2281,7 @@
 					}
 				],
 				"description": "Description: Search for a specified value within an array and return its index (or -1 if not found).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.inArray/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tinArray ( value: Anything, array: Array, fromIndex?: Number )\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Search for a specified value within an array and return its index (or -1 if not found).\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.inArray/\n\n*/"
@@ -2199,6 +2301,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"scroll\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/scroll/",
 				"full_description": "/*\n\n\tjQuery - Events > Browser Events\n\n\tscroll ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"scroll\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/scroll/\n\n*/"
@@ -2218,6 +2321,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"resize\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/resize/",
 				"full_description": "/*\n\n\tjQuery - Events > Browser Events\n\n\tresize ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"resize\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/resize/\n\n*/"
@@ -2237,6 +2341,7 @@
 					}
 				],
 				"description": "Description: Set the CSS inner width of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/innerWidth/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\tinnerWidth ( value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the CSS inner width of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/innerWidth/\n\n*/"
@@ -2256,6 +2361,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"blur\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/blur/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tblur ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"blur\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/blur/\n\n*/"
@@ -2275,6 +2381,7 @@
 					}
 				],
 				"description": "Description: Set the CSS outer width of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/outerWidth/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\touterWidth ( value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the CSS outer width of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/outerWidth/\n\n*/"
@@ -2287,6 +2394,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/end/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Miscellaneous Traversing\n\n\tend ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.\n\n\tURL doc:\n\thttp://api.jquery.com/end/\n\n*/"
@@ -2306,6 +2414,7 @@
 					}
 				],
 				"description": "Description: Get the parent of each element in the current set of matched elements, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/parent/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tparent ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the parent of each element in the current set of matched elements, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/parent/\n\n*/"
@@ -2331,6 +2440,7 @@
 					}
 				],
 				"description": "Description:  Resolve a Deferred object and call any doneCallbacks with the given context and args.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.resolveWith/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tresolveWith ( context: Object, args?: Array )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Resolve a Deferred object and call any doneCallbacks with the given context and args.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.resolveWith/\n\n*/"
@@ -2356,6 +2466,7 @@
 					}
 				],
 				"description": "Description: Display or hide the matched elements with a sliding motion.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/slideToggle/",
 				"full_description": "/*\n\n\tjQuery - Effects > Sliding\n\n\tslideToggle ( duration (default: 400)?: Number or String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Display or hide the matched elements with a sliding motion.\n\n\tURL doc:\n\thttp://api.jquery.com/slideToggle/\n\n*/"
@@ -2368,6 +2479,7 @@
 				"return_type": "",
 				"parameters": [],
 				"description": "Description: Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/event.stopPropagation/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tstopPropagation ()\n\n\tReturn Type:\n\t\n\n\tDescription:\n\tDescription: Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.\n\n\tURL doc:\n\thttp://api.jquery.com/event.stopPropagation/\n\n*/"
@@ -2387,6 +2499,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"keyup\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/keyup/",
 				"full_description": "/*\n\n\tjQuery - Events > Keyboard Events\n\n\tkeyup ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"keyup\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/keyup/\n\n*/"
@@ -2406,6 +2519,7 @@
 					}
 				],
 				"description": "Description: Set the content of each element in the set of matched elements to the specified text.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/text/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Inside\n\n\ttext ( text: String or Number or Boolean )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the content of each element in the set of matched elements to the specified text.\n\n\tURL doc:\n\thttp://api.jquery.com/text/\n\n*/"
@@ -2418,6 +2532,7 @@
 				"return_type": "Object",
 				"parameters": [],
 				"description": "Description: Get the current coordinates of the first element in the set of matched elements, relative to the document.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/offset/",
 				"full_description": "/*\n\n\tjQuery - CSS | Offset | Manipulation > Style Properties\n\n\toffset ()\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Get the current coordinates of the first element in the set of matched elements, relative to the document.\n\n\tURL doc:\n\thttp://api.jquery.com/offset/\n\n*/"
@@ -2437,6 +2552,7 @@
 					}
 				],
 				"description": "Description: Get the siblings of each element in the set of matched elements, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/siblings/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tsiblings ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the siblings of each element in the set of matched elements, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/siblings/\n\n*/"
@@ -2456,6 +2572,7 @@
 					}
 				],
 				"description": "Description: Takes a well-formed JSON string and returns the resulting JavaScript value.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.parseJSON/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tparseJSON ( json: String )\n\n\tReturn Type:\n\tString or Number or Object or Array or Boolean\n\n\tDescription:\n\tDescription: Takes a well-formed JSON string and returns the resulting JavaScript value.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.parseJSON/\n\n*/"
@@ -2475,6 +2592,7 @@
 					}
 				],
 				"description": "Description: Get the children of each element in the set of matched elements, optionally filtered by a selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/children/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Tree Traversal\n\n\tchildren ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the children of each element in the set of matched elements, optionally filtered by a selector.\n\n\tURL doc:\n\thttp://api.jquery.com/children/\n\n*/"
@@ -2494,6 +2612,7 @@
 					}
 				],
 				"description": "Description: Register a handler to be called when all Ajax requests have completed. This is an Ajax Event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ajaxStop/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Global Ajax Event Handlers\n\n\tajaxStop ( handler: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Register a handler to be called when all Ajax requests have completed. This is an Ajax Event.\n\n\tURL doc:\n\thttp://api.jquery.com/ajaxStop/\n\n*/"
@@ -2513,6 +2632,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"click\" JavaScript event, or trigger that event on an element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/click/",
 				"full_description": "/*\n\n\tjQuery - Events > Mouse Events\n\n\tclick ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"click\" JavaScript event, or trigger that event on an element.\n\n\tURL doc:\n\thttp://api.jquery.com/click/\n\n*/"
@@ -2538,6 +2658,7 @@
 					}
 				],
 				"description": "Description: Manipulate the queue of functions to be executed, once for each matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/queue/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom | Data | Utilities\n\n\tqueue ( queueName?: String, newQueue: Array )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Manipulate the queue of functions to be executed, once for each matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/queue/\n\n*/"
@@ -2563,6 +2684,7 @@
 					}
 				],
 				"description": "Description: Stop the currently-running animation on the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/stop/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom\n\n\tstop ( clearQueue (default: false)?: Boolean, jumpToEnd (default: false)?: Boolean )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Stop the currently-running animation on the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/stop/\n\n*/"
@@ -2588,6 +2710,7 @@
 					}
 				],
 				"description": "Description:  Reject a Deferred object and call any failCallbacks with the given context and args.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.rejectWith/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\trejectWith ( context: Object, args?: Array )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Reject a Deferred object and call any failCallbacks with the given context and args.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.rejectWith/\n\n*/"
@@ -2607,6 +2730,7 @@
 					}
 				],
 				"description": "Description: Register a handler to be called when the first Ajax request begins. This is an Ajax Event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ajaxStart/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Global Ajax Event Handlers\n\n\tajaxStart ( handler: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Register a handler to be called when the first Ajax request begins. This is an Ajax Event.\n\n\tURL doc:\n\thttp://api.jquery.com/ajaxStart/\n\n*/"
@@ -2626,6 +2750,7 @@
 					}
 				],
 				"description": "Description: Get the value of an attribute for the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/attr/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > General Attributes\n\n\tattr ( attributeName: String )\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Get the value of an attribute for the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/attr/\n\n*/"
@@ -2645,6 +2770,7 @@
 					}
 				],
 				"description": "Description: Determine whether any of the matched elements are assigned the given class.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/hasClass/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > Class Attribute | CSS\n\n\thasClass ( className: String )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determine whether any of the matched elements are assigned the given class.\n\n\tURL doc:\n\thttp://api.jquery.com/hasClass/\n\n*/"
@@ -2664,6 +2790,7 @@
 					}
 				],
 				"description": "Description: Adds the specified class(es) to each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/addClass/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > Class Attribute | CSS\n\n\taddClass ( className: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Adds the specified class(es) to each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/addClass/\n\n*/"
@@ -2683,6 +2810,7 @@
 					}
 				],
 				"description": "Description: Get the value of a property for the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prop/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > General Attributes\n\n\tprop ( propertyName: String )\n\n\tReturn Type:\n\tAnything\n\n\tDescription:\n\tDescription: Get the value of a property for the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/prop/\n\n*/"
@@ -2714,6 +2842,7 @@
 					}
 				],
 				"description": "Description: Manipulate the queue of functions to be executed on the matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.queue/",
 				"full_description": "/*\n\n\tjQuery - Data | Utilities\n\n\tqueue ( element: Element, queueName: String, newQueue: Array )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Manipulate the queue of functions to be executed on the matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.queue/\n\n*/"
@@ -2733,6 +2862,7 @@
 					}
 				],
 				"description": "Description: Replace each target element with the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/replaceAll/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Replacement\n\n\treplaceAll ( target: Selector or jQuery or Array or Element )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Replace each target element with the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/replaceAll/\n\n*/"
@@ -2752,6 +2882,7 @@
 					}
 				],
 				"description": "Description: Remove an attribute from each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/removeAttr/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > General Attributes\n\n\tremoveAttr ( attributeName: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove an attribute from each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/removeAttr/\n\n*/"
@@ -2777,6 +2908,7 @@
 					}
 				],
 				"description": "Description:  Call the progressCallbacks on a Deferred object with the given context and args.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.notifyWith/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tnotifyWith ( context: Object, args?: Array )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Call the progressCallbacks on a Deferred object with the given context and args.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.notifyWith/\n\n*/"
@@ -2796,6 +2928,7 @@
 					}
 				],
 				"description": "Description: Remove elements from the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/not/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering | Traversing > Miscellaneous Traversing\n\n\tnot ( selector: Selector or Element or Array )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove elements from the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/not/\n\n*/"
@@ -2815,6 +2948,7 @@
 					}
 				],
 				"description": "Description: Set the value of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/val/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Forms | Manipulation > General Attributes\n\n\tval ( value: String or Number or Array )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the value of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/val/\n\n*/"
@@ -2840,6 +2974,7 @@
 					}
 				],
 				"description": "Description: Accepts a string containing a CSS selector which is then used to match a set of elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery/",
 				"full_description": "/*\n\n\tjQuery - Core\n\n\tjQuery ( selector: Selector, context?: Element or jQuery )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Accepts a string containing a CSS selector which is then used to match a set of elements.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery/\n\n*/"
@@ -2859,6 +2994,7 @@
 					}
 				],
 				"description": "Description: Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/has/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\thas ( selector: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n\n\tURL doc:\n\thttp://api.jquery.com/has/\n\n*/"
@@ -2871,6 +3007,7 @@
 				"return_type": "String or Number or Array",
 				"parameters": [],
 				"description": "Description: Get the current value of the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/val/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Forms | Manipulation > General Attributes\n\n\tval ()\n\n\tReturn Type:\n\tString or Number or Array\n\n\tDescription:\n\tDescription: Get the current value of the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/val/\n\n*/"
@@ -2896,6 +3033,7 @@
 					}
 				],
 				"description": "Description:  Add handlers to be called when the Deferred object is resolved.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.done/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tdone ( doneCallbacks: Function(), doneCallbacks?: Function() )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Add handlers to be called when the Deferred object is resolved.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.done/\n\n*/"
@@ -2921,6 +3059,7 @@
 					}
 				],
 				"description": "Description: Hide the matched elements by fading them to transparent.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/fadeOut/",
 				"full_description": "/*\n\n\tjQuery - Effects > Fading\n\n\tfadeOut ( duration (default: 400)?: Number or String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Hide the matched elements by fading them to transparent.\n\n\tURL doc:\n\thttp://api.jquery.com/fadeOut/\n\n*/"
@@ -2946,6 +3085,7 @@
 					}
 				],
 				"description": "Description:  Add handlers to be called when the Deferred object is rejected.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.fail/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tfail ( failCallbacks: Function(), failCallbacks?: Function() )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Add handlers to be called when the Deferred object is rejected.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.fail/\n\n*/"
@@ -2971,6 +3111,7 @@
 					}
 				],
 				"description": "Description: Set one or more CSS properties for the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/css/",
 				"full_description": "/*\n\n\tjQuery - CSS | Manipulation > Style Properties\n\n\tcss ( propertyName: String, value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set one or more CSS properties for the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/css/\n\n*/"
@@ -3002,6 +3143,7 @@
 					}
 				],
 				"description": "Description: Merge the contents of two or more objects together into the first object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.extend/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\textend ( target: Object, object1?: Object, objectN?: Object )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Merge the contents of two or more objects together into the first object.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.extend/\n\n*/"
@@ -3027,6 +3169,7 @@
 					}
 				],
 				"description": "Description: Display the matched elements with a sliding motion.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/slideDown/",
 				"full_description": "/*\n\n\tjQuery - Effects > Sliding\n\n\tslideDown ( duration (default: 400)?: Number or String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Display the matched elements with a sliding motion.\n\n\tURL doc:\n\thttp://api.jquery.com/slideDown/\n\n*/"
@@ -3052,6 +3195,7 @@
 					}
 				],
 				"description": "Description: Set one or more properties for the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/prop/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > General Attributes\n\n\tprop ( propertyName: String, value: Anything )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set one or more properties for the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/prop/\n\n*/"
@@ -3071,6 +3215,7 @@
 					}
 				],
 				"description": "Description: Get the computed style properties for the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/css/",
 				"full_description": "/*\n\n\tjQuery - CSS | Manipulation > Style Properties\n\n\tcss ( propertyName: String )\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Get the computed style properties for the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/css/\n\n*/"
@@ -3083,6 +3228,7 @@
 				"return_type": "String",
 				"parameters": [],
 				"description": "Description: Get the combined text contents of each element in the set of matched elements, including their descendants.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/text/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Insertion, Inside\n\n\ttext ()\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Get the combined text contents of each element in the set of matched elements, including their descendants.\n\n\tURL doc:\n\thttp://api.jquery.com/text/\n\n*/"
@@ -3102,6 +3248,7 @@
 					}
 				],
 				"description": "Description: A multi-purpose callbacks list object that provides a powerful way to manage callback lists.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.Callbacks/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tCallbacks ( flags: String )\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: A multi-purpose callbacks list object that provides a powerful way to manage callback lists.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.Callbacks/\n\n*/"
@@ -3114,6 +3261,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Get the children of each element in the set of matched elements, including text and comment nodes.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/contents/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Miscellaneous Traversing\n\n\tcontents ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the children of each element in the set of matched elements, including text and comment nodes.\n\n\tURL doc:\n\thttp://api.jquery.com/contents/\n\n*/"
@@ -3133,6 +3281,7 @@
 					}
 				],
 				"description": "Description: Set the HTML contents of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/html/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > DOM Insertion, Inside\n\n\thtml ( htmlString: htmlString )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the HTML contents of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/html/\n\n*/"
@@ -3152,6 +3301,7 @@
 					}
 				],
 				"description": "Description: Set the CSS width of each element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/width/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\twidth ( value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the CSS width of each element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/width/\n\n*/"
@@ -3171,6 +3321,7 @@
 					}
 				],
 				"description": "Description: Reduce the set of matched elements to those that match the selector or pass the function's test.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/filter/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\tfilter ( selector: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Reduce the set of matched elements to those that match the selector or pass the function's test.\n\n\tURL doc:\n\thttp://api.jquery.com/filter/\n\n*/"
@@ -3196,6 +3347,7 @@
 					}
 				],
 				"description": "Description: Display the matched elements by fading them to opaque.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/fadeIn/",
 				"full_description": "/*\n\n\tjQuery - Effects > Fading\n\n\tfadeIn ( duration (default: 400)?: Number or String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Display the matched elements by fading them to opaque.\n\n\tURL doc:\n\thttp://api.jquery.com/fadeIn/\n\n*/"
@@ -3208,6 +3360,7 @@
 				"return_type": "Number",
 				"parameters": [],
 				"description": "Description: Get the current computed height for the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/height/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\theight ()\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current computed height for the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/height/\n\n*/"
@@ -3220,6 +3373,7 @@
 				"return_type": "Boolean",
 				"parameters": [],
 				"description": "Description:   Returns whether event.stopPropagation() was ever called on this event object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/event.isPropagationStopped/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tisPropagationStopped ()\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription:   Returns whether event.stopPropagation() was ever called on this event object.\n\n\tURL doc:\n\thttp://api.jquery.com/event.isPropagationStopped/\n\n*/"
@@ -3245,6 +3399,7 @@
 					}
 				],
 				"description": "Description: Hide the matched elements with a sliding motion.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/slideUp/",
 				"full_description": "/*\n\n\tjQuery - Effects > Sliding\n\n\tslideUp ( duration (default: 400)?: Number or String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Hide the matched elements with a sliding motion.\n\n\tURL doc:\n\thttp://api.jquery.com/slideUp/\n\n*/"
@@ -3264,6 +3419,7 @@
 					}
 				],
 				"description": "Description: Check to see if an object is a plain object (created using \"{}\" or \"new Object\").",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isPlainObject/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisPlainObject ( object: PlainObject )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Check to see if an object is a plain object (created using \"{}\" or \"new Object\").\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isPlainObject/\n\n*/"
@@ -3275,6 +3431,7 @@
 				"name": "result",
 				"return_type": "Object",
 				"description": "Description: The last value returned by an event handler that was triggered by this event, unless the value was undefined.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.result/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tresult\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: The last value returned by an event handler that was triggered by this event, unless the value was undefined.\n\n\tURL doc:\n\thttp://api.jquery.com/event.result/\n\n*/"
@@ -3287,6 +3444,7 @@
 				"return_type": "Number",
 				"parameters": [],
 				"description": "Description: Get the current computed width for the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/width/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\twidth ()\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Get the current computed width for the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/width/\n\n*/"
@@ -3312,6 +3470,7 @@
 					}
 				],
 				"description": "Description: Reduce the set of matched elements to a subset specified by a range of indices.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/slice/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\tslice ( start: Integer, end?: Integer )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Reduce the set of matched elements to a subset specified by a range of indices.\n\n\tURL doc:\n\thttp://api.jquery.com/slice/\n\n*/"
@@ -3337,6 +3496,7 @@
 					}
 				],
 				"description": "Description: Check to see if a DOM element is a descendant of another DOM element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.contains/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tcontains ( container: Element, contained: Element )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Check to see if a DOM element is a descendant of another DOM element.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.contains/\n\n*/"
@@ -3362,6 +3522,7 @@
 					}
 				],
 				"description": "Description: Execute the next function on the queue for the matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.dequeue/",
 				"full_description": "/*\n\n\tjQuery - Data | Utilities\n\n\tdequeue ( element: Element, queueName?: String )\n\n\tReturn Type:\n\tundefined\n\n\tDescription:\n\tDescription: Execute the next function on the queue for the matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.dequeue/\n\n*/"
@@ -3381,6 +3542,7 @@
 					}
 				],
 				"description": "Description: Create a new jQuery object with elements added to the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/add/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Miscellaneous Traversing\n\n\tadd ( selector: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Create a new jQuery object with elements added to the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/add/\n\n*/"
@@ -3400,6 +3562,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"focusout\" JavaScript event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/focusout/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tfocusout ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"focusout\" JavaScript event.\n\n\tURL doc:\n\thttp://api.jquery.com/focusout/\n\n*/"
@@ -3419,6 +3582,7 @@
 					}
 				],
 				"description": "Description: Remove a callback or a collection of callbacks from a callback list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.remove/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tremove ( callbacks: Function() or Array )\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Remove a callback or a collection of callbacks from a callback list.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.remove/\n\n*/"
@@ -3431,6 +3595,7 @@
 				"return_type": "Boolean",
 				"parameters": [],
 				"description": "Description: Returns whether event.preventDefault() was ever called on this event object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/event.isDefaultPrevented/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tisDefaultPrevented ()\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Returns whether event.preventDefault() was ever called on this event object.\n\n\tURL doc:\n\thttp://api.jquery.com/event.isDefaultPrevented/\n\n*/"
@@ -3442,6 +3607,7 @@
 				"name": "timeStamp",
 				"return_type": "Number",
 				"description": "Description: The difference in milliseconds between the time the browser created the event and January 1, 1970.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.timeStamp/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\ttimeStamp\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: The difference in milliseconds between the time the browser created the event and January 1, 1970.\n\n\tURL doc:\n\thttp://api.jquery.com/event.timeStamp/\n\n*/"
@@ -3473,6 +3639,7 @@
 					}
 				],
 				"description": "Description: Adjust the opacity of the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/fadeTo/",
 				"full_description": "/*\n\n\tjQuery - Effects > Fading\n\n\tfadeTo ( duration: String or Number, opacity: Number, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Adjust the opacity of the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/fadeTo/\n\n*/"
@@ -3504,6 +3671,7 @@
 					}
 				],
 				"description": "Description: Remove an event handler.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/off/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Handler Attachment\n\n\toff ( events: String, selector?: String, handler?: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove an event handler.\n\n\tURL doc:\n\thttp://api.jquery.com/off/\n\n*/"
@@ -3523,6 +3691,7 @@
 					}
 				],
 				"description": "Description: Set default values for future Ajax requests. Its use is not recommended.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.ajaxSetup/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Low-Level Interface\n\n\tajaxSetup ( options: PlainObject )\n\n\tReturn Type:\n\t\n\n\tDescription:\n\tDescription: Set default values for future Ajax requests. Its use is not recommended.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.ajaxSetup/\n\n*/"
@@ -3542,6 +3711,7 @@
 					}
 				],
 				"description": "Description: Remove a property for the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/removeProp/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > General Attributes\n\n\tremoveProp ( propertyName: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove a property for the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/removeProp/\n\n*/"
@@ -3554,6 +3724,7 @@
 				"return_type": "undefined",
 				"parameters": [],
 				"description": "Description: If this method is called, the default action of the event will not be triggered.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/event.preventDefault/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tpreventDefault ()\n\n\tReturn Type:\n\tundefined\n\n\tDescription:\n\tDescription: If this method is called, the default action of the event will not be triggered.\n\n\tURL doc:\n\thttp://api.jquery.com/event.preventDefault/\n\n*/"
@@ -3579,6 +3750,7 @@
 					}
 				],
 				"description": "Description: Merge the contents of two arrays together into the first array.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.merge/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tmerge ( first: ArrayLikeObject, second: ArrayLikeObject )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Merge the contents of two arrays together into the first array.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.merge/\n\n*/"
@@ -3604,6 +3776,7 @@
 					}
 				],
 				"description": "Description: Show the queue of functions to be executed on the matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.queue/",
 				"full_description": "/*\n\n\tjQuery - Data | Utilities\n\n\tqueue ( element: Element, queueName?: String )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Show the queue of functions to be executed on the matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.queue/\n\n*/"
@@ -3615,6 +3788,7 @@
 				"name": "delegateTarget",
 				"return_type": "Element",
 				"description": "Description: The element where the currently-called jQuery event handler was attached.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.delegateTarget/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object | Events\n\n\tdelegateTarget\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tDescription: The element where the currently-called jQuery event handler was attached.\n\n\tURL doc:\n\thttp://api.jquery.com/event.delegateTarget/\n\n*/"
@@ -3634,6 +3808,7 @@
 					}
 				],
 				"description": "Description: Remove from the queue all items that have not yet been run.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/clearQueue/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom | Data | Utilities\n\n\tclearQueue ( queueName?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove from the queue all items that have not yet been run.\n\n\tURL doc:\n\thttp://api.jquery.com/clearQueue/\n\n*/"
@@ -3653,6 +3828,7 @@
 					}
 				],
 				"description": "Description: Execute the next function on the queue for the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/dequeue/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom | Data | Utilities\n\n\tdequeue ( queueName?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Execute the next function on the queue for the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/dequeue/\n\n*/"
@@ -3672,6 +3848,7 @@
 					}
 				],
 				"description": "Description: Modify and filter HTML strings passed through jQuery manipulation methods.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.htmlPrefilter/",
 				"full_description": "/*\n\n\tjQuery - Manipulation\n\n\thtmlPrefilter ( html: String )\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Modify and filter HTML strings passed through jQuery manipulation methods.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.htmlPrefilter/\n\n*/"
@@ -3697,6 +3874,7 @@
 					}
 				],
 				"description": "Description: Call all callbacks in a list with the given context and arguments.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.fireWith/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tfireWith ( context?: , args?:  )\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Call all callbacks in a list with the given context and arguments.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.fireWith/\n\n*/"
@@ -3722,6 +3900,7 @@
 					}
 				],
 				"description": "Description: Display or hide the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/toggle/",
 				"full_description": "/*\n\n\tjQuery - Effects > Basics\n\n\ttoggle ( duration (default: 400)?: Number or String, complete?: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Display or hide the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/toggle/\n\n*/"
@@ -3741,6 +3920,7 @@
 					}
 				],
 				"description": "Description: Set the CSS height of every matched element.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/height/",
 				"full_description": "/*\n\n\tjQuery - CSS | Dimensions | Manipulation > Style Properties\n\n\theight ( value: String or Number )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set the CSS height of every matched element.\n\n\tURL doc:\n\thttp://api.jquery.com/height/\n\n*/"
@@ -3766,6 +3946,7 @@
 					}
 				],
 				"description": "Description: Store arbitrary data associated with the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/data/",
 				"full_description": "/*\n\n\tjQuery - Data | Miscellaneous > Data Storage\n\n\tdata ( key: String, value: Anything )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Store arbitrary data associated with the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/data/\n\n*/"
@@ -3785,6 +3966,7 @@
 					}
 				],
 				"description": "Description:  Resolve a Deferred object and call any doneCallbacks with the given args.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.resolve/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tresolve ( args?: Anything )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Resolve a Deferred object and call any doneCallbacks with the given args.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.resolve/\n\n*/"
@@ -3804,6 +3986,7 @@
 					}
 				],
 				"description": "Description: Show the queue of functions to be executed on the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/queue/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom | Data | Utilities\n\n\tqueue ( queueName?: String )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Show the queue of functions to be executed on the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/queue/\n\n*/"
@@ -3816,6 +3999,7 @@
 				"return_type": "String",
 				"parameters": [],
 				"description": "Description: Get the HTML contents of the first element in the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/html/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > DOM Insertion, Inside\n\n\thtml ()\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Get the HTML contents of the first element in the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/html/\n\n*/"
@@ -3835,6 +4019,7 @@
 					}
 				],
 				"description": "Description: Check to see if an object is empty (contains no enumerable properties).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isEmptyObject/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisEmptyObject ( object: Object )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Check to see if an object is empty (contains no enumerable properties).\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isEmptyObject/\n\n*/"
@@ -3854,6 +4039,7 @@
 					}
 				],
 				"description": "Description: Add a callback or a collection of callbacks to a callback list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.add/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tadd ( callbacks: Function() or Array )\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Add a callback or a collection of callbacks to a callback list.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.add/\n\n*/"
@@ -3873,6 +4059,7 @@
 					}
 				],
 				"description": "Description: Relinquish jQuery's control of the $ variable.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.noConflict/",
 				"full_description": "/*\n\n\tjQuery - Core | Miscellaneous > Setup Methods\n\n\tnoConflict ( removeAll?: Boolean )\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Relinquish jQuery's control of the $ variable.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.noConflict/\n\n*/"
@@ -3898,6 +4085,7 @@
 					}
 				],
 				"description": "Description: Set a timer to delay execution of subsequent items in the queue.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/delay/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom\n\n\tdelay ( duration: Integer, queueName?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Set a timer to delay execution of subsequent items in the queue.\n\n\tURL doc:\n\thttp://api.jquery.com/delay/\n\n*/"
@@ -3909,6 +4097,7 @@
 				"name": "data",
 				"return_type": "Object",
 				"description": "Description: An optional object of data passed to an event method when the current executing handler is bound.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.data/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tdata\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: An optional object of data passed to an event method when the current executing handler is bound.\n\n\tURL doc:\n\thttp://api.jquery.com/event.data/\n\n*/"
@@ -3934,6 +4123,7 @@
 					}
 				],
 				"description": "Description: Creates DOM elements on the fly from the provided string of raw HTML.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery/",
 				"full_description": "/*\n\n\tjQuery - Core\n\n\tjQuery ( html: htmlString, ownerDocument?: document )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Creates DOM elements on the fly from the provided string of raw HTML.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery/\n\n*/"
@@ -3953,6 +4143,7 @@
 					}
 				],
 				"description": "Description: Create a deep copy of the set of matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/clone/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > Copying\n\n\tclone ( withDataAndEvents (default: false)?: Boolean )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Create a deep copy of the set of matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/clone/\n\n*/"
@@ -3972,6 +4163,7 @@
 					}
 				],
 				"description": "Description:  Reject a Deferred object and call any failCallbacks with the given args.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.reject/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\treject ( args?: Anything )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Reject a Deferred object and call any failCallbacks with the given args.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.reject/\n\n*/"
@@ -3991,6 +4183,7 @@
 					}
 				],
 				"description": "Description: Escapes any character that has a special meaning in a CSS selector.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.escapeSelector/",
 				"full_description": "/*\n\n\tjQuery - CSS\n\n\tescapeSelector ( selector: Selector )\n\n\tReturn Type:\n\tSelector\n\n\tDescription:\n\tDescription: Escapes any character that has a special meaning in a CSS selector.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.escapeSelector/\n\n*/"
@@ -4002,6 +4195,7 @@
 				"name": "which",
 				"return_type": "Number",
 				"description": "Description: For key or mouse events, this property indicates the specific key or button that was pressed.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.which/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\twhich\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: For key or mouse events, this property indicates the specific key or button that was pressed.\n\n\tURL doc:\n\thttp://api.jquery.com/event.which/\n\n*/"
@@ -4021,6 +4215,7 @@
 					}
 				],
 				"description": "Description: Bind an event handler to the \"focusin\" event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/focusin/",
 				"full_description": "/*\n\n\tjQuery - Events > Form Events | Forms\n\n\tfocusin ( handler: Function( Event eventObject ) )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Bind an event handler to the \"focusin\" event.\n\n\tURL doc:\n\thttp://api.jquery.com/focusin/\n\n*/"
@@ -4040,6 +4235,7 @@
 					}
 				],
 				"description": "Description: Check to see if a DOM node is within an XML document (or is an XML document).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isXMLDoc/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisXMLDoc ( node: Element )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Check to see if a DOM node is within an XML document (or is an XML document).\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isXMLDoc/\n\n*/"
@@ -4059,6 +4255,7 @@
 					}
 				],
 				"description": "Description: Handles errors thrown synchronously in functions wrapped in jQuery().",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.readyException/",
 				"full_description": "/*\n\n\tjQuery - Core\n\n\treadyException ( error: Error )\n\n\tReturn Type:\n\tSelector\n\n\tDescription:\n\tDescription: Handles errors thrown synchronously in functions wrapped in jQuery().\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.readyException/\n\n*/"
@@ -4070,6 +4267,7 @@
 				"name": "fn",
 				"return_type": "Object",
 				"description": "Description: Merge the contents of an object onto the jQuery prototype to provide new jQuery instance methods.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/jQuery.fn.extend/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tfn\n\n\tReturn Type:\n\tObject\n\n\tDescription:\n\tDescription: Merge the contents of an object onto the jQuery prototype to provide new jQuery instance methods.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.fn.extend/\n\n*/"
@@ -4089,6 +4287,7 @@
 					}
 				],
 				"description": "Description:  Call the progressCallbacks on a Deferred object with the given args.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.notify/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tnotify ( args: Object )\n\n\tReturn Type:\n\tDeferred\n\n\tDescription:\n\tDescription:  Call the progressCallbacks on a Deferred object with the given args.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.notify/\n\n*/"
@@ -4114,6 +4313,7 @@
 					}
 				],
 				"description": "Description: Perform an asynchronous HTTP (Ajax) request.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.ajax/",
 				"full_description": "/*\n\n\tjQuery - Ajax > Low-Level Interface\n\n\tajax ( url: String, settings?: PlainObject )\n\n\tReturn Type:\n\tjqXHR\n\n\tDescription:\n\tDescription: Perform an asynchronous HTTP (Ajax) request.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.ajax/\n\n*/"
@@ -4133,6 +4333,7 @@
 					}
 				],
 				"description": "Description: Determine if the argument passed is a JavaScript function object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isFunction/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisFunction ( obj: PlainObject )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tDescription: Determine if the argument passed is a JavaScript function object.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isFunction/\n\n*/"
@@ -4145,6 +4346,7 @@
 				"return_type": "Array",
 				"parameters": [],
 				"description": "Description: Encode a set of form elements as an array of names and values.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/serializeArray/",
 				"full_description": "/*\n\n\tjQuery - Forms | Ajax > Helper Functions\n\n\tserializeArray ()\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Encode a set of form elements as an array of names and values.\n\n\tURL doc:\n\thttp://api.jquery.com/serializeArray/\n\n*/"
@@ -4156,6 +4358,7 @@
 				"name": "jquery",
 				"return_type": "String",
 				"description": "Description: A string containing the jQuery version number.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/jquery-2/",
 				"full_description": "/*\n\n\tjQuery - Internals | Properties > Properties of jQuery Object Instances\n\n\tjquery\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: A string containing the jQuery version number.\n\n\tURL doc:\n\thttp://api.jquery.com/jquery-2/\n\n*/"
@@ -4181,6 +4384,7 @@
 					}
 				],
 				"description": "Description: Remove a previously-stored piece of data.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.removeData/",
 				"full_description": "/*\n\n\tjQuery - Data | Utilities\n\n\tremoveData ( element: Element, name?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove a previously-stored piece of data.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.removeData/\n\n*/"
@@ -4200,6 +4404,7 @@
 					}
 				],
 				"description": "Description: Retrieve one of the elements matched by the jQuery object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/get/",
 				"full_description": "/*\n\n\tjQuery - Miscellaneous > DOM Element Methods\n\n\tget ( index: Integer )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tDescription: Retrieve one of the elements matched by the jQuery object.\n\n\tURL doc:\n\thttp://api.jquery.com/get/\n\n*/"
@@ -4211,6 +4416,7 @@
 				"name": "fx",
 				"return_type": "Boolean",
 				"description": "Description: Globally disable all animations.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/jQuery.fx.off/",
 				"full_description": "/*\n\n\tjQuery - Effects > Custom | Properties > Properties of the Global jQuery Object\n\n\tfx\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Globally disable all animations.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.fx.off/\n\n*/"
@@ -4230,6 +4436,7 @@
 					}
 				],
 				"description": "Description: Determines whether its argument represents a JavaScript number.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isNumeric/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisNumeric ( value: Anything )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determines whether its argument represents a JavaScript number.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isNumeric/\n\n*/"
@@ -4242,6 +4449,7 @@
 				"return_type": "Array",
 				"parameters": [],
 				"description": "Description: Retrieve all the elements contained in the jQuery set, as an array.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/toArray/",
 				"full_description": "/*\n\n\tjQuery - Miscellaneous > DOM Element Methods\n\n\ttoArray ()\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Retrieve all the elements contained in the jQuery set, as an array.\n\n\tURL doc:\n\thttp://api.jquery.com/toArray/\n\n*/"
@@ -4261,6 +4469,7 @@
 					}
 				],
 				"description": "Description: Specify a function to execute when the DOM is fully loaded.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/ready/",
 				"full_description": "/*\n\n\tjQuery - Events > Document Loading\n\n\tready ( handler: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Specify a function to execute when the DOM is fully loaded.\n\n\tURL doc:\n\thttp://api.jquery.com/ready/\n\n*/"
@@ -4273,6 +4482,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Get the closest ancestor element that is positioned.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/offsetParent/",
 				"full_description": "/*\n\n\tjQuery - Offset | Traversing > Tree Traversal\n\n\toffsetParent ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Get the closest ancestor element that is positioned.\n\n\tURL doc:\n\thttp://api.jquery.com/offsetParent/\n\n*/"
@@ -4292,6 +4502,7 @@
 					}
 				],
 				"description": "Description: Determine whether an element has any jQuery data associated with it.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.hasData/",
 				"full_description": "/*\n\n\tjQuery - Data\n\n\thasData ( element: Element )\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determine whether an element has any jQuery data associated with it.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.hasData/\n\n*/"
@@ -4311,6 +4522,7 @@
 					}
 				],
 				"description": "Description: Remove a previously-stored piece of data.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/removeData/",
 				"full_description": "/*\n\n\tjQuery - Data | Miscellaneous > Data Storage\n\n\tremoveData ( name?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove a previously-stored piece of data.\n\n\tURL doc:\n\thttp://api.jquery.com/removeData/\n\n*/"
@@ -4330,6 +4542,7 @@
 					}
 				],
 				"description": "Description: Reduce the set of matched elements to the one at the specified index.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/eq/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\teq ( index: Integer )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Reduce the set of matched elements to the one at the specified index.\n\n\tURL doc:\n\thttp://api.jquery.com/eq/\n\n*/"
@@ -4349,6 +4562,7 @@
 					}
 				],
 				"description": "Description: Call all of the callbacks with the given arguments.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.fire/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tfire ( arguments: Anything )\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Call all of the callbacks with the given arguments.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.fire/\n\n*/"
@@ -4368,6 +4582,7 @@
 					}
 				],
 				"description": "Description: Convert an array-like object into a true JavaScript array.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.makeArray/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tmakeArray ( obj: PlainObject )\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Convert an array-like object into a true JavaScript array.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.makeArray/\n\n*/"
@@ -4379,6 +4594,7 @@
 				"name": "currentTarget",
 				"return_type": "Element",
 				"description": "Description:  The current DOM element within the event bubbling phase.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.currentTarget/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tcurrentTarget\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tDescription:  The current DOM element within the event bubbling phase.\n\n\tURL doc:\n\thttp://api.jquery.com/event.currentTarget/\n\n*/"
@@ -4398,6 +4614,7 @@
 					}
 				],
 				"description": "Description: Remove the set of matched elements from the DOM.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/detach/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Removal\n\n\tdetach ( selector?: Selector )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove the set of matched elements from the DOM.\n\n\tURL doc:\n\thttp://api.jquery.com/detach/\n\n*/"
@@ -4410,6 +4627,7 @@
 				"return_type": "String",
 				"parameters": [],
 				"description": "Description: Encode a set of form elements as a string for submission.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/serialize/",
 				"full_description": "/*\n\n\tjQuery - Forms | Ajax > Helper Functions\n\n\tserialize ()\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Encode a set of form elements as a string for submission.\n\n\tURL doc:\n\thttp://api.jquery.com/serialize/\n\n*/"
@@ -4429,6 +4647,7 @@
 					}
 				],
 				"description": "Description: Remove the set of matched elements from the DOM.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/remove/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Removal\n\n\tremove ( selector?: String )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove the set of matched elements from the DOM.\n\n\tURL doc:\n\thttp://api.jquery.com/remove/\n\n*/"
@@ -4441,6 +4660,7 @@
 				"return_type": "Integer",
 				"parameters": [],
 				"description": "Description: Search for a given element from among the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/index/",
 				"full_description": "/*\n\n\tjQuery - Miscellaneous > DOM Element Methods\n\n\tindex ()\n\n\tReturn Type:\n\tInteger\n\n\tDescription:\n\tDescription: Search for a given element from among the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/index/\n\n*/"
@@ -4452,6 +4672,7 @@
 				"name": "length",
 				"return_type": "Integer",
 				"description": "Description: The number of elements in the jQuery object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/length/",
 				"full_description": "/*\n\n\tjQuery - Properties > Properties of jQuery Object Instances\n\n\tlength\n\n\tReturn Type:\n\tInteger\n\n\tDescription:\n\tDescription: The number of elements in the jQuery object.\n\n\tURL doc:\n\thttp://api.jquery.com/length/\n\n*/"
@@ -4471,6 +4692,7 @@
 					}
 				],
 				"description": "Description: Binds a function to be executed when the DOM has finished loading.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery/",
 				"full_description": "/*\n\n\tjQuery - Core\n\n\tjQuery ( callback: Function() )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Binds a function to be executed when the DOM has finished loading.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery/\n\n*/"
@@ -4482,6 +4704,7 @@
 				"name": "metaKey",
 				"return_type": "Boolean",
 				"description": "Description: Indicates whether the META key was pressed when the event fired.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.metaKey/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tmetaKey\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Indicates whether the META key was pressed when the event fired.\n\n\tURL doc:\n\thttp://api.jquery.com/event.metaKey/\n\n*/"
@@ -4494,6 +4717,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Remove all child nodes of the set of matched elements from the DOM.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/empty/",
 				"full_description": "/*\n\n\tjQuery - Manipulation > DOM Removal\n\n\tempty ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Remove all child nodes of the set of matched elements from the DOM.\n\n\tURL doc:\n\thttp://api.jquery.com/empty/\n\n*/"
@@ -4506,6 +4730,7 @@
 				"return_type": "Boolean",
 				"parameters": [],
 				"description": "Description: Determine if the callbacks have already been called at least once.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.fired/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tfired ()\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determine if the callbacks have already been called at least once.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.fired/\n\n*/"
@@ -4525,6 +4750,7 @@
 					}
 				],
 				"description": "Description: Holds or releases the execution of jQuery's ready event.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.holdReady/",
 				"full_description": "/*\n\n\tjQuery - Core\n\n\tholdReady ( hold: Boolean )\n\n\tReturn Type:\n\tundefined\n\n\tDescription:\n\tDescription: Holds or releases the execution of jQuery's ready event.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.holdReady/\n\n*/"
@@ -4536,6 +4762,7 @@
 				"name": "relatedTarget",
 				"return_type": "Element",
 				"description": "Description: The other DOM element involved in the event, if any.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.relatedTarget/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\trelatedTarget\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tDescription: The other DOM element involved in the event, if any.\n\n\tURL doc:\n\thttp://api.jquery.com/event.relatedTarget/\n\n*/"
@@ -4555,6 +4782,7 @@
 					}
 				],
 				"description": "Description: Add a collection of DOM elements onto the jQuery stack.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/pushStack/",
 				"full_description": "/*\n\n\tjQuery - Internals\n\n\tpushStack ( elements: Array )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Add a collection of DOM elements onto the jQuery stack.\n\n\tURL doc:\n\thttp://api.jquery.com/pushStack/\n\n*/"
@@ -4574,6 +4802,7 @@
 					}
 				],
 				"description": "Description: Remove the whitespace from the beginning and end of a string.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.trim/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\ttrim ( str: String )\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Remove the whitespace from the beginning and end of a string.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.trim/\n\n*/"
@@ -4593,6 +4822,7 @@
 					}
 				],
 				"description": "Description: Determine the internal JavaScript [[Class]] of an object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.type/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\ttype ( obj: Anything )\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Determine the internal JavaScript [[Class]] of an object.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.type/\n\n*/"
@@ -4604,6 +4834,7 @@
 				"name": "pageX",
 				"return_type": "Number",
 				"description": "Description: The mouse position relative to the left edge of the document.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.pageX/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tpageX\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: The mouse position relative to the left edge of the document.\n\n\tURL doc:\n\thttp://api.jquery.com/event.pageX/\n\n*/"
@@ -4615,6 +4846,7 @@
 				"name": "namespace",
 				"return_type": "String",
 				"description": "Description: The namespace specified when the event was triggered.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.namespace/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tnamespace\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: The namespace specified when the event was triggered.\n\n\tURL doc:\n\thttp://api.jquery.com/event.namespace/\n\n*/"
@@ -4626,6 +4858,7 @@
 				"name": "pageY",
 				"return_type": "Number",
 				"description": "Description: The mouse position relative to the top edge of the document.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.pageY/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\tpageY\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: The mouse position relative to the top edge of the document.\n\n\tURL doc:\n\thttp://api.jquery.com/event.pageY/\n\n*/"
@@ -4645,6 +4878,7 @@
 					}
 				],
 				"description": "Description: Determine whether the argument is a window.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isWindow/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisWindow ( obj: PlainObject )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tDescription: Determine whether the argument is a window.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isWindow/\n\n*/"
@@ -4657,6 +4891,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Reduce the set of matched elements to the final one in the set.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/last/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\tlast ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Reduce the set of matched elements to the final one in the set.\n\n\tURL doc:\n\thttp://api.jquery.com/last/\n\n*/"
@@ -4669,6 +4904,7 @@
 				"return_type": "Boolean",
 				"parameters": [],
 				"description": "Description: Determine if the callbacks list has been disabled.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.disabled/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tdisabled ()\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determine if the callbacks list has been disabled.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.disabled/\n\n*/"
@@ -4688,6 +4924,7 @@
 					}
 				],
 				"description": "Description:  Return a Deferred's Promise object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.promise/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tpromise ( target?: Object )\n\n\tReturn Type:\n\tPromise\n\n\tDescription:\n\tDescription:  Return a Deferred's Promise object.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.promise/\n\n*/"
@@ -4700,6 +4937,7 @@
 				"return_type": "Callbacks",
 				"parameters": [],
 				"description": "Description: Disable a callback list from doing anything more.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.disable/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tdisable ()\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Disable a callback list from doing anything more.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.disable/\n\n*/"
@@ -4712,6 +4950,7 @@
 				"return_type": "Array",
 				"parameters": [],
 				"description": "Description: Retrieve the elements matched by the jQuery object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/get/",
 				"full_description": "/*\n\n\tjQuery - Miscellaneous > DOM Element Methods\n\n\tget ()\n\n\tReturn Type:\n\tArray\n\n\tDescription:\n\tDescription: Retrieve the elements matched by the jQuery object.\n\n\tURL doc:\n\thttp://api.jquery.com/get/\n\n*/"
@@ -4724,6 +4963,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Reduce the set of matched elements to the first in the set.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/first/",
 				"full_description": "/*\n\n\tjQuery - Traversing > Filtering\n\n\tfirst ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Reduce the set of matched elements to the first in the set.\n\n\tURL doc:\n\thttp://api.jquery.com/first/\n\n*/"
@@ -4743,6 +4983,7 @@
 					}
 				],
 				"description": "Description: Takes a string and throws an exception containing it.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.error/",
 				"full_description": "/*\n\n\tjQuery - Internals\n\n\terror ( message: String )\n\n\tReturn Type:\n\t\n\n\tDescription:\n\tDescription: Takes a string and throws an exception containing it.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.error/\n\n*/"
@@ -4762,6 +5003,7 @@
 					}
 				],
 				"description": "Description: Parses a string into an XML document.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.parseXML/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tparseXML ( data: String )\n\n\tReturn Type:\n\tXMLDocument\n\n\tDescription:\n\tDescription: Parses a string into an XML document.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.parseXML/\n\n*/"
@@ -4781,6 +5023,7 @@
 					}
 				],
 				"description": "Description: Determine whether the argument is an array.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.isArray/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tisArray ( obj: Object )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tDescription: Determine whether the argument is an array.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.isArray/\n\n*/"
@@ -4793,6 +5036,7 @@
 				"return_type": "Boolean",
 				"parameters": [],
 				"description": "Description: Determine if the callbacks list has been locked.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.locked/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tlocked ()\n\n\tReturn Type:\n\tBoolean\n\n\tDescription:\n\tDescription: Determine if the callbacks list has been locked.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.locked/\n\n*/"
@@ -4812,6 +5056,7 @@
 					}
 				],
 				"description": "Description:",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/toggleClass/",
 				"full_description": "/*\n\n\tjQuery - Attributes | Manipulation > Class Attribute | CSS\n\n\ttoggleClass ( state?: Boolean )\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription:\n\n\tURL doc:\n\thttp://api.jquery.com/toggleClass/\n\n*/"
@@ -4824,6 +5069,7 @@
 				"return_type": "String",
 				"parameters": [],
 				"description": "Description: Determine the current state of a Deferred object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/deferred.state/",
 				"full_description": "/*\n\n\tjQuery - Deferred Object\n\n\tstate ()\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Determine the current state of a Deferred object.\n\n\tURL doc:\n\thttp://api.jquery.com/deferred.state/\n\n*/"
@@ -4843,6 +5089,7 @@
 					}
 				],
 				"description": "Description: Execute some JavaScript code globally.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.globalEval/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tglobalEval ( code: String )\n\n\tReturn Type:\n\t\n\n\tDescription:\n\tDescription: Execute some JavaScript code globally.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.globalEval/\n\n*/"
@@ -4855,6 +5102,7 @@
 				"return_type": "Callbacks",
 				"parameters": [],
 				"description": "Description: Remove all of the callbacks from a list.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.empty/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tempty ()\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Remove all of the callbacks from a list.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.empty/\n\n*/"
@@ -4866,6 +5114,7 @@
 				"name": "target",
 				"return_type": "Element",
 				"description": "Description:  The DOM element that initiated the event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.target/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\ttarget\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tDescription:  The DOM element that initiated the event.\n\n\tURL doc:\n\thttp://api.jquery.com/event.target/\n\n*/"
@@ -4878,6 +5127,7 @@
 				"return_type": "Callbacks",
 				"parameters": [],
 				"description": "Description: Lock a callback list in its current state.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/callbacks.lock/",
 				"full_description": "/*\n\n\tjQuery - Callbacks Object\n\n\tlock ()\n\n\tReturn Type:\n\tCallbacks\n\n\tDescription:\n\tDescription: Lock a callback list in its current state.\n\n\tURL doc:\n\thttp://api.jquery.com/callbacks.lock/\n\n*/"
@@ -4890,6 +5140,7 @@
 				"return_type": "Number",
 				"parameters": [],
 				"description": "Description: Return a number representing the current time.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.now/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tnow ()\n\n\tReturn Type:\n\tNumber\n\n\tDescription:\n\tDescription: Return a number representing the current time.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.now/\n\n*/"
@@ -4901,6 +5152,7 @@
 				"name": "type",
 				"return_type": "String",
 				"description": "Description: Describes the nature of the event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://api.jquery.com/event.type/",
 				"full_description": "/*\n\n\tjQuery - Events > Event Object\n\n\ttype\n\n\tReturn Type:\n\tString\n\n\tDescription:\n\tDescription: Describes the nature of the event.\n\n\tURL doc:\n\thttp://api.jquery.com/event.type/\n\n*/"
@@ -4913,6 +5165,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Display the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/show/",
 				"full_description": "/*\n\n\tjQuery - Effects > Basics\n\n\tshow ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Display the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/show/\n\n*/"
@@ -4925,6 +5178,7 @@
 				"return_type": "jQuery",
 				"parameters": [],
 				"description": "Description: Hide the matched elements.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/hide/",
 				"full_description": "/*\n\n\tjQuery - Effects > Basics\n\n\thide ()\n\n\tReturn Type:\n\tjQuery\n\n\tDescription:\n\tDescription: Hide the matched elements.\n\n\tURL doc:\n\thttp://api.jquery.com/hide/\n\n*/"
@@ -4937,6 +5191,7 @@
 				"return_type": "undefined",
 				"parameters": [],
 				"description": "Description: An empty function.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://api.jquery.com/jQuery.noop/",
 				"full_description": "/*\n\n\tjQuery - Utilities\n\n\tnoop ()\n\n\tReturn Type:\n\tundefined\n\n\tDescription:\n\tDescription: An empty function.\n\n\tURL doc:\n\thttp://api.jquery.com/jQuery.noop/\n\n*/"

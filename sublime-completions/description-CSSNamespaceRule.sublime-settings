@@ -7,6 +7,7 @@
 				"name": "prefix",
 				"return_type": "DOMString",
 				"description": "The prefix attribute must return the prefix of the @namespace at-rule or the empty string if there is no prefix.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSNamespaceRule.html#prefix",
 				"full_description": "/*\n\n\tCSSNamespaceRule\n\n\tprefix\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe prefix attribute must return the prefix of the @namespace at-rule or the empty string if there is no prefix.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSNamespaceRule.html#prefix\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "namespaceURI",
 				"return_type": "DOMString",
 				"description": "The namespaceURI attribute, on getting, must return the namespace of the @namespace at-rule.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSNamespaceRule.html#namespaceURI",
 				"full_description": "/*\n\n\tCSSNamespaceRule\n\n\tnamespaceURI\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe namespaceURI attribute, on getting, must return the namespace of the @namespace at-rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSNamespaceRule.html#namespaceURI\n\n*/"

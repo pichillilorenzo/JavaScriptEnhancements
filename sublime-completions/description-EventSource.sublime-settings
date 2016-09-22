@@ -7,6 +7,7 @@
 				"name": "withCredentials",
 				"return_type": "boolean",
 				"description": "The withCredentials attribute must return the value to which it was last initialized. When the object is created, it must be initialized to false.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#withCredentials",
 				"full_description": "/*\n\n\tEventSource\n\n\twithCredentials\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe withCredentials attribute must return the value to which it was last initialized. When the object is created, it must be initialized to false.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#withCredentials\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "CLOSED",
 				"return_type": "const unsigned short",
 				"description": "The connection is not open, and the user agent is not trying to reconnect. Either there was a fatal error or the close() method was invoked.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#CLOSED",
 				"full_description": "/*\n\n\tEventSource\n\n\tCLOSED\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe connection is not open, and the user agent is not trying to reconnect. Either there was a fatal error or the close() method was invoked.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#CLOSED\n\n*/"
@@ -30,6 +32,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The close() method must abort any instances of the fetch algorithm started for this EventSource object, and must set the readyState attribute to CLOSED.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#close",
 				"full_description": "/*\n\n\tEventSource\n\n\tclose ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe close() method must abort any instances of the fetch algorithm started for this EventSource object, and must set the readyState attribute to CLOSED.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#close\n\n*/"
@@ -41,6 +44,7 @@
 				"name": "CONNECTING",
 				"return_type": "const unsigned short",
 				"description": "The connection has not yet been established, or it was closed and the user agent is reconnecting.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#CONNECTING",
 				"full_description": "/*\n\n\tEventSource\n\n\tCONNECTING\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe connection has not yet been established, or it was closed and the user agent is reconnecting.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#CONNECTING\n\n*/"
@@ -52,6 +56,7 @@
 				"name": "url",
 				"return_type": "DOMString",
 				"description": "The url attribute must return the absolute URL that resulted from resolving the value that was passed to the constructor.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#url",
 				"full_description": "/*\n\n\tEventSource\n\n\turl\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe url attribute must return the absolute URL that resulted from resolving the value that was passed to the constructor.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#url\n\n*/"
@@ -63,6 +68,7 @@
 				"name": "OPEN",
 				"return_type": "const unsigned short",
 				"description": "The user agent has an open connection and is dispatching events as it receives them.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#OPEN",
 				"full_description": "/*\n\n\tEventSource\n\n\tOPEN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe user agent has an open connection and is dispatching events as it receives them.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#OPEN\n\n*/"
@@ -74,6 +80,7 @@
 				"name": "readyState",
 				"return_type": "unsigned short",
 				"description": "The readyState attribute represents the state of the connection.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#readyState",
 				"full_description": "/*\n\n\tEventSource\n\n\treadyState\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tThe readyState attribute represents the state of the connection.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20EventSource.html#readyState\n\n*/"
@@ -110,6 +117,7 @@
 				"name": "onmessage",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#handler-eventsource-onmessage",
 				"full_description": "/*\n\n\tEventSource\n\n\tonmessage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#handler-eventsource-onmessage\n\n*/"
@@ -121,6 +129,7 @@
 				"name": "onerror",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#handler-eventsource-onerror",
 				"full_description": "/*\n\n\tEventSource\n\n\tonerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#handler-eventsource-onerror\n\n*/"
@@ -132,6 +141,7 @@
 				"name": "onopen",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#handler-eventsource-onopen",
 				"full_description": "/*\n\n\tEventSource\n\n\tonopen\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#handler-eventsource-onopen\n\n*/"

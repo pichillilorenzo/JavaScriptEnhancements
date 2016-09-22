@@ -7,6 +7,7 @@
 				"name": "media",
 				"return_type": "MediaList",
 				"description": "The media attribute must return a MediaList object for the list of media queries specified with the @media at-rule.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/CSS%20Object%20Model%20-%20CSSMediaRule.html#media",
 				"full_description": "/*\n\n\tCSSMediaRule\n\n\tmedia\n\n\tReturn Type:\n\tMediaList\n\n\tDescription:\n\tThe media attribute must return a MediaList object for the list of media queries specified with the @media at-rule.\n\n\tURL doc:\n\thttp://html5index.org/CSS%20Object%20Model%20-%20CSSMediaRule.html#media\n\n*/"

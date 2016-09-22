@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"onLine: boolean\tNavigatorOnLine",
-			"onLine"
-		]
-	]
-}

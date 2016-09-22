@@ -2,27 +2,27 @@
 	"scope": "source.js",
 	"completions": [
 		[
-			"URL.createObjectURL( blob: Blob ): static DOMString\tURL",
+			"URL.createObjectURL( blob: Blob ): DOMString\tURL",
 			"URL.createObjectURL(${1:blob: Blob})"
 		],
 		[
-			"URL.revokeObjectURL( url: DOMString ): static void\tURL",
+			"URL.revokeObjectURL( url: DOMString ): void\tURL",
 			"URL.revokeObjectURL(${1:url: DOMString})"
 		],
 		[
-			"createObjectURL( blob: Blob ): static DOMString\tURL",
+			"createObjectURL( blob: Blob ): DOMString\tURL",
 			"createObjectURL(${1:blob: Blob})"
 		],
 		[
-			"revokeObjectURL( url: DOMString ): static void\tURL",
+			"revokeObjectURL( url: DOMString ): void\tURL",
 			"revokeObjectURL(${1:url: DOMString})"
 		],
 		[
-			"URL.createFor( blob: Blob ): static DOMString\tURL",
+			"URL.createFor( blob: Blob ): DOMString\tURL",
 			"URL.createFor(${1:blob: Blob})"
 		],
 		[
-			"createFor( blob: Blob ): static DOMString\tURL",
+			"createFor( blob: Blob ): DOMString\tURL",
 			"createFor(${1:blob: Blob})"
 		]
 	]

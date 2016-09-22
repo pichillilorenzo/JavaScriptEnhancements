@@ -21,6 +21,7 @@
 					}
 				],
 				"description": "The postMessage() method on Worker objects must act as if, when invoked, it immediately invoked the method of the same name on the port, with the same arguments, and returned the same return value.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20Worker.html#postMessage",
 				"full_description": "/*\n\n\tWorker\n\n\tpostMessage ( message: any, transfer?: sequence<Transferable> )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe postMessage() method on Worker objects must act as if, when invoked, it immediately invoked the method of the same name on the port, with the same arguments, and returned the same return value.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20Worker.html#postMessage\n\n*/"
@@ -33,6 +34,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The terminate() method, when invoked, must cause the \"terminate a worker\" algorithm to be run on the worker with which the object is associated.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20Worker.html#terminate",
 				"full_description": "/*\n\n\tWorker\n\n\tterminate ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe terminate() method, when invoked, must cause the \"terminate a worker\" algorithm to be run on the worker with which the object is associated.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20Worker.html#terminate\n\n*/"
@@ -44,6 +46,7 @@
 				"name": "onerror",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-abstractworker-onerror",
 				"full_description": "/*\n\n\tWorker\n\n\tonerror\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-abstractworker-onerror\n\n*/"
@@ -55,6 +58,7 @@
 				"name": "onmessage",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-worker-onmessage",
 				"full_description": "/*\n\n\tWorker\n\n\tonmessage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-worker-onmessage\n\n*/"

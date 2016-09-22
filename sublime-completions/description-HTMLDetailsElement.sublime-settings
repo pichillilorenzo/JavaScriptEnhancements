@@ -7,6 +7,7 @@
 				"name": "open",
 				"return_type": "boolean",
 				"description": "The open IDL attribute must reflect the open content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLDetailsElement.html#open",
 				"full_description": "/*\n\n\tHTMLDetailsElement\n\n\topen\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe open IDL attribute must reflect the open content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLDetailsElement.html#open\n\n*/"

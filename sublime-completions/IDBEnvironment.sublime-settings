@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"indexedDB: IDBFactory\tIDBEnvironment",
-			"indexedDB"
-		]
-	]
-}

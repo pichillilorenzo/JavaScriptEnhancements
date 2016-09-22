@@ -2,35 +2,35 @@
 	"scope": "source.js",
 	"completions": [
 		[
-			"IDBKeyRange.bound( lower: any, upper: any, lowerOpen?: boolean, upperOpen?: boolean ): static IDBKeyRange\tIDBKeyRange",
+			"IDBKeyRange.bound( lower: any, upper: any, lowerOpen?: boolean, upperOpen?: boolean ): IDBKeyRange\tIDBKeyRange",
 			"IDBKeyRange.bound(${1:lower: any}, ${2:upper: any}, ${3:lowerOpen?: boolean}, ${4:upperOpen?: boolean})"
 		],
 		[
-			"bound( lower: any, upper: any, lowerOpen?: boolean, upperOpen?: boolean ): static IDBKeyRange\tIDBKeyRange",
+			"bound( lower: any, upper: any, lowerOpen?: boolean, upperOpen?: boolean ): IDBKeyRange\tIDBKeyRange",
 			"bound(${1:lower: any}, ${2:upper: any}, ${3:lowerOpen?: boolean}, ${4:upperOpen?: boolean})"
 		],
 		[
-			"IDBKeyRange.lowerBound( lower: any, open?: boolean ): static IDBKeyRange\tIDBKeyRange",
+			"IDBKeyRange.lowerBound( lower: any, open?: boolean ): IDBKeyRange\tIDBKeyRange",
 			"IDBKeyRange.lowerBound(${1:lower: any}, ${2:open?: boolean})"
 		],
 		[
-			"IDBKeyRange.upperBound( upper: any, open?: boolean ): static IDBKeyRange\tIDBKeyRange",
+			"IDBKeyRange.upperBound( upper: any, open?: boolean ): IDBKeyRange\tIDBKeyRange",
 			"IDBKeyRange.upperBound(${1:upper: any}, ${2:open?: boolean})"
 		],
 		[
-			"upperBound( upper: any, open?: boolean ): static IDBKeyRange\tIDBKeyRange",
+			"upperBound( upper: any, open?: boolean ): IDBKeyRange\tIDBKeyRange",
 			"upperBound(${1:upper: any}, ${2:open?: boolean})"
 		],
 		[
-			"lowerBound( lower: any, open?: boolean ): static IDBKeyRange\tIDBKeyRange",
+			"lowerBound( lower: any, open?: boolean ): IDBKeyRange\tIDBKeyRange",
 			"lowerBound(${1:lower: any}, ${2:open?: boolean})"
 		],
 		[
-			"IDBKeyRange.only( value: any ): static IDBKeyRange\tIDBKeyRange",
+			"IDBKeyRange.only( value: any ): IDBKeyRange\tIDBKeyRange",
 			"IDBKeyRange.only(${1:value: any})"
 		],
 		[
-			"only( value: any ): static IDBKeyRange\tIDBKeyRange",
+			"only( value: any ): IDBKeyRange\tIDBKeyRange",
 			"only(${1:value: any})"
 		],
 		[

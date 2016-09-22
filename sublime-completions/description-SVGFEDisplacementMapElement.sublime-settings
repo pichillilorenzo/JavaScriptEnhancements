@@ -7,6 +7,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#height",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#height\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#width",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#width\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#y",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#y\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#x",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#x\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "scale",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Post-multiplies a uniform scale transformation on the current matrix and returns the resulting matrix. Parametersfloat scaleFactor Scale factor in both X and Y. Returns The resulting matrix.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#scale",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tscale\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tPost-multiplies a uniform scale transformation on the current matrix and returns the resulting matrix. Parametersfloat scaleFactor Scale factor in both X and Y. Returns The resulting matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#scale\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "SVG_CHANNEL_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_UNKNOWN",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tSVG_CHANNEL_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_UNKNOWN\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "yChannelSelector",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘yChannelSelector’ on the given ‘feDisplacementMap’ element. Takes one of the SVG_CHANNEL_* constants defined on this interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#yChannelSelector",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tyChannelSelector\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘yChannelSelector’ on the given ‘feDisplacementMap’ element. Takes one of the SVG_CHANNEL_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#yChannelSelector\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "xChannelSelector",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘xChannelSelector’ on the given ‘feDisplacementMap’ element. Takes one of the SVG_CHANNEL_* constants defined on this interface.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#xChannelSelector",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\txChannelSelector\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘xChannelSelector’ on the given ‘feDisplacementMap’ element. Takes one of the SVG_CHANNEL_* constants defined on this interface.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#xChannelSelector\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "in2",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in2’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#in2",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tin2\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in2’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#in2\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "result",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#result",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#result\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "in1",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘in’ on the given ‘feBlend’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#in1",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tin1\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘in’ on the given ‘feBlend’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#in1\n\n*/"
@@ -128,6 +139,7 @@
 				"name": "SVG_CHANNEL_B",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'B'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_B",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tSVG_CHANNEL_B\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'B'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_B\n\n*/"
@@ -139,6 +151,7 @@
 				"name": "SVG_CHANNEL_R",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'R'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_R",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tSVG_CHANNEL_R\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'R'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_R\n\n*/"
@@ -150,6 +163,7 @@
 				"name": "SVG_CHANNEL_G",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'G'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_G",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tSVG_CHANNEL_G\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'G'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_G\n\n*/"
@@ -161,6 +175,7 @@
 				"name": "SVG_CHANNEL_A",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'A'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_A",
 				"full_description": "/*\n\n\tSVGFEDisplacementMapElement\n\n\tSVG_CHANNEL_A\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'A'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEDisplacementMapElement.html#SVG_CHANNEL_A\n\n*/"

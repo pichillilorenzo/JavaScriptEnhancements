@@ -37,11 +37,6 @@ class JavaScriptCompletionsPackage():
     if self.API_Setup:
       for API_Keyword in self.API_Setup:
         self.api[API_Keyword] = sublime.load_settings( API_Keyword + '.sublime-settings')
-
-    if self.settings.get("enable_context_menu_option") :
-      _init.enable_setting(SETTINGS_FOLDER, "Context", "sublime-menu")
-    else :
-      _init.disable_setting(SETTINGS_FOLDER, "Context", "sublime-menu")
       
     if self.settings.get("enable_key_map") :
       _init.enable_setting(SETTINGS_FOLDER, "Default ("+_init.PLATFORM+")", "sublime-keymap")
@@ -69,7 +64,7 @@ class JavaScriptCompletionsPackageEventListener(sublime_plugin.EventListener):
 
     for API_Keyword in javascriptCompletions.api:
       # If completion active
-      if (javascriptCompletions.API_Setup and javascriptCompletions.API_Setup.get(API_Keyword)):
+      if(javascriptCompletions.API_Setup and javascriptCompletions.API_Setup.get(API_Keyword)):
         scope = javascriptCompletions.api[API_Keyword].get('scope')
         if scope and view.match_selector(locations[0], scope):
           self.completions += javascriptCompletions.api[API_Keyword].get('completions')
@@ -163,7 +158,7 @@ if int(sublime.version()) >= 3000 :
         parameters_html = "( " + ", ".join(parameters) + " )"
       html = """ 
       <div class=\"container-description\">
-        <p><div class=\"label\">Syntax:</div><span class=\"operation-name\">"""+completion_description.get("name")+"</span>"+parameters_html+"""</p>
+        <p><div class=\"label\">Syntax:</div><span class=\"operation-name\">"""+completion_description.get("name")+"</span>"+parameters_html+(" : <span class=\"operation-is-static\">static</span>" if completion_description.get("is_static") else "")+"""</p>
         <p><div class=\"label\">Return Type:</div><span class=\"operation-return-type\">"""+completion_description.get("return_type")+"""</span></p>
         <p><div class=\"label\">Description:</div><span class=\"operation-description\">"""+completion_description.get("description")+"""</span></p>
         <p><div class=\"label\">URL doc:</div><a class=\"operation-url-doc-link\" href=\""""+completion_description.get("url_doc")+"""\">"""+completion_description.get("url_doc")+"""</a></p>
@@ -172,7 +167,7 @@ if int(sublime.version()) >= 3000 :
     elif completion_description.get("type") == "property" :
       html = """ 
       <div class=\"container-description\">
-        <p><div class=\"label\">Syntax:</div><span class=\"property-name\">"""+completion_description.get("name")+"""</span></p>
+        <p><div class=\"label\">Syntax:</div><span class=\"property-name\">"""+completion_description.get("name")+"""</span>"""+(" : <span class=\"property-is-static\">static</span>" if completion_description.get("is_static") else "")+"""</p>
         <p><div class=\"label\">Return Type:</div><span class=\"property-return-type\">"""+completion_description.get("return_type")+"""</span></p>
         <p><div class=\"label\">Description:</div><span class=\"property-description\">"""+completion_description.get("description")+"""</span></p>
         <p><div class=\"label\">URL doc:</div><a class=\"property-url-doc-link\" href=\""""+completion_description.get("url_doc")+"""\">"""+completion_description.get("url_doc")+"""</a></p>

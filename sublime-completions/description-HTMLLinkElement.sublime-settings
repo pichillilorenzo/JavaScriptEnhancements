@@ -7,6 +7,7 @@
 				"name": "sizes",
 				"return_type": "DOMSettableTokenList",
 				"description": "The IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#sizes",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\tsizes\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\tThe IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#sizes\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "hreflang",
 				"return_type": "DOMString",
 				"description": "The IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#hreflang",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\threflang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#hreflang\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "media",
 				"return_type": "DOMString",
 				"description": "The IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#media",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\tmedia\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#media\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "href",
 				"return_type": "DOMString",
 				"description": "The IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#href",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\thref\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#href\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#type",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#type\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "rel",
 				"return_type": "DOMString",
 				"description": "The IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#rel",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\trel\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes href, rel, media, hreflang, type, and sizes each must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#rel\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "sheet",
 				"return_type": "StyleSheet",
 				"description": "The sheet attribute must return the associated CSS style sheet for the node or null if there is no associated CSS style sheet.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#sheet",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\tsheet\n\n\tReturn Type:\n\tStyleSheet\n\n\tDescription:\n\tThe sheet attribute must return the associated CSS style sheet for the node or null if there is no associated CSS style sheet.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#sheet\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "crossOrigin",
 				"return_type": "DOMString",
 				"description": "The crossOrigin IDL attribute must reflect the crossorigin content attribute, limited to only known values.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#crossOrigin",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\tcrossOrigin\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe crossOrigin IDL attribute must reflect the crossorigin content attribute, limited to only known values.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#crossOrigin\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "relList",
 				"return_type": "DOMTokenList",
 				"description": "The IDL attribute relList must reflect the rel content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLLinkElement.html#relList",
 				"full_description": "/*\n\n\tHTMLLinkElement\n\n\trelList\n\n\tReturn Type:\n\tDOMTokenList\n\n\tDescription:\n\tThe IDL attribute relList must reflect the rel content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLLinkElement.html#relList\n\n*/"

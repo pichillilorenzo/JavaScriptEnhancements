@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#start",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tstart ( when?: double, offset?: double, duration?: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#start\n\n*/"
@@ -38,6 +39,7 @@
 				"name": "playbackRate",
 				"return_type": "AudioParam",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#playbackRate",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tplaybackRate\n\n\tReturn Type:\n\tAudioParam\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#playbackRate\n\n*/"
@@ -57,6 +59,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#stop",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tstop ( when?: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#stop\n\n*/"
@@ -68,6 +71,7 @@
 				"name": "onended",
 				"return_type": "EventHandler",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#onended",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tonended\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#onended\n\n*/"
@@ -79,6 +83,7 @@
 				"name": "loopStart",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#loopStart",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tloopStart\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#loopStart\n\n*/"
@@ -90,6 +95,7 @@
 				"name": "buffer",
 				"return_type": "AudioBuffer",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#buffer",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tbuffer\n\n\tReturn Type:\n\tAudioBuffer\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#buffer\n\n*/"
@@ -101,6 +107,7 @@
 				"name": "loopEnd",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#loopEnd",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tloopEnd\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#loopEnd\n\n*/"
@@ -112,6 +119,7 @@
 				"name": "loop",
 				"return_type": "boolean",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#loop",
 				"full_description": "/*\n\n\tAudioBufferSourceNode\n\n\tloop\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioBufferSourceNode.html#loop\n\n*/"

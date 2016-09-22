@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "The setSelectionRange(start, end, direction) method must set the selection of the text field to the sequence of characters starting with the character at the startth position (in logical order) and ending with the character at the (end-1)th position. Arguments greater than the length of the value of the text field must be treated as pointing at the end of the text field.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#setSelectionRange",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tsetSelectionRange ( start: unsigned long, end: unsigned long, direction?: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setSelectionRange(start, end, direction) method must set the selection of the text field to the sequence of characters starting with the character at the startth position (in logical order) and ending with the character at the (end-1)th position. Arguments greater than the length of the value of the text field must be treated as pointing at the end of the text field.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#setSelectionRange\n\n*/"
@@ -39,6 +40,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "When the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#reportValidity",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\treportValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the reportValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must: fire a simple event named invalid that is cancelable at the element, and if that event is not canceled, report the problems with the constraints of that element to the user; then, return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#reportValidity\n\n*/"
@@ -51,6 +53,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "The select() method must cause the contents of the text field to be fully selected, with the selection direction being none, if the platform support selections with the direction none, or otherwise forward. The user agent must then queue a task to fire a simple event that bubbles named select at the element, using the user interaction task source as the task source.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#select",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tselect ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe select() method must cause the contents of the text field to be fully selected, with the selection direction being none, if the platform support selections with the direction none, or otherwise forward. The user agent must then queue a task to fire a simple event that bubbles named select at the element, using the user interaction task source as the task source.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#select\n\n*/"
@@ -62,6 +65,7 @@
 				"name": "validationMessage",
 				"return_type": "DOMString",
 				"description": "The validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#validationMessage",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tvalidationMessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe validationMessage attribute must return the empty string if the element is not a candidate for constraint validation or if it is one but it satisfies its constraints; otherwise, it must return a suitably localized message that the user agent would show the user if this were the only form control with a validity constraint problem.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#validationMessage\n\n*/"
@@ -73,6 +77,7 @@
 				"name": "value",
 				"return_type": "DOMString",
 				"description": "The value attribute must, on getting, return the element's API value; on setting, it must set the element's raw value to the new value, set the element's dirty value flag to true, and should then move the text entry cursor position to the end of the text field, unselecting any selected text and resetting the selection direction to none.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#value",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tvalue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe value attribute must, on getting, return the element's API value; on setting, it must set the element's raw value to the new value, set the element's dirty value flag to true, and should then move the text entry cursor position to the end of the text field, unselecting any selected text and resetting the selection direction to none.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#value\n\n*/"
@@ -84,6 +89,7 @@
 				"name": "selectionStart",
 				"return_type": "unsigned long",
 				"description": "The selectionStart attribute must, on getting, return the offset (in logical order) to the character that immediately follows the start of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#selectionStart",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tselectionStart\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe selectionStart attribute must, on getting, return the offset (in logical order) to the character that immediately follows the start of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#selectionStart\n\n*/"
@@ -95,6 +101,7 @@
 				"name": "selectionEnd",
 				"return_type": "unsigned long",
 				"description": "The selectionEnd attribute must, on getting, return the offset (in logical order) to the character that immediately follows the end of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#selectionEnd",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tselectionEnd\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe selectionEnd attribute must, on getting, return the offset (in logical order) to the character that immediately follows the end of the selection. If there is no selection, then it must return the offset (in logical order) to the character that immediately follows the text entry cursor.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#selectionEnd\n\n*/"
@@ -107,6 +114,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "When the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#checkValidity",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tcheckValidity ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tWhen the checkValidity() method is invoked, if the element is a candidate for constraint validation and does not satisfy its constraints, the user agent must fire a simple event named invalid that is cancelable (but in this case has no default action) at the element and return false.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#checkValidity\n\n*/"
@@ -118,6 +126,7 @@
 				"name": "placeholder",
 				"return_type": "DOMString",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#placeholder",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tplaceholder\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#placeholder\n\n*/"
@@ -129,6 +138,7 @@
 				"name": "labels",
 				"return_type": "NodeList",
 				"description": "Labelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#labels",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tlabels\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tLabelable elements have a NodeList object associated with them that represents the list of label elements, in tree order, whose labeled control is the element in question. The labels IDL attribute of labelable elements, on getting, must return that NodeList object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#labels\n\n*/"
@@ -140,6 +150,7 @@
 				"name": "inputMode",
 				"return_type": "DOMString",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#inputMode",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tinputMode\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#inputMode\n\n*/"
@@ -151,6 +162,7 @@
 				"name": "dirName",
 				"return_type": "DOMString",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#dirName",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tdirName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#dirName\n\n*/"
@@ -162,6 +174,7 @@
 				"name": "readOnly",
 				"return_type": "boolean",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#readOnly",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\treadOnly\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#readOnly\n\n*/"
@@ -173,6 +186,7 @@
 				"name": "required",
 				"return_type": "boolean",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#required",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\trequired\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#required\n\n*/"
@@ -184,6 +198,7 @@
 				"name": "maxLength",
 				"return_type": "long",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#maxLength",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tmaxLength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#maxLength\n\n*/"
@@ -195,6 +210,7 @@
 				"name": "minLength",
 				"return_type": "long",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#minLength",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tminLength\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#minLength\n\n*/"
@@ -206,6 +222,7 @@
 				"name": "rows",
 				"return_type": "unsigned long",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#rows",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\trows\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#rows\n\n*/"
@@ -217,6 +234,7 @@
 				"name": "cols",
 				"return_type": "unsigned long",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#cols",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tcols\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#cols\n\n*/"
@@ -228,6 +246,7 @@
 				"name": "wrap",
 				"return_type": "DOMString",
 				"description": "The cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#wrap",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\twrap\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cols, placeholder, required, rows, and wrap attributes must reflect the respective content attributes of the same name. The cols and rows attributes are limited to only non-negative numbers greater than zero. The cols attribute's default value is 20.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#wrap\n\n*/"
@@ -239,6 +258,7 @@
 				"name": "selectionDirection",
 				"return_type": "DOMString",
 				"description": "The selectionDirection attribute must, on getting, return the string corresponding to the current selection direction: if the direction is forward, \"forward\"; if the direction is backward, \"backward\"; and otherwise, \"none\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#selectionDirection",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tselectionDirection\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe selectionDirection attribute must, on getting, return the string corresponding to the current selection direction: if the direction is forward, \"forward\"; if the direction is backward, \"backward\"; and otherwise, \"none\".\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#selectionDirection\n\n*/"
@@ -250,6 +270,7 @@
 				"name": "validity",
 				"return_type": "ValidityState",
 				"description": "The validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#validity",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tvalidity\n\n\tReturn Type:\n\tValidityState\n\n\tDescription:\n\tThe validity attribute must return a ValidityState object that represents the validity states of the element. This object is live, and the same object must be returned each time the element's validity attribute is retrieved.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#validity\n\n*/"
@@ -261,6 +282,7 @@
 				"name": "willValidate",
 				"return_type": "boolean",
 				"description": "The willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#willValidate",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\twillValidate\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe willValidate attribute must return true if an element is a candidate for constraint validation, and false otherwise (i.e. false if any conditions are barring it from constraint validation).\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#willValidate\n\n*/"
@@ -272,6 +294,7 @@
 				"name": "autocomplete",
 				"return_type": "DOMString",
 				"description": "The autocomplete IDL attribute, on getting, must return the element's IDL-exposed autofill value, and on setting, must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#autocomplete",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tautocomplete\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe autocomplete IDL attribute, on getting, must return the element's IDL-exposed autofill value, and on setting, must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#autocomplete\n\n*/"
@@ -309,6 +332,7 @@
 					}
 				],
 				"description": "\n\n",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#dom-textarea/input-setrangetext",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tsetRangeText ( replacement: DOMString, start?: unsigned long, end?: unsigned long, selectionMode?: SelectionMode )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#dom-textarea/input-setrangetext\n\n*/"
@@ -328,6 +352,7 @@
 					}
 				],
 				"description": "The setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#setCustomValidity",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tsetCustomValidity ( error: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe setCustomValidity(message), when invoked, must set the custom validity error message to the value of the given message argument.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#setCustomValidity\n\n*/"
@@ -339,6 +364,7 @@
 				"name": "form",
 				"return_type": "HTMLFormElement",
 				"description": "Reassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#form",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tform\n\n\tReturn Type:\n\tHTMLFormElement\n\n\tDescription:\n\tReassociateable form-associated elements have a form IDL attribute, which, on getting, must return the element's form owner, or null if there isn't one.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#form\n\n*/"
@@ -350,6 +376,7 @@
 				"name": "textLength",
 				"return_type": "unsigned long",
 				"description": "The textLength IDL attribute must return the code-unit length of the element's API value.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#textLength",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\ttextLength\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe textLength IDL attribute must return the code-unit length of the element's API value.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#textLength\n\n*/"
@@ -361,6 +388,7 @@
 				"name": "defaultValue",
 				"return_type": "DOMString",
 				"description": "The defaultValue IDL attribute must act like the element's textContent IDL attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#defaultValue",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tdefaultValue\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe defaultValue IDL attribute must act like the element's textContent IDL attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#defaultValue\n\n*/"
@@ -372,6 +400,7 @@
 				"name": "autofocus",
 				"return_type": "boolean",
 				"description": "The autofocus IDL attribute must reflect the content attribute of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#autofocus",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tautofocus\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe autofocus IDL attribute must reflect the content attribute of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#autofocus\n\n*/"
@@ -383,6 +412,7 @@
 				"name": "disabled",
 				"return_type": "boolean",
 				"description": "The disabled IDL attribute must reflect the disabled content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#disabled",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tdisabled\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe disabled IDL attribute must reflect the disabled content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#disabled\n\n*/"
@@ -394,6 +424,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "The name IDL attribute must reflect the name content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#name",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe name IDL attribute must reflect the name content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#name\n\n*/"
@@ -405,6 +436,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The type IDL attribute must return the value \"textarea\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLTextAreaElement.html#type",
 				"full_description": "/*\n\n\tHTMLTextAreaElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe type IDL attribute must return the value \"textarea\".\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLTextAreaElement.html#type\n\n*/"

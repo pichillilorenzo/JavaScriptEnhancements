@@ -7,6 +7,7 @@
 				"name": "onbeforeunload",
 				"return_type": "OnBeforeUnloadEventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeunload",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonbeforeunload\n\n\tReturn Type:\n\tOnBeforeUnloadEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeunload\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "onlanguagechange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onlanguagechange",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonlanguagechange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onlanguagechange\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "onbeforeprint",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeprint",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonbeforeprint\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onbeforeprint\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "onafterprint",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onafterprint",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonafterprint\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onafterprint\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "onhashchange",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onhashchange",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonhashchange\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onhashchange\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "onpagehide",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpagehide",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonpagehide\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpagehide\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "onpageshow",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpageshow",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonpageshow\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpageshow\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "onpopstate",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpopstate",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonpopstate\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onpopstate\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "onmessage",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onmessage",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonmessage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onmessage\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "onoffline",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onoffline",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonoffline\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onoffline\n\n*/"
@@ -117,6 +127,7 @@
 				"name": "onstorage",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onstorage",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonstorage\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onstorage\n\n*/"
@@ -128,6 +139,7 @@
 				"name": "ononline",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-ononline",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tononline\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-ononline\n\n*/"
@@ -139,6 +151,7 @@
 				"name": "onunload",
 				"return_type": "EventHandler",
 				"description": "\n\n",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onunload",
 				"full_description": "/*\n\n\tHTMLBodyElement\n\n\tonunload\n\n\tReturn Type:\n\tEventHandler\n\n\tDescription:\n\t\n\n\n\n\tURL doc:\n\thttp://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#handler-window-onunload\n\n*/"

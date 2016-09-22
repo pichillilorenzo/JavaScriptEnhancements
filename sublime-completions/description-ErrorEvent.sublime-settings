@@ -7,6 +7,7 @@
 				"name": "error",
 				"return_type": "any",
 				"description": "The error attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. Where appropriate, it is set to the object representing the error (e.g. the exception object in the case of an uncaught DOM exception).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ErrorEvent.html#error",
 				"full_description": "/*\n\n\tErrorEvent\n\n\terror\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe error attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. Where appropriate, it is set to the object representing the error (e.g. the exception object in the case of an uncaught DOM exception).\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ErrorEvent.html#error\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "filename",
 				"return_type": "DOMString",
 				"description": "The filename attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents the absolute URL of the script in which the error originally occurred.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ErrorEvent.html#filename",
 				"full_description": "/*\n\n\tErrorEvent\n\n\tfilename\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe filename attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents the absolute URL of the script in which the error originally occurred.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ErrorEvent.html#filename\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "lineno",
 				"return_type": "unsigned long",
 				"description": "The lineno attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to zero. It represents the line number where the error occurred in the script.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ErrorEvent.html#lineno",
 				"full_description": "/*\n\n\tErrorEvent\n\n\tlineno\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe lineno attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to zero. It represents the line number where the error occurred in the script.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ErrorEvent.html#lineno\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "colno",
 				"return_type": "unsigned long",
 				"description": "The colno attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to zero. It represents the column number where the error occurred in the script.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ErrorEvent.html#colno",
 				"full_description": "/*\n\n\tErrorEvent\n\n\tcolno\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe colno attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to zero. It represents the column number where the error occurred in the script.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ErrorEvent.html#colno\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "message",
 				"return_type": "DOMString",
 				"description": "The message attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents the error message.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ErrorEvent.html#message",
 				"full_description": "/*\n\n\tErrorEvent\n\n\tmessage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe message attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents the error message.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ErrorEvent.html#message\n\n*/"

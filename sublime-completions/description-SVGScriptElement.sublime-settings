@@ -7,6 +7,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGScriptElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGScriptElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGScriptElement.html#externalResourcesRequired\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘type’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGScriptElement.html#type",
 				"full_description": "/*\n\n\tSVGScriptElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘type’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGScriptElement.html#type\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "href",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGScriptElement.html#href",
 				"full_description": "/*\n\n\tSVGScriptElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGScriptElement.html#href\n\n*/"

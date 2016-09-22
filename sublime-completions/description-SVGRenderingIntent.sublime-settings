@@ -7,6 +7,7 @@
 				"name": "RENDERING_INTENT_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_UNKNOWN",
 				"full_description": "/*\n\n\tSVGRenderingIntent\n\n\tRENDERING_INTENT_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_UNKNOWN\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "RENDERING_INTENT_ABSOLUTE_COLORIMETRIC",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'absolute-colorimetric'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_ABSOLUTE_COLORIMETRIC",
 				"full_description": "/*\n\n\tSVGRenderingIntent\n\n\tRENDERING_INTENT_ABSOLUTE_COLORIMETRIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'absolute-colorimetric'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_ABSOLUTE_COLORIMETRIC\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "RENDERING_INTENT_RELATIVE_COLORIMETRIC",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'relative-colorimetric'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_RELATIVE_COLORIMETRIC",
 				"full_description": "/*\n\n\tSVGRenderingIntent\n\n\tRENDERING_INTENT_RELATIVE_COLORIMETRIC\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'relative-colorimetric'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_RELATIVE_COLORIMETRIC\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "RENDERING_INTENT_PERCEPTUAL",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'perceptual'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_PERCEPTUAL",
 				"full_description": "/*\n\n\tSVGRenderingIntent\n\n\tRENDERING_INTENT_PERCEPTUAL\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'perceptual'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_PERCEPTUAL\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "RENDERING_INTENT_SATURATION",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'saturation'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_SATURATION",
 				"full_description": "/*\n\n\tSVGRenderingIntent\n\n\tRENDERING_INTENT_SATURATION\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'saturation'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_SATURATION\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "RENDERING_INTENT_AUTO",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to a value of 'auto'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_AUTO",
 				"full_description": "/*\n\n\tSVGRenderingIntent\n\n\tRENDERING_INTENT_AUTO\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to a value of 'auto'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGRenderingIntent.html#RENDERING_INTENT_AUTO\n\n*/"

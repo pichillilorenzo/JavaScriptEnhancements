@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "Returns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStopElement.html#getPresentationAttribute",
 				"full_description": "/*\n\n\tSVGStopElement\n\n\tgetPresentationAttribute ( name: DOMString )\n\n\tReturn Type:\n\tCSSValue\n\n\tDescription:\n\tReturns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStopElement.html#getPresentationAttribute\n\n*/"
@@ -26,6 +27,7 @@
 				"name": "style",
 				"return_type": "CSSStyleDeclaration",
 				"description": "Corresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStopElement.html#style",
 				"full_description": "/*\n\n\tSVGStopElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\tCorresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStopElement.html#style\n\n*/"
@@ -37,6 +39,7 @@
 				"name": "offset",
 				"return_type": "SVGAnimatedNumber",
 				"description": "Corresponds to attribute ‘offset’ on the given ‘stop’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStopElement.html#offset",
 				"full_description": "/*\n\n\tSVGStopElement\n\n\toffset\n\n\tReturn Type:\n\tSVGAnimatedNumber\n\n\tDescription:\n\tCorresponds to attribute ‘offset’ on the given ‘stop’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStopElement.html#offset\n\n*/"
@@ -48,6 +51,7 @@
 				"name": "className",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘class’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGStopElement.html#className",
 				"full_description": "/*\n\n\tSVGStopElement\n\n\tclassName\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘class’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGStopElement.html#className\n\n*/"

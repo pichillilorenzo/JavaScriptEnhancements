@@ -7,6 +7,7 @@
 				"name": "height",
 				"return_type": "unsigned long",
 				"description": "The height attribute must return the ImageBitmap object's height, in CSS pixels.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ImageBitmap.html#height",
 				"full_description": "/*\n\n\tImageBitmap\n\n\theight\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe height attribute must return the ImageBitmap object's height, in CSS pixels.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ImageBitmap.html#height\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "width",
 				"return_type": "unsigned long",
 				"description": "The width attribute must return the ImageBitmap object's width, in CSS pixels.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Browser%20-%20ImageBitmap.html#width",
 				"full_description": "/*\n\n\tImageBitmap\n\n\twidth\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tThe width attribute must return the ImageBitmap object's width, in CSS pixels.\n\n\tURL doc:\n\thttp://html5index.org/Browser%20-%20ImageBitmap.html#width\n\n*/"

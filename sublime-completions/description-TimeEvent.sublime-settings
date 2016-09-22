@@ -27,6 +27,7 @@
 					}
 				],
 				"description": "The initTimeEvent method is used to initialize the value of a TimeEvent created through the DocumentEvent interface. This method may only be called before the TimeEvent has been dispatched via the dispatchEvent method, though it may be called multiple times during that phase if necessary.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20TimeEvent.html#initTimeEvent",
 				"full_description": "/*\n\n\tTimeEvent\n\n\tinitTimeEvent ( typeArg: DOMString, viewArg: AbstractView, detailArg: long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe initTimeEvent method is used to initialize the value of a TimeEvent created through the DocumentEvent interface. This method may only be called before the TimeEvent has been dispatched via the dispatchEvent method, though it may be called multiple times during that phase if necessary.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20TimeEvent.html#initTimeEvent\n\n*/"
@@ -38,6 +39,7 @@
 				"name": "detail",
 				"return_type": "long",
 				"description": "Specifies some detail information about the Event, depending on the type of the event. For this event type, indicates the repeat number for the animation.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20TimeEvent.html#detail",
 				"full_description": "/*\n\n\tTimeEvent\n\n\tdetail\n\n\tReturn Type:\n\tlong\n\n\tDescription:\n\tSpecifies some detail information about the Event, depending on the type of the event. For this event type, indicates the repeat number for the animation.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20TimeEvent.html#detail\n\n*/"
@@ -49,6 +51,7 @@
 				"name": "view",
 				"return_type": "AbstractView",
 				"description": "The view attribute identifies the AbstractView [DOM2VIEWS] from which the event was generated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20TimeEvent.html#view",
 				"full_description": "/*\n\n\tTimeEvent\n\n\tview\n\n\tReturn Type:\n\tAbstractView\n\n\tDescription:\n\tThe view attribute identifies the AbstractView [DOM2VIEWS] from which the event was generated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20TimeEvent.html#view\n\n*/"

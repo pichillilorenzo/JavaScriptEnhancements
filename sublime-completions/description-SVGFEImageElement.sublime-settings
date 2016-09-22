@@ -7,6 +7,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#externalResourcesRequired\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#height",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#height\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#width",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#width\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#x",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#x\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#y",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#y\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "xmlspace",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#xmlspace",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\txmlspace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#xmlspace\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "xmllang",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#xmllang",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\txmllang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#xmllang\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "preserveAspectRatio",
 				"return_type": "SVGAnimatedPreserveAspectRatio",
 				"description": "Corresponds to attribute ‘preserveAspectRatio’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#preserveAspectRatio",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\tpreserveAspectRatio\n\n\tReturn Type:\n\tSVGAnimatedPreserveAspectRatio\n\n\tDescription:\n\tCorresponds to attribute ‘preserveAspectRatio’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#preserveAspectRatio\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "href",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#href",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#href\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "result",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘result’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGFEImageElement.html#result",
 				"full_description": "/*\n\n\tSVGFEImageElement\n\n\tresult\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘result’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGFEImageElement.html#result\n\n*/"

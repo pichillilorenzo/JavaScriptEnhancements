@@ -7,6 +7,7 @@
 				"name": "smoothingTimeConstant",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AnalyserNode.html#smoothingTimeConstant",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tsmoothingTimeConstant\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AnalyserNode.html#smoothingTimeConstant\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "frequencyBinCount",
 				"return_type": "unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AnalyserNode.html#frequencyBinCount",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tfrequencyBinCount\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AnalyserNode.html#frequencyBinCount\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "maxDecibels",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AnalyserNode.html#maxDecibels",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tmaxDecibels\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AnalyserNode.html#maxDecibels\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "minDecibels",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AnalyserNode.html#minDecibels",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tminDecibels\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AnalyserNode.html#minDecibels\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "fftSize",
 				"return_type": "unsigned long",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AnalyserNode.html#fftSize",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tfftSize\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AnalyserNode.html#fftSize\n\n*/"
@@ -70,6 +75,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "Typed Arrays - Float32Array.html",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tgetFloatFrequencyData ( array: Float32Array )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\tTyped Arrays - Float32Array.html\n\n*/"
@@ -89,6 +95,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "Typed Arrays - Uint8Array.html",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tgetByteTimeDomainData ( array: Uint8Array )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\tTyped Arrays - Uint8Array.html\n\n*/"
@@ -108,6 +115,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "Typed Arrays - Uint8Array.html",
 				"full_description": "/*\n\n\tAnalyserNode\n\n\tgetByteFrequencyData ( array: Uint8Array )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\tTyped Arrays - Uint8Array.html\n\n*/"

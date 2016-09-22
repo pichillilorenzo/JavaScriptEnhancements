@@ -27,8 +27,9 @@ class DownloadNodeJS(object):
     try :
       request = urllib.request.Request(self.NODE_JS_BINARY_URL)
       request.add_header('User-agent', r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1')
-      with urllib.request.urlopen(request) as response, open(self.NODE_JS_BINARY_TARFILE_FULL_PATH, 'wb') as out_file:
-        shutil.copyfileobj(response, out_file)
+      with urllib.request.urlopen(request) as response :
+        with open(self.NODE_JS_BINARY_TARFILE_FULL_PATH, 'wb') as out_file :
+          shutil.copyfileobj(response, out_file)
     except Exception as err :
       traceback.print_exc()
       self.on_error(err)

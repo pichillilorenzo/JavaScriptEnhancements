@@ -2,12 +2,8 @@
 	"scope": "source.js",
 	"completions": [
 		[
-			"Date.UTC( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): static Date\tDate",
+			"Date.UTC( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): Date\tDate",
 			"Date.UTC(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
-		],
-		[
-			"UTC( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): static Date\tDate",
-			"UTC(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
 		],
 		[
 			"new Date( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): Date\tDate",
@@ -16,6 +12,10 @@
 		[
 			"Date( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): Date\tDate",
 			"Date(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
+		],
+		[
+			"UTC( year: int, month: int, date?: int, hours?: int, minutes?: int, seconds?: int, ms?: int ): Date\tDate",
+			"UTC(${1:year: int}, ${2:month: int}, ${3:date?: int}, ${4:hours?: int}, ${5:minutes?: int}, ${6:seconds?: int}, ${7:ms?: int})"
 		],
 		[
 			"setUTCHours( hour: int, min?: int, sec?: int, ms?: int ): number\tDate",
@@ -66,16 +66,12 @@
 			"setMilliseconds(${1:ms: int})"
 		],
 		[
-			"setUTCDate( date: int ): number\tDate",
-			"setUTCDate(${1:date: int})"
-		],
-		[
 			"setTime( time: number ): number\tDate",
 			"setTime(${1:time: number})"
 		],
 		[
-			"setDate( date: int ): number\tDate",
-			"setDate(${1:date: int})"
+			"setUTCDate( date: int ): number\tDate",
+			"setUTCDate(${1:date: int})"
 		],
 		[
 			"toLocaleTimeString(): string\tDate",
@@ -86,6 +82,10 @@
 			"toLocaleDateString()"
 		],
 		[
+			"setDate( date: int ): number\tDate",
+			"setDate(${1:date: int})"
+		],
+		[
 			"toJSON( key: any ): string\tDate",
 			"toJSON(${1:key: any})"
 		],
@@ -94,20 +94,12 @@
 			"getUTCMilliseconds()"
 		],
 		[
-			"toLocaleString(): string\tDate",
-			"toLocaleString()"
-		],
-		[
 			"getTimezoneOffset(): int\tDate",
 			"getTimezoneOffset()"
 		],
 		[
-			"Date.now(): static Date\tDate",
-			"Date.now()"
-		],
-		[
-			"toTimeString(): string\tDate",
-			"toTimeString()"
+			"toLocaleString(): string\tDate",
+			"toLocaleString()"
 		],
 		[
 			"getMilliseconds(): int\tDate",
@@ -118,20 +110,20 @@
 			"toDateString()"
 		],
 		[
-			"getUTCFullYear(): int\tDate",
-			"getUTCFullYear()"
+			"toTimeString(): string\tDate",
+			"toTimeString()"
 		],
 		[
-			"toISOString(): string\tDate",
-			"toISOString()"
+			"getUTCFullYear(): int\tDate",
+			"getUTCFullYear()"
 		],
 		[
 			"toUTCString(): string\tDate",
 			"toUTCString()"
 		],
 		[
-			"getUTCMinutes(): int\tDate",
-			"getUTCMinutes()"
+			"toISOString(): string\tDate",
+			"toISOString()"
 		],
 		[
 			"getUTCSeconds(): int\tDate",
@@ -142,8 +134,12 @@
 			"getUTCDate()"
 		],
 		[
-			"now(): static Date\tDate",
-			"now()"
+			"getUTCMinutes(): int\tDate",
+			"getUTCMinutes()"
+		],
+		[
+			"getUTCHours(): int\tDate",
+			"getUTCHours()"
 		],
 		[
 			"getFullYear(): int\tDate",
@@ -154,12 +150,16 @@
 			"toString()"
 		],
 		[
-			"getUTCHours(): int\tDate",
-			"getUTCHours()"
-		],
-		[
 			"getUTCMonth(): int\tDate",
 			"getUTCMonth()"
+		],
+		[
+			"getMinutes(): int\tDate",
+			"getMinutes()"
+		],
+		[
+			"valueOf(): number\tDate",
+			"valueOf()"
 		],
 		[
 			"getSeconds(): int\tDate",
@@ -174,20 +174,16 @@
 			"getDate()"
 		],
 		[
-			"getMinutes(): int\tDate",
-			"getMinutes()"
-		],
-		[
-			"valueOf(): number\tDate",
-			"valueOf()"
-		],
-		[
 			"new Date(): Date\tDate",
 			"new Date()"
 		],
 		[
 			"getUTCDay(): int\tDate",
 			"getUTCDay()"
+		],
+		[
+			"Date.now(): Date\tDate",
+			"Date.now()"
 		],
 		[
 			"getMonth(): int\tDate",
@@ -204,6 +200,10 @@
 		[
 			"Date(): Date\tDate",
 			"Date()"
+		],
+		[
+			"now(): Date\tDate",
+			"now()"
 		]
 	]
 }

@@ -7,6 +7,7 @@
 				"name": "port1",
 				"return_type": "MessagePort",
 				"description": "The port1 and port2 attributes must return the values they were assigned when the MessageChannel object was created.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageChannel.html#port1",
 				"full_description": "/*\n\n\tMessageChannel\n\n\tport1\n\n\tReturn Type:\n\tMessagePort\n\n\tDescription:\n\tThe port1 and port2 attributes must return the values they were assigned when the MessageChannel object was created.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageChannel.html#port1\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "port2",
 				"return_type": "MessagePort",
 				"description": "The port1 and port2 attributes must return the values they were assigned when the MessageChannel object was created.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageChannel.html#port2",
 				"full_description": "/*\n\n\tMessageChannel\n\n\tport2\n\n\tReturn Type:\n\tMessagePort\n\n\tDescription:\n\tThe port1 and port2 attributes must return the values they were assigned when the MessageChannel object was created.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Sockets%20and%20Messaging%20-%20MessageChannel.html#port2\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "languages",
 				"return_type": "DOMString[]",
 				"description": "Must return a read only array of valid BCP 47 language tags representing either one or more plausible languages, or the user's preferred languages, ordered by preference with the most preferred language first. The same object must be returned until the user agent needs to return different values, or values in a different order.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#languages",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tlanguages\n\n\tReturn Type:\n\tDOMString[]\n\n\tDescription:\n\tMust return a read only array of valid BCP 47 language tags representing either one or more plausible languages, or the user's preferred languages, ordered by preference with the most preferred language first. The same object must be returned until the user agent needs to return different values, or values in a different order.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#languages\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "onLine",
 				"return_type": "boolean",
 				"description": "The navigator.onLine attribute must return false if the user agent will not contact the network when the user follows links or when a script requests a remote page (or knows that such an attempt would fail), and must return true otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#onLine",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tonLine\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe navigator.onLine attribute must return false if the user agent will not contact the network when the user follows links or when a script requests a remote page (or knows that such an attempt would fail), and must return true otherwise.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#onLine\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "platform",
 				"return_type": "DOMString",
 				"description": "Must return either the empty string or a string representing the platform on which the browser is executing, e.g. \"MacIntel\", \"Win32\", \"FreeBSD i386\", \"WebTV OS\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#platform",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tplatform\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return either the empty string or a string representing the platform on which the browser is executing, e.g. \"MacIntel\", \"Win32\", \"FreeBSD i386\", \"WebTV OS\".\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#platform\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "appVersion",
 				"return_type": "DOMString",
 				"description": "Must return either the string \"4.0\" or a string representing the version of the browser in detail, e.g. \"1.0 (VMS; en-US) Mellblomenator/9000\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#appVersion",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tappVersion\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return either the string \"4.0\" or a string representing the version of the browser in detail, e.g. \"1.0 (VMS; en-US) Mellblomenator/9000\".\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#appVersion\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "userAgent",
 				"return_type": "DOMString",
 				"description": "Must return the string used for the value of the \"User-Agent\" header in HTTP requests, or the empty string if no such header is ever sent.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#userAgent",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tuserAgent\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return the string used for the value of the \"User-Agent\" header in HTTP requests, or the empty string if no such header is ever sent.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#userAgent\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "language",
 				"return_type": "DOMString",
 				"description": "Must return a valid BCP 47 language tag representing either a plausible language or the user's most preferred language. [BCP47]",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#language",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tlanguage\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return a valid BCP 47 language tag representing either a plausible language or the user's most preferred language. [BCP47]\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#language\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "appName",
 				"return_type": "DOMString",
 				"description": "Must return either the string \"Netscape\" or the full name of the browser, e.g. \"Mellblom Browsernator\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#appName",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tappName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return either the string \"Netscape\" or the full name of the browser, e.g. \"Mellblom Browsernator\".\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#appName\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "appCodeName",
 				"return_type": "DOMString",
 				"description": "Must return the string \"Mozilla\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#appCodeName",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tappCodeName\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return the string \"Mozilla\".\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#appCodeName\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "product",
 				"return_type": "DOMString",
 				"description": "Must return the string \"Gecko\".",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#product",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\tproduct\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tMust return the string \"Gecko\".\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#product\n\n*/"
@@ -107,6 +116,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "Must return false.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#taintEnabled",
 				"full_description": "/*\n\n\tWorkerNavigator\n\n\ttaintEnabled ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tMust return false.\n\n\tURL doc:\n\thttp://html5index.org/Web%20Workers%20-%20WorkerNavigator.html#taintEnabled\n\n*/"

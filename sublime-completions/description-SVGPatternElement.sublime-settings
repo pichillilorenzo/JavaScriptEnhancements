@@ -15,6 +15,7 @@
 					}
 				],
 				"description": "Returns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#getPresentationAttribute",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tgetPresentationAttribute ( name: DOMString )\n\n\tReturn Type:\n\tCSSValue\n\n\tDescription:\n\tReturns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#getPresentationAttribute\n\n*/"
@@ -26,6 +27,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#externalResourcesRequired\n\n*/"
@@ -45,6 +47,7 @@
 					}
 				],
 				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#hasExtension",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#hasExtension\n\n*/"
@@ -56,6 +59,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#height",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#height\n\n*/"
@@ -67,6 +71,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#width",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#width\n\n*/"
@@ -78,6 +83,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#y",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#y\n\n*/"
@@ -89,6 +95,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#x",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#x\n\n*/"
@@ -100,6 +107,7 @@
 				"name": "xmlspace",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#xmlspace",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\txmlspace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#xmlspace\n\n*/"
@@ -111,6 +119,7 @@
 				"name": "SVG_UNIT_TYPE_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#SVG_UNIT_TYPE_UNKNOWN",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tSVG_UNIT_TYPE_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#SVG_UNIT_TYPE_UNKNOWN\n\n*/"
@@ -122,6 +131,7 @@
 				"name": "xmllang",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#xmllang",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\txmllang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#xmllang\n\n*/"
@@ -133,6 +143,7 @@
 				"name": "style",
 				"return_type": "CSSStyleDeclaration",
 				"description": "Corresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#style",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\tCorresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#style\n\n*/"
@@ -144,6 +155,7 @@
 				"name": "patternContentUnits",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘patternContentUnits’ on the given ‘pattern’ element. Takes one of the constants defined in SVGUnitTypes.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#patternContentUnits",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tpatternContentUnits\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘patternContentUnits’ on the given ‘pattern’ element. Takes one of the constants defined in SVGUnitTypes.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#patternContentUnits\n\n*/"
@@ -155,6 +167,7 @@
 				"name": "patternUnits",
 				"return_type": "SVGAnimatedEnumeration",
 				"description": "Corresponds to attribute ‘patternUnits’ on the given ‘pattern’ element. Takes one of the constants defined in SVGUnitTypes.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#patternUnits",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tpatternUnits\n\n\tReturn Type:\n\tSVGAnimatedEnumeration\n\n\tDescription:\n\tCorresponds to attribute ‘patternUnits’ on the given ‘pattern’ element. Takes one of the constants defined in SVGUnitTypes.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#patternUnits\n\n*/"
@@ -166,6 +179,7 @@
 				"name": "preserveAspectRatio",
 				"return_type": "SVGAnimatedPreserveAspectRatio",
 				"description": "Corresponds to attribute ‘preserveAspectRatio’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#preserveAspectRatio",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tpreserveAspectRatio\n\n\tReturn Type:\n\tSVGAnimatedPreserveAspectRatio\n\n\tDescription:\n\tCorresponds to attribute ‘preserveAspectRatio’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#preserveAspectRatio\n\n*/"
@@ -177,6 +191,7 @@
 				"name": "patternTransform",
 				"return_type": "SVGAnimatedTransformList",
 				"description": "Corresponds to attribute ‘patternTransform’ on the given ‘pattern’ element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#patternTransform",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tpatternTransform\n\n\tReturn Type:\n\tSVGAnimatedTransformList\n\n\tDescription:\n\tCorresponds to attribute ‘patternTransform’ on the given ‘pattern’ element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#patternTransform\n\n*/"
@@ -188,6 +203,7 @@
 				"name": "SVG_UNIT_TYPE_OBJECTBOUNDINGBOX",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'objectBoundingBox'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#SVG_UNIT_TYPE_OBJECTBOUNDINGBOX",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tSVG_UNIT_TYPE_OBJECTBOUNDINGBOX\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'objectBoundingBox'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#SVG_UNIT_TYPE_OBJECTBOUNDINGBOX\n\n*/"
@@ -199,6 +215,7 @@
 				"name": "requiredExtensions",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#requiredExtensions",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#requiredExtensions\n\n*/"
@@ -210,6 +227,7 @@
 				"name": "SVG_UNIT_TYPE_USERSPACEONUSE",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'userSpaceOnUse'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#SVG_UNIT_TYPE_USERSPACEONUSE",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tSVG_UNIT_TYPE_USERSPACEONUSE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'userSpaceOnUse'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#SVG_UNIT_TYPE_USERSPACEONUSE\n\n*/"
@@ -221,6 +239,7 @@
 				"name": "requiredFeatures",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#requiredFeatures",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#requiredFeatures\n\n*/"
@@ -232,6 +251,7 @@
 				"name": "systemLanguage",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#systemLanguage",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#systemLanguage\n\n*/"
@@ -243,6 +263,7 @@
 				"name": "className",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘class’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#className",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tclassName\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘class’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#className\n\n*/"
@@ -254,6 +275,7 @@
 				"name": "viewBox",
 				"return_type": "SVGAnimatedRect",
 				"description": "Corresponds to attribute ‘viewBox’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#viewBox",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\tviewBox\n\n\tReturn Type:\n\tSVGAnimatedRect\n\n\tDescription:\n\tCorresponds to attribute ‘viewBox’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#viewBox\n\n*/"
@@ -265,6 +287,7 @@
 				"name": "href",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGPatternElement.html#href",
 				"full_description": "/*\n\n\tSVGPatternElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGPatternElement.html#href\n\n*/"

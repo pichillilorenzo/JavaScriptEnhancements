@@ -7,6 +7,7 @@
 				"name": "dateTime",
 				"return_type": "DOMString",
 				"description": "The cite IDL attribute must reflect the element's cite content attribute. The dateTime IDL attribute must reflect the element's datetime content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLModElement.html#dateTime",
 				"full_description": "/*\n\n\tHTMLModElement\n\n\tdateTime\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cite IDL attribute must reflect the element's cite content attribute. The dateTime IDL attribute must reflect the element's datetime content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLModElement.html#dateTime\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "cite",
 				"return_type": "DOMString",
 				"description": "The cite IDL attribute must reflect the element's cite content attribute. The dateTime IDL attribute must reflect the element's datetime content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLModElement.html#cite",
 				"full_description": "/*\n\n\tHTMLModElement\n\n\tcite\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe cite IDL attribute must reflect the element's cite content attribute. The dateTime IDL attribute must reflect the element's datetime content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLModElement.html#cite\n\n*/"

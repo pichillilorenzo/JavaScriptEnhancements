@@ -7,6 +7,7 @@
 				"name": "reason",
 				"return_type": "AutocompleteErrorReason",
 				"description": "The reason attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents the context information for the event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20AutocompleteErrorEvent.html#reason",
 				"full_description": "/*\n\n\tAutocompleteErrorEvent\n\n\treason\n\n\tReturn Type:\n\tAutocompleteErrorReason\n\n\tDescription:\n\tThe reason attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to the empty string. It represents the context information for the event.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20AutocompleteErrorEvent.html#reason\n\n*/"

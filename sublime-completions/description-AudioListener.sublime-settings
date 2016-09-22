@@ -45,6 +45,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioListener.html#setOrientation",
 				"full_description": "/*\n\n\tAudioListener\n\n\tsetOrientation ( x: double, y: double, z: double, xUp: double, yUp: double, zUp: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioListener.html#setOrientation\n\n*/"
@@ -76,6 +77,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioListener.html#setPosition",
 				"full_description": "/*\n\n\tAudioListener\n\n\tsetPosition ( x: double, y: double, z: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioListener.html#setPosition\n\n*/"
@@ -107,6 +109,7 @@
 					}
 				],
 				"description": "",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioListener.html#setVelocity",
 				"full_description": "/*\n\n\tAudioListener\n\n\tsetVelocity ( x: double, y: double, z: double )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioListener.html#setVelocity\n\n*/"
@@ -118,6 +121,7 @@
 				"name": "dopplerFactor",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioListener.html#dopplerFactor",
 				"full_description": "/*\n\n\tAudioListener\n\n\tdopplerFactor\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioListener.html#dopplerFactor\n\n*/"
@@ -129,6 +133,7 @@
 				"name": "speedOfSound",
 				"return_type": "double",
 				"description": "",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Web%20Audio%20-%20AudioListener.html#speedOfSound",
 				"full_description": "/*\n\n\tAudioListener\n\n\tspeedOfSound\n\n\tReturn Type:\n\tdouble\n\n\tDescription:\n\t\n\n\tURL doc:\n\thttp://html5index.org/Web%20Audio%20-%20AudioListener.html#speedOfSound\n\n*/"

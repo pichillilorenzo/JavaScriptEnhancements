@@ -7,6 +7,7 @@
 				"name": "currentView",
 				"return_type": "SVGViewSpec",
 				"description": "The definition of the initial view (i.e., before magnification and panning) of the current innermost SVG document fragment. The meaning depends on the situation: If the initial view was a \"standard\" view, then: the values for viewBox, preserveAspectRatio and zoomAndPan within currentView will match the values for the corresponding DOM attributes that are on SVGSVGElement directlythe values for transform and viewTarget within currentView will be null If the initial view was a link into a ‘view’ element, then: the values for viewBox, preserveAspectRatio and zoomAndPan within currentView will correspond to the corresponding attributes for the given ‘view’ elementthe values for transform and viewTarget within currentView will be null If the initial view was a link into another element (i.e., other than a ‘view’), then: the values for viewBox, preserveAspectRatio and zoomAndPan within currentView will match the values for the corresponding DOM attributes that are on SVGSVGElement directly for the closest ancestor ‘svg’ elementthe values for transform within currentView will be nullthe viewTarget within currentView will represent the target of the link If the initial view was a link into the SVG document fragment using an SVG view specification fragment identifier (i.e., #svgView(...)), then: the values for viewBox, preserveAspectRatio, zoomAndPan, transform and viewTarget within currentView will correspond to the values from the SVG view specification fragment identifier The object itself and its contents are both read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#currentView",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcurrentView\n\n\tReturn Type:\n\tSVGViewSpec\n\n\tDescription:\n\tThe definition of the initial view (i.e., before magnification and panning) of the current innermost SVG document fragment. The meaning depends on the situation: If the initial view was a \"standard\" view, then: the values for viewBox, preserveAspectRatio and zoomAndPan within currentView will match the values for the corresponding DOM attributes that are on SVGSVGElement directlythe values for transform and viewTarget within currentView will be null If the initial view was a link into a ‘view’ element, then: the values for viewBox, preserveAspectRatio and zoomAndPan within currentView will correspond to the corresponding attributes for the given ‘view’ elementthe values for transform and viewTarget within currentView will be null If the initial view was a link into another element (i.e., other than a ‘view’), then: the values for viewBox, preserveAspectRatio and zoomAndPan within currentView will match the values for the corresponding DOM attributes that are on SVGSVGElement directly for the closest ancestor ‘svg’ elementthe values for transform within currentView will be nullthe viewTarget within currentView will represent the target of the link If the initial view was a link into the SVG document fragment using an SVG view specification fragment identifier (i.e., #svgView(...)), then: the values for viewBox, preserveAspectRatio, zoomAndPan, transform and viewTarget within currentView will correspond to the values from the SVG view specification fragment identifier The object itself and its contents are both read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#currentView\n\n*/"
@@ -26,6 +27,7 @@
 					}
 				],
 				"description": "Adjusts the clock for this SVG document fragment, establishing a new current time. If setCurrentTime is called before the document timeline has begun (for example, by script running in a ‘script’ element before the document's SVGLoad event is dispatched), then the value of seconds in the last invocation of the method gives the time that the document will seek to once the document timeline has begun.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#setCurrentTime",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tsetCurrentTime ( seconds: float )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tAdjusts the clock for this SVG document fragment, establishing a new current time. If setCurrentTime is called before the document timeline has begun (for example, by script running in a ‘script’ element before the document's SVGLoad event is dispatched), then the value of seconds in the last invocation of the method gives the time that the document will seek to once the document timeline has begun.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#setCurrentTime\n\n*/"
@@ -38,6 +40,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Returns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the parent user agent's notice of a \"pixel\". For display devices, ideally this represents a physical screen pixel. For other devices or environments where physical pixel sizes are not known, then an algorithm similar to the CSS2 definition of a \"pixel\" can be used instead.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getScreenCTM",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetScreenCTM ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the parent user agent's notice of a \"pixel\". For display devices, ideally this represents a physical screen pixel. For other devices or environments where physical pixel sizes are not known, then an algorithm similar to the CSS2 definition of a \"pixel\" can be used instead.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getScreenCTM\n\n*/"
@@ -57,6 +60,7 @@
 					}
 				],
 				"description": "Returns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getPresentationAttribute",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetPresentationAttribute ( name: DOMString )\n\n\tReturn Type:\n\tCSSValue\n\n\tDescription:\n\tReturns the base (i.e., static) value of a given presentation attribute as an object of type CSSValue. The returned object is live; changes to the objects represent immediate changes to the objects to which the CSSValue is attached. Note: The getPresentationAttribute method is deprecated, and may be dropped from future versions of the SVG specification.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getPresentationAttribute\n\n*/"
@@ -68,6 +72,7 @@
 				"name": "currentScale",
 				"return_type": "float",
 				"description": "On an outermost svg element, this attribute indicates the current scale factor relative to the initial view to take into account user magnification and panning operations, as described under Magnification and panning. DOM attributes currentScale and currentTranslate are equivalent to the 2x3 matrix [a b c d e f] = [currentScale 0 0 currentScale currentTranslate.x currentTranslate.y].",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#currentScale",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcurrentScale\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tOn an outermost svg element, this attribute indicates the current scale factor relative to the initial view to take into account user magnification and panning operations, as described under Magnification and panning. DOM attributes currentScale and currentTranslate are equivalent to the 2x3 matrix [a b c d e f] = [currentScale 0 0 currentScale currentTranslate.x currentTranslate.y].\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#currentScale\n\n*/"
@@ -87,6 +92,7 @@
 					}
 				],
 				"description": "Cancels a specified suspendRedraw() by providing a unique suspend handle ID that was returned by a previous suspendRedraw() call. Parametersunsigned long suspendHandleID A number which acts as a unique identifier for the desired suspendRedraw() call. The number supplied must be a value returned from a previous call to suspendRedraw().",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#unsuspendRedraw",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tunsuspendRedraw ( suspendHandleID: unsigned long )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCancels a specified suspendRedraw() by providing a unique suspend handle ID that was returned by a previous suspendRedraw() call. Parametersunsigned long suspendHandleID A number which acts as a unique identifier for the desired suspendRedraw() call. The number supplied must be a value returned from a previous call to suspendRedraw().\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#unsuspendRedraw\n\n*/"
@@ -98,6 +104,7 @@
 				"name": "pixelUnitToMillimeterX",
 				"return_type": "float",
 				"description": "Size of a pixel units (as defined by CSS2) along the x-axis of the viewport, which represents a unit somewhere in the range of 70dpi to 120dpi, and, on systems that support this, might actually match the characteristics of the target medium. On systems where it is impossible to know the size of a pixel, a suitable default pixel size is provided.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#pixelUnitToMillimeterX",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tpixelUnitToMillimeterX\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tSize of a pixel units (as defined by CSS2) along the x-axis of the viewport, which represents a unit somewhere in the range of 70dpi to 120dpi, and, on systems that support this, might actually match the characteristics of the target medium. On systems where it is impossible to know the size of a pixel, a suitable default pixel size is provided.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#pixelUnitToMillimeterX\n\n*/"
@@ -110,6 +117,7 @@
 				"return_type": "SVGRect",
 				"parameters": [],
 				"description": "Returns the tight bounding box in current user space (i.e., after application of the ‘transform’ attribute, if any) on the geometry of all contained graphics elements, exclusive of stroking, clipping, masking and filter effects). Note that getBBox must return the actual bounding box at the time the method was called, even in case the element has not yet been rendered.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getBBox",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetBBox ()\n\n\tReturn Type:\n\tSVGRect\n\n\tDescription:\n\tReturns the tight bounding box in current user space (i.e., after application of the ‘transform’ attribute, if any) on the geometry of all contained graphics elements, exclusive of stroking, clipping, masking and filter effects). Note that getBBox must return the actual bounding box at the time the method was called, even in case the element has not yet been rendered.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getBBox\n\n*/"
@@ -121,6 +129,7 @@
 				"name": "useCurrentView",
 				"return_type": "boolean",
 				"description": "The initial view (i.e., before magnification and panning) of the current innermost SVG document fragment can be either the \"standard\" view (i.e., based on attributes on the ‘svg’ element such as ‘viewBox’) or to a \"custom\" view (i.e., a hyperlink into a particular ‘view’ or other element - see Linking into SVG content: IRI fragments and SVG views).",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#useCurrentView",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tuseCurrentView\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe initial view (i.e., before magnification and panning) of the current innermost SVG document fragment can be either the \"standard\" view (i.e., based on attributes on the ‘svg’ element such as ‘viewBox’) or to a \"custom\" view (i.e., a hyperlink into a particular ‘view’ or other element - see Linking into SVG content: IRI fragments and SVG views).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#useCurrentView\n\n*/"
@@ -140,6 +149,7 @@
 					}
 				],
 				"description": "Takes a time-out value which indicates that redraw shall not occur until: the corresponding unsuspendRedraw() call has been made,an unsuspendRedrawAll() call has been made, orits timer has timed out. In environments that do not support interactivity (e.g., print media), then redraw shall not be suspended.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#suspendRedraw",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tsuspendRedraw ( maxWaitMilliseconds: unsigned long )\n\n\tReturn Type:\n\tunsigned long\n\n\tDescription:\n\tTakes a time-out value which indicates that redraw shall not occur until: the corresponding unsuspendRedraw() call has been made,an unsuspendRedrawAll() call has been made, orits timer has timed out. In environments that do not support interactivity (e.g., print media), then redraw shall not be suspended.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#suspendRedraw\n\n*/"
@@ -165,6 +175,7 @@
 					}
 				],
 				"description": "Returns the list of graphics elements whose rendered content is entirely contained within the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getEnclosureList",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetEnclosureList ( rect: SVGRect, referenceElement: SVGElement )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tReturns the list of graphics elements whose rendered content is entirely contained within the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getEnclosureList\n\n*/"
@@ -184,6 +195,7 @@
 					}
 				],
 				"description": "Searches this SVG document fragment (i.e., the search is restricted to a subset of the document tree) for an Element whose id is given by elementId. If an Element is found, that Element is returned. If no such element exists, returns null. Behavior is not defined if more than one element has this id.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getElementById",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetElementById ( elementId: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tSearches this SVG document fragment (i.e., the search is restricted to a subset of the document tree) for an Element whose id is given by elementId. If an Element is found, that Element is returned. If no such element exists, returns null. Behavior is not defined if more than one element has this id.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getElementById\n\n*/"
@@ -209,6 +221,7 @@
 					}
 				],
 				"description": "Returns the list of graphics elements whose rendered content intersects the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getIntersectionList",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetIntersectionList ( rect: SVGRect, referenceElement: SVGElement )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tReturns the list of graphics elements whose rendered content intersects the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getIntersectionList\n\n*/"
@@ -220,6 +233,7 @@
 				"name": "screenPixelToMillimeterX",
 				"return_type": "float",
 				"description": "User interface (UI) events in DOM Level 2 indicate the screen positions at which the given UI event occurred. When the user agent actually knows the physical size of a \"screen unit\", this attribute will express that information; otherwise, user agents will provide a suitable default value such as .28mm.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#screenPixelToMillimeterX",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tscreenPixelToMillimeterX\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tUser interface (UI) events in DOM Level 2 indicate the screen positions at which the given UI event occurred. When the user agent actually knows the physical size of a \"screen unit\", this attribute will express that information; otherwise, user agents will provide a suitable default value such as .28mm.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#screenPixelToMillimeterX\n\n*/"
@@ -245,6 +259,7 @@
 					}
 				],
 				"description": "Returns true if the rendered content of the given element is entirely contained within the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#checkEnclosure",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcheckEnclosure ( element: SVGElement, rect: SVGRect )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the rendered content of the given element is entirely contained within the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#checkEnclosure\n\n*/"
@@ -256,6 +271,7 @@
 				"name": "viewport",
 				"return_type": "SVGRect",
 				"description": "The position and size of the viewport (implicit or explicit) that corresponds to this ‘svg’ element. When the user agent is actually rendering the content, then the position and size values represent the actual values when rendering. The position and size values are unitless values in the coordinate system of the parent element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#viewport",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tviewport\n\n\tReturn Type:\n\tSVGRect\n\n\tDescription:\n\tThe position and size of the viewport (implicit or explicit) that corresponds to this ‘svg’ element. When the user agent is actually rendering the content, then the position and size values represent the actual values when rendering. The position and size values are unitless values in the coordinate system of the parent element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#viewport\n\n*/"
@@ -275,6 +291,7 @@
 					}
 				],
 				"description": "Creates an SVGTransform object outside of any document trees. The object is initialized to the given matrix transform (i.e., SVG_TRANSFORM_MATRIX). The values from the parameter matrix are copied, the matrix parameter is not adopted as SVGTransform::matrix.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGTransformFromMatrix",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGTransformFromMatrix ( matrix: SVGMatrix )\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tCreates an SVGTransform object outside of any document trees. The object is initialized to the given matrix transform (i.e., SVG_TRANSFORM_MATRIX). The values from the parameter matrix are copied, the matrix parameter is not adopted as SVGTransform::matrix.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGTransformFromMatrix\n\n*/"
@@ -300,6 +317,7 @@
 					}
 				],
 				"description": "Returns true if the rendered content of the given element intersects the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#checkIntersection",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcheckIntersection ( element: SVGElement, rect: SVGRect )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the rendered content of the given element intersects the supplied rectangle. Each candidate graphics element is to be considered a match only if the same graphics element can be a target of pointer events as defined in ‘pointer-events’ processing.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#checkIntersection\n\n*/"
@@ -311,6 +329,7 @@
 				"name": "externalResourcesRequired",
 				"return_type": "SVGAnimatedBoolean",
 				"description": "Corresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#externalResourcesRequired",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\texternalResourcesRequired\n\n\tReturn Type:\n\tSVGAnimatedBoolean\n\n\tDescription:\n\tCorresponds to attribute ‘externalResourcesRequired’ on the given element. Note that the SVG DOM defines the attribute ‘externalResourcesRequired’ as being of type SVGAnimatedBoolean, whereas the SVG language definition says that ‘externalResourcesRequired’ is not animated.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#externalResourcesRequired\n\n*/"
@@ -323,6 +342,7 @@
 				"return_type": "float",
 				"parameters": [],
 				"description": "Returns the current time in seconds relative to the start time for the current SVG document fragment. If getCurrentTime is called before the document timeline has begun (for example, by script running in a ‘script’ element before the document's SVGLoad event is dispatched), then 0 is returned.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getCurrentTime",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetCurrentTime ()\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tReturns the current time in seconds relative to the start time for the current SVG document fragment. If getCurrentTime is called before the document timeline has begun (for example, by script running in a ‘script’ element before the document's SVGLoad event is dispatched), then 0 is returned.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getCurrentTime\n\n*/"
@@ -342,6 +362,7 @@
 					}
 				],
 				"description": "Returns the transformation matrix from the user coordinate system on the current element (after application of the ‘transform’ attribute, if any) to the user coordinate system on parameter element (after application of its ‘transform’ attribute, if any).",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getTransformToElement",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetTransformToElement ( element: SVGElement )\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the transformation matrix from the user coordinate system on the current element (after application of the ‘transform’ attribute, if any) to the user coordinate system on parameter element (after application of its ‘transform’ attribute, if any).\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getTransformToElement\n\n*/"
@@ -353,6 +374,7 @@
 				"name": "zoomAndPan",
 				"return_type": "unsigned short",
 				"description": "Corresponds to attribute ‘zoomAndPan’ on the given element. The value must be one of the SVG_ZOOMANDPAN_* constants defined on this interface. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#zoomAndPan",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tzoomAndPan\n\n\tReturn Type:\n\tunsigned short\n\n\tDescription:\n\tCorresponds to attribute ‘zoomAndPan’ on the given element. The value must be one of the SVG_ZOOMANDPAN_* constants defined on this interface. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#zoomAndPan\n\n*/"
@@ -372,6 +394,7 @@
 					}
 				],
 				"description": "Returns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#hasExtension",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\thasExtension ( extension: DOMString )\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if the user agent supports the given extension, specified by a URI. ParametersDOMString extension The name of the extension, expressed as a URI. Returns True or false, depending on whether the given extension is supported.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#hasExtension\n\n*/"
@@ -384,6 +407,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Suspends (i.e., pauses) all currently running animations that are defined within the SVG document fragment corresponding to this ‘svg’ element, causing the animation clock corresponding to this document fragment to stand still until it is unpaused.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#pauseAnimations",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tpauseAnimations ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tSuspends (i.e., pauses) all currently running animations that are defined within the SVG document fragment corresponding to this ‘svg’ element, causing the animation clock corresponding to this document fragment to stand still until it is unpaused.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#pauseAnimations\n\n*/"
@@ -395,6 +419,7 @@
 				"name": "currentTranslate",
 				"return_type": "SVGPoint",
 				"description": "On an outermost svg element, the corresponding translation factor that takes into account user \"magnification\". When accessed on an ‘svg’ element that is not an outermost svg element, it is undefined what behavior this attribute has.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#currentTranslate",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcurrentTranslate\n\n\tReturn Type:\n\tSVGPoint\n\n\tDescription:\n\tOn an outermost svg element, the corresponding translation factor that takes into account user \"magnification\". When accessed on an ‘svg’ element that is not an outermost svg element, it is undefined what behavior this attribute has.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#currentTranslate\n\n*/"
@@ -407,6 +432,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Returns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the viewport coordinate system for the nearestViewportElement. Returns An SVGMatrix object that defines the CTM.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#getCTM",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tgetCTM ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tReturns the transformation matrix from current user units (i.e., after application of the ‘transform’ attribute, if any) to the viewport coordinate system for the nearestViewportElement. Returns An SVGMatrix object that defines the CTM.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#getCTM\n\n*/"
@@ -418,6 +444,7 @@
 				"name": "height",
 				"return_type": "SVGAnimatedLength",
 				"description": "The height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#height",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\theight\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe height coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#height\n\n*/"
@@ -429,6 +456,7 @@
 				"name": "width",
 				"return_type": "SVGAnimatedLength",
 				"description": "The width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#width",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\twidth\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe width coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#width\n\n*/"
@@ -440,6 +468,7 @@
 				"name": "SVG_ZOOMANDPAN_UNKNOWN",
 				"return_type": "const unsigned short",
 				"description": "The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#SVG_ZOOMANDPAN_UNKNOWN",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tSVG_ZOOMANDPAN_UNKNOWN\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tThe enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#SVG_ZOOMANDPAN_UNKNOWN\n\n*/"
@@ -451,6 +480,7 @@
 				"name": "contentScriptType",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘contentScriptType’ on the given ‘svg’ element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#contentScriptType",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcontentScriptType\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘contentScriptType’ on the given ‘svg’ element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#contentScriptType\n\n*/"
@@ -463,6 +493,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Cancels all currently active suspendRedraw() method calls. This method is most useful at the very end of a set of SVG DOM calls to ensure that all pending suspendRedraw() method calls have been cancelled.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#unsuspendRedrawAll",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tunsuspendRedrawAll ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tCancels all currently active suspendRedraw() method calls. This method is most useful at the very end of a set of SVG DOM calls to ensure that all pending suspendRedraw() method calls have been cancelled.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#unsuspendRedrawAll\n\n*/"
@@ -474,6 +505,7 @@
 				"name": "contentStyleType",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘contentStyleType’ on the given ‘svg’ element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#contentStyleType",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcontentStyleType\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘contentStyleType’ on the given ‘svg’ element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#contentStyleType\n\n*/"
@@ -485,6 +517,7 @@
 				"name": "x",
 				"return_type": "SVGAnimatedLength",
 				"description": "The x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#x",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tx\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe x coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#x\n\n*/"
@@ -496,6 +529,7 @@
 				"name": "y",
 				"return_type": "SVGAnimatedLength",
 				"description": "The y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#y",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\ty\n\n\tReturn Type:\n\tSVGAnimatedLength\n\n\tDescription:\n\tThe y coordinate of the rectangle, in user units. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised when the rectangle corresponds to a read only attribute or when the object itself is read only.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#y\n\n*/"
@@ -508,6 +542,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Unsuspends (i.e., unpauses) currently running animations that are defined within the SVG document fragment, causing the animation clock to continue from the time at which it was suspended.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#unpauseAnimations",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tunpauseAnimations ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tUnsuspends (i.e., unpauses) currently running animations that are defined within the SVG document fragment, causing the animation clock to continue from the time at which it was suspended.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#unpauseAnimations\n\n*/"
@@ -520,6 +555,7 @@
 				"return_type": "SVGTransform",
 				"parameters": [],
 				"description": "Creates an SVGTransform object outside of any document trees. The object is initialized to an identity matrix transform (SVG_TRANSFORM_MATRIX). Returns An SVGTransform object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGTransform",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGTransform ()\n\n\tReturn Type:\n\tSVGTransform\n\n\tDescription:\n\tCreates an SVGTransform object outside of any document trees. The object is initialized to an identity matrix transform (SVG_TRANSFORM_MATRIX). Returns An SVGTransform object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGTransform\n\n*/"
@@ -531,6 +567,7 @@
 				"name": "xmlspace",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#xmlspace",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\txmlspace\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:space’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#xmlspace\n\n*/"
@@ -542,6 +579,7 @@
 				"name": "xmllang",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#xmllang",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\txmllang\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘xml:lang’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#xmllang\n\n*/"
@@ -553,6 +591,7 @@
 				"name": "nearestViewportElement",
 				"return_type": "SVGElement",
 				"description": "The element which established the current viewport. Often, the nearest ancestor ‘svg’ element. Null if the current element is the outermost svg element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#nearestViewportElement",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tnearestViewportElement\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tThe element which established the current viewport. Often, the nearest ancestor ‘svg’ element. Null if the current element is the outermost svg element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#nearestViewportElement\n\n*/"
@@ -565,6 +604,7 @@
 				"return_type": "SVGPoint",
 				"parameters": [],
 				"description": "Creates an SVGPoint object outside of any document trees. The object is initialized to the point (0,0) in the user coordinate system. Returns An SVGPoint object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGPoint",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGPoint ()\n\n\tReturn Type:\n\tSVGPoint\n\n\tDescription:\n\tCreates an SVGPoint object outside of any document trees. The object is initialized to the point (0,0) in the user coordinate system. Returns An SVGPoint object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGPoint\n\n*/"
@@ -576,6 +616,7 @@
 				"name": "style",
 				"return_type": "CSSStyleDeclaration",
 				"description": "Corresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#style",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tstyle\n\n\tReturn Type:\n\tCSSStyleDeclaration\n\n\tDescription:\n\tCorresponds to attribute ‘style’ on the given element. If the user agent does not support styling with CSS, then this attribute must always have the value of null.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#style\n\n*/"
@@ -588,6 +629,7 @@
 				"return_type": "SVGRect",
 				"parameters": [],
 				"description": "Creates an SVGRect object outside of any document trees. The object is initialized such that all values are set to 0 user units. Returns An SVGRect object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGRect",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGRect ()\n\n\tReturn Type:\n\tSVGRect\n\n\tDescription:\n\tCreates an SVGRect object outside of any document trees. The object is initialized such that all values are set to 0 user units. Returns An SVGRect object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGRect\n\n*/"
@@ -600,6 +642,7 @@
 				"return_type": "boolean",
 				"parameters": [],
 				"description": "Returns true if this SVG document fragment is in a paused state. Returns Boolean indicating whether this SVG document fragment is in a paused state.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#animationsPaused",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tanimationsPaused ()\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tReturns true if this SVG document fragment is in a paused state. Returns Boolean indicating whether this SVG document fragment is in a paused state.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#animationsPaused\n\n*/"
@@ -612,6 +655,7 @@
 				"return_type": "SVGAngle",
 				"parameters": [],
 				"description": "Creates an SVGAngle object outside of any document trees. The object is initialized to the value 0 degrees (unitless). Returns An SVGAngle object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGAngle",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGAngle ()\n\n\tReturn Type:\n\tSVGAngle\n\n\tDescription:\n\tCreates an SVGAngle object outside of any document trees. The object is initialized to the value 0 degrees (unitless). Returns An SVGAngle object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGAngle\n\n*/"
@@ -624,6 +668,7 @@
 				"return_type": "SVGLength",
 				"parameters": [],
 				"description": "Creates an SVGLength object outside of any document trees. The object is initialized to the value of 0 user units. Returns An SVGLength object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGLength",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGLength ()\n\n\tReturn Type:\n\tSVGLength\n\n\tDescription:\n\tCreates an SVGLength object outside of any document trees. The object is initialized to the value of 0 user units. Returns An SVGLength object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGLength\n\n*/"
@@ -636,6 +681,7 @@
 				"return_type": "SVGMatrix",
 				"parameters": [],
 				"description": "Creates an SVGMatrix object outside of any document trees. The object is initialized to the identity matrix. Returns An SVGMatrix object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGMatrix",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGMatrix ()\n\n\tReturn Type:\n\tSVGMatrix\n\n\tDescription:\n\tCreates an SVGMatrix object outside of any document trees. The object is initialized to the identity matrix. Returns An SVGMatrix object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGMatrix\n\n*/"
@@ -648,6 +694,7 @@
 				"return_type": "SVGNumber",
 				"parameters": [],
 				"description": "Creates an SVGNumber object outside of any document trees. The object is initialized to a value of zero. Returns An SVGNumber object.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGNumber",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tcreateSVGNumber ()\n\n\tReturn Type:\n\tSVGNumber\n\n\tDescription:\n\tCreates an SVGNumber object outside of any document trees. The object is initialized to a value of zero. Returns An SVGNumber object.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#createSVGNumber\n\n*/"
@@ -660,6 +707,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "In rendering environments supporting interactivity, forces the user agent to immediately redraw all regions of the viewport that require updating.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#forceRedraw",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tforceRedraw ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tIn rendering environments supporting interactivity, forces the user agent to immediately redraw all regions of the viewport that require updating.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#forceRedraw\n\n*/"
@@ -671,6 +719,7 @@
 				"name": "farthestViewportElement",
 				"return_type": "SVGElement",
 				"description": "The farthest ancestor ‘svg’ element. Null if the current element is the outermost svg element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#farthestViewportElement",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tfarthestViewportElement\n\n\tReturn Type:\n\tSVGElement\n\n\tDescription:\n\tThe farthest ancestor ‘svg’ element. Null if the current element is the outermost svg element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#farthestViewportElement\n\n*/"
@@ -682,6 +731,7 @@
 				"name": "preserveAspectRatio",
 				"return_type": "SVGAnimatedPreserveAspectRatio",
 				"description": "Corresponds to attribute ‘preserveAspectRatio’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#preserveAspectRatio",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tpreserveAspectRatio\n\n\tReturn Type:\n\tSVGAnimatedPreserveAspectRatio\n\n\tDescription:\n\tCorresponds to attribute ‘preserveAspectRatio’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#preserveAspectRatio\n\n*/"
@@ -693,6 +743,7 @@
 				"name": "screenPixelToMillimeterY",
 				"return_type": "float",
 				"description": "Corresponding size of a screen pixel along the y-axis of the viewport.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#screenPixelToMillimeterY",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tscreenPixelToMillimeterY\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tCorresponding size of a screen pixel along the y-axis of the viewport.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#screenPixelToMillimeterY\n\n*/"
@@ -705,6 +756,7 @@
 				"return_type": "void",
 				"parameters": [],
 				"description": "Unselects any selected objects, including any selections of text strings and type-in bars.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#deselectAll",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tdeselectAll ()\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tUnselects any selected objects, including any selections of text strings and type-in bars.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#deselectAll\n\n*/"
@@ -716,6 +768,7 @@
 				"name": "pixelUnitToMillimeterY",
 				"return_type": "float",
 				"description": "Corresponding size of a pixel unit along the y-axis of the viewport.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#pixelUnitToMillimeterY",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tpixelUnitToMillimeterY\n\n\tReturn Type:\n\tfloat\n\n\tDescription:\n\tCorresponding size of a pixel unit along the y-axis of the viewport.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#pixelUnitToMillimeterY\n\n*/"
@@ -727,6 +780,7 @@
 				"name": "requiredExtensions",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredExtensions’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#requiredExtensions",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\trequiredExtensions\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredExtensions’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#requiredExtensions\n\n*/"
@@ -738,6 +792,7 @@
 				"name": "requiredFeatures",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘requiredFeatures’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#requiredFeatures",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\trequiredFeatures\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘requiredFeatures’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#requiredFeatures\n\n*/"
@@ -749,6 +804,7 @@
 				"name": "systemLanguage",
 				"return_type": "SVGStringList",
 				"description": "Corresponds to attribute ‘systemLanguage’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#systemLanguage",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tsystemLanguage\n\n\tReturn Type:\n\tSVGStringList\n\n\tDescription:\n\tCorresponds to attribute ‘systemLanguage’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#systemLanguage\n\n*/"
@@ -760,6 +816,7 @@
 				"name": "SVG_ZOOMANDPAN_MAGNIFY",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'magnify'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#SVG_ZOOMANDPAN_MAGNIFY",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tSVG_ZOOMANDPAN_MAGNIFY\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'magnify'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#SVG_ZOOMANDPAN_MAGNIFY\n\n*/"
@@ -771,6 +828,7 @@
 				"name": "SVG_ZOOMANDPAN_DISABLE",
 				"return_type": "const unsigned short",
 				"description": "Corresponds to value 'disable'.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#SVG_ZOOMANDPAN_DISABLE",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tSVG_ZOOMANDPAN_DISABLE\n\n\tReturn Type:\n\tconst unsigned short\n\n\tDescription:\n\tCorresponds to value 'disable'.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#SVG_ZOOMANDPAN_DISABLE\n\n*/"
@@ -782,6 +840,7 @@
 				"name": "className",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘class’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#className",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tclassName\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘class’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#className\n\n*/"
@@ -793,6 +852,7 @@
 				"name": "viewBox",
 				"return_type": "SVGAnimatedRect",
 				"description": "Corresponds to attribute ‘viewBox’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGSVGElement.html#viewBox",
 				"full_description": "/*\n\n\tSVGSVGElement\n\n\tviewBox\n\n\tReturn Type:\n\tSVGAnimatedRect\n\n\tDescription:\n\tCorresponds to attribute ‘viewBox’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGSVGElement.html#viewBox\n\n*/"

@@ -7,6 +7,7 @@
 				"name": "type",
 				"return_type": "DOMString",
 				"description": "The IDL attributes src and type must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLSourceElement.html#type",
 				"full_description": "/*\n\n\tHTMLSourceElement\n\n\ttype\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src and type must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLSourceElement.html#type\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "src",
 				"return_type": "DOMString",
 				"description": "The IDL attributes src and type must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20HTMLSourceElement.html#src",
 				"full_description": "/*\n\n\tHTMLSourceElement\n\n\tsrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src and type must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20HTMLSourceElement.html#src\n\n*/"

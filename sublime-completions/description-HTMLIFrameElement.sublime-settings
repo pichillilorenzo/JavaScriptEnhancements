@@ -7,6 +7,7 @@
 				"name": "contentDocument",
 				"return_type": "Document",
 				"description": "The contentDocument IDL attribute must return the Document object of the active document of the iframe element's nested browsing context, if any and if its effective script origin is the same origin as the effective script origin specified by the incumbent settings object, or null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#contentDocument",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tcontentDocument\n\n\tReturn Type:\n\tDocument\n\n\tDescription:\n\tThe contentDocument IDL attribute must return the Document object of the active document of the iframe element's nested browsing context, if any and if its effective script origin is the same origin as the effective script origin specified by the incumbent settings object, or null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#contentDocument\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "contentWindow",
 				"return_type": "WindowProxy",
 				"description": "The contentWindow IDL attribute must return the WindowProxy object of the iframe element's nested browsing context, if any, or null otherwise.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#contentWindow",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tcontentWindow\n\n\tReturn Type:\n\tWindowProxy\n\n\tDescription:\n\tThe contentWindow IDL attribute must return the WindowProxy object of the iframe element's nested browsing context, if any, or null otherwise.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#contentWindow\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "height",
 				"return_type": "DOMString",
 				"description": "The width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#height",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\theight\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#height\n\n*/"
@@ -40,6 +43,7 @@
 				"name": "width",
 				"return_type": "DOMString",
 				"description": "The width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#width",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\twidth\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe width and height IDL attributes on the iframe, embed, object, and video elements must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#width\n\n*/"
@@ -51,6 +55,7 @@
 				"name": "sandbox",
 				"return_type": "DOMSettableTokenList",
 				"description": "The IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#sandbox",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tsandbox\n\n\tReturn Type:\n\tDOMSettableTokenList\n\n\tDescription:\n\tThe IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#sandbox\n\n*/"
@@ -62,6 +67,7 @@
 				"name": "seamless",
 				"return_type": "boolean",
 				"description": "The IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#seamless",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tseamless\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#seamless\n\n*/"
@@ -73,6 +79,7 @@
 				"name": "srcdoc",
 				"return_type": "DOMString",
 				"description": "The IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#srcdoc",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tsrcdoc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#srcdoc\n\n*/"
@@ -84,6 +91,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "The IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#name",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#name\n\n*/"
@@ -95,6 +103,7 @@
 				"name": "src",
 				"return_type": "DOMString",
 				"description": "The IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#src",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tsrc\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tThe IDL attributes src, srcdoc, name, sandbox, and seamless must reflect the respective content attributes of the same name.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#src\n\n*/"
@@ -106,6 +115,7 @@
 				"name": "allowFullscreen",
 				"return_type": "boolean",
 				"description": "The allowFullscreen IDL attribute must reflect the allowfullscreen content attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20HTMLIFrameElement.html#allowFullscreen",
 				"full_description": "/*\n\n\tHTMLIFrameElement\n\n\tallowFullscreen\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tThe allowFullscreen IDL attribute must reflect the allowfullscreen content attribute.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20HTMLIFrameElement.html#allowFullscreen\n\n*/"

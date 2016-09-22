@@ -7,6 +7,7 @@
 				"name": "track",
 				"return_type": "(VideoTrack or AudioTrack or TextTrack)",
 				"description": "The track attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the context information for the event.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Media%20-%20TrackEvent.html#track",
 				"full_description": "/*\n\n\tTrackEvent\n\n\ttrack\n\n\tReturn Type:\n\t(VideoTrack or AudioTrack or TextTrack)\n\n\tDescription:\n\tThe track attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the context information for the event.\n\n\tURL doc:\n\thttp://html5index.org/Media%20-%20TrackEvent.html#track\n\n*/"

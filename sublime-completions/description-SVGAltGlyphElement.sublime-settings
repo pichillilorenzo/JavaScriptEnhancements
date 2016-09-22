@@ -7,6 +7,7 @@
 				"name": "glyphRef",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘glyphRef’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAltGlyphElement.html#glyphRef",
 				"full_description": "/*\n\n\tSVGAltGlyphElement\n\n\tglyphRef\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘glyphRef’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAltGlyphElement.html#glyphRef\n\n*/"
@@ -18,6 +19,7 @@
 				"name": "format",
 				"return_type": "DOMString",
 				"description": "Corresponds to attribute ‘format’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAltGlyphElement.html#format",
 				"full_description": "/*\n\n\tSVGAltGlyphElement\n\n\tformat\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tCorresponds to attribute ‘format’ on the given element. Exceptions on settingDOMException, code NO_MODIFICATION_ALLOWED_ERR Raised on an attempt to change the value of a read only attribute.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAltGlyphElement.html#format\n\n*/"
@@ -29,6 +31,7 @@
 				"name": "href",
 				"return_type": "SVGAnimatedString",
 				"description": "Corresponds to attribute ‘xlink:href’ on the given element.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/SVG%20-%20SVGAltGlyphElement.html#href",
 				"full_description": "/*\n\n\tSVGAltGlyphElement\n\n\thref\n\n\tReturn Type:\n\tSVGAnimatedString\n\n\tDescription:\n\tCorresponds to attribute ‘xlink:href’ on the given element.\n\n\tURL doc:\n\thttp://html5index.org/SVG%20-%20SVGAltGlyphElement.html#href\n\n*/"

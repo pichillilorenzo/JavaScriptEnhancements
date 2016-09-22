@@ -33,6 +33,7 @@
 					}
 				],
 				"description": "The initCustomEvent(type, bubbles, cancelable, detail) method must initialize the context object with type, bubbles, and cancelable, and then set its detail attribute to detail.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20CustomEvent.html#initCustomEvent",
 				"full_description": "/*\n\n\tCustomEvent\n\n\tinitCustomEvent ( type: DOMString, bubbles: boolean, cancelable: boolean, detail: any )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThe initCustomEvent(type, bubbles, cancelable, detail) method must initialize the context object with type, bubbles, and cancelable, and then set its detail attribute to detail.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CustomEvent.html#initCustomEvent\n\n*/"
@@ -69,6 +70,7 @@
 				"name": "detail",
 				"return_type": "any",
 				"description": "The detail attribute must return the value it was initialized to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/DOM%20-%20CustomEvent.html#detail",
 				"full_description": "/*\n\n\tCustomEvent\n\n\tdetail\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tThe detail attribute must return the value it was initialized to.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20CustomEvent.html#detail\n\n*/"

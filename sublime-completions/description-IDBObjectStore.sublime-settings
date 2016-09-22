@@ -7,6 +7,7 @@
 				"name": "keyPath",
 				"return_type": "any",
 				"description": "On getting, returns a value representing the key path of this object store, or null if none. If the key path is a DOMString, the value will be a DOMString equal to the key path. If the key path is a sequence<DOMString>, the value will be a new Array, populated by appending Strings equal to each DOMString in the sequence.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#keyPath",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tkeyPath\n\n\tReturn Type:\n\tany\n\n\tDescription:\n\tOn getting, returns a value representing the key path of this object store, or null if none. If the key path is a DOMString, the value will be a DOMString equal to the key path. If the key path is a sequence<DOMString>, the value will be a new Array, populated by appending Strings equal to each DOMString in the sequence.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#keyPath\n\n*/"
@@ -32,6 +33,7 @@
 					}
 				],
 				"description": "If the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#put",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tput ( value: any, key?: any )\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#put\n\n*/"
@@ -57,6 +59,7 @@
 					}
 				],
 				"description": "If the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#add",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tadd ( value: any, key?: any )\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#add\n\n*/"
@@ -82,6 +85,7 @@
 					}
 				],
 				"description": "If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError. If the object store has been deleted, the implementation MUST throw a DOMException of type InvalidStateError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#openCursor",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\topenCursor ( range?: any, direction?: IDBCursorDirection )\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError. If the object store has been deleted, the implementation MUST throw a DOMException of type InvalidStateError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#openCursor\n\n*/"
@@ -101,6 +105,7 @@
 					}
 				],
 				"description": "If the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#delete",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tdelete ( key: any )\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#delete\n\n*/"
@@ -120,6 +125,7 @@
 					}
 				],
 				"description": "Returns an IDBIndex representing an index that is part of the object store. Every call to this function on the same IDBObjectStore instance and with the same name returns the same IDBIndex instance. However the retured IDBIndex instance is specific to this IDBObjectStore instance.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#index",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tindex ( name: DOMString )\n\n\tReturn Type:\n\tIDBIndex\n\n\tDescription:\n\tReturns an IDBIndex representing an index that is part of the object store. Every call to this function on the same IDBObjectStore instance and with the same name returns the same IDBIndex instance. However the retured IDBIndex instance is specific to this IDBObjectStore instance.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#index\n\n*/"
@@ -132,6 +138,7 @@
 				"return_type": "IDBRequest",
 				"parameters": [],
 				"description": "If the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#clear",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tclear ()\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to has its mode set to \"readonly\", the implementation MUST throw a DOMException of type ReadOnlyError. If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#clear\n\n*/"
@@ -143,6 +150,7 @@
 				"name": "indexNames",
 				"return_type": "DOMStringList",
 				"description": "On getting, provide a list of the names of indexes on objects in this object store. The list MUST be sorted in ascending order using the algorithm defined by step 4 of section 11.8.5, The Abstract Relational Comparison Algorithm of the ECMAScript Language Specification [ECMA-262].",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#indexNames",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tindexNames\n\n\tReturn Type:\n\tDOMStringList\n\n\tDescription:\n\tOn getting, provide a list of the names of indexes on objects in this object store. The list MUST be sorted in ascending order using the algorithm defined by step 4 of section 11.8.5, The Abstract Relational Comparison Algorithm of the ECMAScript Language Specification [ECMA-262].\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#indexNames\n\n*/"
@@ -174,6 +182,7 @@
 					}
 				],
 				"description": "This method creates and returns a new index with the given name in the object store. Note that this method must only be called from within a \"versionchange\" transaction.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#createIndex",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tcreateIndex ( name: DOMString, keyPath: DOMString|sequence<DOMString>, optionalParameters?: IDBIndexParameters )\n\n\tReturn Type:\n\tIDBIndex\n\n\tDescription:\n\tThis method creates and returns a new index with the given name in the object store. Note that this method must only be called from within a \"versionchange\" transaction.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#createIndex\n\n*/"
@@ -193,6 +202,7 @@
 					}
 				],
 				"description": "If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError. If the object store has been deleted, the implementation MUST throw a DOMException of type InvalidStateError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#count",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tcount ( key?: any )\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError. If the object store has been deleted, the implementation MUST throw a DOMException of type InvalidStateError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#count\n\n*/"
@@ -212,6 +222,7 @@
 					}
 				],
 				"description": "If the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError. If the object store has been deleted, the implementation MUST throw a DOMException of type InvalidStateError.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#get",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tget ( key: any )\n\n\tReturn Type:\n\tIDBRequest\n\n\tDescription:\n\tIf the transaction this IDBObjectStore belongs to is not active, the implementation MUST throw a DOMException of type TransactionInactiveError. If the object store has been deleted, the implementation MUST throw a DOMException of type InvalidStateError.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#get\n\n*/"
@@ -231,6 +242,7 @@
 					}
 				],
 				"description": "This method destroys the index with the given name in the object store. Note that this method must only be called from within a \"versionchange\" transaction.",
+				"is_static": false,
 				"type": "operation",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#deleteIndex",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tdeleteIndex ( indexName: DOMString )\n\n\tReturn Type:\n\tvoid\n\n\tDescription:\n\tThis method destroys the index with the given name in the object store. Note that this method must only be called from within a \"versionchange\" transaction.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#deleteIndex\n\n*/"
@@ -242,6 +254,7 @@
 				"name": "transaction",
 				"return_type": "IDBTransaction",
 				"description": "On getting, returns the transaction this object store belongs to.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#transaction",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\ttransaction\n\n\tReturn Type:\n\tIDBTransaction\n\n\tDescription:\n\tOn getting, returns the transaction this object store belongs to.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#transaction\n\n*/"
@@ -253,6 +266,7 @@
 				"name": "autoIncrement",
 				"return_type": "boolean",
 				"description": "On getting, provides the auto increment flag for this object store.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#autoIncrement",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tautoIncrement\n\n\tReturn Type:\n\tboolean\n\n\tDescription:\n\tOn getting, provides the auto increment flag for this object store.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#autoIncrement\n\n*/"
@@ -264,6 +278,7 @@
 				"name": "name",
 				"return_type": "DOMString",
 				"description": "On getting, provide the name of this object store.",
+				"is_static": false,
 				"type": "property",
 				"url_doc": "http://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#name",
 				"full_description": "/*\n\n\tIDBObjectStore\n\n\tname\n\n\tReturn Type:\n\tDOMString\n\n\tDescription:\n\tOn getting, provide the name of this object store.\n\n\tURL doc:\n\thttp://html5index.org/Indexed%20DB%20-%20IDBObjectStore.html#name\n\n*/"

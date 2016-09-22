@@ -6,7 +6,7 @@ How To USE
 
 To try it, just write.
 
-If you like this plugin, "Start" it on ---> https://github.com/pichillilorenzo/JavaScript-Completions <---
+If you like this plugin, "Star" it on ---> https://github.com/pichillilorenzo/JavaScript-Completions <---
 
 
 "Find JavaScript Description" Feature
@@ -56,5 +56,67 @@ ENABLE or DISABLE completions
 =============================
 
 You can ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions
+
+Other Context menu options
+==========================
+
+Context menu options:
+- Surround With
+- Delete Surrounded
+- Create Class from object literal
+- Sort array
+
+## Surround With ##
+
+You MUST first select text to "enable" these options.
+
+You can surround code with:
+- if statement
+- if else statement (this works only if you selected 2 regions)
+- while statement
+- do while statement
+- for statement
+- try catch statement
+- try catch finally statement
+- Multi-line comment
+- Single-line comment
+
+This options works also on multiple selections at once.
+
+## Delete Surrounded ##
+
+Options are:
+- Delete multi-line comment
+- Delete single-line comment
+- Strip quoted string
+
+This options works also on multiple selections at once.
+
+## Create Class from object literal ##
+
+This option create a JavaScript Class from an object literal (Constructor with all setter and getter for each field).
+
+You can set default values or use the string "required" to say that a field hasn't a default value.
+
+To work properly, you MUST declare a variable and assign an object literal to it, like this example:
+
+var Person = {
+  name: "required",
+  surname: "required",
+  email: "",
+  age: 18
+}
+
+This options works also on multiple selections at once.
+
+## Sort array ##
+
+Just put the cursor between brackets and will appear a menu with this options:
+- Sort array ASC ( compare function: function(x,y){return x-y;} )
+- Sort array DESC ( compare function: function(x,y){return y-x;} )
+- Sort array alphabetically ASC
+- Sort array alphabetically DESC
+
+This options works also on multiple selections at once.
 
 MIT License
