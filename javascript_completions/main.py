@@ -1,5 +1,6 @@
 import sublime, sublime_plugin
 import sys, imp, os, webbrowser
+import util.main as Util
 
 import _init
 
@@ -88,8 +89,7 @@ class JavaScriptCompletionsPackageEventListener(sublime_plugin.EventListener):
     completions.extend(compDefault)
     return (completions)
 
-if int(sublime.version()) >= 3000 :
-  css = """
+css = """
   <style>
     html{
       margin: 0;
@@ -102,7 +102,11 @@ if int(sublime.version()) >= 3000 :
     }
     .container{
       background-color: #202A31;
-      padding: 10px;
+      padding: 10px; 
+    }
+    .container-hint-popup{
+      background-color: #202A31;
+      padding: 10px 20px 10px 10px;
     }
     .container-completion-link{
       margin: 5px 0;
@@ -123,17 +127,177 @@ if int(sublime.version()) >= 3000 :
       color: #66BB6A;
     }
     .parameter-name{
-      color: #FFA726
+      color: #FFA726;
     }
     .parameter-symbol, .class-name{
-      color: #EF5350
+      color: #EF5350;
     }
     .operation-url-doc-link, .property-url-doc-link, .constructor-url-doc-link{
       font-style: normal;
       color: #fff;
     }
+    .container-hint-popup .container-description{
+      margin-bottom: 5px;
+    }
+    .container-hint-popup .container-info{
+      display: inline;
+      position: relative;
+      left: 10px;
+    }
+    .container-hint-popup .container-url-doc{
+      margin-top: 5px;
+      font-size: 10px;
+    }
+    .container-hint-popup .constructor-class-name, .container-hint-popup .operation-class-name, .container-hint-popup .property-class-name{
+      padding: 2.5px 12px;
+      border-radius: 10px;
+      color: #fff;
+      background-color: #EF5350;
+    }
+    .container-hint-popup .constructor-class-name .circle, .container-hint-popup .operation-class-name .circle, .container-hint-popup .property-class-name .circle{
+      padding: 2px 6px;
+      font-weight: bold;
+      background-color: #333;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 10px;
+      position: relative;
+      top: -1px;
+    }
   </style>
-  """
+"""
+if int(sublime.version()) >= 3124 :
+  
+  def open_browser(action):
+    if action.startswith("http") :
+      webbrowser.open(action)
+    else :
+      parts = action.split(",")
+      location = int(parts[2])
+      action = parts[0] + "," + parts[1]
+      find_descriptionclick(action, location=location, is_single=True)
+
+  class JavaScriptCompletionsHoverEventListener(sublime_plugin.EventListener):
+    global javascriptCompletions
+
+    def on_hover(self, view, point, hover_zone) :
+
+      if not javascriptCompletions.settings.get("enable_on_hover_description") or hover_zone != sublime.HOVER_TEXT :
+        return
+
+      scope = view.scope_name(point).strip()
+      
+      scope_splitted = scope.split(" ")
+      last_scope = scope_splitted[-1]
+      second_last = scope_splitted[-1] if len(scope_splitted) > 1 else None
+      if scope_splitted[0] != "source.js" or ( last_scope != "variable.function.js" and last_scope != "meta.property.object.js" and not last_scope.startswith("support.function.") and not last_scope.startswith("support.class.") and not last_scope.startswith("support.type.") ) :
+        if second_last and second_last != "meta.function-call.constructor.js" : 
+          return
+        elif not second_last :
+          return
+
+      str_region = view.word(point)
+      result = Util.get_current_region_scope(view, str_region)
+      str_selected = result.get("region_string_stripped")
+      completion_list = list()
+      for API_Keyword in javascriptCompletions.api :
+        if (javascriptCompletions.API_Setup and javascriptCompletions.API_Setup.get(API_Keyword)) :
+          scope = javascriptCompletions.api[API_Keyword].get('scope')
+          if scope and view.match_selector(0, scope):
+            if(API_Keyword.startswith("description-")):
+              index_completion = 0
+              completions = javascriptCompletions.api[API_Keyword].get('completions')
+              for completion in completions:
+                completion_name = completion[0][12:].split("\t")
+                completion_name = strip_tags(completion_name[0].strip())
+                index_parenthesis = completion_name.find("(")
+                completion_name_to_compare = ""
+                if index_parenthesis >= 0 :
+                  completion_name_to_compare = completion_name[0: index_parenthesis]
+                else :
+                  completion_name_to_compare = completion_name
+                if(completion_name_to_compare == str_selected):
+                  href = API_Keyword+","+str(index_completion)+","+str(point)
+                  completion.insert(2, href)
+                  completion_list.append(completion)
+                index_completion = index_completion + 1
+
+      if len(completion_list) == 0:
+        return 
+
+      i = 0
+      completion_list_to_show = list()
+      while i < len(completion_list) :
+
+        if len(completion_list_to_show) >= 1 :
+          j = 0
+          completion_already_exists = False
+          while j < len(completion_list_to_show) :
+            if completion_list_to_show[j][1].get("type") == completion_list[i][1].get("type") and completion_list_to_show[j][1].get("description") == completion_list[i][1].get("description") and completion_list_to_show[j][1].get("return_type") == completion_list[i][1].get("return_type") :
+              if (completion_list_to_show[j][1].get("type") == "operation" or completion_list_to_show[j][1].get("type") == "constructor") :
+                if completion_list_to_show[j][1].get("parameters") == completion_list[i][1].get("parameters") :
+                  completion_already_exists = True
+                  break
+            j = j + 1
+
+          if not completion_already_exists :
+            completion_list_to_show.append(completion_list[i])
+
+        else :
+          completion_list_to_show.append(completion_list[i])
+
+        i = i + 1
+
+      self.hint_popup(point, completion_list_to_show)
+
+    def hint_popup(self, location, completions):
+      html = ""
+      for completion in completions :
+        parameters_html = "()"
+        completion_class_name = completion[0].split("\t")[1].strip()
+        if len(completion_class_name) > 15 :
+          completion_class_name = completion_class_name[0:15] + ".."
+        completion_description = completion[1]
+        if completion_description.get("type") == "operation" :
+          parameters = []
+          for parameter in completion_description.get("parameters") :
+            parameters.append( "<span class=\"parameter-name\">" + parameter.get("name") + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if parameter.get("is_optional") else "" ) + "<span class=\"parameter-symbol\">:</span> " + "<span class=\"parameter-type\">" + parameter.get("type") + "</span>" )
+          if len(parameters) > 0 :
+            parameters_html = "( " + ", ".join(parameters) + " )"
+          html += """ 
+          <div class=\"container-description\">
+            <div><span class=\"operation-class-name\">"""+completion_class_name+""" <span class=\"circle\">F</span></span><div class=\"container-info\"><span class=\"operation-name\">"""+completion_description.get("name")+"</span>"+parameters_html+""" : <span class=\"operation-return-type\">"""+completion_description.get("return_type")+"""</span></div></div>
+            <div class=\"container-url-doc\"><a href=\""""+completion[2]+"""\">View complete doc</a> <span class=\"label\">URL doc: </span><a class=\"operation-url-doc-link\" href=\""""+completion_description.get("url_doc")+"""\">"""+completion_description.get("url_doc")+"""</a></div>
+          </div>
+          """
+        elif completion_description.get("type") == "property" :
+          html += """ 
+          <div class=\"container-description\">
+            <div><span class=\"property-class-name\">"""+completion_class_name+""" <span class=\"circle\">P</span></span><div class=\"container-info\"><span class=\"property-name\">"""+completion_description.get("name")+"</span>"+" : <span class=\"property-return-type\">"""+completion_description.get("return_type")+"""</span></div></div>
+            <div class=\"container-url-doc\"><a href=\""""+completion[2]+"""\">View complete doc</a> <span class=\"label\">URL doc: </span><a class=\"property-url-doc-link\" href=\""""+completion_description.get("url_doc")+"""\">"""+completion_description.get("url_doc")+"""</a></div>
+          </div>
+          """
+        elif completion_description.get("type") == "constructor" :
+          parameters = []
+          for parameter in completion_description.get("parameters") :
+            parameters.append( "<span class=\"parameter-name\">" + parameter.get("name") + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if parameter.get("is_optional") else "" ) + "<span class=\"parameter-symbol\">:</span> " + "<span class=\"parameter-type\">" + parameter.get("type") + "</span>" )
+          if len(parameters) > 0 :
+            parameters_html = "( " + ", ".join(parameters) + " )"
+          html += """ 
+          <div class=\"container-description\">
+            <div><span class=\"constructor-class-name\">"""+completion_class_name+""" <span class=\"circle\">C</span></span><div class=\"container-info\"><span class=\"constructor-name\">"""+completion_description.get("name")+"</span>"+parameters_html+""" : <span class=\"constructor-return-type\">"""+completion_description.get("return_type")+"""</span></div></div>
+            <div class=\"container-url-doc\"><a href=\""""+completion[2]+"""\">View complete doc</a> <span class=\"label\">URL doc: </span><a class=\"constructor-url-doc-link\" href=\""""+completion_description.get("url_doc")+"""\">"""+completion_description.get("url_doc")+"""</a></div>
+          </div>
+          """
+      sublime.active_window().active_view().show_popup("""
+      <html><head></head><body>
+      """+css+"""
+        <div class=\"container-hint-popup\">
+          """ + html + """    
+        </div>
+      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, location, 1150, 60, open_browser)
+
+if int(sublime.version()) >= 3000 :
 
   completions_link_html = ""
   prev_selected = ""
@@ -141,7 +305,7 @@ if int(sublime.version()) >= 3000 :
   first_href = ""
   popup_is_showing = False
 
-  def find_descriptionclick(href, *is_single):
+  def find_descriptionclick(href, location=-1, is_single=False):
     global javascriptCompletions
     global popup_is_showing
     href = href.split(",")
@@ -197,7 +361,7 @@ if int(sublime.version()) >= 3000 :
           <h3 class=\"class-name\">"""+class_name+"""</h3>
           """ + html + """    
         </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 600, 500, back_to_list_find_description)
+      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, location, 1000, 500, back_to_list_find_description)
 
   def back_to_list_find_description(action):
     if action == "back" :
@@ -237,7 +401,7 @@ if int(sublime.version()) >= 3000 :
 
       if prev_selected == str_selected :
         if maybe_is_one == 1 :
-          find_descriptionclick(first_href, True)
+          find_descriptionclick(first_href, is_single=True)
         else :
           if completions_link_html :
             popup_is_showing = True
@@ -263,16 +427,20 @@ if int(sublime.version()) >= 3000 :
               index_completion = 0
               completions = javascriptCompletions.api[API_Keyword].get('completions')
               for completion in completions:
-                if not completions :
-                  continue
                 completion_name = completion[0][12:].split("\t")
                 tab_name = ""
                 if len(completion_name) > 1:
                   tab_name = " | "+(strip_tags(completion_name[1]) if len(completion_name[1]) < 50 else strip_tags(completion_name[1][:50])+" ...")
                 completion_name = strip_tags(completion_name[0].strip())
-                if(completion_name.find(str_selected) >= 0):
+                index_parenthesis = completion_name.find("(")
+                completion_name_to_compare = ""
+                if index_parenthesis >= 0 :
+                  completion_name_to_compare = completion_name[0: index_parenthesis]
+                else :
+                  completion_name_to_compare = completion_name
+                if completion_name_to_compare.find(str_selected) >= 0 :
                   href = API_Keyword+","+str(index_completion)
-                  if len(completion_name.replace("()", "")) == len(str_selected) and maybe_is_one < 2 :
+                  if len(completion_name_to_compare) == len(str_selected) and maybe_is_one < 2 :
                     maybe_is_one = maybe_is_one + 1
                     first_href = href
                   completion_name = completion_name.replace(str_selected, "<span class=\"highlighted\">"+str_selected+"</span>")
@@ -281,7 +449,7 @@ if int(sublime.version()) >= 3000 :
 
       if maybe_is_one == 1 and entered_loop :
         popup_is_showing = True
-        find_descriptionclick(first_href, True)
+        find_descriptionclick(first_href, is_single=True)
       else :
         if completions_link_html and entered_loop :
           popup_is_showing = True

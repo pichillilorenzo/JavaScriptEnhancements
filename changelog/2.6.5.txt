@@ -1,0 +1,41 @@
+v2.6.5
+
+
+## Features
+
+- "On Hover Description" Feature :
+
+  Supported only by Sublime Text 3, Build >= 3124
+
+  Just put the cursor over a name of a function, property or constructor and it will appear a little popup with all matching found from the "/sublime-completions" list enabled. 
+  - F = function
+  - P = property
+  - C = constructor
+
+
+- "Can I use?" Feature :
+
+  Supported only by Sublime Text 3, Build >= 3124
+
+  This feature uses "can i use" json data from this repository: https://github.com/Fyrd/caniuse, that contains raw data from the http://caniuse.com support tables.
+  Thanks to @Fyrd.
+  You can use this feature in HTML, CSS and JavaScript context!
+  Just put the cursor on the word you want to check, "right-click" -> "Can I use?" and it will appear an input panel with all items that have a name matching with the word.
+  You can use key-map: ctrl+alt+w. You can also change it. Just go to Preferences -> Package Settings ->  JavaScript Completions Tools -> Key Bindings - User.
+  After selecting an item from the list, it will appear a popup with all information from the http://caniuse.com support tables.
+
+
+- Context menu options:
+  
+  - "Split string lines to variable" feature :
+
+    Just put the cursor between a string with multiple lines and this option will appear in the context menu.
+    It will split the string and for each line will be concatenated to a variable named "str".
+    This option works also on multiple selections at once.
+
+
+## Improvements
+
+- "Find JavaScript Description" feature:
+  
+  Search improved

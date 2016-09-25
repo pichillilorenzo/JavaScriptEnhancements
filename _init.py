@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, sys, imp, platform, json, traceback, threading
+import os, sys, imp, platform, json, traceback, threading, urllib, shutil
 from shutil import copyfile
 from threading import Timer
 
@@ -22,7 +22,6 @@ PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "3
 
 _plugins = ["javascript_completions", "evaluate_javascript", "helper"]
 
-
 class handle_settingCommand(sublime_plugin.WindowCommand) :
   def run(self, folder_from_package, file_name, extension) :
     open_setting(folder_from_package, file_name, extension)
@@ -33,6 +32,7 @@ class handle_settingCommand(sublime_plugin.WindowCommand) :
     elif file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") < 0 :
       return False
     return True
+
 def setTimeout(time, func):
   timer = Timer(time, func)
   timer.start()
@@ -43,7 +43,6 @@ def enable_setting(folder_from_package, file_name, extension) :
   file_name_disabled = file_name + "_disabled" + "." + extension
   path_file_enabled = os.path.join(path, file_name_enabled)
   path_file_disabled = os.path.join(path, file_name_disabled)
-  path_load_resource = os.path.join(PACKAGE_NAME, path, file_name_enabled)
   try :
     if os.path.isfile(path_file_disabled) :
       os.rename(path_file_disabled, path_file_enabled)
@@ -56,20 +55,24 @@ def disable_setting(folder_from_package, file_name, extension) :
   file_name_disabled = file_name + "_disabled" + "." + extension
   path_file_enabled = os.path.join(path, file_name_enabled)
   path_file_disabled = os.path.join(path, file_name_disabled)
-  path_load_resource = os.path.join(PACKAGE_NAME, path, file_name_enabled)
   try :
     if os.path.isfile(path_file_enabled) :
       os.rename(path_file_enabled, path_file_disabled)
   except Exception as e :
     print("Error: "+traceback.format_exc())
 
+def is_setting_enabled(folder_from_package, file_name, extension) :
+  path = os.path.join(PACKAGE_PATH, folder_from_package)
+  file_name_enabled = file_name + "." + extension
+  path_file_enabled = os.path.join(path, file_name_enabled)
+  return os.path.isfile(path_file_enabled)
+      
 def open_setting(folder_from_package, file_name, extension) :
   path = os.path.join(PACKAGE_PATH, folder_from_package)
   file_name_enabled = file_name + "." + extension
   file_name_disabled = file_name + "_disabled" + "." + extension
   path_file_enabled = os.path.join(path, file_name_enabled)
   path_file_disabled = os.path.join(path, file_name_disabled)
-  path_load_resource = os.path.join(PACKAGE_NAME, path, file_name_enabled)
 
   if os.path.isfile(path_file_enabled) :
     sublime.active_window().open_file(path_file_enabled)
@@ -90,7 +93,7 @@ class startPlugin():
       node_js_version = sublime.load_settings('Evaluate-JavaScript.sublime-settings').get("node_js_version") or eval_js_json.get("node_js_version") or node_variables.NODE_JS_VERSION
       
       installer.install(node_js_version)
-    
+
     self.handle_plugins()
  
   def load_plugins(self):

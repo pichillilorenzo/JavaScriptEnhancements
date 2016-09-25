@@ -1,0 +1,20 @@
+[
+  {
+    "caption": "JavaScript Completions Tools",
+    "mnemonic": "J",
+    "id": "javascript_completions_tools",
+    "children":[
+      {
+        "caption": "Search on \"Can I use\" list",
+        "command": "can_i_use",
+        "args": {"from": "main-menu"}
+      },
+      { "caption": "-" },
+      {
+        "caption": "GitHub Project",
+        "command": "open_url",
+        "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
+      }
+    ]
+  }
+]

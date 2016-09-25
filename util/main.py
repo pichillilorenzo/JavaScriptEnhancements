@@ -1,9 +1,36 @@
 import sublime, sublime_plugin
-import re
+import re, urllib, shutil, traceback, threading, _init
+
+def download_and_save(url, where_to_save) :
+  if where_to_save :
+    try :
+      request = urllib.request.Request(url)
+      request.add_header('User-agent', r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1')
+      with urllib.request.urlopen(request) as response :
+        with open(where_to_save, 'wb') as out_file :
+          shutil.copyfileobj(response, out_file)
+          return True
+    except Exception as e:
+      traceback.print_exc()
+  return False
+
+def check_thread_is_alive(thread_name) :
+  for thread in threading.enumerate() :
+    if thread.getName() == thread_name and thread.is_alive() :
+      return True
+  return False
 
 def split_string_and_find(string_to_split, search_value, split_delimiter=" ") :
   string_splitted = string_to_split.split(split_delimiter)
   return indexOf(string_splitted, search_value) 
+
+def split_string_and_find_on_multiple(string_to_split, search_values, split_delimiter=" ") :
+  string_splitted = string_to_split.split(split_delimiter)
+  for search_value in search_values :
+    index = indexOf(string_splitted, search_value) 
+    if index >= 0 :
+      return index
+  return -1
 
 def split_string_and_findLast(string_to_split, search_value, split_delimiter=" ") :
   string_splitted = string_to_split.split(split_delimiter)
@@ -30,17 +57,14 @@ def lastIndexOf(list_to_search, search_value) :
 def firstIndexOfMultiple(list_to_search, search_values) :
   index = -1
   string = ""
-  try :
-    for search_value in search_values :
-      index_search = indexOf(list_to_search, search_value)
-      if index_search >= 0 and index == -1 :
-        index = index_search
-        string = search_value
-      elif index_search >= 0 :
-        index = min(index, index_search)
-        string = search_value
-  except Exception as e:
-    pass
+  for search_value in search_values :
+    index_search = indexOf(list_to_search, search_value)
+    if index_search >= 0 and index == -1 :
+      index = index_search
+      string = search_value
+    elif index_search >= 0 :
+      index = min(index, index_search)
+      string = search_value
   return {
     "index": index,
     "string": string
@@ -120,6 +144,21 @@ def find_regions_on_same_depth_level(view, scope, selection, selectors, depth_le
         "selection": selection
       })
   return regions
+
+def get_current_region_scope(view, selection) :
+  scope = view.scope_name(selection.begin()).strip()
+  for region in view.find_by_selector(scope) :
+    if region.contains(selection):
+      selection.a = region.begin()
+      selection.b = selection.a
+      return {
+        "scope": scope,
+        "region": region,
+        "region_string": view.substr(region),
+        "region_string_stripped": view.substr(region).strip(),
+        "selection": selection
+      }
+  return None
 
 def get_parent_region_scope(view, selection) :
   scope = view.scope_name(selection.begin()).strip()
@@ -217,11 +256,17 @@ def get_whitespace_from_line_begin(view, region) :
     whitespace = whitespace + " "
   return whitespace
 
-def add_whitespace_indentation(view, region, string, add_whitespace_end=True) :
+def add_whitespace_indentation(view, region, string, replace="\t", add_whitespace_end=True) :
   whitespace = get_whitespace_from_line_begin(view, region)
+  if replace == "\n" :
+    lines = string.split("\n")
+    lines = [whitespace+line for line in lines]
+    lines[0] = lines[0].lstrip()
+    string = "\n".join(lines)
+    return string
   if add_whitespace_end :
     lines = string.split("\n")
     lines[len(lines)-1] = whitespace + lines[-1:][0]
   string = "\n".join(lines)
-  string = re.sub(r"([\t]+)", whitespace+r"\1", string)
+  string = re.sub("(["+replace+"]+)", whitespace+r"\1", string)
   return string

@@ -11,7 +11,7 @@ SETTINGS_FOLDER_NAME = "evaluate_javascript"
 SETTINGS_FOLDER = os.path.join(_init.PACKAGE_PATH, SETTINGS_FOLDER_NAME)
 
 class EvaluateJavascript():
-  settings_id = 2
+
   def init(self):
     self.api = {}
     self.settings = sublime.load_settings('Evaluate-JavaScript.sublime-settings')

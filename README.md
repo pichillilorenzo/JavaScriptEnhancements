@@ -11,6 +11,13 @@ It helps you to write your scripts more quickly with hints and completions.
 <strong>jQuery</strong> and <strong>NativeScript</strong> completions disabled by default!
 You can enable them on Preferences -> Package Settings -> JavaScript Completions.
 
+Features list:
+- <a href="#find-javascript-description">"Find JavaScript Description" Feature</a>
+- <a href="#on-hover-description">"On Hover Description" Feature</a>
+- <a href="#evaluate-javascript">"Evaluate JavaScript" Feature</a>
+- <a href="#can-i-use">"Can I use?" Feature</a>
+- <a href="#context-menu-options">Context menu options</a>
+
 <h2>Usage</h2>
 
 To try it, just write.
@@ -32,7 +39,12 @@ Information about the description of function/property/method has been taken on 
 - [http://api.jquery.com/](http://api.jquery.com/)
 - [https://docs.nativescript.org/api-reference/globals.html](https://docs.nativescript.org/api-reference/globals.html)
 
-<h3>"Find JavaScript Description" Feature</h3>
+<h3>ENABLE or DISABLE completions</h3>
+
+You can ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions
+
+
+<h3 id="find-javascript-description">"Find JavaScript Description" Feature</h3>
 
 <strong>Supported only by Sublime Text 3</strong>
 
@@ -48,7 +60,23 @@ In case, you can also use "key-map"! Just go to Preferences -> Package Settings 
 
 <img src="https://s17.postimg.io/pyfvf1sn3/Schermata_2016_09_18_alle_17_40_28.png" alt="example #2 Find JavaScript Description Feature"> 
 
-<h3>"Evaluate JavaScript" Feature</h3>
+
+<h3 id="on-hover-description">"On Hover Description" Feature</h3>
+
+<strong>Supported only by Sublime Text 3, Build >= 3124</strong>
+
+Just put the cursor over a name of a function, property or constructor and it will appear a little popup with all matching found from the <code>/sublime-completions</code> list enabled. 
+
+- F = function
+- P = property
+- C = constructor
+
+Example:
+
+<img src="https://media.giphy.com/media/l2Sq7JFMFtMJY3Eo8/giphy.gif" alt="example #1 On Hover Description Feature"> 
+
+
+<h3 id="evaluate-javascript">"Evaluate JavaScript" Feature</h3>
 
 <strong>Supported only by Sublime Text 3</strong>
 
@@ -84,17 +112,41 @@ In case, you can also use "key-map"! Just go to Preferences -> Package Settings 
 
 <img src="https://s17.postimg.io/fs79w288v/Schermata_2016_09_18_alle_18_08_55.png" alt="example #2 Evaluate JavaScript Feature"> 
 
-<h3>ENABLE or DISABLE completions</h3>
 
-You can ENABLE or DISABLE completions! Just go to Preferences -> Package Settings -> JavaScript Completions
+<h3 id="can-i-use">"Can I use?" Feature</h3>
 
-<h3>Other Context menu options</h3>
+<strong>Supported only by Sublime Text 3, Build >= 3124</strong>
+
+This feature uses "can i use" json data from this [repository](https://github.com/Fyrd/caniuse), that contains raw data from the [http://caniuse.com](http://caniuse.com) support tables.
+
+Thanks to @Fyrd.
+
+You can use this feature in HTML, CSS and JavaScript context!
+
+Just put the cursor on the word you want to check, "right-click" -> <code>"Can I use?"</code> and it will appear an input panel with all items that have a name matching with the word.
+
+You can use key-map: <code>ctrl+alt+w</code>. You can also change it. Just go to Preferences -> Package Settings ->  JavaScript Completions Tools -> Key Bindings - User.
+
+After selecting an item from the list, it will appear a popup with all information from the [http://caniuse.com](http://caniuse.com) support tables.
+
+You can also use the menu <code>JavaScript Completions Tools</code> on the top and select <code>Search on "Can I use" list</code> to search what you want.
+
+Example :
+
+<img src="https://media.giphy.com/media/26ufnXCKlXwFghwDS/giphy.gif" alt="example #1 Can I use? Feature"> 
+
+<img src="http://s17.postimg.org/8hqxb0fvj/Schermata_2016_09_24_alle_21_07_44.png" alt="example #2 Can I use? Feature"> 
+
+<img src="http://s17.postimg.org/wa4u0a7a7/Schermata_2016_09_24_alle_21_07_55.png" alt="example #3 Can I use? Feature"> 
+
+<h3 id="context-menu-options">Context menu options</h3>
 
 Context menu options:
 - <a href="#surround-with">Surround With</a>
 - <a href="#delete-surround">Delete Surrounded</a>
 - <a href="#create-class-from-object-literal">Create Class from object literal</a>
 - <a href="#sort-array">Sort array</a>
+- <a href="#split-string-lines-to-variable">Split string lines to variable</a>
 
 <h4 id="surround-with">Surround With</h4>
 
@@ -111,7 +163,7 @@ You can surround code with:
 - Multi-line comment
 - Single-line comment
 
-This options works also on multiple selections at once.
+This option works also on multiple selections at once.
 
 <h4 id="delete-surround">Delete Surrounded</h4>
 
@@ -120,7 +172,7 @@ Options are:
 - Delete single-line comment
 - Strip quoted string
 
-This options works also on multiple selections at once.
+This option works also on multiple selections at once.
 
 <h4 id="create-class-from-object-literal">Create Class from object literal</h4>
 
@@ -139,22 +191,34 @@ var Person = {
 }
 ```
 
-This options works also on multiple selections at once.
+This option works also on multiple selections at once.
 
 <h4 id="sort-array">Sort array</h4>
 
-Just put the cursor between brackets and will appear a menu with this options:
+Just put the cursor between brackets and will appear a menu with these options:
 - Sort array ASC ( compare function: <code>function(x,y){return x-y;}</code> )
 - Sort array DESC ( compare function: <code>function(x,y){return y-x;}</code> )
 - Sort array alphabetically ASC
 - Sort array alphabetically DESC
 
-This options works also on multiple selections at once.
+This option works also on multiple selections at once.
 
 Examples of usage:
 
 <img src="https://media.giphy.com/media/3o7TKOwWEYUGPX4G6Q/giphy.gif" alt="example #1 Other Context menu option"> 
 
 <img id="context-menu-option-example-2" src="https://media.giphy.com/media/l3vR1DjPDWRFfl3LG/giphy.gif" alt="example #2 Other Context menu option"> 
+
+<h4 id="split-string-lines-to-variable">Split string lines to variable</h4>
+
+Just put the cursor between a string with multiple lines and this option will appear in the context menu.
+
+It will split the string and for each line will be concatenated to a variable named "str".
+
+This option works also on multiple selections at once.
+
+Example:
+
+<img src="https://media.giphy.com/media/l2Sq0iS3ga6p9iXjq/giphy.gif" alt="example #1 Split string lines to variable"> 
 
 <i>MIT License</i>

@@ -1,4 +1,17 @@
 [
+  {"caption": "-"},
+  {
+    "caption": "Split string lines to variable",
+    "id": "split_string_lines_to_variable",
+    "command": "split_string_lines_to_variable",
+    "args": {"case": "split"}
+  },
+  {"caption": "-"},
+  {
+    "caption": "Can I use?",
+    "id": "can_i_use",
+    "command": "can_i_use"
+  },
   { "caption": "-" },
   {
     "caption": "Sort array ASC",
