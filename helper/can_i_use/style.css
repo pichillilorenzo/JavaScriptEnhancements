@@ -1,0 +1,135 @@
+html, body{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #202A31;
+}
+.content{
+  padding: 0 40px 20px 40px;
+}
+.view-on-site{
+  font-size: 1rem;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #DB5600;
+}
+.container-browser-list{
+  font-family: Courier;
+}
+.version-stat-item{
+  margin: 25px 0;
+}
+.browser-name{
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+.version-stat{
+  margin: 5px 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.y, .p, .a, .n, .u{
+  padding: 10px 15px;
+} 
+.y{
+  background-color: #39b54a;
+}
+.p, .a{
+  background-color: #A8BD04;
+}
+.n{
+  background-color: #c44230;
+}
+.u{
+  background-color: #838383;
+}
+.annotation-number{
+  padding: 3px;
+  background-color: #fff;
+  color: #333;
+  font-size: 10px;
+  position: relative;
+  top: -10px;
+  left: -12px;
+}
+.legend .container-legend-items{
+  margin: 10px 0;
+}
+.legend-item{
+  padding: 3.25px 12.5px;
+}
+.container-back-button{
+  padding: 20px 0 0 15px;
+}
+.back-button{
+  padding: 10px;
+  background-color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  color: #333;
+  font-weight: bold;
+}
+.requires-prefix{
+  background-color: #FFFF5F;
+  position: relative;
+  top: -14px;
+  right: -13px;
+  padding: 7px;
+  font-size: 1px;
+}
+.can-be-enabled{
+  background-color: #78CC76;
+  position: relative;
+  top: -14px;
+  right: -11px;
+  font-size: 1px;
+  padding: 7px;
+}
+.legend .requires-prefix, .legend .can-be-enabled{
+  top: -4px;
+  right: 0;
+}
+.status{
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  position: relative;
+  top: -4px;
+}
+.status.rec, .status.ietf, .status.ls{
+  color: #007700;
+}
+.status.pr{
+  color: #387700;
+}
+.status.wd{
+  color: #770000;
+}
+.status.cr{
+  color: #777700;
+}
+.status.unoff{
+  color: #777777;
+}
+.support{
+  padding: 5px 15px;
+  background-color: #f2e8d5;
+  border-radius: 10px;
+  color: #333;
+  font-weight: bold;
+}
+.support-y{
+  color: #009114;
+}
+.support-a{
+  color: #7e7e00;
+}
+.category{
+  padding: 5px 15px;
+  border-radius: 10px;
+  background-color: #f2e8d5;
+  color: #333;
+}

@@ -8,11 +8,20 @@ To try it, just write.
 
 If you like this plugin, "Star" it on ---> https://github.com/pichillilorenzo/JavaScript-Completions <---
 
+jQuery and NativeScript completions disabled by default!
+You can enable them on Preferences -> Package Settings -> JavaScript Completions.
+
+Some features could use npm!
+
+In Windows you must install it! Download it from https://nodejs.org.
+To OSX and Linux, it will be downloaded automatically with nodejs.
+
 Features list:
 - "Find JavaScript Description" Feature
 - "On Hover Description" Feature
 - "Evaluate JavaScript" Feature
 - "Can I use?" Feature
+- "JSDoc" Feature
 - Context menu options
 
 
@@ -83,18 +92,50 @@ In case, you can also use "key-map"! Just go to Preferences -> Package Settings 
 Supported only by Sublime Text 3, Build >= 3124
 
 This feature uses "can i use" json data from this repository: https://github.com/Fyrd/caniuse, that contains raw data from the http://caniuse.com support tables.
-
 Thanks to @Fyrd.
 
 You can use this feature in HTML, CSS and JavaScript context!
-
 Just put the cursor on the word you want to check, "right-click" -> "Can I use?" and it will appear an input panel with all items that have a name matching with the word.
-
 You can use key-map: ctrl+alt+w. You can also change it. Just go to Preferences -> Package Settings ->  JavaScript Completions Tools -> Key Bindings - User.
-
 After selecting an item from the list, it will appear a popup with all information from the http://caniuse.com support tables.
-
 You can also use the menu "JavaScript Completions Tools" on the top and select 'Search on "Can I use" list' to search what you want.
+
+
+"JSDoc" Feature
+===============
+
+Supported only by Sublime Text 3
+
+Requires npm
+
+This feature uses https://github.com/jsdoc3/jsdoc to generate API documentation.
+
+You can find it under "JavaScript Completions Tools" menu -> JSDoc.
+
+There are 2 main menu items:
+- Generate Documentation
+- Add jsdoc-settings.json to the current project folder
+
+These items can be used only with a project folder opened.
+"Generate Documentation" uses the jsdoc command line to generate documentation.
+It uses jsdoc-settings.json file for configuration or, alternately, it will use default configuration.
+The options (with default values) availables are:
+{
+  "jsdoc_conf_file": "conf.json",
+  "destination_folder": "out",
+  "display_symbols_access_property": "all",
+  "search_within_subdirectories": false,
+  "encoding_when_reading_all_source_files": "utf-8",
+  "template_path": "",
+  "tutorials_path": "",
+  "include_symbols_marked_with_the_private_tag": false,
+  "pedantic_mode": false,
+  "query_string_to_parse_and_store_in_global_variable": ""
+}
+
+"Add jsdoc-settings.json to the current project folder" will add a jsdoc-settings.json file with default values to the current project folder.
+
+How to use JSDoc: http://usejsdoc.org/
 
 
 Context menu options
@@ -136,9 +177,7 @@ This option works also on multiple selections at once.
 ## Create Class from object literal ##
 
 This option create a JavaScript Class from an object literal (Constructor with all setter and getter for each field).
-
 You can set default values or use the string "required" to say that a field hasn't a default value.
-
 To work properly, you MUST declare a variable and assign an object literal to it, like this example:
 
 var Person = {
@@ -163,9 +202,7 @@ This option works also on multiple selections at once.
 ## Split string lines to variable ##
 
 Just put the cursor between a string with multiple lines and this option will appear in the context menu.
-
 It will split the string and for each line will be concatenated to a variable named "str".
-
 This option works also on multiple selections at once.
 
 MIT License

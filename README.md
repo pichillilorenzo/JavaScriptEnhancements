@@ -11,11 +11,18 @@ It helps you to write your scripts more quickly with hints and completions.
 <strong>jQuery</strong> and <strong>NativeScript</strong> completions disabled by default!
 You can enable them on Preferences -> Package Settings -> JavaScript Completions.
 
+<strong>Some features could use npm!</strong>
+
+In Windows you must install it! Download it from [https://nodejs.org](https://nodejs.org).
+
+To OSX and Linux, it will be downloaded automatically with nodejs.
+
 Features list:
 - <a href="#find-javascript-description">"Find JavaScript Description" Feature</a>
 - <a href="#on-hover-description">"On Hover Description" Feature</a>
 - <a href="#evaluate-javascript">"Evaluate JavaScript" Feature</a>
 - <a href="#can-i-use">"Can I use?" Feature</a>
+- <a href="#jsdoc">"JSDoc" Feature</a>
 - <a href="#context-menu-options">Context menu options</a>
 
 <h2>Usage</h2>
@@ -138,6 +145,48 @@ Example :
 <img src="http://s17.postimg.org/8hqxb0fvj/Schermata_2016_09_24_alle_21_07_44.png" alt="example #2 Can I use? Feature"> 
 
 <img src="http://s17.postimg.org/wa4u0a7a7/Schermata_2016_09_24_alle_21_07_55.png" alt="example #3 Can I use? Feature"> 
+
+
+<h3 id="jsdoc">"JSDoc" Feature</h3>
+
+<strong>Supported only by Sublime Text 3</strong>
+
+<strong>Requires npm</strong>
+
+This feature uses [https://github.com/jsdoc3/jsdoc](https://github.com/jsdoc3/jsdoc) to generate API documentation.
+
+You can find it under <code>"JavaScript Completions Tools"</code> menu -> <code>JSDoc</code>.
+
+There are 2 main menu items:
+- Generate Documentation
+- Add jsdoc-settings.json to the current project folder
+
+<strong>These items can be used only with a project folder opened.</strong>
+
+<code>"Generate Documentation"</code> uses the jsdoc command line to generate documentation.
+
+It uses <code>jsdoc-settings.json</code> file for configuration or, alternately, it will use default configuration.
+
+The options (with default values) availables are:
+```json
+{
+  "jsdoc_conf_file": "conf.json",
+  "destination_folder": "out",
+  "display_symbols_access_property": "all",
+  "search_within_subdirectories": false,
+  "encoding_when_reading_all_source_files": "utf-8",
+  "template_path": "",
+  "tutorials_path": "",
+  "include_symbols_marked_with_the_private_tag": false,
+  "pedantic_mode": false,
+  "query_string_to_parse_and_store_in_global_variable": ""
+}
+```
+
+<code>"Add jsdoc-settings.json to the current project folder"</code> will add a <code>jsdoc-settings.json</code> file with default values to the current project folder.
+
+How to use JSDoc: [http://usejsdoc.org/](http://usejsdoc.org/)
+
 
 <h3 id="context-menu-options">Context menu options</h3>
 

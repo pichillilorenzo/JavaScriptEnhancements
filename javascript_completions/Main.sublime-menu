@@ -75,12 +75,6 @@
                   },
                   "caption": "Key Bindings – User"
               },
-              { "caption": "-" },
-              {
-                "caption": "GitHub Project",
-                "command": "open_url",
-                "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
-              },
               { "caption": "-" }
             ]
           }

@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, _init
+import re, urllib, shutil, traceback, threading
 
 def download_and_save(url, where_to_save) :
   if where_to_save :
@@ -19,6 +19,19 @@ def check_thread_is_alive(thread_name) :
     if thread.getName() == thread_name and thread.is_alive() :
       return True
   return False
+
+def create_and_start_thread(target, thread_name, args=[]) :
+  if not check_thread_is_alive(thread_name) :
+    thread = threading.Thread(target=target, name=thread_name, args=args)
+    thread.setDaemon(True)
+    thread.start()
+    return thread
+  return None
+
+def setTimeout(time, func):
+  timer = threading.Timer(time, func)
+  timer.start()
+  return timer
 
 def split_string_and_find(string_to_split, search_value, split_delimiter=" ") :
   string_splitted = string_to_split.split(split_delimiter)

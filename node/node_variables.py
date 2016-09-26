@@ -15,4 +15,9 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 NODE_JS_OS = os_switcher.get(sublime.platform())
 NODE_JS_ARCHITECTURE = "x64" if PLATFORM_ARCHITECTURE == "64bit" else "x86"
 NODE_JS_BINARY_NAME = "node" if NODE_JS_OS != 'win' else "node.exe"
-NODE_JS_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NODE_JS_BINARY_NAME)
+NPM_NAME = "npm"
+NODE_JS_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NODE_JS_BINARY_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NODE_JS_BINARY_NAME)
+NPM_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NPM_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NPM_NAME)
+NODE_MODULES_FOLDER_NAME = "node_modules"
+NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
+NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")

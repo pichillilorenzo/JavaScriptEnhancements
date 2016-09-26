@@ -4,23 +4,19 @@ import imp
 reload_mods = []
 for mod in sys.modules:
   if (mod.startswith('util') or
-      mod.startswith('helper') or
-      mod.startswith('node') or
-      mod.startswith('evaluate_javascript') or
-      mod.startswith('javascript_completions') 
+      mod.startswith('node')
     ) and sys.modules[mod] != None:
     reload_mods.append(mod)
 
 mods_load_order = [
+  'util.animation_loader',
+  'util.repeated_timer',
   'util.main',
   'node.node_variables',
   'node.animation_loader',
   'node.repeated_timer',
   'node.main',
-  'node.installer',
-  'helper.main',
-  'javascript_completions.main',
-  'evaluate_javascript.main'
+  'node.installer'
 ]
 
 for mod in mods_load_order:

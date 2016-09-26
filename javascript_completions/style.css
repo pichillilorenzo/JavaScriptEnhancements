@@ -1,0 +1,73 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+body{
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  background-color: #202A31;
+  padding: 10px; 
+}
+.container-hint-popup{
+  background-color: #202A31;
+  padding: 10px 20px 10px 10px;
+}
+.container-completion-link{
+  margin: 5px 0;
+  font-style: italic;
+}
+.completion-link{
+  font-style: normal;
+  color: #fff;
+}
+.highlighted, .back-button, .operation-name, .property-name, .constructor-name{
+  color: #69BDBF;
+}
+.label{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.parameter-type, .operation-return-type, .property-return-type, .constructor-return-type{
+  color: #66BB6A;
+}
+.parameter-name{
+  color: #FFA726;
+}
+.parameter-symbol, .class-name{
+  color: #EF5350;
+}
+.operation-url-doc-link, .property-url-doc-link, .constructor-url-doc-link{
+  font-style: normal;
+  color: #fff;
+}
+.container-hint-popup .container-description{
+  margin-bottom: 5px;
+}
+.container-hint-popup .container-info{
+  display: inline;
+  position: relative;
+  left: 10px;
+}
+.container-hint-popup .container-url-doc{
+  margin-top: 5px;
+  font-size: 10px;
+}
+.container-hint-popup .constructor-class-name, .container-hint-popup .operation-class-name, .container-hint-popup .property-class-name{
+  padding: 2.5px 12px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #EF5350;
+}
+.container-hint-popup .constructor-class-name .circle, .container-hint-popup .operation-class-name .circle, .container-hint-popup .property-class-name .circle{
+  padding: 2px 6px;
+  font-weight: bold;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 10px;
+  position: relative;
+  top: -1px;
+}

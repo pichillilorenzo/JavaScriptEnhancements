@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, sys, imp, platform, json, traceback, threading, urllib, shutil
+import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re
 from shutil import copyfile
 from threading import Timer
 
@@ -7,7 +7,7 @@ PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
  
-sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'helper', 'evaluate_javascript', 'javascript_completions']]
+sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util']]
 
 sublime_version = int(sublime.version())
 
@@ -19,8 +19,6 @@ import reloader
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
-
-_plugins = ["javascript_completions", "evaluate_javascript", "helper"]
 
 class handle_settingCommand(sublime_plugin.WindowCommand) :
   def run(self, folder_from_package, file_name, extension) :
@@ -94,28 +92,35 @@ class startPlugin():
       
       installer.install(node_js_version)
 
-    self.handle_plugins()
- 
-  def load_plugins(self):
-    global _plugins
-    for _plugin in _plugins :
-      copyfile(os.path.join(PACKAGE_PATH, _plugin, "main.py"), os.path.join(PACKAGE_PATH, "_created_"+_plugin+".py"))
-
-  def delete_plugins(self):
-    global _plugins
-    for _plugin in _plugins :
-      if os.path.isfile(os.path.join(PACKAGE_PATH, "_created_"+_plugin+".py")) : 
-        os.remove(os.path.join(PACKAGE_PATH, "_created_"+_plugin+".py"))
-    setTimeout(1, self.load_plugins)
-
-  def handle_plugins(self):
-    setTimeout(0, self.delete_plugins)
-
 mainPlugin = startPlugin()
+
+${include ./javascript_completions/javascript_completions_class.py}
+javascriptCompletions = JavaScriptCompletions()
+
+${include ./evaluate_javascript/evaluate_javascript_class.py}
+ej = EvaluateJavascript()
+
+${include ./helper/helper_class.py}
+jc_helper = JavaScriptCompletionsHelper()
+
+${include ./javascript_completions/main.py}
+
+${include ./evaluate_javascript/main.py}
+
+${include ./helper/main.py}
 
 if int(sublime.version()) < 3000 :
   mainPlugin.init()
+  javascriptCompletions.init()
+  ej.init()
+  jc_helper.init()
 else :
   def plugin_loaded():
     global mainPlugin
     mainPlugin.init()
+    global javascriptCompletions
+    javascriptCompletions.init()
+    global ej
+    ej.init()
+    global jc_helper
+    jc_helper.init()

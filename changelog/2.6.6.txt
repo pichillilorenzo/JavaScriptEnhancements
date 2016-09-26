@@ -1,0 +1,44 @@
+v2.6.6
+
+
+## Features
+
+- "JSDoc" Feature :
+
+  Supported only by Sublime Text 3
+
+  Requires npm
+
+  This feature uses https://github.com/jsdoc3/jsdoc to generate API documentation.
+
+  You can find it under "JavaScript Completions Tools" menu -> JSDoc.
+
+  There are 2 main menu items:
+  - Generate Documentation
+  - Add jsdoc-settings.json to the current project folder
+
+  These items can be used only with a project folder opened.
+  "Generate Documentation" uses the jsdoc command line to generate documentation.
+  It uses jsdoc-settings.json file for configuration or, alternately, it will use default configuration.
+  The options (with default values) availables are:
+  {
+    "jsdoc_conf_file": "conf.json",
+    "destination_folder": "out",
+    "display_symbols_access_property": "all",
+    "search_within_subdirectories": false,
+    "encoding_when_reading_all_source_files": "utf-8",
+    "template_path": "",
+    "tutorials_path": "",
+    "include_symbols_marked_with_the_private_tag": false,
+    "pedantic_mode": false,
+    "query_string_to_parse_and_store_in_global_variable": ""
+  }
+
+  "Add jsdoc-settings.json to the current project folder" will add a jsdoc-settings.json file with default values to the current project folder.
+
+  How to use JSDoc: http://usejsdoc.org/
+
+
+## Improvements
+
+- code refactoring
