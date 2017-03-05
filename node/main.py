@@ -1,8 +1,16 @@
 import subprocess
-import sys, imp, codecs, shlex, os
+import sys, imp, codecs, shlex, os, json
 import node_variables
 
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+
+def get_node_js_custom_path():
+   with open(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings")) as data_file:    
+    return json.load(data_file).get("node_js_custom_path").strip()
+
+def get_npm_custom_path():
+   with open(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings")) as data_file:    
+    return json.load(data_file).get("npm_custom_path").strip()
 
 class NodeJS(object):
   def eval(self, js, eval_type="eval", strict_mode=False):
@@ -13,11 +21,11 @@ class NodeJS(object):
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
-      args = [node_variables.NODE_JS_PATH_EXECUTABLE, eval_type, js]
+      args = [get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE, eval_type, js]
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(eval_type)+" "+shlex.quote(js)
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(eval_type)+" "+shlex.quote(js)
 
-    p = subprocess.Popen(args,  shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
@@ -35,14 +43,14 @@ class NodeJS(object):
     
     return lines
 
-  def getCurrentNodeJSVersion(self) :
+  def getCurrentNodeJSVersion(self, checking_local = False) :
 
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
-      args = [node_variables.NODE_JS_PATH_EXECUTABLE, "-v"]
+      args = [get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE, "-v"]
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" -v"
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE if not checking_local else node_variables.NODE_JS_PATH_EXECUTABLE)+" -v"
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
@@ -68,13 +76,13 @@ class NodeJS(object):
       if is_from_bin :
         args = [os.path.join(node_variables.NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
       else :
-        args = [node_variables.NODE_JS_PATH_EXECUTABLE, os.path.join(node_variables.NODE_MODULES_BIN_PATH, command)] + command_args
+        args = [get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE, os.path.join(node_variables.NODE_MODULES_BIN_PATH, command)] + command_args
     else :
       command_args_list = list()
       for command_arg in command_args :
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
@@ -104,7 +112,7 @@ class NPM(object):
     if node_variables.NODE_JS_OS == 'win':
       args = ["npm", "install"]
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(node_variables.NPM_PATH_EXECUTABLE)+" install"
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" install"
 
     os.chdir(PACKAGE_PATH)
 
@@ -126,14 +134,14 @@ class NPM(object):
 
     return lines.strip()
 
-  def update_all(self) :
+  def update_all(self, save = False) :
 
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
-      args = ["npm", "update", "--save"]
+      args = ["npm", "update", "--save"] if save else ["npm", "update"]
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(node_variables.NPM_PATH_EXECUTABLE)+" update --save"
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" update" + (" --save" if save else "")
 
     os.chdir(PACKAGE_PATH)
 
@@ -155,14 +163,14 @@ class NPM(object):
 
     return lines.strip()
 
-  def install(self, package_name) :
+  def install(self, package_name, save = False) :
 
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
-      args = ["npm", "install", "--save", package_name]
+      args = ["npm", "install", "--save", package_name] if save else ["npm", "install", package_name] 
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(node_variables.NPM_PATH_EXECUTABLE)+" install --save "+shlex.quote(package_name)
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" install" + (" --save" if save else "") + " " + shlex.quote(package_name)
 
     os.chdir(PACKAGE_PATH)
 
@@ -184,14 +192,14 @@ class NPM(object):
 
     return lines.strip()
 
-  def update(self, package_name) :
+  def update(self, package_name, save) :
 
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
-      args = ["npm", "update", "--save", package_name]
+      args = ["npm", "update", "--save", package_name] if save else ["npm", "update", package_name] 
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(node_variables.NPM_PATH_EXECUTABLE)+" update --save "+shlex.quote(package_name)
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" update" + (" --save" if save else "") + " " + shlex.quote(package_name)
 
     os.chdir(PACKAGE_PATH)
     
@@ -213,14 +221,14 @@ class NPM(object):
 
     return lines.strip()
 
-  def getCurrentNPMVersion(self) :
+  def getCurrentNPMVersion(self, checking_local = False) :
 
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
       args = ["npm", "-v"]
     else :
-      args = shlex.quote(node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(node_variables.NPM_PATH_EXECUTABLE)+" -v"
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE if not checking_local else node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE if not checking_local else node_variables.NPM_PATH_EXECUTABLE)+" -v"
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""

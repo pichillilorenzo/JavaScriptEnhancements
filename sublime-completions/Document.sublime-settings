@@ -70,10 +70,6 @@
 			"queryAll(${1:relativeSelectors: DOMString})"
 		],
 		[
-			"querySelectorAll( selectors: DOMString ): NodeList\tDocument",
-			"querySelectorAll(${1:selectors: DOMString})"
-		],
-		[
 			"enableStyleSheetsForSet( name: DOMString ): void\tDocument",
 			"enableStyleSheetsForSet(${1:name: DOMString})"
 		],
@@ -84,10 +80,6 @@
 		[
 			"importNode( node: Node, deep?: boolean ): Node\tDocument",
 			"importNode(${1:node: Node}, ${2:deep?: boolean})"
-		],
-		[
-			"querySelector( selectors: DOMString ): Element\tDocument",
-			"querySelector(${1:selectors: DOMString})"
 		],
 		[
 			"querySelector( selectors: DOMString ): Element\tDocument",

@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading
+import re, urllib, shutil, traceback, threading, hashlib
 
 def download_and_save(url, where_to_save) :
   if where_to_save :
@@ -19,6 +19,16 @@ def check_thread_is_alive(thread_name) :
     if thread.getName() == thread_name and thread.is_alive() :
       return True
   return False
+
+def checksum_sha1(fname):
+  hash_sha1 = hashlib.sha1()
+  with open(fname, "rb") as f:
+    for chunk in iter(lambda: f.read(4096), b""):
+      hash_sha1.update(chunk)
+  return hash_sha1.hexdigest()
+
+def checksum_sha1_equalcompare(fname1, fname2):
+  return checksum_sha1(fname1) == checksum_sha1(fname2)
 
 def create_and_start_thread(target, thread_name, args=[]) :
   if not check_thread_is_alive(thread_name) :
@@ -221,6 +231,16 @@ def trim_Region(view, region):
   while(view.substr(new_region).endswith(" ") or view.substr(new_region).startswith("\n")):
     new_region.b = new_region.b - 1
   return new_region
+
+def selection_in_js_scope(view, point = -1):
+  sel_begin = view.sel()[0].begin() if point == -1 else point
+  return view.match_selector(
+    sel_begin,
+    'source.js'
+  ) or view.match_selector(
+    sel_begin,
+    'source.js.embedded.html'
+  )
 
 def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
   lines = view.substr(region).split("\n")

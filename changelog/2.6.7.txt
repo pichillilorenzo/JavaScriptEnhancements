@@ -1,0 +1,25 @@
+v2.6.7
+
+# Announcement
+
+I'm implementing new features thanks to Flow (static type checker from Facebook).
+With it I can implement other features and there will be a better autocomplete.
+This is in Beta version and I will public it on github (under another branch)
+as soon as possible for testing purpose before I upload it on Package Control officially.
+So I ask you to help me with testing when it will be on github.
+
+However I apologize for the delay in replying to your request!
+I'm just a person that is working on this plugin and I have been busy lately.
+Thanks to all your support!
+
+## Improvements
+
+- "Javascript Completions Tools" menu moved under Tools
+- Fix about "Can I use" feauter (github: #31, #19)
+- On Hover Description now works also in embedded html
+- Fix for Context menus not showing in embedded html (github: #20) 
+- Fix Standard JSDoc configuration file (github: #27)
+- Now you can set node_js_custom_path and npm_custom_path variables 
+  in Javascript Completions > Settings to use your installed version of "nodejs" and "npm"
+  for all the features such as "Evaluate JavaScript"
+  (This will not override the version installed locally by this plugin!!)

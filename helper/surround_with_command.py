@@ -25,14 +25,7 @@ class surround_withCommand(sublime_plugin.TextCommand):
           continue
         space = Util.get_whitespace_from_line_begin(view, selection)
 
-        if case == "multi_line_comment" :       
-          new_text = Util.replace_without_tab(view, selection, space+"\n"+space+"/*\n"+space, "\n"+space+"*/\n"+space)
-          view.replace(edit, selection, new_text)
-
-        elif case == "single_line_comment" :
-          new_text = Util.replace_without_tab(view, selection, add_to_each_line_before="// ")
-          view.replace(edit, selection, new_text)
-        elif case == "if_statement" :
+        if case == "if_statement" :
 
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"if (bool) {\n"+space, "\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
@@ -56,10 +49,20 @@ class surround_withCommand(sublime_plugin.TextCommand):
         elif case == "try_catch_finally_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
-          
+  
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
+
   def is_visible(self, **args) :
     view = self.view
-    if Util.split_string_and_find(view.scope_name(0), "source.js") < 0 :
+    if not Util.selection_in_js_scope(view) :
       return False
     selections = view.sel()
     for selection in selections :

@@ -38,13 +38,13 @@ def action_result(action):
   elif action == "replace_text" :
     view.run_command("replace_text")
 
-  elif action == "view_result_with_allspaces":
-    view.run_command("view_result_with_allspaces")
+  elif action == "view_result_formatted":
+    view.run_command("view_result_formatted")
 
   view.hide_popup()
   result_js = ""
 
-class view_result_with_allspacesCommand(sublime_plugin.TextCommand):
+class view_result_formattedCommand(sublime_plugin.TextCommand):
   def run(self, edit):
     global result_js
     global region_selected
@@ -115,7 +115,7 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
       popup_is_showing = True
       view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
         <p class="result">Result: """+result_js+"""</p>
-        <div><a href="view_result_with_allspaces">View result with all spaces(\\t,\\n,...)</a></div>
+        <div><a href="view_result_formatted">View result formatted(\\t,\\n,...)</a></div>
         <div><a href="copy_to_clipboard">Copy result to clipboard</a></div>
         <div><a href="replace_text">Replace text with result</a></div>
         </div>
@@ -124,6 +124,18 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
       #sublime.error_message("Error: "+traceback.format_exc())
       sublime.active_window().show_input_panel("Result", "Error: "+traceback.format_exc(), lambda x: "" , lambda x: "", lambda : "")
 
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
+
 class show_start_end_dot_evalCommand(sublime_plugin.TextCommand) :
   def run(self, edit) :
     global region_selected
@@ -131,12 +143,36 @@ class show_start_end_dot_evalCommand(sublime_plugin.TextCommand) :
     lines = view.lines(region_selected)
     view.add_regions("region-dot", [lines[0], lines[-1:][0]],  "code", "dot", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
     #view.add_regions("region-body", [region_selected],  "code", "", sublime.DRAW_NO_FILL)
+  
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
 
 class hide_start_end_dot_evalCommand(sublime_plugin.TextCommand) :
   def run(self, edit) :
     view = self.view
     view.erase_regions("region-dot")
     #view.erase_regions("region-body")
+  
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
 
 def get_start_end_code_highlights_eval() :
   view = sublime.active_window().active_view()

@@ -3,6 +3,7 @@ can_i_use_file = None
 can_i_use_popup_is_showing = False
 can_i_use_list_from_main_menu = False
 path_to_can_i_use_data = os.path.join(H_SETTINGS_FOLDER, "can_i_use", "can_i_use_data.json")
+path_to_test_can_i_use_data = os.path.join(H_SETTINGS_FOLDER, "can_i_use", "can_i_use_data2.json")
 url_can_i_use_json_data = "https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json"
 
 can_i_use_css = ""
@@ -11,17 +12,37 @@ with open(os.path.join(H_SETTINGS_FOLDER, "can_i_use", "style.css")) as css_file
 
 def donwload_can_i_use_json_data() :
   global can_i_use_file
+
   if os.path.isfile(path_to_can_i_use_data) :
     with open(path_to_can_i_use_data) as json_file:    
-      json_file = json.load(json_file)
-      can_i_use_file = json_file
-  if Util.download_and_save(url_can_i_use_json_data, path_to_can_i_use_data) :
-    with open(path_to_can_i_use_data) as json_file:    
-      json_file = json.load(json_file)
-      can_i_use_file = json_file
-      return
-  if not os.path.isfile(path_to_can_i_use_data) : 
-    sublime.active_window().status_message("Can't download \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+      try :
+        can_i_use_file = json.load(json_file)
+      except Exception as e :
+        print("Error: "+traceback.format_exc())
+        sublime.active_window().status_message("Can't use \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+
+  if Util.download_and_save(url_can_i_use_json_data, path_to_test_can_i_use_data) :
+    if os.path.isfile(path_to_can_i_use_data) :
+      if not Util.checksum_sha1_equalcompare(path_to_can_i_use_data, path_to_test_can_i_use_data) :
+        with open(path_to_test_can_i_use_data) as json_file:    
+          try :
+            can_i_use_file = json.load(json_file)
+            if os.path.isfile(path_to_can_i_use_data) :
+              os.remove(path_to_can_i_use_data)
+            os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
+          except Exception as e :
+            print("Error: "+traceback.format_exc())
+            sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+      if os.path.isfile(path_to_test_can_i_use_data) :
+        os.remove(path_to_test_can_i_use_data)
+    else :
+      os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
+      with open(path_to_can_i_use_data) as json_file :    
+        try :
+          can_i_use_file = json.load(json_file)
+        except Exception as e :
+          print("Error: "+traceback.format_exc())
+          sublime.active_window().status_message("Can't use \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
 
 Util.create_and_start_thread(donwload_can_i_use_json_data, "DownloadCanIuseJsonData")
 
@@ -201,7 +222,7 @@ class can_i_useCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self, **args):
     view = self.view
-    if args.get("from") == "main-menu" or jc_helper.settings.get("enable_can_i_use_menu_option") :
+    if args.get("from") == "main-menu" or javascriptCompletions.get("enable_can_i_use_menu_option") :
       return True 
     return False
 
@@ -209,7 +230,7 @@ class can_i_useCommand(sublime_plugin.TextCommand):
     view = self.view
     if args.get("from") == "main-menu" :
       return True
-    if jc_helper.settings.get("enable_can_i_use_menu_option") :
+    if javascriptCompletions.get("enable_can_i_use_menu_option") :
       if Util.split_string_and_find_on_multiple(view.scope_name(0), ["source.js", "text.html.basic", "source.css"]) < 0 :
         return False
       return True

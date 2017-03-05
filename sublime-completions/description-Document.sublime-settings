@@ -67,26 +67,6 @@
 			}
 		],
 		[
-			"description-querySelector()\tDocument",
-			{
-				"name": "querySelector",
-				"return_type": "Element",
-				"parameters": [
-					{
-						"name": "selectors",
-						"type": "DOMString",
-						"is_optional": false,
-						"description": ""
-					}
-				],
-				"description": "The querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.",
-				"is_static": false,
-				"type": "operation",
-				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelector",
-				"full_description": "/*\n\n\tDocument\n\n\tquerySelector ( selectors: DOMString )\n\n\tReturn Type:\n\tElement\n\n\tDescription:\n\tThe querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelector\n\n*/"
-			}
-		],
-		[
 			"description-getElementsByTagNameNS()\tDocument",
 			{
 				"name": "getElementsByTagNameNS",
@@ -282,26 +262,6 @@
 				"type": "operation",
 				"url_doc": "http://html5index.org/DOM%20-%20Document.html#getElementsByClassName",
 				"full_description": "/*\n\n\tDocument\n\n\tgetElementsByClassName ( classNames: DOMString )\n\n\tReturn Type:\n\tHTMLCollection\n\n\tDescription:\n\tThe getElementsByClassName(classNames) method must return the list of elements with class names classNames for the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#getElementsByClassName\n\n*/"
-			}
-		],
-		[
-			"description-querySelectorAll()\tDocument",
-			{
-				"name": "querySelectorAll",
-				"return_type": "NodeList",
-				"parameters": [
-					{
-						"name": "selectors",
-						"type": "DOMString",
-						"is_optional": false,
-						"description": ""
-					}
-				],
-				"description": "The querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.",
-				"is_static": false,
-				"type": "operation",
-				"url_doc": "http://html5index.org/DOM%20-%20Document.html#querySelectorAll",
-				"full_description": "/*\n\n\tDocument\n\n\tquerySelectorAll ( selectors: DOMString )\n\n\tReturn Type:\n\tNodeList\n\n\tDescription:\n\tThe querySelectorAll(selectors) method must return the static result of running scope-match a selectors string selectors against the context object.\n\n\tURL doc:\n\thttp://html5index.org/DOM%20-%20Document.html#querySelectorAll\n\n*/"
 			}
 		],
 		[

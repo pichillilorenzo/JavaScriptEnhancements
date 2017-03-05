@@ -20,62 +20,62 @@ platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-class handle_settingCommand(sublime_plugin.WindowCommand) :
-  def run(self, folder_from_package, file_name, extension) :
-    open_setting(folder_from_package, file_name, extension)
-
-  def is_visible(self, folder_from_package, file_name, extension) :
-    if file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") >= 0 :
-      return True
-    elif file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") < 0 :
-      return False
-    return True
-
 def setTimeout(time, func):
   timer = Timer(time, func)
   timer.start()
 
-def enable_setting(folder_from_package, file_name, extension) :
-  path = os.path.join(PACKAGE_PATH, folder_from_package)
-  file_name_enabled = file_name + "." + extension
-  file_name_disabled = file_name + "_disabled" + "." + extension
-  path_file_enabled = os.path.join(path, file_name_enabled)
-  path_file_disabled = os.path.join(path, file_name_disabled)
-  try :
-    if os.path.isfile(path_file_disabled) :
-      os.rename(path_file_disabled, path_file_enabled)
-  except Exception as e :
-    print("Error: "+traceback.format_exc())
+# class handle_settingCommand(sublime_plugin.WindowCommand) :
+#   def run(self, folder_from_package, file_name, extension) :
+#     open_setting(folder_from_package, file_name, extension)
 
-def disable_setting(folder_from_package, file_name, extension) :
-  path = os.path.join(PACKAGE_PATH, folder_from_package)
-  file_name_enabled = file_name + "." + extension
-  file_name_disabled = file_name + "_disabled" + "." + extension
-  path_file_enabled = os.path.join(path, file_name_enabled)
-  path_file_disabled = os.path.join(path, file_name_disabled)
-  try :
-    if os.path.isfile(path_file_enabled) :
-      os.rename(path_file_enabled, path_file_disabled)
-  except Exception as e :
-    print("Error: "+traceback.format_exc())
+#   def is_visible(self, folder_from_package, file_name, extension) :
+#     if file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") >= 0 :
+#       return True
+#     elif file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") < 0 :
+#       return False
+#     return True
+    
+# def enable_setting(folder_from_package, file_name, extension) :
+#   path = os.path.join(PACKAGE_PATH, folder_from_package)
+#   file_name_enabled = file_name + "." + extension
+#   file_name_disabled = file_name + "_disabled" + "." + extension
+#   path_file_enabled = os.path.join(path, file_name_enabled)
+#   path_file_disabled = os.path.join(path, file_name_disabled)
+#   try :
+#     if os.path.isfile(path_file_disabled) :
+#       os.rename(path_file_disabled, path_file_enabled)
+#   except Exception as e :
+#     print("Error: "+traceback.format_exc())
 
-def is_setting_enabled(folder_from_package, file_name, extension) :
-  path = os.path.join(PACKAGE_PATH, folder_from_package)
-  file_name_enabled = file_name + "." + extension
-  path_file_enabled = os.path.join(path, file_name_enabled)
-  return os.path.isfile(path_file_enabled)
+# def disable_setting(folder_from_package, file_name, extension) :
+#   path = os.path.join(PACKAGE_PATH, folder_from_package)
+#   file_name_enabled = file_name + "." + extension
+#   file_name_disabled = file_name + "_disabled" + "." + extension
+#   path_file_enabled = os.path.join(path, file_name_enabled)
+#   path_file_disabled = os.path.join(path, file_name_disabled)
+#   try :
+#     if os.path.isfile(path_file_enabled) :
+#       os.rename(path_file_enabled, path_file_disabled)
+#   except Exception as e :
+#     print("Error: "+traceback.format_exc())
+
+# def is_setting_enabled(folder_from_package, file_name, extension) :
+#   path = os.path.join(PACKAGE_PATH, folder_from_package)
+#   file_name_enabled = file_name + "." + extension
+#   path_file_enabled = os.path.join(path, file_name_enabled)
+#   return os.path.isfile(path_file_enabled)
       
-def open_setting(folder_from_package, file_name, extension) :
-  path = os.path.join(PACKAGE_PATH, folder_from_package)
-  file_name_enabled = file_name + "." + extension
-  file_name_disabled = file_name + "_disabled" + "." + extension
-  path_file_enabled = os.path.join(path, file_name_enabled)
-  path_file_disabled = os.path.join(path, file_name_disabled)
+# def open_setting(folder_from_package, file_name, extension) :
+#   path = os.path.join(PACKAGE_PATH, folder_from_package)
+#   file_name_enabled = file_name + "." + extension
+#   file_name_disabled = file_name + "_disabled" + "." + extension
+#   path_file_enabled = os.path.join(path, file_name_enabled)
+#   path_file_disabled = os.path.join(path, file_name_disabled)
 
-  if os.path.isfile(path_file_enabled) :
-    sublime.active_window().open_file(path_file_enabled)
-  elif os.path.isfile(path_file_disabled) :
-    sublime.active_window().open_file(path_file_disabled)
+#   if os.path.isfile(path_file_enabled) :
+#     sublime.active_window().open_file(path_file_enabled)
+#   elif os.path.isfile(path_file_disabled) :
+#     sublime.active_window().open_file(path_file_disabled)
 
 class startPlugin():
   def init(self):
@@ -83,14 +83,8 @@ class startPlugin():
     import node.installer as installer
 
     if int(sublime.version()) >= 3000 :
-      eval_js_json = None
-      if os.path.isfile(os.path.join(PACKAGE_PATH, "evaluate_javascript", "Evaluate-JavaScript.sublime-settings")) :
-        with open(os.path.join(PACKAGE_PATH, "evaluate_javascript", "Evaluate-JavaScript.sublime-settings")) as data_file:    
-          eval_js_json = json.load(data_file)
-
-      node_js_version = sublime.load_settings('Evaluate-JavaScript.sublime-settings').get("node_js_version") or eval_js_json.get("node_js_version") or node_variables.NODE_JS_VERSION
-      
-      installer.install(node_js_version)
+    
+      installer.install(node_variables.NODE_JS_VERSION)
 
 mainPlugin = startPlugin()
 
@@ -98,10 +92,8 @@ ${include ./javascript_completions/javascript_completions_class.py}
 javascriptCompletions = JavaScriptCompletions()
 
 ${include ./evaluate_javascript/evaluate_javascript_class.py}
-ej = EvaluateJavascript()
 
 ${include ./helper/helper_class.py}
-jc_helper = JavaScriptCompletionsHelper()
 
 ${include ./javascript_completions/main.py}
 
@@ -112,15 +104,9 @@ ${include ./helper/main.py}
 if int(sublime.version()) < 3000 :
   mainPlugin.init()
   javascriptCompletions.init()
-  ej.init()
-  jc_helper.init()
 else :
   def plugin_loaded():
     global mainPlugin
     mainPlugin.init()
     global javascriptCompletions
     javascriptCompletions.init()
-    global ej
-    ej.init()
-    global jc_helper
-    jc_helper.init()

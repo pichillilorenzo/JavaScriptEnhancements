@@ -1,6 +1,9 @@
 {
-	"enable_key_map": false,
 	"enable_on_hover_description": true,
+	"enable_can_i_use_menu_option": true,
+	"jsdoc_conf_file": "conf.json",
+	"node_js_custom_path": "",
+	"npm_custom_path": "",
 	"completion_active_list": {
 		"jQuery": false,
 		"description-jQuery": false,

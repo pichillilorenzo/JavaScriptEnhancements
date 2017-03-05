@@ -1,5 +1,9 @@
 [
   {
+    "keys": ["ctrl+super+c"],
+    "command": "find_description"
+  },
+  {
     "keys": ["ctrl+super+s"],
     "command": "evaluate_javascript",
     "args": {"eval_type": "eval"}
@@ -16,5 +20,9 @@
   {
     "keys": ["ctrl+super+j"],
     "command": "show_code_highlights_eval"
+  },
+  {
+    "keys": ["ctrl+alt+w"],
+    "command": "can_i_use"
   }
 ]

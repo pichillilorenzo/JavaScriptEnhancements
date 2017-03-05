@@ -1,49 +1,133 @@
 [
   {
-    "caption": "JavaScript Completions Tools",
-    "mnemonic": "J",
-    "id": "javascript_completions_tools",
-    "children":[
+    "id": "tools",
+    "children": [
       {
-        "caption": "Search on \"Can I use\" list",
-        "command": "can_i_use",
-        "args": {"from": "main-menu"}
-      },
-      { "caption": "-" },
-      {
-        "caption": "JSDoc",
-        "id": "jsdoc",
-        "children": [
+        "caption": "JavaScript Completions",
+        "mnemonic": "J",
+        "id": "javascript_completions_tools",
+        "children":[
           {
-            "caption": "Generate Documentation",
-            "command": "generate_jsdoc"
-          },
-          {
-            "caption": "Add jsdoc-settings.json to the current project folder",
-            "command": "add_jsdoc_settings_to_curr_project_folder"
+            "caption": "Search on \"Can I use\" list",
+            "command": "can_i_use",
+            "args": {"from": "main-menu"}
           },
           { "caption": "-" },
           {
-            "caption": "Go to JSDoc Site",
+            "caption": "JSDoc",
+            "id": "jsdoc",
+            "children": [
+              {
+                "caption": "Generate Documentation",
+                "command": "generate_jsdoc"
+              },
+              {
+                "caption": "Add jsdoc configuration file to the current project folder",
+                "command": "add_jsdoc_conf_to_curr_project_folder"
+              },
+              { "caption": "-" },
+              {
+                "caption": "Go to JSDoc Site",
+                "command": "open_url",
+                "args": {"url": "http://usejsdoc.org/"}
+              }
+            ]
+          },
+          { "caption": "-" },
+          {
+            "caption": "Go to Node.js site",
             "command": "open_url",
-            "args": {"url": "http://usejsdoc.org/"}
+            "args": {
+                "url": "https://nodejs.org",
+                "platform": "Windows"
+            }
+          },
+          { "caption": "-" },
+          {
+            "caption": "GitHub Project",
+            "command": "open_url",
+            "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
           }
         ]
-      },
-      { "caption": "-" },
+      }
+    ]
+  },
+  {
+    "caption": "Preferences",
+    "mnemonic": "n",
+    "id": "preferences",
+    "children": [
       {
-        "caption": "Go to Node.js site",
-        "command": "open_url",
-        "args": {
-            "url": "https://nodejs.org",
-            "platform": "Windows"
-        }
-      },
-      { "caption": "-" },
-      {
-        "caption": "GitHub Project",
-        "command": "open_url",
-        "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
+        "caption": "Package Settings",
+        "mnemonic": "P",
+        "id": "package-settings",
+        "children": [
+          {
+            "caption": "JavaScript Completions",
+            "children": [
+              {
+                "caption": "Settings - Default",
+                "command": "open_file",
+                "args": {"file": "${packages}/JavaScript Completions/JavaScript-Completions.sublime-settings"}
+              },
+              {
+                "caption": "Settings - User",
+                "command": "open_file",
+                "args": {"file": "${packages}/User/JavaScript-Completions.sublime-settings"}
+              },
+              { "caption": "-" },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/JavaScript Completions/Default (OSX).sublime-keymap",
+                      "platform": "OSX"
+                  },
+                  "caption": "Key Bindings – Default"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/JavaScript Completions/Default (Linux).sublime-keymap",
+                      "platform": "Linux"
+                  },
+                  "caption": "Key Bindings – Default"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/JavaScript Completions/Default (Windows).sublime-keymap",
+                      "platform": "Windows"
+                  },
+                  "caption": "Key Bindings – Default"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/User/Default (OSX).sublime-keymap",
+                      "platform": "OSX"
+                  },
+                  "caption": "Key Bindings – User"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/User/Default (Linux).sublime-keymap",
+                      "platform": "Linux"
+                  },
+                  "caption": "Key Bindings – User"
+              },
+              {
+                  "command": "open_file",
+                  "args": {
+                      "file": "${packages}/User/Default (Windows).sublime-keymap",
+                      "platform": "Windows"
+                  },
+                  "caption": "Key Bindings – User"
+              },
+              { "caption": "-" }
+            ]
+          }
+        ]
       }
     ]
   }

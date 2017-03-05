@@ -1,11 +1,5 @@
 import sublime
-import traceback
-import threading
-import os, sys, imp
-import tarfile, zipfile
-import urllib
-import json
-import shutil
+import traceback, threading, os, sys, imp, tarfile, zipfile, urllib, json, shutil
 import node_variables
 from animation_loader import AnimationLoader
 from repeated_timer import RepeatedTimer
@@ -90,58 +84,59 @@ class DownloadNodeJS(object):
     self.animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Installing npm dependencies ")
     self.interval_animation = RepeatedTimer(self.animation_loader.sec, self.animation_loader.animate)
     try :
-      npm.getCurrentNPMVersion() 
+      npm.getCurrentNPMVersion(True) 
     except Exception as e:
       if node_variables.NODE_JS_OS == "win" :
         sublime.error_message("Can't use \"npm\"! To use features that requires \"npm\", you must install it! Download it from https://nodejs.org site")
-      print(e)
+      print("Error: "+traceback.format_exc())
     try :
       npm.install_all() 
-    except Exception as e:
+    except Exception as e :
+      #print("Error: "+traceback.format_exc())
       pass
     self.animation_loader.on_complete()
     self.interval_animation.stop()
-    if node_js.getCurrentNodeJSVersion() == self.NODE_JS_VERSION :
-      sublime.active_window().status_message("Node.js "+self.NODE_JS_VERSION+" installed correctly! NPM version: "+npm.getCurrentNPMVersion())
+    if node_js.getCurrentNodeJSVersion(True) == self.NODE_JS_VERSION :
+      sublime.active_window().status_message("Node.js "+self.NODE_JS_VERSION+" installed correctly! NPM version: "+npm.getCurrentNPMVersion(True))
     else :
       sublime.active_window().status_message("Can't install Node.js! Something went wrong during installation.")
 
 
-def checkUpgrade():
-  updateNPMDependencies()
-  try :
-    response = urllib.request.urlopen(node_variables.NODE_JS_VERSION_URL_LIST_ONLINE)
-    data = json.loads(response.read().decode("utf-8"))
-    nodejs_latest_version = data[0]["version"]
-    node_js = NodeJS()
-    if node_js.getCurrentNodeJSVersion() != nodejs_latest_version :
-      sublime.active_window().status_message("There is a new version ( "+nodejs_latest_version+" ) of Node.js available! Change your settings to download this version.")
-    else :
-      try :
-        npm = NPM()
-        npm_version = npm.getCurrentNPMVersion() 
-        sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion()+", npm: "+npm_version)
-      except Exception as e:
-        sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion()+", npm not installed!")
+# def checkUpgrade():
+#   updateNPMDependencies()
+#   try :
+#     response = urllib.request.urlopen(node_variables.NODE_JS_VERSION_URL_LIST_ONLINE)
+#     data = json.loads(response.read().decode("utf-8"))
+#     nodejs_latest_version = data[0]["version"]
+#     node_js = NodeJS()
+#     if node_js.getCurrentNodeJSVersion(True) != nodejs_latest_version :
+#       sublime.active_window().status_message("There is a new version ( "+nodejs_latest_version+" ) of Node.js available! Change your settings to download this version.")
+#     else :
+#       try :
+#         npm = NPM()
+#         npm_version = npm.getCurrentNPMVersion(True) 
+#         sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion(True)+", npm: "+npm_version)
+#       except Exception as e:
+#         sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion(True)+", npm not installed!")
 
       
-  except Exception as err :
-    traceback.print_exc()
+#   except Exception as err :
+#     traceback.print_exc()
 
 def updateNPMDependencies():
   npm = NPM()
   try :
-    npm.getCurrentNPMVersion()
+    npm.getCurrentNPMVersion(True)
   except Exception as e:
     if node_variables.NODE_JS_OS == "win" :
       sublime.active_window().status_message("Can't use \"npm\"! To use features that requires \"npm\", you must install it! Download it from https://nodejs.org site")
-    print(e)
+    print("Error: "+traceback.format_exc())
     return
     
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Updating npm dependencies ")
   interval_animation = RepeatedTimer(animation_loader.sec, animation_loader.animate)
   try :
-    npm.update_all() 
+    npm.update_all(False) 
   except Exception as e:
     pass
   animation_loader.on_complete()
@@ -165,8 +160,8 @@ def install(node_version=""):
     DownloadNodeJS( node_version ).start()
   elif nodejs_can_start_download and nodejs_already_installed :
     node_js = NodeJS()
-    if node_version != node_js.getCurrentNodeJSVersion() :
+    if node_version != node_js.getCurrentNodeJSVersion(True) :
       DownloadNodeJS( node_version ).start()
 
   if nodejs_already_installed :
-    create_and_start_thread(checkUpgrade, "checkUpgradeNodeJS")
+    create_and_start_thread(updateNPMDependencies, "checkUpgradeNPM")

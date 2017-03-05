@@ -12,19 +12,8 @@ class JavaScriptCompletionsHoverEventListener(sublime_plugin.EventListener):
 
   def on_hover(self, view, point, hover_zone) :
 
-    if not javascriptCompletions.settings.get("enable_on_hover_description") or hover_zone != sublime.HOVER_TEXT :
+    if not Util.selection_in_js_scope(view, point) or not javascriptCompletions.get("enable_on_hover_description") or hover_zone != sublime.HOVER_TEXT :
       return
-
-    scope = view.scope_name(point).strip()
-    
-    scope_splitted = scope.split(" ")
-    last_scope = scope_splitted[-1]
-    second_last = scope_splitted[-1] if len(scope_splitted) > 1 else None
-    if scope_splitted[0] != "source.js" or ( last_scope != "variable.function.js" and last_scope != "meta.property.object.js" and not last_scope.startswith("support.function.") and not last_scope.startswith("support.class.") and not last_scope.startswith("support.type.") ) :
-      if second_last and second_last != "meta.function-call.constructor.js" : 
-        return
-      elif not second_last :
-        return
 
     str_region = view.word(point)
     result = Util.get_current_region_scope(view, str_region)
@@ -32,25 +21,23 @@ class JavaScriptCompletionsHoverEventListener(sublime_plugin.EventListener):
     completion_list = list()
     for API_Keyword in javascriptCompletions.api :
       if (javascriptCompletions.API_Setup and javascriptCompletions.API_Setup.get(API_Keyword)) :
-        scope = javascriptCompletions.api[API_Keyword].get('scope')
-        if scope and view.match_selector(0, scope):
-          if(API_Keyword.startswith("description-")):
-            index_completion = 0
-            completions = javascriptCompletions.api[API_Keyword].get('completions')
-            for completion in completions:
-              completion_name = completion[0][12:].split("\t")
-              completion_name = strip_tags(completion_name[0].strip())
-              index_parenthesis = completion_name.find("(")
-              completion_name_to_compare = ""
-              if index_parenthesis >= 0 :
-                completion_name_to_compare = completion_name[0: index_parenthesis]
-              else :
-                completion_name_to_compare = completion_name
-              if(completion_name_to_compare == str_selected):
-                href = API_Keyword+","+str(index_completion)+","+str(point)
-                completion.insert(2, href)
-                completion_list.append(completion)
-              index_completion = index_completion + 1
+        if(API_Keyword.startswith("description-")):
+          index_completion = 0
+          completions = javascriptCompletions.api[API_Keyword].get('completions')
+          for completion in completions:
+            completion_name = completion[0][12:].split("\t")
+            completion_name = strip_tags(completion_name[0].strip())
+            index_parenthesis = completion_name.find("(")
+            completion_name_to_compare = ""
+            if index_parenthesis >= 0 :
+              completion_name_to_compare = completion_name[0: index_parenthesis]
+            else :
+              completion_name_to_compare = completion_name
+            if(completion_name_to_compare == str_selected):
+              href = API_Keyword+","+str(index_completion)+","+str(point)
+              completion.insert(2, href)
+              completion_list.append(completion)
+            index_completion = index_completion + 1
 
     if len(completion_list) == 0:
       return 

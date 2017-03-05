@@ -6,7 +6,7 @@ PACKAGE_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit"
 
-NODE_JS_VERSION = "v6.6.0" # Default value
+NODE_JS_VERSION = "v7.7.0"
 NODE_JS_BINARIES_FOLDER_NAME = "node_binaries"
 NODE_JS_VERSION_URL_LIST_ONLINE = "https://nodejs.org/dist/index.json"
 NODE_JS_BINARIES_FOLDER = os.path.join(PACKAGE_PATH, NODE_JS_BINARIES_FOLDER_NAME)

@@ -82,16 +82,6 @@
         "caption": "try catch finally statement",
         "command": "surround_with",
         "args": {"case": "try_catch_finally_statement"}
-      },
-      {
-        "caption": "Multi-line comment",
-        "command": "surround_with",
-        "args": {"case": "multi_line_comment"}
-      },
-      {
-        "caption": "Single-line comment",
-        "command": "surround_with",
-        "args": {"case": "single_line_comment"}
       }
     ]
   },
@@ -99,16 +89,6 @@
     "caption": "Delete Surrounded",
     "id": "delete_surrounded",
     "children": [
-      {
-        "caption": "Delete multi-line comment",
-        "command": "delete_surrounded",
-        "args": {"case": "del_multi_line_comment"}
-      },
-      {
-        "caption": "Delete single line comment",
-        "command": "delete_surrounded",
-        "args": {"case": "del_single_line_comment"}
-      },
       {
         "caption": "Strip quoted string",
         "command": "delete_surrounded",

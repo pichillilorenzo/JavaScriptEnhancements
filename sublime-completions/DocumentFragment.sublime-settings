@@ -6,10 +6,6 @@
 			"querySelectorAll(${1:selectors: DOMString})"
 		],
 		[
-			"querySelectorAll( selectors: DOMString ): NodeList\tDocumentFragment",
-			"querySelectorAll(${1:selectors: DOMString})"
-		],
-		[
 			"queryAll( relativeSelectors: DOMString ): Elements\tDocumentFragment",
 			"queryAll(${1:relativeSelectors: DOMString})"
 		],
@@ -20,10 +16,6 @@
 		[
 			"query( relativeSelectors: DOMString ): Element\tDocumentFragment",
 			"query(${1:relativeSelectors: DOMString})"
-		],
-		[
-			"querySelector( selectors: DOMString ): Element\tDocumentFragment",
-			"querySelector(${1:selectors: DOMString})"
 		],
 		[
 			"querySelector( selectors: DOMString ): Element\tDocumentFragment",

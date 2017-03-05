@@ -23,10 +23,22 @@ class split_string_lines_to_variableCommand(sublime_plugin.TextCommand):
           str_splitted = "\n".join(str_splitted)
           str_splitted = Util.add_whitespace_indentation(view, selection, str_splitted, "\n")
           view.replace(edit, item.get("region"), str_splitted)
-          
+  
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    scope = view.scope_name(selection.begin()).strip()
+    scope_splitted = scope.split(" ")
+    result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
+    if result.get("index") < 0 :
+      return False
+    return True
+
   def is_visible(self, **args) :
     view = self.view
-    if Util.split_string_and_find(view.scope_name(0), "source.js") < 0 :
+    if not Util.selection_in_js_scope(view) :
       return False
     selection = view.sel()[0]
     scope = view.scope_name(selection.begin()).strip()
