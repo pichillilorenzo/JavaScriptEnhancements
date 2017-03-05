@@ -15,7 +15,7 @@ Thanks to all your support!
 ## Improvements
 
 - "Javascript Completions Tools" menu moved under Tools
-- Fix about "Can I use" feauter (github: #31, #19)
+- Fix about "Can I use" feature (github: #31, #19)
 - On Hover Description now works also in embedded html
 - Fix for Context menus not showing in embedded html (github: #20) 
 - Fix Standard JSDoc configuration file (github: #27)
