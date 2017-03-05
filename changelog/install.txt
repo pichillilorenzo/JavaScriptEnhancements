@@ -36,8 +36,6 @@ You can ENABLE or DISABLE completions! Just go to Preferences -> Package Setting
 
 -- Supported only by Sublime Text 3 --
 
-key-map of this feature disabled by default!
-
 You can check the description of function/property/method by selecting the word (or, in case, it will take the first word near the blinking cursor) you want find. 
 "right-click" on your mouse and click on "Find JavaScript Description".
 It will show a popup with the list of possible descriptions or, in some case, the direct description. 
