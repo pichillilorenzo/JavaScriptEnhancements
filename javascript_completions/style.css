@@ -23,23 +23,23 @@ body{
   font-style: normal;
   color: #fff;
 }
-.highlighted, .back-button, .operation-name, .property-name, .constructor-name{
+.highlighted, .back-button, .container-description .name{
   color: #69BDBF;
 }
 .label{
   margin-bottom: 10px;
   font-weight: bold;
 }
-.parameter-type, .operation-return-type, .property-return-type, .constructor-return-type{
+.parameter-type, .return-type, .text-pre-params{
   color: #66BB6A;
 }
 .parameter-name{
   color: #FFA726;
 }
-.parameter-symbol, .class-name{
+.parameter-is-optional{
   color: #EF5350;
 }
-.operation-url-doc-link, .property-url-doc-link, .constructor-url-doc-link{
+.url-doc-link{
   font-style: normal;
   color: #fff;
 }
@@ -55,19 +55,6 @@ body{
   margin-top: 5px;
   font-size: 10px;
 }
-.container-hint-popup .constructor-class-name, .container-hint-popup .operation-class-name, .container-hint-popup .property-class-name{
-  padding: 2.5px 12px;
-  border-radius: 10px;
-  color: #fff;
-  background-color: #EF5350;
-}
-.container-hint-popup .constructor-class-name .circle, .container-hint-popup .operation-class-name .circle, .container-hint-popup .property-class-name .circle{
-  padding: 2px 6px;
-  font-weight: bold;
-  background-color: #333;
-  color: #fff;
-  border-radius: 10px;
+.go-to-def{
   font-size: 10px;
-  position: relative;
-  top: -1px;
 }

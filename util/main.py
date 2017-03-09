@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, hashlib
+import re, urllib, shutil, traceback, threading, time, os, hashlib
 
 def download_and_save(url, where_to_save) :
   if where_to_save :
@@ -7,7 +7,7 @@ def download_and_save(url, where_to_save) :
       request = urllib.request.Request(url)
       request.add_header('User-agent', r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1')
       with urllib.request.urlopen(request) as response :
-        with open(where_to_save, 'wb') as out_file :
+        with open(where_to_save, 'wb+') as out_file :
           shutil.copyfileobj(response, out_file)
           return True
     except Exception as e:
@@ -20,6 +20,19 @@ def check_thread_is_alive(thread_name) :
       return True
   return False
 
+def create_and_start_thread(target, thread_name="", args=[], daemon=True) :
+  if not check_thread_is_alive(thread_name) :
+    thread = threading.Thread(target=target, name=thread_name, args=args)
+    thread.setDaemon(daemon)
+    thread.start()
+    return thread
+  return None
+
+def setTimeout(time, func):
+  timer = threading.Timer(time, func)
+  timer.start()
+  return timer
+
 def checksum_sha1(fname):
   hash_sha1 = hashlib.sha1()
   with open(fname, "rb") as f:
@@ -29,19 +42,6 @@ def checksum_sha1(fname):
 
 def checksum_sha1_equalcompare(fname1, fname2):
   return checksum_sha1(fname1) == checksum_sha1(fname2)
-
-def create_and_start_thread(target, thread_name, args=[]) :
-  if not check_thread_is_alive(thread_name) :
-    thread = threading.Thread(target=target, name=thread_name, args=args)
-    thread.setDaemon(True)
-    thread.start()
-    return thread
-  return None
-
-def setTimeout(time, func):
-  timer = threading.Timer(time, func)
-  timer.start()
-  return timer
 
 def split_string_and_find(string_to_split, search_value, split_delimiter=" ") :
   string_splitted = string_to_split.split(split_delimiter)
@@ -224,6 +224,11 @@ def cover_regions(regions) :
     first_region = first_region.cover(region)
   return first_region
 
+def rowcol_to_region(view, row, col, endcol):
+  start = view.text_point(row, col)
+  end = view.text_point(row, endcol)
+  return sublime.Region(start, end)
+  
 def trim_Region(view, region):
   new_region = sublime.Region(region.begin(), region.end())
   while(view.substr(new_region).startswith(" ") or view.substr(new_region).startswith("\n")):
@@ -241,7 +246,7 @@ def selection_in_js_scope(view, point = -1):
     sel_begin,
     'source.js.embedded.html'
   )
-
+  
 def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
   lines = view.substr(region).split("\n")
   body = list()

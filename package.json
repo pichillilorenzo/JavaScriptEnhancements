@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "jsdoc": "3.4.3"
+    "electron": "1.6.1",
+    "flow-bin": "0.41.0",
+    "fs-extra": "2.0.0",
+    "jsdoc": "3.4.3",
+    "python-struct": "1.0.4"
   }
 }

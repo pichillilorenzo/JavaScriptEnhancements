@@ -115,7 +115,7 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
       popup_is_showing = True
       view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
         <p class="result">Result: """+result_js+"""</p>
-        <div><a href="view_result_formatted">View result formatted(\\t,\\n,...)</a></div>
+        <div><a href="view_result_formatted">View result with all spaces(\\t,\\n,...)</a></div>
         <div><a href="copy_to_clipboard">Copy result to clipboard</a></div>
         <div><a href="replace_text">Replace text with result</a></div>
         </div>

@@ -1,5 +1,5 @@
 import subprocess
-import sys, imp, codecs, shlex, os, json
+import sys, imp, codecs, shlex, os, json, traceback, tempfile
 import node_variables
 
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
@@ -70,7 +70,7 @@ class NodeJS(object):
 
     return lines.strip()
 
-  def execute(self, command, command_args, is_from_bin=False) :
+  def execute(self, command, command_args, is_from_bin=False, chdir="") :
 
     if node_variables.NODE_JS_OS == 'win':
       if is_from_bin :
@@ -83,9 +83,16 @@ class NodeJS(object):
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args
+ 
+    owd = os.getcwd()
+    if chdir :
+      os.chdir(chdir)
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
+
+    if chdir:
+      os.chdir(owd)
 
     # check for errors
     for line in p.stderr.readlines():
@@ -102,6 +109,77 @@ class NodeJS(object):
 
     return [True, lines.strip()]
 
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
+
+    fp = None
+    if use_fp_temp :
+      
+      fp = tempfile.NamedTemporaryFile()
+      fp.write(str.encode(fp_temp_contents))
+      fp.flush()
+
+    if node_variables.NODE_JS_OS == 'win':
+      if is_from_bin :
+        args = [os.path.join(node_variables.NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
+      else :
+        args = [get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE, os.path.join(node_variables.NODE_MODULES_BIN_PATH, command)] + command_args
+      if fp :
+        args += ["<", fp.name]
+    else :
+      command_args_list = list()
+      for command_arg in command_args :
+        command_args_list.append(shlex.quote(command_arg))
+      command_args = " ".join(command_args_list)
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp else "")
+
+    try:
+      output = None
+      result = None
+
+      owd = os.getcwd()
+      if chdir :
+        os.chdir(chdir)
+
+      output = subprocess.check_output(
+          args, shell=True, stderr=subprocess.STDOUT
+      )
+
+      if chdir:
+        os.chdir(owd)
+
+      if clean_output_flow :
+        out = output.decode("utf-8", "ignore")
+        out = out.split("\n")
+        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
+          out = out[3:]
+          out[0] = out[0].replace("Started a new flow server: -", "")
+          out = "\n".join(out)
+          result = json.loads(out) if is_output_json else out
+        else :
+          result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+      else :
+        result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+
+      if use_fp_temp :
+        fp.close()
+      return [True, result]
+    except subprocess.CalledProcessError as e:
+      #print(traceback.format_exc())
+      try:
+        result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+        if use_fp_temp :
+          fp.close()
+        return [False, result]
+      except:
+        #print(traceback.format_exc())
+        if use_fp_temp :
+          fp.close()
+        return [False, None]
+    except:
+      print(traceback.format_exc())
+      if use_fp_temp :
+        fp.close()
+      return [False, None]
 
 class NPM(object):
 
@@ -192,7 +270,7 @@ class NPM(object):
 
     return lines.strip()
 
-  def update(self, package_name, save) :
+  def update(self, package_name, save = False) :
 
     args = ""
 

@@ -26,30 +26,29 @@ class surround_withCommand(sublime_plugin.TextCommand):
         space = Util.get_whitespace_from_line_begin(view, selection)
 
         if case == "if_statement" :
-
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"if (bool) {\n"+space, "\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
-        elif case == "while_statement" :
 
+        elif case == "while_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"while (bool) {\n"+space, "\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
-        elif case == "do_while_statement" :
 
+        elif case == "do_while_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"do {\n"+space, "\n"+space+"} while (bool);\n"+space)
           view.replace(edit, selection, new_text)
-        elif case == "for_statement" :
 
+        elif case == "for_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"for ( ; bool ; ) {\n"+space, "\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
-        elif case == "try_catch_statement" :
 
+        elif case == "try_catch_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
 
         elif case == "try_catch_finally_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
-  
+          
   def is_enabled(self, **args) :
     view = self.view
     if not Util.selection_in_js_scope(view) :

@@ -1,38 +1,31 @@
 import sublime, sublime_plugin
-import sys, imp, os, webbrowser
+import sys, imp, os, webbrowser, re, cgi
 import util.main as Util
 
-if int(sublime.version()) < 3000:
-  from HTMLParser import HTMLParser
-else:
-  from html.parser import HTMLParser
+JC_SETTINGS_FOLDER_NAME = "javascript_completions"
+JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, JC_SETTINGS_FOLDER_NAME)
 
-class MLStripper(HTMLParser):
-    def __init__(self):
-        self.reset()
-        self.strict = False
-        self.convert_charrefs= True
-        self.fed = []
-    def handle_data(self, d):
-        self.fed.append(d)
-    def get_data(self):
-        return ''.join(self.fed)
+class JavaScriptCompletions():
 
-def strip_tags(html):
-    s = MLStripper()
-    s.feed(html)
-    return s.get_data()
+  def get(self, key):
+    return sublime.load_settings('JavaScript-Completions.sublime-settings').get(key)
+
+javascriptCompletions = JavaScriptCompletions()
 
 ${include on_query_completions_event_listener.py}
+
+${include go_to_def_command.py}
 
 js_css = ""
 with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
   js_css = "<style>"+css_file.read()+"</style>"
 
 if int(sublime.version()) >= 3124 :
-  
-  ${include on_hover_event_listener.py}
 
-if int(sublime.version()) >= 3000 :
+  ${include on_hover_description_event_listener.py}
 
-  ${include find_description_command.py}
+  ${include show_hint_parameters_command.py}
+
+  ${include handle_flow_errors_command.py}
+
+  ${include show_flow_errors_view_event_listener.py}

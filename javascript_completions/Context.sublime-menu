@@ -1,9 +1,14 @@
 [
   { "caption": "-" },
   {
-    "caption": "Find JavaScript Description",
-    "id": "find_javascript_description",
-    "command": "find_description"
+    "caption": "Goto Definition",
+    "id": "go_to_def",
+    "command": "go_to_def"
   },
-  { "caption": "-" }
+  { "caption": "-" },
+  {
+    "caption": "Show Hint Parameters",
+    "id": "show_hint_parameters",
+    "command": "show_hint_parameters"
+  }
 ]

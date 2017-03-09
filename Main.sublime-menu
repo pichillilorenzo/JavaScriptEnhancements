@@ -1,5 +1,6 @@
-[
+[ 
   {
+    "caption": "Tools",
     "id": "tools",
     "children": [
       {
@@ -7,6 +8,34 @@
         "mnemonic": "J",
         "id": "javascript_completions_tools",
         "children":[
+          {
+            "caption": "Use Flow checker on current view",
+            "id": "use_flow_checker_on_current_view",
+            "checkbox": true,
+            "command": "toggle_setting",
+            "args": {"setting": "use_flow_checker_on_current_view"}
+          },
+          {
+            "caption": "Goto Definition",
+            "id": "go_to_def",
+            "command": "go_to_def"
+          },
+          {
+            "caption": "Show Hint Parameters",
+            "id": "show_hint_parameters",
+            "command": "show_hint_parameters"
+          },
+          {
+            "caption": "Show Completions",
+            "id": "show_completions",
+            "command": "auto_complete",
+            "args": {
+              "disable_auto_insert": true,
+              "api_completions_only": false,
+              "next_completion_if_showing": false,
+              "auto_complete_commit_on_tab": true,
+            }
+          },
           {
             "caption": "Search on \"Can I use\" list",
             "command": "can_i_use",
@@ -49,6 +78,30 @@
             "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
           }
         ]
+      }
+    ]
+  },
+  {
+    "caption": "Project",
+    "id": "project",
+    "children":
+    [
+      { "caption": "-" },
+      {
+        "caption": "New...",
+        "id": "new",
+        "mnemonic": "F",
+        "children": [
+          {
+            "caption": "JavaScript Project",
+            "command": "create_new_project",
+            "id": "create_new_project"
+          }
+        ],
+      },
+      {
+        "caption": "Edit JavaScript Project",
+        "command": "edit_javascript_project"
       }
     ]
   },

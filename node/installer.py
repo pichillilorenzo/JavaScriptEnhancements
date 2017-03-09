@@ -90,9 +90,8 @@ class DownloadNodeJS(object):
         sublime.error_message("Can't use \"npm\"! To use features that requires \"npm\", you must install it! Download it from https://nodejs.org site")
       print("Error: "+traceback.format_exc())
     try :
-      npm.install_all() 
-    except Exception as e :
-      #print("Error: "+traceback.format_exc())
+      npm.install_all(False) 
+    except Exception as e:
       pass
     self.animation_loader.on_complete()
     self.interval_animation.stop()
@@ -119,7 +118,6 @@ class DownloadNodeJS(object):
 #       except Exception as e:
 #         sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion(True)+", npm not installed!")
 
-      
 #   except Exception as err :
 #     traceback.print_exc()
 
@@ -136,7 +134,7 @@ def updateNPMDependencies():
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Updating npm dependencies ")
   interval_animation = RepeatedTimer(animation_loader.sec, animation_loader.animate)
   try :
-    npm.update_all(False) 
+    npm.update_all() 
   except Exception as e:
     pass
   animation_loader.on_complete()

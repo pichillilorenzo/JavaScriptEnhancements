@@ -7,106 +7,75 @@ PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
  
-sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util']]
-
-sublime_version = int(sublime.version())
+sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'my_socket']]
 
 if 'reloader' in sys.modules:
   imp.reload(sys.modules['reloader'])
 import reloader
 
-# platform
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-def setTimeout(time, func):
-  timer = Timer(time, func)
-  timer.start()
+main_settings_json = dict()
+if os.path.isfile(os.path.join(PACKAGE_PATH, "main.sublime-settings")) :
+  with open(os.path.join(PACKAGE_PATH, "main.sublime-settings")) as main_settings_file:    
+    main_settings_json = json.load(main_settings_file)
 
-# class handle_settingCommand(sublime_plugin.WindowCommand) :
-#   def run(self, folder_from_package, file_name, extension) :
-#     open_setting(folder_from_package, file_name, extension)
+def subl(args):
+  
+  executable_path = sublime.executable_path()
+  if sublime.platform() == 'osx':
+    app_path = executable_path[:executable_path.rfind(".app/") + 5]
+    executable_path = app_path + "Contents/SharedSupport/bin/subl"
 
-#   def is_visible(self, folder_from_package, file_name, extension) :
-#     if file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") >= 0 :
-#       return True
-#     elif file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") < 0 :
-#       return False
-#     return True
-    
-# def enable_setting(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   file_name_disabled = file_name + "_disabled" + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   path_file_disabled = os.path.join(path, file_name_disabled)
-#   try :
-#     if os.path.isfile(path_file_disabled) :
-#       os.rename(path_file_disabled, path_file_enabled)
-#   except Exception as e :
-#     print("Error: "+traceback.format_exc())
+  if sublime.platform() == 'windows' :
+    args = [executable_path] + args
+  else :
+    args_list = list()
+    for arg in args :
+      args_list.append(shlex.quote(arg))
+    args = shlex.quote(executable_path) + " " + " ".join(args_list)
 
-# def disable_setting(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   file_name_disabled = file_name + "_disabled" + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   path_file_disabled = os.path.join(path, file_name_disabled)
-#   try :
-#     if os.path.isfile(path_file_enabled) :
-#       os.rename(path_file_enabled, path_file_disabled)
-#   except Exception as e :
-#     print("Error: "+traceback.format_exc())
+  return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-# def is_setting_enabled(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   return os.path.isfile(path_file_enabled)
-      
-# def open_setting(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   file_name_disabled = file_name + "_disabled" + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   path_file_disabled = os.path.join(path, file_name_disabled)
-
-#   if os.path.isfile(path_file_enabled) :
-#     sublime.active_window().open_file(path_file_enabled)
-#   elif os.path.isfile(path_file_disabled) :
-#     sublime.active_window().open_file(path_file_disabled)
+def overwrite_default_javascript_snippet():
+  if not os.path.isdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript")) :
+    os.mkdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript"))
+  if not os.path.isdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets")) :
+    os.mkdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets"))
+  for file_name in os.listdir(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet")) :
+    if file_name.endswith(".sublime-snippet") and os.path.isfile(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet", file_name)) :
+      shutil.copy(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet", file_name), os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets", file_name))
 
 class startPlugin():
   def init(self):
     import node.node_variables as node_variables
     import node.installer as installer
+    from node.main import NodeJS
+    node = NodeJS()
 
-    if int(sublime.version()) >= 3000 :
-    
-      installer.install(node_variables.NODE_JS_VERSION)
+    overwrite_default_javascript_snippet()
+
+    installer.install(node_variables.NODE_JS_VERSION)
 
 mainPlugin = startPlugin()
 
-${include ./javascript_completions/javascript_completions_class.py}
-javascriptCompletions = JavaScriptCompletions()
-
-${include ./evaluate_javascript/evaluate_javascript_class.py}
-
-${include ./helper/helper_class.py}
+${include ./flow/main.py}
 
 ${include ./javascript_completions/main.py}
 
 ${include ./evaluate_javascript/main.py}
 
+${include ./project/main.py}
+
 ${include ./helper/main.py}
 
 if int(sublime.version()) < 3000 :
   mainPlugin.init()
-  javascriptCompletions.init()
 else :
   def plugin_loaded():
     global mainPlugin
     mainPlugin.init()
-    global javascriptCompletions
-    javascriptCompletions.init()
+    if not test_python() :
+      sublime.error_message("You must install Python 3 and set the absolute path in the main settings to use some features!")

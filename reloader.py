@@ -4,7 +4,8 @@ import imp
 reload_mods = []
 for mod in sys.modules:
   if (mod.startswith('util') or
-      mod.startswith('node')
+      mod.startswith('node') or 
+      mod.startswith('my_socket')
     ) and sys.modules[mod] != None:
     reload_mods.append(mod)
 
@@ -16,7 +17,8 @@ mods_load_order = [
   'node.animation_loader',
   'node.repeated_timer',
   'node.main',
-  'node.installer'
+  'node.installer',
+  'my_socket.main'
 ]
 
 for mod in mods_load_order:
