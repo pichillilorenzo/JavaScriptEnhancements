@@ -88,7 +88,7 @@
     [
       { "caption": "-" },
       {
-        "caption": "New...",
+        "caption": "New",
         "id": "new",
         "mnemonic": "F",
         "children": [

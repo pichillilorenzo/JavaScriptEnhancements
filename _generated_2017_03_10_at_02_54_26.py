@@ -1207,6 +1207,14 @@ def test_python():
     pass
   return False
 
+def is_javascript_project():
+  project_file_name = sublime.active_window().project_file_name()
+  if project_file_name :
+    project_folder = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    return os.path.isdir(settings_dir_name)
+  return False
+  
 def get_project_settings():
 
   project_settings = dict()
@@ -1444,7 +1452,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
-
+        print(client_data)
         json_data = json.loads(client_data)
 
         if json_data["command"] == "open_project":
@@ -1455,12 +1463,13 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
           socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
 
         elif json_data["command"] == "try_flow_init":
+          
           data = dict()
           data["command"] = "result_flow_init"
           data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
           data["project"] = json_data["project"]
           data = json.dumps(data)
-          print(data)
+
           socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
 
       def client_connected(conn, addr, ip, port, client_fields):
@@ -1478,54 +1487,47 @@ import sublime, sublime_plugin
 import subprocess, shutil, traceback
 from my_socket.main import mySocketServer  
 
-socket_server_list["edit_javascript_project"] = dict()
-socket_server_list["edit_javascript_project"]["client_process"] = None
-socket_server_list["edit_javascript_project"]["client_ui_file"] = os.path.join(PROJECT_FOLDER, "edit_javascript_project", "ui.py")
-socket_server_list["edit_javascript_project"]["socket"] = None
-socket_server_list["edit_javascript_project"]["current_selected_view"] = None
+socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join("edit_project", "ui", "client.js"))
 
 class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
   def run(self, *args):
     global socket_server_list
 
-    if socket_server_list["edit_javascript_project"]["socket"] == None :
+    if socket_server_list["edit_project"].socket and socket_server_list["edit_project"].socket.close_if_not_clients():
+      socket_server_list["edit_project"].socket = None
 
-      socket_server_list["edit_javascript_project"]["socket"] = mySocketServer("edit_javascript_project") 
-      socket_server_list["edit_javascript_project"]["socket"].bind("localhost", 11112)
+    if socket_server_list["edit_project"].socket == None :
 
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
 
         json_data = json.loads(client_data)
 
+        if json_data["command"] == "ready":
+          settings = get_project_settings()
+          if settings :
+            data = dict()
+            data["command"] = "load_project_settings"
+            data["settings"] = settings
+            data = json.dumps(data)
+            socket_server_list["edit_project"].socket.send_to(conn, addr, data) 
 
       def client_connected(conn, addr, ip, port, client_fields):
         global socket_server_list 
-        settings = get_project_settings()
-        if settings :
-          data = dict()
-          data["command"] = "load_project_settings"
-          data["settings"] = settings
-          data = json.dumps(data)
-          socket_server_list["edit_javascript_project"]["socket"].send_to(conn, addr, data) 
+        
 
       def client_disconnected(conn, addr, ip, port):
-        socket_server_list["edit_javascript_project"]["client_process"] = None
-        if socket_server_list["edit_javascript_project"]["socket"].close_if_not_clients() :
-          socket_server_list["edit_javascript_project"]["socket"] = None
+        socket_server_list["edit_project"].client_thread = None
+        if socket_server_list["edit_project"].socket.close_if_not_clients() :
+          socket_server_list["edit_project"].socket = None
 
-      socket_server_list["edit_javascript_project"]["socket"].handle_recv(recv)
-      socket_server_list["edit_javascript_project"]["socket"].handle_client_connection(client_connected)
-      socket_server_list["edit_javascript_project"]["socket"].handle_client_disconnection(client_disconnected)
-      socket_server_list["edit_javascript_project"]["socket"].listen()
-
-    socket_server_list["edit_javascript_project"]["client_process"] = call_ui(socket_server_list["edit_javascript_project"]["client_ui_file"], "localhost", 11112)
+      socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
 
   def is_enabled(self):
-    return True if get_project_settings() else False
+    return True if is_javascript_project() else False
 
   def is_visible(self):
-    return True if get_project_settings() else False
+    return True if is_javascript_project() else False
 
 import sublime, sublime_plugin
 

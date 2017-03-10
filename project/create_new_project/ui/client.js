@@ -8,7 +8,7 @@ const electron = require('electron')
 const {ipcMain} = require('electron')
 const SocketWindow = require('../../js/SocketWindow.js')
 
-const app = new SocketWindow('localhost', 11111, __dirname, 460, 235)
+const app = new SocketWindow('localhost', 11111, __dirname, 460, 765)
 
 app.listenSocketCommand('close_window', (data) => {
   app.app.quit()
@@ -29,7 +29,7 @@ app.listenSocketCommand('result_flow_init', (data) => {
     }
   }, flowconfig, "a+")
 
-  let sublime_project_file_name = util.clearString(data.project.name)
+  let sublime_project_file_name = util.clearString(data.project.project_name)
   let data_to_send = {
     "project": path.join(data.project.path, sublime_project_file_name+".sublime-project"),
     "command": "open_project"
@@ -43,6 +43,7 @@ app.listenSocketCommand('result_flow_init', (data) => {
 })
 
 ipcMain.on('data', (event, project) => {
+
   if (!fs.existsSync(project.path)){
     fs.mkdirsSync(project.path)
   }
@@ -53,9 +54,9 @@ ipcMain.on('data', (event, project) => {
 
   if (!fs.existsSync(jc_project_settings)) {
     fs.mkdirSync(jc_project_settings)
-
     util.openWithSync((fd) => {
-      default_config.project_details.project_name = project.name
+      default_config.project_details = JSON.parse(JSON.stringify(project))
+      delete default_config.project_details.path
       fs.writeFileSync(fd, JSON.stringify(default_config.project_details, null, 2))
     }, settings_file, "w+")
 
@@ -67,7 +68,6 @@ ipcMain.on('data', (event, project) => {
       "command": "try_flow_init",
       "project": project
     })
-
   }
   else{
     app.sendWeb("error", "Can't create the project! A project already exists in that folder.")

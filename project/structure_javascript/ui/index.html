@@ -183,8 +183,11 @@
           parent.appendChild(li)
         }
 
-        if (obj.type == "ExportDeclaration" || obj.type == "ExportNamedDeclaration") {
-    
+        if (obj.type == "ExportDeclaration" || obj.type == "ExportNamedDeclaration" || (obj.type == "ExpressionStatement" && obj.expression.left && obj.expression.left.object && obj.expression.left.object.name == "exports")) {
+          if(obj.type == "ExpressionStatement"){
+            obj = obj.expression.right
+            obj.specifiers = true
+          }
           let text = ""
           if (obj.specifiers) {
             let row_start = obj.loc.start.line
@@ -283,7 +286,7 @@
           }
         }
 
-        else if (obj.type == "FunctionDeclaration" || obj.type == "FunctionExpression") {
+        else if (obj.type == "FunctionDeclaration" || obj.type == "FunctionExpression" || obj.type == "ArrowFunctionExpression") {
 
           let text = " " + ((obj.type == "FunctionDeclaration") ? obj.id.name : "anonymous function") + ", line: " + obj.loc.start.line
           let li = createLi(text, obj.loc.start.line)
@@ -466,7 +469,7 @@
 
     }
     ipcRenderer.on('data', (event, json_data) => {
-
+      console.log(json_data)
       update_structure(json_data, null)
       text_structure.appendChild(list_structure)
       list.appendChild(text_structure)

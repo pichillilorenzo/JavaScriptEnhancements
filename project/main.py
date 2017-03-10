@@ -32,6 +32,14 @@ def test_python():
     pass
   return False
 
+def is_javascript_project():
+  project_file_name = sublime.active_window().project_file_name()
+  if project_file_name :
+    project_folder = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    return os.path.isdir(settings_dir_name)
+  return False
+  
 def get_project_settings():
 
   project_settings = dict()
@@ -58,6 +66,6 @@ ${include structure_javascript/structure_javascript.py}
 
 ${include create_new_project/create_new_project.py}
 
-${include edit_javascript_project/edit_javascript_project.py}
+${include edit_project/edit_project.py}
 
 ${include close_all_servers_and_flow_event_listener.py}

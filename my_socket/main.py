@@ -46,9 +46,9 @@ class mySocketClient():
 
   def recv_data(self):
     try:
-      size = self.socket.recv(struct.calcsize("i"))
+      size = self.socket.recv(struct.calcsize("<i"))
       if size :
-        size = struct.unpack("i", size)[0]
+        size = struct.unpack("<i", size)[0]
         data = b""
         while len(data) < size:
           try:
@@ -70,7 +70,7 @@ class mySocketClient():
   def send_to_server(self, data) :
     self.socket.settimeout(1)
     try :
-      data = struct.pack("i", len(data)) + data.encode("utf-8")
+      data = struct.pack("<i", len(data)) + data.encode("utf-8")
       self.socket.sendall(data)
       return True
     except socket.timeout:
@@ -154,6 +154,7 @@ class mySocketServer():
       input_from_client_bytes = self.recv_data(conn)
 
       if input_from_client_bytes is False :
+
         self.delete_client(conn, addr)
         if self.func_on_client_disconnected :
           self.func_on_client_disconnected(conn, addr, ip, port)
@@ -170,9 +171,9 @@ class mySocketServer():
 
   def recv_data(self, conn):
     try:
-      size = conn.recv(struct.calcsize("i"))
+      size = conn.recv(struct.calcsize("<i"))
       if size :
-        size = struct.unpack("i", size)[0]
+        size = struct.unpack("<i", size)[0]
         data = b""
         while len(data) < size:
           try:
@@ -180,12 +181,12 @@ class mySocketServer():
             if not msg:
               return None
             data += msg
-          except socket.error:
+          except socket.error as e:
             pass
         return data
       else :
         return False
-    except socket.error:
+    except socket.error as e:
       pass
     except OSError as e:
       self.log(traceback.format_exc())
@@ -194,7 +195,7 @@ class mySocketServer():
   def send_to(self, conn, addr, data) :
     conn.settimeout(1)
     try:
-      data = struct.pack("i", len(data)) + data.encode("utf-8")
+      data = struct.pack("<i", len(data)) + data.encode("utf-8")
       return self.send_all_data_to(conn, addr, data)
     except socket.timeout:
       self.delete_client(conn, addr)

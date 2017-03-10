@@ -36,26 +36,21 @@ module.exports = class SocketWindow {
       protocol: 'file:',
       slashes: true
     }))
-    //this.window.webContents.openDevTools()
+    this.window.webContents.openDevTools()
     this.window.on('closed', () => {
       this.window = null
     })
   }
 
   connect(){
-    this.client.connect(this.port, this.host, () => {
-      let data = {
-        "command": "ready"
-      }
-      this.sendSocketJson(data)
-    })
+    this.client.connect(this.port, this.host)
   }
 
   listenSocket(){
     this.client.on('data', (data) => {
       if(!this.currData){
-        this.sizeData = struct.unpack("i", data)
-        this.currData = data.slice(struct.sizeOf("i")).toString('utf8').substring(0, this.sizeData)
+        this.sizeData = struct.unpack("<i", data)
+        this.currData = data.slice(struct.sizeOf("<i")).toString('utf8').substring(0, this.sizeData)
       }
       else{
         this.currData += data.toString('utf8')
@@ -64,12 +59,12 @@ module.exports = class SocketWindow {
       if(this.currData.length < this.sizeData){
         return
       }
-      if(data == "server_accept_only_one_client"){
-        app.quit()
+      if(this.currData == "server_accept_only_one_client"){
+        this.app.quit()
       }
       this.currData = JSON.parse(this.currData)
       if(this.currData.command == "server_closing"){
-        app.quit()
+        this.app.quit()
       }
       else if(this.socketCommands[this.currData.command]){
         this.socketCommands[this.currData.command](this.currData)
@@ -85,9 +80,14 @@ module.exports = class SocketWindow {
       this.createWindow()
       this.connect()
       this.listenSocket()
-
       if(fun)
         fun()
+      this.window.webContents.on("did-finish-load", () => {
+        let data = {
+          "command": "ready"
+        }
+        this.sendSocketJson(data)
+      })
     })
   }
 
@@ -101,8 +101,10 @@ module.exports = class SocketWindow {
   }
 
   sendSocket(data){
-    data = data + ""
-    this.client.write(struct.pack("i", data.length) + data)
+    data = Buffer.from(data)
+    let prefix = new Buffer(4)
+    prefix.writeIntLE(data.length, 0, 4)
+    this.client.write(Buffer.concat([prefix, data]))
   }
 
   sendSocketJson(data){

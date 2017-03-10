@@ -19,7 +19,7 @@ module.exports = {
     "author": "",
     "author_uri": "",
     "description": "",
-    "version": 1,
+    "version": "1.0",
     "license": "",
     "license_uri": "",
     "tags": ""

@@ -2,6 +2,9 @@ html, body, form, .pmd-card-custom-form{
   height: 100%;
   margin: 0;
 }
+body{
+  overflow: hidden;
+}
 .pmd-alert-container{
   width: 200px;
   margin-left: -100px;

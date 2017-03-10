@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Project</title>
+  <link rel="stylesheet" href="../../css/vendor/iconfont/material-icons.css">
+  <link rel="stylesheet" href="../../css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/vendor/propeller.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="row full-height">
+    <div class="col-xs-4">
+      <ul class="list-group pmd-list pmd-card-list" role="tablist">
+        <li class="list-group-item active"> 
+          <a href="#project-details" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">
+            <i class="material-icons media-left media-middle">create</i>
+            <div class="media-body">
+              <h3 class="list-group-item-heading">Project Details</h3>
+              <span class="list-group-item-text">Change your project details</span> 
+            </div>
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="#flow-settings" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">
+            <i class="material-icons media-left media-middle">settings</i>
+            <div class="media-body">
+              <h3 class="list-group-item-heading">Flow settings</h3>
+              <span class="list-group-item-text">Set your .flowconfig options here</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-xs-8 full-height">
+      <div class="tab-content pmd-z-depth-1 full-height">
+        
+        <div id="project-details" class="full-height tab-pane active">
+          <div class="text-center"><h2>Project Details</h2></div>
+          <form id="form-project-details" action="#">
+            <div class="pmd-card pmd-z-depth pmd-card-custom-form">
+              <div class="pmd-card-body">
+                <div class="form-group pmd-textfield">
+                  <label for="project_name" class="control-label">Project name:</label>
+                  <input type="text" id="project_name" class="check-not-empty form-control" required="required"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="project_path" class="control-label">Project path:</label>
+                  <input type="text" id="project_path" class="form-control" disabled="disabled" required="required"><span class="pmd-textfield-focused"></span>
+                </div>
+              </div>
+            </div>
+            <div class="menu pmd-floating-action" role="navigation"> 
+              <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
+            </div>
+          </form>
+        </div>
+        <div id="flow-settings" class="full-height tab-pane">
+          <div class="text-center"><h2>Flow settings</h2></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="pmd-alert-container right top"></div>
+  <script>
+    window.$ = window.jQuery = require('../../js/vendor/jquery-1.12.2.min.js')
+    require('../../js/vendor/bootstrap.min.js')
+    require('../../js/vendor/propeller.min.js')
+    const utilWeb = require('../../js/utilWeb.js')
+
+    const {ipcRenderer} = require('electron')
+    const {dialog} = require('electron').remote
+
+    $(document).ready(() => {
+      
+      $("#form-project-details").on("submit", (event) => {
+        event.preventDefault()
+        let project_details = {
+          "project_name": $("#project_name").val().trim(),
+          "author": "",
+          "author_uri": "",
+          "description": "",
+          "version": 1,
+          "license": "",
+          "license_uri": "",
+          "tags": ""
+        }
+        ipcRenderer.send('form-project-details', project_details)
+      })
+
+    })
+
+    ipcRenderer.on("load_config", (event, config) => {
+      let project_details = config.settings.project_details
+      $("#project_name").val(project_details.project_name)
+      $("#project_path").val(config.settings.project_dir_name)
+    })
+
+    ipcRenderer.on("error", (event, msg) => {
+      $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg));
+    })
+
+    ipcRenderer.on("success", (event, msg) => {
+      $(".pmd-alert-container").append(utilWeb.createPmdAlert("success", msg));
+    })
+  
+  </script>
+</body>
+</html>

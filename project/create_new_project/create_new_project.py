@@ -21,7 +21,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
-
+        print(client_data)
         json_data = json.loads(client_data)
 
         if json_data["command"] == "open_project":
@@ -32,11 +32,13 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
           socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
 
         elif json_data["command"] == "try_flow_init":
+          
           data = dict()
           data["command"] = "result_flow_init"
           data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
           data["project"] = json_data["project"]
           data = json.dumps(data)
+
           socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
 
       def client_connected(conn, addr, ip, port, client_fields):

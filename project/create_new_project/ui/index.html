@@ -13,14 +13,42 @@
       <div class="pmd-card-body">
         <div class="form-group pmd-textfield">
           <label for="project_name" class="control-label">Project name:</label>
-          <input type="text" id="project_name" class="form-control"><span class="pmd-textfield-focused"></span>
+          <input type="text" id="project_name" class="form-control" required="required"><span class="pmd-textfield-focused"></span>
         </div>
         <div class="form-group pmd-textfield">
           <label for="project_path" class="control-label">Project path:</label>
           <div class="input-group">
-            <input type="text" id="project_path" class="form-control"><span class="pmd-textfield-focused"></span>
+            <input type="text" id="project_path" class="form-control" required="required"><span class="pmd-textfield-focused"></span>
             <div class="input-group-addon"><button id="choose-path" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" type="button">...</button></div>
           </div>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="author" class="control-label">Author:</label>
+          <input type="text" id="author" class="form-control"><span class="pmd-textfield-focused"></span>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="author_uri" class="control-label">Author URI:</label>
+          <input type="text" id="author_uri" class="form-control"><span class="pmd-textfield-focused"></span>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="description" class="control-label">Description:</label>
+          <textarea id="description" class="form-control" maxlength="255"></textarea><span class="pmd-textfield-focused"></span>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="version" class="control-label">Version:</label>
+          <input type="text" id="version" class="form-control"><span class="pmd-textfield-focused"></span>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="license" class="control-label">License:</label>
+          <input type="text" id="license" class="form-control"><span class="pmd-textfield-focused"></span>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="license_uri" class="control-label">License URI:</label>
+          <input type="text" id="license_uri" class="form-control"><span class="pmd-textfield-focused"></span>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="tags" class="control-label">Tags:</label>
+          <input type="text" id="tags" class="form-control"><span class="pmd-textfield-focused"></span>
         </div>
         <button class="btn pmd-btn-raised pmd-ripple-effect btn-primary" type="submit">Create</button>
       </div>
@@ -46,18 +74,21 @@
 
       $("form").on("submit", (event) => {
         event.preventDefault()
-        let project_name = $("#project_name").val().trim()
-        let project_path = $("#project_path").val().trim()
-        if(project_name != "" && project_path != ""){
-          let project = {
-            "name": project_name,
-            "path": project_path
-          }
-          ipcRenderer.send("data", project)
+
+        let project = {
+          "project_name": $("#project_name").val().trim(),
+          "author": $("#author").val().trim(),
+          "author_uri": $("#author_uri").val().trim(),
+          "description": $("#description").val().trim(),
+          "version": $("#version").val().trim(),
+          "license": $("#license").val().trim(),
+          "license_uri": $("#license_uri").val().trim(),
+          "tags": $("#tags").val().trim(),
+          "path": $("#project_path").val().trim()
         }
-        else{
-          $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", "All fields are required!"));
-        }
+        
+        ipcRenderer.send("data", project)
+
       })
 
     })
