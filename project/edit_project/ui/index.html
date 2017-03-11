@@ -41,6 +41,7 @@
           <form id="form-project-details" action="#">
             <div class="pmd-card pmd-z-depth pmd-card-custom-form">
               <div class="pmd-card-body">
+
                 <div class="form-group pmd-textfield">
                   <label for="project_name" class="control-label">Project name:</label>
                   <input type="text" id="project_name" class="check-not-empty form-control" required="required"><span class="pmd-textfield-focused"></span>
@@ -49,10 +50,39 @@
                   <label for="project_path" class="control-label">Project path:</label>
                   <input type="text" id="project_path" class="form-control" disabled="disabled" required="required"><span class="pmd-textfield-focused"></span>
                 </div>
+                <div class="form-group pmd-textfield">
+                  <label for="author" class="control-label">Author:</label>
+                  <input type="text" id="author" class="form-control"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="author_uri" class="control-label">Author URI:</label>
+                  <input type="text" id="author_uri" class="form-control"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="description" class="control-label">Description:</label>
+                  <textarea id="description" class="form-control" maxlength="255"></textarea><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="version" class="control-label">Version:</label>
+                  <input type="text" id="version" class="form-control"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="license" class="control-label">License:</label>
+                  <input type="text" id="license" class="form-control"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="license_uri" class="control-label">License URI:</label>
+                  <input type="text" id="license_uri" class="form-control"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
+                  <label for="tags" class="control-label">Tags:</label>
+                  <input type="text" id="tags" class="form-control"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="menu pmd-floating-action" role="navigation"> 
+                  <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
+                </div>
+
               </div>
-            </div>
-            <div class="menu pmd-floating-action" role="navigation"> 
-              <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
             </div>
           </form>
         </div>
@@ -79,13 +109,13 @@
         event.preventDefault()
         let project_details = {
           "project_name": $("#project_name").val().trim(),
-          "author": "",
-          "author_uri": "",
-          "description": "",
-          "version": 1,
-          "license": "",
-          "license_uri": "",
-          "tags": ""
+          "author": $("#author").val().trim(),
+          "author_uri": $("#author_uri").val().trim(),
+          "description": $("#description").val().trim(),
+          "version": $("#version").val().trim(),
+          "license": $("#license").val().trim(),
+          "license_uri": $("#license_uri").val().trim(),
+          "tags": $("#tags").val().trim()
         }
         ipcRenderer.send('form-project-details', project_details)
       })
@@ -96,6 +126,13 @@
       let project_details = config.settings.project_details
       $("#project_name").val(project_details.project_name)
       $("#project_path").val(config.settings.project_dir_name)
+      $("#author").val(project_details.author)
+      $("#author_uri").val(project_details.author_uri)
+      $("#description").val(project_details.description)
+      $("#version").val(project_details.version)
+      $("#license").val(project_details.license)
+      $("#license_uri").val(project_details.license_uri)
+      $("#tags").val(project_details.tags)
     })
 
     ipcRenderer.on("error", (event, msg) => {

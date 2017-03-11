@@ -1,6 +1,14 @@
 html, body{
   height: 100%;
-  margin: 0;
+}
+.tab-content{
+  overflow-y: scroll;
+}
+#project-details{
+  margin-bottom: 136px;
+}
+#project-details .pmd-floating-action{
+  right: 11px;
 }
 .row{
   margin: 0px;

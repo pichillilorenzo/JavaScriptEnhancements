@@ -85,6 +85,9 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       )
     )
 
+    if not self.completions_ready or not self.completions:
+      return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+
   def on_query_completions_async(self, view, prefix, locations):
     self.completions = None
 
@@ -148,6 +151,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           completion = create_completion(comp_name, comp_type, match.get('func_details'))
           self.completions.append(completion)
 
+      self.completions += load_default_autocomplete(view, prefix)
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 
@@ -159,7 +163,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       sel = view.sel()[0]
       if view.substr(view.word(sel)).strip() :
         self.run_auto_complete()
-  
+
   def on_text_command(self, view, command_name, args):
     sel = view.sel()[0]
     if not view.match_selector(

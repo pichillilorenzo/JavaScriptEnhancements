@@ -45,7 +45,7 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
   def on_hover(self, view, point, hover_zone) :
     sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
-    
+
 def on_hover_description_async(view, point, hover_zone, popup_position) :
   if not view.match_selector(
       point,
@@ -86,7 +86,8 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
   html = ""
 
   if result[0]:
-    descriptions = result[1]["result"]
+    descriptions = result[1]["result"] + load_default_autocomplete(view, word, True)
+
     for description in descriptions :
       if description['name'] == word :
 

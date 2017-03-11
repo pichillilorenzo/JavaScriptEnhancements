@@ -22,6 +22,24 @@ with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
 
 if int(sublime.version()) >= 3124 :
 
+  def load_default_autocomplete(view, prefix, isHover = False):
+
+    scope = view.scope_name(view.sel()[0].begin()-(len(prefix)+1)).strip()
+    if scope.endswith(" punctuation.accessor.js") :
+      return []
+
+    prefix = prefix.lower()
+    completions = sublime.load_settings('default_autocomplete.sublime-settings').get('completions')
+    completions_to_add = []
+    for completion in completions: 
+      if not isHover:
+        if completion[0].lower().startswith(prefix) :
+          completions_to_add.append((completion[0], completion[1]))
+      else :
+        if len(completion) == 3 and completion[0].lower().startswith(prefix) :
+          completions_to_add.append(completion[2])
+    return completions_to_add
+
   ${include on_hover_description_event_listener.py}
 
   ${include show_hint_parameters_command.py}

@@ -1,0 +1,241 @@
+{
+  "scope": "source.js",
+  "completions": [
+    [
+      "switch",
+      "switch (${1:expression}) {\n\tcase ${2:label_1}:\n\t\t${3:// statements_1}\n\t\tbreak;\n\tdefault:\n\t\t${4:// statements_def}\n\t\tbreak;\n}"
+    ],
+    [
+      "try catch finally",
+      "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n} finally {\n\t${3:// statements}\n}"
+    ],
+    [
+      "try catch",
+      "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n}"
+    ],
+    [
+      "if else",
+      "if (${1:condition}) {\n\t${2:// statement}\n} else {\n\t${3:// statement}\n}"
+    ],
+    [
+      "prototype",
+      "${1:class_name}.prototype.${2:method_name} = function(${3:argument}){\n\t${4:// body... }\n};"
+    ],
+    [
+      "forEach",
+      "${1:array}.forEach( function(${2:element}, ${3:index}) {\n\t${4:// statements}\n});"
+    ],
+    [
+      "function with name",
+      "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
+    ],
+    [
+      "for",
+      "for(let i = 0, length1 = ${1:array}.length; i < length1; i++){\n\t${1:array}[i]${2:}\n}"
+    ],
+    [
+      "for-k",
+      "for(let k = 0, length3 = ${1:array}.length; k < length3; k++){\n\t${1:array}[k]${2:}\n}"
+    ],
+    [
+      "for-j",
+      "for(let j = 0, length2 = ${1:array}.length; j < length2; j++){\n\t${1:array}[j]${2:}\n}"
+    ],
+    [
+      "function without name",
+      "function (${1:argument}) {\n\t${2:/* body... */}\n}"
+    ],
+    [
+      "for of",
+      "for (${1:variable} of object) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "for in",
+      "for (${1:variable} in object) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "do while",
+      "do{\n\t// statement\n} while (${1:condition});"
+    ],
+    [
+      "while",
+      "while (${1:condition}) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "if",
+      "if (${1:condition}) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "anonymous function",
+      ";(function(){\n\t$1\n})()"
+    ],
+    [
+      "else if",
+      "else if (${1:condition}) {\n\t\n}"
+    ],
+    [
+      "Conditional operator (ternary)",
+      "(${1:condition}) ? ${2:val1} : ${3:val2}"
+    ],
+    [
+      "else",
+      "else {\n\t$1\n}"
+    ],
+    [
+      "new FormData(${1:form})",
+      "new FormData(${1:form})"
+    ],
+    [
+      "console",
+      "console"
+    ],
+    [
+      "use strict",
+      "'use strict';"
+    ],
+    [
+      "new Option",
+      "new Option()"
+    ],
+    [
+      "new Image",
+      "new Image()"
+    ],
+    [
+      "continue",
+      "continue;"
+    ],
+    [
+      "throw",
+      "throw $1"
+    ],
+    [
+      "const",
+      "const"
+    ],
+    [
+      "break",
+      "break"
+    ],
+    [
+      "return",
+      "return"
+    ],
+    [
+      "false",
+      "false"
+    ],
+    [
+      "let",
+      "let"
+    ],
+    [
+      "null",
+      "null"
+    ],
+    [
+      "true",
+      "true"
+    ],
+    [
+      "var",
+      "var"
+    ],
+    [
+      "void",
+      "void(${1:''})"
+    ],
+    [
+      "NaN\tnumber",
+      "NaN"
+    ],
+    [
+      "Infinity\tnumber",
+      "Infinity"
+    ],
+    [
+      "undefined\tvoid",
+      "undefined"
+    ],
+    [
+      "parseInt(string: mixed, radix?: number) => number",
+      "parseInt(${1:string: mixed}, ${2:radix?: number})",
+      {
+        "name": "parseInt",
+        "type": "(string: mixed, radix?: number)",
+        "func_details": {
+          "params":[
+            {"name": "string", "type": "mixed"},
+            {"name": "radix?", "type": "number"}
+          ],
+          "return_type": "number"
+        }
+      }
+    ],
+    [
+      "parseFloat(string: mixed) => number",
+      "parseFloat(${1:string: mixed})",
+      {
+        "name": "parseFloat",
+        "type": "(string: mixed)",
+        "func_details": {
+          "params":[
+            {"name": "string", "type": "mixed"}
+          ],
+          "return_type": "number"
+        }
+      }
+    ],
+    [
+      "isNaN(number: mixed) => boolean",
+      "isNaN(${1:number: mixed})",
+      {
+        "name": "isNaN",
+        "type": "(number: mixed)",
+        "func_details": {
+          "params":[
+            {"name": "number", "type": "mixed"}
+          ],
+          "return_type": "boolean"
+        }
+      }
+    ],
+    [
+      "isFinite(number: mixed) => boolean",
+      "isFinite(${1:number: mixed})"
+    ],
+    [
+      "decodeURI(encodedURI: string) => string",
+      "decodeURI(${1:encodedURI: string})"
+    ],
+    [
+      "decodeURIComponent(encodedURIComponent: string) => string",
+      "decodeURIComponent(${1:encodedURIComponent: string})"
+    ],
+    [
+      "encodeURI(uri: string) => string",
+      "encodeURI(${1:uri: string})"
+    ],
+    [
+      "encodeURIComponent(uriComponent: string) => string",
+      "encodeURIComponent(${1:uriComponent: string})"
+    ],
+    [
+      "Object => {static (o: ?void): {[key: any]: any}; static (o: boolean): Boolean; static (o: number): Number; static (o: string): String; static <T: Object>(o: T): T; static assign: Object$Assign; static create(o: any, properties?: any): any; static defineProperties(o: any, properties: any): any; static defineProperty(o: any, p: any, attributes: any): any; static entries(object: any): Array<[string, mixed]>; static freeze<T>(o: T): T; static getOwnPropertyDescriptor(o: any, p: any): any; static getOwnPropertyNames(o: any): Array<string>; static getOwnPropertySymbols(o: any): Symbol[]; static getPrototypeOf: Object$GetPrototypeOf; static is(a: any, b: any): boolean; static isExtensible(o: any): boolean; static isFrozen(o: any): boolean; static isSealed(o: any): boolean; static keys(o: any): Array<string>; static preventExtensions(o: any): any; static seal(o: any): any; static setPrototypeOf(o: any, proto: ?Object): bool; static values(object: any): Array<mixed>; hasOwnProperty(prop: any): boolean; isPrototypeOf(o: any): boolean; propertyIsEnumerable(prop: any): boolean; toLocaleString(): string; toString(): string; valueOf(): Object; [key:any]: any; }",
+      "Object"
+    ],
+    [
+      "Symbol => {static (value?:any): Symbol; static for(key: string): Symbol; static hasInstance: $SymbolHasInstance; static isConcatSpreadable: $SymboIsConcatSpreadable; static iterator: string; static keyFor(sym: Symbol): ?string; static length: 0; static match: $SymbolMatch; static replace: $SymbolReplace; static search: $SymbolSearch; static species: $SymbolSpecies; static split: $SymbolSplit; static toPrimitive: $SymbolToPrimitive; static toStringTag: $SymbolToStringTag; static unscopables: $SymbolUnscopables; toString(): string; valueOf(): ?Symbol; }",
+      "Symbol"
+    ],
+    [
+      "Function => {apply: Function$Prototype$Apply; bind: Function$Prototype$Bind; call: Function$Prototype$Call; arguments: any; caller: Function | null; length: number; name: string; }",
+      "Function"
+    ],
+    [
+      "Boolean => {static (value:any):boolean; valueOf(): boolean; toString(): string; }",
+      "Boolean"
+    ]
+  ]
+}
+
