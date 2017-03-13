@@ -151,7 +151,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           completion = create_completion(comp_name, comp_type, match.get('func_details'))
           self.completions.append(completion)
 
-      self.completions += load_default_autocomplete(view, prefix)
+      self.completions += load_default_autocomplete(view, self.completions, prefix)
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 

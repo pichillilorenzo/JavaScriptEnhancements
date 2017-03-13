@@ -18,6 +18,8 @@ ${include create_class_from_object_literal_command.py}
       
 ${include split_string_lines_to_variable_command.py}
 
+${include add_type_any_paramater_command.py}
+
 if int(sublime.version()) >= 3124 :
 
   ${include can_i_use/can_i_use_command.py}

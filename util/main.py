@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, time, os, hashlib
+import re, urllib, shutil, traceback, threading, time, os, hashlib, json
 
 def download_and_save(url, where_to_save) :
   if where_to_save :
@@ -13,6 +13,14 @@ def download_and_save(url, where_to_save) :
     except Exception as e:
       traceback.print_exc()
   return False
+
+def open_json(path):
+  with open(path) as json_file :    
+    try :
+      return json.load(json_file)
+    except Exception as e :
+      print("Error: "+traceback.format_exc())
+  return None
 
 def check_thread_is_alive(thread_name) :
   for thread in threading.enumerate() :

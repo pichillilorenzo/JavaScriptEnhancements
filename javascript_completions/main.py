@@ -22,23 +22,39 @@ with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
 
 if int(sublime.version()) >= 3124 :
 
-  def load_default_autocomplete(view, prefix, isHover = False):
+  default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
+
+  def load_default_autocomplete(view, comps_to_campare, prefix, isHover = False):
 
     scope = view.scope_name(view.sel()[0].begin()-(len(prefix)+1)).strip()
     if scope.endswith(" punctuation.accessor.js") :
       return []
 
     prefix = prefix.lower()
-    completions = sublime.load_settings('default_autocomplete.sublime-settings').get('completions')
+    completions = default_completions
     completions_to_add = []
     for completion in completions: 
+      c = completion[0].lower()
       if not isHover:
-        if completion[0].lower().startswith(prefix) :
+        if c.startswith(prefix):
           completions_to_add.append((completion[0], completion[1]))
       else :
-        if len(completion) == 3 and completion[0].lower().startswith(prefix) :
+        if len(completion) == 3 and c.startswith(prefix) :
           completions_to_add.append(completion[2])
-    return completions_to_add
+    final_completions = []
+    for completion in completions_to_add:
+      flag = False
+      for c_to_campare in comps_to_campare:
+        if not isHover and completion[0].split("\t")[0] == c_to_campare[0].split("\t")[0] :
+          flag = True
+          break
+        elif isHover and completion["name"] == c_to_campare["name"] :
+          flag = True
+          break
+      if not flag :
+        final_completions.append(completion)
+
+    return final_completions
 
   ${include on_hover_description_event_listener.py}
 

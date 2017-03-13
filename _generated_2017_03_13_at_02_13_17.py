@@ -331,7 +331,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           completion = create_completion(comp_name, comp_type, match.get('func_details'))
           self.completions.append(completion)
 
-      self.completions += load_default_autocomplete(view, prefix)
+      self.completions += load_default_autocomplete(view, self.completions, prefix)
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 
@@ -465,23 +465,39 @@ with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
 
 if int(sublime.version()) >= 3124 :
 
-  def load_default_autocomplete(view, prefix, isHover = False):
+  default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
+
+  def load_default_autocomplete(view, comps_to_campare, prefix, isHover = False):
 
     scope = view.scope_name(view.sel()[0].begin()-(len(prefix)+1)).strip()
     if scope.endswith(" punctuation.accessor.js") :
       return []
 
     prefix = prefix.lower()
-    completions = sublime.load_settings('default_autocomplete.sublime-settings').get('completions')
+    completions = default_completions
     completions_to_add = []
     for completion in completions: 
+      c = completion[0].lower()
       if not isHover:
-        if completion[0].lower().startswith(prefix) :
+        if c.startswith(prefix):
           completions_to_add.append((completion[0], completion[1]))
       else :
-        if len(completion) == 3 and completion[0].lower().startswith(prefix) :
+        if len(completion) == 3 and c.startswith(prefix) :
           completions_to_add.append(completion[2])
-    return completions_to_add
+    final_completions = []
+    for completion in completions_to_add:
+      flag = False
+      for c_to_campare in comps_to_campare:
+        if not isHover and completion[0].split("\t")[0] == c_to_campare[0].split("\t")[0] :
+          flag = True
+          break
+        elif isHover and completion["name"] == c_to_campare["name"] :
+          flag = True
+          break
+      if not flag :
+        final_completions.append(completion)
+
+    return final_completions
 
   import sublime, sublime_plugin
   import util.main as Util
@@ -571,7 +587,7 @@ if int(sublime.version()) >= 3124 :
     html = ""
   
     if result[0]:
-      descriptions = result[1]["result"] + load_default_autocomplete(view, word, True)
+      descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, True)
   
       for description in descriptions :
         if description['name'] == word :
@@ -1847,6 +1863,29 @@ class split_string_lines_to_variableCommand(sublime_plugin.TextCommand):
     if result.get("index") < 0 :
       return False
     return True
+
+add_type_any_parameter_list = []
+class add_type_any_parameterCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    global add_type_any_parameter_list
+    view = self.view
+    params = []
+    if not "recall" in args :
+      params = view.find_by_selector("variable.parameter.function.js")
+      add_type_any_parameter_list = params
+    else :
+      params = add_type_any_parameter_list
+
+    if "recall" in args and args["recall"] >= 0 :
+      args["recall"] = args["recall"] + 1
+
+    if params :
+      view.insert(edit, params[0].end() + ( args["recall"]*len("/* : any */") if "recall" in args else 0 ) , "/* : any */")
+      del params[0]
+      if not "recall" in args :
+        view.run_command("add_type_any_parameter", {"recall" : 0})
+      else :
+        view.run_command("add_type_any_parameter", {"recall": args["recall"]})
 
 if int(sublime.version()) >= 3124 :
 

@@ -1,0 +1,593 @@
+{
+  "completions": [
+    [
+      "switch",
+      "switch (${1:expression}) {\n\tcase ${2:label_1}:\n\t\t${3:// statements_1}\n\t\tbreak;\n\tdefault:\n\t\t${4:// statements_def}\n\t\tbreak;\n}"
+    ],
+    [
+      "try catch finally",
+      "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n} finally {\n\t${3:// statements}\n}"
+    ],
+    [
+      "try catch",
+      "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n}"
+    ],
+    [
+      "if else",
+      "if (${1:condition}) {\n\t${2:// statement}\n} else {\n\t${3:// statement}\n}"
+    ],
+    [
+      "prototype",
+      "${1:class_name}.prototype.${2:method_name} = function(${3:argument}){\n\t${4:// body... }\n};"
+    ],
+    [
+      "forEach",
+      "${1:array}.forEach( function(${2:element}, ${3:index}) {\n\t${4:// statements}\n});"
+    ],
+    [
+      "function with name",
+      "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
+    ],
+    [
+      "for",
+      "for(let i = 0, length1 = ${1:array}.length; i < length1; i++){\n\t${1:array}[i]${2:}\n}"
+    ],
+    [
+      "for-k",
+      "for(let k = 0, length3 = ${1:array}.length; k < length3; k++){\n\t${1:array}[k]${2:}\n}"
+    ],
+    [
+      "for-j",
+      "for(let j = 0, length2 = ${1:array}.length; j < length2; j++){\n\t${1:array}[j]${2:}\n}"
+    ],
+    [
+      "anonymous function",
+      "function (${1:argument}) {\n\t${2:/* body... */}\n}"
+    ],
+    [
+      "for of",
+      "for (${1:variable} of object) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "for in",
+      "for (${1:variable} in object) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "do while",
+      "do{\n\t// statement\n} while (${1:condition});"
+    ],
+    [
+      "while",
+      "while (${1:condition}) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "if",
+      "if (${1:condition}) {\n\t${2:// statement}\n}"
+    ],
+    [
+      "anonymous function wrapper",
+      ";(function(){\n\t$1\n})()"
+    ],
+    [
+      "else if",
+      "else if (${1:condition}) {\n\t\n}"
+    ],
+    [
+      "Conditional operator (ternary)",
+      "(${1:condition}) ? ${2:val1} : ${3:val2}"
+    ],
+    [
+      "else",
+      "else {\n\t$1\n}"
+    ],
+    [
+      "use strict",
+      "'use strict';"
+    ],
+    [
+      "continue",
+      "continue;"
+    ],
+    [
+      "throw",
+      "throw $1"
+    ],
+    [
+      "const",
+      "const"
+    ],
+    [
+      "break",
+      "break"
+    ],
+    [
+      "return",
+      "return"
+    ],
+    [
+      "false",
+      "false"
+    ],
+    [
+      "let",
+      "let"
+    ],
+    [
+      "null",
+      "null"
+    ],
+    [
+      "true",
+      "true"
+    ],
+    [
+      "var",
+      "var"
+    ],
+    [
+      "void",
+      "void(${1:''})"
+    ],
+    [
+      "NaN\tnumber",
+      "NaN"
+    ],
+    [
+      "Infinity\tnumber",
+      "Infinity"
+    ],
+    [
+      "undefined\tvoid",
+      "undefined"
+    ],
+    [
+      "Math\t{E: number; LN10: number; LN2: number; LOG10E: number; LOG2E: number; PI: number; SQRT1_2: number; SQRT2: number; abs(x: number): number; acos(x: number): number; acosh(x: number): number; asin(x: number): number; asinh(x: number): number; atan(x: number): number; atan2(y: number, x: number): number; atanh(x: number): number; cbrt(x: number): number; ceil(x: number): number; clz32(x: number): number; cos(x: number): number; cosh(x: number): number; exp(x: number): number; expm1(x: number): number; floor(x: number): number; fround(x: number): number; hypot(...values: Array<number>): number; imul(y: number, x: number): number; log(x: number): number; log10(x: number): number; log1p(x: number): number; log2(x: number): number; max(...values: Array<number>): number; min(...values: Array<number>): number; pow(x: number, y: number): number; random(): number; round(x: number): number; sign(x: number): number; sin(x: number): number; sinh(x: number): number; sqrt(x: number): number; tan(x: number): number; tanh(x: number): number; trunc(x: number): number; }",
+      "Math"
+    ],
+    [
+      "global\nany",
+      "global"
+    ],
+    [
+      "module\n{exports: any; require(id: string): any; id: string; filename: string; loaded: boolean; parent: any; children: Array<any>; }",
+      "module"
+    ],
+    [
+      "require\n{(id: string): any; resolve: (id: string) => string; cache: any; main: typeof module; }",
+      "require"
+    ],
+    [
+      "console\n{assert(condition: mixed, ...data: Array<any>): void; clear(): void; count(label: string): void; debug(...data: Array<any>): void; dir(...data: Array<any>): void; dirxml(...data: Array<any>): void; error(...data: Array<any>): void; _exception(...data: Array<any>): void; group(...data: Array<any>): void; groupCollapsed(...data: Array<any>): void; groupEnd(): void; info(...data: Array<any>): void; log(...data: Array<any>): void; profile(name: string): void; profileEnd(): void; table(tabularData: { [key: string]: any } | Array<{ [key: string]: any }> | Array<Array<any>>): void; time(label: string): void; timeEnd(label: string): void; timeStamp(label?: string): void; trace(...data: Array<any>): void; warn(...data: Array<any>): void; }",
+      "console"
+    ],
+    [
+      "parseInt\t(string: mixed, radix?: number) => number",
+      "parseInt(${1:string: mixed}, ${2:radix?: number})",
+      {
+        "name": "parseInt",
+        "type": "(string: mixed, radix?: number)",
+        "func_details": {
+          "params":[
+            {"name": "string", "type": "mixed"},
+            {"name": "radix?", "type": "number"}
+          ],
+          "return_type": "number"
+        }
+      }
+    ],
+    [
+      "parseFloat\t(string: mixed) => number",
+      "parseFloat(${1:string: mixed})",
+      {
+        "name": "parseFloat",
+        "type": "(string: mixed)",
+        "func_details": {
+          "params":[
+            {"name": "string", "type": "mixed"}
+          ],
+          "return_type": "number"
+        }
+      }
+    ],
+    [
+      "isNaN\t(number: mixed) => boolean",
+      "isNaN(${1:number: mixed})",
+      {
+        "name": "isNaN",
+        "type": "(number: mixed)",
+        "func_details": {
+          "params":[
+            {"name": "number", "type": "mixed"}
+          ],
+          "return_type": "boolean"
+        }
+      }
+    ],
+    [
+      "isFinite\t(number: mixed) => boolean",
+      "isFinite(${1:number: mixed})",
+      {
+        "name": "isFinite",
+        "type": "(number: mixed)",
+        "func_details": {
+          "params":[
+            {"name": "number", "type": "mixed"}
+          ],
+          "return_type": "boolean"
+        }
+      }
+    ],
+    [
+      "decodeURI\t(encodedURI: string) => string",
+      "decodeURI(${1:encodedURI: string})",
+      {
+        "name": "decodeURI",
+        "type": "(encodedURI: string)",
+        "func_details": {
+          "params":[
+            {"name": "encodedURI", "type": "string"}
+          ],
+          "return_type": "string"
+        }
+      }
+    ],
+    [
+      "decodeURIComponent\t(encodedURIComponent: string) => string",
+      "decodeURIComponent(${1:encodedURIComponent: string})",
+      {
+        "name": "decodeURIComponent",
+        "type": "(encodedURIComponent: string)",
+        "func_details": {
+          "params":[
+            {"name": "encodedURIComponent", "type": "string"}
+          ],
+          "return_type": "string"
+        }
+      }
+    ],
+    [
+      "encodeURI\t(uri: string) => string",
+      "encodeURI(${1:uri: string})",
+      {
+        "name": "encodeURI",
+        "type": "(uri: string)",
+        "func_details": {
+          "params":[
+            {"name": "uri", "type": "string"}
+          ],
+          "return_type": "string"
+        }
+      }
+    ],
+    [
+      "encodeURIComponent\t(uriComponent: string) => string",
+      "encodeURIComponent(${1:uriComponent: string})",
+      {
+        "name": "decodeURIComponent",
+        "type": "(encodedURIComponent: string)",
+        "func_details": {
+          "params":[
+            {"name": "encodedURIComponent", "type": "string"}
+          ],
+          "return_type": "string"
+        }
+      }
+    ],
+    [
+      "Object\t[class: Object]",
+      "Object",
+      {
+        "name": "Object",
+        "type": "[class: Object]",
+        "func_details": null
+      }
+    ],
+    [
+      "Symbol\t[class: Symbol]",
+      "Symbol",
+      {
+        "name": "Symbol",
+        "type": "[class: Symbol]",
+        "func_details": null
+      }
+    ],
+    [
+      "Function\t[class: Function]",
+      "Function",
+      {
+        "name": "Symbol",
+        "type": "[class: Function]",
+        "func_details": null
+      }
+    ],
+    [
+      "Boolean\t[class: Boolean]",
+      "Boolean",
+      {
+        "name": "Boolean",
+        "type": "[class: Boolean]",
+        "func_details": null
+      }
+    ],
+    [
+      "Number\t[class: Number]",
+      "Number",
+      {
+        "name": "Number",
+        "type": "[class: Number]",
+        "func_details": null
+      }
+    ],
+    [
+      "Array\t[class: Array<T>]",
+      "Array",
+      {
+        "name": "Array",
+        "type": "[class: Array<T>]",
+        "func_details": null
+      }
+    ],
+    [
+      "String\t[class: String]",
+      "String",
+      {
+        "name": "String",
+        "type": "[class: String]",
+        "func_details": null
+      }
+    ],
+    [
+      "RegExp\t[class: RegExp]",
+      "RegExp",
+      {
+        "name": "RegExp",
+        "type": "[class: RegExp]",
+        "func_details": null
+      }
+    ],
+    [
+      "Date\t[class: Date]",
+      "Date",
+      {
+        "name": "Date",
+        "type": "[class: Date]",
+        "func_details": null
+      }
+    ],
+    [
+      "CallSite\t[class: CallSite]",
+      "CallSite",
+      {
+        "name": "CallSite",
+        "type": "[class: CallSite]",
+        "func_details": null
+      }
+    ],
+    [
+      "Error\t[class: Error]",
+      "Error",
+      {
+        "name": "Error",
+        "type": "[class: Error]",
+        "func_details": null
+      }
+    ],
+    [
+      "EvalError\t[class: EvalError]",
+      "EvalError",
+      {
+        "name": "EvalError",
+        "type": "[class: EvalError]",
+        "func_details": null
+      }
+    ],
+    [
+      "RangeError\t[class: RangeError]",
+      "RangeError",
+      {
+        "name": "RangeError",
+        "type": "[class: RangeError]",
+        "func_details": null
+      }
+    ],
+    [
+      "ReferenceError\t[class: ReferenceError]",
+      "ReferenceError",
+      {
+        "name": "ReferenceError",
+        "type": "[class: ReferenceError]",
+        "func_details": null
+      }
+    ],
+    [
+      "SyntaxError\t[class: SyntaxError]",
+      "SyntaxError",
+      {
+        "name": "SyntaxError",
+        "type": "[class: SyntaxError]",
+        "func_details": null
+      }
+    ],
+    [
+      "TypeError\t[class: TypeError]",
+      "TypeError",
+      {
+        "name": "TypeError",
+        "type": "[class: TypeError]",
+        "func_details": null
+      }
+    ],
+    [
+      "JSON\t[class: JSON]",
+      "JSON",
+      {
+        "name": "JSON",
+        "type": "[class: JSON]",
+        "func_details": null
+      }
+    ],
+    [
+      "Map\t[class: Map<K, V>]",
+      "Map",
+      {
+        "name": "Map",
+        "type": "[class: Map<K, V>]",
+        "func_details": null
+      }
+    ],
+    [
+      "WeakMap\t[class: WeakMap<K, V>]",
+      "WeakMap",
+      {
+        "name": "WeakMap",
+        "type": "[class: WeakMap<K, V>]",
+        "func_details": null
+      }
+    ],
+    [
+      "Set\t[class: Set<T>]",
+      "Set",
+      {
+        "name": "Set",
+        "type": "[class: Set<T>]",
+        "func_details": null
+      }
+    ],
+    [
+      "WeakSet\t[class: WeakSet<T: Object>]",
+      "WeakSet",
+      {
+        "name": "WeakSet",
+        "type": "[class: WeakSet<T: Object>]",
+        "func_details": null
+      }
+    ],
+    [
+      "Promise\t[class: Promise<+R>]",
+      "Promise",
+      {
+        "name": "Promise",
+        "type": "[class: Promise<+R>]",
+        "func_details": null
+      }
+    ],
+    [
+      "ArrayBuffer\t[class: ArrayBuffer]",
+      "ArrayBuffer",
+      {
+        "name": "ArrayBuffer",
+        "type": "[class: ArrayBuffer]",
+        "func_details": null
+      }
+    ],
+    [
+      "Int8Array\t[class: Int8Array]",
+      "Int8Array",
+      {
+        "name": "Int8Array",
+        "type": "[class: Int8Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Uint8Array\t[class: Uint8Array]",
+      "Uint8Array",
+      {
+        "name": "Uint8Array",
+        "type": "[class: Uint8Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Uint8ClampedArray\t[class: Uint8ClampedArray]",
+      "Uint8ClampedArray",
+      {
+        "name": "Uint8ClampedArray",
+        "type": "[class: Uint8ClampedArray]",
+        "func_details": null
+      }
+    ],
+    [
+      "Int16Array\t[class: Int16Array]",
+      "Int16Array",
+      {
+        "name": "Int16Array",
+        "type": "[class: Int16Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Uint16Array\t[class: Uint16Array]",
+      "Uint16Array",
+      {
+        "name": "Uint16Array",
+        "type": "[class: Uint16Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Int32Array\t[class: Int32Array]",
+      "Int32Array",
+      {
+        "name": "Int32Array",
+        "type": "[class: Int32Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Uint32Array\t[class: Uint32Array]",
+      "Uint32Array",
+      {
+        "name": "Uint32Array",
+        "type": "[class: Uint32Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Float32Array\t[class: Float32Array]",
+      "Float32Array",
+      {
+        "name": "Float32Array",
+        "type": "[class: Float32Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "Float64Array\t[class: Float64Array]",
+      "Float64Array",
+      {
+        "name": "Float64Array",
+        "type": "[class: Float64Array]",
+        "func_details": null
+      }
+    ],
+    [
+      "DataView\t[class: DataView]",
+      "DataView",
+      {
+        "name": "DataView",
+        "type": "[class: DataView]",
+        "func_details": null
+      }
+    ],
+    [
+      "Reflect\t[class: Reflect]",
+      "Reflect",
+      {
+        "name": "Reflect",
+        "type": "[class: Reflect]",
+        "func_details": null
+      }
+    ],
+    [
+      "Proxy\t[class: Proxy<T>]",
+      "Proxy",
+      {
+        "name": "Proxy",
+        "type": "[class: Proxy<T>]",
+        "func_details": null
+      }
+    ]
+  ]
+}
+

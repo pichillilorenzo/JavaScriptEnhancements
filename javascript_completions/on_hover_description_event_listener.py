@@ -86,7 +86,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
   html = ""
 
   if result[0]:
-    descriptions = result[1]["result"] + load_default_autocomplete(view, word, True)
+    descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, True)
 
     for description in descriptions :
       if description['name'] == word :
