@@ -145,19 +145,19 @@
       "Math"
     ],
     [
-      "global\nany",
+      "global\tany",
       "global"
     ],
     [
-      "module\n{exports: any; require(id: string): any; id: string; filename: string; loaded: boolean; parent: any; children: Array<any>; }",
+      "module\t{exports: any; require(id: string): any; id: string; filename: string; loaded: boolean; parent: any; children: Array<any>; }",
       "module"
     ],
     [
-      "require\n{(id: string): any; resolve: (id: string) => string; cache: any; main: typeof module; }",
+      "require\t{(id: string): any; resolve: (id: string) => string; cache: any; main: typeof module; }",
       "require"
     ],
     [
-      "console\n{assert(condition: mixed, ...data: Array<any>): void; clear(): void; count(label: string): void; debug(...data: Array<any>): void; dir(...data: Array<any>): void; dirxml(...data: Array<any>): void; error(...data: Array<any>): void; _exception(...data: Array<any>): void; group(...data: Array<any>): void; groupCollapsed(...data: Array<any>): void; groupEnd(): void; info(...data: Array<any>): void; log(...data: Array<any>): void; profile(name: string): void; profileEnd(): void; table(tabularData: { [key: string]: any } | Array<{ [key: string]: any }> | Array<Array<any>>): void; time(label: string): void; timeEnd(label: string): void; timeStamp(label?: string): void; trace(...data: Array<any>): void; warn(...data: Array<any>): void; }",
+      "console\t{assert(condition: mixed, ...data: Array<any>): void; clear(): void; count(label: string): void; debug(...data: Array<any>): void; dir(...data: Array<any>): void; dirxml(...data: Array<any>): void; error(...data: Array<any>): void; _exception(...data: Array<any>): void; group(...data: Array<any>): void; groupCollapsed(...data: Array<any>): void; groupEnd(): void; info(...data: Array<any>): void; log(...data: Array<any>): void; profile(name: string): void; profileEnd(): void; table(tabularData: { [key: string]: any } | Array<{ [key: string]: any }> | Array<Array<any>>): void; time(label: string): void; timeEnd(label: string): void; timeStamp(label?: string): void; trace(...data: Array<any>): void; warn(...data: Array<any>): void; }",
       "console"
     ],
     [

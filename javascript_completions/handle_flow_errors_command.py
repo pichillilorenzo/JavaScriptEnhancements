@@ -75,7 +75,9 @@ def show_flow_errors(view) :
             description_by_row[row] = description
           if row_description and description not in row_description:
             description_by_row[row] += '; ' + description
-      errors.append(result[1]['errors'])
+            
+      errors = result[1]['errors']
+
   if errors :
     view.add_regions(
       'flow_error', regions, 'scope.js', 'dot',

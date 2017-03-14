@@ -34,12 +34,20 @@ def flow_parse_cli_dependencies(view, **kwargs):
   else :
     if len(view.sel()) > 0 :
       cursor_pos = view.sel()[0].begin()
+    
   row, col = view.rowcol(cursor_pos)
 
   if kwargs.get('check_all_source_js_embedded'):
     embedded_regions = view.find_by_selector("source.js.embedded.html")
     if not embedded_regions :
-      return None
+      return flowCLIRequirements(
+        filename=None,
+        project_root=None,
+        contents="",
+        cursor_pos=None,
+        row=None, col=None,
+        row_offset=None
+      )
     flowCLIRequirements_list = list()
     for region in embedded_regions:
       current_contents = view.substr(region)
@@ -69,7 +77,14 @@ def flow_parse_cli_dependencies(view, **kwargs):
       if not result:
         result = Util.get_region_scope_first_match(view, scope, sublime.Region(cursor_pos, cursor_pos), "source.js.embedded.html")
         if not result:
-          return None
+          return flowCLIRequirements(
+            filename=None,
+            project_root=None,
+            contents="",
+            cursor_pos=None,
+            row=None, col=None,
+            row_offset=None
+          )
       scope_region = result["region"]
     current_contents = view.substr(scope_region)
     row_scope, col_scope = view.rowcol(scope_region.begin())
@@ -83,7 +98,17 @@ def flow_parse_cli_dependencies(view, **kwargs):
     
     if kwargs.get('add_magic_token'):
       current_lines = current_contents.splitlines()
-      current_line = current_lines[row_scope]
+      try :
+        current_line = current_lines[row_scope]
+      except IndexError as e:
+        return flowCLIRequirements(
+            filename=None,
+            project_root=None,
+            contents="",
+            cursor_pos=None,
+            row=None, col=None,
+            row_offset=None
+          )
       tokenized_line = ""
       if not kwargs.get('not_add_last_part_tokenized_line') :
         tokenized_line = current_line[0:col] + 'AUTO332' + current_line[col:-1]

@@ -47,14 +47,14 @@ def get_project_settings():
     else :
       return dict()
         
-    project_settings["project_file_name"] = project_file_name
-    project_settings["project_dir_name"] = os.path.dirname(project_file_name)
-    project_settings["settings_dir_name"] = settings_dir_name
-    settings_file = ["project_details.json", "flow_settings.json"]
-    for setting_file in settings_file :
-      with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
-        key = os.path.splitext(setting_file)[0]
-        project_settings[key] = json.loads(file.read(), encoding="utf-8")
+  project_settings["project_file_name"] = project_file_name
+  project_settings["project_dir_name"] = os.path.dirname(project_file_name)
+  project_settings["settings_dir_name"] = settings_dir_name
+  settings_file = ["project_details.json", "flow_settings.json"]
+  for setting_file in settings_file :
+    with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
+      key = os.path.splitext(setting_file)[0]
+      project_settings[key] = json.loads(file.read(), encoding="utf-8")
 
   return project_settings
 

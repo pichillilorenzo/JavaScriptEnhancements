@@ -94,15 +94,24 @@ def flow_parse_cli_dependencies(view, **kwargs):
   cursor_pos = 0
   if kwargs.get('cursor_pos') :
     cursor_pos = kwargs.get('cursor_pos')
+    print(cursor_pos)
   else :
     if len(view.sel()) > 0 :
       cursor_pos = view.sel()[0].begin()
+
   row, col = view.rowcol(cursor_pos)
 
   if kwargs.get('check_all_source_js_embedded'):
     embedded_regions = view.find_by_selector("source.js.embedded.html")
     if not embedded_regions :
-      return None
+      return flowCLIRequirements(
+        filename=None,
+        project_root=None,
+        contents="",
+        cursor_pos=None,
+        row=None, col=None,
+        row_offset=None
+      )
     flowCLIRequirements_list = list()
     for region in embedded_regions:
       current_contents = view.substr(region)
@@ -132,7 +141,14 @@ def flow_parse_cli_dependencies(view, **kwargs):
       if not result:
         result = Util.get_region_scope_first_match(view, scope, sublime.Region(cursor_pos, cursor_pos), "source.js.embedded.html")
         if not result:
-          return None
+          return flowCLIRequirements(
+            filename=None,
+            project_root=None,
+            contents="",
+            cursor_pos=None,
+            row=None, col=None,
+            row_offset=None
+          )
       scope_region = result["region"]
     current_contents = view.substr(scope_region)
     row_scope, col_scope = view.rowcol(scope_region.begin())
@@ -146,7 +162,17 @@ def flow_parse_cli_dependencies(view, **kwargs):
     
     if kwargs.get('add_magic_token'):
       current_lines = current_contents.splitlines()
-      current_line = current_lines[row_scope]
+      try :
+        current_line = current_lines[row_scope]
+      except IndexError as e:
+        return flowCLIRequirements(
+            filename=None,
+            project_root=None,
+            contents="",
+            cursor_pos=None,
+            row=None, col=None,
+            row_offset=None
+          )
       tokenized_line = ""
       if not kwargs.get('not_add_last_part_tokenized_line') :
         tokenized_line = current_line[0:col] + 'AUTO332' + current_line[col:-1]
@@ -277,7 +303,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     ):
       return
 
-    deps = flow_parse_cli_dependencies(view, add_magic_token=True)
+    deps = flow_parse_cli_dependencies(view, add_magic_token=True, cursor_pos=locations[0])
 
     if deps.project_root is '/':
       return
@@ -331,7 +357,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           completion = create_completion(comp_name, comp_type, match.get('func_details'))
           self.completions.append(completion)
 
-      self.completions += load_default_autocomplete(view, self.completions, prefix)
+      self.completions += load_default_autocomplete(view, self.completions, prefix, locations[0])
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 
@@ -460,9 +486,13 @@ if int(sublime.version()) >= 3124 :
 
   default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
 
-  def load_default_autocomplete(view, comps_to_campare, prefix, isHover = False):
+  def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover = False):
 
-    scope = view.scope_name(view.sel()[0].begin()-(len(prefix)+1)).strip()
+    if not prefix :
+      return []
+    
+    scope = view.scope_name(location-(len(prefix)+1)).strip()
+
     if scope.endswith(" punctuation.accessor.js") :
       return []
 
@@ -580,7 +610,7 @@ if int(sublime.version()) >= 3124 :
     html = ""
   
     if result[0]:
-      descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, True)
+      descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
   
       for description in descriptions :
         if description['name'] == word :
@@ -861,6 +891,7 @@ if int(sublime.version()) >= 3124 :
           continue
   
         for error in result[1]['errors']:
+          print(error)
           description = ''
           operation = error.get('operation')
           row = -1
@@ -886,7 +917,9 @@ if int(sublime.version()) >= 3124 :
               description_by_row[row] = description
             if row_description and description not in row_description:
               description_by_row[row] += '; ' + description
-        errors.append(result[1]['errors'])
+
+        errors = result[1]['errors']
+
     if errors :
       view.add_regions(
         'flow_error', regions, 'scope.js', 'dot',
@@ -917,8 +950,7 @@ if int(sublime.version()) >= 3124 :
     description_by_row = {}
     errors = []
     callback_setted_use_flow_checker_on_current_view = False
-    def on_activated(self):
-      print("asdasdasd")
+
     def on_load_async(self):
       self.on_activated_async()
   
@@ -937,6 +969,7 @@ if int(sublime.version()) >= 3124 :
         return
   
       settings = get_project_settings()
+
       if settings :
         if not settings["flow_settings"]["use_flow_checker"] :
           hide_flow_errors(view)
@@ -965,7 +998,7 @@ if int(sublime.version()) >= 3124 :
         return
   
       settings = get_project_settings()
-      print(settings)
+
       if settings :
         if not settings["flow_settings"]["use_flow_checker"] :
           hide_flow_errors(view)
@@ -1004,6 +1037,7 @@ if int(sublime.version()) >= 3124 :
       row, col = view.rowcol(sel.begin())
   
       error_count = len(self.errors)
+
       error_count_text = 'Flow: {} error{}'.format(
         error_count, '' if error_count is 1 else 's'
       )
@@ -1256,15 +1290,15 @@ def get_project_settings():
         return dict()
     else :
       return dict()
-        
-    project_settings["project_file_name"] = project_file_name
-    project_settings["project_dir_name"] = os.path.dirname(project_file_name)
-    project_settings["settings_dir_name"] = settings_dir_name
-    settings_file = ["project_details.json", "flow_settings.json"]
-    for setting_file in settings_file :
-      with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
-        key = os.path.splitext(setting_file)[0]
-        project_settings[key] = json.loads(file.read(), encoding="utf-8")
+      
+  project_settings["project_file_name"] = project_file_name
+  project_settings["project_dir_name"] = os.path.dirname(project_file_name)
+  project_settings["settings_dir_name"] = settings_dir_name
+  settings_file = ["project_details.json", "flow_settings.json"]
+  for setting_file in settings_file :
+    with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
+      key = os.path.splitext(setting_file)[0]
+      project_settings[key] = json.loads(file.read(), encoding="utf-8")
 
   return project_settings
 
@@ -2136,5 +2170,4 @@ else :
   def plugin_loaded():
     global mainPlugin
     mainPlugin.init()
-    print("asdasdasd")
 

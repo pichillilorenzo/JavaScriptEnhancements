@@ -24,9 +24,13 @@ if int(sublime.version()) >= 3124 :
 
   default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
 
-  def load_default_autocomplete(view, comps_to_campare, prefix, isHover = False):
+  def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover = False):
 
-    scope = view.scope_name(view.sel()[0].begin()-(len(prefix)+1)).strip()
+    if not prefix :
+      return []
+    
+    scope = view.scope_name(location-(len(prefix)+1)).strip()
+
     if scope.endswith(" punctuation.accessor.js") :
       return []
 
@@ -45,6 +49,7 @@ if int(sublime.version()) >= 3124 :
     for completion in completions_to_add:
       flag = False
       for c_to_campare in comps_to_campare:
+        print(completion[0].split("\t")[0] + " " + c_to_campare[0].split("\t")[0])
         if not isHover and completion[0].split("\t")[0] == c_to_campare[0].split("\t")[0] :
           flag = True
           break

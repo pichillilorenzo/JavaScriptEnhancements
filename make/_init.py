@@ -17,11 +17,6 @@ platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-main_settings_json = dict()
-if os.path.isfile(os.path.join(PACKAGE_PATH, "main.sublime-settings")) :
-  with open(os.path.join(PACKAGE_PATH, "main.sublime-settings")) as main_settings_file:    
-    main_settings_json = json.load(main_settings_file)
-
 def subl(args):
   
   executable_path = sublime.executable_path()
@@ -71,9 +66,6 @@ ${include ./project/main.py}
 
 ${include ./helper/main.py}
 
-if int(sublime.version()) < 3000 :
+def plugin_loaded():
+  global mainPlugin
   mainPlugin.init()
-else :
-  def plugin_loaded():
-    global mainPlugin
-    mainPlugin.init()

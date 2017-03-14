@@ -97,7 +97,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     ):
       return
 
-    deps = flow_parse_cli_dependencies(view, add_magic_token=True)
+    deps = flow_parse_cli_dependencies(view, add_magic_token=True, cursor_pos=locations[0])
 
     if deps.project_root is '/':
       return
@@ -151,7 +151,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           completion = create_completion(comp_name, comp_type, match.get('func_details'))
           self.completions.append(completion)
 
-      self.completions += load_default_autocomplete(view, self.completions, prefix)
+      self.completions += load_default_autocomplete(view, self.completions, prefix, locations[0])
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 
