@@ -77,5 +77,3 @@ else :
   def plugin_loaded():
     global mainPlugin
     mainPlugin.init()
-    if not test_python() :
-      sublime.error_message("You must install Python 3 and set the absolute path in the main settings to use some features!")

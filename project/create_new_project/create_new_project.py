@@ -21,7 +21,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
-        print(client_data)
+
         json_data = json.loads(client_data)
 
         if json_data["command"] == "open_project":

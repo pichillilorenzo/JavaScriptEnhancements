@@ -388,6 +388,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
 
 import sublime, sublime_plugin
+import os
 from node.main import NodeJS
 
 node = NodeJS()
@@ -427,7 +428,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       if result[0] :
         row = result[1]["line"]-1
         col = result[1]["start"]-1
-        if result[1]["path"] != "-" :
+        if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
           view = sublime.active_window().open_file(result[1]["path"])     
         sublime.set_timeout_async(lambda: self.go_to_def_at_center(view, row, col))
 
@@ -441,21 +442,13 @@ class go_to_defCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self):
     view = self.view
-    sel = view.sel()[0]
-    if not view.match_selector(
-        sel.begin(),
-        'source.js - string - comment'
-    ):
+    if not Util.selection_in_js_scope(view, -1, "- string - comment"):
       return False
     return True
 
   def is_visible(self):
     view = self.view
-    sel = view.sel()[0]
-    if not view.match_selector(
-        sel.begin(),
-        'source.js - string - comment'
-    ):
+    if not Util.selection_in_js_scope(view, -1, "- string - comment"):
       return False
     return True
 
@@ -924,7 +917,8 @@ if int(sublime.version()) >= 3124 :
     description_by_row = {}
     errors = []
     callback_setted_use_flow_checker_on_current_view = False
-  
+    def on_activated(self):
+      print("asdasdasd")
     def on_load_async(self):
       self.on_activated_async()
   
@@ -971,6 +965,7 @@ if int(sublime.version()) >= 3124 :
         return
   
       settings = get_project_settings()
+      print(settings)
       if settings :
         if not settings["flow_settings"]["use_flow_checker"] :
           hide_flow_errors(view)
@@ -1220,38 +1215,24 @@ PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
 socket_server_list = dict()
 
 def call_ui(client_file, host, port) :
-  # PYTHON_PATH = main_settings_json["python_path"]
-  # if platform.system() == 'Windows' :
-  #   args = [PYTHON_PATH, client_file, host, str(port)]
-  # else :
-  #   args = shlex.quote(PYTHON_PATH)+" "+shlex.quote(client_file)+" "+shlex.quote(host)+" "+shlex.quote(str(port))
-
-  # return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   from node.main import NodeJS
   node = NodeJS()
   return Util.create_and_start_thread(node.execute, client_file, ("electron", [client_file], True))
-
-def test_python():
-  PYTHON_PATH = main_settings_json["python_path"]
-  if platform.system() == 'Windows' :
-    args = [PYTHON_PATH, "--version"]
-  else :
-    args = shlex.quote(PYTHON_PATH)+" --version"
-
-  try :
-    output = subprocess.check_output(args, shell=True, stderr=subprocess.STDOUT).decode("utf-8", "ignore").strip()
-    if output.startswith("Python 3") :
-      return True
-  except :
-    pass
-  return False
 
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
   if project_file_name :
     project_folder = os.path.dirname(project_file_name)
     settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
-    return os.path.isdir(settings_dir_name)
+    if os.path.isdir(settings_dir_name) :
+      return True
+    else :
+      # try to look at window.folders()
+      folder = sublime.active_window().folders()
+      if len(folder) > 0:
+        folder = folder[0]
+        settings_dir_name = os.path.join(folder, ".jc-project-settings")
+        return os.path.isdir(settings_dir_name)
   return False
   
 def get_project_settings():
@@ -1259,18 +1240,31 @@ def get_project_settings():
   project_settings = dict()
 
   project_file_name = sublime.active_window().project_file_name()
+  project_folder = ""
+  settings_dir_name = ""
   if project_file_name :
     project_folder = os.path.dirname(project_file_name)
     settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
-    if os.path.isdir(settings_dir_name) :
-      project_settings["project_file_name"] = project_file_name
-      project_settings["project_dir_name"] = os.path.dirname(project_file_name)
-      project_settings["settings_dir_name"] = settings_dir_name
-      settings_file = ["project_details.json", "flow_settings.json"]
-      for setting_file in settings_file :
-        with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
-          key = os.path.splitext(setting_file)[0]
-          project_settings[key] = json.loads(file.read(), encoding="utf-8")
+  else :
+    # try to look at window.folders()
+    folder = sublime.active_window().folders()
+    if len(folder) > 0:
+      project_folder = folder[0]
+      project_file_name = os.path.basename(project_folder)
+      settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+      if not os.path.isdir(settings_dir_name) :
+        return dict()
+    else :
+      return dict()
+        
+    project_settings["project_file_name"] = project_file_name
+    project_settings["project_dir_name"] = os.path.dirname(project_file_name)
+    project_settings["settings_dir_name"] = settings_dir_name
+    settings_file = ["project_details.json", "flow_settings.json"]
+    for setting_file in settings_file :
+      with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
+        key = os.path.splitext(setting_file)[0]
+        project_settings[key] = json.loads(file.read(), encoding="utf-8")
 
   return project_settings
 
@@ -2142,6 +2136,5 @@ else :
   def plugin_loaded():
     global mainPlugin
     mainPlugin.init()
-    if not test_python() :
-      sublime.error_message("You must install Python 3 and set the absolute path in the main settings to use some features!")
+    print("asdasdasd")
 

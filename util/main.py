@@ -245,14 +245,14 @@ def trim_Region(view, region):
     new_region.b = new_region.b - 1
   return new_region
 
-def selection_in_js_scope(view, point = -1):
+def selection_in_js_scope(view, point = -1, except_for = ""):
   sel_begin = view.sel()[0].begin() if point == -1 else point
   return view.match_selector(
     sel_begin,
-    'source.js'
+    'source.js ' + except_for
   ) or view.match_selector(
     sel_begin,
-    'source.js.embedded.html'
+    'source.js.embedded.html ' + except_for
   )
   
 def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :

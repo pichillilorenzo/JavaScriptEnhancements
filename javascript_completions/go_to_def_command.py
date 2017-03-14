@@ -1,4 +1,5 @@
 import sublime, sublime_plugin
+import os
 from node.main import NodeJS
 
 node = NodeJS()
@@ -38,7 +39,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       if result[0] :
         row = result[1]["line"]-1
         col = result[1]["start"]-1
-        if result[1]["path"] != "-" :
+        if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
           view = sublime.active_window().open_file(result[1]["path"])     
         sublime.set_timeout_async(lambda: self.go_to_def_at_center(view, row, col))
 
@@ -52,20 +53,12 @@ class go_to_defCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self):
     view = self.view
-    sel = view.sel()[0]
-    if not view.match_selector(
-        sel.begin(),
-        'source.js - string - comment'
-    ):
+    if not Util.selection_in_js_scope(view, -1, "- string - comment"):
       return False
     return True
 
   def is_visible(self):
     view = self.view
-    sel = view.sel()[0]
-    if not view.match_selector(
-        sel.begin(),
-        'source.js - string - comment'
-    ):
+    if not Util.selection_in_js_scope(view, -1, "- string - comment"):
       return False
     return True
