@@ -6,6 +6,15 @@ from threading import Timer
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
+
+JC_SETTINGS_FOLDER_NAME = "javascript_completions"
+JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, "helper", JC_SETTINGS_FOLDER_NAME)
+
+PROJECT_FOLDER_NAME = "project"
+PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
+socket_server_list = dict()
+
+BOOKMARKS_FOLDER = os.path.join(PACKAGE_PATH, 'helper', 'bookmarks')
  
 sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'my_socket']]
 
@@ -16,11 +25,6 @@ import reloader
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
-
-main_settings_json = dict()
-if os.path.isfile(os.path.join(PACKAGE_PATH, "main.sublime-settings")) :
-  with open(os.path.join(PACKAGE_PATH, "main.sublime-settings")) as main_settings_file:    
-    main_settings_json = json.load(main_settings_file)
 
 def subl(args):
   
@@ -94,11 +98,10 @@ def flow_parse_cli_dependencies(view, **kwargs):
   cursor_pos = 0
   if kwargs.get('cursor_pos') :
     cursor_pos = kwargs.get('cursor_pos')
-    print(cursor_pos)
   else :
     if len(view.sel()) > 0 :
       cursor_pos = view.sel()[0].begin()
-
+    
   row, col = view.rowcol(cursor_pos)
 
   if kwargs.get('check_all_source_js_embedded'):
@@ -190,12 +193,358 @@ def flow_parse_cli_dependencies(view, **kwargs):
       row_offset=row_offset
     )
 
+
+import sublime, sublime_plugin
+import json, os, re, webbrowser, cgi, threading, shutil
+import util.main as Util
+from util.animation_loader import AnimationLoader
+from util.repeated_timer import RepeatedTimer
+from distutils.version import LooseVersion
+
+HELPER_FOLDER_NAME = "helper"
+HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
+
+import os, time
+from my_socket.main import mySocketServer 
+import util.main as Util
+
+class SocketCallUI(object):
+
+  def __init__(self, name, host, port, client_ui_file, wait_for_new_changes=1):
+    super(SocketCallUI, self).__init__()
+    self.name = name
+    self.host = host
+    self.port = port
+    self.client_thread = None
+    self.client_ui_file = os.path.join(PROJECT_FOLDER, client_ui_file)
+    self.socket = None
+    self.current_selected_view = None
+    self.last_modified = None
+    self.wait_for_new_changes = wait_for_new_changes
+
+  def init(self):
+    if not os.path.isfile(self.client_ui_file):
+      raise Exception("Client UI file \""+self.client_ui_file+"\" not found.")
+    self.last_modified = time.time()
+
+  def start(self, handle_recv, handle_client_connection, handle_client_disconnection):
+    self.init()
+    self.listen(handle_recv, handle_client_connection, handle_client_disconnection)
+    self.client_thread = call_ui(self.client_ui_file , self.host, self.port)
+
+  def listen(self, handle_recv, handle_client_connection, handle_client_disconnection):
+    self.socket = mySocketServer(self.name) 
+    self.socket.bind(self.host, self.port)
+    self.socket.handle_recv(handle_recv)
+    self.socket.handle_client_connection(handle_client_connection)
+    self.socket.handle_client_disconnection(handle_client_disconnection)
+    self.socket.listen()
+
+  def update_time(self):
+    self.last_modified = time.time()
+
+  def handle_new_changes(self, fun, thread_name, *args):
+    args = (fun,) + args
+    return Util.create_and_start_thread(self.check_changes, args=args, thread_name=thread_name)
+
+  def check_changes(self, fun, *args):
+    while True:
+      time.sleep(.1)
+      now = time.time()
+      if now - self.last_modified >= self.wait_for_new_changes :
+        break
+    fun(*args)
+    
+  def get_file_name(self):
+    return self.current_selected_view.file_name()
+
+
+class surround_withCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    selections = view.sel()
+    region = None
+    sub = None
+    case = args.get("case")
+    if case == "if_else_statement" :
+      if len(selections) != 2 :
+        return
+
+      sel_1 = Util.trim_Region(view, selections[0])
+      space_1 = Util.get_whitespace_from_line_begin(view, sel_1)
+      new_text = Util.replace_with_tab(view, sel_1, space_1+"\n"+space_1+"if (bool) {\n"+space_1, "\n"+space_1+"} ")
+      view.replace(edit, sel_1, new_text.strip())
+
+      sel_2 = Util.trim_Region(view, selections[1])
+      space_2 = Util.get_whitespace_from_line_begin(view, sel_2)
+      new_text = Util.replace_with_tab(view, sel_2, " else {\n"+space_2, "\n"+space_2+"}\n"+space_2)
+      view.replace(edit, sel_2, new_text.strip())
+    else :
+      for selection in selections :
+        selection = Util.trim_Region(view, selection)
+        if view.substr(selection).strip() == "" :
+          continue
+        space = Util.get_whitespace_from_line_begin(view, selection)
+
+        if case == "if_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"if (bool) {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "while_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"while (bool) {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "do_while_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"do {\n"+space, "\n"+space+"} while (bool);\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "for_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"for ( ; bool ; ) {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "try_catch_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "try_catch_finally_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+          
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
+
+class delete_surroundedCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    selections = view.sel()
+    case = args.get("case")
+    for selection in selections :
+      scope = view.scope_name(selection.begin()).strip()
+      scope_splitted = scope.split(" ")
+      if case == "strip_quoted_string" :
+        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
+        selector = result.get("string")
+        item = Util.get_region_scope_first_match(view, scope, selection, selector)
+        if item :
+          region_scope = item.get("region")
+          new_str = item.get("region_string")
+          new_str = new_str[1:-1]
+          view.replace(edit, region_scope, new_str)
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
+    
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    return True
+
+class sort_arrayCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    from node.main import NodeJS
+    node = NodeJS()
+    view = self.view
+    selections = view.sel()
+    for selection in selections :
+      scope = view.scope_name(selection.begin()).strip()
+      result = Util.get_region_scope_first_match(view, scope, selection, "meta.brackets.js")
+      if result :
+        region = result.get("region")
+        array_string = result.get("region_string_stripped")
+        from node.main import NodeJS
+        node = NodeJS()
+        case = args.get("case")
+        sort_func = ""
+        if case == "compare_func_desc" :
+          sort_func = "function(x,y){return y-x;}"
+        elif case == "compare_func_asc" :
+          sort_func = "function(x,y){return x-y;}"
+        elif case == "alpha_asc" :
+          sort_func = ""
+        elif case == "alpha_desc" :
+          sort_func = ""
+        sort_result = node.eval("var array = "+array_string+"; console.log(array.sort("+sort_func+")"+( ".reverse()" if case == "alpha_desc" else "" )+")").strip()
+        view.replace(edit, region, sort_result)
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      scope = view.scope_name(selection.begin()).strip()
+      index = Util.split_string_and_find(scope, "meta.brackets.js")
+      if index < 0 :
+        return False
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      scope = view.scope_name(selection.begin()).strip()
+      index = Util.split_string_and_find(scope, "meta.brackets.js")
+      if index < 0 :
+        return False
+    return True
+
+class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    selections = view.sel()
+    for selection in selections :
+      scope = view.scope_name(selection.begin()).strip()
+      depth_level = Util.split_string_and_find(scope, "meta.object-literal.js")
+      item_object_literal = Util.get_region_scope_first_match(view, scope, selection, "meta.object-literal.js")
+
+      if item_object_literal :
+
+        scope = item_object_literal.get("scope")
+        object_literal_region = item_object_literal.get("region")
+        selection = item_object_literal.get("selection")
+        object_literal = item_object_literal.get("region_string_stripped")
+        from node.main import NodeJS
+        node = NodeJS()
+        object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
+        object_literal = [(key, json.dumps(value)) for key, value in object_literal.items()]
+
+        list_ordered = ("keyword.operator.assignment.js", "variable.other.readwrite.js", "storage.type.js")
+        items = Util.find_regions_on_same_depth_level(view, scope, selection, list_ordered, depth_level, False)
+        if items :
+          last_selection = items[-1:][0].get("selection")
+          class_name = items[1].get("region_string_stripped")
+          regions = [(item.get("region")) for item in items]
+          regions.append(object_literal_region)
+          regions = Util.cover_regions(regions)
+          parameters = list()
+          constructor_body = list()
+          get_set = list()
+          for parameter in object_literal: 
+            parameters.append( parameter[0] + ( "="+parameter[1] if json.loads(parameter[1]) != "required" else "") )
+            constructor_body.append( "\t\tthis."+parameter[0]+" = "+parameter[0]+";" )
+            get_set.append("\tget "+parameter[0]+"() {\n\t\treturn this."+parameter[0]+";\n\t}")
+            get_set.append("\tset "+parameter[0]+"("+parameter[0]+") {\n\t\tthis."+parameter[0]+" = "+parameter[0]+";\n\t}")
+          parameters = ", ".join(parameters)
+          constructor_body = '\n'.join(constructor_body)
+          get_set = '\n\n'.join(get_set)
+          js_syntax  = "class "+class_name+" {\n"
+          js_syntax += "\n\tconstructor ("+parameters+") {\n"
+          js_syntax += constructor_body
+          js_syntax += "\n\t}\n\n"
+          js_syntax += get_set
+          js_syntax += "\n}"
+          js_syntax = Util.add_whitespace_indentation(view, regions, js_syntax)
+          view.replace(edit, regions, js_syntax)
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    scope = view.scope_name(selection.begin()).strip()
+    index = Util.split_string_and_find(scope, "meta.object-literal.js")
+    if index < 0 :
+      return False
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    scope = view.scope_name(selection.begin()).strip()
+    index = Util.split_string_and_find(scope, "meta.object-literal.js")
+    if index < 0 :
+      return False
+    return True
+      
+class split_string_lines_to_variableCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    selections = view.sel()
+    for selection in selections :
+      scope = view.scope_name(selection.begin()).strip()
+      scope_splitted = scope.split(" ")
+      case = args.get("case")
+      if case == "split" :
+        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
+        scope_string = scope_splitted[result.get("index")]
+        selector = result.get("string")
+        item = Util.get_region_scope_first_match(view, scope, selection, selector)
+        if item :
+          lines = item.get("region_string_stripped")[1:-1].split("\n")
+          str_splitted = list()
+          str_splitted.append("var str = \"\"")
+          for line in lines :
+            line = line if scope_string == "string.template.js" else line.strip()[0:-1]
+            line = line.strip()
+            if line :
+              str_splitted.append( "str += "+"%r"%line )
+          str_splitted = "\n".join(str_splitted)
+          str_splitted = Util.add_whitespace_indentation(view, selection, str_splitted, "\n")
+          view.replace(edit, item.get("region"), str_splitted)
+          
+  def is_visible(self, **args) :
+    view = self.view
+    if Util.split_string_and_find(view.scope_name(0), "source.js") < 0 :
+      return False
+    selection = view.sel()[0]
+    scope = view.scope_name(selection.begin()).strip()
+    scope_splitted = scope.split(" ")
+    result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
+    if result.get("index") < 0 :
+      return False
+    return True
+
+add_type_any_parameter_list = []
+class add_type_any_parameterCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    global add_type_any_parameter_list
+    view = self.view
+    params = []
+    if not "recall" in args :
+      params = view.find_by_selector("variable.parameter.function.js")
+      add_type_any_parameter_list = params
+    else :
+      params = add_type_any_parameter_list
+
+    if "recall" in args and args["recall"] >= 0 :
+      args["recall"] = args["recall"] + 1
+
+    if params :
+      view.insert(edit, params[0].end() + ( args["recall"]*len("/* : any */") if "recall" in args else 0 ) , "/* : any */")
+      del params[0]
+      if not "recall" in args :
+        view.run_command("add_type_any_parameter", {"recall" : 0})
+      else :
+        view.run_command("add_type_any_parameter", {"recall": args["recall"]})
+
 import sublime, sublime_plugin
 import sys, imp, os, webbrowser, re, cgi
 import util.main as Util
-
-JC_SETTINGS_FOLDER_NAME = "javascript_completions"
-JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, JC_SETTINGS_FOLDER_NAME)
 
 class JavaScriptCompletions():
 
@@ -891,7 +1240,6 @@ if int(sublime.version()) >= 3124 :
           continue
   
         for error in result[1]['errors']:
-          print(error)
           description = ''
           operation = error.get('operation')
           row = -1
@@ -917,9 +1265,9 @@ if int(sublime.version()) >= 3124 :
               description_by_row[row] = description
             if row_description and description not in row_description:
               description_by_row[row] += '; ' + description
-
+              
         errors = result[1]['errors']
-
+  
     if errors :
       view.add_regions(
         'flow_error', regions, 'scope.js', 'dot',
@@ -950,7 +1298,7 @@ if int(sublime.version()) >= 3124 :
     description_by_row = {}
     errors = []
     callback_setted_use_flow_checker_on_current_view = False
-
+  
     def on_load_async(self):
       self.on_activated_async()
   
@@ -969,9 +1317,8 @@ if int(sublime.version()) >= 3124 :
         return
   
       settings = get_project_settings()
-
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] :
+        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
       else :
@@ -998,9 +1345,8 @@ if int(sublime.version()) >= 3124 :
         return
   
       settings = get_project_settings()
-
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] :
+        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
       elif not view.settings().get("use_flow_checker_on_current_view") :
@@ -1027,7 +1373,7 @@ if int(sublime.version()) >= 3124 :
       
       settings = get_project_settings()
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] :
+        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
       elif not view.settings().get("use_flow_checker_on_current_view") :
@@ -1037,7 +1383,6 @@ if int(sublime.version()) >= 3124 :
       row, col = view.rowcol(sel.begin())
   
       error_count = len(self.errors)
-
       error_count_text = 'Flow: {} error{}'.format(
         error_count, '' if error_count is 1 else 's'
       )
@@ -1242,122 +1587,6 @@ def back_to_popup(*str_arg):
 
 
 import sublime, sublime_plugin
-import os, shlex
-
-PROJECT_FOLDER_NAME = "project"
-PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
-socket_server_list = dict()
-
-def call_ui(client_file, host, port) :
-  from node.main import NodeJS
-  node = NodeJS()
-  return Util.create_and_start_thread(node.execute, client_file, ("electron", [client_file], True))
-
-def is_javascript_project():
-  project_file_name = sublime.active_window().project_file_name()
-  if project_file_name :
-    project_folder = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
-    if os.path.isdir(settings_dir_name) :
-      return True
-    else :
-      # try to look at window.folders()
-      folder = sublime.active_window().folders()
-      if len(folder) > 0:
-        folder = folder[0]
-        settings_dir_name = os.path.join(folder, ".jc-project-settings")
-        return os.path.isdir(settings_dir_name)
-  return False
-  
-def get_project_settings():
-
-  project_settings = dict()
-
-  project_file_name = sublime.active_window().project_file_name()
-  project_folder = ""
-  settings_dir_name = ""
-  if project_file_name :
-    project_folder = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
-  else :
-    # try to look at window.folders()
-    folder = sublime.active_window().folders()
-    if len(folder) > 0:
-      project_folder = folder[0]
-      project_file_name = os.path.basename(project_folder)
-      settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
-      if not os.path.isdir(settings_dir_name) :
-        return dict()
-    else :
-      return dict()
-      
-  project_settings["project_file_name"] = project_file_name
-  project_settings["project_dir_name"] = os.path.dirname(project_file_name)
-  project_settings["settings_dir_name"] = settings_dir_name
-  settings_file = ["project_details.json", "flow_settings.json"]
-  for setting_file in settings_file :
-    with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
-      key = os.path.splitext(setting_file)[0]
-      project_settings[key] = json.loads(file.read(), encoding="utf-8")
-
-  return project_settings
-
-import os, time
-from my_socket.main import mySocketServer 
-import util.main as Util
-
-class SocketCallUI(object):
-
-  def __init__(self, name, host, port, client_ui_file, wait_for_new_changes=1):
-    super(SocketCallUI, self).__init__()
-    self.name = name
-    self.host = host
-    self.port = port
-    self.client_thread = None
-    self.client_ui_file = os.path.join(PROJECT_FOLDER, client_ui_file)
-    self.socket = None
-    self.current_selected_view = None
-    self.last_modified = None
-    self.wait_for_new_changes = wait_for_new_changes
-
-  def init(self):
-    if not os.path.isfile(self.client_ui_file):
-      raise Exception("Client UI file \""+self.client_ui_file+"\" not found.")
-    self.last_modified = time.time()
-
-  def start(self, handle_recv, handle_client_connection, handle_client_disconnection):
-    self.init()
-    self.listen(handle_recv, handle_client_connection, handle_client_disconnection)
-    self.client_thread = call_ui(self.client_ui_file , self.host, self.port)
-
-  def listen(self, handle_recv, handle_client_connection, handle_client_disconnection):
-    self.socket = mySocketServer(self.name) 
-    self.socket.bind(self.host, self.port)
-    self.socket.handle_recv(handle_recv)
-    self.socket.handle_client_connection(handle_client_connection)
-    self.socket.handle_client_disconnection(handle_client_disconnection)
-    self.socket.listen()
-
-  def update_time(self):
-    self.last_modified = time.time()
-
-  def handle_new_changes(self, fun, thread_name, *args):
-    args = (fun,) + args
-    return Util.create_and_start_thread(self.check_changes, args=args, thread_name=thread_name)
-
-  def check_changes(self, fun, *args):
-    while True:
-      time.sleep(.1)
-      now = time.time()
-      if now - self.last_modified >= self.wait_for_new_changes :
-        break
-    fun(*args)
-    
-  def get_file_name(self):
-    return self.current_selected_view.file_name()
-
-
-import sublime, sublime_plugin
 import subprocess, time
 from my_socket.main import mySocketServer  
 from node.main import NodeJS
@@ -1497,423 +1726,283 @@ class view_structure_javascriptCommand(sublime_plugin.TextCommand):
 
 
 import sublime, sublime_plugin
-import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
-from node.main import NodeJS
-node = NodeJS()
-
-socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join("create_new_project", "ui", "client.js"))
-
-def open_project_folder(project):
-  
-  subl(["--project", project])
-
-class create_new_projectCommand(sublime_plugin.WindowCommand):
-  def run(self, *args):
-    global socket_server_list
-
-    if socket_server_list["create_new_project"].socket and socket_server_list["create_new_project"].socket.close_if_not_clients():
-      socket_server_list["create_new_project"].socket = None
-
-    if socket_server_list["create_new_project"].socket == None :
-
-      def recv(conn, addr, ip, port, client_data, client_fields):
-        global socket_server_list
-        print(client_data)
-        json_data = json.loads(client_data)
-
-        if json_data["command"] == "open_project":
-          open_project_folder(json_data["project"])
-          data = dict()
-          data["command"] = "close_window"
-          data = json.dumps(data)
-          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
-
-        elif json_data["command"] == "try_flow_init":
-          
-          data = dict()
-          data["command"] = "result_flow_init"
-          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
-          data["project"] = json_data["project"]
-          data = json.dumps(data)
-
-          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
-
-      def client_connected(conn, addr, ip, port, client_fields):
-        global socket_server_list   
-
-      def client_disconnected(conn, addr, ip, port):
-        socket_server_list["create_new_project"].client_thread = None
-        if socket_server_list["create_new_project"].socket.close_if_not_clients() :
-          socket_server_list["create_new_project"].socket = None
-
-      socket_server_list["create_new_project"].start(recv, client_connected, client_disconnected)
-
-
-import sublime, sublime_plugin
-import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
-
-socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join("edit_project", "ui", "client.js"))
-
-class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
-  def run(self, *args):
-    global socket_server_list
-
-    if socket_server_list["edit_project"].socket and socket_server_list["edit_project"].socket.close_if_not_clients():
-      socket_server_list["edit_project"].socket = None
-
-    if socket_server_list["edit_project"].socket == None :
-
-      def recv(conn, addr, ip, port, client_data, client_fields):
-        global socket_server_list
-
-        json_data = json.loads(client_data)
-
-        if json_data["command"] == "ready":
-          settings = get_project_settings()
-          if settings :
-            data = dict()
-            data["command"] = "load_project_settings"
-            data["settings"] = settings
-            data = json.dumps(data)
-            socket_server_list["edit_project"].socket.send_to(conn, addr, data) 
-
-      def client_connected(conn, addr, ip, port, client_fields):
-        global socket_server_list 
-        
-
-      def client_disconnected(conn, addr, ip, port):
-        socket_server_list["edit_project"].client_thread = None
-        if socket_server_list["edit_project"].socket.close_if_not_clients() :
-          socket_server_list["edit_project"].socket = None
-
-      socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
-
-  def is_enabled(self):
-    return True if is_javascript_project() else False
-
-  def is_visible(self):
-    return True if is_javascript_project() else False
-
-import sublime, sublime_plugin
-
-class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
-
-  def on_close(self, view) :
-
-    if not sublime.windows() :
-
-      from node.main import NodeJS
-      node = NodeJS()
-
-      global socket_server_list
-      for key, value in socket_server_list.items() :
-        if value["socket"] != None :
-          sublime.status_message("socket server stopping")
-          data = dict()
-          data["command"] = "server_closing"
-          data = json.dumps(data)
-          value["socket"].send_all_clients(data)
-          value["socket"].close()
-
-      sublime.status_message("flow server stopping")
-      node.execute("flow", ["stop"], True)
-
-
-
-import sublime, sublime_plugin
-import json, os, re, webbrowser, cgi, threading, shutil
+import json
 import util.main as Util
-from util.animation_loader import AnimationLoader
-from util.repeated_timer import RepeatedTimer
-from distutils.version import LooseVersion
 
-HELPER_FOLDER_NAME = "helper"
-HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
+bookmarks = []
+latest_bookmarks_view = dict()
 
-class surround_withCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
-    view = self.view
-    selections = view.sel()
-    region = None
-    sub = None
-    case = args.get("case")
-    if case == "if_else_statement" :
-      if len(selections) != 2 :
-        return
+def set_bookmarks(is_project = False, set_dot = False):
+  global bookmarks
+  view = sublime.active_window().active_view()
 
-      sel_1 = Util.trim_Region(view, selections[0])
-      space_1 = Util.get_whitespace_from_line_begin(view, sel_1)
-      new_text = Util.replace_with_tab(view, sel_1, space_1+"\n"+space_1+"if (bool) {\n"+space_1, "\n"+space_1+"} ")
-      view.replace(edit, sel_1, new_text.strip())
+  if is_project and ( not is_project_view(view) or not is_javascript_project() ) :
+    sublime.error_message("Can't recognize JavaScript Project.")
+    return
+  elif is_project and is_project_view(view) and is_javascript_project() :
+    project_settings = get_project_settings()
+    bookmarks = Util.open_json(os.path.join(project_settings["settings_dir_name"], 'bookmarks.json')) or []
+  else :
+    bookmarks = Util.open_json(os.path.join(BOOKMARKS_FOLDER, 'bookmarks.json')) or []
 
-      sel_2 = Util.trim_Region(view, selections[1])
-      space_2 = Util.get_whitespace_from_line_begin(view, sel_2)
-      new_text = Util.replace_with_tab(view, sel_2, " else {\n"+space_2, "\n"+space_2+"}\n"+space_2)
-      view.replace(edit, sel_2, new_text.strip())
-    else :
-      for selection in selections :
-        selection = Util.trim_Region(view, selection)
-        if view.substr(selection).strip() == "" :
-          continue
-        space = Util.get_whitespace_from_line_begin(view, selection)
+  if set_dot :
+    lines = []
+    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
+    view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
-        if case == "if_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"if (bool) {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+def update_bookmarks(is_project = False, set_dot = False):
+  global bookmarks
+  path = ""
+  view = sublime.active_window().active_view()
 
-        elif case == "while_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"while (bool) {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+  if is_project and ( not is_project_view(view) or not is_javascript_project() ) :
+    sublime.error_message("Can't recognize JavaScript Project.")
+    return
+  elif is_project and is_project_view(view) and is_javascript_project() :
+    project_settings = get_project_settings()
+    path = os.path.join(project_settings["settings_dir_name"], 'bookmarks.json')
+  else :
+    path = os.path.join(BOOKMARKS_FOLDER, 'bookmarks.json')
 
-        elif case == "do_while_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"do {\n"+space, "\n"+space+"} while (bool);\n"+space)
-          view.replace(edit, selection, new_text)
+  with open(path, 'w+') as bookmarks_json:
+    bookmarks_json.write(json.dumps(bookmarks))
 
-        elif case == "for_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"for ( ; bool ; ) {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+  view.erase_regions("region-dot-bookmarks")
+  if set_dot :
+    lines = []
+    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
 
-        elif case == "try_catch_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+    view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
-        elif case == "try_catch_finally_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
-          
-  def is_enabled(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
+def add_bookmark(view, line, name = "", is_project = False) :
+  if not view.file_name() or line < 0:
     return False
 
-  def is_visible(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
+  global bookmarks
+
+  if is_project :
+    set_bookmarks(True, True)
+  else :
+    set_bookmarks(False, True)
+
+  bookmark = {
+    "file_name": view.file_name(),
+    "line": line,
+    "name": name.strip()
+  }
+
+  if get_index_bookmark(bookmark) == -1:
+
+    bookmarks.append(bookmark)
+    update_bookmarks(is_project, True)
+
+def remove_bookmark(view, line, name, is_project = False) :
+
+  if not view.file_name() or line < 0:
     return False
 
-class delete_surroundedCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
+  if is_project :
+    set_bookmarks(True, True)
+  else :
+    set_bookmarks(False, True)
+
+  global bookmarks
+
+  bookmark = {
+    "file_name": view.file_name(),
+    "line": line,
+    "name": name.strip()
+  }
+  if bookmark in bookmarks :
+    bookmarks.remove(bookmark)
+    update_bookmarks(is_project, True)
+
+def search_bookmarks_by_view(view, is_project = False):
+  if not view.file_name():
+    return []
+
+  global bookmarks
+
+  if is_project :
+    set_bookmarks(True)
+  else :
+    set_bookmarks()
+
+  view_bookmarks = []
+
+  for bookmark in bookmarks:
+    if bookmark['file_name'] == view.file_name() :
+      view_bookmarks.append(bookmark)
+
+  return view_bookmarks
+
+def delete_bookmarks_by_view(view, is_project = False):
+  if not view.file_name():
+    return False
+
+  global bookmarks
+
+  if is_project :
+    set_bookmarks(True, True)
+  else :
+    set_bookmarks(False, True)
+
+  new_bookmarks = []
+
+  for bookmark in bookmarks:
+    if bookmark['file_name'] != view.file_name() :
+      new_bookmarks.append(bookmark)
+
+  bookmarks = new_bookmarks
+  update_bookmarks(is_project, True)
+
+def get_index_bookmark(bookmark) :
+  global bookmarks
+
+  if bookmark in bookmarks :
+    return bookmarks.index(bookmark)
+
+  return -1
+
+def open_bookmarks_and_show(index, bookmarks_view = []) :
+
+  if index < 0 :
+    return
+
+  global bookmarks
+  global latest_bookmarks_view
+
+  bookmark = bookmarks_view[index] if bookmarks_view else bookmarks[index]
+
+  latest_bookmarks_view = {"index": index, "bookmarks": bookmarks_view} if bookmarks_view else dict()
+
+  view = sublime.active_window().open_file(bookmark["file_name"])
+  point = view.text_point(bookmark["line"]-1, 0)
+  view.show_at_center(point)
+  view.sel().clear()
+  view.sel().add(point)
+
+def set_multiple_bookmarks_names(view, index, selections, is_project = False):
+
+  if len(selections) <= 0:
+    return
+
+  row = selections[0].begin()
+
+  new_selections = []
+
+  for index, sel in enumerate(selections):
+    if index == 0:
+      continue
+    new_selections.append(sel)
+
+  sublime.active_window().show_input_panel("Bookmark Name "+str(index+1)+": ", "",
+    lambda name: add_bookmark(view, view.rowcol(row)[0], name, is_project) or set_multiple_bookmarks_names(view, index+1, new_selections),
+    None,
+    None
+  )
+
+class add_global_bookmark_hereCommand(sublime_plugin.TextCommand) :
+
+  def run(self, edit):
+
     view = self.view
+
     selections = view.sel()
-    case = args.get("case")
-    for selection in selections :
-      scope = view.scope_name(selection.begin()).strip()
-      scope_splitted = scope.split(" ")
-      if case == "strip_quoted_string" :
-        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
-        selector = result.get("string")
-        item = Util.get_region_scope_first_match(view, scope, selection, selector)
-        if item :
-          region_scope = item.get("region")
-          new_str = item.get("region_string")
-          new_str = new_str[1:-1]
-          view.replace(edit, region_scope, new_str)
 
-  def is_enabled(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    return True
-    
-  def is_visible(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    return True
-
-class sort_arrayCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
-    from node.main import NodeJS
-    node = NodeJS()
-    view = self.view
-    selections = view.sel()
-    for selection in selections :
-      scope = view.scope_name(selection.begin()).strip()
-      result = Util.get_region_scope_first_match(view, scope, selection, "meta.brackets.js")
-      if result :
-        region = result.get("region")
-        array_string = result.get("region_string_stripped")
-        from node.main import NodeJS
-        node = NodeJS()
-        case = args.get("case")
-        sort_func = ""
-        if case == "compare_func_desc" :
-          sort_func = "function(x,y){return y-x;}"
-        elif case == "compare_func_asc" :
-          sort_func = "function(x,y){return x-y;}"
-        elif case == "alpha_asc" :
-          sort_func = ""
-        elif case == "alpha_desc" :
-          sort_func = ""
-        sort_result = node.eval("var array = "+array_string+"; console.log(array.sort("+sort_func+")"+( ".reverse()" if case == "alpha_desc" else "" )+")").strip()
-        view.replace(edit, region, sort_result)
-
-  def is_enabled(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selections = view.sel()
-    for selection in selections :
-      scope = view.scope_name(selection.begin()).strip()
-      index = Util.split_string_and_find(scope, "meta.brackets.js")
-      if index < 0 :
-        return False
-    return True
-
-  def is_visible(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selections = view.sel()
-    for selection in selections :
-      scope = view.scope_name(selection.begin()).strip()
-      index = Util.split_string_and_find(scope, "meta.brackets.js")
-      if index < 0 :
-        return False
-    return True
-
-class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
-    view = self.view
-    selections = view.sel()
-    for selection in selections :
-      scope = view.scope_name(selection.begin()).strip()
-      depth_level = Util.split_string_and_find(scope, "meta.object-literal.js")
-      item_object_literal = Util.get_region_scope_first_match(view, scope, selection, "meta.object-literal.js")
-
-      if item_object_literal :
-
-        scope = item_object_literal.get("scope")
-        object_literal_region = item_object_literal.get("region")
-        selection = item_object_literal.get("selection")
-        object_literal = item_object_literal.get("region_string_stripped")
-        from node.main import NodeJS
-        node = NodeJS()
-        object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
-        object_literal = [(key, json.dumps(value)) for key, value in object_literal.items()]
-
-        list_ordered = ("keyword.operator.assignment.js", "variable.other.readwrite.js", "storage.type.js")
-        items = Util.find_regions_on_same_depth_level(view, scope, selection, list_ordered, depth_level, False)
-        if items :
-          last_selection = items[-1:][0].get("selection")
-          class_name = items[1].get("region_string_stripped")
-          regions = [(item.get("region")) for item in items]
-          regions.append(object_literal_region)
-          regions = Util.cover_regions(regions)
-          parameters = list()
-          constructor_body = list()
-          get_set = list()
-          for parameter in object_literal: 
-            parameters.append( parameter[0] + ( "="+parameter[1] if json.loads(parameter[1]) != "required" else "") )
-            constructor_body.append( "\t\tthis."+parameter[0]+" = "+parameter[0]+";" )
-            get_set.append("\tget "+parameter[0]+"() {\n\t\treturn this."+parameter[0]+";\n\t}")
-            get_set.append("\tset "+parameter[0]+"("+parameter[0]+") {\n\t\tthis."+parameter[0]+" = "+parameter[0]+";\n\t}")
-          parameters = ", ".join(parameters)
-          constructor_body = '\n'.join(constructor_body)
-          get_set = '\n\n'.join(get_set)
-          js_syntax  = "class "+class_name+" {\n"
-          js_syntax += "\n\tconstructor ("+parameters+") {\n"
-          js_syntax += constructor_body
-          js_syntax += "\n\t}\n\n"
-          js_syntax += get_set
-          js_syntax += "\n}"
-          js_syntax = Util.add_whitespace_indentation(view, regions, js_syntax)
-          view.replace(edit, regions, js_syntax)
-
-  def is_enabled(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selection = view.sel()[0]
-    scope = view.scope_name(selection.begin()).strip()
-    index = Util.split_string_and_find(scope, "meta.object-literal.js")
-    if index < 0 :
-      return False
-    return True
-
-  def is_visible(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selection = view.sel()[0]
-    scope = view.scope_name(selection.begin()).strip()
-    index = Util.split_string_and_find(scope, "meta.object-literal.js")
-    if index < 0 :
-      return False
-    return True
+    set_multiple_bookmarks_names(view, 0, selections, False)
       
-class split_string_lines_to_variableCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
+class add_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
+
+  def run(self, edit):
+
+    if not is_javascript_project() :
+      sublime.error_message("Can't recognize JavaScript Project.")
+      return 
+
     view = self.view
+
     selections = view.sel()
-    for selection in selections :
-      scope = view.scope_name(selection.begin()).strip()
-      scope_splitted = scope.split(" ")
-      case = args.get("case")
-      if case == "split" :
-        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
-        scope_string = scope_splitted[result.get("index")]
-        selector = result.get("string")
-        item = Util.get_region_scope_first_match(view, scope, selection, selector)
-        if item :
-          lines = item.get("region_string_stripped")[1:-1].split("\n")
-          str_splitted = list()
-          str_splitted.append("var str = \"\"")
-          for line in lines :
-            line = line if scope_string == "string.template.js" else line.strip()[0:-1]
-            line = line.strip()
-            if line :
-              str_splitted.append( "str += "+"%r"%line )
-          str_splitted = "\n".join(str_splitted)
-          str_splitted = Util.add_whitespace_indentation(view, selection, str_splitted, "\n")
-          view.replace(edit, item.get("region"), str_splitted)
-          
-  def is_visible(self, **args) :
-    view = self.view
-    if Util.split_string_and_find(view.scope_name(0), "source.js") < 0 :
-      return False
-    selection = view.sel()[0]
-    scope = view.scope_name(selection.begin()).strip()
-    scope_splitted = scope.split(" ")
-    result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
-    if result.get("index") < 0 :
-      return False
-    return True
 
-add_type_any_parameter_list = []
-class add_type_any_parameterCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
-    global add_type_any_parameter_list
+    set_multiple_bookmarks_names(view, 0, selections, True)
+
+
+class show_bookmarksCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, **args) :
+    global bookmarks
+    global latest_bookmarks_view
+
+    window = sublime.active_window()
     view = self.view
-    params = []
-    if not "recall" in args :
-      params = view.find_by_selector("variable.parameter.function.js")
-      add_type_any_parameter_list = params
+
+    show_type = args.get("type")
+
+    if show_type == "global" or show_type == "view" :
+      set_bookmarks(False, True)
     else :
-      params = add_type_any_parameter_list
+      set_bookmarks(True, True)
 
-    if "recall" in args and args["recall"] >= 0 :
-      args["recall"] = args["recall"] + 1
+    if len(bookmarks) <= 0:
+      return 
 
-    if params :
-      view.insert(edit, params[0].end() + ( args["recall"]*len("/* : any */") if "recall" in args else 0 ) , "/* : any */")
-      del params[0]
-      if not "recall" in args :
-        view.run_command("add_type_any_parameter", {"recall" : 0})
-      else :
-        view.run_command("add_type_any_parameter", {"recall": args["recall"]})
+    if show_type == "global" or show_type == "global_project" :
+
+      items = [ ( bookmark['name'] + ", line: " + str(bookmark["line"]) ) if bookmark['name'] else ( bookmark['file_name'] + ", line: " + str(bookmark["line"]) ) for bookmark in bookmarks]
+
+      window.show_quick_panel(items, open_bookmarks_and_show)
+
+    elif show_type == "view" or show_type == "view_project" : 
+
+      bookmarks_view = search_bookmarks_by_view(view, False if show_type == "view" else True)
+
+      latest_bookmarks_view = {"index": 0, "bookmarks": bookmarks_view} if bookmarks_view else dict()
+
+      items = [ ( bookmark['name'] + ", line: " + str(bookmark["line"]) ) if bookmark['name'] else ( "line: " + str(bookmark["line"]) ) for bookmark in bookmarks_view]
+      
+      window.show_quick_panel(items, lambda index: open_bookmarks_and_show(index, bookmarks_view))
+
+class delete_bookmarksCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, **args) :
+    global bookmarks
+
+    window = sublime.active_window()
+    view = self.view
+
+    show_type = args.get("type")
+
+    if show_type == "global" or show_type == "global_project" :
+
+      bookmarks = []
+      update_bookmarks(False if show_type == "global" else True, True)
+
+    elif show_type == "view" or show_type == "view_project" : 
+
+      delete_bookmarks_by_view(view, False if show_type == "view" else True)
+
+class select_bookmarksCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, **args) :
+    global bookmarks
+    global latest_bookmarks_view
+
+    if not latest_bookmarks_view:
+      return
+
+    window = sublime.active_window()
+    view = self.view
+
+    move_type = args.get("type")
+
+    if move_type == "next" and latest_bookmarks_view["index"]+1 < len(latest_bookmarks_view["bookmarks"]):
+
+      open_bookmarks_and_show(latest_bookmarks_view["index"]+1, latest_bookmarks_view["bookmarks"])
+
+    elif move_type == "previous" and latest_bookmarks_view["index"]-1 >= 0:
+
+      open_bookmarks_and_show(latest_bookmarks_view["index"]-1, latest_bookmarks_view["bookmarks"])
+      
 
 if int(sublime.version()) >= 3124 :
 
@@ -2164,10 +2253,195 @@ if int(sublime.version()) >= 3124 :
 
 
 
-if int(sublime.version()) < 3000 :
+import sublime, sublime_plugin
+import os, shlex
+
+def call_ui(client_file, host, port) :
+  from node.main import NodeJS
+  node = NodeJS()
+  return Util.create_and_start_thread(node.execute, client_file, ("electron", [client_file], True))
+
+def is_javascript_project():
+  project_file_name = sublime.active_window().project_file_name()
+  if project_file_name :
+    project_folder = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    return os.path.isdir(settings_dir_name)
+  else :
+    # try to look at window.folders()
+    folder = sublime.active_window().folders()
+    if len(folder) > 0:
+      folder = folder[0]
+      settings_dir_name = os.path.join(folder, ".jc-project-settings")
+      return os.path.isdir(settings_dir_name)
+  return False
+
+def is_project_view(view) :
+  settings = get_project_settings()
+  if settings :
+    return view.file_name() and view.file_name().startswith(settings["project_dir_name"])
+  return False
+
+def get_project_settings():
+
+  project_settings = dict()
+
+  project_file_name = sublime.active_window().project_file_name()
+  project_folder = ""
+  settings_dir_name = ""
+  if project_file_name :
+    project_folder = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+  else :
+    # try to look at window.folders()
+    folder = sublime.active_window().folders()
+    if len(folder) > 0:
+      project_folder = folder[0]
+      project_file_name = os.path.basename(project_folder)
+      settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+      if not os.path.isdir(settings_dir_name) :
+        return dict()
+    else :
+      return dict()
+        
+  project_settings["project_file_name"] = project_file_name
+  project_settings["project_dir_name"] = os.path.dirname(project_file_name)
+  project_settings["settings_dir_name"] = settings_dir_name
+  settings_file = ["project_details.json", "flow_settings.json"]
+  for setting_file in settings_file :
+    with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
+      key = os.path.splitext(setting_file)[0]
+      project_settings[key] = json.loads(file.read(), encoding="utf-8")
+
+  return project_settings
+
+import sublime, sublime_plugin
+import subprocess, shutil, traceback
+from my_socket.main import mySocketServer  
+from node.main import NodeJS
+node = NodeJS()
+
+socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join("create_new_project", "ui", "client.js"))
+
+def open_project_folder(project):
+  
+  subl(["--project", project])
+
+class create_new_projectCommand(sublime_plugin.WindowCommand):
+  def run(self, *args):
+    global socket_server_list
+
+    if socket_server_list["create_new_project"].socket and socket_server_list["create_new_project"].socket.close_if_not_clients():
+      socket_server_list["create_new_project"].socket = None
+
+    if socket_server_list["create_new_project"].socket == None :
+
+      def recv(conn, addr, ip, port, client_data, client_fields):
+        global socket_server_list
+
+        json_data = json.loads(client_data)
+
+        if json_data["command"] == "open_project":
+          open_project_folder(json_data["project"])
+          data = dict()
+          data["command"] = "close_window"
+          data = json.dumps(data)
+          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
+
+        elif json_data["command"] == "try_flow_init":
+          
+          data = dict()
+          data["command"] = "result_flow_init"
+          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
+          data["project"] = json_data["project"]
+          data = json.dumps(data)
+
+          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
+
+      def client_connected(conn, addr, ip, port, client_fields):
+        global socket_server_list   
+
+      def client_disconnected(conn, addr, ip, port):
+        socket_server_list["create_new_project"].client_thread = None
+        if socket_server_list["create_new_project"].socket.close_if_not_clients() :
+          socket_server_list["create_new_project"].socket = None
+
+      socket_server_list["create_new_project"].start(recv, client_connected, client_disconnected)
+
+
+import sublime, sublime_plugin
+import subprocess, shutil, traceback
+from my_socket.main import mySocketServer  
+
+socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join("edit_project", "ui", "client.js"))
+
+class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
+  def run(self, *args):
+    global socket_server_list
+
+    if socket_server_list["edit_project"].socket and socket_server_list["edit_project"].socket.close_if_not_clients():
+      socket_server_list["edit_project"].socket = None
+
+    if socket_server_list["edit_project"].socket == None :
+
+      def recv(conn, addr, ip, port, client_data, client_fields):
+        global socket_server_list
+
+        json_data = json.loads(client_data)
+
+        if json_data["command"] == "ready":
+          settings = get_project_settings()
+          if settings :
+            data = dict()
+            data["command"] = "load_project_settings"
+            data["settings"] = settings
+            data = json.dumps(data)
+            socket_server_list["edit_project"].socket.send_to(conn, addr, data) 
+
+      def client_connected(conn, addr, ip, port, client_fields):
+        global socket_server_list 
+        
+
+      def client_disconnected(conn, addr, ip, port):
+        socket_server_list["edit_project"].client_thread = None
+        if socket_server_list["edit_project"].socket.close_if_not_clients() :
+          socket_server_list["edit_project"].socket = None
+
+      socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
+
+  def is_enabled(self):
+    return True if is_javascript_project() else False
+
+  def is_visible(self):
+    return True if is_javascript_project() else False
+
+import sublime, sublime_plugin
+
+class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
+
+  def on_close(self, view) :
+
+    if not sublime.windows() :
+
+      from node.main import NodeJS
+      node = NodeJS()
+
+      global socket_server_list
+      for key, value in socket_server_list.items() :
+        if value["socket"] != None :
+          sublime.status_message("socket server stopping")
+          data = dict()
+          data["command"] = "server_closing"
+          data = json.dumps(data)
+          value["socket"].send_all_clients(data)
+          value["socket"].close()
+
+      sublime.status_message("flow server stopping")
+      node.execute("flow", ["stop"], True)
+
+
+
+def plugin_loaded():
+  global mainPlugin
   mainPlugin.init()
-else :
-  def plugin_loaded():
-    global mainPlugin
-    mainPlugin.init()
 

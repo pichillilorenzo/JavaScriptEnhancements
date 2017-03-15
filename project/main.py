@@ -1,10 +1,6 @@
 import sublime, sublime_plugin
 import os, shlex
 
-PROJECT_FOLDER_NAME = "project"
-PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
-socket_server_list = dict()
-
 def call_ui(client_file, host, port) :
   from node.main import NodeJS
   node = NodeJS()
@@ -24,7 +20,13 @@ def is_javascript_project():
       settings_dir_name = os.path.join(folder, ".jc-project-settings")
       return os.path.isdir(settings_dir_name)
   return False
-  
+
+def is_project_view(view) :
+  settings = get_project_settings()
+  if settings :
+    return view.file_name() and view.file_name().startswith(settings["project_dir_name"])
+  return False
+
 def get_project_settings():
 
   project_settings = dict()
@@ -57,10 +59,6 @@ def get_project_settings():
       project_settings[key] = json.loads(file.read(), encoding="utf-8")
 
   return project_settings
-
-${include SocketCallUI.py}
-
-${include structure_javascript/structure_javascript.py}
 
 ${include create_new_project/create_new_project.py}
 

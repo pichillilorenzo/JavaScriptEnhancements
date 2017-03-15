@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>JavaScript Structure</title>
-  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../../css/reset.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -469,7 +469,7 @@
 
     }
     ipcRenderer.on('data', (event, json_data) => {
-      console.log(json_data)
+
       update_structure(json_data, null)
       text_structure.appendChild(list_structure)
       list.appendChild(text_structure)

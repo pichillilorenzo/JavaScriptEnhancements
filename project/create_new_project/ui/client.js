@@ -49,6 +49,7 @@ ipcMain.on('data', (event, project) => {
   }
 
   let jc_project_settings = path.join(project.path, ".jc-project-settings")
+  let bookmarks_path = path.join(jc_project_settings, "bookmarks.json")
   let settings_file = path.join(jc_project_settings, "project_details.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
 
@@ -63,6 +64,10 @@ ipcMain.on('data', (event, project) => {
     util.openWithSync((fd) => {
       fs.writeFileSync(fd, JSON.stringify(default_config.flow_settings, null, 2))
     }, flow_settings, "w+")
+
+    util.openWithSync((fd) => {
+      fs.writeFileSync(fd, JSON.stringify(default_config.bookmarks, null, 2))
+    }, bookmarks_path, "w+")
 
     app.sendSocketJson({
       "command": "try_flow_init",

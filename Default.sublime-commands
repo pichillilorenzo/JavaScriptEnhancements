@@ -1,0 +1,12 @@
+[
+  { "caption": "Bookmarks: Show Global", "command": "show_bookmarks", "args": {"type": "global"} },
+  { "caption": "Bookmarks: Show on Current View", "command": "show_bookmarks", "args": {"type": "view"} },
+  { "caption": "Bookmarks: Show All on Current Project", "command": "show_bookmarks", "args": {"type": "global_project"} },
+  { "caption": "Bookmarks: Show on Current View's Project", "command": "show_bookmarks", "args": {"type": "view_project"} },
+  { "caption": "Bookmarks: Delete All Global", "command": "delete_bookmarks", "args": {"type": "global"} },
+  { "caption": "Bookmarks: Delete All on Current View", "command": "delete_bookmarks", "args": {"type": "view"} },
+  { "caption": "Bookmarks: Delete All on Current Project", "command": "delete_bookmarks", "args": {"type": "global_project"} },
+  { "caption": "Bookmarks: Delete All on Current View's Project", "command": "delete_bookmarks", "args": {"type": "view_project"} },
+  { "caption": "Bookmarks: Next", "command": "select_bookmarks", "args": {"type": "next"} },
+  { "caption": "Bookmarks: Previous", "command": "select_bookmarks", "args": {"type": "previous"} }
+]

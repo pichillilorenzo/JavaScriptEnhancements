@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit Project</title>
-  <link rel="stylesheet" href="../../css/vendor/iconfont/material-icons.css">
-  <link rel="stylesheet" href="../../css/vendor/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/vendor/propeller.min.css">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../../css/vendor/iconfont/material-icons.css">
+  <link rel="stylesheet" href="../../../css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../css/vendor/propeller.min.css">
+  <link rel="stylesheet" href="../../../css/style.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
             <i class="material-icons media-left media-middle">settings</i>
             <div class="media-body">
               <h3 class="list-group-item-heading">Flow settings</h3>
-              <span class="list-group-item-text">Set your .flowconfig options here</span>
+              <span class="list-group-item-text">Set your .flowconfig options and global settings here</span>
             </div>
           </a>
         </li>
@@ -88,17 +88,105 @@
         </div>
         <div id="flow-settings" class="full-height tab-pane">
           <div class="text-center"><h2>Flow settings</h2></div>
+          <form id="form-flow-settings" action="#">
+            <div class="panel-group pmd-accordion" id="accordion-flow" role="tablist" aria-multiselectable="true" > 
+              <div class="panel panel-default"> 
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title"> 
+                    <a data-toggle="collapse" data-parent="#accordion-flow" href="#include-flow" aria-expanded="true" aria-controls="include-flow" data-expandable="false">Include <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a></a> 
+                  </h4>
+                </div>
+                <div id="include-flow" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <div class="container-settings-flow-inputs"></div>
+                    <div class="clearfix"></div>
+                    <button data-id-flow="include-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
+                    <button data-id-flow="include-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default"> 
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title"> 
+                    <a data-toggle="collapse" data-parent="#accordion-flow" href="#ignore-flow" aria-expanded="false" aria-controls="ignore-flow"  data-expandable="false">Ignore <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
+                  </h4>
+                </div>
+                <div id="ignore-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    <div class="container-settings-flow-inputs"></div>
+                    <div class="clearfix"></div>
+                    <button data-id-flow="ignore-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
+                    <button data-id-flow="ignore-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default"> 
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title"> 
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion-flow" href="#libs-flow" aria-expanded="false" aria-controls="libs-flow"  data-expandable="false">Libs <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
+                  </h4>
+                </div>
+                <div id="libs-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                    <div class="container-settings-flow-inputs"></div>
+                    <div class="clearfix"></div>
+                    <button data-id-flow="libs-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
+                    <button data-id-flow="libs-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default"> 
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title"> 
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion-flow" href="#options-flow" aria-expanded="false" aria-controls="options-flow"  data-expandable="false">Options <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
+                  </h4>
+                </div>
+                <div id="options-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                  <div class="panel-body">
+                    <div class="container-settings-flow-inputs"></div>
+                    <div class="clearfix"></div>
+                    <button data-id-flow="options-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
+                    <button data-id-flow="options-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default"> 
+                <div class="panel-heading" role="tab" id="headingFive">
+                  <h4 class="panel-title"> 
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion-flow" href="#global-flow" aria-expanded="false" aria-controls="global-flow"  data-expandable="false">Global Settings <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
+                  </h4>
+                </div>
+                <div id="global-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                  <div class="panel-body">
+                    <div class="container-settings-flow-inputs">
+                      <div class="container-flow-input">
+                        <div class="pmd-switch">
+                          <label>
+                            <input type="checkbox" id="use_flow_checker">
+                            <span class="pmd-switch-label"></span>
+                            <span class="text-switch">Use Flow Checker</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="menu pmd-floating-action" role="navigation"> 
+              <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
+            </div>
+          </form>
         </div>
-
       </div>
     </div>
   </div>
   <div class="pmd-alert-container right top"></div>
   <script>
-    window.$ = window.jQuery = require('../../js/vendor/jquery-1.12.2.min.js')
-    require('../../js/vendor/bootstrap.min.js')
-    require('../../js/vendor/propeller.min.js')
-    const utilWeb = require('../../js/utilWeb.js')
+    window.$ = window.jQuery = require('../../../js/vendor/jquery-1.12.2.min.js')
+    require('../../../js/vendor/bootstrap.min.js')
+    require('../../../js/vendor/propeller.min.js')
+    const utilWeb = require('../../../js/utilWeb.js')
 
     const {ipcRenderer} = require('electron')
     const {dialog} = require('electron').remote
@@ -120,6 +208,97 @@
         ipcRenderer.send('form-project-details', project_details)
       })
 
+      $("#form-flow-settings").on("submit", (event) => {
+        event.preventDefault()
+        let includes = Array.prototype.map.call(document.querySelectorAll(".include-flow-input"), function (item) {
+          return $(item).val().trim()
+        })
+        let ignores = Array.prototype.map.call(document.querySelectorAll(".ignore-flow-input"), function (item) {
+          return $(item).val().trim()
+        })
+        let libs = Array.prototype.map.call(document.querySelectorAll(".libs-flow-input"), function (item) {
+          return $(item).val().trim()
+        })
+        let options = Array.prototype.map.call(document.querySelectorAll(".options-flow-input"), function (item, index) {
+          return [$($(item).parents(".row").find(".options-flow-select")[index]).val().trim(), $(item).val().trim()]
+        })
+        let flow_settings = {
+          "ignore": ignores,
+          "include": includes,
+          "libs": libs,
+          "options": options,
+          "use_flow_checker": ($('#use_flow_checker:checked').length > 0) ? true : false
+        }
+        ipcRenderer.send('form-flow-settings', flow_settings)
+
+      })
+
+      $(".flow-add-button").click(function (event) {
+        let id = $(this).attr("data-id-flow")
+        if ( id != "options-flow" ) { 
+          $("#"+id+" .container-settings-flow-inputs").append(`
+            <div class="container-flow-input">
+              <div class="form-group pmd-textfield">
+                <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                  <input type="checkbox" value=""><span class="pmd-checkbox-label">&nbsp;</span>
+                  <span>Select to delete</span>
+                </label>
+                <input type="text" class="${id}-input form-control" value="" required="required"/><span class="pmd-textfield-focused"></span>
+              </div>
+            </div>
+          `)
+        }
+        else {
+          $("#"+id+" .container-settings-flow-inputs").append(`
+            <div class="container-flow-input">
+              <div class="form-group pmd-textfield">
+                <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                  <input type="checkbox" value=""><span class="pmd-checkbox-label">&nbsp;</span>
+                  <span>Select to delete</span>
+                </label>
+                <div class="row">
+                  <div class="col-xs-6 col-padding">
+                    <select class="${id}-select form-control">
+                      <option value="all">all</option>
+                      <option value="esproposal.export_star_as">esproposal.export_star_as</option>
+                      <option value="esproposal.export_star_as">esproposal.export_star_as</option>
+                      <option value="esproposal.decorators">esproposal.decorators</option>
+                      <option value="esproposal.class_instance_fields">esproposal.class_instance_fields</option>
+                      <option value="esproposal.class_static_fields">esproposal.class_static_fields</option>
+                      <option value="temp_dir">temp_dir</option>
+                      <option value="suppress_comment">suppress_comment</option>
+                      <option value="strip_root">strip_root</option>
+                      <option value="traces">traces</option>
+                      <option value="server.max_workers">server.max_workers</option>
+                      <option value="munge_underscores">munge_underscores</option>
+                      <option value="module.use_strict">module.use_strict</option>
+                      <option value="module.file_ext">module.file_ext</option>
+                      <option value="module.ignore_non_literal_requires">module.ignore_non_literal_requires</option>
+                      <option value="module.system.node.resolve_dirname">module.system.node.resolve_dirname</option>
+                      <option value="module.system">module.system</option>
+                      <option value="module.name_mapper.extension">module.name_mapper.extension</option>
+                      <option value="module.name_mapper">module.name_mapper</option>
+                      <option value="log.file">log.file</option>
+                    </select>
+                  </div>
+                  <div class="col-xs-6 col-padding">
+                    <input type="text" class="${id}-input form-control" value="" required="required"/><span class="pmd-textfield-focused"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `)
+        }
+      })
+
+      $(".flow-remove-button").click(function (event) {
+        let id = $(this).attr("data-id-flow")
+        let list_checked = $("#"+id+" .container-settings-flow-inputs .container-flow-input input:checked")
+        for(let i = 0, length1 = list_checked.length; i < length1; i++){
+          $(list_checked[i]).parents(".container-flow-input").remove()
+        }
+      })
+
     })
 
     ipcRenderer.on("load_config", (event, config) => {
@@ -133,10 +312,32 @@
       $("#license").val(project_details.license)
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
+
+      let flow_settings = config.settings.flow_settings
+      flow_settings.include.map(function (item, index) {
+        $("#include-flow .flow-add-button").click()
+        $($(".include-flow-input")[index]).val(item)
+      })
+      flow_settings.ignore.map(function (item, index) {
+        $("#ignore-flow .flow-add-button").click()
+        $($(".ignore-flow-input")[index]).val(item)
+      })
+      flow_settings.libs.map(function (item, index) {
+        $("#libs-flow .flow-add-button").click()
+        $($(".libs-flow-input")[index]).val(item)
+      })
+      flow_settings.options.map(function (item, index) {
+        $("#options-flow .flow-add-button").click()
+        $($(".options-flow-select")[index]).val(item[0])
+        $($(".options-flow-input")[index]).val(item[1])
+      })
+      if(flow_settings.use_flow_checker){
+        $('#use_flow_checker').attr('checked', 'checked')
+      }
     })
 
     ipcRenderer.on("error", (event, msg) => {
-      $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg));
+      $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg, "fadeInDown", "fadeInUp", 4000));
     })
 
     ipcRenderer.on("success", (event, msg) => {

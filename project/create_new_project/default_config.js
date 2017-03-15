@@ -38,5 +38,6 @@ module.exports = {
       ["all", "true"]
     ],
     "use_flow_checker": true
-  }
+  },
+  "bookmarks": []
 }

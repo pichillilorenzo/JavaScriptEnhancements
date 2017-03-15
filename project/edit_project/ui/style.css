@@ -7,7 +7,7 @@ html, body{
 #project-details{
   margin-bottom: 136px;
 }
-#project-details .pmd-floating-action{
+#project-details .pmd-floating-action, #flow-settings .pmd-floating-action{
   right: 11px;
 }
 .row{
@@ -40,4 +40,24 @@ html, body{
 }
 .tab-pane h2{
   margin-top: 0;
+}
+.flow-add-button{
+  float: right;
+}
+.flow-remove-button{
+  float: left;
+}
+.pmd-switch{
+  position: relative;
+}
+.pmd-switch > label {
+  width: 100%;
+}
+.pmd-switch .text-switch{
+  position: absolute;
+  top: -4px;
+  left: 40px;
+}
+.col-padding {
+  padding: 5px;
 }

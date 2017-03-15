@@ -41,6 +41,12 @@ def compile_code(code, last_dir_name_ric, whitespace_ric) :
       code += whitespace_ric+line+"\n" 
   return code
 
+for x in os.listdir(PACKAGE_PATH):
+  filename, extension = os.path.splitext(x)
+  if extension == ".py" and filename.startswith("_generated_") :
+    os.unlink(os.path.join(PACKAGE_PATH, x))
+    break
+
 file_name_compiled = "_generated_"+time.strftime("%Y_%m_%d_at_%H_%M_%S")+".py"
 with open(os.path.join(PACKAGE_PATH, file_name_compiled), "w+") as data_file :
   data_file.write(compile_code(code, last_dir_name, ""))

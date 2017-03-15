@@ -6,6 +6,15 @@ from threading import Timer
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
+
+JC_SETTINGS_FOLDER_NAME = "javascript_completions"
+JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, "helper", JC_SETTINGS_FOLDER_NAME)
+
+PROJECT_FOLDER_NAME = "project"
+PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
+socket_server_list = dict()
+
+BOOKMARKS_FOLDER = os.path.join(PACKAGE_PATH, 'helper', 'bookmarks')
  
 sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'my_socket']]
 
@@ -58,13 +67,9 @@ mainPlugin = startPlugin()
 
 ${include ./flow/main.py}
 
-${include ./javascript_completions/main.py}
-
-${include ./evaluate_javascript/main.py}
+${include ./helper/main.py}
 
 ${include ./project/main.py}
-
-${include ./helper/main.py}
 
 def plugin_loaded():
   global mainPlugin

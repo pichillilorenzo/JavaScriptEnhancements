@@ -23,7 +23,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
 
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] :
+      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
     else :
@@ -51,7 +51,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
 
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] :
+      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
     elif not view.settings().get("use_flow_checker_on_current_view") :
@@ -78,7 +78,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
     
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] :
+      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
     elif not view.settings().get("use_flow_checker_on_current_view") :

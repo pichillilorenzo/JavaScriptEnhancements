@@ -41,6 +41,11 @@
             "command": "can_i_use",
             "args": {"from": "main-menu"}
           },
+          {
+            "caption": "Show Bookmarks Options",
+            "id": "show_bookmarks_options",
+            "command": "show_bookmarks_options"
+          },
           { "caption": "-" },
           {
             "caption": "JSDoc",

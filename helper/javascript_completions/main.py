@@ -2,9 +2,6 @@ import sublime, sublime_plugin
 import sys, imp, os, webbrowser, re, cgi
 import util.main as Util
 
-JC_SETTINGS_FOLDER_NAME = "javascript_completions"
-JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, JC_SETTINGS_FOLDER_NAME)
-
 class JavaScriptCompletions():
 
   def get(self, key):
@@ -49,7 +46,6 @@ if int(sublime.version()) >= 3124 :
     for completion in completions_to_add:
       flag = False
       for c_to_campare in comps_to_campare:
-        print(completion[0].split("\t")[0] + " " + c_to_campare[0].split("\t")[0])
         if not isHover and completion[0].split("\t")[0] == c_to_campare[0].split("\t")[0] :
           flag = True
           break
