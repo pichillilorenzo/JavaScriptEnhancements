@@ -24,5 +24,13 @@
   {
     "keys": ["ctrl+alt+w"],
     "command": "can_i_use"
+  },
+  {
+    "keys": ["ctrl+super+b"],
+    "command": "show_overlay",
+    "args": {
+      "text": "Bookmarks: ",
+      "overlay": "command_palette"
+    }
   }
 ]

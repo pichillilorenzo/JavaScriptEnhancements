@@ -38,13 +38,15 @@
           },
           {
             "caption": "Search on \"Can I use\" list",
+            "id": "can_i_use_list",
             "command": "can_i_use",
             "args": {"from": "main-menu"}
           },
           {
             "caption": "Show Bookmarks Options",
             "id": "show_bookmarks_options",
-            "command": "show_bookmarks_options"
+            "command": "show_overlay" ,
+            "args": {"overlay": "command_palette", "text": "Bookmarks: "}
           },
           { "caption": "-" },
           {

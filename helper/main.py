@@ -30,6 +30,8 @@ ${include structure_javascript/structure_javascript.py}
 
 ${include bookmarks/main.py}
 
+${include expand_model.py}
+
 if int(sublime.version()) >= 3124 :
 
   ${include can_i_use/can_i_use_command.py}

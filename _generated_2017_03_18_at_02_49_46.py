@@ -2015,6 +2015,72 @@ class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
     lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, ( True if is_project_view(view) and is_javascript_project() else False ))]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
+import sublime, sublime_plugin
+import re
+
+class expand_modelCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, *args) :
+
+    view = self.view
+
+    sel = view.sel()[0]
+
+    row, col = view.rowcol(sel.begin())
+
+    string = view.substr(sel).strip()
+
+    index = string.rfind("*")
+
+    n_times = int(string[index+1:])
+
+    string = string[:index]
+
+    final_string =  ""
+    string_pieces = re.split(r"\$+", string)
+    delimeters = re.findall(r"(\$+)", string)
+
+    for x in range(1, n_times+1):
+      for y in range(len(string_pieces)):
+        if y < len(string_pieces) - 1:
+          final_string += string_pieces[y] + str(x).zfill(len(delimeters[y]))
+        else :
+          final_string += string_pieces[y] + "\n" + ( " " * col)
+
+    view.replace(edit, sel, final_string)
+
+  def is_enabled(self) :
+
+    view = self.view
+
+    sel = view.sel()[0]
+    string = view.substr(sel).strip()
+    index = string.rfind("*")
+    if index >= 0 :
+      try :
+        int(string[index+1:])
+        return True
+      except ValueError as e:
+        pass
+
+    return False
+
+  def is_visible(self) :
+
+    view = self.view
+
+    sel = view.sel()[0]
+    string = view.substr(sel).strip()
+    index = string.rfind("*")
+    if index >= 0 :
+      try :
+        int(string[index+1:])
+        return True
+      except ValueError as e:
+        pass
+
+    return False
+
 if int(sublime.version()) >= 3124 :
 
   items_found_can_i_use = None
