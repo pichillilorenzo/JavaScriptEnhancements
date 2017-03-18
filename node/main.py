@@ -109,7 +109,7 @@ class NodeJS(object):
 
     return [True, lines.strip()]
 
-  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
     fp = None
     if use_fp_temp :
@@ -130,7 +130,7 @@ class NodeJS(object):
       for command_arg in command_args :
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
-      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp else "")
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
     try:
       output = None
@@ -143,7 +143,7 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT
       )
-
+      
       if chdir:
         os.chdir(owd)
 

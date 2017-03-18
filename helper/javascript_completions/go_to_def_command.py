@@ -29,27 +29,21 @@ class go_to_defCommand(sublime_plugin.TextCommand):
           '--from', 'sublime_text',
           '--root', deps.project_root,
           '--json',
+          view.file_name(),
           str(deps.row + 1), str(deps.col + 1)
         ],
         is_from_bin=True,
         use_fp_temp=True, 
         fp_temp_contents=deps.contents, 
-        is_output_json=True
+        is_output_json=True,
+        use_only_filename_view_flow=True
       )
       if result[0] :
         row = result[1]["line"]-1
         col = result[1]["start"]-1
         if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
           view = sublime.active_window().open_file(result[1]["path"])     
-        sublime.set_timeout_async(lambda: self.go_to_def_at_center(view, row, col))
-
-  def go_to_def_at_center(self, view, row, col):
-    while view.is_loading() :
-      time.sleep(.1)
-    point = view.text_point(row, col)
-    view.sel().clear()
-    view.sel().add(point)
-    view.show_at_center(point)
+        sublime.set_timeout_async(lambda: Util.go_to_centered(view, row, col))
 
   def is_enabled(self):
     view = self.view

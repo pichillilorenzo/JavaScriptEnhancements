@@ -62,6 +62,11 @@ class startPlugin():
     overwrite_default_javascript_snippet()
 
     installer.install(node_variables.NODE_JS_VERSION)
+    
+    window = sublime.active_window()
+    view = window.active_view()
+    show_flow_errorsViewEventListener(view).on_activated_async()
+    load_bookmarks_viewViewEventListener(view).on_load_async()
 
 mainPlugin = startPlugin()
 
@@ -74,3 +79,5 @@ ${include ./project/main.py}
 def plugin_loaded():
   global mainPlugin
   mainPlugin.init()
+
+  show_flow_errorsViewEventListener(sublime.active_window().active_view()).on_activated_async()

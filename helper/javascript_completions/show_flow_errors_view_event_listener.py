@@ -4,10 +4,8 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
   errors = []
   callback_setted_use_flow_checker_on_current_view = False
 
-  def on_load_async(self):
-    self.on_activated_async()
-
   def on_activated_async(self) :
+
     view = self.view
 
     selections = view.sel()
@@ -68,7 +66,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
 
   def on_selection_modified_async(self) :
     view = self.view
-
+    
     sel = view.sel()[0]
     if (not view.match_selector(
         sel.begin(),

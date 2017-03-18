@@ -316,3 +316,16 @@ def add_whitespace_indentation(view, region, string, replace="\t", add_whitespac
   string = "\n".join(lines)
   string = re.sub("(["+replace+"]+)", whitespace+r"\1", string)
   return string
+
+def go_to_centered(view, row, col):
+  while view.is_loading() :
+    time.sleep(.1)
+  point = view.text_point(row, col)
+  view.sel().clear()
+  view.sel().add(point)
+  view.show_at_center(point)
+
+def wait_view(view, fun):
+  while view.is_loading() :
+    time.sleep(.1)
+  fun()

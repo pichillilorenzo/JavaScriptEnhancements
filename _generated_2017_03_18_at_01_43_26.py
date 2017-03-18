@@ -62,6 +62,11 @@ class startPlugin():
     overwrite_default_javascript_snippet()
 
     installer.install(node_variables.NODE_JS_VERSION)
+    
+    window = sublime.active_window()
+    view = window.active_view()
+    show_flow_errorsViewEventListener(view).on_activated_async()
+    load_bookmarks_viewViewEventListener(view).on_load_async()
 
 mainPlugin = startPlugin()
 
@@ -793,27 +798,21 @@ class go_to_defCommand(sublime_plugin.TextCommand):
           '--from', 'sublime_text',
           '--root', deps.project_root,
           '--json',
+          view.file_name(),
           str(deps.row + 1), str(deps.col + 1)
         ],
         is_from_bin=True,
         use_fp_temp=True, 
         fp_temp_contents=deps.contents, 
-        is_output_json=True
+        is_output_json=True,
+        use_only_filename_view_flow=True
       )
       if result[0] :
         row = result[1]["line"]-1
         col = result[1]["start"]-1
         if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
           view = sublime.active_window().open_file(result[1]["path"])     
-        sublime.set_timeout_async(lambda: self.go_to_def_at_center(view, row, col))
-
-  def go_to_def_at_center(self, view, row, col):
-    while view.is_loading() :
-      time.sleep(.1)
-    point = view.text_point(row, col)
-    view.sel().clear()
-    view.sel().add(point)
-    view.show_at_center(point)
+        sublime.set_timeout_async(lambda: Util.go_to_centered(view, row, col))
 
   def is_enabled(self):
     view = self.view
@@ -1299,10 +1298,8 @@ if int(sublime.version()) >= 3124 :
     errors = []
     callback_setted_use_flow_checker_on_current_view = False
   
-    def on_load_async(self):
-      self.on_activated_async()
-  
     def on_activated_async(self) :
+  
       view = self.view
   
       selections = view.sel()
@@ -1363,7 +1360,7 @@ if int(sublime.version()) >= 3124 :
   
     def on_selection_modified_async(self) :
       view = self.view
-  
+      
       sel = view.sel()[0]
       if (not view.match_selector(
           sel.begin(),
@@ -1726,7 +1723,7 @@ class view_structure_javascriptCommand(sublime_plugin.TextCommand):
 
 
 import sublime, sublime_plugin
-import json
+import json, time
 import util.main as Util
 
 bookmarks = []
@@ -1745,9 +1742,10 @@ def set_bookmarks(is_project = False, set_dot = False):
   else :
     bookmarks = Util.open_json(os.path.join(BOOKMARKS_FOLDER, 'bookmarks.json')) or []
 
+  view.erase_regions("region-dot-bookmarks")
   if set_dot :
     lines = []
-    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
+    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
 def update_bookmarks(is_project = False, set_dot = False):
@@ -1796,9 +1794,9 @@ def add_bookmark(view, line, name = "", is_project = False) :
     bookmarks.append(bookmark)
     update_bookmarks(is_project, True)
 
-def remove_bookmark(view, line, name, is_project = False) :
+def remove_bookmark(bookmark, is_project = False) :
 
-  if not view.file_name() or line < 0:
+  if not bookmark["file_name"] or bookmark["line"] < 0:
     return False
 
   if is_project :
@@ -1808,25 +1806,21 @@ def remove_bookmark(view, line, name, is_project = False) :
 
   global bookmarks
 
-  bookmark = {
-    "file_name": view.file_name(),
-    "line": line,
-    "name": name.strip()
-  }
   if bookmark in bookmarks :
     bookmarks.remove(bookmark)
     update_bookmarks(is_project, True)
 
-def search_bookmarks_by_view(view, is_project = False):
+def search_bookmarks_by_view(view, is_project = False, is_from_set = False):
   if not view.file_name():
     return []
 
   global bookmarks
 
-  if is_project :
-    set_bookmarks(True)
-  else :
-    set_bookmarks()
+  if not is_from_set :
+    if is_project :
+      set_bookmarks(True, True)
+    else :
+      set_bookmarks(False, True)
 
   view_bookmarks = []
 
@@ -1872,15 +1866,16 @@ def open_bookmarks_and_show(index, bookmarks_view = []) :
   global bookmarks
   global latest_bookmarks_view
 
-  bookmark = bookmarks_view[index] if bookmarks_view else bookmarks[index]
+  if len(bookmarks_view) > 0 :
+    bookmark = bookmarks_view[index]
+  else :
+    bookmark = bookmarks[index]
 
   latest_bookmarks_view = {"index": index, "bookmarks": bookmarks_view} if bookmarks_view else dict()
 
   view = sublime.active_window().open_file(bookmark["file_name"])
-  point = view.text_point(bookmark["line"]-1, 0)
-  view.show_at_center(point)
-  view.sel().clear()
-  view.sel().add(point)
+
+  sublime.set_timeout_async(lambda: Util.go_to_centered(view, bookmark["line"]-1, 0))
 
 def set_multiple_bookmarks_names(view, index, selections, is_project = False):
 
@@ -1950,7 +1945,7 @@ class show_bookmarksCommand(sublime_plugin.TextCommand):
 
       items = [ ( bookmark['name'] + ", line: " + str(bookmark["line"]) ) if bookmark['name'] else ( bookmark['file_name'] + ", line: " + str(bookmark["line"]) ) for bookmark in bookmarks]
 
-      window.show_quick_panel(items, open_bookmarks_and_show)
+      window.show_quick_panel(items, lambda index: open_bookmarks_and_show(index))
 
     elif show_type == "view" or show_type == "view_project" : 
 
@@ -1981,6 +1976,12 @@ class delete_bookmarksCommand(sublime_plugin.TextCommand):
 
       delete_bookmarks_by_view(view, False if show_type == "view" else True)
 
+    elif show_type == "single_global" or show_type == "single_global_project" : 
+
+      items = [ ( bookmark['name'] + ", line: " + str(bookmark["line"]) ) if bookmark['name'] else ( bookmark['file_name'] + ", line: " + str(bookmark["line"]) ) for bookmark in bookmarks]
+
+      window.show_quick_panel(items, lambda index: remove_bookmark(bookmarks[index], False if show_type == "single_global" else True))
+
 class select_bookmarksCommand(sublime_plugin.TextCommand):
 
   def run(self, edit, **args) :
@@ -2003,6 +2004,16 @@ class select_bookmarksCommand(sublime_plugin.TextCommand):
 
       open_bookmarks_and_show(latest_bookmarks_view["index"]-1, latest_bookmarks_view["bookmarks"])
       
+class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
+
+  def on_load_async(self) :
+
+    view = self.view
+
+    view.erase_regions("region-dot-bookmarks")
+    lines = []
+    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, ( True if is_project_view(view) and is_javascript_project() else False ))]
+    view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
 if int(sublime.version()) >= 3124 :
 
@@ -2444,4 +2455,6 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 def plugin_loaded():
   global mainPlugin
   mainPlugin.init()
+
+  show_flow_errorsViewEventListener(sublime.active_window().active_view()).on_activated_async()
 
