@@ -58,15 +58,15 @@ class startPlugin():
     import node.installer as installer
     from node.main import NodeJS
     node = NodeJS()
-
+    
     overwrite_default_javascript_snippet()
 
     installer.install(node_variables.NODE_JS_VERSION)
     
     window = sublime.active_window()
     view = window.active_view()
-    show_flow_errorsViewEventListener(view).on_activated_async()
-    load_bookmarks_viewViewEventListener(view).on_load_async()
+    sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
+    sublime.set_timeout_async(lambda: load_bookmarks_viewViewEventListener(view).on_load_async())
 
 mainPlugin = startPlugin()
 

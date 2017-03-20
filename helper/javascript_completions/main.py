@@ -64,3 +64,5 @@ if int(sublime.version()) >= 3124 :
   ${include handle_flow_errors_command.py}
 
   ${include show_flow_errors_view_event_listener.py}
+
+  ${include navigate_flow_errors.py}

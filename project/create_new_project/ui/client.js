@@ -3,10 +3,10 @@
 const fs = require('fs-extra')
 const path = require('path')
 const default_config = require('../default_config.js')
-const util = require('../../js/util.js')
+const util = require('../../../js/util.js')
 const electron = require('electron')
 const {ipcMain} = require('electron')
-const SocketWindow = require('../../js/SocketWindow.js')
+const SocketWindow = require('../../../js/SocketWindow.js')
 
 const app = new SocketWindow('localhost', 11111, __dirname, 460, 765)
 

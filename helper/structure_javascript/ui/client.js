@@ -2,7 +2,7 @@
 
 const electron = require('electron')
 const {ipcMain} = require('electron')
-const SocketWindow = require('../../js/SocketWindow.js')
+const SocketWindow = require('../../../js/SocketWindow.js')
 
 const app = new SocketWindow('localhost', 11113, __dirname, 600, 600)
 

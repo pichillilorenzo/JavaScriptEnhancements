@@ -32,5 +32,19 @@
       "text": "Bookmarks: ",
       "overlay": "command_palette"
     }
+  },
+  {
+    "keys": ["ctrl+alt+c"],
+    "command": "navigate_flow_errors",
+    "args": {
+      "type":  "next"
+    }
+  },
+  {
+    "keys": ["ctrl+alt+v"],
+    "command": "navigate_flow_errors",
+    "args": {
+      "type":  "previous"
+    }
   }
 ]

@@ -4,7 +4,7 @@ from my_socket.main import mySocketServer
 from node.main import NodeJS
 node = NodeJS()
 
-socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join("create_new_project", "ui", "client.js"))
+socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join(PROJECT_FOLDER, "create_new_project", "ui", "client.js"))
 
 def open_project_folder(project):
   

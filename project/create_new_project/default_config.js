@@ -37,7 +37,8 @@ module.exports = {
     "options":[
       ["all", "true"]
     ],
-    "use_flow_checker": true
+    "use_flow_checker": true,
+    "use_always_weak_mode": false
   },
   "bookmarks": []
 }

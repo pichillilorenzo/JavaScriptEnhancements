@@ -158,6 +158,7 @@
                 </div>
                 <div id="global-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                   <div class="panel-body">
+
                     <div class="container-settings-flow-inputs">
                       <div class="container-flow-input">
                         <div class="pmd-switch">
@@ -169,6 +170,18 @@
                         </div>
                       </div>
                     </div>
+                    <div class="container-settings-flow-inputs">
+                      <div class="container-flow-input">
+                        <div class="pmd-switch">
+                          <label>
+                            <input type="checkbox" id="use_always_weak_mode">
+                            <span class="pmd-switch-label"></span>
+                            <span class="text-switch">Use Always Weak Mode</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -227,7 +240,8 @@
           "include": includes,
           "libs": libs,
           "options": options,
-          "use_flow_checker": ($('#use_flow_checker:checked').length > 0) ? true : false
+          "use_flow_checker": ($('#use_flow_checker:checked').length > 0) ? true : false,
+          "use_always_weak_mode": ($('#use_always_weak_mode:checked').length > 0) ? true : false
         }
         ipcRenderer.send('form-flow-settings', flow_settings)
 
@@ -333,6 +347,9 @@
       })
       if(flow_settings.use_flow_checker){
         $('#use_flow_checker').attr('checked', 'checked')
+      }
+      if(flow_settings.use_always_weak_mode){
+        $('#use_always_weak_mode').attr('checked', 'checked')
       }
     })
 

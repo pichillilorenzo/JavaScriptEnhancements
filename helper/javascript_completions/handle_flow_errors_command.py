@@ -1,5 +1,6 @@
 def show_flow_errors(view) :
 
+  view_settings = view.settings()
   sel = view.sel()[0]
   if not view.match_selector(
       sel.begin(),
@@ -27,6 +28,9 @@ def show_flow_errors(view) :
     ):
       return view.erase_regions('flow_error')
     """
+
+    if view_settings.get("flow_weak_mode") :
+      deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
 
     result = node.execute_check_output(
       "flow",
@@ -59,6 +63,11 @@ def show_flow_errors(view) :
             row = int(message['line']) + deps.row_offset - 1
             col = int(message['start']) - 1
             endcol = int(message['end'])
+
+            if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
+              col = col - len("/* @flow weak */")
+              endcol = endcol - len("/* @flow weak */")
+
             regions.append(Util.rowcol_to_region(view, row, col, endcol))
 
             if operation:
@@ -79,6 +88,7 @@ def show_flow_errors(view) :
       errors = result[1]['errors']
 
   if errors :
+    view.erase_status('flow_error')
     view.add_regions(
       'flow_error', regions, 'scope.js', 'dot',
       sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE

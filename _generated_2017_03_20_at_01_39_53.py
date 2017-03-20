@@ -58,15 +58,15 @@ class startPlugin():
     import node.installer as installer
     from node.main import NodeJS
     node = NodeJS()
-
+    
     overwrite_default_javascript_snippet()
 
     installer.install(node_variables.NODE_JS_VERSION)
     
     window = sublime.active_window()
     view = window.active_view()
-    show_flow_errorsViewEventListener(view).on_activated_async()
-    load_bookmarks_viewViewEventListener(view).on_load_async()
+    sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
+    sublime.set_timeout_async(lambda: load_bookmarks_viewViewEventListener(view).on_load_async())
 
 mainPlugin = startPlugin()
 
@@ -221,7 +221,7 @@ class SocketCallUI(object):
     self.host = host
     self.port = port
     self.client_thread = None
-    self.client_ui_file = os.path.join(PROJECT_FOLDER, client_ui_file)
+    self.client_ui_file = client_ui_file
     self.socket = None
     self.current_selected_view = None
     self.last_modified = None
@@ -1189,6 +1189,7 @@ if int(sublime.version()) >= 3124 :
 
   def show_flow_errors(view) :
   
+    view_settings = view.settings()
     sel = view.sel()[0]
     if not view.match_selector(
         sel.begin(),
@@ -1216,6 +1217,9 @@ if int(sublime.version()) >= 3124 :
       ):
         return view.erase_regions('flow_error')
       """
+  
+      if view_settings.get("flow_weak_mode") :
+        deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
   
       result = node.execute_check_output(
         "flow",
@@ -1248,6 +1252,11 @@ if int(sublime.version()) >= 3124 :
               row = int(message['line']) + deps.row_offset - 1
               col = int(message['start']) - 1
               endcol = int(message['end'])
+  
+              if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
+                col = col - len("/* @flow weak */")
+                endcol = endcol - len("/* @flow weak */")
+  
               regions.append(Util.rowcol_to_region(view, row, col, endcol))
   
               if operation:
@@ -1268,6 +1277,7 @@ if int(sublime.version()) >= 3124 :
         errors = result[1]['errors']
   
     if errors :
+      view.erase_status('flow_error')
       view.add_regions(
         'flow_error', regions, 'scope.js', 'dot',
         sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
@@ -1292,6 +1302,8 @@ if int(sublime.version()) >= 3124 :
           hide_flow_errors(self.view)
   
 
+  import cgi
+  
   class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
   
     description_by_row = {}
@@ -1322,14 +1334,13 @@ if int(sublime.version()) >= 3124 :
         settings = view.settings()
         if not self.callback_setted_use_flow_checker_on_current_view :
           settings.clear_on_change("use_flow_checker_on_current_view")
-          settings.add_on_change("use_flow_checker_on_current_view", lambda: self.on_modified_async())
+          settings.add_on_change("use_flow_checker_on_current_view", lambda: sublime.set_timeout_async(lambda: self.on_modified_async()))
           self.callback_setted_use_flow_checker_on_current_view = True
-  
         if not settings.get("use_flow_checker_on_current_view") :
           hide_flow_errors(view)
           return 
   
-      self.on_modified_async()
+      sublime.set_timeout_async(lambda: self.on_modified_async())
   
     def on_modified_async(self) :
       view = self.view
@@ -1358,6 +1369,49 @@ if int(sublime.version()) >= 3124 :
         self.errors = result["errors"]
         self.description_by_row = result["description_by_row"]
   
+      sublime.set_timeout_async(lambda: self.on_selection_modified_async())
+  
+    def on_hover(self, point, hover_zone) :
+      view = self.view
+      view.erase_phantoms("flow_error")
+      if hover_zone != sublime.HOVER_GUTTER :
+        return
+  
+      sel = sublime.Region(point, point)
+      if (not view.match_selector(
+          sel.begin(),
+          'source.js'
+      ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+        return
+      
+      settings = get_project_settings()
+      if settings :
+        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+          hide_flow_errors(view)
+          return
+      elif not view.settings().get("use_flow_checker_on_current_view") :
+        hide_flow_errors(view)
+        return 
+  
+      row, col = view.rowcol(sel.begin())
+  
+      error_for_row = self.description_by_row.get(row)
+      
+      if error_for_row:
+        text = cgi.escape(error_for_row).split(" ")
+        html = ""
+        i = 0
+        while i < len(text) - 1:
+          html += text[i] + " " + text[i+1] + " "
+          i += 2
+          if i % 10 == 0 :
+            html += " <br> "
+        if len(text) % 2 != 0 :
+          html += text[len(text) - 1]
+  
+        view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_BELOW)
+  
+  
     def on_selection_modified_async(self) :
       view = self.view
       
@@ -1368,6 +1422,8 @@ if int(sublime.version()) >= 3124 :
       ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
         return
       
+      view.erase_phantoms("flow_error")
+  
       settings = get_project_settings()
       if settings :
         if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
@@ -1390,6 +1446,66 @@ if int(sublime.version()) >= 3124 :
         )
       else:
         view.set_status('flow_error', error_count_text)
+  
+
+  import sublime, sublime_plugin
+  
+  class navigate_flow_errorsCommand(sublime_plugin.TextCommand):
+  
+    def run(self, edit, **args) :
+      
+      view = self.view
+  
+      regions = view.get_regions("flow_error")
+      if not regions:
+        return
+  
+      move_type = args.get("type")
+  
+      if move_type == "next" :
+  
+        r_next = self.find_next(regions)
+        if r_next :
+          row, col = view.rowcol(r_next.begin())
+  
+          Util.go_to_centered(view, row, col)
+  
+      elif move_type == "previous" :
+  
+        r_prev = self.find_prev(regions)
+        if r_prev :
+          row, col = view.rowcol(r_prev.begin())
+  
+          Util.go_to_centered(view, row, col)
+  
+    def find_next(self, regions):
+      view = self.view
+  
+      sel = view.sel()[0]
+  
+      for region in regions :
+        if region.begin() > sel.begin() :
+          return region
+  
+      if(len(regions) > 0) :
+        return regions[0]
+  
+      return None
+  
+    def find_prev(self, regions):
+      view = self.view
+  
+      sel = view.sel()[0]
+  
+      previous_regions = []
+      for region in regions :
+        if region.begin() < sel.begin() :
+          previous_regions.append(region)
+  
+      if not previous_regions and len(regions) > 0:
+        previous_regions.append(regions[len(regions)-1])
+  
+      return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
   
 
 import sublime, sublime_plugin
@@ -1590,7 +1706,7 @@ from node.main import NodeJS
 import util.main as Util
 node = NodeJS()
 
-socket_server_list["structure_javascript"] = SocketCallUI("structure_javascript", "localhost", 11113, os.path.join("structure_javascript", "ui", "client.js"), 1)
+socket_server_list["structure_javascript"] = SocketCallUI("structure_javascript", "localhost", 11113, os.path.join(HELPER_FOLDER, "structure_javascript", "ui", "client.js"), 1)
 
 def update_structure_javascript(view, filename, clients=[]):
   global socket_server_list 
@@ -2024,30 +2140,30 @@ class expand_modelCommand(sublime_plugin.TextCommand):
 
     view = self.view
 
-    sel = view.sel()[0]
+    for sel in view.sel():
 
-    row, col = view.rowcol(sel.begin())
+      row, col = view.rowcol(sel.begin())
 
-    string = view.substr(sel).strip()
+      string = view.substr(sel).strip()
 
-    index = string.rfind("*")
+      index = string.rfind("*")
 
-    n_times = int(string[index+1:])
+      n_times = int(string[index+1:])
 
-    string = string[:index]
+      string = string[:index]
 
-    final_string =  ""
-    string_pieces = re.split(r"\$+", string)
-    delimeters = re.findall(r"(\$+)", string)
+      final_string =  ""
+      string_pieces = re.split(r"\$+", string)
+      delimeters = re.findall(r"(\$+)", string)
 
-    for x in range(1, n_times+1):
-      for y in range(len(string_pieces)):
-        if y < len(string_pieces) - 1:
-          final_string += string_pieces[y] + str(x).zfill(len(delimeters[y]))
-        else :
-          final_string += string_pieces[y] + "\n" + ( " " * col)
+      for x in range(1, n_times+1):
+        for y in range(len(string_pieces)):
+          if y < len(string_pieces) - 1:
+            final_string += string_pieces[y] + str(x).zfill(len(delimeters[y]))
+          else :
+            final_string += string_pieces[y] + "\n" + ( " " * col)
 
-    view.replace(edit, sel, final_string)
+      view.replace(edit, sel, final_string)
 
   def is_enabled(self) :
 
@@ -2340,13 +2456,14 @@ def call_ui(client_file, host, port) :
 
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
+  project_dir_name = ""
   if project_file_name :
-    project_folder = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    project_dir_name = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
     return os.path.isdir(settings_dir_name)
   else :
     # try to look at window.folders()
-    folder = sublime.active_window().folders()
+    folder = sublime.active_window().folders()   
     if len(folder) > 0:
       folder = folder[0]
       settings_dir_name = os.path.join(folder, ".jc-project-settings")
@@ -2364,25 +2481,30 @@ def get_project_settings():
   project_settings = dict()
 
   project_file_name = sublime.active_window().project_file_name()
-  project_folder = ""
+  project_dir_name = ""
   settings_dir_name = ""
   if project_file_name :
-    project_folder = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    project_dir_name = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    if not os.path.isdir(settings_dir_name) :
+      return dict()
   else :
     # try to look at window.folders()
     folder = sublime.active_window().folders()
     if len(folder) > 0:
-      project_folder = folder[0]
-      project_file_name = os.path.basename(project_folder)
-      settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+      project_dir_name = folder[0]
+      for file in os.listdir(project_dir_name) :
+        if file.endswith(".sublime-project") :
+          project_file_name = os.path.join(project_dir_name, file)
+          break
+      settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
       if not os.path.isdir(settings_dir_name) :
         return dict()
     else :
       return dict()
         
   project_settings["project_file_name"] = project_file_name
-  project_settings["project_dir_name"] = os.path.dirname(project_file_name)
+  project_settings["project_dir_name"] = project_dir_name
   project_settings["settings_dir_name"] = settings_dir_name
   settings_file = ["project_details.json", "flow_settings.json"]
   for setting_file in settings_file :
@@ -2398,7 +2520,7 @@ from my_socket.main import mySocketServer
 from node.main import NodeJS
 node = NodeJS()
 
-socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join("create_new_project", "ui", "client.js"))
+socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join(PROJECT_FOLDER, "create_new_project", "ui", "client.js"))
 
 def open_project_folder(project):
   
@@ -2450,7 +2572,7 @@ import sublime, sublime_plugin
 import subprocess, shutil, traceback
 from my_socket.main import mySocketServer  
 
-socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join("edit_project", "ui", "client.js"))
+socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join(PROJECT_FOLDER, "edit_project", "ui", "client.js"))
 
 class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
   def run(self, *args):
@@ -2493,17 +2615,22 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
     return True if is_javascript_project() else False
 
 import sublime, sublime_plugin
+import os, time
 
 class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 
-  def on_close(self, view) :
+  def on_pre_close(self, view) :
+
+    from node.main import NodeJS
+    node = NodeJS()
+
+    global socket_server_list
 
     if not sublime.windows() :
+      
+      sublime.status_message("flow server stopping")
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(PACKAGE_PATH, "flow")))
 
-      from node.main import NodeJS
-      node = NodeJS()
-
-      global socket_server_list
       for key, value in socket_server_list.items() :
         if value["socket"] != None :
           sublime.status_message("socket server stopping")
@@ -2513,8 +2640,10 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
           value["socket"].send_all_clients(data)
           value["socket"].close()
 
+    if is_javascript_project() and view.window() and len(view.window().views()) == 1 :
+      settings = get_project_settings()
       sublime.status_message("flow server stopping")
-      node.execute("flow", ["stop"], True)
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
 
 
 

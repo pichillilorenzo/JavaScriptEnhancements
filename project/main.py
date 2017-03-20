@@ -8,13 +8,14 @@ def call_ui(client_file, host, port) :
 
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
+  project_dir_name = ""
   if project_file_name :
-    project_folder = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    project_dir_name = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
     return os.path.isdir(settings_dir_name)
   else :
     # try to look at window.folders()
-    folder = sublime.active_window().folders()
+    folder = sublime.active_window().folders()   
     if len(folder) > 0:
       folder = folder[0]
       settings_dir_name = os.path.join(folder, ".jc-project-settings")
@@ -32,25 +33,30 @@ def get_project_settings():
   project_settings = dict()
 
   project_file_name = sublime.active_window().project_file_name()
-  project_folder = ""
+  project_dir_name = ""
   settings_dir_name = ""
   if project_file_name :
-    project_folder = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+    project_dir_name = os.path.dirname(project_file_name)
+    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    if not os.path.isdir(settings_dir_name) :
+      return dict()
   else :
     # try to look at window.folders()
     folder = sublime.active_window().folders()
     if len(folder) > 0:
-      project_folder = folder[0]
-      project_file_name = os.path.basename(project_folder)
-      settings_dir_name = os.path.join(project_folder, ".jc-project-settings")
+      project_dir_name = folder[0]
+      for file in os.listdir(project_dir_name) :
+        if file.endswith(".sublime-project") :
+          project_file_name = os.path.join(project_dir_name, file)
+          break
+      settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
       if not os.path.isdir(settings_dir_name) :
         return dict()
     else :
       return dict()
         
   project_settings["project_file_name"] = project_file_name
-  project_settings["project_dir_name"] = os.path.dirname(project_file_name)
+  project_settings["project_dir_name"] = project_dir_name
   project_settings["settings_dir_name"] = settings_dir_name
   settings_file = ["project_details.json", "flow_settings.json"]
   for setting_file in settings_file :

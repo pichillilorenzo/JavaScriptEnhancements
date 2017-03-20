@@ -10,7 +10,7 @@ class SocketCallUI(object):
     self.host = host
     self.port = port
     self.client_thread = None
-    self.client_ui_file = os.path.join(PROJECT_FOLDER, client_ui_file)
+    self.client_ui_file = client_ui_file
     self.socket = None
     self.current_selected_view = None
     self.last_modified = None

@@ -7,30 +7,30 @@ class expand_modelCommand(sublime_plugin.TextCommand):
 
     view = self.view
 
-    sel = view.sel()[0]
+    for sel in view.sel():
 
-    row, col = view.rowcol(sel.begin())
+      row, col = view.rowcol(sel.begin())
 
-    string = view.substr(sel).strip()
+      string = view.substr(sel).strip()
 
-    index = string.rfind("*")
+      index = string.rfind("*")
 
-    n_times = int(string[index+1:])
+      n_times = int(string[index+1:])
 
-    string = string[:index]
+      string = string[:index]
 
-    final_string =  ""
-    string_pieces = re.split(r"\$+", string)
-    delimeters = re.findall(r"(\$+)", string)
+      final_string =  ""
+      string_pieces = re.split(r"\$+", string)
+      delimeters = re.findall(r"(\$+)", string)
 
-    for x in range(1, n_times+1):
-      for y in range(len(string_pieces)):
-        if y < len(string_pieces) - 1:
-          final_string += string_pieces[y] + str(x).zfill(len(delimeters[y]))
-        else :
-          final_string += string_pieces[y] + "\n" + ( " " * col)
+      for x in range(1, n_times+1):
+        for y in range(len(string_pieces)):
+          if y < len(string_pieces) - 1:
+            final_string += string_pieces[y] + str(x).zfill(len(delimeters[y]))
+          else :
+            final_string += string_pieces[y] + "\n" + ( " " * col)
 
-    view.replace(edit, sel, final_string)
+      view.replace(edit, sel, final_string)
 
   def is_enabled(self) :
 

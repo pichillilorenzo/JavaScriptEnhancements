@@ -9,11 +9,25 @@
         "id": "javascript_completions_tools",
         "children":[
           {
-            "caption": "Use Flow checker on current view",
-            "id": "use_flow_checker_on_current_view",
-            "checkbox": true,
-            "command": "toggle_setting",
-            "args": {"setting": "use_flow_checker_on_current_view"}
+            "caption": "Flow",
+            "mnemonic": "F",
+            "id": "flow",
+            "children": [
+              {
+                "caption": "Use Flow checker on current view (Not in project)",
+                "id": "use_flow_checker_on_current_view",
+                "checkbox": true,
+                "command": "toggle_setting",
+                "args": {"setting": "use_flow_checker_on_current_view"}
+              },
+              {
+                "caption": "Flow weak mode",
+                "id": "flow_weak_mode",
+                "checkbox": true,
+                "command": "toggle_setting",
+                "args": {"setting": "flow_weak_mode"}
+              },
+            ]
           },
           {
             "caption": "Goto Definition",

@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import subprocess, shutil, traceback
 from my_socket.main import mySocketServer  
 
-socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join("edit_project", "ui", "client.js"))
+socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join(PROJECT_FOLDER, "edit_project", "ui", "client.js"))
 
 class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
   def run(self, *args):
