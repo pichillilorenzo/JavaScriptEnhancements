@@ -46,7 +46,7 @@ def flow_parse_cli_dependencies(view, **kwargs):
         contents="",
         cursor_pos=None,
         row=None, col=None,
-        row_offset=None
+        row_offset=0
       )
     flowCLIRequirements_list = list()
     for region in embedded_regions:
@@ -83,7 +83,7 @@ def flow_parse_cli_dependencies(view, **kwargs):
             contents="",
             cursor_pos=None,
             row=None, col=None,
-            row_offset=None
+            row_offset=0
           )
       scope_region = result["region"]
     current_contents = view.substr(scope_region)
@@ -107,7 +107,7 @@ def flow_parse_cli_dependencies(view, **kwargs):
             contents="",
             cursor_pos=None,
             row=None, col=None,
-            row_offset=None
+            row_offset=0
           )
       tokenized_line = ""
       if not kwargs.get('not_add_last_part_tokenized_line') :

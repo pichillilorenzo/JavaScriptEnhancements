@@ -9,8 +9,8 @@
   { "caption": "Bookmarks: Delete All on Current View's Project", "command": "delete_bookmarks", "args": {"type": "view_project"} },
   { "caption": "Bookmarks: Delete one Global", "command": "delete_bookmarks", "args": {"type": "single_global"} },
   { "caption": "Bookmarks: Delete one on Current Project", "command": "delete_bookmarks", "args": {"type": "single_global_project"} },
-  { "caption": "Bookmarks: Next", "command": "select_bookmarks", "args": {"type": "next"} },
-  { "caption": "Bookmarks: Previous", "command": "select_bookmarks", "args": {"type": "previous"} },
+  { "caption": "Bookmarks: Next", "command": "navigate_bookmarks", "args": {"type": "next"} },
+  { "caption": "Bookmarks: Previous", "command": "navigate_bookmarks", "args": {"type": "previous"} },
   { "caption": "Flow: Next Error", "command": "navigate_flow_errors", "args": {"type": "next"} },
   { "caption": "Flow: Previous Error", "command": "navigate_flow_errors", "args": {"type": "previous"} }
 ]

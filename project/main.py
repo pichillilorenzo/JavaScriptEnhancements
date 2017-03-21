@@ -22,6 +22,10 @@ def is_javascript_project():
       return os.path.isdir(settings_dir_name)
   return False
 
+def is_type_javascript_project(type):
+  settings = get_project_settings()
+  return True if settings and settings["project_details"]["type"] == type else False
+
 def is_project_view(view) :
   settings = get_project_settings()
   if settings :
@@ -71,3 +75,6 @@ ${include create_new_project/create_new_project.py}
 ${include edit_project/edit_project.py}
 
 ${include close_all_servers_and_flow_event_listener.py}
+
+## Cordova ##
+${include cordova/main.py}

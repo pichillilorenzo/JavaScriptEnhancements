@@ -39,7 +39,7 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
       socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
 
   def is_enabled(self):
-    return True if is_javascript_project() else False
+    return is_javascript_project()
 
   def is_visible(self):
-    return True if is_javascript_project() else False
+    return is_javascript_project()

@@ -2,13 +2,14 @@
 
 const fs = require('fs-extra')
 const path = require('path')
-const default_config = require('../default_config.js')
+let default_config = require('../default_config.js')
 const util = require('../../../js/util.js')
 const electron = require('electron')
 const {ipcMain} = require('electron')
 const SocketWindow = require('../../../js/SocketWindow.js')
+let project_type = ""
 
-const app = new SocketWindow('localhost', 11111, __dirname, 460, 765)
+const app = new SocketWindow('localhost', 11111, __dirname, 460, 840)
 
 app.listenSocketCommand('close_window', (data) => {
   app.app.quit()
@@ -23,14 +24,28 @@ app.listenSocketCommand('result_flow_init', (data) => {
 
   let flowconfig = path.join(data.project.path, ".flowconfig")
   util.openWithSync((fd) => {
-    for(let i = 0; i < default_config.flow_settings.options.length; i++){
-      let option = default_config.flow_settings.options[i]
-      fs.writeFileSync(fd, `${option[0]}=${option[1]}\n`, {flag: "a+"})
-    }
-  }, flowconfig, "a+")
+    let include = default_config.flow_settings.include.join("\n")
+    let ignore = default_config.flow_settings.ignore.join("\n")
+    let libs = default_config.flow_settings.libs.join("\n")
+    let options = default_config.flow_settings.options.map(function(item){
+      return item[0].trim()+"="+item[1].trim()
+    }).join("\n")
+
+    let str = `[ignore]
+${ignore}
+[include]
+${include}
+[libs]
+${libs}
+[options]
+${options}
+`
+    fs.writeFileSync(fd, str)
+  }, flowconfig, "w+")
 
   let sublime_project_file_name = util.clearString(data.project.project_name)
   let data_to_send = {
+    "type": project_type,
     "project": path.join(data.project.path, sublime_project_file_name+".sublime-project"),
     "command": "open_project"
   }
@@ -52,6 +67,10 @@ ipcMain.on('data', (event, project) => {
   let bookmarks_path = path.join(jc_project_settings, "bookmarks.json")
   let settings_file = path.join(jc_project_settings, "project_details.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
+  project_type = project.type
+  if( project_type ){
+    default_config = require('../'+project_type+'/default_config.js')
+  }
 
   if (!fs.existsSync(jc_project_settings)) {
     fs.mkdirSync(jc_project_settings)

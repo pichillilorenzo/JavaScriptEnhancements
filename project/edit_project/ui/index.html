@@ -51,6 +51,10 @@
                   <input type="text" id="project_path" class="form-control" disabled="disabled" required="required"><span class="pmd-textfield-focused"></span>
                 </div>
                 <div class="form-group pmd-textfield">
+                  <label for="type" class="control-label">Type:</label>
+                  <input type="text" id="type" class="form-control" disabled="disabled" required="required"><span class="pmd-textfield-focused"></span>
+                </div>
+                <div class="form-group pmd-textfield">
                   <label for="author" class="control-label">Author:</label>
                   <input type="text" id="author" class="form-control"><span class="pmd-textfield-focused"></span>
                 </div>
@@ -204,6 +208,8 @@
     const {ipcRenderer} = require('electron')
     const {dialog} = require('electron').remote
 
+    let project_type = ""
+
     $(document).ready(() => {
       
       $("#form-project-details").on("submit", (event) => {
@@ -216,7 +222,8 @@
           "version": $("#version").val().trim(),
           "license": $("#license").val().trim(),
           "license_uri": $("#license_uri").val().trim(),
-          "tags": $("#tags").val().trim()
+          "tags": $("#tags").val().trim(),
+          "type": project_type
         }
         ipcRenderer.send('form-project-details', project_details)
       })
@@ -326,6 +333,8 @@
       $("#license").val(project_details.license)
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
+      $("#type").val(project_details.type)
+      project_type = project_details.type
 
       let flow_settings = config.settings.flow_settings
       flow_settings.include.map(function (item, index) {

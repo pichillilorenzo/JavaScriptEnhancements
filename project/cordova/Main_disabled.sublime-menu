@@ -1,0 +1,45 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Cordova",
+        "id": "cordova",
+        "children":[
+          {
+            "caption": "Add platform",
+            "children": [
+              {
+                "caption": "Android",
+                "command": "add_platform_cordova",
+                "args": {"os": "android"}
+              },
+              {
+                "caption": "iOS",
+                "command": "add_platform_cordova",
+                "args": {"os": "ios"}
+              }
+            ]
+          },
+          {"caption": "-"},
+          {
+            "caption": "Emulate",
+            "children": [
+              {
+                "caption": "Android",
+                "command": "emulate_cordova",
+                "args": {"os": "android"}
+              },
+              {
+                "caption": "iOS",
+                "command": "emulate_cordova",
+                "args": {"os": "ios"}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

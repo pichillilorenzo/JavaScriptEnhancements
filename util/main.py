@@ -329,3 +329,8 @@ def wait_view(view, fun):
   while view.is_loading() :
     time.sleep(.1)
   fun()
+
+def move_content_to_parent_folder(path):
+  for filename in os.listdir(path):
+    shutil.move(os.path.join(path, filename), os.path.dirname(path))
+  os.rmdir(path)

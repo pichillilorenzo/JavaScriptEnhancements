@@ -59,12 +59,13 @@ class startPlugin():
     from node.main import NodeJS
     node = NodeJS()
     
-    overwrite_default_javascript_snippet()
+    sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
-    installer.install(node_variables.NODE_JS_VERSION)
-    
+    sublime.set_timeout_async(lambda: installer.install(node_variables.NODE_JS_VERSION))
+
     window = sublime.active_window()
     view = window.active_view()
+
     sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
     sublime.set_timeout_async(lambda: load_bookmarks_viewViewEventListener(view).on_load_async())
 
@@ -118,7 +119,7 @@ def flow_parse_cli_dependencies(view, **kwargs):
         contents="",
         cursor_pos=None,
         row=None, col=None,
-        row_offset=None
+        row_offset=0
       )
     flowCLIRequirements_list = list()
     for region in embedded_regions:
@@ -155,7 +156,7 @@ def flow_parse_cli_dependencies(view, **kwargs):
             contents="",
             cursor_pos=None,
             row=None, col=None,
-            row_offset=None
+            row_offset=0
           )
       scope_region = result["region"]
     current_contents = view.substr(scope_region)
@@ -179,7 +180,7 @@ def flow_parse_cli_dependencies(view, **kwargs):
             contents="",
             cursor_pos=None,
             row=None, col=None,
-            row_offset=None
+            row_offset=0
           )
       tokenized_line = ""
       if not kwargs.get('not_add_last_part_tokenized_line') :
@@ -1277,7 +1278,6 @@ if int(sublime.version()) >= 3124 :
         errors = result[1]['errors']
   
     if errors :
-      view.erase_status('flow_error')
       view.add_regions(
         'flow_error', regions, 'scope.js', 'dot',
         sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
@@ -1302,7 +1302,7 @@ if int(sublime.version()) >= 3124 :
           hide_flow_errors(self.view)
   
 
-  import cgi
+  import cgi, time
   
   class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
   
@@ -1315,6 +1315,7 @@ if int(sublime.version()) >= 3124 :
       view = self.view
   
       selections = view.sel()
+   
       if len(selections) == 0:
         return
         
@@ -1341,11 +1342,17 @@ if int(sublime.version()) >= 3124 :
           return 
   
       sublime.set_timeout_async(lambda: self.on_modified_async())
-  
+      
     def on_modified_async(self) :
+  
       view = self.view
   
-      sel = view.sel()[0]
+      selections = view.sel()
+   
+      if len(selections) == 0:
+        return
+        
+      sel = selections[0]
       if not view.match_selector(
           sel.begin(),
           'source.js'
@@ -1412,7 +1419,8 @@ if int(sublime.version()) >= 3124 :
         view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_BELOW)
   
   
-    def on_selection_modified_async(self) :
+    def on_selection_modified_async(self, *args) :
+  
       view = self.view
       
       sel = view.sel()[0]
@@ -1421,7 +1429,7 @@ if int(sublime.version()) >= 3124 :
           'source.js'
       ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
         return
-      
+   
       view.erase_phantoms("flow_error")
   
       settings = get_project_settings()
@@ -1861,7 +1869,7 @@ def set_bookmarks(is_project = False, set_dot = False):
   view.erase_regions("region-dot-bookmarks")
   if set_dot :
     lines = []
-    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
+    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
 def update_bookmarks(is_project = False, set_dot = False):
@@ -1884,7 +1892,7 @@ def update_bookmarks(is_project = False, set_dot = False):
   view.erase_regions("region-dot-bookmarks")
   if set_dot :
     lines = []
-    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
+    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
 
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
@@ -2098,27 +2106,61 @@ class delete_bookmarksCommand(sublime_plugin.TextCommand):
 
       window.show_quick_panel(items, lambda index: remove_bookmark(bookmarks[index], False if show_type == "single_global" else True))
 
-class select_bookmarksCommand(sublime_plugin.TextCommand):
+class navigate_bookmarksCommand(sublime_plugin.TextCommand):
 
   def run(self, edit, **args) :
-    global bookmarks
-    global latest_bookmarks_view
-
-    if not latest_bookmarks_view:
-      return
 
     window = sublime.active_window()
     view = self.view
 
     move_type = args.get("type")
 
-    if move_type == "next" and latest_bookmarks_view["index"]+1 < len(latest_bookmarks_view["bookmarks"]):
+    regions = view.get_regions("region-dot-bookmarks")
 
-      open_bookmarks_and_show(latest_bookmarks_view["index"]+1, latest_bookmarks_view["bookmarks"])
+    if move_type == "next" :
 
-    elif move_type == "previous" and latest_bookmarks_view["index"]-1 >= 0:
+      r_next = self.find_next(regions)
+      if r_next :
+        row, col = view.rowcol(r_next.begin())
 
-      open_bookmarks_and_show(latest_bookmarks_view["index"]-1, latest_bookmarks_view["bookmarks"])
+        Util.go_to_centered(view, row, col)
+
+    elif move_type == "previous" :
+
+      r_prev = self.find_prev(regions)
+      if r_prev :
+        row, col = view.rowcol(r_prev.begin())
+
+        Util.go_to_centered(view, row, col)
+
+  def find_next(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    for region in regions :
+      if region.begin() > sel.begin() :
+        return region
+
+    if(len(regions) > 0) :
+      return regions[0]
+
+    return None
+
+  def find_prev(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    previous_regions = []
+    for region in regions :
+      if region.begin() < sel.begin() :
+        previous_regions.append(region)
+
+    if not previous_regions and len(regions) > 0:
+      previous_regions.append(regions[len(regions)-1])
+
+    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
       
 class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
 
@@ -2470,6 +2512,10 @@ def is_javascript_project():
       return os.path.isdir(settings_dir_name)
   return False
 
+def is_type_javascript_project(type):
+  settings = get_project_settings()
+  return True if settings and settings["project_details"]["type"] == type else False
+
 def is_project_view(view) :
   settings = get_project_settings()
   if settings :
@@ -2541,6 +2587,13 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
         json_data = json.loads(client_data)
 
         if json_data["command"] == "open_project":
+
+          if json_data.get("type") :
+            project_folder = os.path.dirname(json_data["project"])
+            if json_data["type"] == "cordova":
+              print(node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder))
+              Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
+
           open_project_folder(json_data["project"])
           data = dict()
           data["command"] = "close_window"
@@ -2609,10 +2662,10 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
       socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
 
   def is_enabled(self):
-    return True if is_javascript_project() else False
+    return is_javascript_project()
 
   def is_visible(self):
-    return True if is_javascript_project() else False
+    return is_javascript_project()
 
 import sublime, sublime_plugin
 import os, time
@@ -2646,10 +2699,83 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
 
 
+## Cordova ##
+import sublime, sublime_plugin
+import os
+from node.main import NodeJS
+
+MENU_CORDOVA_PATH = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
+MENU_CORDOVA_DISABLED_PATH = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
+
+class enable_menu_cordovaViewEventListener(sublime_plugin.ViewEventListener):
+  def on_activated_async(self):
+    if is_type_javascript_project("cordova") :
+      if os.path.isfile(MENU_CORDOVA_DISABLED_PATH):
+        os.rename(MENU_CORDOVA_DISABLED_PATH, MENU_CORDOVA_PATH)
+    else :
+      if os.path.isfile(MENU_CORDOVA_PATH):
+        os.rename(MENU_CORDOVA_PATH, MENU_CORDOVA_DISABLED_PATH)
+
+class print_panel_cordovaCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    self.view.set_read_only(False)
+    self.view.insert(edit, self.view.size(), args.get("line"))
+    self.view.show_at_center(self.view.size())
+    self.view.set_read_only(True)
+
+class add_platform_cordovaCommand(sublime_plugin.WindowCommand):
+  panel = None
+  def run(self, **kwargs):
+    settings = get_project_settings()
+    if settings:
+      os_system = kwargs.get("os")
+      if os_system :
+        sublime.set_timeout_async(lambda: self.add_platform(settings, os_system))
+
+  def add_platform(self, settings, os_system):
+    sublime.active_window().status_message("Cordova: adding "+os_system+" platform...")
+    node = NodeJS()
+    self.panel = self.window.create_output_panel("panel_emulate_cordova", False)
+    self.window.run_command("show_panel", {"panel": "output.panel_emulate_cordova"})
+    node.execute('cordova', ["platform", "add", os_system, "--save"], is_from_bin=True, chdir=settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+  
+  def print_panel(self, line):
+    self.panel.run_command("print_panel_cordova", {"line": line})
+
+  def is_enabled(self):
+    return is_type_javascript_project("cordova")
+
+  def is_visible(self):
+    return is_type_javascript_project("cordova")
+
+class emulate_cordovaCommand(sublime_plugin.WindowCommand):
+
+  panel = None
+  def run(self, **kwargs):
+    settings = get_project_settings()
+    if settings:
+      os_emulator = kwargs.get("os")
+      if os_emulator :
+        sublime.set_timeout_async(lambda: self.emulate(settings, os_emulator))
+
+  def emulate(self, settings, os_emulator):
+    sublime.active_window().status_message("Cordova: launching "+os_emulator+" platform...")
+    node = NodeJS()
+    self.panel = self.window.create_output_panel("panel_emulate_cordova", False)
+    self.window.run_command("show_panel", {"panel": "output.panel_emulate_cordova"})
+    node.execute('cordova', ["run", os_emulator], is_from_bin=True, chdir=settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
+  def print_panel(self, line):
+    self.panel.run_command("print_panel_cordova", {"line": line})
+
+  def is_enabled(self):
+    return is_type_javascript_project("cordova")
+
+  def is_visible(self):
+    return is_type_javascript_project("cordova")
 
 def plugin_loaded():
   global mainPlugin
   mainPlugin.init()
 
-  show_flow_errorsViewEventListener(sublime.active_window().active_view()).on_activated_async()
 

@@ -1,4 +1,4 @@
-import cgi
+import cgi, time
 
 class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
 
@@ -11,6 +11,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
     view = self.view
 
     selections = view.sel()
+ 
     if len(selections) == 0:
       return
       
@@ -37,11 +38,17 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         return 
 
     sublime.set_timeout_async(lambda: self.on_modified_async())
-
+    
   def on_modified_async(self) :
+
     view = self.view
 
-    sel = view.sel()[0]
+    selections = view.sel()
+ 
+    if len(selections) == 0:
+      return
+      
+    sel = selections[0]
     if not view.match_selector(
         sel.begin(),
         'source.js'
@@ -108,7 +115,8 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
       view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_BELOW)
 
 
-  def on_selection_modified_async(self) :
+  def on_selection_modified_async(self, *args) :
+
     view = self.view
     
     sel = view.sel()[0]
@@ -117,7 +125,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         'source.js'
     ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
       return
-    
+ 
     view.erase_phantoms("flow_error")
 
     settings = get_project_settings()

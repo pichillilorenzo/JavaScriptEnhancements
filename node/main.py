@@ -1,8 +1,22 @@
-import subprocess
+import subprocess, threading
 import sys, imp, codecs, shlex, os, json, traceback, tempfile
 import node_variables
 
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+
+def check_thread_is_alive(thread_name) :
+  for thread in threading.enumerate() :
+    if thread.getName() == thread_name and thread.is_alive() :
+      return True
+  return False
+
+def create_and_start_thread(target, thread_name="", args=[], daemon=True) :
+  if not check_thread_is_alive(thread_name) :
+    thread = threading.Thread(target=target, name=thread_name, args=args)
+    thread.setDaemon(daemon)
+    thread.start()
+    return thread
+  return None
 
 def get_node_js_custom_path():
    with open(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings")) as data_file:    
@@ -70,7 +84,7 @@ class NodeJS(object):
 
     return lines.strip()
 
-  def execute(self, command, command_args, is_from_bin=False, chdir="") :
+  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None) :
 
     if node_variables.NODE_JS_OS == 'win':
       if is_from_bin :
@@ -88,26 +102,39 @@ class NodeJS(object):
     if chdir :
       os.chdir(chdir)
 
-    p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    lines = ""
+    p = None
+    if wait_terminate :
+      p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    elif not wait_terminate and func_stdout :
+      create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout))
 
-    if chdir:
-      os.chdir(owd)
+    if wait_terminate :
+      lines = ""
 
-    # check for errors
-    for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if chdir:
+        os.chdir(owd)
 
-    if len(lines) > 0 :
+      # check for errors
+      for line in p.stderr.readlines():
+        lines += codecs.decode(line, "utf-8", "ignore")
+
+      if len(lines) > 0 :
+        p.terminate()
+        return [False, lines.strip()]
+
+      lines = ""
+      for line in p.stdout.readlines():
+        lines += codecs.decode(line, "utf-8", "ignore")
       p.terminate()
-      return [False, lines.strip()]
 
-    lines = ""
-    for line in p.stdout.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
-    p.terminate()
+      return [True, lines.strip()]
 
-    return [True, lines.strip()]
+  def wrapper_func_stdout(self, *args):
+    with subprocess.Popen(args[0], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
+      for line in p.stdout:
+        args[1](line)
+      for line in p.stderr:
+        args[1](line)
 
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
@@ -150,7 +177,12 @@ class NodeJS(object):
       if clean_output_flow :
         out = output.decode("utf-8", "ignore")
         out = out.split("\n")
-        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
+        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] \\"):
+          out = out[3:]
+          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] \\", "")
+          out = "\n".join(out)
+          result = json.loads(out) if is_output_json else out
+        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
           out = out[3:]
           out[0] = out[0].replace("Started a new flow server: -", "")
           out = "\n".join(out)

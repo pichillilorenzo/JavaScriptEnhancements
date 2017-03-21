@@ -81,38 +81,6 @@ ${options}
     app.sendWeb("error", `File "${flow_settings}" doesn't exists.`)
   }
 })
-// ipcMain.on('data', (event, project) => {
-//   if (!fs.existsSync(project.path)){
-//     fs.mkdirsSync(project.path)
-//   }
-
-//   let jc_project_settings = path.join(project.path, ".jc-project-settings")
-//   let settings_file = path.join(jc_project_settings, "project_details.json")
-//   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
-
-//   if (!fs.existsSync(jc_project_settings)) {
-//     fs.mkdirSync(jc_project_settings)
-
-//     util.openWithSync((fd) => {
-//       default_config.project_details.project_name = project.name
-//       fs.writeFileSync(fd, JSON.stringify(default_config.project_details, null, 2))
-//     }, settings_file, "w+")
-
-//     util.openWithSync((fd) => {
-//       fs.writeFileSync(fd, JSON.stringify(default_config.flow_settings, null, 2))
-//     }, flow_settings, "w+")
-
-//     app.sendSocketJson({
-//       "command": "try_flow_init",
-//       "project": project
-//     })
-
-//   }
-//   else{
-//     app.sendWeb("error", "Can't create the project! A project already exists in that folder.")
-//   }
-
-// })
 
 app.start(() => {
   app.window.setResizable(false)

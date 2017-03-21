@@ -59,12 +59,13 @@ class startPlugin():
     from node.main import NodeJS
     node = NodeJS()
     
-    overwrite_default_javascript_snippet()
+    sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
-    installer.install(node_variables.NODE_JS_VERSION)
-    
+    sublime.set_timeout_async(lambda: installer.install(node_variables.NODE_JS_VERSION))
+
     window = sublime.active_window()
     view = window.active_view()
+
     sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
     sublime.set_timeout_async(lambda: load_bookmarks_viewViewEventListener(view).on_load_async())
 
@@ -80,4 +81,3 @@ def plugin_loaded():
   global mainPlugin
   mainPlugin.init()
 
-  show_flow_errorsViewEventListener(sublime.active_window().active_view()).on_activated_async()

@@ -23,6 +23,13 @@
           </div>
         </div>
         <div class="form-group pmd-textfield">
+          <label for="type" class="control-label">Type:</label>
+          <select id="type" class="form-control">
+            <option value="">Blank</option>
+            <option value="cordova">Cordova</option>
+          </select>
+        </div>
+        <div class="form-group pmd-textfield">
           <label for="author" class="control-label">Author:</label>
           <input type="text" id="author" class="form-control"><span class="pmd-textfield-focused"></span>
         </div>
@@ -84,7 +91,8 @@
           "license": $("#license").val().trim(),
           "license_uri": $("#license_uri").val().trim(),
           "tags": $("#tags").val().trim(),
-          "path": $("#project_path").val().trim()
+          "path": $("#project_path").val().trim(),
+          "type": $("#type").val().trim()
         }
         
         ipcRenderer.send("data", project)

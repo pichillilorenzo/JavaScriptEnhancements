@@ -88,7 +88,6 @@ def show_flow_errors(view) :
       errors = result[1]['errors']
 
   if errors :
-    view.erase_status('flow_error')
     view.add_regions(
       'flow_error', regions, 'scope.js', 'dot',
       sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE

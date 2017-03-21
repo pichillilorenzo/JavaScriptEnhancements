@@ -21,7 +21,7 @@ def set_bookmarks(is_project = False, set_dot = False):
   view.erase_regions("region-dot-bookmarks")
   if set_dot :
     lines = []
-    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
+    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
 def update_bookmarks(is_project = False, set_dot = False):
@@ -44,7 +44,7 @@ def update_bookmarks(is_project = False, set_dot = False):
   view.erase_regions("region-dot-bookmarks")
   if set_dot :
     lines = []
-    lines = [view.line(view.text_point(bookmark["line"]-1, 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
+    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
 
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
@@ -258,27 +258,61 @@ class delete_bookmarksCommand(sublime_plugin.TextCommand):
 
       window.show_quick_panel(items, lambda index: remove_bookmark(bookmarks[index], False if show_type == "single_global" else True))
 
-class select_bookmarksCommand(sublime_plugin.TextCommand):
+class navigate_bookmarksCommand(sublime_plugin.TextCommand):
 
   def run(self, edit, **args) :
-    global bookmarks
-    global latest_bookmarks_view
-
-    if not latest_bookmarks_view:
-      return
 
     window = sublime.active_window()
     view = self.view
 
     move_type = args.get("type")
 
-    if move_type == "next" and latest_bookmarks_view["index"]+1 < len(latest_bookmarks_view["bookmarks"]):
+    regions = view.get_regions("region-dot-bookmarks")
 
-      open_bookmarks_and_show(latest_bookmarks_view["index"]+1, latest_bookmarks_view["bookmarks"])
+    if move_type == "next" :
 
-    elif move_type == "previous" and latest_bookmarks_view["index"]-1 >= 0:
+      r_next = self.find_next(regions)
+      if r_next :
+        row, col = view.rowcol(r_next.begin())
 
-      open_bookmarks_and_show(latest_bookmarks_view["index"]-1, latest_bookmarks_view["bookmarks"])
+        Util.go_to_centered(view, row, col)
+
+    elif move_type == "previous" :
+
+      r_prev = self.find_prev(regions)
+      if r_prev :
+        row, col = view.rowcol(r_prev.begin())
+
+        Util.go_to_centered(view, row, col)
+
+  def find_next(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    for region in regions :
+      if region.begin() > sel.begin() :
+        return region
+
+    if(len(regions) > 0) :
+      return regions[0]
+
+    return None
+
+  def find_prev(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    previous_regions = []
+    for region in regions :
+      if region.begin() < sel.begin() :
+        previous_regions.append(region)
+
+    if not previous_regions and len(regions) > 0:
+      previous_regions.append(regions[len(regions)-1])
+
+    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
       
 class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
 

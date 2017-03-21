@@ -10,6 +10,8 @@ class Monkey(object):
 
   def runrec(self,src):
     for x in os.listdir(src):
+      if os.path.isdir(x) and (x == "node_modules" or x == "node_binaries" or x == "sublime-completions") :
+        return
       filename, extension = os.path.splitext(x)
       x = os.path.join(src, x)
       if os.path.isfile(x) and extension == ".py" and filename+extension != "setup.py" and filename+extension != "watch.py" :

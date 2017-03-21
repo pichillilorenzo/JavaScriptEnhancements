@@ -25,6 +25,13 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
         json_data = json.loads(client_data)
 
         if json_data["command"] == "open_project":
+
+          if json_data.get("type") :
+            project_folder = os.path.dirname(json_data["project"])
+            if json_data["type"] == "cordova":
+              print(node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder))
+              Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
+
           open_project_folder(json_data["project"])
           data = dict()
           data["command"] = "close_window"
