@@ -119,7 +119,12 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
 
     view = self.view
     
-    sel = view.sel()[0]
+    selections = view.sel()
+ 
+    if len(selections) == 0:
+      return
+      
+    sel = selections[0]
     if (not view.match_selector(
         sel.begin(),
         'source.js'

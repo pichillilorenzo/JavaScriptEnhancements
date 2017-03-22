@@ -52,7 +52,10 @@
                 </div>
                 <div class="form-group pmd-textfield">
                   <label for="type" class="control-label">Type:</label>
-                  <input type="text" id="type" class="form-control" disabled="disabled" required="required"><span class="pmd-textfield-focused"></span>
+                  <select id="type" class="form-control" multiple="multiple">
+                    <option value="">Blank</option>
+                    <option value="cordova">Cordova</option>
+                  </select>
                 </div>
                 <div class="form-group pmd-textfield">
                   <label for="author" class="control-label">Author:</label>
@@ -210,6 +213,23 @@
 
     let project_type = ""
 
+    function getTypeSelectValues() {
+      var selectedValues = [];    
+      $("#type > option:selected").each(function(){
+        if ($(this).val()) 
+          selectedValues.push($(this).val()); 
+      });
+      return selectedValues
+    }
+
+    function setTypeSelectValues(types) {
+      for(let i = 0, length1 = types.length; i < length1; i++){
+        if( $("#type > option[value=\""+types[i]+"\"]") ){
+          $("#type > option[value=\""+types[i]+"\"]").attr("selected","selected")
+        }
+      } 
+    }
+
     $(document).ready(() => {
       
       $("#form-project-details").on("submit", (event) => {
@@ -223,7 +243,7 @@
           "license": $("#license").val().trim(),
           "license_uri": $("#license_uri").val().trim(),
           "tags": $("#tags").val().trim(),
-          "type": project_type
+          "type": getTypeSelectValues()
         }
         ipcRenderer.send('form-project-details', project_details)
       })
@@ -333,9 +353,10 @@
       $("#license").val(project_details.license)
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
-      $("#type").val(project_details.type)
+      setTypeSelectValues(project_details.type)
       project_type = project_details.type
 
+      $("#include-flow .container-flow-input, #ignore-flow .container-flow-input, #libs-flow .container-flow-input, #options-flow .container-flow-input").remove()
       let flow_settings = config.settings.flow_settings
       flow_settings.include.map(function (item, index) {
         $("#include-flow .flow-add-button").click()

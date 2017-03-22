@@ -68,8 +68,23 @@ ipcMain.on('data', (event, project) => {
   let settings_file = path.join(jc_project_settings, "project_details.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
   project_type = project.type
-  if( project_type ){
-    default_config = require('../'+project_type+'/default_config.js')
+  for(let i = 0, length1 = project_type.length; i < length1; i++){
+    let project_type_default_config = {}
+    try {
+      project_type_default_config = require('../../settings/'+project_type[i]+'/default_config.js')
+    } catch(e) {
+      continue
+    }
+    if(project_type_default_config.project_details) {
+      default_config.project_details.type = default_config.project_details.type.concat(project_type_default_config.project_details.type)
+    }
+    if(project_type_default_config.flow_settings) {
+      for (let key in project_type_default_config.flow_settings) {
+        if (Array.isArray(default_config.flow_settings[key])){
+          default_config.flow_settings[key] = default_config.flow_settings[key].concat(project_type_default_config.flow_settings[key])
+        }
+      }
+    }
   }
 
   if (!fs.existsSync(jc_project_settings)) {

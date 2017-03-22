@@ -24,7 +24,7 @@
         </div>
         <div class="form-group pmd-textfield">
           <label for="type" class="control-label">Type:</label>
-          <select id="type" class="form-control">
+          <select id="type" class="form-control" multiple="multiple">
             <option value="">Blank</option>
             <option value="cordova">Cordova</option>
           </select>
@@ -92,7 +92,7 @@
           "license_uri": $("#license_uri").val().trim(),
           "tags": $("#tags").val().trim(),
           "path": $("#project_path").val().trim(),
-          "type": $("#type").val().trim()
+          "type": getTypeSelectValues()
         }
         
         ipcRenderer.send("data", project)
@@ -104,7 +104,15 @@
     ipcRenderer.on("error", (event, msg) => {
       $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg));
     })
-  
+    
+    function getTypeSelectValues() {
+      var selectedValues = [];    
+      $("#type > option:selected").each(function(){
+        if ($(this).val()) 
+          selectedValues.push($(this).val()); 
+      });
+      return selectedValues
+    }
   </script>
 </body>
 </html>

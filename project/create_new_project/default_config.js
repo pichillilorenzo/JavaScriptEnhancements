@@ -23,7 +23,7 @@ module.exports = {
     "license": "",
     "license_uri": "",
     "tags": "",
-    "type": ""
+    "type": []
   },
   "flow_settings": {
     "ignore": [
@@ -36,7 +36,7 @@ module.exports = {
 
     ],
     "options":[
-      ["all", "true"]
+
     ],
     "use_flow_checker": true,
     "use_always_weak_mode": false

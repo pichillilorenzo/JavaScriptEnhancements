@@ -82,11 +82,11 @@
     ],
     [
       "use strict",
-      "'use strict';"
+      "'use strict'"
     ],
     [
       "continue",
-      "continue;"
+      "continue"
     ],
     [
       "throw",

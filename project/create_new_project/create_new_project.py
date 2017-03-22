@@ -28,8 +28,8 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
           if json_data.get("type") :
             project_folder = os.path.dirname(json_data["project"])
-            if json_data["type"] == "cordova":
-              print(node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder))
+            if "cordova" in json_data["type"]:
+              node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder)
               Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
 
           open_project_folder(json_data["project"])

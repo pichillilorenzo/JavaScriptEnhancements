@@ -1423,7 +1423,12 @@ if int(sublime.version()) >= 3124 :
   
       view = self.view
       
-      sel = view.sel()[0]
+      selections = view.sel()
+   
+      if len(selections) == 0:
+        return
+        
+      sel = selections[0]
       if (not view.match_selector(
           sel.begin(),
           'source.js'
@@ -2514,7 +2519,7 @@ def is_javascript_project():
 
 def is_type_javascript_project(type):
   settings = get_project_settings()
-  return True if settings and settings["project_details"]["type"] == type else False
+  return True if settings and type in settings["project_details"]["type"] else False
 
 def is_project_view(view) :
   settings = get_project_settings()
@@ -2590,8 +2595,8 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
           if json_data.get("type") :
             project_folder = os.path.dirname(json_data["project"])
-            if json_data["type"] == "cordova":
-              print(node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder))
+            if "cordova" in json_data["type"]:
+              node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder)
               Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
 
           open_project_folder(json_data["project"])

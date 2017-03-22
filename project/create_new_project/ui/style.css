@@ -12,3 +12,6 @@ body{
 .pmd-alert-container .pmd-alert{
   width: 200px;
 }
+#type{
+  max-height: 35px;
+}

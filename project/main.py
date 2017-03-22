@@ -24,7 +24,7 @@ def is_javascript_project():
 
 def is_type_javascript_project(type):
   settings = get_project_settings()
-  return True if settings and settings["project_details"]["type"] == type else False
+  return True if settings and type in settings["project_details"]["type"] else False
 
 def is_project_view(view) :
   settings = get_project_settings()
