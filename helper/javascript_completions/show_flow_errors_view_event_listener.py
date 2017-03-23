@@ -20,6 +20,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         sel.begin(),
         'source.js'
     ) and not view.find_by_selector("source.js.embedded.html"):
+      hide_flow_errors(view)
       return
 
     settings = get_project_settings()
@@ -53,6 +54,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         sel.begin(),
         'source.js'
     ) and not view.find_by_selector("source.js.embedded.html"):
+      hide_flow_errors(view)
       return
 
     settings = get_project_settings()
@@ -85,6 +87,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         sel.begin(),
         'source.js'
     ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+      hide_flow_errors(view)
       return
     
     settings = get_project_settings()
@@ -129,6 +132,7 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         sel.begin(),
         'source.js'
     ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+      hide_flow_errors(view)
       return
  
     view.erase_phantoms("flow_error")

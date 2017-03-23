@@ -76,5 +76,7 @@ ${include edit_project/edit_project.py}
 
 ${include close_all_servers_and_flow_event_listener.py}
 
+${include manage_cliCommand.py}
+
 ## Cordova ##
 ${include cordova/main.py}

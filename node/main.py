@@ -130,11 +130,21 @@ class NodeJS(object):
       return [True, lines.strip()]
 
   def wrapper_func_stdout(self, *args):
-    with subprocess.Popen(args[0], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
+    with subprocess.Popen(args[0], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
       for line in p.stdout:
+        line = codecs.decode(line, "utf-8", "ignore")
         args[1](line)
+      flag_error = False
       for line in p.stderr:
+        line = codecs.decode(line, "utf-8", "ignore")
+        if not flag_error:
+          flag_error = True
         args[1](line)
+      if flag_error:
+        args[1]("OUTPUT-ERROR")
+      else :
+        args[1]("OUTPUT-SUCCESS")
+      args[1]("OUTPUT-DONE")
 
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 

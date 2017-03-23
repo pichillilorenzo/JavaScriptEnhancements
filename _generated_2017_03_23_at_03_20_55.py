@@ -1324,6 +1324,7 @@ if int(sublime.version()) >= 3124 :
           sel.begin(),
           'source.js'
       ) and not view.find_by_selector("source.js.embedded.html"):
+        hide_flow_errors(view)
         return
   
       settings = get_project_settings()
@@ -1357,6 +1358,7 @@ if int(sublime.version()) >= 3124 :
           sel.begin(),
           'source.js'
       ) and not view.find_by_selector("source.js.embedded.html"):
+        hide_flow_errors(view)
         return
   
       settings = get_project_settings()
@@ -1389,6 +1391,7 @@ if int(sublime.version()) >= 3124 :
           sel.begin(),
           'source.js'
       ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+        hide_flow_errors(view)
         return
       
       settings = get_project_settings()
@@ -1433,6 +1436,7 @@ if int(sublime.version()) >= 3124 :
           sel.begin(),
           'source.js'
       ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+        hide_flow_errors(view)
         return
    
       view.erase_phantoms("flow_error")
@@ -2704,80 +2708,116 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
 
 
+class print_panel_cliCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):   
+    line = args.get("line")
+    if line == "OUTPUT-SUCCESS":
+      self.view.window().run_command("hide_panel")
+    elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
+      return
+    self.view.set_read_only(False)
+    self.view.insert(edit, self.view.size(), line)
+    self.view.show_at_center(self.view.size())
+    self.view.set_read_only(True)
+
+class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
+  def on_activated_async(self, **kwargs):
+    cli = kwargs.get("cli")
+    path = kwargs.get("path")
+    path_disabled = kwargs.get("path_disabled")
+    if cli and path and path_disabled:
+      if is_type_javascript_project(cli) :
+        if os.path.isfile(path_disabled):
+          os.rename(path_disabled, path)
+      else :
+        if os.path.isfile(path):
+          os.rename(path, path_disabled)
+
+class manage_cliCommand(sublime_plugin.WindowCommand):
+  cli = ""
+  panel = None
+  output_panel_name = "output_panel_cli"
+  status_message = ""
+  settings = {}
+  command_with_options = []
+  def run(self, **kwargs):
+    self.settings = get_project_settings()
+    if self.settings:
+      self.cli = kwargs.get("cli")
+      if not self.cli:
+        raise Exception("'cli' field of the manage_cliCommand not defined.")
+      self.cli = str(kwargs.get("cli"))
+      self.command_with_options = kwargs.get("command_with_options")
+      if not self.command_with_options or len(self.command_with_options) <= 0:
+        raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
+      self.output_panel_name = self.output_panel_name if not kwargs.get("output_panel_name") else str(kwargs.get("output_panel_name"))
+      self.status_message = self.status_message if not kwargs.get("status_message") else str(kwargs.get("status_message"))
+      sublime.set_timeout_async(lambda: self.manage())
+
+  def manage(self) :
+    if self.status_message:
+      sublime.active_window().status_message("Cordova: "+self.status_message)
+    node = NodeJS()
+    self.panel = self.window.create_output_panel(self.output_panel_name, False)
+    self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+    node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
+  def print_panel(self, line):
+    self.panel.run_command("print_panel_cli", {"line": line})
+
+
 ## Cordova ##
 import sublime, sublime_plugin
 import os
 from node.main import NodeJS
 
-MENU_CORDOVA_PATH = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
-MENU_CORDOVA_DISABLED_PATH = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
+class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
+  def __init__(self, *args, **kwargs):  
+    self.cli = "cordova"
+    self.path = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
+    self.path_disabled = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
+    super(enable_menu_cliViewEventListener, self).__init__(*args, **kwargs)
 
-class enable_menu_cordovaViewEventListener(sublime_plugin.ViewEventListener):
-  def on_activated_async(self):
-    if is_type_javascript_project("cordova") :
-      if os.path.isfile(MENU_CORDOVA_DISABLED_PATH):
-        os.rename(MENU_CORDOVA_DISABLED_PATH, MENU_CORDOVA_PATH)
+  def on_activated_async(self, **kwargs):
+    kwargs["cli"] = self.cli
+    kwargs["path"] = self.path
+    kwargs["path_disabled"] = self.path_disabled
+    sublime.set_timeout_async(lambda: enable_menu_cliViewEventListener.on_activated_async(self, **kwargs))
+
+class cordova_baseCommand(manage_cliCommand):
+  def __init__(self, *args, **kwargs):  
+    self.cli = "cordova"
+    super(cordova_baseCommand, self).__init__(*args, **kwargs)
+
+  def is_enabled(self):
+    return is_type_javascript_project("cordova")
+
+  def is_visible(self):
+    return is_type_javascript_project("cordova")
+
+class manage_cordovaCommand(cordova_baseCommand):
+
+  def run(self, **kwargs):
+    kwargs["cli"] = self.cli
+    super(manage_cordovaCommand, self).run(**kwargs)
+    
+
+class manage_plugin_cordovaCommand(cordova_baseCommand):
+
+  def run(self, **kwargs):
+    kwargs["cli"] = self.cli
+    super(manage_plugin_cordovaCommand, self).run(**kwargs)
+
+  def manage(self) :
+    action = self.command_with_options[1]
+    if action == "add" :
+      sublime.active_window().show_input_panel("Plugin name: ", "", lambda plugin_name: exec('self.command_with_options[2] = plugin_name') or exec('self.status_message = self.status_message % (plugin_name)') or super(manage_plugin_cordovaCommand, self).manage(), None, None)
     else :
-      if os.path.isfile(MENU_CORDOVA_PATH):
-        os.rename(MENU_CORDOVA_PATH, MENU_CORDOVA_DISABLED_PATH)
+      plugins_dir = os.path.join(self.settings["project_dir_name"], 'plugins')
+      if os.path.isdir(plugins_dir) :
+        self.plugin_list = list(filter(lambda dir: not dir.startswith('.') and os.path.isdir(os.path.join(plugins_dir, dir)), os.listdir(plugins_dir)))
+        sublime.active_window().show_quick_panel(self.plugin_list, lambda index: index >= 0 and exec('self.command_with_options[2] = self.plugin_list[index]') or exec('self.status_message = self.status_message % (self.plugin_list[index])') or super(manage_plugin_cordovaCommand, self).manage())
 
-class print_panel_cordovaCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
-    self.view.set_read_only(False)
-    self.view.insert(edit, self.view.size(), args.get("line"))
-    self.view.show_at_center(self.view.size())
-    self.view.set_read_only(True)
-
-class add_platform_cordovaCommand(sublime_plugin.WindowCommand):
-  panel = None
-  def run(self, **kwargs):
-    settings = get_project_settings()
-    if settings:
-      os_system = kwargs.get("os")
-      if os_system :
-        sublime.set_timeout_async(lambda: self.add_platform(settings, os_system))
-
-  def add_platform(self, settings, os_system):
-    sublime.active_window().status_message("Cordova: adding "+os_system+" platform...")
-    node = NodeJS()
-    self.panel = self.window.create_output_panel("panel_emulate_cordova", False)
-    self.window.run_command("show_panel", {"panel": "output.panel_emulate_cordova"})
-    node.execute('cordova', ["platform", "add", os_system, "--save"], is_from_bin=True, chdir=settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
-  
-  def print_panel(self, line):
-    self.panel.run_command("print_panel_cordova", {"line": line})
-
-  def is_enabled(self):
-    return is_type_javascript_project("cordova")
-
-  def is_visible(self):
-    return is_type_javascript_project("cordova")
-
-class emulate_cordovaCommand(sublime_plugin.WindowCommand):
-
-  panel = None
-  def run(self, **kwargs):
-    settings = get_project_settings()
-    if settings:
-      os_emulator = kwargs.get("os")
-      if os_emulator :
-        sublime.set_timeout_async(lambda: self.emulate(settings, os_emulator))
-
-  def emulate(self, settings, os_emulator):
-    sublime.active_window().status_message("Cordova: launching "+os_emulator+" platform...")
-    node = NodeJS()
-    self.panel = self.window.create_output_panel("panel_emulate_cordova", False)
-    self.window.run_command("show_panel", {"panel": "output.panel_emulate_cordova"})
-    node.execute('cordova', ["run", os_emulator], is_from_bin=True, chdir=settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
-
-  def print_panel(self, line):
-    self.panel.run_command("print_panel_cordova", {"line": line})
-
-  def is_enabled(self):
-    return is_type_javascript_project("cordova")
-
-  def is_visible(self):
-    return is_type_javascript_project("cordova")
 
 def plugin_loaded():
   global mainPlugin
