@@ -1,5 +1,5 @@
-type COMPASS_INTERNAL_ERR: number;
-type COMPASS_NOT_SUPPORTED: number;
+type COMPASS_INTERNAL_ERR = number;
+type COMPASS_NOT_SUPPORTED = number;
 
 type CompassError = {
   code: COMPASS_INTERNAL_ERR | COMPASS_NOT_SUPPORTED;

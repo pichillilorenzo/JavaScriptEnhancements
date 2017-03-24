@@ -1015,7 +1015,7 @@ if int(sublime.version()) >= 3124 :
         is_output_json=True
       )
   
-      if result[0] and result[1]["type"] != "(unknown)":
+      if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
         description = dict()
         description["name"] = ""
         description['func_details'] = dict()
@@ -1304,14 +1304,16 @@ if int(sublime.version()) >= 3124 :
 
   import cgi, time
   
-  class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
+  class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
   
     description_by_row = {}
     errors = []
     callback_setted_use_flow_checker_on_current_view = False
+    prefix_thread_name = "show_flow_errors_view_event_listener"
+    wait_time = .5
   
     def on_activated_async(self) :
-  
+      
       view = self.view
   
       selections = view.sel()
@@ -1343,9 +1345,11 @@ if int(sublime.version()) >= 3124 :
           return 
   
       sublime.set_timeout_async(lambda: self.on_modified_async())
-      
-    def on_modified_async(self) :
   
+    def on_modified_async(self):
+      super(show_flow_errorsViewEventListener, self).on_modified_async()
+      
+    def on_modified_async_with_thread(self) : 
       view = self.view
   
       selections = view.sel()
@@ -1360,6 +1364,8 @@ if int(sublime.version()) >= 3124 :
       ) and not view.find_by_selector("source.js.embedded.html"):
         hide_flow_errors(view)
         return
+      
+      self.wait()  
   
       settings = get_project_settings()
       if settings :
@@ -2712,7 +2718,9 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):   
     line = args.get("line")
     if line == "OUTPUT-SUCCESS":
-      self.view.window().run_command("hide_panel")
+      if self.view.window() and args.get("hide_panel_on_success") :
+        sublime.set_timeout_async(lambda: self.view.window().run_command("hide_panel"), args.get("wait_panel") if args.get("wait_panel") else 1000 )
+      return
     elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
       return
     self.view.set_read_only(False)
@@ -2721,6 +2729,7 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     self.view.set_read_only(True)
 
 class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
+
   def on_activated_async(self, **kwargs):
     cli = kwargs.get("cli")
     path = kwargs.get("path")
@@ -2737,39 +2746,92 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   panel = None
   output_panel_name = "output_panel_cli"
+  panel_command = "print_panel_cli"
   status_message = ""
   settings = {}
   command_with_options = []
+  placeholders = {}
+  hide_panel_on_success = True
+  process = None
+  is_stoppable = False
+  stop_now = None
+  command_stopped_text = "\n\nCommand Stopped\n\n"
+
   def run(self, **kwargs):
+    if self.is_stoppable and self.stop_process():
+      return
     self.settings = get_project_settings()
     if self.settings:
-      self.cli = kwargs.get("cli")
+
+      self.cli = kwargs.get("cli") if kwargs.get("cli") else self.cli
       if not self.cli:
         raise Exception("'cli' field of the manage_cliCommand not defined.")
-      self.cli = str(kwargs.get("cli"))
-      self.command_with_options = kwargs.get("command_with_options")
+
+      self.command_with_options = self.substitute_placeholders(kwargs.get("command_with_options"))
       if not self.command_with_options or len(self.command_with_options) <= 0:
         raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
-      self.output_panel_name = self.output_panel_name if not kwargs.get("output_panel_name") else str(kwargs.get("output_panel_name"))
-      self.status_message = self.status_message if not kwargs.get("status_message") else str(kwargs.get("status_message"))
+      self.output_panel_name = self.substitute_placeholders( self.output_panel_name if not kwargs.get("output_panel_name") else str(kwargs.get("output_panel_name")) )
+      self.status_message = self.substitute_placeholders( self.status_message if not kwargs.get("status_message") else str(kwargs.get("status_message")) )
+      self.hide_panel_on_success = True if kwargs.get("hide_panel_on_success") else False
+
       sublime.set_timeout_async(lambda: self.manage())
 
   def manage(self) :
     if self.status_message:
-      sublime.active_window().status_message("Cordova: "+self.status_message)
+      self.window.status_message("Cordova: "+self.status_message)
     node = NodeJS()
     self.panel = self.window.create_output_panel(self.output_panel_name, False)
     self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
     node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
 
-  def print_panel(self, line):
-    self.panel.run_command("print_panel_cli", {"line": line})
+  def print_panel(self, line, process):
+    if not self.process :
+      self.process = process
+
+    self.process_communicate(line, process)
+    if line != None:
+      self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
+
+    if line == "OUTPUT-DONE":
+      self.process = None
+
+  def process_communicate(self, line, process):
+    return
+
+  def stop_process(self):
+    if self.stop_now == None:
+      self.stop_now = False
+    elif self.stop_now == False and self.process != None:
+      self.stop_now = True
+
+    if self.stop_now:
+      self.process.terminate()
+      self.process = None
+      self.stop_now = None
+      self.panel.run_command(self.panel_command, {"line": self.command_stopped_text})
+      self.panel.run_command(self.panel_command, {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 3000})
+      return True
+
+    return False
+
+  def substitute_placeholders(self, variable):
+    if isinstance(variable, list) :
+      return list(map(lambda x: self.placeholders[x] if self.placeholders.get(x) else x, variable))
+    elif isinstance(variable, str) :
+      for key, placeholder in self.placeholders.items():
+        variable = variable.replace(key, placeholder)
+      return variable
 
 
 ## Cordova ##
 import sublime, sublime_plugin
-import os
+import os, webbrowser
 from node.main import NodeJS
+
+cordova_platforms = [
+  ["android", "Android"],
+  ["ios", "iOS"]
+]
 
 class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
   def __init__(self, *args, **kwargs):  
@@ -2785,9 +2847,11 @@ class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
     sublime.set_timeout_async(lambda: enable_menu_cliViewEventListener.on_activated_async(self, **kwargs))
 
 class cordova_baseCommand(manage_cliCommand):
-  def __init__(self, *args, **kwargs):  
-    self.cli = "cordova"
-    super(cordova_baseCommand, self).__init__(*args, **kwargs)
+  cli = "cordova"
+
+  def ask_platform(self, func):
+    global cordova_platforms
+    sublime.active_window().show_quick_panel([cordova_platform[1] for cordova_platform in cordova_platforms], func)
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")
@@ -2798,25 +2862,55 @@ class cordova_baseCommand(manage_cliCommand):
 class manage_cordovaCommand(cordova_baseCommand):
 
   def run(self, **kwargs):
-    kwargs["cli"] = self.cli
-    super(manage_cordovaCommand, self).run(**kwargs)
-    
+
+    if kwargs.get("ask_platform"):
+      global cordova_platforms
+      self.ask_platform(lambda index: self.set_platform(index, **kwargs))
+    else :
+      super(manage_cordovaCommand, self).run(**kwargs)
+  
+  def set_platform(self, index, **kwargs):
+    if index >= 0:
+      self.placeholders[":platform"] = cordova_platforms[index][0]
+      super(manage_cordovaCommand, self).run(**kwargs)
+
+class manage_serve_cordovaCommand(cordova_baseCommand):
+
+  is_stoppable = True
+
+  def process_communicate(self, line, process):
+    if line and line.strip().startswith("Static file server running on: "):
+      line = line.strip()
+      url = line.replace("Static file server running on: ", "")
+      url = url.replace(" (CTRL + C to shut down)", "")
+      url = url.strip()
+      webbrowser.open(url)
 
 class manage_plugin_cordovaCommand(cordova_baseCommand):
 
   def run(self, **kwargs):
-    kwargs["cli"] = self.cli
+    if kwargs.get("command_with_options") :
+      if kwargs["command_with_options"][1] == "add" :
+        sublime.active_window().show_input_panel("Plugin name: ", "", lambda plugin_name="": self.add_plugin(plugin_name.strip(), **kwargs), None, None)
+        return
+      elif kwargs["command_with_options"][1] == "remove" :
+        settings = get_project_settings()
+        plugins_dir = os.path.join(settings["project_dir_name"], 'plugins')
+        if os.path.isdir(plugins_dir) :
+          plugin_list = list(filter(lambda dir: not dir.startswith('.') and os.path.isdir(os.path.join(plugins_dir, dir)), os.listdir(plugins_dir)))
+          sublime.active_window().show_quick_panel(plugin_list, lambda index: self.remove_plugin(index, plugin_list, **kwargs))
+          return
     super(manage_plugin_cordovaCommand, self).run(**kwargs)
 
-  def manage(self) :
-    action = self.command_with_options[1]
-    if action == "add" :
-      sublime.active_window().show_input_panel("Plugin name: ", "", lambda plugin_name: exec('self.command_with_options[2] = plugin_name') or exec('self.status_message = self.status_message % (plugin_name)') or super(manage_plugin_cordovaCommand, self).manage(), None, None)
-    else :
-      plugins_dir = os.path.join(self.settings["project_dir_name"], 'plugins')
-      if os.path.isdir(plugins_dir) :
-        self.plugin_list = list(filter(lambda dir: not dir.startswith('.') and os.path.isdir(os.path.join(plugins_dir, dir)), os.listdir(plugins_dir)))
-        sublime.active_window().show_quick_panel(self.plugin_list, lambda index: index >= 0 and exec('self.command_with_options[2] = self.plugin_list[index]') or exec('self.status_message = self.status_message % (self.plugin_list[index])') or super(manage_plugin_cordovaCommand, self).manage())
+  def add_plugin(self, plugin_name, **kwargs):
+    self.placeholders[":plugin"] = plugin_name
+    super(manage_plugin_cordovaCommand, self).run(**kwargs)
+
+  def remove_plugin(self, index, plugin_list, **kwargs):
+    if index >= 0:
+      self.placeholders[":plugin"] = plugin_list[index]
+      super(manage_plugin_cordovaCommand, self).run(**kwargs)
+
 
 
 def plugin_loaded():

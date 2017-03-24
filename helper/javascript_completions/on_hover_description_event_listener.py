@@ -142,7 +142,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       is_output_json=True
     )
 
-    if result[0] and result[1]["type"] != "(unknown)":
+    if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
       description = dict()
       description["name"] = ""
       description['func_details'] = dict()

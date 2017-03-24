@@ -1,0 +1,175 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Cordova",
+        "id": "cordova",
+        "children":[
+          {
+            "caption": "Info",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["info"],
+              "status_message": "",
+              "output_panel_name": "panel_info_cordova",
+              "hide_panel_on_success": false
+            }
+          },
+          {
+            "caption": "Requirements",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["requirements"],
+              "status_message": "",
+              "output_panel_name": "panel_requirements_cordova",
+              "hide_panel_on_success": false
+            }
+          },
+          {"caption": "-"},
+          { 
+            "caption": "Platforms",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "add", ":platform", "--save"],
+                  "status_message": "adding :platform platform...",
+                  "output_panel_name": "panel_platform_cordova",
+                  "ask_platform": true
+                }
+              },
+              {
+
+                "caption": "Remove",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "remove", ":platform", "--save"],
+                  "status_message": "removing :platform platform...",
+                  "output_panel_name": "panel_platform_cordova",
+                  "ask_platform": true
+                }
+              }
+            ]
+          },
+          {"caption": "-"},
+          {
+            "caption": "Plugins",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "manage_plugin_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "add", ":plugin", "--save"],
+                  "status_message": "adding :plugin plugin...",
+                  "output_panel_name": "panel_plugin_cordova"
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "manage_plugin_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "remove", ":plugin", "--save"],
+                  "status_message": "removing :plugin plugin...",
+                  "output_panel_name": "panel_plugin_cordova"
+                }
+              }
+            ]
+          },
+          {"caption": "-"},
+          {
+            "caption": "Prepare",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["prepare", ":platform"],
+              "status_message": "preparing :platform platform...",
+              "output_panel_name": "panel_prepare_cordova",
+              "ask_platform": true
+            }
+          },
+          {
+            "caption": "Compile",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["compile", ":platform", "--debug"],
+                  "status_message": "compiling :platform platform in debug mode...",
+                  "output_panel_name": "panel_compile_cordova",
+                  "ask_platform": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["compile", ":platform", "--release"],
+                  "status_message": "compiling :platform platform in release mode...",
+                  "output_panel_name": "panel_compile_cordova",
+                  "ask_platform": true
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Build",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["build", ":platform", "--debug"],
+                  "status_message": "building :platform platform in debug mode...",
+                  "output_panel_name": "panel_build_cordova",
+                  "ask_platform": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["build", ":platform", "--release"],
+                  "status_message": "building :platform platform in release mode...",
+                  "output_panel_name": "panel_build_cordova",
+                  "ask_platform": true
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Emulate",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["run", ":platform"],
+              "status_message": "launching :platform platform...",
+              "output_panel_name": "panel_emulate_cordova",
+              "ask_platform": true
+            }
+          },
+          {
+            "caption": "Toggle Serve",
+            "command": "manage_serve_cordova",
+            "args": {
+              "command_with_options": ["serve"],
+              "status_message": "serving app...",
+              "output_panel_name": "panel_serve_cordova"
+            }
+          },
+          {
+            "caption": "Clean",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["clean", ":platform"],
+              "status_message": "cleaning :platform platform...",
+              "output_panel_name": "panel_clean_cordova",
+              "ask_platform": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,5 +1,7 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, time, os, hashlib, json
+import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing
+
+multiprocessing_list = []
 
 def download_and_save(url, where_to_save) :
   if where_to_save :
@@ -28,12 +30,30 @@ def check_thread_is_alive(thread_name) :
       return True
   return False
 
-def create_and_start_thread(target, thread_name="", args=[], daemon=True) :
+def create_and_start_thread(target, thread_name="", args=[], kwargs={}, daemon=True) :
   if not check_thread_is_alive(thread_name) :
-    thread = threading.Thread(target=target, name=thread_name, args=args)
-    thread.setDaemon(daemon)
+    thread = threading.Thread(target=target, name=thread_name, args=args, kwargs=kwargs, daemon=daemon)
     thread.start()
     return thread
+  return None
+
+def check_process_is_alive(process_name) :
+  global multiprocessing_list
+  for process in multiprocessing_list :
+    if process.name == process_name :
+      if process.is_alive() :
+        return True
+      else :
+        multiprocessing_list.remove(process)
+  return False
+
+def create_and_start_process(target, process_name="", args=[], kwargs={}, daemon=True) :
+  global multiprocessing_list
+  if not check_process_is_alive(process_name) :
+    process = multiprocessing.Process(target=target, name=process_name, args=args, kwargs=kwargs, daemon=daemon)
+    process.start()
+    multiprocessing_list.append(process)
+    return process
   return None
 
 def setTimeout(time, func):
@@ -334,3 +354,29 @@ def move_content_to_parent_folder(path):
   for filename in os.listdir(path):
     shutil.move(os.path.join(path, filename), os.path.dirname(path))
   os.rmdir(path)
+
+class wait_modified_asyncViewEventListener():
+  last_change = time.time()
+  waiting = False
+  prefix_thread_name = ""
+  wait_time = 1
+
+  def on_modified_async(self, *args, **kwargs) :
+    self.last_change = time.time()
+    if not self.prefix_thread_name :
+      raise Exception("No prefix_thread_name to wait_modified_asyncViewEventListener")
+    create_and_start_thread(self.on_modified_async_with_thread, self.prefix_thread_name+"_"+str(self.view.id()), args=args, kwargs=kwargs)
+
+  def wait(self):
+    if time.time() - self.last_change <= self.wait_time:
+      if not self.waiting:
+        self.waiting = True
+      else :
+        return
+      self.last_change = time.time()
+      while time.time() - self.last_change <= self.wait_time:
+        time.sleep(.1)
+      self.waiting = False
+
+  def on_modified_async_with_thread(self, *args, **kwargs):
+    return

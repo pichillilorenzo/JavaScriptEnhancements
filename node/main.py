@@ -1,22 +1,10 @@
 import subprocess, threading
 import sys, imp, codecs, shlex, os, json, traceback, tempfile
 import node_variables
+sys.path.append('../util')
+import util.main as Util
 
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
-
-def check_thread_is_alive(thread_name) :
-  for thread in threading.enumerate() :
-    if thread.getName() == thread_name and thread.is_alive() :
-      return True
-  return False
-
-def create_and_start_thread(target, thread_name="", args=[], daemon=True) :
-  if not check_thread_is_alive(thread_name) :
-    thread = threading.Thread(target=target, name=thread_name, args=args)
-    thread.setDaemon(daemon)
-    thread.start()
-    return thread
-  return None
 
 def get_node_js_custom_path():
    with open(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings")) as data_file:    
@@ -102,13 +90,9 @@ class NodeJS(object):
     if chdir :
       os.chdir(chdir)
 
-    p = None
     if wait_terminate :
-      p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    elif not wait_terminate and func_stdout :
-      create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout))
 
-    if wait_terminate :
+      p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
       lines = ""
 
       if chdir:
@@ -129,23 +113,29 @@ class NodeJS(object):
 
       return [True, lines.strip()]
 
-  def wrapper_func_stdout(self, *args):
-    with subprocess.Popen(args[0], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+    elif not wait_terminate and func_stdout :
+
+      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout))
+      
+  def wrapper_func_stdout(self, args, func_stdout):
+    with subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+      func_stdout(None, p)
       for line in p.stdout:
         line = codecs.decode(line, "utf-8", "ignore")
-        args[1](line)
+        func_stdout(line, p)
       flag_error = False
       for line in p.stderr:
         line = codecs.decode(line, "utf-8", "ignore")
         if not flag_error:
           flag_error = True
-        args[1](line)
+        func_stdout(line, p)
       if flag_error:
-        args[1]("OUTPUT-ERROR")
+        func_stdout("OUTPUT-ERROR", p)
       else :
-        args[1]("OUTPUT-SUCCESS")
-      args[1]("OUTPUT-DONE")
+        func_stdout("OUTPUT-SUCCESS", p)
+      func_stdout("OUTPUT-DONE", p)
 
+      
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
     fp = None
@@ -187,9 +177,9 @@ class NodeJS(object):
       if clean_output_flow :
         out = output.decode("utf-8", "ignore")
         out = out.split("\n")
-        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] \\"):
+        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
           out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] \\", "")
+          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
           out = "\n".join(out)
           result = json.loads(out) if is_output_json else out
         elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
@@ -216,6 +206,7 @@ class NodeJS(object):
         #print(traceback.format_exc())
         if use_fp_temp :
           fp.close()
+
         return [False, None]
     except:
       print(traceback.format_exc())

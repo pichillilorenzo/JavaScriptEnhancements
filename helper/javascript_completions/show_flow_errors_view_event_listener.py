@@ -1,13 +1,15 @@
 import cgi, time
 
-class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
+class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
 
   description_by_row = {}
   errors = []
   callback_setted_use_flow_checker_on_current_view = False
+  prefix_thread_name = "show_flow_errors_view_event_listener"
+  wait_time = .5
 
   def on_activated_async(self) :
-
+    
     view = self.view
 
     selections = view.sel()
@@ -39,9 +41,11 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
         return 
 
     sublime.set_timeout_async(lambda: self.on_modified_async())
-    
-  def on_modified_async(self) :
 
+  def on_modified_async(self):
+    super(show_flow_errorsViewEventListener, self).on_modified_async()
+    
+  def on_modified_async_with_thread(self) : 
     view = self.view
 
     selections = view.sel()
@@ -56,6 +60,8 @@ class show_flow_errorsViewEventListener(sublime_plugin.ViewEventListener):
     ) and not view.find_by_selector("source.js.embedded.html"):
       hide_flow_errors(view)
       return
+    
+    self.wait()  
 
     settings = get_project_settings()
     if settings :
