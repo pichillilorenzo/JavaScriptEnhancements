@@ -15,5 +15,8 @@ module.exports = {
     "libs":[
 
     ]
+  },
+  "cordova_settings": {
+    "cli_global_options": ""
   }
 }

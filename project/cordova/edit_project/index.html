@@ -1,0 +1,24 @@
+<div id="cordova-settings" class="full-height tab-pane">
+  <div class="text-center"><h2>Cordova settings</h2></div>
+  <form id="form-cordova-settings" action="#">
+    <div class="pmd-card pmd-z-depth pmd-card-custom-form">
+      <div class="pmd-card-body">
+
+        <div class="form-group pmd-textfield">
+          <label for="cli_global_options" class="control-label">CLI global options:</label>
+          <select id="cli_global_options" class="form-control" multiple="multiple">
+            <option value="">None</option>
+            <option value="-d">--verbose</option>
+            <option value="--no-update-notifier">--no-update-notifier</option>
+            <option value="--nohooks">--nohooks</option>
+            <option value="--no-telemetry">--no-telemetry</option>
+          </select>
+          <p class="help-text">Select options that apply to every command</p>
+        </div>
+      </div>
+    </div>
+    <div class="menu pmd-floating-action" role="navigation"> 
+      <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
+    </div>
+  </form>
+</div>

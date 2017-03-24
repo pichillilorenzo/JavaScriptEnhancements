@@ -67,6 +67,10 @@ def get_project_settings():
     with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
       key = os.path.splitext(setting_file)[0]
       project_settings[key] = json.loads(file.read(), encoding="utf-8")
+    if setting_file == "project_details.json" :
+      for project_type in project_settings["project_details"]["type"]:
+        with open(os.path.join(settings_dir_name, project_type+"_settings.json"), encoding="utf-8") as file :
+          project_settings[project_type+"_settings"] = json.loads(file.read(), encoding="utf-8")
 
   return project_settings
 

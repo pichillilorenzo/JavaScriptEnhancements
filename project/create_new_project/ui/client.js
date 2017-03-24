@@ -68,10 +68,11 @@ ipcMain.on('data', (event, project) => {
   let settings_file = path.join(jc_project_settings, "project_details.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
   project_type = project.type
+  let project_type_default_settings = []
   for(let i = 0, length1 = project_type.length; i < length1; i++){
     let project_type_default_config = {}
     try {
-      project_type_default_config = require('../../settings/'+project_type[i]+'/default_config.js')
+      project_type_default_config = require('../../default_settings/'+project_type[i]+'/default_config.js')
     } catch(e) {
       continue
     }
@@ -84,6 +85,11 @@ ipcMain.on('data', (event, project) => {
           default_config.flow_settings[key] = default_config.flow_settings[key].concat(project_type_default_config.flow_settings[key])
         }
       }
+    }
+    if(project_type_default_config[project_type[i]+"_settings"]){
+      project_type_default_settings.push(
+        [project_type[i], project_type_default_config[project_type[i]+"_settings"]]
+      )
     }
   }
 
@@ -103,6 +109,12 @@ ipcMain.on('data', (event, project) => {
       fs.writeFileSync(fd, JSON.stringify(default_config.bookmarks, null, 2))
     }, bookmarks_path, "w+")
 
+    for(let i = 0, length1 = project_type_default_settings.length; i < length1; i++){
+      project_type_default_settings[i]
+      util.openWithSync((fd) => {
+        fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))
+      }, path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json"), "w+")
+    }
     app.sendSocketJson({
       "command": "try_flow_init",
       "project": project

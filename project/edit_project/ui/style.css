@@ -7,7 +7,7 @@ html, body{
 #project-details{
   margin-bottom: 136px;
 }
-#project-details .pmd-floating-action, #flow-settings .pmd-floating-action{
+.tab-content .pmd-floating-action{
   right: 11px;
 }
 .row{

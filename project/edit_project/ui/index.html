@@ -12,9 +12,9 @@
 <body>
   <div class="row full-height">
     <div class="col-xs-4">
-      <ul class="list-group pmd-list pmd-card-list" role="tablist">
+      <ul id="aside-menu" class="list-group pmd-list pmd-card-list" role="tablist">
         <li class="list-group-item active"> 
-          <a href="#project-details" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">
+          <a href="#project-details" role="tab" data-toggle="tab" aria-expanded="true">
             <i class="material-icons media-left media-middle">create</i>
             <div class="media-body">
               <h3 class="list-group-item-heading">Project Details</h3>
@@ -23,7 +23,7 @@
           </a>
         </li>
         <li class="list-group-item">
-          <a href="#flow-settings" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">
+          <a href="#flow-settings" role="tab" data-toggle="tab" aria-expanded="true">
             <i class="material-icons media-left media-middle">settings</i>
             <div class="media-body">
               <h3 class="list-group-item-heading">Flow settings</h3>
@@ -206,29 +206,13 @@
     window.$ = window.jQuery = require('../../../js/vendor/jquery-1.12.2.min.js')
     require('../../../js/vendor/bootstrap.min.js')
     require('../../../js/vendor/propeller.min.js')
+    const fs = require("fs")
     const utilWeb = require('../../../js/utilWeb.js')
 
     const {ipcRenderer} = require('electron')
     const {dialog} = require('electron').remote
 
-    let project_type = ""
-
-    function getTypeSelectValues() {
-      var selectedValues = [];    
-      $("#type > option:selected").each(function(){
-        if ($(this).val()) 
-          selectedValues.push($(this).val()); 
-      });
-      return selectedValues
-    }
-
-    function setTypeSelectValues(types) {
-      for(let i = 0, length1 = types.length; i < length1; i++){
-        if( $("#type > option[value=\""+types[i]+"\"]") ){
-          $("#type > option[value=\""+types[i]+"\"]").attr("selected","selected")
-        }
-      } 
-    }
+    let project_type = []
 
     $(document).ready(() => {
       
@@ -243,7 +227,7 @@
           "license": $("#license").val().trim(),
           "license_uri": $("#license_uri").val().trim(),
           "tags": $("#tags").val().trim(),
-          "type": getTypeSelectValues()
+          "type": utilWeb.getMulitpleSelectValues("#type")
         }
         ipcRenderer.send('form-project-details', project_details)
       })
@@ -353,8 +337,42 @@
       $("#license").val(project_details.license)
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
-      setTypeSelectValues(project_details.type)
+      utilWeb.setMulitpleSelectValues("#type", project_details.type)
       project_type = project_details.type
+
+      for(let i = 0, length1 = project_type.length; i < length1; i++){
+        let type = project_type[i]
+        if ($("#"+type+"-settings").length > 0) {
+          continue
+        }
+        if (fs.existsSync(__dirname+"/../../"+type+"/edit_project/index.html") && fs.existsSync(__dirname+"/../../"+type+"/edit_project/client.js") ){
+          if (fs.existsSync(__dirname+"/../../"+type+"/edit_project/style.css") ){
+            $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/edit_project/style.css"}">`)
+          }
+          let client_js = require(__dirname+"/../../"+type+"/edit_project/client.js")
+          let html = fs.readFileSync(__dirname+"/../../"+type+"/edit_project/index.html", "UTF-8")
+          $("#aside-menu").append(`
+          <li id="${type}-item" class="list-group-item">
+            <a href="#${type}-settings" role="tab" data-toggle="tab" aria-expanded="true">
+              <i class="material-icons media-left media-middle">settings</i>
+              <div class="media-body">
+                <h3 class="list-group-item-heading">${client_js.title}</h3>
+                <span class="list-group-item-text">${client_js.subtitle}</span>
+              </div>
+            </a>
+          </li>
+          `)
+          $(".tab-content").append($(html))
+          client_js.prepareClientHtml({
+            "ipcRenderer": ipcRenderer,
+            "$": $,
+            "utilWeb": utilWeb,
+            "data_project": config,
+            "fs": fs,
+            "electron": require('electron')
+          })
+        }
+      }
 
       $("#include-flow .container-flow-input, #ignore-flow .container-flow-input, #libs-flow .container-flow-input, #options-flow .container-flow-input").remove()
       let flow_settings = config.settings.flow_settings
@@ -390,7 +408,11 @@
     ipcRenderer.on("success", (event, msg) => {
       $(".pmd-alert-container").append(utilWeb.createPmdAlert("success", msg));
     })
-  
+    
+    ipcRenderer.on("delete-item-menu", (event, type) => {
+      $("#"+type+"-settings").remove()
+      $("#"+type+"-item").remove()
+    })
   </script>
 </body>
 </html>

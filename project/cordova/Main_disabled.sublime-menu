@@ -12,7 +12,7 @@
             "command": "manage_cordova",
             "args": {
               "command_with_options": ["info"],
-              "status_message": "",
+              "status_message_before": "",
               "output_panel_name": "panel_info_cordova",
               "hide_panel_on_success": false
             }
@@ -22,7 +22,7 @@
             "command": "manage_cordova",
             "args": {
               "command_with_options": ["requirements"],
-              "status_message": "",
+              "status_message_before": "",
               "output_panel_name": "panel_requirements_cordova",
               "hide_panel_on_success": false
             }
@@ -36,9 +36,10 @@
                 "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["platform", "add", ":platform", "--save"],
-                  "status_message": "adding :platform platform...",
+                  "status_message_before": "adding :platform platform...",
                   "output_panel_name": "panel_platform_cordova",
-                  "ask_platform": true
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
                 }
               },
               {
@@ -47,9 +48,58 @@
                 "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["platform", "remove", ":platform", "--save"],
-                  "status_message": "removing :platform platform...",
+                  "status_message_before": "removing :platform platform...",
                   "output_panel_name": "panel_platform_cordova",
-                  "ask_platform": true
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "Update",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "update", ":platform", "--save"],
+                  "status_message_before": "updating :platform platform...",
+                  "output_panel_name": "panel_platform_cordova",
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "List",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "list"],
+                  "status_message_before": "listing platforms...",
+                  "output_panel_name": "panel_platform_cordova",
+                  "hide_panel_on_success": false
+                }
+              },
+              {
+
+                "caption": "Check",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "check"],
+                  "status_message_before": "checking platforms...",
+                  "output_panel_name": "panel_platform_cordova",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "Save",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "save"],
+                  "status_message_before": "saving platforms...",
+                  "output_panel_name": "panel_platform_cordova",
+                  "status_message_after_on_success": "platforms saved",
+                  "status_message_after_on_error": "errors when saving platforms",
+                  "hide_panel_on_success": true,
+                  "show_panel": false
                 }
               }
             ]
@@ -63,8 +113,9 @@
                 "command": "manage_plugin_cordova",
                 "args": {
                   "command_with_options": ["plugin", "add", ":plugin", "--save"],
-                  "status_message": "adding :plugin plugin...",
-                  "output_panel_name": "panel_plugin_cordova"
+                  "status_message_before": "adding :plugin plugin...",
+                  "output_panel_name": "panel_plugin_cordova",
+                  "hide_panel_on_success": true
                 }
               },
               {
@@ -72,8 +123,9 @@
                 "command": "manage_plugin_cordova",
                 "args": {
                   "command_with_options": ["plugin", "remove", ":plugin", "--save"],
-                  "status_message": "removing :plugin plugin...",
-                  "output_panel_name": "panel_plugin_cordova"
+                  "status_message_before": "removing :plugin plugin...",
+                  "output_panel_name": "panel_plugin_cordova",
+                  "hide_panel_on_success": true
                 }
               }
             ]
@@ -84,9 +136,10 @@
             "command": "manage_cordova",
             "args": {
               "command_with_options": ["prepare", ":platform"],
-              "status_message": "preparing :platform platform...",
+              "status_message_before": "preparing :platform platform...",
               "output_panel_name": "panel_prepare_cordova",
-              "ask_platform": true
+              "ask_platform": true,
+              "hide_panel_on_success": true
             }
           },
           {
@@ -97,9 +150,10 @@
                 "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["compile", ":platform", "--debug"],
-                  "status_message": "compiling :platform platform in debug mode...",
+                  "status_message_before": "compiling :platform platform in debug mode...",
                   "output_panel_name": "panel_compile_cordova",
-                  "ask_platform": true
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
                 }
               },
               {
@@ -107,9 +161,10 @@
                 "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["compile", ":platform", "--release"],
-                  "status_message": "compiling :platform platform in release mode...",
+                  "status_message_before": "compiling :platform platform in release mode...",
                   "output_panel_name": "panel_compile_cordova",
-                  "ask_platform": true
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
                 }
               }
             ]
@@ -122,9 +177,10 @@
                 "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["build", ":platform", "--debug"],
-                  "status_message": "building :platform platform in debug mode...",
+                  "status_message_before": "building :platform platform in debug mode...",
                   "output_panel_name": "panel_build_cordova",
-                  "ask_platform": true
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
                 }
               },
               {
@@ -132,9 +188,10 @@
                 "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["build", ":platform", "--release"],
-                  "status_message": "building :platform platform in release mode...",
+                  "status_message_before": "building :platform platform in release mode...",
                   "output_panel_name": "panel_build_cordova",
-                  "ask_platform": true
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
                 }
               }
             ]
@@ -144,9 +201,10 @@
             "command": "manage_cordova",
             "args": {
               "command_with_options": ["run", ":platform"],
-              "status_message": "launching :platform platform...",
+              "status_message_before": "launching :platform platform...",
               "output_panel_name": "panel_emulate_cordova",
-              "ask_platform": true
+              "ask_platform": true,
+              "hide_panel_on_success": true
             }
           },
           {
@@ -154,8 +212,9 @@
             "command": "manage_serve_cordova",
             "args": {
               "command_with_options": ["serve"],
-              "status_message": "serving app...",
-              "output_panel_name": "panel_serve_cordova"
+              "status_message_before": "serving app...",
+              "output_panel_name": "panel_serve_cordova",
+              "hide_panel_on_success": true
             }
           },
           {
@@ -163,9 +222,10 @@
             "command": "manage_cordova",
             "args": {
               "command_with_options": ["clean", ":platform"],
-              "status_message": "cleaning :platform platform...",
+              "status_message_before": "cleaning :platform platform...",
               "output_panel_name": "panel_clean_cordova",
-              "ask_platform": true
+              "ask_platform": true,
+              "hide_panel_on_success": true
             }
           }
         ]

@@ -27,6 +27,9 @@ class cordova_baseCommand(manage_cliCommand):
     global cordova_platforms
     sublime.active_window().show_quick_panel([cordova_platform[1] for cordova_platform in cordova_platforms], func)
 
+  def append_args_execute(self):
+    return get_project_settings()["cordova_settings"]["cli_global_options"]
+
   def is_enabled(self):
     return is_type_javascript_project("cordova")
 

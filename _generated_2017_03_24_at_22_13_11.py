@@ -2572,6 +2572,10 @@ def get_project_settings():
     with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
       key = os.path.splitext(setting_file)[0]
       project_settings[key] = json.loads(file.read(), encoding="utf-8")
+    if setting_file == "project_details.json" :
+      for project_type in project_settings["project_details"]["type"]:
+        with open(os.path.join(settings_dir_name, project_type+"_settings.json"), encoding="utf-8") as file :
+          project_settings[project_type+"_settings"] = json.loads(file.read(), encoding="utf-8")
 
   return project_settings
 
@@ -2747,9 +2751,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
-  status_message = ""
+  status_message_before = ""
+  status_message_after_on_success = ""
+  status_message_after_on_error = ""
   settings = {}
   command_with_options = []
+  show_panel = True
   placeholders = {}
   hide_panel_on_success = True
   process = None
@@ -2770,30 +2777,46 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.command_with_options = self.substitute_placeholders(kwargs.get("command_with_options"))
       if not self.command_with_options or len(self.command_with_options) <= 0:
         raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
+
+      self.show_panel = kwargs.get("show_panel") if kwargs.get("show_panel") != None else self.show_panel
       self.output_panel_name = self.substitute_placeholders( self.output_panel_name if not kwargs.get("output_panel_name") else str(kwargs.get("output_panel_name")) )
-      self.status_message = self.substitute_placeholders( self.status_message if not kwargs.get("status_message") else str(kwargs.get("status_message")) )
+      self.status_message_before = self.substitute_placeholders( self.status_message_before if not kwargs.get("status_message_before") else str(kwargs.get("status_message_before")) )
+      self.status_message_after_on_success = self.substitute_placeholders( self.status_message_after_on_success if not kwargs.get("status_message_after_on_success") else str(kwargs.get("status_message_after_on_success")) )
+      self.status_message_after_on_error = self.substitute_placeholders( self.status_message_after_on_error if not kwargs.get("status_message_after_on_error") else str(kwargs.get("status_message_after_on_error")) )
       self.hide_panel_on_success = True if kwargs.get("hide_panel_on_success") else False
 
       sublime.set_timeout_async(lambda: self.manage())
 
   def manage(self) :
-    if self.status_message:
-      self.window.status_message("Cordova: "+self.status_message)
+    if self.status_message_before :
+      self.window.status_message("Cordova: "+self.status_message_before)
     node = NodeJS()
-    self.panel = self.window.create_output_panel(self.output_panel_name, False)
-    self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+    if self.show_panel :
+      self.panel = self.window.create_output_panel(self.output_panel_name, False)
+      self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+    self.command_with_options = self.command_with_options + self.append_args_execute()
     node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
 
+  def append_args_execute(self):
+    return []
+    
   def print_panel(self, line, process):
     if not self.process :
       self.process = process
 
     self.process_communicate(line, process)
-    if line != None:
+    if line != None and self.show_panel:
       self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
+  
+    if line == "OUTPUT-SUCCESS" and self.status_message_after_on_success :
+      self.window.status_message("Cordova: "+self.status_message_after_on_success)
+
+    if line == "OUTPUT-ERROR" and self.status_message_after_on_error :
+      self.window.status_message("Cordova: "+self.status_message_after_on_error)
 
     if line == "OUTPUT-DONE":
       self.process = None
+
 
   def process_communicate(self, line, process):
     return
@@ -2852,6 +2875,9 @@ class cordova_baseCommand(manage_cliCommand):
   def ask_platform(self, func):
     global cordova_platforms
     sublime.active_window().show_quick_panel([cordova_platform[1] for cordova_platform in cordova_platforms], func)
+
+  def append_args_execute(self):
+    return get_project_settings()["cordova_settings"]["cli_global_options"]
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")
