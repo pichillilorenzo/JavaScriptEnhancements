@@ -7,6 +7,7 @@ const util = require('../../../js/util.js')
 const electron = require('electron')
 const {ipcMain} = require('electron')
 const SocketWindow = require('../../../js/SocketWindow.js')
+const PACKAGE_PATH = path.resolve(path.join(__dirname, "..", "..", ".."))
 let project_type = ""
 
 const app = new SocketWindow('localhost', 11111, __dirname, 460, 840)
@@ -40,7 +41,7 @@ ${libs}
 [options]
 ${options}
 `
-    fs.writeFileSync(fd, str)
+    fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
   }, flowconfig, "w+")
 
   let sublime_project_file_name = util.clearString(data.project.project_name)

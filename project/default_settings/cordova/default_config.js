@@ -13,10 +13,11 @@ module.exports = {
     
     ],
     "libs":[
-
+      ":PACKAGE_PATH/flow/libs/cordova/cordova.js"
     ]
   },
   "cordova_settings": {
-    "cli_global_options": ""
+    "cli_global_options": [],
+    "platform_versions": {}
   }
 }

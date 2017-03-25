@@ -6,7 +6,7 @@ const util = require('../../../js/util.js')
 const electron = require('electron')
 const {ipcMain} = require('electron')
 const SocketWindow = require('../../../js/SocketWindow.js')
-
+const PACKAGE_PATH = path.resolve(path.join(__dirname, "..", "..", ".."))
 const app = new SocketWindow('localhost', 11112, __dirname, 900, 700)
 
 let project_dir_name = ""
@@ -134,7 +134,7 @@ ${libs}
 [options]
 ${options}
 `
-        fs.writeFileSync(fd, str)
+        fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
       }, path.join(project_dir_name, ".flowconfig"), "w+")
     }
     catch(e){
@@ -180,7 +180,7 @@ ${libs}
 [options]
 ${options}
 `
-        fs.writeFileSync(fd, str)
+        fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
       }, path.join(project_dir_name, ".flowconfig"), "w+")
 
       app.sendWeb("load_config", data_project)

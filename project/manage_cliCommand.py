@@ -49,7 +49,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       return
     self.settings = get_project_settings()
     if self.settings:
-
+      self.callback_after_get_settings(**kwargs)
       self.cli = kwargs.get("cli") if kwargs.get("cli") else self.cli
       if not self.cli:
         raise Exception("'cli' field of the manage_cliCommand not defined.")
@@ -66,6 +66,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.hide_panel_on_success = True if kwargs.get("hide_panel_on_success") else False
 
       sublime.set_timeout_async(lambda: self.manage())
+    else :
+      sublime.error_message("Error: can't get project settings")
 
   def manage(self) :
     if self.status_message_before :
@@ -76,15 +78,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
     self.command_with_options = self.command_with_options + self.append_args_execute()
     node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
-
-  def append_args_execute(self):
-    return []
     
   def print_panel(self, line, process):
     if not self.process :
       self.process = process
 
-    self.process_communicate(line, process)
+    self.process_communicate(line)
     if line != None and self.show_panel:
       self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
   
@@ -94,12 +93,15 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     if line == "OUTPUT-ERROR" and self.status_message_after_on_error :
       self.window.status_message("Cordova: "+self.status_message_after_on_error)
 
+    if line == "OUTPUT-SUCCESS" :
+      self.on_success()
+
+    if line == "OUTPUT-ERROR" :
+      self.on_error()
+
     if line == "OUTPUT-DONE":
       self.process = None
-
-
-  def process_communicate(self, line, process):
-    return
+      self.on_done()
 
   def stop_process(self):
     if self.stop_now == None:
@@ -119,8 +121,29 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
   def substitute_placeholders(self, variable):
     if isinstance(variable, list) :
-      return list(map(lambda x: self.placeholders[x] if self.placeholders.get(x) else x, variable))
+      for index in range(len(variable)):
+        for key, placeholder in self.placeholders.items():
+          variable[index] = variable[index].replace(key, placeholder)
+      return variable
     elif isinstance(variable, str) :
       for key, placeholder in self.placeholders.items():
         variable = variable.replace(key, placeholder)
       return variable
+
+  def append_args_execute(self):
+    return []
+
+  def process_communicate(self, line):
+    return
+    
+  def callback_after_get_settings(self, **kwargs):
+    return
+
+  def on_success(self):
+    return
+
+  def on_error(self):
+    return
+
+  def on_done(self):
+    return

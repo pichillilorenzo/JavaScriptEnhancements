@@ -30,13 +30,38 @@ module.exports = {
     let utilWeb = variables.utilWeb
     let data_project = variables.data_project.settings
 
+    let i = 0
+    for (let platform in data_project.cordova_settings.platform_versions) {
+      $("#platform_versions").append('<option value="'+platform+'" '+( (i == 0) ? 'selected="selected"' : '' )+'>'+platform+'</option>')
+      $(".container-input-platform-version").append('<input type="text" id="'+platform+'_version" data-platform="'+platform+'" class="form-control platform_version '+( (i == 0) ? 'active' : '' )+'">')
+      i++
+    }
+
+    $("#platform_versions")
+
     utilWeb.setMulitpleSelectValues("#cli_global_options", data_project.cordova_settings.cli_global_options)
 
-    $("#form-cordova-settings").on("submit", (event) => {
+    $(".platform_version").each(function(index, item){
+      $(this).val(data_project.cordova_settings.platform_versions[$(this).attr("data-platform")])
+    })
+
+    $("#platform_versions").on("change", function(event) {
+      let curr_platform = $(this).val()
+      $(this).parent().find('.platform_version.active').toggleClass("active");
+      $("#"+curr_platform+"_version").toggleClass("active");
+    })
+
+    $("#form-cordova-settings").on("submit", function(event) {
       event.preventDefault()
+
       let cordova_settings = {
-        "cli_global_options": utilWeb.getMulitpleSelectValues("#cli_global_options")
+        "cli_global_options": utilWeb.getMulitpleSelectValues("#cli_global_options"),
+        "platform_versions": {}
       }
+      for (let platform in data_project.cordova_settings.platform_versions) {
+        cordova_settings.platform_versions[platform] = ($('#'+platform+'_version')) ? $('#'+platform+'_version').val() : ""
+      }
+
       ipcRenderer.send("form-cordova-settings", cordova_settings)
     })
   }

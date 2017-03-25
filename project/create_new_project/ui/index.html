@@ -73,13 +73,13 @@
 
     $(document).ready(() => {
 
-      $("#choose-path").click((event) => {
-        dialog.showOpenDialog({properties: ['openDirectory']}, (directory) => {
+      $("#choose-path").click(function(event) {
+        dialog.showOpenDialog({properties: ['openDirectory']}, function(directory) {
           $("#project_path").val(directory[0])
         })
       })
 
-      $("form").on("submit", (event) => {
+      $("form").on("submit", function(event) {
         event.preventDefault()
 
         let project = {
@@ -92,7 +92,7 @@
           "license_uri": $("#license_uri").val().trim(),
           "tags": $("#tags").val().trim(),
           "path": $("#project_path").val().trim(),
-          "type": getTypeSelectValues()
+          "type": utilWeb.getMulitpleSelectValues("#type")
         }
         
         ipcRenderer.send("data", project)
@@ -105,14 +105,6 @@
       $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg));
     })
     
-    function getTypeSelectValues() {
-      var selectedValues = [];    
-      $("#type > option:selected").each(function(){
-        if ($(this).val()) 
-          selectedValues.push($(this).val()); 
-      });
-      return selectedValues
-    }
   </script>
 </body>
 </html>

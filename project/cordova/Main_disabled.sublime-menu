@@ -33,24 +33,26 @@
             "children": [
               {
                 "caption": "Add",
-                "command": "manage_cordova",
+                "command": "manage_add_platform_cordova",
                 "args": {
-                  "command_with_options": ["platform", "add", ":platform", "--save"],
-                  "status_message_before": "adding :platform platform...",
+                  "command_with_options": ["platform", "add", ":platform:version", "--save"],
+                  "status_message_before": "adding :platform:version platform...",
                   "output_panel_name": "panel_platform_cordova",
                   "ask_platform": true,
+                  "ask_platform_type": "available",
                   "hide_panel_on_success": true
                 }
               },
               {
 
                 "caption": "Remove",
-                "command": "manage_cordova",
+                "command": "manage_remove_platform_cordova",
                 "args": {
                   "command_with_options": ["platform", "remove", ":platform", "--save"],
                   "status_message_before": "removing :platform platform...",
                   "output_panel_name": "panel_platform_cordova",
                   "ask_platform": true,
+                  "ask_platform_type": "installed",
                   "hide_panel_on_success": true
                 }
               },
@@ -125,7 +127,18 @@
                   "command_with_options": ["plugin", "remove", ":plugin", "--save"],
                   "status_message_before": "removing :plugin plugin...",
                   "output_panel_name": "panel_plugin_cordova",
-                  "hide_panel_on_success": true
+                  "hide_panel_on_success": true,
+                  "ask_plugin": true
+                }
+              },
+              {
+                "caption": "List",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "list"],
+                  "status_message_before": "listing plugins...",
+                  "output_panel_name": "panel_plugin_cordova",
+                  "hide_panel_on_success": false
                 }
               }
             ]

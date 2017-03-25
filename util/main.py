@@ -355,6 +355,9 @@ def move_content_to_parent_folder(path):
     shutil.move(os.path.join(path, filename), os.path.dirname(path))
   os.rmdir(path)
 
+def removeItemIfExists(arr, item):
+  if item in arr: arr.remove(item)
+
 class wait_modified_asyncViewEventListener():
   last_change = time.time()
   waiting = False

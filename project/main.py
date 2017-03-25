@@ -74,6 +74,26 @@ def get_project_settings():
 
   return project_settings
 
+def save_project_setting(setting_file, data):
+  settings = get_project_settings()
+  if settings :
+    with open(os.path.join(settings["settings_dir_name"], setting_file), 'w+', encoding="utf-8") as file :
+      file.write(json.dumps(data, indent=2))
+
+def save_project_flowconfig(flow_settings):
+  settings = get_project_settings()
+  if settings :
+    with open(os.path.join(settings["settings_dir_name"], "flow_settings.json"), 'w+', encoding="utf-8") as file :
+      file.write(json.dumps(flow_settings, indent=2))
+    with open(os.path.join(settings["project_dir_name"], ".flowconfig"), 'w+', encoding="utf-8") as file :
+      include = "\n".join(flow_settings["include"])
+      ignore = "\n".join(flow_settings["ignore"])
+      libs = "\n".join(flow_settings["libs"])
+      options = "\n".join(list(map(lambda item: item[0].strip()+"="+item[1].strip(), flow_settings["options"])))
+
+      data = "[ignore]\n{ignore}\n[include]\n{include}\n[libs]\n{libs}\n[options]\n{options}".format(ignore=ignore, include=include, libs=libs, options=options)
+      file.write(data.replace(':PACKAGE_PATH', PACKAGE_PATH))
+
 ${include create_new_project/create_new_project.py}
 
 ${include edit_project/edit_project.py}

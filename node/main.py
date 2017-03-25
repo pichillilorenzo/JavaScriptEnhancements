@@ -89,7 +89,7 @@ class NodeJS(object):
     owd = os.getcwd()
     if chdir :
       os.chdir(chdir)
-
+    print(args)
     if wait_terminate :
 
       p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

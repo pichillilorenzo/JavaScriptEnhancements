@@ -216,7 +216,7 @@
 
     $(document).ready(() => {
       
-      $("#form-project-details").on("submit", (event) => {
+      $("#form-project-details").on("submit", function(event) {
         event.preventDefault()
         let project_details = {
           "project_name": $("#project_name").val().trim(),
@@ -232,7 +232,7 @@
         ipcRenderer.send('form-project-details', project_details)
       })
 
-      $("#form-flow-settings").on("submit", (event) => {
+      $("#form-flow-settings").on("submit", function(event) {
         event.preventDefault()
         let includes = Array.prototype.map.call(document.querySelectorAll(".include-flow-input"), function (item) {
           return $(item).val().trim()
