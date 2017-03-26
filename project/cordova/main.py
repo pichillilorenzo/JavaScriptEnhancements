@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, webbrowser
+import os, webbrowser, shlex
 from node.main import NodeJS
 
 class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
@@ -19,31 +19,31 @@ class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
   can_add_platform = False
   platform_list = []
-  func_ask_platform = None
+  platform_list_on_success = None
   can_add_plugin = False
   plugin_list = []
-  func_ask_plugin = None
+  plugin_list_on_success = None
 
   def ask_platform(self, type, func):
     self.platform_list = []
     self.can_add_platform = False
-    self.func_ask_platform = func
+    self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
       sublime.status_message("Cordova: getting platform list...")
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=(self.get_list_installed_platform if type == "installed" else self.get_list_available_platform))
+      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
     else :
       sublime.error_message("Error: can't get project settings")
 
-  def get_list_installed_platform(self, line, process):
+  def get_list_installed_platform_window_panel(self, line, process):
 
-    self.get_platform_list("installed", line, process)
+    self.get_platform_list("installed", line, process, True)
 
-  def get_list_available_platform(self, line, process):
+  def get_list_available_platform_window_panel(self, line, process):
 
-    self.get_platform_list("available", line, process)
+    self.get_platform_list("available", line, process, True)
 
-  def get_platform_list(self, type, line, process):
+  def get_platform_list(self, type, line, process, show_panel = False):
     if line == "OUTPUT-DONE" or line == "OUTPUT-SUCCESS" or line == "OUTPUT-ERROR" :
       self.can_add_platform = False
 
@@ -68,7 +68,10 @@ class cordova_baseCommand(manage_cliCommand):
 
     if line == "OUTPUT-DONE" :
       if self.platform_list :
-        self.window.show_quick_panel([cordova_platform for cordova_platform in self.platform_list], self.func_ask_platform)
+        if show_panel :
+          self.window.show_quick_panel([cordova_platform for cordova_platform in self.platform_list], self.platform_list_on_success)
+        elif self.platform_list_on_success :
+          self.platform_list_on_success()
       else :
         if type == "installed" :
           sublime.message_dialog("Cordova: No platforms installed")
@@ -78,15 +81,18 @@ class cordova_baseCommand(manage_cliCommand):
   def ask_plugin(self, func):
     self.plugin_list = []
     self.can_add_plugin = False
-    self.func_ask_plugin = func
+    self.plugin_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
       sublime.status_message("Cordova: getting plugin list...")
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
     else :
       sublime.error_message("Error: can't get project settings")
 
-  def get_plugin_list(self, line, process):
+  def get_plugin_list_window_panel(self, line, process):
+    self.get_plugin_list(line, process, True)
+
+  def get_plugin_list(self, line, process, show_panel = False):
     if line == "OUTPUT-DONE" or line == "OUTPUT-SUCCESS" or line == "OUTPUT-ERROR" :
       self.can_add_plugin = False
     else :
@@ -95,13 +101,25 @@ class cordova_baseCommand(manage_cliCommand):
     if line and self.can_add_plugin and line.strip() :
       self.plugin_list.append(line.strip().split(" ")[0])
     if line == "OUTPUT-DONE" :
-      if self.plugin_list :
-        self.window.show_quick_panel([cordova_plugin for cordova_plugin in self.plugin_list], self.func_ask_plugin)
+      if self.plugin_list:
+        if show_panel :
+          self.window.show_quick_panel([cordova_plugin for cordova_plugin in self.plugin_list], self.plugin_list_on_success)
+        elif self.plugin_list_on_success :
+          self.plugin_list_on_success()
       else :
         sublime.message_dialog("Cordova: No plugins installed")
 
   def append_args_execute(self):
-    return get_project_settings()["cordova_settings"]["cli_global_options"]
+    custom_args = []
+    custom_args = custom_args + self.settings["cordova_settings"]["cli_global_options"]
+    command = self.command_with_options[0]
+    if command == "build" or command == "run" or command == "compile":
+      platform = self.placeholders[":platform"]
+      custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
+      custom_args_platform = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_"+command+"_options"], platform)
+      if custom_args_platform :
+        custom_args = custom_args + ["--"] + shlex.split(custom_args_platform)
+    return custom_args
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")
@@ -176,16 +194,60 @@ class manage_add_platform_cordovaCommand(manage_cordovaCommand):
 
   def callback_after_get_settings(self, **kwargs):
 
-    if not self.settings["cordova_settings"]["platform_versions"].get(self.placeholders[":platform"]) :
-      self.settings["cordova_settings"]["platform_versions"][self.placeholders[":platform"]] = ""
-
-    self.placeholders[":version"] = self.settings["cordova_settings"]["platform_versions"][self.placeholders[":platform"]]
+    self.placeholders[":version"] = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_version_options"], self.placeholders[":platform"]) or ""
 
   def on_success(self):
+    if not self.placeholders[":platform"] in self.settings["cordova_settings"]["installed_platform"] :
+      self.settings["cordova_settings"]["installed_platform"].append(self.placeholders[":platform"])
     save_project_setting("cordova_settings.json", self.settings["cordova_settings"])
 
 class manage_remove_platform_cordovaCommand(manage_cordovaCommand):
 
   def on_success(self):
-    del self.settings["cordova_settings"]["platform_versions"][self.placeholders[":platform"]]
+    Util.removeItemIfExists(self.settings["cordova_settings"]["installed_platform"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_version_options"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_compile_options"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_build_options"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_run_options"], self.placeholders[":platform"])
     save_project_setting("cordova_settings.json", self.settings["cordova_settings"])
+
+class sync_cordova_projectCommand(cordova_baseCommand):
+
+  platform_list = []
+  plugin_list = []
+
+  def run(self, **kwargs):
+    self.platform_list = []
+    self.plugin_list = []
+    self.settings = get_project_settings()
+    if self.settings :
+      sublime.status_message("Cordova: synchronizing project...")
+      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list)
+    else :
+      sublime.error_message("Error: can't get project settings")
+
+  def platform_list_on_success(self):
+    self.settings["cordova_settings"]["installed_platform"] = []
+    for platform_name in self.platform_list:
+      self.settings["cordova_settings"]["installed_platform"].append(platform_name)
+
+    save_project_setting("cordova_settings.json", self.settings["cordova_settings"])
+    sublime.status_message("Cordova: platforms synchronized")
+
+  def plugin_list_on_success(self):
+    plugin_list_to_remove = []
+    for lib in self.settings["flow_settings"]["libs"]:
+      if lib.startswith(":PACKAGE_PATH/flow/libs/cordova/") and lib != ":PACKAGE_PATH/flow/libs/cordova/cordova.js":
+        plugin_list_to_remove.append(lib)
+    for lib in plugin_list_to_remove:
+      self.settings["flow_settings"]["libs"].remove(lib)
+
+    for plugin_name in self.plugin_list:
+      plugin_lib_path = os.path.join(PACKAGE_PATH, "flow", "libs", "cordova", plugin_name+".js")
+      plugin_lib_path_with_placeholder = os.path.join(":PACKAGE_PATH", "flow", "libs", "cordova", plugin_name+".js")
+      if os.path.isfile(plugin_lib_path) :
+        self.settings["flow_settings"]["libs"].append(plugin_lib_path_with_placeholder)
+
+    save_project_flowconfig(self.settings["flow_settings"])
+    sublime.status_message("Cordova: plugins synchronized")

@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing
+import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
 
 multiprocessing_list = []
 
@@ -357,6 +357,24 @@ def move_content_to_parent_folder(path):
 
 def removeItemIfExists(arr, item):
   if item in arr: arr.remove(item)
+
+def getListItemIfExists(arr, item):
+  if item in arr : 
+    return item
+  return None
+
+def delItemIfExists(obj, key):
+  try :
+    del obj[key]
+  except KeyError as e:
+    pass
+
+def getDictItemIfExists(obj, key):
+  try :
+    return obj[key]
+  except KeyError as e:
+    pass
+  return None
 
 class wait_modified_asyncViewEventListener():
   last_change = time.time()

@@ -18,6 +18,13 @@ module.exports = {
   },
   "cordova_settings": {
     "cli_global_options": [],
-    "platform_versions": {}
+    "cli_compile_options": [],
+    "cli_build_options": [],
+    "cli_run_options": [],
+    "installed_platform": [],
+    "platform_version_options": {},
+    "platform_compile_options": {},
+    "platform_build_options": {},
+    "platform_run_options": {}
   }
 }

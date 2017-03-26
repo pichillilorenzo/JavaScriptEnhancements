@@ -1,6 +1,6 @@
-#cordova-settings .platform_version{
+#cordova-settings .platform{
   display: none;
 }
-#cordova-settings .platform_version.active{
+#cordova-settings .platform.active{
   display: block;
 }

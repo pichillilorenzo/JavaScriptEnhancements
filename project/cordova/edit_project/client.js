@@ -30,25 +30,34 @@ module.exports = {
     let utilWeb = variables.utilWeb
     let data_project = variables.data_project.settings
 
-    let i = 0
-    for (let platform in data_project.cordova_settings.platform_versions) {
-      $("#platform_versions").append('<option value="'+platform+'" '+( (i == 0) ? 'selected="selected"' : '' )+'>'+platform+'</option>')
-      $(".container-input-platform-version").append('<input type="text" id="'+platform+'_version" data-platform="'+platform+'" class="form-control platform_version '+( (i == 0) ? 'active' : '' )+'">')
-      i++
+    let list_config = ["run", "build", "compile", "version", "global"]
+
+    for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
+      let platform = data_project.cordova_settings.installed_platform[i]
+      $(".platform_list").append('<option value="'+platform+'" '+( (i == 0) ? 'selected="selected"' : '' )+'>'+platform+'</option>')
+      for(let j = 0, length2 = list_config.length; j < length2; j++){
+        if (!$(".container-input-platform-"+list_config[j])) {
+          break
+        }
+        $(".container-input-platform-"+list_config[j]).append('<input type="text" id="'+platform+'_'+list_config[j]+'" data-platform="'+platform+'" class="form-control platform platform_'+list_config[j]+'_options '+( (i == 0) ? 'active' : '' )+'">')
+      }
     }
 
-    $("#platform_versions")
+    for(let j = 0, length2 = list_config.length; j < length2; j++){
+      if ( $("#cli_"+list_config[j]+"_options").length > 0 ) {
+        utilWeb.setMulitpleSelectValues("#cli_"+list_config[j]+"_options", data_project.cordova_settings["cli_"+list_config[j]+"_options"])
+      }
 
-    utilWeb.setMulitpleSelectValues("#cli_global_options", data_project.cordova_settings.cli_global_options)
+      $(".platform_"+list_config[j]).each(function(index, item){
+        $(this).val(data_project.cordova_settings["platform_"+list_config[j]+"_options"][$(this).attr("data-platform")])
+      })
+    }
 
-    $(".platform_version").each(function(index, item){
-      $(this).val(data_project.cordova_settings.platform_versions[$(this).attr("data-platform")])
-    })
-
-    $("#platform_versions").on("change", function(event) {
+    $(".platform_list").on("change", function(event) {
       let curr_platform = $(this).val()
-      $(this).parent().find('.platform_version.active').toggleClass("active");
-      $("#"+curr_platform+"_version").toggleClass("active");
+      let mustActive = $(this).parent().find('.platform:not(.active)')
+      $(this).parent().find('.platform.active').toggleClass("active");
+      $(mustActive).toggleClass("active");
     })
 
     $("#form-cordova-settings").on("submit", function(event) {
@@ -56,10 +65,23 @@ module.exports = {
 
       let cordova_settings = {
         "cli_global_options": utilWeb.getMulitpleSelectValues("#cli_global_options"),
-        "platform_versions": {}
+        "cli_compile_options": utilWeb.getMulitpleSelectValues("#cli_compile_options"),
+        "cli_build_options": utilWeb.getMulitpleSelectValues("#cli_build_options"),
+        "cli_run_options": utilWeb.getMulitpleSelectValues("#cli_run_options"),
+        "installed_platform": data_project.cordova_settings.installed_platform,
+        "platform_version_options": {},
+        "platform_compile_options": {},
+        "platform_build_options": {},
+        "platform_run_options": {}
       }
-      for (let platform in data_project.cordova_settings.platform_versions) {
-        cordova_settings.platform_versions[platform] = ($('#'+platform+'_version')) ? $('#'+platform+'_version').val() : ""
+
+      for(let j = 0, length2 = list_config.length; j < length2; j++){
+        for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
+          let platform = data_project.cordova_settings.installed_platform[i]
+          if ($('#'+platform+'_'+list_config[j]).length > 0) {
+            cordova_settings["platform_"+list_config[j]+"_options"][platform] = $('#'+platform+'_'+list_config[j]).val()
+          }
+        }
       }
 
       ipcRenderer.send("form-cordova-settings", cordova_settings)

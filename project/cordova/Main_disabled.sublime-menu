@@ -152,6 +152,7 @@
               "status_message_before": "preparing :platform platform...",
               "output_panel_name": "panel_prepare_cordova",
               "ask_platform": true,
+              "ask_platform_type": "installed",
               "hide_panel_on_success": true
             }
           },
@@ -166,6 +167,7 @@
                   "status_message_before": "compiling :platform platform in debug mode...",
                   "output_panel_name": "panel_compile_cordova",
                   "ask_platform": true,
+                  "ask_platform_type": "installed",
                   "hide_panel_on_success": true
                 }
               },
@@ -177,6 +179,7 @@
                   "status_message_before": "compiling :platform platform in release mode...",
                   "output_panel_name": "panel_compile_cordova",
                   "ask_platform": true,
+                  "ask_platform_type": "installed",
                   "hide_panel_on_success": true
                 }
               }
@@ -193,6 +196,7 @@
                   "status_message_before": "building :platform platform in debug mode...",
                   "output_panel_name": "panel_build_cordova",
                   "ask_platform": true,
+                  "ask_platform_type": "installed",
                   "hide_panel_on_success": true
                 }
               },
@@ -204,6 +208,7 @@
                   "status_message_before": "building :platform platform in release mode...",
                   "output_panel_name": "panel_build_cordova",
                   "ask_platform": true,
+                  "ask_platform_type": "installed",
                   "hide_panel_on_success": true
                 }
               }
@@ -217,6 +222,7 @@
               "status_message_before": "launching :platform platform...",
               "output_panel_name": "panel_emulate_cordova",
               "ask_platform": true,
+              "ask_platform_type": "installed",
               "hide_panel_on_success": true
             }
           },
@@ -238,8 +244,13 @@
               "status_message_before": "cleaning :platform platform...",
               "output_panel_name": "panel_clean_cordova",
               "ask_platform": true,
+              "ask_platform_type": "installed",
               "hide_panel_on_success": true
             }
+          },
+          {
+            "caption": "Sync project",
+            "command": "sync_cordova_project"
           }
         ]
       }
