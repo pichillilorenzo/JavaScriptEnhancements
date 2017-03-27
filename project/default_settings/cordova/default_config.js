@@ -23,8 +23,14 @@ module.exports = {
     "cli_run_options": [],
     "installed_platform": [],
     "platform_version_options": {},
-    "platform_compile_options": {},
-    "platform_build_options": {},
+    "platform_compile_options": {
+      "debug": {},
+      "release": {}
+    },
+    "platform_build_options": {
+      "debug": {},
+      "release": {}
+    },
     "platform_run_options": {}
   }
 }

@@ -3004,10 +3004,17 @@ class cordova_baseCommand(manage_cliCommand):
     custom_args = []
     custom_args = custom_args + self.settings["cordova_settings"]["cli_global_options"]
     command = self.command_with_options[0]
+    mode = ""
+    if command == "build" or command == "compile": 
+      mode = self.command_with_options[2][2:]
     if command == "build" or command == "run" or command == "compile":
       platform = self.placeholders[":platform"]
       custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
-      custom_args_platform = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_"+command+"_options"], platform)
+      custom_args_platform = ""
+      if mode :
+        custom_args_platform = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_"+command+"_options"][mode], platform)
+      else :
+        custom_args_platform = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_"+command+"_options"], platform)
       if custom_args_platform :
         custom_args = custom_args + ["--"] + shlex.split(custom_args_platform)
     return custom_args
@@ -3097,8 +3104,10 @@ class manage_remove_platform_cordovaCommand(manage_cordovaCommand):
   def on_success(self):
     Util.removeItemIfExists(self.settings["cordova_settings"]["installed_platform"], self.placeholders[":platform"])
     Util.delItemIfExists(self.settings["cordova_settings"]["platform_version_options"], self.placeholders[":platform"])
-    Util.delItemIfExists(self.settings["cordova_settings"]["platform_compile_options"], self.placeholders[":platform"])
-    Util.delItemIfExists(self.settings["cordova_settings"]["platform_build_options"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_compile_options"]["debug"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_compile_options"]["release"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_build_options"]["debug"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["cordova_settings"]["platform_build_options"]["release"], self.placeholders[":platform"])
     Util.delItemIfExists(self.settings["cordova_settings"]["platform_run_options"], self.placeholders[":platform"])
     save_project_setting("cordova_settings.json", self.settings["cordova_settings"])
 

@@ -4,3 +4,9 @@
 #cordova-settings .platform.active{
   display: block;
 }
+#cordova-settings .mode{
+  display: none;
+}
+#cordova-settings .mode.active{
+  display: block;
+}

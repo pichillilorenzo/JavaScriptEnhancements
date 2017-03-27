@@ -86,6 +86,7 @@ class NodeJS(object):
       command_args = " ".join(command_args_list)
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args
     
+    print(args)
     owd = os.getcwd()
     if chdir :
       os.chdir(chdir)
