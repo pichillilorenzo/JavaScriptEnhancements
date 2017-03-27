@@ -27,6 +27,31 @@
               "hide_panel_on_success": false
             }
           },
+          {
+            "caption": "Telemetry",
+            "children": [
+              {
+                "caption": "On",
+                "command": "manage_plugin_cordova",
+                "args": {
+                  "command_with_options": ["telemetry", "on"],
+                  "status_message_before": "turning on telemetry...",
+                  "output_panel_name": "panel_telemetry_cordova",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Off",
+                "command": "manage_plugin_cordova",
+                "args": {
+                  "command_with_options": ["telemetry", "off"],
+                  "status_message_before": "turning off telemetry...",
+                  "output_panel_name": "panel_telemetry_cordova",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
           {"caption": "-"},
           { 
             "caption": "Platforms",
@@ -215,16 +240,33 @@
             ]
           },
           {
-            "caption": "Emulate",
-            "command": "manage_cordova",
-            "args": {
-              "command_with_options": ["run", ":platform"],
-              "status_message_before": "launching :platform platform...",
-              "output_panel_name": "panel_emulate_cordova",
-              "ask_platform": true,
-              "ask_platform_type": "installed",
-              "hide_panel_on_success": true
-            }
+            "caption": "Run",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["run", ":platform", "--debug"],
+                  "status_message_before": "launching :platform platform in debug mode...",
+                  "output_panel_name": "panel_run_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["run", ":platform", "--release"],
+                  "status_message_before": "launching :platform platform in release mode...",
+                  "output_panel_name": "panel_run_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
           },
           {
             "caption": "Toggle Serve",

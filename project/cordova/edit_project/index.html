@@ -3,6 +3,13 @@
   <form id="form-cordova-settings" action="#">
     <div class="pmd-card pmd-z-depth pmd-card-custom-form">
       <div class="pmd-card-body">
+        
+        <div class="form-group pmd-textfield">
+          <label for="serve_port" class="control-label">Port 'serve' command:</label>
+          <input id="serve_port" type="number" class="form-control">
+          <span class="pmd-textfield-focused"></span>
+          <p class="help-text">Port used when launching a local web server for www/ assets (default:8000).</p>
+        </div>
 
         <div class="form-group pmd-textfield">
           <label for="cli_global_options" class="control-label">CLI global options:</label>
@@ -26,7 +33,7 @@
             <option value="--emulator">--emulator</option>
             <option value="--browserify">--browserify</option>
           </select>
-          <p class="help-text">Select options that apply to 'compile' command</p>
+          <p class="help-text">Select options that apply to 'compile' command to all platforms and modes</p>
         </div>
         <div class="form-group pmd-textfield">
           <label for="mode_list" class="control-label">Mode:</label>
@@ -64,7 +71,7 @@
             <option value="--info">--info</option>
             <option value="--browserify">--browserify</option>
           </select>
-          <p class="help-text">Select options that apply to 'build' command</p>
+          <p class="help-text">Select options that apply to 'build' command to all platforms and modes</p>
         </div>
         <div class="form-group pmd-textfield">
           <label for="mode_list" class="control-label">Mode:</label>
@@ -102,15 +109,30 @@
             <option value="--emulator">--emulator</option>
             <option value="--browserify">--browserify</option>
           </select>
-          <p class="help-text">Select options that apply to 'run' command</p>
+          <p class="help-text">Select options that apply to 'run' command to all platforms and modes</p>
         </div>
         <div class="form-group pmd-textfield">
-          <label for="platform_list" class="control-label">Per platform:</label>
-          <select class="platform_list" class="form-control">
+          <label for="mode_list" class="control-label">Mode:</label>
+          <select class="mode_list" class="form-control">
+            <option value="debug">debug</option>
+            <option value="release">release</option>
           </select>
-          <div class="container-input-platform-run"></div>
-          <span class="pmd-textfield-focused"></span>
-          <p class="help-text">Platform specific options (--)</p>
+          <div class="debug mode active form-group pmd-textfield">
+            <label for="platform_list" class="control-label">Per platform:</label>
+            <select class="platform_list" class="form-control">
+            </select>
+            <div class="container-input-platform-run"></div>
+            <span class="pmd-textfield-focused"></span>
+            <p class="help-text">Platform specific options (--)</p>
+          </div>
+          <div class="release mode form-group pmd-textfield">
+            <label for="platform_list" class="control-label">Per platform:</label>
+            <select class="platform_list" class="form-control">
+            </select>
+            <div class="container-input-platform-run"></div>
+            <span class="pmd-textfield-focused"></span>
+            <p class="help-text">Platform specific options (--)</p>
+          </div>
         </div>
 
         <hr>

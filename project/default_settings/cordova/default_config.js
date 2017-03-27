@@ -17,6 +17,7 @@ module.exports = {
     ]
   },
   "cordova_settings": {
+    "serve_port": "",
     "cli_global_options": [],
     "cli_compile_options": [],
     "cli_build_options": [],
@@ -31,6 +32,9 @@ module.exports = {
       "debug": {},
       "release": {}
     },
-    "platform_run_options": {}
+    "platform_run_options": {
+      "debug": {},
+      "release": {}
+    },
   }
 }

@@ -30,8 +30,10 @@ module.exports = {
     let utilWeb = variables.utilWeb
     let data_project = variables.data_project.settings
 
-    let list_config = ["run", "version", "global"]
-    let list_config_debug_release = ["build", "compile"]
+    let list_config = ["version", "global"]
+    let list_config_debug_release = ["run", "build", "compile"]
+
+    $("#serve_port").val( data_project.cordova_settings.serve_port)
 
     for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
       let platform = data_project.cordova_settings.installed_platform[i]
@@ -89,6 +91,7 @@ module.exports = {
       event.preventDefault()
 
       let cordova_settings = {
+        "serve_port": $("#serve_port").val().trim(),
         "cli_global_options": utilWeb.getMulitpleSelectValues("#cli_global_options"),
         "cli_compile_options": utilWeb.getMulitpleSelectValues("#cli_compile_options"),
         "cli_build_options": utilWeb.getMulitpleSelectValues("#cli_build_options"),
@@ -103,7 +106,10 @@ module.exports = {
           "debug": {},
           "release": {}
         }, 
-        "platform_run_options": {}
+        "platform_run_options": {
+          "debug": {},
+          "release": {}
+        }
       }
 
       for(let j = 0, length2 = list_config.length; j < length2; j++){
