@@ -69,11 +69,22 @@ ipcMain.on('data', (event, project) => {
   let settings_file = path.join(jc_project_settings, "project_details.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
   project_type = project.type
+
   let project_type_default_settings = []
-  for(let i = 0, length1 = project_type.length; i < length1; i++){
+  /* project_type.length evaluate each time because of possible type dependecies */
+  for(let i = 0 i < project_type.length; i++){
     let project_type_default_config = {}
     try {
       project_type_default_config = require('../../default_settings/'+project_type[i]+'/default_config.js')
+      if (project_type_default_config.dependencies) {
+        /* load dependencies */
+        for(let j = 0, length2 = array.project_type_default_config.dependencies; j < length2; j++){
+          let dipendency = project_type_default_config.dependencies[j]
+          if (project_type.indexOf(dipendency) < 0) {
+            project_type.push(dipendency)
+          }
+        }
+      }
     } catch(e) {
       continue
     }

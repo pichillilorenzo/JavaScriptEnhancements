@@ -35,6 +35,6 @@ module.exports = {
     "platform_run_options": {
       "debug": {},
       "release": {}
-    },
+    }
   }
 }

@@ -7,7 +7,7 @@ PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "3
 
 platform_switcher = {"Darwin": "osx", "Linux": "linux", "Windows": "windows"}
 
-NODE_JS_VERSION = "v7.7.2"
+NODE_JS_VERSION = "v6.10.1"
 NODE_JS_BINARIES_FOLDER_NAME = "node_binaries"
 NODE_JS_VERSION_URL_LIST_ONLINE = "https://nodejs.org/dist/index.json"
 NODE_JS_BINARIES_FOLDER = os.path.join(PACKAGE_PATH, NODE_JS_BINARIES_FOLDER_NAME)

@@ -92,7 +92,7 @@ class DownloadNodeJS(object):
     try :
       npm.install_all(False) 
     except Exception as e:
-      pass
+      print("Error: "+traceback.format_exc())
     self.animation_loader.on_complete()
     self.interval_animation.stop()
     if node_js.getCurrentNodeJSVersion(True) == self.NODE_JS_VERSION :

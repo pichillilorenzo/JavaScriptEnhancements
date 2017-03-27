@@ -119,23 +119,25 @@ class NodeJS(object):
       Util.create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout))
       
   def wrapper_func_stdout(self, args, func_stdout):
-    with subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
       func_stdout(None, p)
+      flag_error = False
+        
       for line in p.stdout:
         line = codecs.decode(line, "utf-8", "ignore")
         func_stdout(line, p)
-      flag_error = False
+
       for line in p.stderr:
         line = codecs.decode(line, "utf-8", "ignore")
         if not flag_error:
           flag_error = True
         func_stdout(line, p)
+
       if flag_error:
         func_stdout("OUTPUT-ERROR", p)
       else :
         func_stdout("OUTPUT-SUCCESS", p)
       func_stdout("OUTPUT-DONE", p)
-
       
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
@@ -217,14 +219,14 @@ class NodeJS(object):
 
 class NPM(object):
 
-  def install_all(self) :
+  def install_all(self, save = False) :
 
     args = ""
 
     if node_variables.NODE_JS_OS == 'win':
-      args = ["npm", "install"]
+      args = ["npm", "install", "--save"] if save else ["npm", "update"]
     else :
-      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" install"
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" install" + (" --save" if save else "")
 
     os.chdir(PACKAGE_PATH)
 

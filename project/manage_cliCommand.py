@@ -3,7 +3,7 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     line = args.get("line")
     if line == "OUTPUT-SUCCESS":
       if self.view.window() and args.get("hide_panel_on_success") :
-        sublime.set_timeout_async(lambda: self.view.window().run_command("hide_panel"), args.get("wait_panel") if args.get("wait_panel") else 1000 )
+        sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 1000 )
       return
     elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
       return
@@ -11,6 +11,12 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     self.view.insert(edit, self.view.size(), line)
     self.view.show_at_center(self.view.size())
     self.view.set_read_only(True)
+
+  def hide_window_panel(self):
+    try :
+      self.view.window().run_command("hide_panel")
+    except AttributeError as e:
+      pass
 
 class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
 
@@ -28,6 +34,7 @@ class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
+  name_cli = ""
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -71,27 +78,30 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
   def manage(self) :
     if self.status_message_before :
-      self.window.status_message("Cordova: "+self.status_message_before)
+      self.window.status_message(self.name_cli+": "+self.status_message_before)
     node = NodeJS()
     if self.show_panel :
       self.panel = self.window.create_output_panel(self.output_panel_name, False)
       self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
     self.command_with_options = self.command_with_options + self.append_args_execute()
-    node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+    self.before_execute()
+    if ( self.can_execute() ) :
+      node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
     
   def print_panel(self, line, process):
     if not self.process :
       self.process = process
 
     self.process_communicate(line)
+
     if line != None and self.show_panel:
       self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
   
     if line == "OUTPUT-SUCCESS" and self.status_message_after_on_success :
-      self.window.status_message("Cordova: "+self.status_message_after_on_success)
+      self.window.status_message(self.name_cli+": "+self.status_message_after_on_success)
 
     if line == "OUTPUT-ERROR" and self.status_message_after_on_error :
-      self.window.status_message("Cordova: "+self.status_message_after_on_error)
+      self.window.status_message(self.name_cli+": "+self.status_message_after_on_error)
 
     if line == "OUTPUT-SUCCESS" :
       self.on_success()
@@ -110,11 +120,13 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.stop_now = True
 
     if self.stop_now:
+      self.before_kill_process()
       self.process.terminate()
       self.process = None
       self.stop_now = None
       self.panel.run_command(self.panel_command, {"line": self.command_stopped_text})
       self.panel.run_command(self.panel_command, {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 3000})
+      self.after_killed_process()
       return True
 
     return False
@@ -129,6 +141,18 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       for key, placeholder in self.placeholders.items():
         variable = variable.replace(key, placeholder)
       return variable
+
+  def before_kill_process(self):
+    return
+  
+  def after_killed_process(self):
+    return
+
+  def can_execute(self) :
+    return True
+
+  def before_execute(self) :
+    return 
 
   def append_args_execute(self):
     return []

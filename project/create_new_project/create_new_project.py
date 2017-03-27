@@ -28,7 +28,10 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
           if json_data.get("type") :
             project_folder = os.path.dirname(json_data["project"])
-            if "cordova" in json_data["type"]:
+            if "ionic" in json_data["type"]:
+              node.execute('ionic', ["start", "temp"], is_from_bin=True, chdir=project_folder)
+              Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
+            elif "cordova" in json_data["type"]:
               node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder)
               Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
 

@@ -2629,7 +2629,10 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
           if json_data.get("type") :
             project_folder = os.path.dirname(json_data["project"])
-            if "cordova" in json_data["type"]:
+            if "ionic" in json_data["type"]:
+              node.execute('ionic', ["start", "temp"], is_from_bin=True, chdir=project_folder)
+              Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
+            elif "cordova" in json_data["type"]:
               node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder)
               Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
 
@@ -2743,7 +2746,7 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     line = args.get("line")
     if line == "OUTPUT-SUCCESS":
       if self.view.window() and args.get("hide_panel_on_success") :
-        sublime.set_timeout_async(lambda: self.view.window().run_command("hide_panel"), args.get("wait_panel") if args.get("wait_panel") else 1000 )
+        sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 1000 )
       return
     elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
       return
@@ -2751,6 +2754,12 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     self.view.insert(edit, self.view.size(), line)
     self.view.show_at_center(self.view.size())
     self.view.set_read_only(True)
+
+  def hide_window_panel(self):
+    try :
+      self.view.window().run_command("hide_panel")
+    except AttributeError as e:
+      pass
 
 class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
 
@@ -2768,6 +2777,7 @@ class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
+  name_cli = ""
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -2811,27 +2821,30 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
   def manage(self) :
     if self.status_message_before :
-      self.window.status_message("Cordova: "+self.status_message_before)
+      self.window.status_message(self.name_cli+": "+self.status_message_before)
     node = NodeJS()
     if self.show_panel :
       self.panel = self.window.create_output_panel(self.output_panel_name, False)
       self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
     self.command_with_options = self.command_with_options + self.append_args_execute()
-    node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+    self.before_execute()
+    if ( self.can_execute() ) :
+      node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
     
   def print_panel(self, line, process):
     if not self.process :
       self.process = process
 
     self.process_communicate(line)
+
     if line != None and self.show_panel:
       self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
   
     if line == "OUTPUT-SUCCESS" and self.status_message_after_on_success :
-      self.window.status_message("Cordova: "+self.status_message_after_on_success)
+      self.window.status_message(self.name_cli+": "+self.status_message_after_on_success)
 
     if line == "OUTPUT-ERROR" and self.status_message_after_on_error :
-      self.window.status_message("Cordova: "+self.status_message_after_on_error)
+      self.window.status_message(self.name_cli+": "+self.status_message_after_on_error)
 
     if line == "OUTPUT-SUCCESS" :
       self.on_success()
@@ -2850,11 +2863,13 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.stop_now = True
 
     if self.stop_now:
+      self.before_kill_process()
       self.process.terminate()
       self.process = None
       self.stop_now = None
       self.panel.run_command(self.panel_command, {"line": self.command_stopped_text})
       self.panel.run_command(self.panel_command, {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 3000})
+      self.after_killed_process()
       return True
 
     return False
@@ -2869,6 +2884,18 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       for key, placeholder in self.placeholders.items():
         variable = variable.replace(key, placeholder)
       return variable
+
+  def before_kill_process(self):
+    return
+  
+  def after_killed_process(self):
+    return
+
+  def can_execute(self) :
+    return True
+
+  def before_execute(self) :
+    return 
 
   def append_args_execute(self):
     return []
@@ -2894,11 +2921,9 @@ import os, webbrowser, shlex
 from node.main import NodeJS
 
 class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
-  def __init__(self, *args, **kwargs):  
-    self.cli = "cordova"
-    self.path = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
-    self.path_disabled = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
-    super(enable_menu_cliViewEventListener, self).__init__(*args, **kwargs)
+  cli = "cordova"
+  path = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
+  path_disabled = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
 
   def on_activated_async(self, **kwargs):
     kwargs["cli"] = self.cli
@@ -2908,6 +2933,7 @@ class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
 
 class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
+  name_cli = "Cordova"
   can_add_platform = False
   platform_list = []
   platform_list_on_success = None
@@ -2921,7 +2947,7 @@ class cordova_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
-      sublime.status_message("Cordova: getting platform list...")
+      sublime.status_message(self.name_cli+": getting platform list...")
       node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
     else :
       sublime.error_message("Error: can't get project settings")
@@ -2965,9 +2991,9 @@ class cordova_baseCommand(manage_cliCommand):
           self.platform_list_on_success()
       else :
         if type == "installed" :
-          sublime.message_dialog("Cordova: No platforms installed")
+          sublime.message_dialog(self.name_cli+": No platforms installed")
         elif type == "available" :  
-          sublime.message_dialog("Cordova: No more platforms available")
+          sublime.message_dialog(self.name_cli+": No more platforms available")
 
   def ask_plugin(self, func):
     self.plugin_list = []
@@ -2975,7 +3001,7 @@ class cordova_baseCommand(manage_cliCommand):
     self.plugin_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
-      sublime.status_message("Cordova: getting plugin list...")
+      sublime.status_message(self.name_cli+": getting plugin list...")
       node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
     else :
       sublime.error_message("Error: can't get project settings")
@@ -2998,7 +3024,7 @@ class cordova_baseCommand(manage_cliCommand):
         elif self.plugin_list_on_success :
           self.plugin_list_on_success()
       else :
-        sublime.message_dialog("Cordova: No plugins installed")
+        sublime.message_dialog(self.name_cli+": No plugins installed")
 
   def append_args_execute(self):
     custom_args = []
@@ -3048,17 +3074,45 @@ class manage_cordovaCommand(cordova_baseCommand):
       self.placeholders[":plugin"] = self.plugin_list[index]
       super(manage_cordovaCommand, self).run(**kwargs)
 
+manage_serve_cordova_window_command_processes = {}
+
 class manage_serve_cordovaCommand(cordova_baseCommand):
 
   is_stoppable = True
 
   def process_communicate(self, line):
+    global manage_serve_cordova_window_command_processes
+
+    if not self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
+      manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]] = {
+        "process": self.process
+      }
+      
     if line and line.strip().startswith("Static file server running on: "):
       line = line.strip()
       url = line.replace("Static file server running on: ", "")
       url = url.replace(" (CTRL + C to shut down)", "")
       url = url.strip()
       webbrowser.open(url)
+
+  def on_done(self):
+    global manage_serve_cordova_window_command_processes
+    if self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
+      del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+
+  def can_execute(self):
+    global manage_serve_cordova_window_command_processes
+    if not self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
+      return True
+    else :
+      if (manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
+        self.stop_now = True
+        self.process = manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]["process"]
+        del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+        self.stop_process()
+      else :
+        del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+    return False
 
 class manage_plugin_cordovaCommand(manage_cordovaCommand):
 
@@ -3119,7 +3173,7 @@ class sync_cordova_projectCommand(cordova_baseCommand):
     self.plugin_list = []
     self.settings = get_project_settings()
     if self.settings :
-      sublime.status_message("Cordova: synchronizing project...")
+      sublime.status_message(self.name_cli+": synchronizing project...")
       node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
       node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list)
     else :
@@ -3131,7 +3185,7 @@ class sync_cordova_projectCommand(cordova_baseCommand):
       self.settings["cordova_settings"]["installed_platform"].append(platform_name)
 
     save_project_setting("cordova_settings.json", self.settings["cordova_settings"])
-    sublime.status_message("Cordova: platforms synchronized")
+    sublime.status_message(self.name_cli+": platforms synchronized")
 
   def plugin_list_on_success(self):
     plugin_list_to_remove = []
@@ -3148,7 +3202,107 @@ class sync_cordova_projectCommand(cordova_baseCommand):
         self.settings["flow_settings"]["libs"].append(plugin_lib_path_with_placeholder)
 
     save_project_flowconfig(self.settings["flow_settings"])
-    sublime.status_message("Cordova: plugins synchronized")
+    sublime.status_message(self.name_cli+": plugins synchronized")
+
+
+## Ionic ##
+import sublime, sublime_plugin
+import os, webbrowser, shlex
+from node.main import NodeJS
+
+class enable_menu_ionicViewEventListener(enable_menu_cliViewEventListener):
+  cli = "ionic"
+  path = os.path.join(PACKAGE_PATH, "project", "ionic", "Main.sublime-menu")
+  path_disabled = os.path.join(PACKAGE_PATH, "project", "ionic", "Main_disabled.sublime-menu")
+
+  def on_activated_async(self, **kwargs):
+    kwargs["cli"] = self.cli
+    kwargs["path"] = self.path
+    kwargs["path_disabled"] = self.path_disabled
+    sublime.set_timeout_async(lambda: enable_menu_cliViewEventListener.on_activated_async(self, **kwargs))
+
+class ionic_baseCommand(cordova_baseCommand):
+  cli = "ionic"
+  name_cli = "Ionic"
+
+  def append_args_execute(self) :
+    custom_args = []
+    command = self.command_with_options[0]
+    if command == "serve" :
+      custom_args = custom_args + ["--port"] + [self.settings["cordova_settings"]["serve_port"]]
+
+    return super(ionic_baseCommand, self).append_args_execute() + custom_args
+
+  def before_execute(self):
+    command = self.command_with_options[0]
+    if command == "serve" :
+      del self.command_with_options[1]
+
+  def is_enabled(self):
+    return is_type_javascript_project("ionic") and is_type_javascript_project("cordova")
+
+  def is_visible(self):
+    return is_type_javascript_project("ionic") and is_type_javascript_project("cordova")
+
+class manage_ionicCommand(ionic_baseCommand, manage_cordovaCommand):
+
+  def run(self, **kwargs):
+    super(manage_ionicCommand, self).run(**kwargs)
+
+manage_serve_ionic_window_command_processes = {}
+
+class manage_serve_ionicCommand(ionic_baseCommand, manage_serve_cordovaCommand):
+
+  def process_communicate(self, line):
+    global manage_serve_ionic_window_command_processes
+
+    if not self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
+      manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]] = {
+        "process": self.process
+      }
+
+  def on_done(self):
+    global manage_serve_ionic_window_command_processes
+    if self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
+      del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+
+  def can_execute(self):
+    global manage_serve_ionic_window_command_processes
+    if not self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
+      return True
+    else :
+      if (manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
+        self.stop_now = True
+        self.process = manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]["process"]
+        del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+        self.stop_process()
+      else :
+        del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+    return False
+
+
+class manage_plugin_ionicCommand(manage_ionicCommand, manage_plugin_cordovaCommand):
+
+  def run(self, **kwargs):
+    super(manage_plugin_ionicCommand, self).run(**kwargs)
+
+class manage_add_platform_ionicCommand(manage_ionicCommand, manage_add_platform_cordovaCommand):
+
+  def run(self, **kwargs):
+    super(manage_add_platform_ionicCommand, self).run(**kwargs)
+
+class manage_remove_platform_ionicCommand(manage_ionicCommand, manage_remove_platform_cordovaCommand):
+
+  def run(self, **kwargs):
+    super(manage_remove_platform_ionicCommand, self).run(**kwargs)
+
+class sync_ionic_projectCommand(ionic_baseCommand, sync_cordova_projectCommand):
+
+  platform_list = []
+  plugin_list = []
+
+  def run(self, **kwargs):
+    super(sync_ionic_projectCommand, self).run(**kwargs)
 
 
 def plugin_loaded():

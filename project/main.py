@@ -104,3 +104,6 @@ ${include manage_cliCommand.py}
 
 ## Cordova ##
 ${include cordova/main.py}
+
+## Ionic ##
+${include ionic/main.py}
