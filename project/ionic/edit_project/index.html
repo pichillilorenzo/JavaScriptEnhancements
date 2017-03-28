@@ -5,10 +5,143 @@
       <div class="pmd-card-body">
         
         <div class="form-group pmd-textfield">
-          <label for="" class="control-label">:</label>
-          <input id="" type="number" class="form-control">
-          <span class="pmd-textfield-focused"></span>
-          <p class="help-text"></p>
+          <label for="cli_platform_options" class="control-label">CLI 'platform' options:</label>
+          <select class="cli_platform_options form-control" multiple="multiple">
+            <option value="">None</option>
+            <option value="--noresources">--noresources</option>
+            <option value="--nosave">--nosave</option>
+          </select>
+          <p class="help-text">Select options that apply to 'platform' command to all platforms and modes.</p>
+        </div>
+
+        <hr>
+
+        <div class="form-group pmd-textfield">
+          <label for="cli_build_options" class="control-label">CLI 'build' options:</label>
+          <select class="cli_build_options form-control" multiple="multiple">
+            <option value="">None</option>
+            <option value="--nohooks">--nohooks</option>
+          </select>
+          <p class="help-text">Select options that apply to 'build' command to all platforms and modes. The build command is a proxy for Cordova’s build command.</p>
+        </div>
+
+        <hr>
+        
+        <div class="form-group pmd-textfield">
+          <label for="cli_emulate_options" class="control-label">CLI 'emulate' options:</label>
+          <select class="cli_emulate_options form-control" multiple="multiple">
+            <option value="">None</option>
+            <option value="--livereload">--livereload</option>
+            <option value="--consolelogs">--consolelogs</option>
+            <option value="--serverlogs">--serverlogs</option>
+            <option value="--emulator">--emulator</option>
+          </select>
+          <div class="form-group pmd-textfield">
+            <label for="address_emulate" class="control-label">Address:</label>
+            <input type="text" class="form-control address_emulate">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="port_emulate" class="control-label">Port:</label>
+            <input type="number" min="0" class="form-control port_emulate">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <p class="help-text">Select options that apply to 'emulate' command to all platforms and modes</p>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="mode_list" class="control-label">Mode:</label>
+          <select class="mode_list" class="form-control">
+            <option value="debug">debug</option>
+            <option value="release">release</option>
+          </select>
+          <div class="debug mode active form-group pmd-textfield">
+            <label for="platform_list" class="control-label">Per platform:</label>
+            <select class="platform_list" class="form-control">
+            </select>
+            <div class="container-input-platform-emulate"></div>
+            <span class="pmd-textfield-focused"></span>
+            <p class="help-text">Platform specific options (--)</p>
+          </div>
+          <div class="release mode form-group pmd-textfield">
+            <label for="platform_list" class="control-label">Per platform:</label>
+            <select class="platform_list" class="form-control">
+            </select>
+            <div class="container-input-platform-emulate"></div>
+            <span class="pmd-textfield-focused"></span>
+            <p class="help-text">Platform specific options (--)</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group pmd-textfield">
+          <label for="cli_run_options" class="control-label">CLI 'run' options:</label>
+          <select class="cli_run_options form-control" multiple="multiple">
+            <option value="">None</option>
+            <option value="--livereload">--livereload</option>
+            <option value="--consolelogs">--consolelogs</option>
+            <option value="--serverlogs">--serverlogs</option>
+            <option value="--emulator">--emulator</option>
+          </select>
+          <div class="form-group pmd-textfield">
+            <label for="address_run" class="control-label">Address:</label>
+            <input type="text" class="form-control address_run">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="port_run" class="control-label">Port:</label>
+            <input type="number" min="0" class="form-control port_run">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <p class="help-text">Select options that apply to 'run' command to all platforms and modes</p>
+        </div>
+
+        <hr>
+
+        <div class="form-group pmd-textfield">
+          <label for="cli_emulate_options" class="control-label">CLI 'serve' options:</label>
+          <select class="cli_serve_options form-control" multiple="multiple">
+            <option value="">None</option>
+            <option value="--consolelogs">--consolelogs</option>
+            <option value="--serverlogs">--serverlogs</option>
+            <option value="--nobrowser">--nobrowser</option>
+            <option value="--nolivereload">--nolivereload</option>
+            <option value="--noproxy">--noproxy</option>
+            <option value="--all">--all</option>
+            <option value="--lab">--lab</option>
+            <option value="--nogulp">--nogulp</option>
+          </select>
+          <div class="form-group pmd-textfield">
+            <label for="port_serve" class="control-label">Port:</label>
+            <input type="number" min="0" class="form-control port_serve">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="livereload-port_serve" class="control-label">Livereload-Port:</label>
+            <input type="text" class="form-control livereload-port_serve">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="address_serve" class="control-label">Address:</label>
+            <input type="text" class="form-control address_serve">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="browser_serve" class="control-label">Browser:</label>
+            <input type="text" class="form-control browser_serve">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="browseroption_serve" class="control-label">Browseroption:</label>
+            <input type="text" class="form-control browseroption_serve">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <div class="form-group pmd-textfield">
+            <label for="platform_serve" class="control-label">Platform:</label>
+            <input type="text" class="form-control platform_serve">
+            <span class="pmd-textfield-focused"></span>
+          </div>
+          <p class="help-text">Select options that apply to 'serve' command to all platforms and modes</p>
         </div>
 
       </div>

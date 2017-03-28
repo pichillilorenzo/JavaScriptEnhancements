@@ -72,7 +72,7 @@ ipcMain.on('data', (event, project) => {
 
   let project_type_default_settings = []
   /* project_type.length evaluate each time because of possible type dependecies */
-  for(let i = 0 i < project_type.length; i++){
+  for(let i = 0; i < project_type.length; i++){
     let project_type_default_config = {}
     try {
       project_type_default_config = require('../../default_settings/'+project_type[i]+'/default_config.js')

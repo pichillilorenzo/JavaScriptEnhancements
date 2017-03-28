@@ -6,14 +6,14 @@
         
         <div class="form-group pmd-textfield">
           <label for="serve_port" class="control-label">Port 'serve' command:</label>
-          <input id="serve_port" type="number" class="form-control">
+          <input type="number" min="0" class="form-control serve_port">
           <span class="pmd-textfield-focused"></span>
           <p class="help-text">Port used when launching a local web server for www/ assets (default:8000).</p>
         </div>
 
         <div class="form-group pmd-textfield">
           <label for="cli_global_options" class="control-label">CLI global options:</label>
-          <select id="cli_global_options" class="form-control" multiple="multiple">
+          <select class="form-control cli_global_options" multiple="multiple">
             <option value="">None</option>
             <option value="-d">--verbose</option>
             <option value="--no-update-notifier">--no-update-notifier</option>
@@ -27,7 +27,7 @@
         
         <div class="form-group pmd-textfield">
           <label for="cli_compile_options" class="control-label">CLI 'compile' options:</label>
-          <select id="cli_compile_options" class="form-control" multiple="multiple">
+          <select class="form-control cli_compile_options" multiple="multiple">
             <option value="">None</option>
             <option value="--device">--device</option>
             <option value="--emulator">--emulator</option>
@@ -63,7 +63,7 @@
 
         <div class="form-group pmd-textfield">
           <label for="cli_build_options" class="control-label">CLI 'build' options:</label>
-          <select id="cli_build_options" class="form-control" multiple="multiple">
+          <select class="form-control cli_build_options" multiple="multiple">
             <option value="">None</option>
             <option value="--device">--device</option>
             <option value="--emulator">--emulator</option>
@@ -101,7 +101,7 @@
 
         <div class="form-group pmd-textfield">
           <label for="cli_run_options" class="control-label">CLI 'run' options:</label>
-          <select id="cli_run_options" class="form-control" multiple="multiple">
+          <select class="form-control cli_run_options" multiple="multiple">
             <option value="">None</option>
             <option value="--noprepare">--noprepare</option>
             <option value="--nobuild">--nobuild</option>

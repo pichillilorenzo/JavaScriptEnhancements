@@ -32,7 +32,7 @@
             "children": [
               {
                 "caption": "On",
-                "command": "manage_plugin_cordova",
+                "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["telemetry", "on"],
                   "status_message_before": "turning on telemetry...",
@@ -42,7 +42,7 @@
               },
               {
                 "caption": "Off",
-                "command": "manage_plugin_cordova",
+                "command": "manage_cordova",
                 "args": {
                   "command_with_options": ["telemetry", "off"],
                   "status_message_before": "turning off telemetry...",
@@ -164,6 +164,19 @@
                   "status_message_before": "listing plugins...",
                   "output_panel_name": "panel_plugin_cordova",
                   "hide_panel_on_success": false
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "save"],
+                  "status_message_before": "saving plugins...",
+                  "output_panel_name": "panel_plugin_cordova",
+                  "status_message_after_on_success": "plugins saved",
+                  "status_message_after_on_error": "errors when saving plugins",
+                  "hide_panel_on_success": true,
+                  "show_panel": false
                 }
               }
             ]

@@ -27,31 +27,6 @@
               "hide_panel_on_success": false
             }
           },
-          {
-            "caption": "Telemetry",
-            "children": [
-              {
-                "caption": "On",
-                "command": "manage_plugin_ionic",
-                "args": {
-                  "command_with_options": ["telemetry", "on"],
-                  "status_message_before": "turning on telemetry...",
-                  "output_panel_name": "panel_telemetry_ionic",
-                  "hide_panel_on_success": true
-                }
-              },
-              {
-                "caption": "Off",
-                "command": "manage_plugin_ionic",
-                "args": {
-                  "command_with_options": ["telemetry", "off"],
-                  "status_message_before": "turning off telemetry...",
-                  "output_panel_name": "panel_telemetry_ionic",
-                  "hide_panel_on_success": true
-                }
-              }
-            ]
-          },
           {"caption": "-"},
           { 
             "caption": "Platforms",
@@ -240,6 +215,35 @@
             ]
           },
           {
+            "caption": "Emulate",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_ionic",
+                "args": {
+                  "command_with_options": ["emulate", ":platform", "--debug"],
+                  "status_message_before": "emulating :platform platform in debug mode...",
+                  "output_panel_name": "panel_emulate_ionic",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_ionic",
+                "args": {
+                  "command_with_options": ["emulate", ":platform", "--release"],
+                  "status_message_before": "emulating :platform platform in release mode...",
+                  "output_panel_name": "panel_emulate_ionic",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {
             "caption": "Run",
             "children": [
               {
@@ -275,18 +279,6 @@
               "command_with_options": ["serve"],
               "status_message_before": "serving app...",
               "output_panel_name": "panel_serve_ionic",
-              "hide_panel_on_success": true
-            }
-          },
-          {
-            "caption": "Clean",
-            "command": "manage_ionic",
-            "args": {
-              "command_with_options": ["clean", ":platform"],
-              "status_message_before": "cleaning :platform platform...",
-              "output_panel_name": "panel_clean_ionic",
-              "ask_platform": true,
-              "ask_platform_type": "installed",
               "hide_panel_on_success": true
             }
           },

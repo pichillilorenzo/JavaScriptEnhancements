@@ -109,20 +109,14 @@
     [
       { "caption": "-" },
       {
-        "caption": "New",
-        "id": "new",
-        "mnemonic": "F",
-        "children": [
-          {
-            "caption": "JavaScript Project",
-            "command": "create_new_project",
-            "id": "create_new_project"
-          }
-        ],
+        "caption": "Create JavaScript Project",
+        "command": "create_new_project",
+        "id": "create_new_project"
       },
       {
         "caption": "Edit JavaScript Project",
-        "command": "edit_javascript_project"
+        "command": "edit_javascript_project",
+        "id": "edit_javascript_project",
       }
     ]
   },

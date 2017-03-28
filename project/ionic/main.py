@@ -22,6 +22,15 @@ class ionic_baseCommand(cordova_baseCommand):
     command = self.command_with_options[0]
     if command == "serve" :
       custom_args = custom_args + ["--port"] + [self.settings["cordova_settings"]["serve_port"]]
+    elif command == "platform" or command == "build" or command == "run" or command == "emulate":
+      custom_args = custom_args + self.settings["ionic_settings"]["cli_"+command+"_options"]
+      if command == "emulate":
+        mode = self.command_with_options[2][2:]
+        platform = self.placeholders[":platform"]
+        custom_args_platform = ""
+        custom_args_platform = Util.getDictItemIfExists(self.settings["ionic_settings"]["platform_"+command+"_options"][mode], platform)
+        if custom_args_platform :
+          custom_args = custom_args + ["--"] + shlex.split(custom_args_platform)
 
     return super(ionic_baseCommand, self).append_args_execute() + custom_args
 

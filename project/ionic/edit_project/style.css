@@ -1,0 +1,12 @@
+#ionic-settings .platform{
+  display: none;
+}
+#ionic-settings .platform.active{
+  display: block;
+}
+#ionic-settings .mode{
+  display: none;
+}
+#ionic-settings .mode.active{
+  display: block;
+}
