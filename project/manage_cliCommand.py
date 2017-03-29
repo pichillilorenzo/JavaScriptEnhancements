@@ -1,3 +1,33 @@
+import sublime, sublime_plugin
+import os
+
+manage_cli_window_command_processes = {}
+
+class send_input_to_cliCommand(sublime_plugin.TextCommand):
+  last_output_panel_name = None
+  window = None
+  def run(self, edit, **args):
+    self.window = self.view.window()
+    self.last_output_panel_name = self.view.window().active_panel().replace("output.", "")
+    sublime.set_timeout_async(lambda : self.window.show_input_panel("Input: ", "", self.send_input, None, None))
+
+  def send_input(self, input) :
+    global manage_cli_window_command_processes
+    settings = get_project_settings()
+    if self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes :
+      process = manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]["process"]
+      process.stdin.write("{}\n".format(input).encode("utf-8"))
+      process.stdin.flush()
+      self.window.run_command("show_panel", {"panel": "output."+self.last_output_panel_name})
+
+  def is_enabled(self):
+    global manage_cli_window_command_processes
+    return True if ( self.view.settings().get("syntax") == os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax") ) else False
+  
+  def is_visible(self):
+    global manage_cli_window_command_processes
+    return True if ( self.view.settings().get("syntax") == os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax") ) else False
+  
 class print_panel_cliCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):   
     line = args.get("line")
@@ -83,6 +113,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     node = NodeJS()
     if self.show_panel :
       self.panel = self.window.create_output_panel(self.output_panel_name, False)
+      self.panel.set_read_only(True)
+      self.panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
       self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
     self.command_with_options = self.command_with_options + self.append_args_execute()
     self.before_execute()

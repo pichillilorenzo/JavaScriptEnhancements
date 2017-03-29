@@ -76,7 +76,7 @@ ipcMain.on('form-project-details', (event, project_details) => {
       }
     }
     if(types.must_add){
-      for(let i = 0, length1 = types.must_add.length; i < length1; i++){
+      for(let i = 0; i < types.must_add.length; i++){
         let project_type_default_config =  {}
         try {
           project_type_default_config = require('../../default_settings/'+types.must_add[i]+'/default_config.js')
@@ -95,6 +95,47 @@ ipcMain.on('form-project-details', (event, project_details) => {
             fs.writeFileSync(fd, JSON.stringify(project_type_default_config[types.must_add[i]+"_settings"], null, 2))
           }, path.join(jc_project_settings_dir_name, types.must_add[i]+"_settings.json"), "w+")
         }
+      }
+    }
+
+    /* check dependencies */
+    let dependencies = {}
+    for(let i = 0; i < project_details.type.length; i++){
+      let project_type_default_config = {}
+      try {
+        project_type_default_config = require('../../default_settings/'+project_details.type[i]+'/default_config.js')
+        if (project_type_default_config.dependencies) {
+          for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
+            let dipendency = project_type_default_config.dependencies[j]
+            if (project_details.type.indexOf(dipendency) < 0) {
+              let dependency_default_config = require('../../default_settings/'+dipendency+'/default_config.js')
+              if (dependency_default_config) {
+                dependencies[dipendency] = dependency_default_config
+              }
+              project_details.type.push(dipendency)
+            }
+          }
+        }
+      } catch(e) {
+        continue
+      }
+    }
+
+    for(let dipendency_name in dependencies){
+      let dipendency = dependencies[dipendency_name]
+      if(dipendency.flow_settings) {
+        for (let key in dipendency.flow_settings) {
+          if (Array.isArray(data_project.settings.flow_settings[key])){
+            data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(dipendency.flow_settings[key])
+          }
+        }
+      }
+
+      if(dipendency[dipendency_name+"_settings"]){
+        
+        util.openWithSync((fd) => {
+          fs.writeFileSync(fd, JSON.stringify(dipendency[dipendency_name+"_settings"], null, 2))
+        }, path.join(jc_project_settings_dir_name, dipendency_name+"_settings.json"), "w+")
       }
     }
 

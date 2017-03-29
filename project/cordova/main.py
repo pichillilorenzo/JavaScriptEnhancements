@@ -156,17 +156,15 @@ class manage_cordovaCommand(cordova_baseCommand):
       self.placeholders[":plugin"] = self.plugin_list[index]
       super(manage_cordovaCommand, self).run(**kwargs)
 
-manage_serve_cordova_window_command_processes = {}
-
 class manage_serve_cordovaCommand(cordova_baseCommand):
 
   is_stoppable = True
 
   def process_communicate(self, line):
-    global manage_serve_cordova_window_command_processes
+    global manage_cli_window_command_processes
 
-    if not self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
-      manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]] = {
+    if not self.settings["project_dir_name"] in manage_cli_window_command_processes :
+      manage_cli_window_command_processes[self.settings["project_dir_name"]] = {
         "process": self.process
       }
       
@@ -178,22 +176,22 @@ class manage_serve_cordovaCommand(cordova_baseCommand):
       webbrowser.open(url)
 
   def on_done(self):
-    global manage_serve_cordova_window_command_processes
-    if self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
-      del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+    global manage_cli_window_command_processes
+    if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
   def can_execute(self):
-    global manage_serve_cordova_window_command_processes
-    if not self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
+    global manage_cli_window_command_processes
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
       return True
     else :
-      if (manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
+      if (manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"].poll() == None) :
         self.stop_now = True
-        self.process = manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]["process"]
-        del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
         self.stop_process()
       else :
-        del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
     return False
 
 class manage_plugin_cordovaCommand(manage_cordovaCommand):

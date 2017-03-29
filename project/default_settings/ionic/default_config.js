@@ -24,5 +24,5 @@ module.exports = {
       "release": {}
     }
   },
-  "dependecies": ["cordova"]
+  "dependencies": ["cordova"]
 }

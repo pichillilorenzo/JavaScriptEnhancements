@@ -87,6 +87,7 @@ class NodeJS(object):
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args
     
     print(args)
+    
     owd = os.getcwd()
     if chdir :
       os.chdir(chdir)
@@ -116,27 +117,35 @@ class NodeJS(object):
 
     elif not wait_terminate and func_stdout :
 
-      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout))
+      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout, owd))
+
+      if chdir:
+        os.chdir(owd)
       
-  def wrapper_func_stdout(self, args, func_stdout):
+  def wrapper_func_stdout(self, args, func_stdout, owd = ""):
     with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+
+      if owd:
+        os.chdir(owd)
+
       func_stdout(None, p)
       flag_error = False
-        
+      
       for line in p.stdout:
         line = codecs.decode(line, "utf-8", "ignore")
         func_stdout(line, p)
 
       for line in p.stderr:
-        line = codecs.decode(line, "utf-8", "ignore")
         if not flag_error:
           flag_error = True
+        line = codecs.decode(line, "utf-8", "ignore")
         func_stdout(line, p)
 
-      if flag_error:
-        func_stdout("OUTPUT-ERROR", p)
-      else :
+      if not flag_error:
         func_stdout("OUTPUT-SUCCESS", p)
+      else :
+        func_stdout("OUTPUT-ERROR", p)
+
       func_stdout("OUTPUT-DONE", p)
       
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :

@@ -50,35 +50,33 @@ class manage_ionicCommand(ionic_baseCommand, manage_cordovaCommand):
   def run(self, **kwargs):
     super(manage_ionicCommand, self).run(**kwargs)
 
-manage_serve_ionic_window_command_processes = {}
-
 class manage_serve_ionicCommand(ionic_baseCommand, manage_serve_cordovaCommand):
 
   def process_communicate(self, line):
-    global manage_serve_ionic_window_command_processes
+    global manage_cli_window_command_processes
 
-    if not self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
-      manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]] = {
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name] = {
         "process": self.process
       }
 
   def on_done(self):
-    global manage_serve_ionic_window_command_processes
-    if self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
-      del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+    global manage_cli_window_command_processes
+    if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
   def can_execute(self):
-    global manage_serve_ionic_window_command_processes
-    if not self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
+    global manage_cli_window_command_processes
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
       return True
     else :
-      if (manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
+      if (manage_cli_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
         self.stop_now = True
-        self.process = manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]["process"]
-        del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
         self.stop_process()
       else :
-        del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
     return False
 
 

@@ -2741,6 +2741,36 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
 
 
+import sublime, sublime_plugin
+import os
+
+manage_cli_window_command_processes = {}
+
+class send_input_to_cliCommand(sublime_plugin.TextCommand):
+  last_output_panel_name = None
+  window = None
+  def run(self, edit, **args):
+    self.window = self.view.window()
+    self.last_output_panel_name = self.view.window().active_panel().replace("output.", "")
+    sublime.set_timeout_async(lambda : self.window.show_input_panel("Input: ", "", self.send_input, None, None))
+
+  def send_input(self, input) :
+    global manage_cli_window_command_processes
+    settings = get_project_settings()
+    if self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes :
+      process = manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]["process"]
+      process.stdin.write("{}\n".format(input).encode("utf-8"))
+      process.stdin.flush()
+      self.window.run_command("show_panel", {"panel": "output."+self.last_output_panel_name})
+
+  def is_enabled(self):
+    global manage_cli_window_command_processes
+    return True if ( self.view.settings().get("syntax") == os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax") ) else False
+  
+  def is_visible(self):
+    global manage_cli_window_command_processes
+    return True if ( self.view.settings().get("syntax") == os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax") ) else False
+  
 class print_panel_cliCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):   
     line = args.get("line")
@@ -2826,6 +2856,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     node = NodeJS()
     if self.show_panel :
       self.panel = self.window.create_output_panel(self.output_panel_name, False)
+      self.panel.set_read_only(True)
+      self.panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
       self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
     self.command_with_options = self.command_with_options + self.append_args_execute()
     self.before_execute()
@@ -3075,17 +3107,15 @@ class manage_cordovaCommand(cordova_baseCommand):
       self.placeholders[":plugin"] = self.plugin_list[index]
       super(manage_cordovaCommand, self).run(**kwargs)
 
-manage_serve_cordova_window_command_processes = {}
-
 class manage_serve_cordovaCommand(cordova_baseCommand):
 
   is_stoppable = True
 
   def process_communicate(self, line):
-    global manage_serve_cordova_window_command_processes
+    global manage_cli_window_command_processes
 
-    if not self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
-      manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]] = {
+    if not self.settings["project_dir_name"] in manage_cli_window_command_processes :
+      manage_cli_window_command_processes[self.settings["project_dir_name"]] = {
         "process": self.process
       }
       
@@ -3097,22 +3127,22 @@ class manage_serve_cordovaCommand(cordova_baseCommand):
       webbrowser.open(url)
 
   def on_done(self):
-    global manage_serve_cordova_window_command_processes
-    if self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
-      del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+    global manage_cli_window_command_processes
+    if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
   def can_execute(self):
-    global manage_serve_cordova_window_command_processes
-    if not self.settings["project_dir_name"] in manage_serve_cordova_window_command_processes :
+    global manage_cli_window_command_processes
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
       return True
     else :
-      if (manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
+      if (manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"].poll() == None) :
         self.stop_now = True
-        self.process = manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]["process"]
-        del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
         self.stop_process()
       else :
-        del manage_serve_cordova_window_command_processes[self.settings["project_dir_name"]]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
     return False
 
 class manage_plugin_cordovaCommand(manage_cordovaCommand):
@@ -3259,35 +3289,33 @@ class manage_ionicCommand(ionic_baseCommand, manage_cordovaCommand):
   def run(self, **kwargs):
     super(manage_ionicCommand, self).run(**kwargs)
 
-manage_serve_ionic_window_command_processes = {}
-
 class manage_serve_ionicCommand(ionic_baseCommand, manage_serve_cordovaCommand):
 
   def process_communicate(self, line):
-    global manage_serve_ionic_window_command_processes
+    global manage_cli_window_command_processes
 
-    if not self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
-      manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]] = {
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name] = {
         "process": self.process
       }
 
   def on_done(self):
-    global manage_serve_ionic_window_command_processes
-    if self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
-      del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+    global manage_cli_window_command_processes
+    if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
   def can_execute(self):
-    global manage_serve_ionic_window_command_processes
-    if not self.settings["project_dir_name"] in manage_serve_ionic_window_command_processes :
+    global manage_cli_window_command_processes
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
       return True
     else :
-      if (manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
+      if (manage_cli_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
         self.stop_now = True
-        self.process = manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]["process"]
-        del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
         self.stop_process()
       else :
-        del manage_serve_ionic_window_command_processes[self.settings["project_dir_name"]]
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
     return False
 
 
