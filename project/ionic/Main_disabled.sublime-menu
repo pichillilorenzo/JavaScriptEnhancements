@@ -279,7 +279,9 @@
               "command_with_options": ["serve"],
               "status_message_before": "serving app...",
               "output_panel_name": "panel_serve_ionic",
-              "hide_panel_on_success": true
+              "hide_panel_on_success": true,
+              "can_send_input": true,
+              "is_stoppable": true
             }
           },
           {

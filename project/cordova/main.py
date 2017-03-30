@@ -158,41 +158,13 @@ class manage_cordovaCommand(cordova_baseCommand):
 
 class manage_serve_cordovaCommand(cordova_baseCommand):
 
-  is_stoppable = True
-
   def process_communicate(self, line):
-    global manage_cli_window_command_processes
-
-    if not self.settings["project_dir_name"] in manage_cli_window_command_processes :
-      manage_cli_window_command_processes[self.settings["project_dir_name"]] = {
-        "process": self.process
-      }
-      
     if line and line.strip().startswith("Static file server running on: "):
       line = line.strip()
       url = line.replace("Static file server running on: ", "")
       url = url.replace(" (CTRL + C to shut down)", "")
       url = url.strip()
-      webbrowser.open(url)
-
-  def on_done(self):
-    global manage_cli_window_command_processes
-    if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-      del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-
-  def can_execute(self):
-    global manage_cli_window_command_processes
-    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-      return True
-    else :
-      if (manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"].poll() == None) :
-        self.stop_now = True
-        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-        self.stop_process()
-      else :
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-    return False
+      webbrowser.open(url) 
 
 class manage_plugin_cordovaCommand(manage_cordovaCommand):
 

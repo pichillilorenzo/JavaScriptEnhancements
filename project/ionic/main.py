@@ -51,34 +51,9 @@ class manage_ionicCommand(ionic_baseCommand, manage_cordovaCommand):
     super(manage_ionicCommand, self).run(**kwargs)
 
 class manage_serve_ionicCommand(ionic_baseCommand, manage_serve_cordovaCommand):
-
-  def process_communicate(self, line):
-    global manage_cli_window_command_processes
-
-    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-      manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name] = {
-        "process": self.process
-      }
-
-  def on_done(self):
-    global manage_cli_window_command_processes
-    if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-      del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-
-  def can_execute(self):
-    global manage_cli_window_command_processes
-    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-      return True
-    else :
-      if (manage_cli_window_command_processes[self.settings["project_dir_name"]]["process"].poll() == None) :
-        self.stop_now = True
-        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-        self.stop_process()
-      else :
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-    return False
-
+  
+  def run(self, **kwargs):
+    super(manage_serve_ionicCommand, self).run(**kwargs)
 
 class manage_plugin_ionicCommand(manage_ionicCommand, manage_plugin_cordovaCommand):
 
@@ -94,6 +69,11 @@ class manage_remove_platform_ionicCommand(manage_ionicCommand, manage_remove_pla
 
   def run(self, **kwargs):
     super(manage_remove_platform_ionicCommand, self).run(**kwargs)
+
+  def on_success(self):
+    Util.delItemIfExists(self.settings["ionic_settings"]["platform_emulate_options"]["debug"], self.placeholders[":platform"])
+    Util.delItemIfExists(self.settings["ionic_settings"]["platform_emulate_options"]["release"], self.placeholders[":platform"])
+    super(manage_remove_platform_ionicCommand, self).on_success()
 
 class sync_ionic_projectCommand(ionic_baseCommand, sync_cordova_projectCommand):
 
