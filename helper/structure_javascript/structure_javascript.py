@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import subprocess, time
+import subprocess, time, json
 from my_socket.main import mySocketServer  
 from node.main import NodeJS
 import util.main as Util
@@ -62,7 +62,7 @@ class update_structure_javascriptViewEventListener(sublime_plugin.ViewEventListe
   def on_modified_async(self) :
     global socket_server_list 
   
-    if socket_server_list["structure_javascript"].socket :
+    if not socket_server_list["structure_javascript"].is_socket_closed() :
       
       filename = self.view.file_name()
       filename = filename if filename else ""
@@ -73,26 +73,46 @@ class update_structure_javascriptViewEventListener(sublime_plugin.ViewEventListe
         socket_server_list["structure_javascript"].update_time()
         socket_server_list["structure_javascript"].handle_new_changes(update_structure_javascript, "update_structure_javascript"+filename, self.view, filename, clients)
 
+class close_structure_javascriptEventListener(sublime_plugin.EventListener):
+  closing_view = None
+  def on_close(self, view):
+    self.closing_view = view
+    sublime.set_timeout_async(self.on_close_async)
+
+  def on_close_async(self):
+    global socket_server_list 
+  
+    if self.closing_view and not socket_server_list["structure_javascript"].is_socket_closed() :
+      
+      filename = self.closing_view.file_name()
+      filename = filename if filename else ""
+
+      clients = socket_server_list["structure_javascript"].socket.find_clients_by_field("filename", filename)
+      
+      if clients:
+        data = dict()
+        data["command"] = "close_window"
+        data = json.dumps(data)
+        socket_server_list["structure_javascript"].socket.send_to(clients[0]["socket"], clients[0]["addr"], data)
+
 class view_structure_javascriptCommand(sublime_plugin.TextCommand):
   def run(self, edit, *args):
     global socket_server_list
 
-    if socket_server_list["structure_javascript"].socket and socket_server_list["structure_javascript"].socket.close_if_not_clients():
-      socket_server_list["structure_javascript"].socket = None
+    if not socket_server_list["structure_javascript"].is_socket_closed() :
+      socket_server_list["structure_javascript"].socket.close_if_not_clients()
       
-    if socket_server_list["structure_javascript"].socket == None :
-      
-      socket_server_list["structure_javascript"].current_selected_view = self.view
-
+    if socket_server_list["structure_javascript"].is_socket_closed() :
+    
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
         json_data = json.loads(client_data)
 
         if json_data["command"] == "ready":
-          filename = socket_server_list["structure_javascript"].get_file_name()
+          filename = client_fields["view"].file_name()
           filename = filename if filename else ""
 
-          update_structure_javascript(socket_server_list["structure_javascript"].current_selected_view, filename, [{"socket": conn, "addr": addr}])
+          update_structure_javascript(client_fields["view"], filename, [{"socket": conn, "addr": addr}])
 
         elif json_data["command"] == "set_dot_line" and os.path.isfile(client_fields["filename"]):
           other_view = sublime.active_window().open_file(client_fields["filename"])
@@ -100,16 +120,20 @@ class view_structure_javascriptCommand(sublime_plugin.TextCommand):
 
       def client_connected(conn, addr, ip, port, client_fields):
         global socket_server_list   
-        filename = socket_server_list["structure_javascript"].get_file_name()
+        view = sublime.active_window().active_view()
+        filename = view.file_name()
         filename = filename if filename else ""
         client_fields["filename"] = filename
+        client_fields["view"] = view
 
       def client_disconnected(conn, addr, ip, port):
-        socket_server_list["structure_javascript"].client_thread = None
-        if socket_server_list["structure_javascript"].socket.close_if_not_clients() :
-            socket_server_list["structure_javascript"].socket = None
+        global socket_server_list
+        socket_server_list["structure_javascript"].socket.close_if_not_clients()
 
       socket_server_list["structure_javascript"].start(recv, client_connected, client_disconnected)
+
+    else :
+      socket_server_list["structure_javascript"].call_ui()
 
   def set_dot_line(self, view, line) :
 

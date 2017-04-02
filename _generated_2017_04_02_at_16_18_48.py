@@ -221,10 +221,8 @@ class SocketCallUI(object):
     self.name = name
     self.host = host
     self.port = port
-    self.client_thread = None
     self.client_ui_file = client_ui_file
     self.socket = None
-    self.current_selected_view = None
     self.last_modified = None
     self.wait_for_new_changes = wait_for_new_changes
 
@@ -236,7 +234,10 @@ class SocketCallUI(object):
   def start(self, handle_recv, handle_client_connection, handle_client_disconnection):
     self.init()
     self.listen(handle_recv, handle_client_connection, handle_client_disconnection)
-    self.client_thread = call_ui(self.client_ui_file , self.host, self.port)
+    self.call_ui()
+
+  def call_ui(self):
+    call_ui(self.client_ui_file , self.host, self.port)
 
   def listen(self, handle_recv, handle_client_connection, handle_client_disconnection):
     self.socket = mySocketServer(self.name) 
@@ -245,6 +246,9 @@ class SocketCallUI(object):
     self.socket.handle_client_connection(handle_client_connection)
     self.socket.handle_client_disconnection(handle_client_disconnection)
     self.socket.listen()
+    
+  def is_socket_closed(self):
+    return True if not self.socket or not self.socket.get_socket() else False
 
   def update_time(self):
     self.last_modified = time.time()
@@ -261,9 +265,6 @@ class SocketCallUI(object):
         break
     fun(*args)
     
-  def get_file_name(self):
-    return self.current_selected_view.file_name()
-
 
 class surround_withCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -417,6 +418,8 @@ class sort_arrayCommand(sublime_plugin.TextCommand):
         return False
     return True
 
+import re
+
 class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
@@ -434,6 +437,7 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
         object_literal = item_object_literal.get("region_string_stripped")
         from node.main import NodeJS
         node = NodeJS()
+        object_literal = re.sub(r'[\n\r\t]', ' ', object_literal)
         object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
         object_literal = [(key, json.dumps(value)) for key, value in object_literal.items()]
 
@@ -1723,7 +1727,7 @@ def back_to_popup(*str_arg):
 
 
 import sublime, sublime_plugin
-import subprocess, time
+import subprocess, time, json
 from my_socket.main import mySocketServer  
 from node.main import NodeJS
 import util.main as Util
@@ -1786,7 +1790,7 @@ class update_structure_javascriptViewEventListener(sublime_plugin.ViewEventListe
   def on_modified_async(self) :
     global socket_server_list 
   
-    if socket_server_list["structure_javascript"].socket :
+    if not socket_server_list["structure_javascript"].is_socket_closed() :
       
       filename = self.view.file_name()
       filename = filename if filename else ""
@@ -1797,26 +1801,46 @@ class update_structure_javascriptViewEventListener(sublime_plugin.ViewEventListe
         socket_server_list["structure_javascript"].update_time()
         socket_server_list["structure_javascript"].handle_new_changes(update_structure_javascript, "update_structure_javascript"+filename, self.view, filename, clients)
 
+class close_structure_javascriptEventListener(sublime_plugin.EventListener):
+  closing_view = None
+  def on_close(self, view):
+    self.closing_view = view
+    sublime.set_timeout_async(self.on_close_async)
+
+  def on_close_async(self):
+    global socket_server_list 
+  
+    if self.closing_view and not socket_server_list["structure_javascript"].is_socket_closed() :
+      
+      filename = self.closing_view.file_name()
+      filename = filename if filename else ""
+
+      clients = socket_server_list["structure_javascript"].socket.find_clients_by_field("filename", filename)
+      
+      if clients:
+        data = dict()
+        data["command"] = "close_window"
+        data = json.dumps(data)
+        socket_server_list["structure_javascript"].socket.send_to(clients[0]["socket"], clients[0]["addr"], data)
+
 class view_structure_javascriptCommand(sublime_plugin.TextCommand):
   def run(self, edit, *args):
     global socket_server_list
 
-    if socket_server_list["structure_javascript"].socket and socket_server_list["structure_javascript"].socket.close_if_not_clients():
-      socket_server_list["structure_javascript"].socket = None
+    if not socket_server_list["structure_javascript"].is_socket_closed() :
+      socket_server_list["structure_javascript"].socket.close_if_not_clients()
       
-    if socket_server_list["structure_javascript"].socket == None :
-      
-      socket_server_list["structure_javascript"].current_selected_view = self.view
-
+    if socket_server_list["structure_javascript"].is_socket_closed() :
+    
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
         json_data = json.loads(client_data)
 
         if json_data["command"] == "ready":
-          filename = socket_server_list["structure_javascript"].get_file_name()
+          filename = client_fields["view"].file_name()
           filename = filename if filename else ""
 
-          update_structure_javascript(socket_server_list["structure_javascript"].current_selected_view, filename, [{"socket": conn, "addr": addr}])
+          update_structure_javascript(client_fields["view"], filename, [{"socket": conn, "addr": addr}])
 
         elif json_data["command"] == "set_dot_line" and os.path.isfile(client_fields["filename"]):
           other_view = sublime.active_window().open_file(client_fields["filename"])
@@ -1824,16 +1848,20 @@ class view_structure_javascriptCommand(sublime_plugin.TextCommand):
 
       def client_connected(conn, addr, ip, port, client_fields):
         global socket_server_list   
-        filename = socket_server_list["structure_javascript"].get_file_name()
+        view = sublime.active_window().active_view()
+        filename = view.file_name()
         filename = filename if filename else ""
         client_fields["filename"] = filename
+        client_fields["view"] = view
 
       def client_disconnected(conn, addr, ip, port):
-        socket_server_list["structure_javascript"].client_thread = None
-        if socket_server_list["structure_javascript"].socket.close_if_not_clients() :
-            socket_server_list["structure_javascript"].socket = None
+        global socket_server_list
+        socket_server_list["structure_javascript"].socket.close_if_not_clients()
 
       socket_server_list["structure_javascript"].start(recv, client_connected, client_disconnected)
+
+    else :
+      socket_server_list["structure_javascript"].call_ui()
 
   def set_dot_line(self, view, line) :
 
@@ -2506,10 +2534,14 @@ if int(sublime.version()) >= 3124 :
 import sublime, sublime_plugin
 import os, shlex
 
+def open_project_folder(project):
+  
+  subl(["--project", project])
+  
 def call_ui(client_file, host, port) :
   from node.main import NodeJS
   node = NodeJS()
-  return Util.create_and_start_thread(node.execute, client_file, ("electron", [client_file], True))
+  return Util.create_and_start_thread(node.execute, args=("electron", [client_file], True))
 
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
@@ -2600,148 +2632,6 @@ def save_project_flowconfig(flow_settings):
       file.write(data.replace(':PACKAGE_PATH', PACKAGE_PATH))
 
 import sublime, sublime_plugin
-import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
-from node.main import NodeJS
-node = NodeJS()
-
-socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join(PROJECT_FOLDER, "create_new_project", "ui", "client.js"))
-
-def open_project_folder(project):
-  
-  subl(["--project", project])
-
-class create_new_projectCommand(sublime_plugin.WindowCommand):
-  def run(self, *args):
-    global socket_server_list
-
-    if socket_server_list["create_new_project"].socket and socket_server_list["create_new_project"].socket.close_if_not_clients():
-      socket_server_list["create_new_project"].socket = None
-
-    if socket_server_list["create_new_project"].socket == None :
-
-      def recv(conn, addr, ip, port, client_data, client_fields):
-        global socket_server_list
-
-        json_data = json.loads(client_data)
-
-        if json_data["command"] == "open_project":
-
-          if json_data.get("type") :
-            project_folder = os.path.dirname(json_data["project"])
-            if "ionic" in json_data["type"]:
-              node.execute('ionic', ["start", "temp"], is_from_bin=True, chdir=project_folder)
-              Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
-            elif "cordova" in json_data["type"]:
-              node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder)
-              Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
-
-          open_project_folder(json_data["project"])
-          data = dict()
-          data["command"] = "close_window"
-          data = json.dumps(data)
-          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
-
-        elif json_data["command"] == "try_flow_init":
-          
-          data = dict()
-          data["command"] = "result_flow_init"
-          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
-          data["project"] = json_data["project"]
-          data = json.dumps(data)
-
-          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
-
-      def client_connected(conn, addr, ip, port, client_fields):
-        global socket_server_list   
-
-      def client_disconnected(conn, addr, ip, port):
-        socket_server_list["create_new_project"].client_thread = None
-        if socket_server_list["create_new_project"].socket.close_if_not_clients() :
-          socket_server_list["create_new_project"].socket = None
-
-      socket_server_list["create_new_project"].start(recv, client_connected, client_disconnected)
-
-
-import sublime, sublime_plugin
-import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
-
-socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join(PROJECT_FOLDER, "edit_project", "ui", "client.js"))
-
-class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
-  def run(self, *args):
-    global socket_server_list
-
-    if socket_server_list["edit_project"].socket and socket_server_list["edit_project"].socket.close_if_not_clients():
-      socket_server_list["edit_project"].socket = None
-
-    if socket_server_list["edit_project"].socket == None :
-
-      def recv(conn, addr, ip, port, client_data, client_fields):
-        global socket_server_list
-
-        json_data = json.loads(client_data)
-
-        if json_data["command"] == "ready":
-          settings = get_project_settings()
-          if settings :
-            data = dict()
-            data["command"] = "load_project_settings"
-            data["settings"] = settings
-            data = json.dumps(data)
-            socket_server_list["edit_project"].socket.send_to(conn, addr, data) 
-
-      def client_connected(conn, addr, ip, port, client_fields):
-        global socket_server_list 
-        
-
-      def client_disconnected(conn, addr, ip, port):
-        socket_server_list["edit_project"].client_thread = None
-        if socket_server_list["edit_project"].socket.close_if_not_clients() :
-          socket_server_list["edit_project"].socket = None
-
-      socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
-
-  def is_enabled(self):
-    return is_javascript_project()
-
-  def is_visible(self):
-    return is_javascript_project()
-
-import sublime, sublime_plugin
-import os, time
-
-class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
-
-  def on_pre_close(self, view) :
-
-    from node.main import NodeJS
-    node = NodeJS()
-
-    global socket_server_list
-
-    if not sublime.windows() :
-      
-      sublime.status_message("flow server stopping")
-      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(PACKAGE_PATH, "flow")))
-
-      for key, value in socket_server_list.items() :
-        if value["socket"] != None :
-          sublime.status_message("socket server stopping")
-          data = dict()
-          data["command"] = "server_closing"
-          data = json.dumps(data)
-          value["socket"].send_all_clients(data)
-          value["socket"].close()
-
-    if is_javascript_project() and view.window() and len(view.window().views()) == 1 :
-      settings = get_project_settings()
-      sublime.status_message("flow server stopping")
-      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
-
-
-import sublime, sublime_plugin
 import os
 
 manage_cli_window_command_processes = {}
@@ -2751,7 +2641,9 @@ class send_input_to_cliCommand(sublime_plugin.TextCommand):
   window = None
   def run(self, edit, **args):
     self.window = self.view.window()
-    self.last_output_panel_name = self.view.window().active_panel().replace("output.", "")
+    panel = self.window.active_panel()
+    if panel :
+      self.last_output_panel_name = panel.replace("output.", "")
     sublime.set_timeout_async(lambda : self.window.show_input_panel("Input: ", "", self.send_input, None, None))
 
   def send_input(self, input) :
@@ -2766,14 +2658,18 @@ class send_input_to_cliCommand(sublime_plugin.TextCommand):
   def is_enabled(self):
     global manage_cli_window_command_processes
     self.window = self.view.window()
-    self.last_output_panel_name = self.view.window().active_panel().replace("output.", "")
+    panel = self.window.active_panel()
+    if panel :
+      self.last_output_panel_name = panel.replace("output.", "")
     settings = get_project_settings()
     return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
   
   def is_visible(self):
     global manage_cli_window_command_processes
     self.window = self.view.window()
-    self.last_output_panel_name = self.view.window().active_panel().replace("output.", "")
+    panel = self.window.active_panel()
+    if panel :
+      self.last_output_panel_name = panel.replace("output.", "")
     settings = get_project_settings()
     return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
   
@@ -2988,6 +2884,15 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
+
+def create_cordova_project(line, process, panel, project_folder, project_file) :
+
+  if line != None and panel:
+    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
+
+  if line == "OUTPUT-SUCCESS":
+    Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
+    open_project_folder(project_file)
 
 class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
   cli = "cordova"
@@ -3249,6 +3154,15 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
 
+def create_ionic_project(line, process, panel, project_folder, project_file) :
+
+  if line != None and panel:
+    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
+
+  if line == "OUTPUT-SUCCESS":
+    Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
+    open_project_folder(project_file)
+
 class enable_menu_ionicViewEventListener(enable_menu_cliViewEventListener):
   cli = "ionic"
   path = os.path.join(PACKAGE_PATH, "project", "ionic", "Main.sublime-menu")
@@ -3329,6 +3243,157 @@ class sync_ionic_projectCommand(ionic_baseCommand, sync_cordova_projectCommand):
 
   def run(self, **kwargs):
     super(sync_ionic_projectCommand, self).run(**kwargs)
+
+
+import sublime, sublime_plugin
+import subprocess, shutil, traceback
+from my_socket.main import mySocketServer  
+from node.main import NodeJS
+node = NodeJS()
+
+socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join(PROJECT_FOLDER, "create_new_project", "ui", "client.js"))
+
+class create_new_projectCommand(sublime_plugin.WindowCommand):
+  def run(self, *args):
+    global socket_server_list
+
+    if not socket_server_list["create_new_project"].is_socket_closed() :
+      socket_server_list["create_new_project"].socket.close_if_not_clients()
+
+    if socket_server_list["create_new_project"].is_socket_closed() :
+
+      def recv(conn, addr, ip, port, client_data, client_fields):
+        global socket_server_list
+
+        json_data = json.loads(client_data)
+
+        if json_data["command"] == "open_project":
+
+          if json_data.get("type") :
+            project_folder = os.path.dirname(json_data["project"])
+
+            if "ionic" in json_data["type"]:
+              panel = self.create_panel_installer("ionic_panel_installer_project")
+              node.execute('ionic', ["start", "temp"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project_folder, json_data["project"]])
+              
+            elif "cordova" in json_data["type"]:
+              panel = self.create_panel_installer("cordova_panel_installer_project")
+              node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project, args_func_stdout=[panel, project_folder, json_data["project"]])
+
+          data = dict()
+          data["command"] = "close_window"
+          data = json.dumps(data)
+          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
+
+        elif json_data["command"] == "try_flow_init":
+          
+          data = dict()
+          data["command"] = "result_flow_init"
+          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
+          data["project"] = json_data["project"]
+          data = json.dumps(data)
+
+          socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
+
+      def client_connected(conn, addr, ip, port, client_fields):
+        global socket_server_list   
+
+      def client_disconnected(conn, addr, ip, port):
+        global socket_server_list  
+        socket_server_list["create_new_project"].socket.close_if_not_clients()
+
+      socket_server_list["create_new_project"].start(recv, client_connected, client_disconnected)
+
+    else :
+      socket_server_list["create_new_project"].call_ui()
+
+  def create_panel_installer(self, output_panel_name):
+    window = sublime.active_window()
+    panel = window.create_output_panel(output_panel_name, False)
+    panel.set_read_only(True)
+    panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
+    window.run_command("show_panel", {"panel": "output."+output_panel_name})
+    return panel
+
+import sublime, sublime_plugin
+import subprocess, shutil, traceback
+from my_socket.main import mySocketServer  
+
+socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join(PROJECT_FOLDER, "edit_project", "ui", "client.js"))
+
+class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
+  def run(self, *args):
+    global socket_server_list
+
+    settings = get_project_settings()
+    
+    if not socket_server_list["edit_project"].is_socket_closed() :
+      socket_server_list["edit_project"].socket.close_if_not_clients()
+
+    if socket_server_list["edit_project"].is_socket_closed() :
+
+      def recv(conn, addr, ip, port, client_data, client_fields):
+        global socket_server_list
+
+        json_data = json.loads(client_data)
+
+        if json_data["command"] == "ready":
+          if settings :
+            data = dict()
+            data["command"] = "load_project_settings"
+            data["settings"] = settings
+            data = json.dumps(data)
+            socket_server_list["edit_project"].socket.send_to(conn, addr, data) 
+
+      def client_connected(conn, addr, ip, port, client_fields):
+        global socket_server_list 
+      
+      def client_disconnected(conn, addr, ip, port):
+        global socket_server_list  
+        socket_server_list["create_new_project"].socket.close_if_not_clients()
+
+      socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
+      
+    else :
+      socket_server_list["create_new_project"].call_ui()
+
+  def is_enabled(self):
+    return is_javascript_project()
+
+  def is_visible(self):
+    return is_javascript_project()
+
+import sublime, sublime_plugin
+import os, time
+
+class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
+
+  def on_pre_close(self, view) :
+
+    from node.main import NodeJS
+    node = NodeJS()
+
+    global socket_server_list
+
+    if not sublime.windows() :
+      
+      sublime.status_message("flow server stopping")
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(PACKAGE_PATH, "flow")))
+
+      for key, value in socket_server_list.items() :
+        if value["socket"] != None :
+          sublime.status_message("socket server stopping")
+          data = dict()
+          data["command"] = "server_closing"
+          data = json.dumps(data)
+          value["socket"].send_all_clients(data)
+          value["socket"].close()
+
+    if is_javascript_project() and view.window() and len(view.window().views()) == 1 :
+      settings = get_project_settings()
+      sublime.status_message("flow server stopping")
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
+
 
 
 def plugin_loaded():

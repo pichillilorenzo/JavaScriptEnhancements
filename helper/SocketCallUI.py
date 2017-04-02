@@ -9,10 +9,8 @@ class SocketCallUI(object):
     self.name = name
     self.host = host
     self.port = port
-    self.client_thread = None
     self.client_ui_file = client_ui_file
     self.socket = None
-    self.current_selected_view = None
     self.last_modified = None
     self.wait_for_new_changes = wait_for_new_changes
 
@@ -24,7 +22,10 @@ class SocketCallUI(object):
   def start(self, handle_recv, handle_client_connection, handle_client_disconnection):
     self.init()
     self.listen(handle_recv, handle_client_connection, handle_client_disconnection)
-    self.client_thread = call_ui(self.client_ui_file , self.host, self.port)
+    self.call_ui()
+
+  def call_ui(self):
+    call_ui(self.client_ui_file , self.host, self.port)
 
   def listen(self, handle_recv, handle_client_connection, handle_client_disconnection):
     self.socket = mySocketServer(self.name) 
@@ -33,6 +34,9 @@ class SocketCallUI(object):
     self.socket.handle_client_connection(handle_client_connection)
     self.socket.handle_client_disconnection(handle_client_disconnection)
     self.socket.listen()
+    
+  def is_socket_closed(self):
+    return True if not self.socket or not self.socket.get_socket() else False
 
   def update_time(self):
     self.last_modified = time.time()
@@ -49,5 +53,3 @@ class SocketCallUI(object):
         break
     fun(*args)
     
-  def get_file_name(self):
-    return self.current_selected_view.file_name()

@@ -92,7 +92,9 @@ class mySocketClient():
     print(self.socket_name + ": "+message)
 
   def close(self) :
-    self.socket.close()
+    if self.socket :
+      self.socket.close()
+      self.socket = None
 
 class mySocketServer():
   def __init__(self, socket_name, accept=False) :
@@ -268,4 +270,6 @@ class mySocketServer():
     return False
 
   def close(self) :
-    self.socket.close()
+    if self.socket :
+      self.socket.close()
+      self.socket = None

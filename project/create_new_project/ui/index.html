@@ -76,7 +76,9 @@
 
       $("#choose-path").click(function(event) {
         dialog.showOpenDialog({properties: ['openDirectory']}, function(directory) {
-          $("#project_path").val(directory[0])
+          if (directory && directory.length > 0) {
+            $("#project_path").val(directory[0])
+          }
         })
       })
 

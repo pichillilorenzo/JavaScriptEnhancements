@@ -8,10 +8,12 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
   def run(self, *args):
     global socket_server_list
 
-    if socket_server_list["edit_project"].socket and socket_server_list["edit_project"].socket.close_if_not_clients():
-      socket_server_list["edit_project"].socket = None
+    settings = get_project_settings()
+    
+    if not socket_server_list["edit_project"].is_socket_closed() :
+      socket_server_list["edit_project"].socket.close_if_not_clients()
 
-    if socket_server_list["edit_project"].socket == None :
+    if socket_server_list["edit_project"].is_socket_closed() :
 
       def recv(conn, addr, ip, port, client_data, client_fields):
         global socket_server_list
@@ -19,7 +21,6 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
         json_data = json.loads(client_data)
 
         if json_data["command"] == "ready":
-          settings = get_project_settings()
           if settings :
             data = dict()
             data["command"] = "load_project_settings"
@@ -29,14 +30,15 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
 
       def client_connected(conn, addr, ip, port, client_fields):
         global socket_server_list 
-        
-
+      
       def client_disconnected(conn, addr, ip, port):
-        socket_server_list["edit_project"].client_thread = None
-        if socket_server_list["edit_project"].socket.close_if_not_clients() :
-          socket_server_list["edit_project"].socket = None
+        global socket_server_list  
+        socket_server_list["create_new_project"].socket.close_if_not_clients()
 
       socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
+      
+    else :
+      socket_server_list["create_new_project"].call_ui()
 
   def is_enabled(self):
     return is_javascript_project()

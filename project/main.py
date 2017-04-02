@@ -1,10 +1,14 @@
 import sublime, sublime_plugin
 import os, shlex
 
+def open_project_folder(project):
+  
+  subl(["--project", project])
+  
 def call_ui(client_file, host, port) :
   from node.main import NodeJS
   node = NodeJS()
-  return Util.create_and_start_thread(node.execute, client_file, ("electron", [client_file], True))
+  return Util.create_and_start_thread(node.execute, args=("electron", [client_file], True))
 
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
@@ -94,12 +98,6 @@ def save_project_flowconfig(flow_settings):
       data = "[ignore]\n{ignore}\n[include]\n{include}\n[libs]\n{libs}\n[options]\n{options}".format(ignore=ignore, include=include, libs=libs, options=options)
       file.write(data.replace(':PACKAGE_PATH', PACKAGE_PATH))
 
-${include create_new_project/create_new_project.py}
-
-${include edit_project/edit_project.py}
-
-${include close_all_servers_and_flow_event_listener.py}
-
 ${include manage_cliCommand.py}
 
 ## Cordova ##
@@ -107,3 +105,9 @@ ${include cordova/main.py}
 
 ## Ionic ##
 ${include ionic/main.py}
+
+${include create_new_project/create_new_project.py}
+
+${include edit_project/edit_project.py}
+
+${include close_all_servers_and_flow_event_listener.py}

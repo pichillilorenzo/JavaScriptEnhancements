@@ -10,6 +10,10 @@ app.listenSocketCommand('show_structure_javascript', (data) => {
   app.sendWeb('data', data)
 })
 
+app.listenSocketCommand('close_window', (data) => {
+  app.app.quit()
+})
+
 ipcMain.on('data', (event, line) => {
   let data = {
     "command": "set_dot_line",

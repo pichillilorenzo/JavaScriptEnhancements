@@ -72,7 +72,7 @@ class NodeJS(object):
 
     return lines.strip()
 
-  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None) :
+  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
     if node_variables.NODE_JS_OS == 'win':
       if is_from_bin :
@@ -117,36 +117,36 @@ class NodeJS(object):
 
     elif not wait_terminate and func_stdout :
 
-      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args,func_stdout, owd))
+      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout, owd))
 
       if chdir:
         os.chdir(owd)
       
-  def wrapper_func_stdout(self, args, func_stdout, owd = ""):
+  def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[], owd = ""):
     with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
 
       if owd:
         os.chdir(owd)
 
-      func_stdout(None, p)
+      func_stdout(None, p, *args_func_stdout)
       flag_error = False
       
       for line in p.stdout:
         line = codecs.decode(line, "utf-8", "ignore")
-        func_stdout(line, p)
+        func_stdout(line, p, *args_func_stdout)
 
       for line in p.stderr:
         if not flag_error:
           flag_error = True
         line = codecs.decode(line, "utf-8", "ignore")
-        func_stdout(line, p)
+        func_stdout(line, p, *args_func_stdout)
 
       if not flag_error:
-        func_stdout("OUTPUT-SUCCESS", p)
+        func_stdout("OUTPUT-SUCCESS", p, *args_func_stdout)
       else :
-        func_stdout("OUTPUT-ERROR", p)
+        func_stdout("OUTPUT-ERROR", p, *args_func_stdout)
 
-      func_stdout("OUTPUT-DONE", p)
+      func_stdout("OUTPUT-DONE", p, *args_func_stdout)
       
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
