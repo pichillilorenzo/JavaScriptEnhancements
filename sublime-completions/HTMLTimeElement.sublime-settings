@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"dateTime: DOMString\tHTMLTimeElement",
-			"dateTime"
-		]
-	]
-}

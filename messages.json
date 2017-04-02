@@ -2,5 +2,7 @@
   "install": "changelog/install.txt",
   "2.6.5": "changelog/2.6.5.txt",
   "2.6.6": "changelog/2.6.6.txt",
-  "2.6.7": "changelog/2.6.7.txt"
+  "2.6.7": "changelog/2.6.7.txt",
+  "2.6.8": "changelog/2.6.8.txt",
+  "2.6.81": "changelog/2.6.81.txt"
 }

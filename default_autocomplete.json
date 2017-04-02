@@ -5,15 +5,15 @@
       "switch (${1:expression}) {\n\tcase ${2:label_1}:\n\t\t${3:// statements_1}\n\t\tbreak;\n\tdefault:\n\t\t${4:// statements_def}\n\t\tbreak;\n}"
     ],
     [
-      "try catch finally",
+      "try_catch_finally",
       "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n} finally {\n\t${3:// statements}\n}"
     ],
     [
-      "try catch",
+      "try_catch",
       "try {\n\t${1:// statements}\n} catch(e) {\n\t${2:// statements}\n\tconsole.log(e);\n}"
     ],
     [
-      "if else",
+      "if_else",
       "if (${1:condition}) {\n\t${2:// statement}\n} else {\n\t${3:// statement}\n}"
     ],
     [
@@ -25,7 +25,7 @@
       "${1:array}.forEach( function(${2:element}, ${3:index}) {\n\t${4:// statements}\n});"
     ],
     [
-      "function with name",
+      "function_with_name",
       "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
     ],
     [
@@ -41,19 +41,19 @@
       "for(let j = 0, length2 = ${1:array}.length; j < length2; j++){\n\t${1:array}[j]${2:}\n}"
     ],
     [
-      "anonymous function",
+      "anonymous_function",
       "function (${1:argument}) {\n\t${2:/* body... */}\n}"
     ],
     [
-      "for of",
+      "for_of",
       "for (${1:variable} of object) {\n\t${2:// statement}\n}"
     ],
     [
-      "for in",
+      "for_in",
       "for (${1:variable} in object) {\n\t${2:// statement}\n}"
     ],
     [
-      "do while",
+      "do_while",
       "do{\n\t// statement\n} while (${1:condition});"
     ],
     [
@@ -65,15 +65,15 @@
       "if (${1:condition}) {\n\t${2:// statement}\n}"
     ],
     [
-      "anonymous function wrapper",
+      "anonymous_function_wrapper",
       ";(function(){\n\t$1\n})()"
     ],
     [
-      "else if",
+      "else_if",
       "else if (${1:condition}) {\n\t\n}"
     ],
     [
-      "Conditional operator (ternary)",
+      "conditional_operator_ternary",
       "(${1:condition}) ? ${2:val1} : ${3:val2}"
     ],
     [
@@ -81,7 +81,7 @@
       "else {\n\t$1\n}"
     ],
     [
-      "use strict",
+      "use_strict",
       "'use strict'"
     ],
     [

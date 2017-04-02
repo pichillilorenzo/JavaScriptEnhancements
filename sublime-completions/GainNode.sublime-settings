@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"gain: AudioParam\tGainNode",
-			"gain"
-		]
-	]
-}

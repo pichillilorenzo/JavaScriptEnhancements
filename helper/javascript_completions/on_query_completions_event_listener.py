@@ -53,7 +53,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       'disable_auto_insert': True,
       'api_completions_only': False,
       'next_completion_if_showing': False,
-      'auto_complete_commit_on_tab': True,
+      'auto_complete_commit_on_tab': True
     })
 
   def on_query_completions(self, view, prefix, locations):

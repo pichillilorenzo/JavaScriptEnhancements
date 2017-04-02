@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"content: DocumentFragment\tHTMLTemplateElement",
-			"content"
-		]
-	]
-}

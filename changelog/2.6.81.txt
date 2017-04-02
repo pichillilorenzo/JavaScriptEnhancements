@@ -1,0 +1,19 @@
+v2.6.81
+
+# Announcement
+
+I'm implementing new features thanks to Flow (static type checker from Facebook).
+With it I can implement other features and there will be a better autocomplete
+(smart autocomplete based on the current context).
+
+This is in Beta version and I published it on github (under another branch):
+https://github.com/pichillilorenzo/JavaScript-Completions/tree/v3-beta
+
+But it isn’t ready for public testing and there isn’t a documentation at the moment!
+I will let you know the moment I have any news!!
+
+Thanks to all your support!!!
+
+## Fixes
+
+- fixed #18 issue (Custom Completions not working)

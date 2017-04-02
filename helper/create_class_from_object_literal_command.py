@@ -1,3 +1,5 @@
+import re
+
 class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
@@ -15,6 +17,7 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
         object_literal = item_object_literal.get("region_string_stripped")
         from node.main import NodeJS
         node = NodeJS()
+        object_literal = re.sub(r'[\n\r\t]', ' ', object_literal)
         object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
         object_literal = [(key, json.dumps(value)) for key, value in object_literal.items()]
 
