@@ -27,7 +27,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
             if "ionic" in json_data["type"]:
               panel = self.create_panel_installer("ionic_panel_installer_project")
-              node.execute('ionic', ["start", "temp"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project_folder, json_data["project"]])
+              node.execute('ionic', ["start", "temp", "blank"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project_folder, json_data["project"]])
               
             elif "cordova" in json_data["type"]:
               panel = self.create_panel_installer("cordova_panel_installer_project")

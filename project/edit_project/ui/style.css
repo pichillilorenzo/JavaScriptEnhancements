@@ -9,6 +9,7 @@ html, body{
 }
 .tab-content .pmd-floating-action{
   right: 11px;
+  z-index: 999;
 }
 .row{
   margin: 0px;

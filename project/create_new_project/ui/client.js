@@ -78,7 +78,7 @@ ipcMain.on('data', (event, project) => {
       project_type_default_config = require('../../default_settings/'+project_type[i]+'/default_config.js')
       if (project_type_default_config.dependencies) {
         /* load dependencies */
-        for(let j = 0, length2 = project_type_default_config.dependencies; j < length2; j++){
+        for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
           let dipendency = project_type_default_config.dependencies[j]
           if (project_type.indexOf(dipendency) < 0) {
             project_type.push(dipendency)

@@ -226,6 +226,7 @@
                   "output_panel_name": "panel_emulate_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
+                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               },
@@ -238,6 +239,7 @@
                   "output_panel_name": "panel_emulate_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
+                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               }
@@ -255,6 +257,7 @@
                   "output_panel_name": "panel_run_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
+                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               },
@@ -267,6 +270,7 @@
                   "output_panel_name": "panel_run_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
+                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               }

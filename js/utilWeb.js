@@ -5,7 +5,7 @@ exports.createPmdAlert = (type, text, fadeCreate = "fadeInDown", fadeRemove = "f
   let alert = $(`<div class="pmd-alert ${fadeCreate} visible ${type}"></div`)
   $(alert).html(text)
   setTimeout(() => {
-    $(alert).slideUp(() => {$(this).removeClass(`visible ${fadeRemove}`).remove();});
+    $(alert).slideUp(() => {$(alert).removeClass(`visible ${fadeRemove}`).remove();});
   }, wait)
   return alert
 }

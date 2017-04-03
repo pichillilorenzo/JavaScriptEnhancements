@@ -61,19 +61,25 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     except AttributeError as e:
       pass
 
-class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
+class enable_menu_cliEventListener(sublime_plugin.EventListener):
+  cli = ""
+  path = ""
+  path_disabled = ""
 
-  def on_activated_async(self, **kwargs):
-    cli = kwargs.get("cli")
-    path = kwargs.get("path")
-    path_disabled = kwargs.get("path_disabled")
-    if cli and path and path_disabled:
-      if is_type_javascript_project(cli) :
-        if os.path.isfile(path_disabled):
-          os.rename(path_disabled, path)
+  def on_activated_async(self, view):
+    if self.cli and self.path and self.path_disabled:
+      if is_type_javascript_project(self.cli) :
+        if os.path.isfile(self.path_disabled):
+          os.rename(self.path_disabled, self.path)
       else :
-        if os.path.isfile(path):
-          os.rename(path, path_disabled)
+        if os.path.isfile(self.path):
+          os.rename(self.path, self.path_disabled)
+
+  def on_new_async(self, view):
+    self.on_activated_async(view)
+
+  def on_load_async(self, view):
+    self.on_activated_async(view)
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""

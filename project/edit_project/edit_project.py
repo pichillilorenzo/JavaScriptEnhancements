@@ -33,12 +33,12 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
       
       def client_disconnected(conn, addr, ip, port):
         global socket_server_list  
-        socket_server_list["create_new_project"].socket.close_if_not_clients()
+        socket_server_list["edit_project"].socket.close_if_not_clients()
 
       socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
       
     else :
-      socket_server_list["create_new_project"].call_ui()
+      socket_server_list["edit_project"].call_ui()
 
   def is_enabled(self):
     return is_javascript_project()

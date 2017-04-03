@@ -2694,19 +2694,25 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     except AttributeError as e:
       pass
 
-class enable_menu_cliViewEventListener(sublime_plugin.ViewEventListener):
+class enable_menu_cliEventListener(sublime_plugin.EventListener):
+  cli = ""
+  path = ""
+  path_disabled = ""
 
-  def on_activated_async(self, **kwargs):
-    cli = kwargs.get("cli")
-    path = kwargs.get("path")
-    path_disabled = kwargs.get("path_disabled")
-    if cli and path and path_disabled:
-      if is_type_javascript_project(cli) :
-        if os.path.isfile(path_disabled):
-          os.rename(path_disabled, path)
+  def on_activated_async(self, view):
+    if self.cli and self.path and self.path_disabled:
+      if is_type_javascript_project(self.cli) :
+        if os.path.isfile(self.path_disabled):
+          os.rename(self.path_disabled, self.path)
       else :
-        if os.path.isfile(path):
-          os.rename(path, path_disabled)
+        if os.path.isfile(self.path):
+          os.rename(self.path, self.path_disabled)
+
+  def on_new_async(self, view):
+    self.on_activated_async(view)
+
+  def on_load_async(self, view):
+    self.on_activated_async(view)
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
@@ -2894,16 +2900,10 @@ def create_cordova_project(line, process, panel, project_folder, project_file) :
     Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
     open_project_folder(project_file)
 
-class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
+class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
   cli = "cordova"
   path = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
   path_disabled = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
-
-  def on_activated_async(self, **kwargs):
-    kwargs["cli"] = self.cli
-    kwargs["path"] = self.path
-    kwargs["path_disabled"] = self.path_disabled
-    sublime.set_timeout_async(lambda: enable_menu_cliViewEventListener.on_activated_async(self, **kwargs))
 
 class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
@@ -3163,16 +3163,10 @@ def create_ionic_project(line, process, panel, project_folder, project_file) :
     Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
     open_project_folder(project_file)
 
-class enable_menu_ionicViewEventListener(enable_menu_cliViewEventListener):
+class enable_menu_ionicEventListener(enable_menu_cliEventListener):
   cli = "ionic"
   path = os.path.join(PACKAGE_PATH, "project", "ionic", "Main.sublime-menu")
   path_disabled = os.path.join(PACKAGE_PATH, "project", "ionic", "Main_disabled.sublime-menu")
-
-  def on_activated_async(self, **kwargs):
-    kwargs["cli"] = self.cli
-    kwargs["path"] = self.path
-    kwargs["path_disabled"] = self.path_disabled
-    sublime.set_timeout_async(lambda: enable_menu_cliViewEventListener.on_activated_async(self, **kwargs))
 
 class ionic_baseCommand(cordova_baseCommand):
   cli = "ionic"
@@ -3274,7 +3268,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
             if "ionic" in json_data["type"]:
               panel = self.create_panel_installer("ionic_panel_installer_project")
-              node.execute('ionic', ["start", "temp"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project_folder, json_data["project"]])
+              node.execute('ionic', ["start", "temp", "blank"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project_folder, json_data["project"]])
               
             elif "cordova" in json_data["type"]:
               panel = self.create_panel_installer("cordova_panel_installer_project")
@@ -3350,12 +3344,12 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
       
       def client_disconnected(conn, addr, ip, port):
         global socket_server_list  
-        socket_server_list["create_new_project"].socket.close_if_not_clients()
+        socket_server_list["edit_project"].socket.close_if_not_clients()
 
       socket_server_list["edit_project"].start(recv, client_connected, client_disconnected)
       
     else :
-      socket_server_list["create_new_project"].call_ui()
+      socket_server_list["edit_project"].call_ui()
 
   def is_enabled(self):
     return is_javascript_project()

@@ -88,7 +88,7 @@ class NodeJS(object):
     
     print(args)
     
-    owd = os.getcwd()
+    #owd = os.getcwd()
     if chdir :
       os.chdir(chdir)
 
@@ -97,8 +97,8 @@ class NodeJS(object):
       p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
       lines = ""
 
-      if chdir:
-        os.chdir(owd)
+      # if chdir:
+      #   os.chdir(owd)
 
       # check for errors
       for line in p.stderr.readlines():
@@ -117,16 +117,10 @@ class NodeJS(object):
 
     elif not wait_terminate and func_stdout :
 
-      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout, owd))
-
-      if chdir:
-        os.chdir(owd)
+      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout))
       
-  def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[], owd = ""):
+  def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[]):
     with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
-
-      if owd:
-        os.chdir(owd)
 
       func_stdout(None, p, *args_func_stdout)
       flag_error = False
@@ -192,6 +186,11 @@ class NodeJS(object):
         if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
           out = out[3:]
           out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
+          out = "\n".join(out)
+          result = json.loads(out) if is_output_json else out
+        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] "):
+          out = out[3:]
+          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] ", "")[1:]
           out = "\n".join(out)
           result = json.loads(out) if is_output_json else out
         elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):

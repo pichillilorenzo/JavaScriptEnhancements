@@ -11,16 +11,10 @@ def create_cordova_project(line, process, panel, project_folder, project_file) :
     Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
     open_project_folder(project_file)
 
-class enable_menu_cordovaViewEventListener(enable_menu_cliViewEventListener):
+class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
   cli = "cordova"
   path = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
   path_disabled = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
-
-  def on_activated_async(self, **kwargs):
-    kwargs["cli"] = self.cli
-    kwargs["path"] = self.path
-    kwargs["path_disabled"] = self.path_disabled
-    sublime.set_timeout_async(lambda: enable_menu_cliViewEventListener.on_activated_async(self, **kwargs))
 
 class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
