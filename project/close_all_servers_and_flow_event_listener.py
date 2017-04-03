@@ -16,7 +16,7 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(PACKAGE_PATH, "flow")))
 
       for key, value in socket_server_list.items() :
-        if value["socket"] != None :
+        if not value["socket"].is_socket_closed() :
           sublime.status_message("socket server stopping")
           data = dict()
           data["command"] = "server_closing"

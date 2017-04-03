@@ -3004,9 +3004,11 @@ class cordova_baseCommand(manage_cliCommand):
     custom_args = []
     custom_args = custom_args + self.settings["cordova_settings"]["cli_global_options"]
     command = self.command_with_options[0]
+
     if command == "serve" :
       custom_args = custom_args + [self.settings["cordova_settings"]["serve_port"]]
-    if command == "build" or command == "run" or command == "compile":
+
+    elif command == "build" or command == "run" or command == "compile":
       mode = self.command_with_options[2][2:]
       platform = self.placeholders[":platform"]
       custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
@@ -3014,6 +3016,10 @@ class cordova_baseCommand(manage_cliCommand):
       custom_args_platform = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_"+command+"_options"][mode], platform)
       if custom_args_platform :
         custom_args = custom_args + ["--"] + shlex.split(custom_args_platform)
+
+    elif "cli_"+command+"_options" in self.settings["cordova_settings"] :
+      custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
+      
     return custom_args
 
   def is_enabled(self):
@@ -3175,9 +3181,11 @@ class ionic_baseCommand(cordova_baseCommand):
   def append_args_execute(self) :
     custom_args = []
     command = self.command_with_options[0]
+
     if command == "serve" :
       custom_args = custom_args + ["--port"] + [self.settings["cordova_settings"]["serve_port"]]
-    elif command == "platform" or command == "build" or command == "run" or command == "emulate":
+
+    elif command == "platform" or command == "build" or command == "run" or command == "emulate" :
       custom_args = custom_args + self.settings["ionic_settings"]["cli_"+command+"_options"]
       if command == "emulate":
         mode = self.command_with_options[2][2:]
@@ -3186,6 +3194,9 @@ class ionic_baseCommand(cordova_baseCommand):
         custom_args_platform = Util.getDictItemIfExists(self.settings["ionic_settings"]["platform_"+command+"_options"][mode], platform)
         if custom_args_platform :
           custom_args = custom_args + ["--"] + shlex.split(custom_args_platform)
+
+    elif "cli_"+command+"_options" in self.settings["ionic_settings"] :
+      custom_args = custom_args + self.settings["ionic_settings"]["cli_"+command+"_options"]
 
     return super(ionic_baseCommand, self).append_args_execute() + custom_args
 
@@ -3375,7 +3386,7 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(PACKAGE_PATH, "flow")))
 
       for key, value in socket_server_list.items() :
-        if value["socket"] != None :
+        if not value["socket"].is_socket_closed() :
           sublime.status_message("socket server stopping")
           data = dict()
           data["command"] = "server_closing"

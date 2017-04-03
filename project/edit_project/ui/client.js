@@ -51,52 +51,6 @@ app.listenSocketCommand('load_project_settings', (data) => {
 
 ipcMain.on('form-project-details', (event, project_details) => {
   if (fs.existsSync(settings_file)) {
-  
-    let types = get_update_type(data_project.settings.project_details.type, project_details.type)
-
-    if(types.must_delete){
-      for(let i = 0, length1 = types.must_delete.length; i < length1; i++){
-        let project_type_default_config =  {}
-        try {
-          project_type_default_config = require('../../default_settings/'+types.must_delete[i]+'/default_config.js')
-        } catch(e) {
-          continue
-        }
-        if(project_type_default_config.flow_settings) {
-          for (let key in project_type_default_config.flow_settings) {
-            if (Array.isArray(data_project.settings.flow_settings[key])){
-              data_project.settings.flow_settings[key] = difference(data_project.settings.flow_settings[key], project_type_default_config.flow_settings[key])
-            }
-          }
-        }
-        if(project_type_default_config[types.must_delete[i]+"_settings"]){
-          fs.unlinkSync(path.join(jc_project_settings_dir_name, types.must_delete[i]+"_settings.json"))
-          app.sendWeb("delete-item-menu", types.must_delete[i])
-        }
-      }
-    }
-    if(types.must_add){
-      for(let i = 0; i < types.must_add.length; i++){
-        let project_type_default_config =  {}
-        try {
-          project_type_default_config = require('../../default_settings/'+types.must_add[i]+'/default_config.js')
-        } catch(e) {
-          continue
-        }
-        if(project_type_default_config.flow_settings) {
-          for (let key in project_type_default_config.flow_settings) {
-            if (Array.isArray(data_project.settings.flow_settings[key])){
-              data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(project_type_default_config.flow_settings[key])
-            }
-          }
-        }
-        if(project_type_default_config[types.must_add[i]+"_settings"]){
-          util.openWithSync((fd) => {
-            fs.writeFileSync(fd, JSON.stringify(project_type_default_config[types.must_add[i]+"_settings"], null, 2))
-          }, path.join(jc_project_settings_dir_name, types.must_add[i]+"_settings.json"), "w+")
-        }
-      }
-    }
 
     /* check dependencies */
     let dependencies = {}
@@ -121,21 +75,50 @@ ipcMain.on('form-project-details', (event, project_details) => {
       }
     }
 
-    for(let dipendency_name in dependencies){
-      let dipendency = dependencies[dipendency_name]
-      if(dipendency.flow_settings) {
-        for (let key in dipendency.flow_settings) {
-          if (Array.isArray(data_project.settings.flow_settings[key])){
-            data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(dipendency.flow_settings[key])
+    let types = get_update_type(data_project.settings.project_details.type, project_details.type)
+
+    if(types.must_delete){
+      for(let i = 0, length1 = types.must_delete.length; i < length1; i++){
+        let project_type_default_config =  {}
+        try {
+          project_type_default_config = require('../../default_settings/'+types.must_delete[i]+'/default_config.js')
+        } catch(e) {
+          continue
+        }
+        if(project_type_default_config.flow_settings) {
+          for (let key in project_type_default_config.flow_settings) {
+            if (Array.isArray(data_project.settings.flow_settings[key])){
+              data_project.settings.flow_settings[key] = difference(data_project.settings.flow_settings[key], project_type_default_config.flow_settings[key])
+            }
           }
         }
+        if(project_type_default_config[types.must_delete[i]+"_settings"]){
+          fs.unlinkSync(path.join(jc_project_settings_dir_name, types.must_delete[i]+"_settings.json"))
+          app.sendWeb("delete-item-menu", types.must_delete[i])
+        }
       }
+    }
 
-      if(dipendency[dipendency_name+"_settings"]){
-        
-        util.openWithSync((fd) => {
-          fs.writeFileSync(fd, JSON.stringify(dipendency[dipendency_name+"_settings"], null, 2))
-        }, path.join(jc_project_settings_dir_name, dipendency_name+"_settings.json"), "w+")
+    if(types.must_add){
+      for(let i = 0; i < types.must_add.length; i++){
+        let project_type_default_config =  {}
+        try {
+          project_type_default_config = require('../../default_settings/'+types.must_add[i]+'/default_config.js')
+        } catch(e) {
+          continue
+        }
+        if(project_type_default_config.flow_settings) {
+          for (let key in project_type_default_config.flow_settings) {
+            if (Array.isArray(data_project.settings.flow_settings[key])){
+              data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(project_type_default_config.flow_settings[key])
+            }
+          }
+        }
+        if(project_type_default_config[types.must_add[i]+"_settings"]){
+          util.openWithSync((fd) => {
+            fs.writeFileSync(fd, JSON.stringify(project_type_default_config[types.must_add[i]+"_settings"], null, 2))
+          }, path.join(jc_project_settings_dir_name, types.must_add[i]+"_settings.json"), "w+")
+        }
       }
     }
 

@@ -37,7 +37,7 @@
                 "args": {
                   "command_with_options": ["platform", "add", ":platform:version", "--save"],
                   "status_message_before": "adding :platform:version platform...",
-                  "output_panel_name": "panel_platform_ionic",
+                  "output_panel_name": "panel_add_platform_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "available",
                   "hide_panel_on_success": true
@@ -50,7 +50,7 @@
                 "args": {
                   "command_with_options": ["platform", "remove", ":platform", "--save"],
                   "status_message_before": "removing :platform platform...",
-                  "output_panel_name": "panel_platform_ionic",
+                  "output_panel_name": "panel_remove_platform_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "hide_panel_on_success": true
@@ -63,7 +63,7 @@
                 "args": {
                   "command_with_options": ["platform", "update", ":platform", "--save"],
                   "status_message_before": "updating :platform platform...",
-                  "output_panel_name": "panel_platform_ionic",
+                  "output_panel_name": "panel_update_platform_ionic",
                   "ask_platform": true,
                   "hide_panel_on_success": true
                 }
@@ -75,7 +75,7 @@
                 "args": {
                   "command_with_options": ["platform", "list"],
                   "status_message_before": "listing platforms...",
-                  "output_panel_name": "panel_platform_ionic",
+                  "output_panel_name": "panel_list_platform_ionic",
                   "hide_panel_on_success": false
                 }
               },
@@ -86,7 +86,7 @@
                 "args": {
                   "command_with_options": ["platform", "check"],
                   "status_message_before": "checking platforms...",
-                  "output_panel_name": "panel_platform_ionic",
+                  "output_panel_name": "panel_check_platform_ionic",
                   "hide_panel_on_success": true
                 }
               },
@@ -97,11 +97,8 @@
                 "args": {
                   "command_with_options": ["platform", "save"],
                   "status_message_before": "saving platforms...",
-                  "output_panel_name": "panel_platform_ionic",
-                  "status_message_after_on_success": "platforms saved",
-                  "status_message_after_on_error": "errors when saving platforms",
-                  "hide_panel_on_success": true,
-                  "show_panel": false
+                  "output_panel_name": "panel_save_platform_ionic",
+                  "hide_panel_on_success": true
                 }
               }
             ]
@@ -116,7 +113,7 @@
                 "args": {
                   "command_with_options": ["plugin", "add", ":plugin", "--save"],
                   "status_message_before": "adding :plugin plugin...",
-                  "output_panel_name": "panel_plugin_ionic",
+                  "output_panel_name": "panel_add_plugin_ionic",
                   "hide_panel_on_success": true
                 }
               },
@@ -126,7 +123,7 @@
                 "args": {
                   "command_with_options": ["plugin", "remove", ":plugin", "--save"],
                   "status_message_before": "removing :plugin plugin...",
-                  "output_panel_name": "panel_plugin_ionic",
+                  "output_panel_name": "panel_remove_plugin_ionic",
                   "hide_panel_on_success": true,
                   "ask_plugin": true
                 }
@@ -137,7 +134,7 @@
                 "args": {
                   "command_with_options": ["plugin", "list"],
                   "status_message_before": "listing plugins...",
-                  "output_panel_name": "panel_plugin_ionic",
+                  "output_panel_name": "panel_list_plugin_ionic",
                   "hide_panel_on_success": false
                 }
               }
@@ -165,7 +162,7 @@
                 "args": {
                   "command_with_options": ["compile", ":platform", "--debug"],
                   "status_message_before": "compiling :platform platform in debug mode...",
-                  "output_panel_name": "panel_compile_ionic",
+                  "output_panel_name": "panel_debug_compile_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "hide_panel_on_success": true
@@ -177,7 +174,7 @@
                 "args": {
                   "command_with_options": ["compile", ":platform", "--release"],
                   "status_message_before": "compiling :platform platform in release mode...",
-                  "output_panel_name": "panel_compile_ionic",
+                  "output_panel_name": "panel_release_compile_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "hide_panel_on_success": true
@@ -194,7 +191,7 @@
                 "args": {
                   "command_with_options": ["build", ":platform", "--debug"],
                   "status_message_before": "building :platform platform in debug mode...",
-                  "output_panel_name": "panel_build_ionic",
+                  "output_panel_name": "panel_debug_build_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "hide_panel_on_success": true
@@ -206,7 +203,7 @@
                 "args": {
                   "command_with_options": ["build", ":platform", "--release"],
                   "status_message_before": "building :platform platform in release mode...",
-                  "output_panel_name": "panel_build_ionic",
+                  "output_panel_name": "panel_release_build_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "hide_panel_on_success": true
@@ -223,7 +220,7 @@
                 "args": {
                   "command_with_options": ["emulate", ":platform", "--debug"],
                   "status_message_before": "emulating :platform platform in debug mode...",
-                  "output_panel_name": "panel_emulate_ionic",
+                  "output_panel_name": "panel_debug_emulate_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "can_send_input": true,
@@ -236,7 +233,7 @@
                 "args": {
                   "command_with_options": ["emulate", ":platform", "--release"],
                   "status_message_before": "emulating :platform platform in release mode...",
-                  "output_panel_name": "panel_emulate_ionic",
+                  "output_panel_name": "panel_release_emulate_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "can_send_input": true,
@@ -254,7 +251,7 @@
                 "args": {
                   "command_with_options": ["run", ":platform", "--debug"],
                   "status_message_before": "launching :platform platform in debug mode...",
-                  "output_panel_name": "panel_run_ionic",
+                  "output_panel_name": "panel_debug_run_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "can_send_input": true,
@@ -267,7 +264,7 @@
                 "args": {
                   "command_with_options": ["run", ":platform", "--release"],
                   "status_message_before": "launching :platform platform in release mode...",
-                  "output_panel_name": "panel_run_ionic",
+                  "output_panel_name": "panel_release_run_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
                   "can_send_input": true,
@@ -287,6 +284,61 @@
               "can_send_input": true,
               "is_stoppable": true
             }
+          },
+          {
+            "caption": "Resources",
+            "command": "manage_ionic",
+            "args": {
+              "command_with_options": ["resources"],
+              "status_message_before": "generating resources...",
+              "output_panel_name": "panel_resources_ionic",
+              "hide_panel_on_success": true
+            }
+          },
+          {
+            "caption": "State",
+            "children": [
+              {
+                "caption": "Save",
+                "command": "manage_ionic",
+                "args": {
+                  "command_with_options": ["state", "save"],
+                  "status_message_before": "saving state...",
+                  "output_panel_name": "panel_save_state_ionic",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Restore",
+                "command": "manage_ionic",
+                "args": {
+                  "command_with_options": ["state", "restore"],
+                  "status_message_before": "restoring state...",
+                  "output_panel_name": "panel_restore_state_ionic",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Clear",
+                "command": "manage_ionic",
+                "args": {
+                  "command_with_options": ["state", "clear"],
+                  "status_message_before": "clearing state...",
+                  "output_panel_name": "panel_clear_state_ionic",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Reset",
+                "command": "manage_ionic",
+                "args": {
+                  "command_with_options": ["state", "reset"],
+                  "status_message_before": "resetting state...",
+                  "output_panel_name": "panel_reset_state_ionic",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
           },
           {
             "caption": "Sync project",

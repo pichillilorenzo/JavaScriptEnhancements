@@ -30,7 +30,7 @@ module.exports = {
     let utilWeb = variables.utilWeb
     let data_project = variables.data_project.settings
 
-    let list_config = ["platform", "build", "run"]
+    let list_config = ["platform", "build", "run", "resources", "state"]
     let list_config_debug_release = ["emulate"]
     let input_text_command = ["address", "port", "livereload-port", "browser", "browseroption", "platform"]
     let load_input_text_command = ["emulate", "run", "serve"]
@@ -108,7 +108,9 @@ module.exports = {
         "cli_build_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_build_options"),
         "cli_emulate_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_emulate_options"),
         "cli_run_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_run_options"),
-        "cli_serve_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_serve_options"),
+        "cli_serve_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_serve_options"),   
+        "cli_resources_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_resources_options"),
+        "cli_state_options": utilWeb.getMulitpleSelectValues("#ionic-settings .cli_state_options"),
         "platform_emulate_options": {
           "debug": {},
           "release": {}

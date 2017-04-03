@@ -115,9 +115,11 @@ class cordova_baseCommand(manage_cliCommand):
     custom_args = []
     custom_args = custom_args + self.settings["cordova_settings"]["cli_global_options"]
     command = self.command_with_options[0]
+
     if command == "serve" :
       custom_args = custom_args + [self.settings["cordova_settings"]["serve_port"]]
-    if command == "build" or command == "run" or command == "compile":
+
+    elif command == "build" or command == "run" or command == "compile":
       mode = self.command_with_options[2][2:]
       platform = self.placeholders[":platform"]
       custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
@@ -125,6 +127,10 @@ class cordova_baseCommand(manage_cliCommand):
       custom_args_platform = Util.getDictItemIfExists(self.settings["cordova_settings"]["platform_"+command+"_options"][mode], platform)
       if custom_args_platform :
         custom_args = custom_args + ["--"] + shlex.split(custom_args_platform)
+
+    elif "cli_"+command+"_options" in self.settings["cordova_settings"] :
+      custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
+      
     return custom_args
 
   def is_enabled(self):

@@ -19,6 +19,8 @@ module.exports = {
     "cli_emulate_options": [],
     "cli_run_options": [],
     "cli_serve_options": [],
+    "cli_resources_options": [],
+    "cli_state_options": [],
     "platform_emulate_options": {
       "debug": {},
       "release": {}
