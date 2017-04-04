@@ -1,0 +1,42 @@
+{
+    "author": "Sergey Pimenov",
+    "name": "metro-dist",
+    "description": "The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style.",
+    "keywords": [
+        "css",
+        "less",
+        "mobile-first",
+        "responsive",
+        "front-end",
+        "framework",
+        "web",
+	"metro"
+    ],
+    "homepage": "http://metroui.org.ua",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com:olton/metro-dist.git"
+    },
+    "main": [
+        "css/metro.min.css",
+        "css/metro-icons.min.css",
+        "css/metro-rtl.min.css",
+        "css/metro-responsive.min.css",
+        "css/metro-schemes.min.css",
+
+        "fonts/metro.eot",
+        "fonts/metro.svg",
+        "fonts/metro.ttf",
+        "fonts/metro.woff",
+	"fonts/selection.json",
+
+        "js/metro.min.js"
+    ],
+    "ignore": [
+        "node_modules",
+        "bower_components"
+    ],
+      "dependencies": {
+        "jquery": ">= 2"
+    }
+}

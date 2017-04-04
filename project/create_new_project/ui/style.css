@@ -1,17 +1,23 @@
-html, body, form, .pmd-card-custom-form{
-  height: 100%;
-  margin: 0;
+html, body, form{
+  background: #fff;
 }
-body{
-  overflow: hidden;
+.input-control{
+  margin: 12px 0;
 }
-.pmd-alert-container{
-  width: 200px;
-  margin-left: -100px;
+.input-control>.button.helper-button.margin-right-button-clear{
+  margin-right: 48px;
 }
-.pmd-alert-container .pmd-alert{
-  width: 200px;
+.wizard2 .action-bar{
+  position: fixed;
 }
-#type{
-  max-height: 35px;
+.wiz-btn-help{
+  display: none;
+}
+.wizard2 .step.next:before{
+  left: initial;
+  position: fixed;
+}
+.wizard2 .step.prev:before{
+  left: initial;
+  position: fixed;
 }

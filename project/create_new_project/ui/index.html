@@ -3,111 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <title>Create New Project</title>
-  <link rel="stylesheet" href="../../../css/vendor/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../css/vendor/propeller.min.css">
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro.min.css">
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro-icons.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <form action="#">
-    <div class="pmd-card pmd-z-depth pmd-card-custom-form">
-      <div class="pmd-card-body">
-        <div class="form-group pmd-textfield">
-          <label for="project_name" class="control-label">Project name:</label>
-          <input type="text" id="project_name" class="form-control" required="required"><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="project_path" class="control-label">Project path:</label>
-          <div class="input-group">
-            <input type="text" id="project_path" class="form-control" required="required"><span class="pmd-textfield-focused"></span>
-            <div class="input-group-addon"><button id="choose-path" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" type="button">...</button></div>
+    <div class="wizard2" id="wizard">
+
+      <div class="step first-step">
+        <div class="step-content">
+          <h2>Basic Information</h2>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="project_name">Project Name *:</label>
+            <input type="text" id="project_name" name="project_name" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
           </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="project_path" class="control-label">Project path *:</label>
+            <input type="text" id="project_path" name="project_path" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <button class="button helper-button clear margin-right-button-clear" type="button"><span class="mif-cross"></span></button>
+            <div class="button-group">
+              <button class="button" type="button" id="choose-path"><span class="mif-folder"></span></button>
+            </div>
+          </div>
+          
+          <div class="input-control select multiple full-size" style="height: 100px">
+            <label for="type">Type:</label>
+            <select id="type" name="type" multiple="multiple">
+              <option value="">Blank</option>
+              <option value="cordova">Cordova</option>
+              <option value="ionic">Ionic</option>
+            </select>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="author_uri">Author URI:</label>
+            <input type="text" id="author_uri" name="author_uri">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="version">Version:</label>
+            <input type="text" id="version" name="version">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="license">License:</label>
+            <input type="text" id="license" name="license">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="license_uri">License URI:</label>
+            <input type="text" id="license_uri" name="license_uri">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          
+          <div class="input-control text full-size" data-role="input">
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
         </div>
-        <div class="form-group pmd-textfield">
-          <label for="type" class="control-label">Type:</label>
-          <select id="type" class="form-control" multiple="multiple">
-            <option value="">Blank</option>
-            <option value="cordova">Cordova</option>
-            <option value="ionic">Ionic</option>
-          </select>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="author" class="control-label">Author:</label>
-          <input type="text" id="author" class="form-control"><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="author_uri" class="control-label">Author URI:</label>
-          <input type="text" id="author_uri" class="form-control"><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="description" class="control-label">Description:</label>
-          <textarea id="description" class="form-control" maxlength="255"></textarea><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="version" class="control-label">Version:</label>
-          <input type="text" id="version" class="form-control"><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="license" class="control-label">License:</label>
-          <input type="text" id="license" class="form-control"><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="license_uri" class="control-label">License URI:</label>
-          <input type="text" id="license_uri" class="form-control"><span class="pmd-textfield-focused"></span>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="tags" class="control-label">Tags:</label>
-          <input type="text" id="tags" class="form-control"><span class="pmd-textfield-focused"></span>
-        </div>
-        <button class="btn pmd-btn-raised pmd-ripple-effect btn-primary" type="submit">Create</button>
       </div>
+
     </div>
+
   </form>
-  <div class="pmd-alert-container right top"></div>
+
   <script>
     window.$ = window.jQuery = require('../../../js/vendor/jquery-1.12.2.min.js')
-    require('../../../js/vendor/bootstrap.min.js')
-    require('../../../js/vendor/propeller.min.js')
+    require('../../../vendor/metro-dist/js/metro.min.js')
     const utilWeb = require('../../../js/utilWeb.js')
-
+    const fs = require("fs")
     const {ipcRenderer} = require('electron')
     const {dialog} = require('electron').remote
+    let project_types_options = {}
 
+    function setWizard(element){
+      element.wizard2({
+        buttonLabels: {
+          finish: 'Go'
+        },
+        onPrior: function(page, wiz){
+          $(document).scrollTop(0)
+          return true
+        },
+        onNext: function(page, wiz){
+          $(document).scrollTop(0)
+          return true
+        }
+      })
+    }
+
+    function test(){
+      console.log("...data")
+      return false
+    }
     $(document).ready(() => {
 
-      $("#choose-path").click(function(event) {
+      setWizard($("#wizard"))
+
+      $("form").validator({
+        hideHint: 2500,
+        onBeforeSubmit: function(form, result){
+          return (result) ? false : true
+        },
+        onErrorInput: function(input){
+          let step_parent = $(input).closest(".step")
+          let index = step_parent.index(".step")
+          let current_index = $(".step.active").index(".step")
+          if (index != current_index) {
+            if (index > current_index) {
+              for(; index != current_index; current_index++){
+                $(".wizard2 .wiz-btn-next").click()
+              }
+            }
+            else {
+              for(; index != current_index; current_index--){
+                $(".wizard2 .wiz-btn-prev").click()
+              }
+            }
+          }
+        },
+        onSubmit: function(form) {
+
+          let project = {
+            "project_name": $("#project_name").val().trim(),
+            "author": $("#author").val().trim(),
+            "author_uri": $("#author_uri").val().trim(),
+            "description": $("#description").val().trim(),
+            "version": $("#version").val().trim(),
+            "license": $("#license").val().trim(),
+            "license_uri": $("#license_uri").val().trim(),
+            "tags": $("#tags").val().trim(),
+            "path": $("#project_path").val().trim(),
+            "type": utilWeb.getMulitpleSelectValues("#type"),
+            "types_options": {}
+          }
+          
+          for (let type in project_types_options) {
+            project.types_options[type] = project_types_options[type].setProject({
+              "project": project,
+              "ipcRenderer": ipcRenderer,
+              "$": $,
+              "utilWeb": utilWeb,
+              "fs": fs,
+              "electron": require('electron')
+            })
+          }
+
+          ipcRenderer.send("data", project)
+
+          return false
+        }
+      })
+
+
+      function choose_path (event) {
         dialog.showOpenDialog({properties: ['openDirectory']}, function(directory) {
           if (directory && directory.length > 0) {
             $("#project_path").val(directory[0])
           }
         })
-      })
+      }
+      $("#choose-path").click(choose_path)
 
-      $("form").on("submit", function(event) {
-        event.preventDefault()
+      function type_change () {
+        let types = utilWeb.getMulitpleSelectValues("#type")
+        $(".step:not(.first-step)").addClass("maybe-remove")
+        let one_add_at_least = false
+        let type_selected = []
+        for(let i = 0, length1 = types.length; i < length1; i++){
+          let type = types[i]
+          type_selected.push(type)
 
-        let project = {
-          "project_name": $("#project_name").val().trim(),
-          "author": $("#author").val().trim(),
-          "author_uri": $("#author_uri").val().trim(),
-          "description": $("#description").val().trim(),
-          "version": $("#version").val().trim(),
-          "license": $("#license").val().trim(),
-          "license_uri": $("#license_uri").val().trim(),
-          "tags": $("#tags").val().trim(),
-          "path": $("#project_path").val().trim(),
-          "type": utilWeb.getMulitpleSelectValues("#type")
+          $("#"+type).removeClass("maybe-remove")
+          if ($("#"+type).length > 0){
+            continue
+          }
+          if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
+            if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/style.css") ){
+              $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/create_new_project/style.css"}">`)
+            }
+
+            let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
+
+            project_types_options[type] = client_js
+
+            $("#wizard").append( generateHtml(client_js.html_json, type) )
+
+            client_js.prepareClientHtml({
+              "ipcRenderer": ipcRenderer,
+              "$": $,
+              "utilWeb": utilWeb,
+              "fs": fs,
+              "electron": require('electron')
+            })
+            one_add_at_least = true
+          }
         }
-        
-        ipcRenderer.send("data", project)
+        $(".maybe-remove").each(function(index, item){
+          let id = $(item).attr("id")
+          delete project_types_options[id]
+        })
+        let will_remove = ($(".maybe-remove").length > 0) ? true : false
+        $(".maybe-remove").remove()
 
-      })
+        if (will_remove || one_add_at_least){
+          let wizard = $("#wizard").clone()
+          $("#wizard").remove()
+          wizard.find(".action-bar").remove()
+          wizard.find(".step").removeAttr("style")
+          $("form").prepend( wizard )
+          if ( type_selected.length > 0 ) {
+            for(let i = 0, length1 = type_selected.length; i < length1; i++){    
+              $("#type option[value='"+type_selected[i]+"']").prop("selected", true)
+            }
+          }
+          else {
+            $("#type option[value='']").prop("selected", true)
+          }
+          setWizard($("#wizard"))
+          $("#type").change(type_change)
+          $("#wizard .wiz-btn-next, #wizard .wiz-btn-prev, #wizard .wiz-btn-help").click(wizard_buttons)
+          $("#choose-path").click(choose_path)
+        }
 
+      }
+      $("#type").change(type_change)
+
+      function wizard_buttons(event){
+        event.preventDefault()
+      }
+      $("#wizard .wiz-btn-next, #wizard .wiz-btn-prev, #wizard .wiz-btn-help").click(wizard_buttons)
     })
 
     ipcRenderer.on("error", (event, msg) => {
-      $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg));
+      $.Notify({
+        caption: 'Error',
+        content: msg,
+        type: 'alert'
+      });
     })
     
+    function generateHtml(html_json, project_type){
+      let step = $('<div class="step"></div>')
+      let step_content = $('<div class="step-content"></div>')
+      step.attr('id', project_type)
+
+      step_content.append('<h2 class="step-title">'+html_json.title+'</h2>')
+      if (html_json.subtitle) {
+        step_content.append('<p class="step-subtitle">'+html_json.subtitle+'</p>')
+      }
+      for(let i = 0, length1 = html_json.fields.length; i < length1; i++){
+        let field = html_json.fields[i]
+        let tag = $('<'+field.tag+'>')
+        let field_html = generateField(project_type, field)
+        switch (field.type) {
+          case "value":
+            if (field.tag == "input") {
+              $(field_html).find("input").attr("data-field-type", "value")
+            }
+            break;
+          case "option":
+            if (field.tag == "input") {
+              $(field_html).find("input").attr("data-field-type", "option")
+            }
+            break;
+        }
+        step_content.append( field_html )
+      }
+      step.append(step_content)
+      return step
+    }
+
+    function generateField(project_type, field){
+      let attrs = []
+      for (let key in field.attrs) {
+        attrs.push(key+'="'+field.attrs[key]+'"')
+      }
+      attrs = attrs.join(" ")
+      switch (field.tag) {
+        case "input":
+          return $(`
+          <div class="input-control text full-size ${ field.attrs["data-validate-func"] == "required" ? "required" : "" }" data-role="input">
+            <label for="${project_type+"-"+field.attrs.name}">${field.label}:</label>
+            <input class="${project_type+"-"+field.attrs.name} cli_create_${project_type}_options" ${attrs}>
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          `)
+        case "select":
+          
+          break;
+      }
+    }
   </script>
 </body>
 </html>

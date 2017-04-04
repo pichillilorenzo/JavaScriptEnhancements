@@ -8,9 +8,8 @@ const electron = require('electron')
 const {ipcMain} = require('electron')
 const SocketWindow = require('../../../js/SocketWindow.js')
 const PACKAGE_PATH = path.resolve(path.join(__dirname, "..", "..", ".."))
-let project_type = ""
 
-const app = new SocketWindow('localhost', 11111, __dirname, 460, 840)
+const app = new SocketWindow('localhost', 11111, __dirname, 460, 640)
 
 app.listenSocketCommand('close_window', (data) => {
   app.app.quit()
@@ -46,8 +45,8 @@ ${options}
 
   let sublime_project_file_name = util.clearString(data.project.project_name)
   let data_to_send = {
-    "type": project_type,
-    "project": path.join(data.project.path, sublime_project_file_name+".sublime-project"),
+    "project": data.project,
+    "sublime_project_file_name": path.join(data.project.path, sublime_project_file_name+".sublime-project"),
     "command": "open_project"
   }
   util.openWithSync((fd) => {
@@ -68,20 +67,19 @@ ipcMain.on('data', (event, project) => {
   let bookmarks_path = path.join(jc_project_settings, "bookmarks.json")
   let settings_file = path.join(jc_project_settings, "project_details.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
-  project_type = project.type
 
   let project_type_default_settings = []
-  /* project_type.length evaluate each time because of possible type dependecies */
-  for(let i = 0; i < project_type.length; i++){
+  /* project.type.length evaluate each time because of possible type dependecies */
+  for(let i = 0; i < project.type.length; i++){
     let project_type_default_config = {}
     try {
-      project_type_default_config = require('../../default_settings/'+project_type[i]+'/default_config.js')
+      project_type_default_config = require('../../default_settings/'+project.type[i]+'/default_config.js')
       if (project_type_default_config.dependencies) {
         /* load dependencies */
         for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
           let dipendency = project_type_default_config.dependencies[j]
-          if (project_type.indexOf(dipendency) < 0) {
-            project_type.push(dipendency)
+          if (project.type.indexOf(dipendency) < 0) {
+            project.type.push(dipendency)
           }
         }
       }
@@ -98,9 +96,9 @@ ipcMain.on('data', (event, project) => {
         }
       }
     }
-    if(project_type_default_config[project_type[i]+"_settings"]){
+    if(project_type_default_config[project.type[i]+"_settings"]){
       project_type_default_settings.push(
-        [project_type[i], project_type_default_config[project_type[i]+"_settings"]]
+        [project.type[i], project_type_default_config[project.type[i]+"_settings"]]
       )
     }
   }
@@ -108,8 +106,9 @@ ipcMain.on('data', (event, project) => {
   if (!fs.existsSync(jc_project_settings)) {
     fs.mkdirSync(jc_project_settings)
     util.openWithSync((fd) => {
-      default_config.project_details = JSON.parse(JSON.stringify(project))
+      default_config.project_details = JSON.parse(JSON.stringify(project)) // clone project object
       delete default_config.project_details.path
+      delete default_config.project_details.types_options
       fs.writeFileSync(fd, JSON.stringify(default_config.project_details, null, 2))
     }, settings_file, "w+")
 

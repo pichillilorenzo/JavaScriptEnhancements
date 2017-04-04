@@ -1,0 +1,57 @@
+{
+  "page_title": "Cordova",
+  "page_subtitle": "",
+  "fields": [
+    {
+      "tag": "input",
+      "attrs" : {
+        "type": "text",
+        "name": "id",
+        "value": "io.cordova.hellocordova"
+      }
+    },
+    {
+      "tag": "input",
+      "attrs" : {
+        "type": "text",
+        "name": "name",
+        "value": "HelloCordova"
+      }
+    },
+    {
+      "tag": "input",
+      "attrs" : {
+        "type": "text",
+        "name": "config",
+        "value": ""
+      }
+    },
+    {
+      "tag": "input",
+      "type": "option",
+      "attrs" : {
+        "type": "text",
+        "name": "template",
+        "value": ""
+      }
+    },
+    {
+      "tag": "input",
+      "type": "option",
+      "attrs" : {
+        "type": "text",
+        "name": "copy-from",
+        "value": ""
+      }
+    },
+    {
+      "tag": "input",
+      "type": "option",
+      "attrs" : {
+        "type": "text",
+        "name": "link-to",
+        "value": ""
+      }
+    }
+  ]
+}

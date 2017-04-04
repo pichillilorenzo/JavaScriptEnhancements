@@ -2,14 +2,14 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
 
-def create_cordova_project(line, process, panel, project_folder, project_file) :
+def create_cordova_project(line, process, panel, project, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_folder, "temp"))
-    open_project_folder(project_file)
+    Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
+    open_project_folder(sublime_project_file_name)
 
 class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
   cli = "cordova"

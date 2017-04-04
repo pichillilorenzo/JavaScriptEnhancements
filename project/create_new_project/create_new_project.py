@@ -22,16 +22,27 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
         if json_data["command"] == "open_project":
 
-          if json_data.get("type") :
-            project_folder = os.path.dirname(json_data["project"])
+          project = json_data["project"]
+          if "type" in project :
 
-            if "ionic" in json_data["type"]:
+            project_folder = project["path"]
+            types_options = []
+
+            if "ionic" in project["type"]:
+
+              if "ionic" in project["types_options"]:
+                types_options = project["types_options"]["ionic"]
+
               panel = self.create_panel_installer("ionic_panel_installer_project")
-              node.execute('ionic', ["start", "temp", "blank"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project_folder, json_data["project"]])
+              node.execute('ionic', ["start", "temp", "blank"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
               
-            elif "cordova" in json_data["type"]:
+            elif "cordova" in project["type"]:
+
+              if "cordova" in project["types_options"]:
+                types_options = project["types_options"]["cordova"]
+                
               panel = self.create_panel_installer("cordova_panel_installer_project")
-              node.execute('cordova', ["create", "temp"], is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project, args_func_stdout=[panel, project_folder, json_data["project"]])
+              node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
 
           data = dict()
           data["command"] = "close_window"
