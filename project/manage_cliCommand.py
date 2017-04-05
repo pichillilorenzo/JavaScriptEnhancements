@@ -134,10 +134,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     if self.status_message_before :
       self.window.status_message(self.name_cli+": "+self.status_message_before)
     if self.show_panel :
-      self.panel = self.window.create_output_panel(self.output_panel_name, False)
-      self.panel.set_read_only(True)
-      self.panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
-      self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window)
     self.command_with_options = self.command_with_options + self.append_args_execute()
     
     if self.is_stoppable and self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes:

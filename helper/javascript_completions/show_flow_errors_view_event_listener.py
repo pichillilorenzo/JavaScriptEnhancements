@@ -121,7 +121,7 @@ class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListene
       if len(text) % 2 != 0 :
         html += text[len(text) - 1]
 
-      view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_BELOW)
+      view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_INLINE)
 
 
   def on_selection_modified_async(self, *args) :

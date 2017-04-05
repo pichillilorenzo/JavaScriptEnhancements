@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
 
-def create_ionic_project(line, process, panel, project, sublime_project_file_name) :
+def create_ionic_project_process(line, process, panel, project, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
@@ -10,6 +10,21 @@ def create_ionic_project(line, process, panel, project, sublime_project_file_nam
   if line == "OUTPUT-SUCCESS":
     Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
     open_project_folder(sublime_project_file_name)
+
+def create_ionic_project(json_data):
+  project = json_data["project"]
+  project_folder = project["path"]
+  types_options = []
+
+  if "ionic" in project["types_options"]:
+    types_options = project["types_options"]["ionic"]
+
+  panel = Util.create_and_show_panel("ionic_panel_installer_project")
+  node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+  return json_data
+
+Hook.add("ionic_create_new_project", create_ionic_project)
 
 class enable_menu_ionicEventListener(enable_menu_cliEventListener):
   cli = "ionic"

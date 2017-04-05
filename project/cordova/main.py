@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
 
-def create_cordova_project(line, process, panel, project, sublime_project_file_name) :
+def create_cordova_project_process(line, process, panel, project, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
@@ -10,6 +10,23 @@ def create_cordova_project(line, process, panel, project, sublime_project_file_n
   if line == "OUTPUT-SUCCESS":
     Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
     open_project_folder(sublime_project_file_name)
+
+def create_cordova_project(json_data):
+  project = json_data["project"]
+  project_folder = project["path"]
+  types_options = []
+
+  if not "ionic" in project["type"] :
+
+    if "cordova" in project["types_options"]:
+      types_options = project["types_options"]["cordova"]
+      
+    panel = Util.create_and_show_panel("cordova_panel_installer_project")
+    node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+  return json_data
+
+Hook.add("cordova_create_new_project", create_cordova_project)
 
 class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
   cli = "cordova"

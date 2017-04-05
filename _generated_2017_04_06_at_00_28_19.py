@@ -3,6 +3,63 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re
 from shutil import copyfile
 from threading import Timer
 
+class Hook(object):
+  hook_list = {}
+
+  @staticmethod
+  def add (hook_name, hook_func, priority = 10) :
+    if not hook_name in Hook.hook_list :
+      Hook.hook_list[hook_name] = []
+
+    Hook.hook_list[hook_name].append({
+      "hook_func": hook_func,
+      "priority": priority if priority >= 0 else 0
+    })
+
+    Hook.hook_list[hook_name] = sorted(Hook.hook_list[hook_name], key=lambda hook: hook["priority"])
+
+  @staticmethod
+  def apply(hook_name, value='', *args, **kwargs) :
+
+    args = (value,) + args
+
+    if hook_name in Hook.hook_list :
+      for hook in Hook.hook_list[hook_name] :
+        value = hook["hook_func"](*args, **kwargs)
+        args = (value,) + args[1:]
+
+    return value
+
+  @staticmethod
+  def count(hook_name) :
+
+    if hook_name in Hook.hook_list :
+      return len(Hook.hook_list[hook_name])
+    return 0
+
+  @staticmethod
+  def removeHook(hook_name, hook_func, priority = -1) :
+
+    if hook_name in Hook.hook_list :
+      if priority >= 0 :
+        hook = { 
+          "hook_func": hook_func, 
+          "priority": priority 
+        }
+        while hook in Hook.hook_list[hook_name] : 
+          Hook.hook_list[hook_name].remove(hook)
+      else :
+         for hook in Hook.hook_list[hook_name] :
+          if hook["hook_func"] == hook_func :
+            Hook.hook_list[hook_name].remove(hook)
+
+  @staticmethod
+  def removeAllHook(hook_name) :
+
+    if hook_name in Hook.hook_list :
+      Hook.hook_list[hook_name] = []
+      
+
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
@@ -1429,7 +1486,7 @@ if int(sublime.version()) >= 3124 :
         if len(text) % 2 != 0 :
           html += text[len(text) - 1]
   
-        view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_BELOW)
+        view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_INLINE)
   
   
     def on_selection_modified_async(self, *args) :
@@ -2767,10 +2824,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     if self.status_message_before :
       self.window.status_message(self.name_cli+": "+self.status_message_before)
     if self.show_panel :
-      self.panel = self.window.create_output_panel(self.output_panel_name, False)
-      self.panel.set_read_only(True)
-      self.panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
-      self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window)
     self.command_with_options = self.command_with_options + self.append_args_execute()
     
     if self.is_stoppable and self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes:
@@ -2891,7 +2945,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
 
-def create_cordova_project(line, process, panel, project, sublime_project_file_name) :
+def create_cordova_project_process(line, process, panel, project, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
@@ -2899,6 +2953,23 @@ def create_cordova_project(line, process, panel, project, sublime_project_file_n
   if line == "OUTPUT-SUCCESS":
     Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
     open_project_folder(sublime_project_file_name)
+
+def create_cordova_project(json_data):
+  project = json_data["project"]
+  project_folder = project["path"]
+  types_options = []
+
+  if not "ionic" in project["type"] :
+
+    if "cordova" in project["types_options"]:
+      types_options = project["types_options"]["cordova"]
+      
+    panel = Util.create_and_show_panel("cordova_panel_installer_project")
+    node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+  return json_data
+
+Hook.add("cordova_create_new_project", create_cordova_project)
 
 class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
   cli = "cordova"
@@ -3160,7 +3231,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex
 from node.main import NodeJS
 
-def create_ionic_project(line, process, panel, project, sublime_project_file_name) :
+def create_ionic_project_process(line, process, panel, project, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
@@ -3168,6 +3239,21 @@ def create_ionic_project(line, process, panel, project, sublime_project_file_nam
   if line == "OUTPUT-SUCCESS":
     Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
     open_project_folder(sublime_project_file_name)
+
+def create_ionic_project(json_data):
+  project = json_data["project"]
+  project_folder = project["path"]
+  types_options = []
+
+  if "ionic" in project["types_options"]:
+    types_options = project["types_options"]["ionic"]
+
+  panel = Util.create_and_show_panel("ionic_panel_installer_project")
+  node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+  return json_data
+
+Hook.add("ionic_create_new_project", create_ionic_project)
 
 class enable_menu_ionicEventListener(enable_menu_cliEventListener):
   cli = "ionic"
@@ -3274,27 +3360,13 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
         if json_data["command"] == "open_project":
 
-          project = json_data["project"]
-          if "type" in project :
+          json_data = Hook.apply("before_create_new_project", json_data)
 
-            project_folder = project["path"]
-            types_options = []
+          if "type" in json_data["project"] :
+            for project_type in json_data["project"]["type"]:
+              json_data = Hook.apply(project_type+"_create_new_project", json_data)
 
-            if "ionic" in project["type"]:
-
-              if "ionic" in project["types_options"]:
-                types_options = project["types_options"]["ionic"]
-
-              panel = self.create_panel_installer("ionic_panel_installer_project")
-              node.execute('ionic', ["start", "temp", "blank"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
-              
-            elif "cordova" in project["type"]:
-
-              if "cordova" in project["types_options"]:
-                types_options = project["types_options"]["cordova"]
-                
-              panel = self.create_panel_installer("cordova_panel_installer_project")
-              node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+          json_data = Hook.apply("after_create_new_project", json_data)
 
           data = dict()
           data["command"] = "close_window"
@@ -3323,13 +3395,6 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     else :
       socket_server_list["create_new_project"].call_ui()
 
-  def create_panel_installer(self, output_panel_name):
-    window = sublime.active_window()
-    panel = window.create_output_panel(output_panel_name, False)
-    panel.set_read_only(True)
-    panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
-    window.run_command("show_panel", {"panel": "output."+output_panel_name})
-    return panel
 
 import sublime, sublime_plugin
 import subprocess, shutil, traceback

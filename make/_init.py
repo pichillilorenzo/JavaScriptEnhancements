@@ -3,6 +3,8 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re
 from shutil import copyfile
 from threading import Timer
 
+${include ./helper/Hook.py}
+
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
