@@ -7,7 +7,7 @@ const electron = require('electron')
 const {ipcMain} = require('electron')
 const SocketWindow = require('../../../js/SocketWindow.js')
 const PACKAGE_PATH = path.resolve(path.join(__dirname, "..", "..", ".."))
-const app = new SocketWindow('localhost', 11112, __dirname, 900, 700)
+const app = new SocketWindow('localhost', 11112, __dirname, 960, 722)
 
 let project_dir_name = ""
 let jc_project_settings_dir_name = ""

@@ -1,155 +1,148 @@
-<div id="cordova-settings" class="full-height tab-pane">
-  <div class="text-center"><h2>Cordova settings</h2></div>
-  <form id="form-cordova-settings" action="#">
-    <div class="pmd-card pmd-z-depth pmd-card-custom-form">
-      <div class="pmd-card-body">
-        
-        <div class="form-group pmd-textfield">
-          <label for="serve_port" class="control-label">Port 'serve' command:</label>
-          <input type="number" min="0" class="form-control serve_port">
-          <span class="pmd-textfield-focused"></span>
-          <p class="help-text">Port used when launching a local web server for www/ assets (default:8000).</p>
-        </div>
-
-        <div class="form-group pmd-textfield">
-          <label for="cli_global_options" class="control-label">CLI global options:</label>
-          <select class="form-control cli_global_options" multiple="multiple">
-            <option value="">None</option>
-            <option value="-d">--verbose</option>
-            <option value="--no-update-notifier">--no-update-notifier</option>
-            <option value="--nohooks">--nohooks</option>
-            <option value="--no-telemetry">--no-telemetry</option>
-          </select>
-          <p class="help-text">Select options that apply to every command</p>
-        </div>
-
-        <hr>
-        
-        <div class="form-group pmd-textfield">
-          <label for="cli_compile_options" class="control-label">CLI 'compile' options:</label>
-          <select class="form-control cli_compile_options" multiple="multiple">
-            <option value="">None</option>
-            <option value="--device">--device</option>
-            <option value="--emulator">--emulator</option>
-            <option value="--browserify">--browserify</option>
-          </select>
-          <p class="help-text">Select options that apply to 'compile' command to all platforms and modes</p>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="mode_list" class="control-label">Mode:</label>
-          <select class="mode_list" class="form-control">
-            <option value="debug">debug</option>
-            <option value="release">release</option>
-          </select>
-          <div class="debug mode active form-group pmd-textfield">
-            <label for="platform_list" class="control-label">Per platform:</label>
-            <select class="platform_list" class="form-control">
-            </select>
-            <div class="container-input-platform-compile"></div>
-            <span class="pmd-textfield-focused"></span>
-            <p class="help-text">Platform specific options (--)</p>
-          </div>
-          <div class="release mode form-group pmd-textfield">
-            <label for="platform_list" class="control-label">Per platform:</label>
-            <select class="platform_list" class="form-control">
-            </select>
-            <div class="container-input-platform-compile"></div>
-            <span class="pmd-textfield-focused"></span>
-            <p class="help-text">Platform specific options (--)</p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="form-group pmd-textfield">
-          <label for="cli_build_options" class="control-label">CLI 'build' options:</label>
-          <select class="form-control cli_build_options" multiple="multiple">
-            <option value="">None</option>
-            <option value="--device">--device</option>
-            <option value="--emulator">--emulator</option>
-            <option value="--stacktrace">--stacktrace</option>
-            <option value="--info">--info</option>
-            <option value="--browserify">--browserify</option>
-          </select>
-          <p class="help-text">Select options that apply to 'build' command to all platforms and modes</p>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="mode_list" class="control-label">Mode:</label>
-          <select class="mode_list" class="form-control">
-            <option value="debug">debug</option>
-            <option value="release">release</option>
-          </select>
-          <div class="debug mode active form-group pmd-textfield">
-            <label for="platform_list" class="control-label">Per platform:</label>
-            <select class="platform_list" class="form-control">
-            </select>
-            <div class="container-input-platform-build"></div>
-            <span class="pmd-textfield-focused"></span>
-            <p class="help-text">Platform specific options (--)</p>
-          </div>
-          <div class="release mode form-group pmd-textfield">
-            <label for="platform_list" class="control-label">Per platform:</label>
-            <select class="platform_list" class="form-control">
-            </select>
-            <div class="container-input-platform-build"></div>
-            <span class="pmd-textfield-focused"></span>
-            <p class="help-text">Platform specific options (--)</p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="form-group pmd-textfield">
-          <label for="cli_run_options" class="control-label">CLI 'run' options:</label>
-          <select class="form-control cli_run_options" multiple="multiple">
-            <option value="">None</option>
-            <option value="--noprepare">--noprepare</option>
-            <option value="--nobuild">--nobuild</option>
-            <option value="--device">--device</option>
-            <option value="--emulator">--emulator</option>
-            <option value="--browserify">--browserify</option>
-          </select>
-          <p class="help-text">Select options that apply to 'run' command to all platforms and modes</p>
-        </div>
-        <div class="form-group pmd-textfield">
-          <label for="mode_list" class="control-label">Mode:</label>
-          <select class="mode_list" class="form-control">
-            <option value="debug">debug</option>
-            <option value="release">release</option>
-          </select>
-          <div class="debug mode active form-group pmd-textfield">
-            <label for="platform_list" class="control-label">Per platform:</label>
-            <select class="platform_list" class="form-control">
-            </select>
-            <div class="container-input-platform-run"></div>
-            <span class="pmd-textfield-focused"></span>
-            <p class="help-text">Platform specific options (--)</p>
-          </div>
-          <div class="release mode form-group pmd-textfield">
-            <label for="platform_list" class="control-label">Per platform:</label>
-            <select class="platform_list" class="form-control">
-            </select>
-            <div class="container-input-platform-run"></div>
-            <span class="pmd-textfield-focused"></span>
-            <p class="help-text">Platform specific options (--)</p>
-          </div>
-        </div>
-
-        <hr>
-    
-        <div class="form-group pmd-textfield">
-          <label for="platform_list" class="control-label">Platform versions:</label>
-          <select class="platform_list" class="form-control">
-          </select>
-          <div class="container-input-platform-version"></div>
-          <span class="pmd-textfield-focused"></span>
-          <p class="help-text">Version</p>
-        </div>
-
+<h2>Cordova settings</h2>
+<div class="accordion" data-role="accordion">
+  <div class="frame">
+    <div class="heading">'serve' command</div>
+    <div class="content">
+      <div class="input-control text full-size " data-role="input">
+        <label for="cordova-serve_port">Port:</label>
+        <input class="serve_port" type="number" min="0" name="serve_port" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small>Port used when launching a local web server for www/ assets (default:8000).</small>
       </div>
     </div>
-    <div class="menu pmd-floating-action" role="navigation"> 
-      <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI global options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_global_options">Options:</label>
+        <select class="cli_global_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="-d">--verbose</option>
+          <option value="--no-update-notifier">--no-update-notifier</option>
+          <option value="--nohooks">--nohooks</option>
+          <option value="--no-telemetry">--no-telemetry</option>
+        </select>
+        <small>Select options that apply to every command</small>
+      </div>
     </div>
-  </form>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'compile' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_compile_options">Options:</label>
+        <select class="cli_compile_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--device">--device</option>
+          <option value="--emulator">--emulator</option>
+          <option value="--browserify">--browserify</option>
+        </select>
+        <small>Select options that apply to 'compile' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-compile"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-compile"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'build' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_build_options">Options:</label>
+        <select class="cli_build_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--device">--device</option>
+          <option value="--emulator">--emulator</option>
+          <option value="--stacktrace">--stacktrace</option>
+          <option value="--info">--info</option>
+          <option value="--browserify">--browserify</option>
+        </select>
+        <small>Select options that apply to 'build' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-build"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-build"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'run' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_run_options">Options:</label>
+        <select class="cli_run_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--noprepare">--noprepare</option>
+          <option value="--nobuild">--nobuild</option>
+          <option value="--device">--device</option>
+          <option value="--emulator">--emulator</option>
+          <option value="--browserify">--browserify</option>
+        </select>
+        <small>Select options that apply to 'run' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-run"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-run"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">Platform versions</div>
+    <div class="content">
+      <div class="input-control select full-size">
+        <label for="platform_list">Select Platform:</label>
+        <select class="platform_list">
+        </select>
+        <div class="container-input-platform-version"></div>
+        <small>Version (prepend version with '@' character, like @5.1.1)</small>
+      </div>
+    </div>
+  </div>
 </div>

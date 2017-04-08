@@ -2774,6 +2774,7 @@ class enable_menu_cliEventListener(sublime_plugin.EventListener):
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   name_cli = ""
+  bin_path = ""
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -2841,8 +2842,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     if ( self.can_execute() ) :
       node = NodeJS()
-      node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
-    
+
+      if self.bin_path :
+        node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+      else :
+        node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
   def print_panel(self, line, process):
     global manage_cli_window_command_processes
 
@@ -2965,7 +2970,12 @@ def create_cordova_project(json_data):
       types_options = project["types_options"]["cordova"]
       
     panel = Util.create_and_show_panel("cordova_panel_installer_project")
-    node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+    if "cordova_settings" in project and "package_json" in project["cordova_settings"] and "use_local_cli" in project["cordova_settings"] and project["cordova_settings"]["use_local_cli"] :
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    else :  
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    
 
   return json_data
 
@@ -2979,6 +2989,7 @@ class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
 class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
   name_cli = "Cordova"
+  bin_path = ""
   can_add_platform = False
   platform_list = []
   platform_list_on_success = None
@@ -3092,6 +3103,13 @@ class cordova_baseCommand(manage_cliCommand):
       custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
       
     return custom_args
+
+  def before_execute(self):
+
+    if self.settings["cordova_settings"]["cli_custom_path"] :
+      self.bin_path = self.settings["cordova_settings"]["cli_custom_path"]
+    elif self.settings["cordova_settings"]["use_local_cli"] :
+      self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")
@@ -3228,11 +3246,11 @@ class sync_cordova_projectCommand(cordova_baseCommand):
 
 ## Ionic ##
 import sublime, sublime_plugin
-import os, webbrowser, shlex
+import os, webbrowser, shlex, json
 from node.main import NodeJS
 
 def create_ionic_project_process(line, process, panel, project, sublime_project_file_name) :
-
+  print(line)
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
@@ -3249,7 +3267,11 @@ def create_ionic_project(json_data):
     types_options = project["types_options"]["ionic"]
 
   panel = Util.create_and_show_panel("ionic_panel_installer_project")
-  node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+  if "ionic_settings" in project and "package_json" in project["ionic_settings"] and "use_local_cli" in project["ionic_settings"] and project["ionic_settings"]["use_local_cli"] :
+    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+  else :  
+    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
 
   return json_data
 
@@ -3263,6 +3285,7 @@ class enable_menu_ionicEventListener(enable_menu_cliEventListener):
 class ionic_baseCommand(cordova_baseCommand):
   cli = "ionic"
   name_cli = "Ionic"
+  bin_path = ""
 
   def append_args_execute(self) :
     custom_args = []
@@ -3287,6 +3310,12 @@ class ionic_baseCommand(cordova_baseCommand):
     return super(ionic_baseCommand, self).append_args_execute() + custom_args
 
   def before_execute(self):
+
+    if self.settings["ionic_settings"]["cli_custom_path"] :
+      self.bin_path = self.settings["ionic_settings"]["cli_custom_path"]
+    elif self.settings["ionic_settings"]["use_local_cli"] :
+      self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+
     command = self.command_with_options[0]
     if command == "serve" :
       del self.command_with_options[1]

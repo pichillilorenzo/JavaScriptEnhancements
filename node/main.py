@@ -32,7 +32,8 @@ class NodeJS(object):
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -59,7 +60,8 @@ class NodeJS(object):
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -72,19 +74,19 @@ class NodeJS(object):
 
     return lines.strip()
 
-  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
+  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
 
     if node_variables.NODE_JS_OS == 'win':
       if is_from_bin :
-        args = [os.path.join(node_variables.NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
+        args = [os.path.join( (bin_path or node_variables.NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
-        args = [get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE, os.path.join(node_variables.NODE_MODULES_BIN_PATH, command)] + command_args
+        args = [get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE, os.path.join( (bin_path or node_variables.NODE_MODULES_BIN_PATH), command)] + command_args
     else :
       command_args_list = list()
       for command_arg in command_args :
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
-      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join(node_variables.NODE_MODULES_BIN_PATH, command))+" "+command_args
+      args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(os.path.join( (bin_path or node_variables.NODE_MODULES_BIN_PATH), command))+" "+command_args
     
     print(args)
     
@@ -102,7 +104,8 @@ class NodeJS(object):
 
       # check for errors
       for line in p.stderr.readlines():
-        lines += codecs.decode(line, "utf-8", "ignore")
+        if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+          lines += codecs.decode(line, "utf-8", "ignore")
 
       if len(lines) > 0 :
         p.terminate()
@@ -130,9 +133,9 @@ class NodeJS(object):
         func_stdout(line, p, *args_func_stdout)
 
       for line in p.stderr:
-        if not flag_error:
-          flag_error = True
         line = codecs.decode(line, "utf-8", "ignore")
+        if len(line.strip()) > 0 and not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) and not flag_error:
+          flag_error = True  
         func_stdout(line, p, *args_func_stdout)
 
       if not flag_error:
@@ -227,7 +230,7 @@ class NodeJS(object):
 
 class NPM(object):
 
-  def install_all(self, save = False) :
+  def install_all(self, save = False, chdir="") :
 
     args = ""
 
@@ -236,14 +239,18 @@ class NPM(object):
     else :
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" install" + (" --save" if save else "")
 
-    os.chdir(PACKAGE_PATH)
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -256,7 +263,7 @@ class NPM(object):
 
     return lines.strip()
 
-  def update_all(self, save = False) :
+  def update_all(self, save = False, chdir="") :
 
     args = ""
 
@@ -265,14 +272,18 @@ class NPM(object):
     else :
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" update" + (" --save" if save else "")
 
-    os.chdir(PACKAGE_PATH)
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -284,8 +295,7 @@ class NPM(object):
     p.terminate()
 
     return lines.strip()
-
-  def install(self, package_name, save = False) :
+  def install(self, package_name, save = False, chdir="") :
 
     args = ""
 
@@ -294,14 +304,18 @@ class NPM(object):
     else :
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" install" + (" --save" if save else "") + " " + shlex.quote(package_name)
 
-    os.chdir(PACKAGE_PATH)
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
 
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -313,8 +327,7 @@ class NPM(object):
     p.terminate()
 
     return lines.strip()
-
-  def update(self, package_name, save = False) :
+  def update(self, package_name, save = False, chdir="") :
 
     args = ""
 
@@ -323,14 +336,18 @@ class NPM(object):
     else :
       args = shlex.quote(get_node_js_custom_path() or node_variables.NODE_JS_PATH_EXECUTABLE)+" "+shlex.quote(get_npm_custom_path() or node_variables.NPM_PATH_EXECUTABLE)+" update" + (" --save" if save else "") + " " + shlex.quote(package_name)
 
-    os.chdir(PACKAGE_PATH)
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
     
     p = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     lines = ""
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -342,7 +359,6 @@ class NPM(object):
     p.terminate()
 
     return lines.strip()
-
   def getCurrentNPMVersion(self, checking_local = False) :
 
     args = ""
@@ -357,7 +373,8 @@ class NPM(object):
 
     # check for errors
     for line in p.stderr.readlines():
-      lines += codecs.decode(line, "utf-8", "ignore")
+      if not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+        lines += codecs.decode(line, "utf-8", "ignore")
 
     if len(lines) > 0 :
       p.terminate()
@@ -369,3 +386,26 @@ class NPM(object):
     p.terminate()
 
     return lines.strip()
+
+  def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[]):
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+
+      func_stdout(None, p, *args_func_stdout)
+      flag_error = False
+      
+      for line in p.stdout:
+        line = codecs.decode(line, "utf-8", "ignore")
+        func_stdout(line, p, *args_func_stdout)
+
+      for line in p.stderr:
+        if not flag_error:
+          flag_error = True
+        line = codecs.decode(line, "utf-8", "ignore")
+        func_stdout(line, p, *args_func_stdout)
+
+      if not flag_error:
+        func_stdout("OUTPUT-SUCCESS", p, *args_func_stdout)
+      else :
+        func_stdout("OUTPUT-ERROR", p, *args_func_stdout)
+
+      func_stdout("OUTPUT-DONE", p, *args_func_stdout)

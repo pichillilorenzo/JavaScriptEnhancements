@@ -1,6 +1,9 @@
 module.exports = {
   "title": "Cordova settings",
-  "subtitle": "Cordova settings",
+  "subtitle": "",
+  "icon": "img/cordova-logo.png",
+  "tile_bg_color": "bg-black",
+  "tile_fg_color": "fg-white",
   "prepareClientJs": (variables) => {
     let app = variables.app
     let ipcMain = variables.ipcMain
@@ -33,54 +36,54 @@ module.exports = {
     let list_config = ["version", "global"]
     let list_config_debug_release = ["run", "build", "compile"]
 
-    $("#cordova-settings .serve_port").val( data_project.cordova_settings.serve_port)
+    $("#form-cordova-settings .serve_port").val( data_project.cordova_settings.serve_port)
 
     for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
       let platform = data_project.cordova_settings.installed_platform[i]
-      $("#cordova-settings .platform_list").append('<option value="'+platform+'" '+( (i == 0) ? 'selected="selected"' : '' )+'>'+platform+'</option>')
+      $("#form-cordova-settings .platform_list").append('<option value="'+platform+'" '+( (i == 0) ? 'selected="selected"' : '' )+'>'+platform+'</option>')
       for(let j = 0, length2 = list_config.length; j < length2; j++){
-        if (!$("#cordova-settings .container-input-platform-"+list_config[j])) {
+        if (!$("#form-cordova-settings .container-input-platform-"+list_config[j])) {
           break
         }
-        $("#cordova-settings .container-input-platform-"+list_config[j]).append('<input type="text" data-platform="'+platform+'" class="'+platform+'_'+list_config[j]+' form-control platform platform_'+list_config[j]+'_options '+( (i == 0) ? 'active' : '' )+'">')
+        $("#form-cordova-settings .container-input-platform-"+list_config[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-platform="'+platform+'" class="'+platform+'_'+list_config[j]+' platform platform_'+list_config[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>'+( (list_config[j] != "version") ? '<small>Platform specific options (--)</small>': '')+'</div>')
       }
       for(let j = 0, length2 = list_config_debug_release.length; j < length2; j++){
-        if (!$("#cordova-settings .container-input-platform-"+list_config_debug_release[j])) {
+        if (!$("#form-cordova-settings .container-input-platform-"+list_config_debug_release[j])) {
           break
         }
-        $("#cordova-settings .debug .container-input-platform-"+list_config_debug_release[j]).append('<input type="text" data-mode="debug" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_debug form-control platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'">')
-        $("#cordova-settings .release .container-input-platform-"+list_config_debug_release[j]).append('<input type="text" data-mode="release" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_release form-control platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'">')
+        $("#form-cordova-settings .debug .container-input-platform-"+list_config_debug_release[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-mode="debug" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_debug platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button><small>Platform specific options (--)</small></div>')
+        $("#form-cordova-settings .release .container-input-platform-"+list_config_debug_release[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-mode="release" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_release platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button><small>Platform specific options (--)</small></div>')
       }
     }
 
     for(let j = 0, length2 = list_config.length; j < length2; j++){
-      if ( $("#cordova-settings .cli_"+list_config[j]+"_options").length > 0 ) {
-        utilWeb.setMulitpleSelectValues("#cordova-settings .cli_"+list_config[j]+"_options", data_project.cordova_settings["cli_"+list_config[j]+"_options"])
+      if ( $("#form-cordova-settings .cli_"+list_config[j]+"_options").length > 0 ) {
+        $("#form-cordova-settings .cli_"+list_config[j]+"_options").val( data_project.cordova_settings["cli_"+list_config[j]+"_options"] )
       }
 
-      $("#cordova-settings .platform_"+list_config[j]+"_options").each(function(index, item){
+      $("#form-cordova-settings .platform_"+list_config[j]+"_options").each(function(index, item){
         $(this).val(data_project.cordova_settings["platform_"+list_config[j]+"_options"][$(this).attr("data-platform")])
       })
     }
 
     for(let j = 0, length2 = list_config_debug_release.length; j < length2; j++){
-      if ( $("#cordova-settings .cli_"+list_config_debug_release[j]+"_options").length > 0 ) {
-        utilWeb.setMulitpleSelectValues("#cordova-settings .cli_"+list_config_debug_release[j]+"_options", data_project.cordova_settings["cli_"+list_config_debug_release[j]+"_options"])
+      if ( $("#form-cordova-settings .cli_"+list_config_debug_release[j]+"_options").length > 0 ) {
+        $("#form-cordova-settings .cli_"+list_config_debug_release[j]+"_options").val( data_project.cordova_settings["cli_"+list_config_debug_release[j]+"_options"] )
       }
 
-      $("#cordova-settings .platform_"+list_config_debug_release[j]+"_options").each(function(index, item){
+      $("#form-cordova-settings .platform_"+list_config_debug_release[j]+"_options").each(function(index, item){
         $(this).val(data_project.cordova_settings["platform_"+list_config_debug_release[j]+"_options"][$(this).attr("data-mode")][$(this).attr("data-platform")])
       })
     }
 
-    $("#cordova-settings .platform_list").on("change", function(event) {
+    $("#form-cordova-settings .platform_list").on("change", function(event) {
       let curr_platform = $(this).val()
       let mustActive = $(this).parent().find('.platform[data-platform="'+curr_platform+'"]')
       $(this).parent().find('.platform.active').toggleClass("active");
       $(mustActive).toggleClass("active");
     })
 
-    $("#cordova-settings .mode_list").on("change", function(event) {
+    $("#form-cordova-settings .mode_list").on("change", function(event) {
       let curr_mode = $(this).val()
       let mustActive = $(this).parent().find('.'+curr_mode+'.mode')
       $(this).parent().find('.mode.active').toggleClass("active");
@@ -89,13 +92,23 @@ module.exports = {
 
     $("#form-cordova-settings").on("submit", function(event) {
       event.preventDefault()
+      
+      let cli_global_options = $("#form-cordova-settings .cli_global_options").val()
+      let cli_compile_options = $("#form-cordova-settings .cli_compile_options").val()
+      let cli_build_options = $("#form-cordova-settings .cli_build_options").val()
+      let cli_run_options = $("#form-cordova-settings .cli_run_options").val()
+
+      cli_global_options = (cli_global_options) ? cli_global_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_compile_options = (cli_compile_options) ? cli_compile_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_build_options = (cli_build_options) ? cli_build_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_run_options = (cli_run_options) ? cli_run_options.filter(function(item){ return (item !== "") ? true : false }) : []
 
       let cordova_settings = {
-        "serve_port": $("#cordova-settings .serve_port").val().trim(),
-        "cli_global_options": utilWeb.getMulitpleSelectValues("#cordova-settings .cli_global_options"),
-        "cli_compile_options": utilWeb.getMulitpleSelectValues("#cordova-settings .cli_compile_options"),
-        "cli_build_options": utilWeb.getMulitpleSelectValues("#cordova-settings .cli_build_options"),
-        "cli_run_options": utilWeb.getMulitpleSelectValues("#cordova-settings .cli_run_options"),
+        "serve_port": $("#form-cordova-settings .serve_port").val().trim(),
+        "cli_global_options": cli_global_options,
+        "cli_compile_options": cli_compile_options,
+        "cli_build_options": cli_build_options,
+        "cli_run_options": cli_run_options,
         "installed_platform": data_project.cordova_settings.installed_platform,
         "platform_version_options": {},
         "platform_compile_options": {
@@ -115,8 +128,8 @@ module.exports = {
       for(let j = 0, length2 = list_config.length; j < length2; j++){
         for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
           let platform = data_project.cordova_settings.installed_platform[i]
-          if ($('#cordova-settings .'+platform+'_'+list_config[j]).length > 0) {
-            cordova_settings["platform_"+list_config[j]+"_options"][platform] = $('#cordova-settings .'+platform+'_'+list_config[j]).val()
+          if ($('#form-cordova-settings .'+platform+'_'+list_config[j]).length > 0) {
+            cordova_settings["platform_"+list_config[j]+"_options"][platform] = $('#form-cordova-settings .'+platform+'_'+list_config[j]).val()
           }
         }
       }
@@ -124,11 +137,11 @@ module.exports = {
       for(let j = 0, length2 = list_config_debug_release.length; j < length2; j++){
         for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
           let platform = data_project.cordova_settings.installed_platform[i]
-          if ($('#cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_debug").length > 0) {
-            cordova_settings["platform_"+list_config_debug_release[j]+"_options"].debug[platform] = $('#cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_debug").val()
+          if ($('#form-cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_debug").length > 0) {
+            cordova_settings["platform_"+list_config_debug_release[j]+"_options"].debug[platform] = $('#form-cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_debug").val()
           }
-          if ($('#cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_release").length > 0) {
-            cordova_settings["platform_"+list_config_debug_release[j]+"_options"].release[platform] = $('#cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_release").val()
+          if ($('#form-cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_release").length > 0) {
+            cordova_settings["platform_"+list_config_debug_release[j]+"_options"].release[platform] = $('#form-cordova-settings .'+platform+'_'+list_config_debug_release[j]+"_release").val()
           }
         }
       }

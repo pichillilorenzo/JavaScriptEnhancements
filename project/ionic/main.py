@@ -1,9 +1,9 @@
 import sublime, sublime_plugin
-import os, webbrowser, shlex
+import os, webbrowser, shlex, json
 from node.main import NodeJS
 
 def create_ionic_project_process(line, process, panel, project, sublime_project_file_name) :
-
+  print(line)
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
@@ -20,7 +20,11 @@ def create_ionic_project(json_data):
     types_options = project["types_options"]["ionic"]
 
   panel = Util.create_and_show_panel("ionic_panel_installer_project")
-  node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+  if "ionic_settings" in project and "package_json" in project["ionic_settings"] and "use_local_cli" in project["ionic_settings"] and project["ionic_settings"]["use_local_cli"] :
+    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+  else :  
+    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
 
   return json_data
 
@@ -34,6 +38,7 @@ class enable_menu_ionicEventListener(enable_menu_cliEventListener):
 class ionic_baseCommand(cordova_baseCommand):
   cli = "ionic"
   name_cli = "Ionic"
+  bin_path = ""
 
   def append_args_execute(self) :
     custom_args = []
@@ -58,6 +63,12 @@ class ionic_baseCommand(cordova_baseCommand):
     return super(ionic_baseCommand, self).append_args_execute() + custom_args
 
   def before_execute(self):
+
+    if self.settings["ionic_settings"]["cli_custom_path"] :
+      self.bin_path = self.settings["ionic_settings"]["cli_custom_path"]
+    elif self.settings["ionic_settings"]["use_local_cli"] :
+      self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+
     command = self.command_with_options[0]
     if command == "serve" :
       del self.command_with_options[1]

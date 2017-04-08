@@ -3,210 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit Project</title>
-  <link rel="stylesheet" href="../../../css/vendor/iconfont/material-icons.css">
-  <link rel="stylesheet" href="../../../css/vendor/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../css/vendor/propeller.min.css">
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro.min.css">
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro-icons.css">
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro-colors.css">
   <link rel="stylesheet" href="../../../css/style.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="row full-height">
-    <div class="col-xs-4">
-      <ul id="aside-menu" class="list-group pmd-list pmd-card-list" role="tablist">
-        <li class="list-group-item active"> 
-          <a href="#project-details" role="tab" data-toggle="tab" aria-expanded="true">
-            <i class="material-icons media-left media-middle">create</i>
-            <div class="media-body">
-              <h3 class="list-group-item-heading">Project Details</h3>
-              <span class="list-group-item-text">Change your project details</span> 
-            </div>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="#flow-settings" role="tab" data-toggle="tab" aria-expanded="true">
-            <i class="material-icons media-left media-middle">settings</i>
-            <div class="media-body">
-              <h3 class="list-group-item-heading">Flow settings</h3>
-              <span class="list-group-item-text">Set your .flowconfig options and global settings here</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-xs-8 full-height">
-      <div class="tab-content pmd-z-depth-1 full-height">
-        
-        <div id="project-details" class="full-height tab-pane active">
-          <div class="text-center"><h2>Project Details</h2></div>
-          <form id="form-project-details" action="#">
-            <div class="pmd-card pmd-z-depth pmd-card-custom-form">
-              <div class="pmd-card-body">
+  <div class="tile-container bg-darkCobalt">
 
-                <div class="form-group pmd-textfield">
-                  <label for="project_name" class="control-label">Project name:</label>
-                  <input type="text" id="project_name" class="check-not-empty form-control" required="required"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="project_path" class="control-label">Project path:</label>
-                  <input type="text" id="project_path" class="form-control" disabled="disabled" required="required"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="type" class="control-label">Type:</label>
-                  <select id="type" class="form-control" multiple="multiple">
-                    <option value="">Blank</option>
-                    <option value="cordova">Cordova</option>
-                    <option value="ionic">Ionic</option>
-                  </select>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="author" class="control-label">Author:</label>
-                  <input type="text" id="author" class="form-control"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="author_uri" class="control-label">Author URI:</label>
-                  <input type="text" id="author_uri" class="form-control"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="description" class="control-label">Description:</label>
-                  <textarea id="description" class="form-control" maxlength="255"></textarea><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="version" class="control-label">Version:</label>
-                  <input type="text" id="version" class="form-control"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="license" class="control-label">License:</label>
-                  <input type="text" id="license" class="form-control"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="license_uri" class="control-label">License URI:</label>
-                  <input type="text" id="license_uri" class="form-control"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="form-group pmd-textfield">
-                  <label for="tags" class="control-label">Tags:</label>
-                  <input type="text" id="tags" class="form-control"><span class="pmd-textfield-focused"></span>
-                </div>
-                <div class="menu pmd-floating-action" role="navigation"> 
-                  <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
-                </div>
+    <div class="tile tile-large bg-red fg-white" data-role="tile" onclick="metroDialog.open('#dialog-project-details')">
+      <div class="tile-content iconic">
+          <span class="icon mif-cogs"></span>
+          <span class="tile-label">Project Details</span>
+      </div>
+      <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-project-details" data-close-button="true">
+        <form id="form-project-details" action="#">
+          <h2>Project Details</h2>
 
-              </div>
-            </div>
-          </form>
-        </div>
-        <div id="flow-settings" class="full-height tab-pane">
-          <div class="text-center"><h2>Flow settings</h2></div>
-          <form id="form-flow-settings" action="#">
-            <div class="panel-group pmd-accordion" id="accordion-flow" role="tablist" aria-multiselectable="true" > 
-              <div class="panel panel-default"> 
-                <div class="panel-heading" role="tab" id="headingOne">
-                  <h4 class="panel-title"> 
-                    <a data-toggle="collapse" data-parent="#accordion-flow" href="#include-flow" aria-expanded="true" aria-controls="include-flow" data-expandable="false">Include <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a></a> 
-                  </h4>
-                </div>
-                <div id="include-flow" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                  <div class="panel-body">
-                    <div class="container-settings-flow-inputs"></div>
-                    <div class="clearfix"></div>
-                    <button data-id-flow="include-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
-                    <button data-id-flow="include-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default"> 
-                <div class="panel-heading" role="tab" id="headingTwo">
-                  <h4 class="panel-title"> 
-                    <a data-toggle="collapse" data-parent="#accordion-flow" href="#ignore-flow" aria-expanded="false" aria-controls="ignore-flow"  data-expandable="false">Ignore <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
-                  </h4>
-                </div>
-                <div id="ignore-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                  <div class="panel-body">
-                    <div class="container-settings-flow-inputs"></div>
-                    <div class="clearfix"></div>
-                    <button data-id-flow="ignore-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
-                    <button data-id-flow="ignore-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default"> 
-                <div class="panel-heading" role="tab" id="headingThree">
-                  <h4 class="panel-title"> 
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion-flow" href="#libs-flow" aria-expanded="false" aria-controls="libs-flow"  data-expandable="false">Libs <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
-                  </h4>
-                </div>
-                <div id="libs-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div class="panel-body">
-                    <div class="container-settings-flow-inputs"></div>
-                    <div class="clearfix"></div>
-                    <button data-id-flow="libs-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
-                    <button data-id-flow="libs-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default"> 
-                <div class="panel-heading" role="tab" id="headingFour">
-                  <h4 class="panel-title"> 
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion-flow" href="#options-flow" aria-expanded="false" aria-controls="options-flow"  data-expandable="false">Options <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
-                  </h4>
-                </div>
-                <div id="options-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                  <div class="panel-body">
-                    <div class="container-settings-flow-inputs"></div>
-                    <div class="clearfix"></div>
-                    <button data-id-flow="options-flow" class="flow-add-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">add</i></button>
-                    <button data-id-flow="options-flow" class="flow-remove-button btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" type="button"><i class="material-icons pmd-sm">remove</i></button>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default"> 
-                <div class="panel-heading" role="tab" id="headingFive">
-                  <h4 class="panel-title"> 
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion-flow" href="#global-flow" aria-expanded="false" aria-controls="global-flow"  data-expandable="false">Global Settings <i class="material-icons md-dark pmd-sm pmd-accordion-arrow">keyboard_arrow_down</i></a>
-                  </h4>
-                </div>
-                <div id="global-flow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                  <div class="panel-body">
+          <div class="input-control text full-size" data-role="input">
+            <label for="project_name">Project Name *:</label>
+            <input type="text" id="project_name" name="project_name" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
 
-                    <div class="container-settings-flow-inputs">
-                      <div class="container-flow-input">
-                        <div class="pmd-switch">
-                          <label>
-                            <input type="checkbox" id="use_flow_checker">
-                            <span class="pmd-switch-label"></span>
-                            <span class="text-switch">Use Flow Checker</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container-settings-flow-inputs">
-                      <div class="container-flow-input">
-                        <div class="pmd-switch">
-                          <label>
-                            <input type="checkbox" id="use_always_weak_mode">
-                            <span class="pmd-switch-label"></span>
-                            <span class="text-switch">Use Always Weak Mode</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+          <div class="input-control text full-size" data-role="input">
+            <label for="project_path" class="control-label">Project path *:</label>
+            <input type="text" id="project_path" name="project_path" disabled="disabled">
+          </div>
+          
+          <div class="input-control select multiple full-size">
+            <label for="type">Type:</label>
+            <select id="type" name="type" multiple="multiple">
+              <option value="">Blank</option>
+              <option value="cordova">Cordova</option>
+              <option value="ionic">Ionic</option>
+            </select>
+          </div>
 
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="menu pmd-floating-action" role="navigation"> 
-              <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" type="submit"><i class="material-icons pmd-sm">save</i></button>
-            </div>
-          </form>
-        </div>
+          <div class="input-control text full-size" data-role="input">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="author_uri">Author URI:</label>
+            <input type="text" id="author_uri" name="author_uri">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control textarea full-size" data-role="input">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="version">Version:</label>
+            <input type="text" id="version" name="version">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="license">License:</label>
+            <input type="text" id="license" name="license">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="license_uri">License URI:</label>
+            <input type="text" id="license_uri" name="license_uri">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          
+          <div class="input-control text full-size" data-role="input">
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          <div class="floating-action"> 
+            <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
+          </div>
+        </form>
       </div>
     </div>
+
+    <div class="tile tile-large bg-black fg-white" data-role="tile" onclick="metroDialog.open('#dialog-flow-settings')">
+        <div class="tile-content iconic">
+          <span class="icon"><img src="img/flow-logo.png" alt=""></span>
+          <span class="tile-label">Flow Settings</span>
+        </div>
+        <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-flow-settings" data-close-button="true">
+          <form id="form-flow-settings" action="#">
+            <h2>Flow Settings</h2>
+            <div class="accordion" data-role="accordion">
+              <div class="frame">
+                <div class="heading">Include</div>
+                <div id="include-flow" class="content">
+                  <div class="container-settings-flow-inputs"></div>
+                  <button data-id-flow="include-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                  <button data-id-flow="include-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="heading">Ignore</div>
+                <div id="ignore-flow" class="content">
+                  <div class="container-settings-flow-inputs"></div>
+                  <button data-id-flow="ignore-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                  <button data-id-flow="ignore-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="heading">Libs</div>
+                <div id="libs-flow" class="content">
+                  <div class="container-settings-flow-inputs"></div>
+                  <button data-id-flow="libs-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                  <button data-id-flow="libs-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="heading">Options</div>
+                <div id="options-flow" class="content">
+                  <div class="container-settings-flow-inputs"></div>
+                  <button data-id-flow="options-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                  <button data-id-flow="options-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+                </div>
+              </div>
+              <div class="frame active">
+                <div class="heading">Global Settings</div>
+                <div id="global-flow" class="content">
+                  <div class="container-settings-flow-inputs">
+                    <div class="container-flow-input">
+                      <label class="switch">
+                        <input type="checkbox" id="use_flow_checker">
+                        <span class="check"></span>
+                        <span class="text-switch">Use Flow Checker</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="container-settings-flow-inputs">
+                    <div class="container-flow-input">
+                      <label class="switch">
+                        <input type="checkbox" id="use_always_weak_mode">
+                        <span class="check"></span>
+                        <span class="text-switch">Use Always Weak Mode</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-action"> 
+              <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
+            </div>
+          </form>
+        </div>
+    </div>
+    
   </div>
-  <div class="pmd-alert-container right top"></div>
+
   <script>
-    window.$ = window.jQuery = require('../../../js/vendor/jquery-1.12.2.min.js')
+    window.$ = window.jQuery = require('../../../vendor/jquery/jquery-1.12.2.min.js')
     require('../../../js/vendor/bootstrap.min.js')
     require('../../../js/vendor/propeller.min.js')
+    require('../../../vendor/metro-dist/js/metro.min.js')
     const fs = require("fs")
     const utilWeb = require('../../../js/utilWeb.js')
 
@@ -215,6 +176,29 @@
 
     let project_type = []
 
+    function type_change () {
+      let types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+
+      $("#type option").prop("disabled", false)
+      for(let i = 0; i < types.length; i++){
+        let type = types[i]
+        if (fs.existsSync(__dirname+"/../../default_settings/"+type+"/default_config.js") ){
+          let default_config = require(__dirname+"/../../default_settings/"+type+"/default_config.js")
+          let dependencies = default_config.dependencies
+          if (dependencies) {
+            for(let i = 0, length1 = dependencies.length; i < length1; i++){
+              let dipendency = dependencies[i]
+              if (types.indexOf(dipendency) < 0) {
+                types.push(dipendency)
+              }
+              $("#type option[value='"+dipendency+"']").prop("disabled", true)
+              $("#type option[value='"+dipendency+"']").prop("selected", false)
+            }
+          }
+        }
+      }
+    }
+      
     $(document).ready(() => {
       
       $("#form-project-details").on("submit", function(event) {
@@ -228,10 +212,12 @@
           "license": $("#license").val().trim(),
           "license_uri": $("#license_uri").val().trim(),
           "tags": $("#tags").val().trim(),
-          "type": utilWeb.getMulitpleSelectValues("#type")
+          "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
         }
         ipcRenderer.send('form-project-details', project_details)
       })
+
+      $("#type").change(type_change)
 
       $("#form-flow-settings").on("submit", function(event) {
         event.preventDefault()
@@ -264,12 +250,14 @@
         if ( id != "options-flow" ) { 
           $("#"+id+" .container-settings-flow-inputs").append(`
             <div class="container-flow-input">
-              <div class="form-group pmd-textfield">
-                <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-                  <input type="checkbox" value=""><span class="pmd-checkbox-label">&nbsp;</span>
-                  <span>Select to delete</span>
+              <div class="input-control text full-size" data-role="input">
+                <label class="input-control checkbox small-check">
+                  <input type="checkbox">
+                  <span class="check"></span>
+                  <span class="caption">Select to delete</span>
                 </label>
-                <input type="text" class="${id}-input form-control" value="" required="required"/><span class="pmd-textfield-focused"></span>
+                <input type="text" class="${id}-input" value="">
+                <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
               </div>
             </div>
           `)
@@ -277,38 +265,44 @@
         else {
           $("#"+id+" .container-settings-flow-inputs").append(`
             <div class="container-flow-input">
-              <div class="form-group pmd-textfield">
-                <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-                  <input type="checkbox" value=""><span class="pmd-checkbox-label">&nbsp;</span>
-                  <span>Select to delete</span>
-                </label>
-                <div class="row">
-                  <div class="col-xs-6 col-padding">
-                    <select class="${id}-select form-control">
-                      <option value="all">all</option>
-                      <option value="esproposal.export_star_as">esproposal.export_star_as</option>
-                      <option value="esproposal.export_star_as">esproposal.export_star_as</option>
-                      <option value="esproposal.decorators">esproposal.decorators</option>
-                      <option value="esproposal.class_instance_fields">esproposal.class_instance_fields</option>
-                      <option value="esproposal.class_static_fields">esproposal.class_static_fields</option>
-                      <option value="temp_dir">temp_dir</option>
-                      <option value="suppress_comment">suppress_comment</option>
-                      <option value="strip_root">strip_root</option>
-                      <option value="traces">traces</option>
-                      <option value="server.max_workers">server.max_workers</option>
-                      <option value="munge_underscores">munge_underscores</option>
-                      <option value="module.use_strict">module.use_strict</option>
-                      <option value="module.file_ext">module.file_ext</option>
-                      <option value="module.ignore_non_literal_requires">module.ignore_non_literal_requires</option>
-                      <option value="module.system.node.resolve_dirname">module.system.node.resolve_dirname</option>
-                      <option value="module.system">module.system</option>
-                      <option value="module.name_mapper.extension">module.name_mapper.extension</option>
-                      <option value="module.name_mapper">module.name_mapper</option>
-                      <option value="log.file">log.file</option>
-                    </select>
+              <label class="input-control checkbox small-check no-margin-top no-margin-bottom">
+                <input type="checkbox">
+                <span class="check"></span>
+                <span class="caption">Select to delete</span>
+              </label>
+              <div class="grid no-margin-top no-margin-bottom">
+                <div class="row cells2">
+                  <div class="cell">
+                    <div class="input-control select full-size no-margin-top no-margin-bottom">
+                      <select class="${id}-select">
+                        <option value="all">all</option>
+                        <option value="esproposal.export_star_as">esproposal.export_star_as</option>
+                        <option value="esproposal.export_star_as">esproposal.export_star_as</option>
+                        <option value="esproposal.decorators">esproposal.decorators</option>
+                        <option value="esproposal.class_instance_fields">esproposal.class_instance_fields</option>
+                        <option value="esproposal.class_static_fields">esproposal.class_static_fields</option>
+                        <option value="temp_dir">temp_dir</option>
+                        <option value="suppress_comment">suppress_comment</option>
+                        <option value="strip_root">strip_root</option>
+                        <option value="traces">traces</option>
+                        <option value="server.max_workers">server.max_workers</option>
+                        <option value="munge_underscores">munge_underscores</option>
+                        <option value="module.use_strict">module.use_strict</option>
+                        <option value="module.file_ext">module.file_ext</option>
+                        <option value="module.ignore_non_literal_requires">module.ignore_non_literal_requires</option>
+                        <option value="module.system.node.resolve_dirname">module.system.node.resolve_dirname</option>
+                        <option value="module.system">module.system</option>
+                        <option value="module.name_mapper.extension">module.name_mapper.extension</option>
+                        <option value="module.name_mapper">module.name_mapper</option>
+                        <option value="log.file">log.file</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="col-xs-6 col-padding">
-                    <input type="text" class="${id}-input form-control" value="" required="required"/><span class="pmd-textfield-focused"></span>
+                  <div class="cell">
+                    <div class="input-control text full-size no-margin-top no-margin-bottom" data-role="input">
+                      <input type="text" class="${id}-input" value="" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top" />
+                      <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -338,12 +332,13 @@
       $("#license").val(project_details.license)
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
-      utilWeb.setMulitpleSelectValues("#type", project_details.type)
+      $("#type").val(project_details.type)
+      type_change()
       project_type = project_details.type
 
       for(let i = 0, length1 = project_type.length; i < length1; i++){
         let type = project_type[i]
-        if ($("#"+type+"-settings").length > 0) {
+        if ($("#"+type+"-tile").length > 0) {
           continue
         }
         if (fs.existsSync(__dirname+"/../../"+type+"/edit_project/index.html") && fs.existsSync(__dirname+"/../../"+type+"/edit_project/client.js") ){
@@ -352,18 +347,23 @@
           }
           let client_js = require(__dirname+"/../../"+type+"/edit_project/client.js")
           let html = fs.readFileSync(__dirname+"/../../"+type+"/edit_project/index.html", "UTF-8")
-          $("#aside-menu").append(`
-          <li id="${type}-item" class="list-group-item">
-            <a href="#${type}-settings" role="tab" data-toggle="tab" aria-expanded="true">
-              <i class="material-icons media-left media-middle">settings</i>
-              <div class="media-body">
-                <h3 class="list-group-item-heading">${client_js.title}</h3>
-                <span class="list-group-item-text">${client_js.subtitle}</span>
+
+          $(".tile-container").append(`
+            <div id="${type}-tile" class="tile tile-wide ${ (client_js.tile_bg_color) ? client_js.tile_bg_color : '' } ${ (client_js.tile_fg_color) ? client_js.tile_fg_color : '' }" data-role="tile" onclick="metroDialog.open('#dialog-${type}-settings')">
+              <div class="tile-content iconic">
+                  ${ (client_js.icon) ? '<span class="icon"><img src="'+client_js.icon+'" alt=""></span>' : '<span class="icon mif-cogs"></span>' }
+                  <span class="tile-label">${client_js.title}</span>
               </div>
-            </a>
-          </li>
+              <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-${type}-settings" data-close-button="true">
+                <form id="form-${type}-settings" action="#">
+                  <div class="floating-action"> 
+                    <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           `)
-          $(".tab-content").append($(html))
+          $("#dialog-"+type+"-settings form").prepend(html)
           client_js.prepareClientHtml({
             "ipcRenderer": ipcRenderer,
             "$": $,
@@ -403,16 +403,24 @@
     })
 
     ipcRenderer.on("error", (event, msg) => {
-      $(".pmd-alert-container").append(utilWeb.createPmdAlert("error", msg, "fadeInDown", "fadeInUp", 4000));
+      $.Notify({
+        caption: 'Error',
+        content: msg,
+        type: 'alert'
+      });
     })
 
     ipcRenderer.on("success", (event, msg) => {
-      $(".pmd-alert-container").append(utilWeb.createPmdAlert("success", msg));
+      $.Notify({
+        caption: 'Success',
+        content: msg,
+        type: 'success'
+      });
     })
     
     ipcRenderer.on("delete-item-menu", (event, type) => {
-      $("#"+type+"-settings").remove()
-      $("#"+type+"-item").remove()
+      $("#dialog-"+type+"-settings").remove()
+      $("#"+type+"-tile").remove()
     })
   </script>
 </body>

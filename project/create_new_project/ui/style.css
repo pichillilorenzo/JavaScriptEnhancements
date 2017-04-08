@@ -1,12 +1,6 @@
 html, body, form{
   background: #fff;
 }
-.input-control{
-  margin: 12px 0;
-}
-.input-control>.button.helper-button.margin-right-button-clear{
-  margin-right: 48px;
-}
 .wizard2 .action-bar{
   position: fixed;
 }

@@ -35,6 +35,9 @@ module.exports = {
     "platform_run_options": {
       "debug": {},
       "release": {}
-    }
+    },
+    "use_local_cli": false,
+    "package_json": {},
+    "cli_custom_path": ""
   }
 }

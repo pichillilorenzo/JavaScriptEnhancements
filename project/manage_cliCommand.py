@@ -84,6 +84,7 @@ class enable_menu_cliEventListener(sublime_plugin.EventListener):
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   name_cli = ""
+  bin_path = ""
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -151,8 +152,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     if ( self.can_execute() ) :
       node = NodeJS()
-      node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
-    
+
+      if self.bin_path :
+        node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+      else :
+        node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
   def print_panel(self, line, process):
     global manage_cli_window_command_processes
 

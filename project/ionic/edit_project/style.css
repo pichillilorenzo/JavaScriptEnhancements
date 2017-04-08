@@ -1,12 +1,19 @@
-#ionic-settings .platform{
+#form-ionic-settings .platform{
   display: none;
 }
-#ionic-settings .platform.active{
+#form-ionic-settings .platform.active{
   display: block;
 }
-#ionic-settings .mode{
+#form-ionic-settings .mode{
   display: none;
+  margin-top: 10px;
 }
-#ionic-settings .mode.active{
+#form-ionic-settings .mode.active{
   display: block;
+}
+#form-ionic-settings .mode-control{
+  height: auto;
+}
+#form-ionic-settings .debug{
+  border: none;
 }

@@ -22,7 +22,12 @@ def create_cordova_project(json_data):
       types_options = project["types_options"]["cordova"]
       
     panel = Util.create_and_show_panel("cordova_panel_installer_project")
-    node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+
+    if "cordova_settings" in project and "package_json" in project["cordova_settings"] and "use_local_cli" in project["cordova_settings"] and project["cordova_settings"]["use_local_cli"] :
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    else :  
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    
 
   return json_data
 
@@ -36,6 +41,7 @@ class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
 class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
   name_cli = "Cordova"
+  bin_path = ""
   can_add_platform = False
   platform_list = []
   platform_list_on_success = None
@@ -149,6 +155,13 @@ class cordova_baseCommand(manage_cliCommand):
       custom_args = custom_args + self.settings["cordova_settings"]["cli_"+command+"_options"]
       
     return custom_args
+
+  def before_execute(self):
+
+    if self.settings["cordova_settings"]["cli_custom_path"] :
+      self.bin_path = self.settings["cordova_settings"]["cli_custom_path"]
+    elif self.settings["cordova_settings"]["use_local_cli"] :
+      self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")

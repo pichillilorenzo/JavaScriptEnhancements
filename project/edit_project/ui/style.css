@@ -1,64 +1,29 @@
 html, body{
   height: 100%;
 }
-.tab-content{
+.tile-container{
+  min-width: 960px;
+  min-height: 700px;
+}
+.dialog{
+  height: 80% !important;
+  width: 80% !important;
+}
+.dialog[style*="visibility: visible"]{
   overflow-y: scroll;
+  padding: 1.24rem;
+  display: block;
 }
-#project-details{
-  margin-bottom: 136px;
+.dialog[style*="visibility: hidden"]{
+  display: none;
 }
-.tab-content .pmd-floating-action{
-  right: 11px;
-  z-index: 999;
+.input-control.text>label.checkbox{
+  top: -2.8rem;
 }
-.row{
-  margin: 0px;
+
+#form-flow-settings .content .container-flow-input > .input-control{
+  margin: 17px 0;
 }
-.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .pmd-card-list{
-  padding: 0px;
-}
-.pmd-alert-container{
-  width: 300px;
-  margin-left: -150px;
-}
-.pmd-alert-container .pmd-alert{
-  width: 300px;
-}
-.list-group{
-  box-shadow: -2px 1px 4px rgba(0,0,0,0.12);
-}
-.list-group-item a[data-toggle="tab"]{
-  color: #333;
-}
-.list-group-item.active i.material-icons{
-  color: #fff;
-}
-.tab-content{
-  background: #fff;
-}
-.tab-pane{
-  padding: 10px;
-}
-.tab-pane h2{
-  margin-top: 0;
-}
-.flow-add-button{
-  float: right;
-}
-.flow-remove-button{
-  float: left;
-}
-.pmd-switch{
-  position: relative;
-}
-.pmd-switch > label {
-  width: 100%;
-}
-.pmd-switch .text-switch{
-  position: absolute;
-  top: -4px;
-  left: 40px;
-}
-.col-padding {
-  padding: 5px;
+#form-flow-settings .container-flow-input > .switch {
+  margin: 5px 0;
 }

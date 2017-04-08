@@ -1,5 +1,6 @@
 "use strict";
 
+const npm = require('npm')
 const fs = require('fs-extra')
 const path = require('path')
 let default_config = require('../default_config.js')
@@ -53,8 +54,33 @@ ${options}
     fs.writeFileSync(fd, JSON.stringify(default_config.sublime_project, null, 2))
   }, path.join(data.project.path, sublime_project_file_name+".sublime-project"), "w+")
 
-  app.sendSocketJson(data_to_send)
+  let package_json = {}
+  for(let i = 0, length1 = data.project.type.length; i < length1; i++){
+    if (data.project[data.project.type[i]+"_settings"] && data.project[data.project.type[i]+"_settings"].package_json) {
+      package_json = util.mergeObjectsRecursive(package_json, data.project[data.project.type[i]+"_settings"].package_json)
+    }
+  }
+  if (package_json) {
+    util.openWithSync((fd) => {
+      fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
+    }, path.join(data.project.path, ".jc-project-settings", "package.json"), "w+")
+    process.chdir(path.join(data.project.path, ".jc-project-settings"));
+    npm.load(function(err){
+      npm.commands.install(function(err, data){
+        if(err){
+          app.sendWeb("error", JSON.stringify(err, null, 2))
+        }
+        else {
+          app.sendSocketJson(data_to_send)
+        }
+      })
 
+    })
+  }
+  else {
+    app.sendSocketJson(data_to_send)
+  }
+  
 })
 
 ipcMain.on('data', (event, project) => {
@@ -121,7 +147,13 @@ ipcMain.on('data', (event, project) => {
     }, bookmarks_path, "w+")
 
     for(let i = 0, length1 = project_type_default_settings.length; i < length1; i++){
-      project_type_default_settings[i]
+
+      if (project[project_type_default_settings[i][0]+"_settings"]) {
+        for (let key in project[project_type_default_settings[i][0]+"_settings"]) {
+          project_type_default_settings[i][1][key] = project[project_type_default_settings[i][0]+"_settings"][key]
+        }
+      }
+        
       util.openWithSync((fd) => {
         fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))
       }, path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json"), "w+")

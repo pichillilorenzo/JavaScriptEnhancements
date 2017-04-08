@@ -1,3 +1,27 @@
 .full-height{
   height: 100%;
 }
+.hidden {
+  display: none;
+}
+.input-control{
+  margin: 18px 0;
+}
+.input-control.select.multiple{
+  height: 100px;
+}
+.input-control>.button.helper-button.margin-right-button-clear{
+  margin-right: 48px;
+}
+.input-control textarea{
+  max-width: 100%;
+}
+.floating-action{
+  bottom: 0;
+  position: fixed;
+  margin: 1em;
+  right: 0;
+}
+.text-switch{
+  margin-left: 10px;
+}

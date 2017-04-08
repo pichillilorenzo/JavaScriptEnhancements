@@ -352,8 +352,14 @@ def wait_view(view, fun):
 
 def move_content_to_parent_folder(path):
   for filename in os.listdir(path):
-    shutil.move(os.path.join(path, filename), os.path.dirname(path))
+    shutil.move(os.path.join(path, filename), os.path.dirname(path)) 
   os.rmdir(path)
+
+def merge_dicts(*dict_args):
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
 
 def removeItemIfExists(arr, item):
   if item in arr: arr.remove(item)

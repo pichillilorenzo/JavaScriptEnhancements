@@ -5,6 +5,7 @@
   <title>Create New Project</title>
   <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro.min.css">
   <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro-icons.css">
+  <link rel="stylesheet" href="../../../css/style.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
 
       <div class="step first-step">
         <div class="step-content">
-          <h2>Basic Information</h2>
+          <h2>Project Details</h2>
 
           <div class="input-control text full-size" data-role="input">
             <label for="project_name">Project Name *:</label>
@@ -30,7 +31,7 @@
             </div>
           </div>
           
-          <div class="input-control select multiple full-size" style="height: 100px">
+          <div class="input-control select multiple full-size">
             <label for="type">Type:</label>
             <select id="type" name="type" multiple="multiple">
               <option value="">Blank</option>
@@ -51,10 +52,9 @@
             <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
           </div>
 
-          <div class="input-control text full-size" data-role="input">
+          <div class="input-control textarea full-size" data-role="input">
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description">
-            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+            <textarea id="description" name="description"></textarea>
           </div>
 
           <div class="input-control text full-size" data-role="input">
@@ -89,7 +89,7 @@
   </form>
 
   <script>
-    window.$ = window.jQuery = require('../../../js/vendor/jquery-1.12.2.min.js')
+    window.$ = window.jQuery = require('../../../vendor/jquery/jquery-1.12.2.min.js')
     require('../../../vendor/metro-dist/js/metro.min.js')
     const utilWeb = require('../../../js/utilWeb.js')
     const fs = require("fs")
@@ -144,7 +144,7 @@
           }
         },
         onSubmit: function(form) {
-
+          
           let project = {
             "project_name": $("#project_name").val().trim(),
             "author": $("#author").val().trim(),
@@ -155,7 +155,7 @@
             "license_uri": $("#license_uri").val().trim(),
             "tags": $("#tags").val().trim(),
             "path": $("#project_path").val().trim(),
-            "type": utilWeb.getMulitpleSelectValues("#type"),
+            "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : [],
             "types_options": {}
           }
           
@@ -187,10 +187,31 @@
       $("#choose-path").click(choose_path)
 
       function type_change () {
-        let types = utilWeb.getMulitpleSelectValues("#type")
+        let types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
         $(".step:not(.first-step)").addClass("maybe-remove")
         let one_add_at_least = false
         let type_selected = []
+
+        $("#type option").prop("disabled", false)
+        for(let i = 0; i < types.length; i++){
+          let type = types[i]
+          if (fs.existsSync(__dirname+"/../../default_settings/"+type+"/default_config.js") ){
+            let default_config = require(__dirname+"/../../default_settings/"+type+"/default_config.js")
+            let dependencies = default_config.dependencies
+            if (dependencies) {
+              for(let i = 0, length1 = dependencies.length; i < length1; i++){
+                let dipendency = dependencies[i]
+                if (types.indexOf(dipendency) < 0) {
+                  types.push(dipendency)
+                }
+                $("#type option[value='"+dipendency+"']").prop("disabled", true)
+                $("#type option[value='"+dipendency+"']").prop("selected", false)
+              }
+            }
+          }
+        }
+
+        types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
         for(let i = 0, length1 = types.length; i < length1; i++){
           let type = types[i]
           type_selected.push(type)
@@ -204,22 +225,21 @@
               $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/create_new_project/style.css"}">`)
             }
 
+            let html = fs.readFileSync(__dirname+"/../../"+type+"/create_new_project/index.html", "UTF-8")
             let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
 
             project_types_options[type] = client_js
 
-            $("#wizard").append( generateHtml(client_js.html_json, type) )
+            let step = $('<div class="step" id="'+type+'"></div>')
+            let step_content = $('<div class="step-content"></div>')
+            step_content.append(html)
+            step.append(step_content)
+            $("#wizard").append( step )
 
-            client_js.prepareClientHtml({
-              "ipcRenderer": ipcRenderer,
-              "$": $,
-              "utilWeb": utilWeb,
-              "fs": fs,
-              "electron": require('electron')
-            })
             one_add_at_least = true
           }
         }
+
         $(".maybe-remove").each(function(index, item){
           let id = $(item).attr("id")
           delete project_types_options[id]
@@ -235,6 +255,13 @@
           $("form").prepend( wizard )
           if ( type_selected.length > 0 ) {
             for(let i = 0, length1 = type_selected.length; i < length1; i++){    
+              project_types_options[type_selected[i]].prepareClientHtml({
+                "ipcRenderer": ipcRenderer,
+                "$": $,
+                "utilWeb": utilWeb,
+                "fs": fs,
+                "electron": require('electron')
+              })
               $("#type option[value='"+type_selected[i]+"']").prop("selected", true)
             }
           }
@@ -257,6 +284,7 @@
     })
 
     ipcRenderer.on("error", (event, msg) => {
+      console.log(msg)
       $.Notify({
         caption: 'Error',
         content: msg,
@@ -264,57 +292,7 @@
       });
     })
     
-    function generateHtml(html_json, project_type){
-      let step = $('<div class="step"></div>')
-      let step_content = $('<div class="step-content"></div>')
-      step.attr('id', project_type)
-
-      step_content.append('<h2 class="step-title">'+html_json.title+'</h2>')
-      if (html_json.subtitle) {
-        step_content.append('<p class="step-subtitle">'+html_json.subtitle+'</p>')
-      }
-      for(let i = 0, length1 = html_json.fields.length; i < length1; i++){
-        let field = html_json.fields[i]
-        let tag = $('<'+field.tag+'>')
-        let field_html = generateField(project_type, field)
-        switch (field.type) {
-          case "value":
-            if (field.tag == "input") {
-              $(field_html).find("input").attr("data-field-type", "value")
-            }
-            break;
-          case "option":
-            if (field.tag == "input") {
-              $(field_html).find("input").attr("data-field-type", "option")
-            }
-            break;
-        }
-        step_content.append( field_html )
-      }
-      step.append(step_content)
-      return step
-    }
-
-    function generateField(project_type, field){
-      let attrs = []
-      for (let key in field.attrs) {
-        attrs.push(key+'="'+field.attrs[key]+'"')
-      }
-      attrs = attrs.join(" ")
-      switch (field.tag) {
-        case "input":
-          return $(`
-          <div class="input-control text full-size ${ field.attrs["data-validate-func"] == "required" ? "required" : "" }" data-role="input">
-            <label for="${project_type+"-"+field.attrs.name}">${field.label}:</label>
-            <input class="${project_type+"-"+field.attrs.name} cli_create_${project_type}_options" ${attrs}>
-            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
-          </div>
-          `)
-        case "select":
-          
-          break;
-      }
-    }
+    
   </script>
 </body>
 </html>

@@ -1,12 +1,19 @@
-#cordova-settings .platform{
+#form-cordova-settings .platform{
   display: none;
 }
-#cordova-settings .platform.active{
+#form-cordova-settings .platform.active{
   display: block;
 }
-#cordova-settings .mode{
+#form-cordova-settings .mode{
   display: none;
+  margin-top: 10px;
 }
-#cordova-settings .mode.active{
+#form-cordova-settings .mode.active{
   display: block;
+}
+#form-cordova-settings .mode-control{
+  height: auto;
+}
+#form-cordova-settings .debug{
+  border: none;
 }
