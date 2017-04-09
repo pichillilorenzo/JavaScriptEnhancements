@@ -27,14 +27,17 @@ class generate_jsdocCommand(sublime_plugin.WindowCommand):
         return            
 
   def exec_node(self, folder_path, node_command_args) :
-    os.chdir(folder_path)
-    from node.main import NodeJS
     node = NodeJS()
     animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Generating docs ")
     interval_animation = RepeatedTimer(animation_loader.sec, animation_loader.animate)
-    result = node.execute("jsdoc", node_command_args, True)
+    result = node.execute("jsdoc", node_command_args, is_from_bin=True, chdir=folder_path)
+
     if not result[0] :
       sublime.error_message(result[1])
+      
+    elif result[1].startswith("There are no input files to process") :
+      sublime.error_message(result[1])
+
     animation_loader.on_complete()
     interval_animation.stop()
 

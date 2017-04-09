@@ -1,8 +1,7 @@
 import sublime, sublime_plugin
 import os
-from node.main import NodeJS
 
-node = NodeJS()
+
 
 class go_to_defCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -22,6 +21,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       # try flow get-def
       sublime.status_message("")
       deps = flow_parse_cli_dependencies(view)
+      node = NodeJS()
       result = node.execute_check_output(
         "flow",
         [

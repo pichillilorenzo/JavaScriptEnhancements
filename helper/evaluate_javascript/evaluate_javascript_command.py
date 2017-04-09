@@ -109,7 +109,6 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
     view.run_command("show_start_end_dot_eval")
 
     try:
-      from node.main import NodeJS
       node = NodeJS()
       result_js = node.eval(str_selected, eval_type, True)
       popup_is_showing = True

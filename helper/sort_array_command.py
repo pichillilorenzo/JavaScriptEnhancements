@@ -1,6 +1,5 @@
 class sort_arrayCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
-    from node.main import NodeJS
     node = NodeJS()
     view = self.view
     selections = view.sel()
@@ -10,7 +9,6 @@ class sort_arrayCommand(sublime_plugin.TextCommand):
       if result :
         region = result.get("region")
         array_string = result.get("region_string_stripped")
-        from node.main import NodeJS
         node = NodeJS()
         case = args.get("case")
         sort_func = ""

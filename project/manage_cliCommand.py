@@ -151,7 +151,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     self.before_execute()
 
     if ( self.can_execute() ) :
-      node = NodeJS()
+      node = NodeJS(check_local = True)
 
       if self.bin_path :
         node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)

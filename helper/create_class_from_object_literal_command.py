@@ -15,7 +15,6 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
         object_literal_region = item_object_literal.get("region")
         selection = item_object_literal.get("selection")
         object_literal = item_object_literal.get("region_string_stripped")
-        from node.main import NodeJS
         node = NodeJS()
         object_literal = re.sub(r'[\n\r\t]', ' ', object_literal)
         object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))

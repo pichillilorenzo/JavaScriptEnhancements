@@ -1,19 +1,5 @@
 import time, os, re, threading, socket, traceback, sys, struct
 
-def check_thread_is_alive(thread_name) :
-  for thread in threading.enumerate() :
-    if thread.getName() == thread_name and thread.is_alive() :
-      return True
-  return False
-
-def create_and_start_thread(target, thread_name="", args=[], daemon=True) :
-  if not check_thread_is_alive(thread_name) :
-    thread = threading.Thread(target=target, name=thread_name, args=args)
-    thread.setDaemon(daemon)
-    thread.start()
-    return thread
-  return None
-
 class mySocketClient():
   def __init__(self, socket_name) :
     self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -27,7 +13,7 @@ class mySocketClient():
       self.socket.connect((host, port))
       self.socket.setblocking(False)
       self.log('Client connected')
-      create_and_start_thread(target=self.on_recv)
+      Util.create_and_start_thread(target=self.on_recv)
     except socket.error as msg:
       self.log('Connection failed. Error : ' + str(sys.exc_info()))
       sys.exit()
@@ -119,7 +105,7 @@ class mySocketServer():
   def listen(self, backlog=5) :
     self.socket.listen(backlog)
     self.log('Socket now listening')
-    create_and_start_thread(target=self.main_loop)
+    Util.create_and_start_thread(target=self.main_loop)
 
   def main_loop(self):
     while True:
@@ -142,7 +128,7 @@ class mySocketServer():
           self.func_on_client_connected(conn, addr, ip, port, self.clients[ip+":"+str(port)])
 
         try:
-          create_and_start_thread(target=self.on_recv, args=(conn, addr, ip, port))
+          Util.create_and_start_thread(target=self.on_recv, args=(conn, addr, ip, port))
         except:
           self.log(traceback.format_exc())
       except ConnectionAbortedError:

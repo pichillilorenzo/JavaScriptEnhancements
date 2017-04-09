@@ -12,7 +12,7 @@
   <form action="#">
     <div class="wizard2" id="wizard">
 
-      <div class="step first-step">
+      <div class="step no-remove">
         <div class="step-content">
           <h2>Project Details</h2>
 
@@ -83,6 +83,25 @@
 
         </div>
       </div>
+      
+      <div class="step no-remove">
+        <div class="step-content">
+          <h2>Project Settings</h2>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="node_js_custom_path">Node.js Custom Path:</label>
+            <input type="text" id="node_js_custom_path" name="node_js_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          
+          <div class="input-control text full-size" data-role="input">
+            <label for="npm_custom_path">Npm Custom Path:</label>
+            <input type="text" id="npm_custom_path" name="npm_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+        </div>
+      </div>
 
     </div>
 
@@ -145,7 +164,7 @@
         },
         onSubmit: function(form) {
           
-          let project = {
+          let project_details = {
             "project_name": $("#project_name").val().trim(),
             "author": $("#author").val().trim(),
             "author_uri": $("#author_uri").val().trim(),
@@ -154,14 +173,24 @@
             "license": $("#license").val().trim(),
             "license_uri": $("#license_uri").val().trim(),
             "tags": $("#tags").val().trim(),
-            "path": $("#project_path").val().trim(),
-            "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : [],
-            "types_options": {}
+            "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+          }
+
+          let project_settings = {
+            "node_js_custom_path": $("#node_js_custom_path").val().trim(),
+            "npm_custom_path": $("#npm_custom_path").val().trim()
           }
           
+          let project_data = {
+            "project_details": project_details,
+            "project_settings": project_settings,
+            "path": $("#project_path").val().trim(),
+            "types_options": {}
+          }
+
           for (let type in project_types_options) {
-            project.types_options[type] = project_types_options[type].setProject({
-              "project": project,
+            project_types_options[type].setProject({
+              "project_data": project_data,
               "ipcRenderer": ipcRenderer,
               "$": $,
               "utilWeb": utilWeb,
@@ -170,7 +199,7 @@
             })
           }
 
-          ipcRenderer.send("data", project)
+          ipcRenderer.send("data", project_data)
 
           return false
         }
@@ -188,7 +217,7 @@
 
       function type_change () {
         let types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
-        $(".step:not(.first-step)").addClass("maybe-remove")
+        $(".step:not(.no-remove)").addClass("maybe-remove")
         let one_add_at_least = false
         let type_selected = []
 

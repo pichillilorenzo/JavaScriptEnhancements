@@ -3,6 +3,27 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re
 from shutil import copyfile
 from threading import Timer
 
+PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
+PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
+SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
+
+JC_SETTINGS_FOLDER_NAME = "javascript_completions"
+JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, "helper", JC_SETTINGS_FOLDER_NAME)
+
+PROJECT_FOLDER_NAME = "project"
+PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
+socket_server_list = dict()
+
+HELPER_FOLDER_NAME = "helper"
+HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
+
+BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
+
+platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
+os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
+PLATFORM = platform_switcher.get(sublime.platform())
+PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
+
 class Hook(object):
   hook_list = {}
 
@@ -60,28 +81,1530 @@ class Hook(object):
       Hook.hook_list[hook_name] = []
       
 
-PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
-PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
-SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
+import sublime
 
-JC_SETTINGS_FOLDER_NAME = "javascript_completions"
-JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, "helper", JC_SETTINGS_FOLDER_NAME)
+class AnimationLoader(object):
+  def __init__(self, animation, sec, str_before="", str_after=""):
+    self.animation = animation
+    self.sec = sec
+    self.animation_length = len(animation)
+    self.str_before = str_before
+    self.str_after = str_after
+    self.cur_anim = 0
+  def animate(self):
+    sublime.active_window().status_message(self.str_before+self.animation[self.cur_anim % self.animation_length]+self.str_after)
+    self.cur_anim = self.cur_anim + 1
+  def on_complete(self):
+    sublime.active_window().status_message("")
+from threading import Timer
 
-PROJECT_FOLDER_NAME = "project"
-PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
-socket_server_list = dict()
+class RepeatedTimer(object):
+  def __init__(self, interval, function, *args, **kwargs):
+    self._timer     = None
+    self.interval   = interval
+    self.function   = function
+    self.args       = args
+    self.kwargs     = kwargs
+    self.is_running = False
+    self.start()
 
-BOOKMARKS_FOLDER = os.path.join(PACKAGE_PATH, 'helper', 'bookmarks')
- 
-sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'my_socket']]
+  def _run(self):
+    self.is_running = False
+    self.start()
+    self.function(*self.args, **self.kwargs)
 
-if 'reloader' in sys.modules:
-  imp.reload(sys.modules['reloader'])
-import reloader
+  def start(self):
+    if not self.is_running:
+      self._timer = Timer(self.interval, self._run)
+      self._timer.start()
+      self.is_running = True
 
-platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
-PLATFORM = platform_switcher.get(sublime.platform())
-PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
+  def stop(self):
+    self._timer.cancel()
+    self.is_running = False
+import subprocess, threading
+import sys, imp, codecs, shlex, os, json, traceback, tempfile
+
+import platform
+import os
+
+NODE_JS_VERSION = "v6.10.1"
+NODE_JS_BINARIES_FOLDER_NAME = "node_binaries"
+NODE_JS_VERSION_URL_LIST_ONLINE = "https://nodejs.org/dist/index.json"
+NODE_JS_BINARIES_FOLDER = os.path.join(PACKAGE_PATH, NODE_JS_BINARIES_FOLDER_NAME)
+NODE_JS_BINARIES_FOLDER_PLATFORM = os.path.join(NODE_JS_BINARIES_FOLDER, PLATFORM + "-" + PLATFORM_ARCHITECTURE)
+NODE_JS_OS = os_switcher.get(PLATFORM)
+NODE_JS_ARCHITECTURE = "x64" if PLATFORM_ARCHITECTURE == "64bit" else "x86"
+NODE_JS_BINARY_NAME = "node" if NODE_JS_OS != 'win' else "node.exe"
+NPM_NAME = "npm" if NODE_JS_OS != 'win' else "npm.cmd"
+NODE_JS_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NODE_JS_BINARY_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NODE_JS_BINARY_NAME)
+NPM_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NPM_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NPM_NAME)
+NODE_MODULES_FOLDER_NAME = "node_modules"
+NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
+NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
+
+def get_node_js_custom_path():
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings"))
+  if json_file and "node_js_custom_path" in json_file :
+    return json_file.get("node_js_custom_path").strip()
+  return ""
+
+def get_npm_custom_path():
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings"))
+  if json_file and "npm_custom_path" in json_file :
+    return json_file.get("npm_custom_path").strip()
+  return ""
+
+class NodeJS(object):
+  def __init__(self, check_local = False):
+    self.check_local = check_local
+
+  def eval(self, js, eval_type="eval", strict_mode=False):
+
+    node_js_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+
+    js = ("'use strict'; " if strict_mode else "") + js
+    eval_type = "--eval" if eval_type == "eval" else "--print"
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [node_js_path, eval_type, js]
+    else :
+      args = shlex.quote(node_js_path)+" "+shlex.quote(eval_type)+" "+shlex.quote(js)
+
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output
+
+    p.terminate()
+
+    return lines
+
+  def getCurrentNodeJSVersion(self) :
+
+    node_js_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [node_js_path, "-v"]
+    else :
+      args = shlex.quote(node_js_path)+" -v"
+
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output.strip()
+
+    p.terminate()
+
+    return lines
+
+  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
+
+    node_js_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+
+    if NODE_JS_OS == 'win':
+      if is_from_bin :
+        args = [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
+      else :
+        args = [node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
+    else :
+      command_args_list = list()
+      for command_arg in command_args :
+        command_args_list.append(shlex.quote(command_arg))
+      command_args = " ".join(command_args_list)
+      args = shlex.quote(node_js_path)+" "+shlex.quote(os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args
+    
+    print(args)
+    
+    #owd = os.getcwd()
+    if chdir :
+      os.chdir(chdir)
+
+    if wait_terminate :
+
+      p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+      # if chdir:
+      #   os.chdir(owd)
+
+      lines_output = ""
+      lines_error = ""
+      no_error = True
+
+      for line in p.stdout.readlines():
+        line = codecs.decode(line, "utf-8", "ignore").strip()
+        if line :
+          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+      for line in p.stderr.readlines():
+        line = codecs.decode(line, "utf-8", "ignore").strip()
+        if line :
+          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+      if len(lines_error) > 0 :
+        no_error = False
+
+      lines = lines_output + ( b"\n" if type(line) is bytes else "\n" )  + lines_error
+
+      p.terminate()
+
+      return [no_error, lines]
+
+    elif not wait_terminate and func_stdout :
+
+      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout))
+      
+  def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[]):
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+
+      func_stdout(None, p, *args_func_stdout)
+      flag_error = False
+      
+      for line in p.stdout:
+        line = codecs.decode(line, "utf-8", "ignore")
+        func_stdout(line, p, *args_func_stdout)
+
+      for line in p.stderr:
+        line = codecs.decode(line, "utf-8", "ignore")
+        if len(line.strip()) > 0 and not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) and not flag_error:
+          flag_error = True  
+        func_stdout(line, p, *args_func_stdout)
+
+      if not flag_error:
+        func_stdout("OUTPUT-SUCCESS", p, *args_func_stdout)
+      else :
+        func_stdout("OUTPUT-ERROR", p, *args_func_stdout)
+
+      func_stdout("OUTPUT-DONE", p, *args_func_stdout)
+      
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
+
+    node_js_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+
+    fp = None
+    if use_fp_temp :
+      
+      fp = tempfile.NamedTemporaryFile()
+      fp.write(str.encode(fp_temp_contents))
+      fp.flush()
+
+    if NODE_JS_OS == 'win':
+      if is_from_bin :
+        args = [os.path.join(NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
+      else :
+        args = [node_js_path, os.path.join(NODE_MODULES_BIN_PATH, command)] + command_args
+      if fp :
+        args += ["<", fp.name]
+    else :
+      command_args_list = list()
+      for command_arg in command_args :
+        command_args_list.append(shlex.quote(command_arg))
+      command_args = " ".join(command_args_list)
+      args = shlex.quote(node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
+
+    try:
+      output = None
+      result = None
+
+      owd = os.getcwd()
+      if chdir :
+        os.chdir(chdir)
+
+      output = subprocess.check_output(
+          args, shell=True, stderr=subprocess.STDOUT
+      )
+      
+      if chdir:
+        os.chdir(owd)
+
+      if clean_output_flow :
+        out = output.decode("utf-8", "ignore")
+        out = out.split("\n")
+        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
+          out = out[3:]
+          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
+          out = "\n".join(out)
+          result = json.loads(out) if is_output_json else out
+        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] "):
+          out = out[3:]
+          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] ", "")[1:]
+          out = "\n".join(out)
+          result = json.loads(out) if is_output_json else out
+        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
+          out = out[3:]
+          out[0] = out[0].replace("Started a new flow server: -", "")
+          out = "\n".join(out)
+          result = json.loads(out) if is_output_json else out
+        else :
+          result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+      else :
+        result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+
+      if use_fp_temp :
+        fp.close()
+      return [True, result]
+    except subprocess.CalledProcessError as e:
+      #print(traceback.format_exc())
+      try:
+        result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+        if use_fp_temp :
+          fp.close()
+        return [False, result]
+      except:
+        #print(traceback.format_exc())
+        if use_fp_temp :
+          fp.close()
+
+        return [False, None]
+    except:
+      print(traceback.format_exc())
+      if use_fp_temp :
+        fp.close()
+      return [False, None]
+
+class NPM(object):
+  def __init__(self, check_local = False):
+    self.check_local = check_local
+
+  def install_all(self, save = False, chdir="") :
+
+    node_js_path = ""
+    npm_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+      npm_path = NPM_PATH_EXECUTABLE
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [npm_path, "install", "--save"] if save else [npm_path, "install"]
+    else :
+      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" install" + (" --save" if save else "")
+
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
+
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+        else :
+          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output
+
+    p.terminate()
+
+    return lines
+
+  def update_all(self, save = False, chdir="") :
+
+    node_js_path = ""
+    npm_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+      npm_path = NPM_PATH_EXECUTABLE
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [npm_path, "update", "--save"] if save else [npm_path, "update"]
+    else :
+      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" update" + (" --save" if save else "")
+
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
+
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+        else :
+          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output
+
+    p.terminate()
+
+    return lines
+
+  def install(self, package_name, save = False, chdir="") :
+
+    node_js_path = ""
+    npm_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+      npm_path = NPM_PATH_EXECUTABLE
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [npm_path, "install", "--save", package_name] if save else [npm_path, "install", package_name] 
+    else :
+      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" install" + (" --save" if save else "") + " " + shlex.quote(package_name)
+
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
+
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+        else :
+          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output
+
+    p.terminate()
+
+    return lines
+
+  def update(self, package_name, save = False, chdir="") :
+
+    node_js_path = ""
+    npm_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+      npm_path = NPM_PATH_EXECUTABLE
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [npm_path, "update", "--save", package_name] if save else [npm_path, "update", package_name] 
+    else :
+      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" update" + (" --save" if save else "") + " " + shlex.quote(package_name)
+
+    if chdir :
+      os.chdir(chdir)
+    else :
+      os.chdir(PACKAGE_PATH)
+    
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
+        else :
+          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output
+
+    p.terminate()
+
+    return lines
+
+  def getCurrentNPMVersion(self) :
+
+    node_js_path = ""
+    npm_path = ""
+    
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
+      else :
+        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
+    else :
+      node_js_path = NODE_JS_PATH_EXECUTABLE
+      npm_path = NPM_PATH_EXECUTABLE
+
+    args = ""
+
+    if NODE_JS_OS == 'win':
+      args = [npm_path, "-v"]
+    else :
+      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" -v"
+
+    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    lines_output = ""
+    lines_error = ""
+
+    for line in p.stdout.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+
+    for line in p.stderr.readlines():
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      if line :
+        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
+          lines_error += line + ( b"\n" if type(line) is bytes else "\n" )
+
+    if len(lines_error) > 0 :
+      p.terminate()
+      raise Exception(lines_error)
+
+    lines = lines_output.strip()
+
+    p.terminate()
+
+    return lines
+
+import sublime
+import traceback, threading, os, sys, imp, tarfile, zipfile, urllib, json, shutil
+
+class NodeJSInstaller(object):
+  def __init__(self, node_version):
+    self.NODE_JS_VERSION = node_version
+    self.NODE_JS_TAR_EXTENSION = ".zip" if NODE_JS_OS == "win" else ".tar.gz"
+    self.NODE_JS_BINARY_URL = "https://nodejs.org/dist/"+self.NODE_JS_VERSION+"/node-"+self.NODE_JS_VERSION+"-"+NODE_JS_OS+"-"+NODE_JS_ARCHITECTURE+self.NODE_JS_TAR_EXTENSION
+    self.NODE_JS_BINARY_TARFILE_NAME = self.NODE_JS_BINARY_URL.split('/')[-1]
+    self.NODE_JS_BINARY_TARFILE_FULL_PATH = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, self.NODE_JS_BINARY_TARFILE_NAME)
+    self.animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Downloading: "+self.NODE_JS_BINARY_URL+" ")
+    self.interval_animation = None
+    self.thread = None
+  def download(self):
+    try :
+      if os.path.exists(NODE_JS_BINARIES_FOLDER_PLATFORM):
+        self.rmtree(NODE_JS_BINARIES_FOLDER_PLATFORM)
+        os.makedirs(NODE_JS_BINARIES_FOLDER_PLATFORM)
+      else :
+        os.makedirs(NODE_JS_BINARIES_FOLDER_PLATFORM)
+      if os.path.exists(NODE_MODULES_PATH):
+        self.rmtree(NODE_MODULES_PATH)
+      request = urllib.request.Request(self.NODE_JS_BINARY_URL)
+      request.add_header('User-agent', r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1')
+      with urllib.request.urlopen(request) as response :
+        with open(self.NODE_JS_BINARY_TARFILE_FULL_PATH, 'wb') as out_file :
+          shutil.copyfileobj(response, out_file)
+    except Exception as err :
+      traceback.print_exc()
+      self.on_error(err)
+      return
+    self.extract()
+    self.on_complete()
+  def start(self):
+    self.thread = Util.create_and_start_thread(self.download, "NodeJSInstaller")
+    if self.animation_loader :
+      self.interval_animation = RepeatedTimer(self.animation_loader.sec, self.animation_loader.animate)
+  def extract(self):
+    sep = os.sep
+    if self.NODE_JS_TAR_EXTENSION != ".zip" :
+      with tarfile.open(self.NODE_JS_BINARY_TARFILE_FULL_PATH, "r:gz") as tar :
+        for member in tar.getmembers() :
+          member.name = sep.join(member.name.split(sep)[1:])
+          tar.extract(member, NODE_JS_BINARIES_FOLDER_PLATFORM)
+    else :
+      if NODE_JS_OS == "win" :
+        import string
+        from ctypes import windll, c_int, c_wchar_p
+        UNUSUED_DRIVE_LETTER = ""
+        for letter in string.ascii_uppercase:
+          if not os.path.exists(letter+":") :
+            UNUSUED_DRIVE_LETTER = letter+":"
+            break
+        if not UNUSUED_DRIVE_LETTER :
+          sublime.message_dialog("Can't install node.js and npm! UNUSUED_DRIVE_LETTER not found.")
+          return
+        DefineDosDevice = windll.kernel32.DefineDosDeviceW
+        DefineDosDevice.argtypes = [ c_int, c_wchar_p, c_wchar_p ]
+        DefineDosDevice(0, UNUSUED_DRIVE_LETTER, NODE_JS_BINARIES_FOLDER_PLATFORM)
+        try:
+          with zipfile.ZipFile(self.NODE_JS_BINARY_TARFILE_FULL_PATH, "r") as zip_file :
+            for member in zip_file.namelist() :
+              if not member.endswith("/") :
+                with zip_file.open(member) as node_file:
+                  with open(UNUSUED_DRIVE_LETTER + "\\" + member.replace("node-"+self.NODE_JS_VERSION+"-"+NODE_JS_OS+"-"+NODE_JS_ARCHITECTURE+"/", ""), "wb+") as target :
+                    shutil.copyfileobj(node_file, target)
+              elif not member.endswith("node-"+self.NODE_JS_VERSION+"-"+NODE_JS_OS+"-"+NODE_JS_ARCHITECTURE+"/"):
+                os.mkdir(UNUSUED_DRIVE_LETTER + "\\" + member.replace("node-"+self.NODE_JS_VERSION+"-"+NODE_JS_OS+"-"+NODE_JS_ARCHITECTURE+"/", ""))
+        except Exception as e:
+          print("Error: "+traceback.format_exc())
+        finally:
+          DefineDosDevice(2, UNUSUED_DRIVE_LETTER, NODE_JS_BINARIES_FOLDER_PLATFORM)
+
+  def on_error(self, err):
+    self.animation_loader.on_complete()
+    self.interval_animation.stop()
+    sublime.active_window().status_message("Can't install Node.js! Check your internet connection!")
+  def on_complete(self):
+    self.animation_loader.on_complete()
+    self.interval_animation.stop()
+    if os.path.isfile(self.NODE_JS_BINARY_TARFILE_FULL_PATH) : 
+      os.remove(self.NODE_JS_BINARY_TARFILE_FULL_PATH)
+    node_js = NodeJS()
+    npm = NPM()
+    self.animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Installing npm dependencies ")
+    self.interval_animation = RepeatedTimer(self.animation_loader.sec, self.animation_loader.animate)
+    try :
+      npm.getCurrentNPMVersion() 
+    except Exception as e:
+      print("Error: "+traceback.format_exc())
+    try :
+      npm.install_all() 
+    except Exception as e:
+      print("Error: "+traceback.format_exc())
+    self.animation_loader.on_complete()
+    self.interval_animation.stop()
+    if node_js.getCurrentNodeJSVersion() == self.NODE_JS_VERSION :
+      sublime.active_window().status_message("Node.js "+self.NODE_JS_VERSION+" installed correctly! NPM version: "+npm.getCurrentNPMVersion())
+    else :
+      sublime.active_window().status_message("Can't install Node.js! Something went wrong during installation.")
+
+  def rmtree(self, path) :
+    if NODE_JS_OS == "win" :
+      import string
+      from ctypes import windll, c_int, c_wchar_p
+      UNUSUED_DRIVE_LETTER = ""
+      for letter in string.ascii_uppercase:
+        if not os.path.exists(letter+":") :
+          UNUSUED_DRIVE_LETTER = letter+":"
+          break
+      if not UNUSUED_DRIVE_LETTER :
+        sublime.message_dialog("Can't remove node.js! UNUSUED_DRIVE_LETTER not found.")
+        return
+      DefineDosDevice = windll.kernel32.DefineDosDeviceW
+      DefineDosDevice.argtypes = [ c_int, c_wchar_p, c_wchar_p ]
+      DefineDosDevice(0, UNUSUED_DRIVE_LETTER, path)
+      try:
+        shutil.rmtree(UNUSUED_DRIVE_LETTER)
+      except Exception as e:
+        print("Error: "+traceback.format_exc())
+      finally:
+        DefineDosDevice(2, UNUSUED_DRIVE_LETTER, path)  
+    else :
+      shutil.rmtree(path)
+
+  @staticmethod
+  def updateNPMDependencies():
+    npm = NPM()
+    try :
+      npm.getCurrentNPMVersion()
+    except Exception as e:
+      print("Error: "+traceback.format_exc())
+      return
+      
+    animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Updating npm dependencies ")
+    interval_animation = RepeatedTimer(animation_loader.sec, animation_loader.animate)
+    try :
+      npm.update_all() 
+    except Exception as e:
+      pass
+    animation_loader.on_complete()
+    interval_animation.stop()
+
+  @staticmethod
+  def already_installed():
+    return os.path.isfile(NODE_JS_PATH_EXECUTABLE)
+
+  @staticmethod
+  def can_start_download():
+    for thread in threading.enumerate() :
+      if thread.getName() == "NodeJSInstaller" and thread.is_alive() :
+        return False
+    return True
+
+  @staticmethod
+  def install(node_version=""):
+    if node_version == "" :
+      node_version = NODE_JS_VERSION
+    nodejs_can_start_download = NodeJSInstaller.can_start_download()
+    nodejs_already_installed = NodeJSInstaller.already_installed()
+    if nodejs_can_start_download and not nodejs_already_installed :
+      NodeJSInstaller( node_version ).start()
+    elif nodejs_can_start_download and nodejs_already_installed :
+      node_js = NodeJS()
+      if node_version != node_js.getCurrentNodeJSVersion() :
+        NodeJSInstaller( node_version ).start()
+
+    if nodejs_already_installed :
+      Util.create_and_start_thread(NodeJSInstaller.updateNPMDependencies, "checkUpgradeNPM")
+
+# def checkUpgrade():
+#   updateNPMDependencies()
+#   try :
+#     response = urllib.request.urlopen(NODE_JS_VERSION_URL_LIST_ONLINE)
+#     data = json.loads(response.read().decode("utf-8"))
+#     nodejs_latest_version = data[0]["version"]
+#     node_js = NodeJS()
+#     if node_js.getCurrentNodeJSVersion() != nodejs_latest_version :
+#       sublime.active_window().status_message("There is a new version ( "+nodejs_latest_version+" ) of Node.js available! Change your settings to download this version.")
+#     else :
+#       try :
+#         npm = NPM()
+#         npm_version = npm.getCurrentNPMVersion() 
+#         sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion()+", npm: "+npm_version)
+#       except Exception as e:
+#         sublime.active_window().status_message("No need to update Node.js. Current version: "+node_js.getCurrentNodeJSVersion()+", npm not installed!")
+
+#   except Exception as err :
+#     traceback.print_exc()
+
+  
+
+import sublime, sublime_plugin
+import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
+
+class Util(object) :
+
+  multiprocessing_list = []
+
+  @staticmethod
+  def download_and_save(url, where_to_save) :
+    if where_to_save :
+      try :
+        request = urllib.request.Request(url)
+        request.add_header('User-agent', r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1')
+        with urllib.request.urlopen(request) as response :
+          with open(where_to_save, 'wb+') as out_file :
+            shutil.copyfileobj(response, out_file)
+            return True
+      except Exception as e:
+        traceback.print_exc()
+    return False
+
+  @staticmethod
+  def open_json(path):
+    with open(path) as json_file :    
+      try :
+        return json.load(json_file)
+      except Exception as e :
+        print("Error: "+traceback.format_exc())
+    return None
+
+  @staticmethod
+  def check_thread_is_alive(thread_name) :
+    for thread in threading.enumerate() :
+      if thread.getName() == thread_name and thread.is_alive() :
+        return True
+    return False
+
+  @staticmethod
+  def create_and_start_thread(target, thread_name="", args=[], kwargs={}, daemon=True) :
+    if not Util.check_thread_is_alive(thread_name) :
+      thread = threading.Thread(target=target, name=thread_name, args=args, kwargs=kwargs, daemon=daemon)
+      thread.start()
+      return thread
+    return None
+
+  @staticmethod
+  def check_process_is_alive(process_name) :
+    Util.multiprocessing_list
+    for process in Util.multiprocessing_list :
+      if process.name == process_name :
+        if process.is_alive() :
+          return True
+        else :
+          Util.multiprocessing_list.remove(process)
+    return False
+
+  @staticmethod
+  def create_and_start_process(target, process_name="", args=[], kwargs={}, daemon=True) :
+    Util.multiprocessing_list
+    if not Util.check_process_is_alive(process_name) :
+      process = multiprocessing.Process(target=target, name=process_name, args=args, kwargs=kwargs, daemon=daemon)
+      process.start()
+      Util.multiprocessing_list.append(process)
+      return process
+    return None
+
+  @staticmethod
+  def setTimeout(time, func):
+    timer = threading.Timer(time, func)
+    timer.start()
+    return timer
+
+  @staticmethod
+  def checksum_sha1(fname):
+    hash_sha1 = hashlib.sha1()
+    with open(fname, "rb") as f:
+      for chunk in iter(lambda: f.read(4096), b""):
+        hash_sha1.update(chunk)
+    return hash_sha1.hexdigest()
+
+  @staticmethod
+  def checksum_sha1_equalcompare(fname1, fname2):
+    return Util.checksum_sha1(fname1) == Util.checksum_sha1(fname2)
+
+  @staticmethod
+  def split_string_and_find(string_to_split, search_value, split_delimiter=" ") :
+    string_splitted = string_to_split.split(split_delimiter)
+    return Util.indexOf(string_splitted, search_value) 
+
+  @staticmethod
+  def split_string_and_find_on_multiple(string_to_split, search_values, split_delimiter=" ") :
+    string_splitted = string_to_split.split(split_delimiter)
+    for search_value in search_values :
+      index = Util.indexOf(string_splitted, search_value) 
+      if index >= 0 :
+        return index
+    return -1
+
+  @staticmethod
+  def split_string_and_findLast(string_to_split, search_value, split_delimiter=" ") :
+    string_splitted = string_to_split.split(split_delimiter)
+    return Util.lastIndexOf(string_splitted, search_value) 
+
+  @staticmethod
+  def indexOf(list_to_search, search_value) :
+    index = -1
+    try :
+      index = list_to_search.index(search_value)
+    except Exception as e:
+      pass
+    return index
+
+  @staticmethod
+  def lastIndexOf(list_to_search, search_value) :
+    index = -1
+    list_to_search_reversed = reversed(list_to_search)
+    list_length = len(list_to_search)
+    try :
+      index = next(i for i,v in zip(range(list_length-1, 0, -1), list_to_search_reversed) if v == search_value)
+    except Exception as e:
+      pass
+    return index
+
+  @staticmethod
+  def firstIndexOfMultiple(list_to_search, search_values) :
+    index = -1
+    string = ""
+    for search_value in search_values :
+      index_search = Util.indexOf(list_to_search, search_value)
+      if index_search >= 0 and index == -1 :
+        index = index_search
+        string = search_value
+      elif index_search >= 0 :
+        index = min(index, index_search)
+        string = search_value
+    return {
+      "index": index,
+      "string": string
+    }
+
+  @staticmethod
+  def find_and_get_pre_string_and_first_match(string, search_value) :
+    result = None
+    index = Util.indexOf(string, search_value)
+    if index >= 0 :
+      result = string[:index+len(search_value)]
+    return result
+
+  @staticmethod
+  def find_and_get_pre_string_and_matches(string, search_value) :
+    result = None
+    index = Util.indexOf(string, search_value)
+    if index >= 0 :
+      result = string[:index+len(search_value)]
+      string = string[index+len(search_value):]
+      count_occ = string.count(search_value)
+      i = 0
+      while i < count_occ :
+        result += " "+search_value
+        i = i + 1
+    return result
+
+  @staticmethod
+  def get_region_scope_first_match(view, scope, selection, selector) :
+    scope = Util.find_and_get_pre_string_and_first_match(scope, selector)
+    if scope :
+      for region in view.find_by_selector(scope) :
+        if region.contains(selection):
+          selection.a = region.begin()
+          selection.b = selection.a
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": selection
+          }
+    return None
+
+  @staticmethod
+  def get_region_scope_last_match(view, scope, selection, selector) :
+    scope = Util.find_and_get_pre_string_and_matches(scope, selector)
+    if scope :
+      for region in view.find_by_selector(scope) :
+        if region.contains(selection):
+          selection.a = region.begin()
+          selection.b = selection.a
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": selection
+          }
+    return None
+
+  @staticmethod
+  def find_regions_on_same_depth_level(view, scope, selection, selectors, depth_level, forward) :
+    scope_splitted = scope.split(" ")
+    regions = list()
+    add_unit = 1 if forward else -1
+    if len(scope_splitted) >= depth_level :  
+      for selector in selectors :
+        while Util.indexOf(scope_splitted, selector) == -1 :
+          if selection.a == 0 or len(scope_splitted) < depth_level :
+            return list()
+          selection.a = selection.a + add_unit
+          selection.b = selection.a 
+          scope = view.scope_name(selection.begin()).strip()
+          scope_splitted = scope.split(" ")
+        region = view.extract_scope(selection.begin())
+        regions.append({
+          "scope": scope,
+          "region": region,
+          "region_string": view.substr(region),
+          "region_string_stripped": view.substr(region).strip(),
+          "selection": selection
+        })
+    return regions
+
+  @staticmethod
+  def get_current_region_scope(view, selection) :
+    scope = view.scope_name(selection.begin()).strip()
+    for region in view.find_by_selector(scope) :
+      if region.contains(selection):
+        selection.a = region.begin()
+        selection.b = selection.a
+        return {
+          "scope": scope,
+          "region": region,
+          "region_string": view.substr(region),
+          "region_string_stripped": view.substr(region).strip(),
+          "selection": selection
+        }
+    return None
+
+  @staticmethod
+  def get_parent_region_scope(view, selection) :
+    scope = view.scope_name(selection.begin()).strip()
+    scope = " ".join(scope.split(" ")[:-1])
+    for region in view.find_by_selector(scope) :
+      if region.contains(selection):
+        selection.a = region.begin()
+        selection.b = selection.a
+        return {
+          "scope": scope,
+          "region": region,
+          "region_string": view.substr(region),
+          "region_string_stripped": view.substr(region).strip(),
+          "selection": selection
+        }
+    return None
+
+  @staticmethod
+  def get_specified_parent_region_scope(view, selection, parent) :
+    scope = view.scope_name(selection.begin()).strip()
+    scope = scope.split(" ")
+    index_parent = Util.lastIndexOf(scope, parent)
+    scope = " ".join(scope[:index_parent+1])
+    for region in view.find_by_selector(scope) :
+      if region.contains(selection):
+        selection.a = region.begin()
+        selection.b = selection.a
+        return {
+          "scope": scope,
+          "region": region,
+          "region_string": view.substr(region),
+          "region_string_stripped": view.substr(region).strip(),
+          "selection": selection
+        }
+    return None
+
+  @staticmethod
+  def cover_regions(regions) :
+    first_region = regions[0]
+    other_regions = regions[1:]
+    for region in other_regions :
+      first_region = first_region.cover(region)
+    return first_region
+
+  @staticmethod
+  def rowcol_to_region(view, row, col, endcol):
+    start = view.text_point(row, col)
+    end = view.text_point(row, endcol)
+    return sublime.Region(start, end)
+  
+  @staticmethod
+  def trim_Region(view, region):
+    new_region = sublime.Region(region.begin(), region.end())
+    while(view.substr(new_region).startswith(" ") or view.substr(new_region).startswith("\n")):
+      new_region.a = new_region.a + 1
+    while(view.substr(new_region).endswith(" ") or view.substr(new_region).startswith("\n")):
+      new_region.b = new_region.b - 1
+    return new_region
+
+  @staticmethod
+  def selection_in_js_scope(view, point = -1, except_for = ""):
+    sel_begin = view.sel()[0].begin() if point == -1 else point
+    return view.match_selector(
+      sel_begin,
+      'source.js ' + except_for
+    ) or view.match_selector(
+      sel_begin,
+      'source.js.embedded.html ' + except_for
+    )
+  
+  @staticmethod
+  def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
+    lines = view.substr(region).split("\n")
+    body = list()
+    empty_line = 0
+    for line in lines :
+      if line.strip() == "" :
+        empty_line = empty_line + 1
+        if empty_line == 2 :
+          empty_line = 1 # leave at least one empty line
+          continue
+      else :
+        empty_line = 0
+      line = "\t"+add_to_each_line_before+line+add_to_each_line_after
+      body.append(line)
+    if body[len(body)-1].strip() == "" :
+      del body[len(body)-1]
+    body = "\n".join(body)
+    return pre+body+after
+
+  @staticmethod
+  def replace_without_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
+    lines = view.substr(region).split("\n")
+    body = list()
+    empty_line = 0
+    for line in lines :
+      if line.strip() == "" :
+        empty_line = empty_line + 1
+        if empty_line == 2 :
+          empty_line = 1 # leave at least one empty line
+          continue
+      else :
+        empty_line = 0
+      body.append(add_to_each_line_before+line+add_to_each_line_after)
+    if body[len(body)-1].strip() == "" :
+      del body[len(body)-1]
+    body = "\n".join(body)
+    return pre+body+after
+
+  @staticmethod
+  def get_whitespace_from_line_begin(view, region) :
+    line = view.line(region)
+    whitespace = ""
+    count = line.begin()
+    sel_begin = region.begin()
+    while count != sel_begin :
+      count = count + 1
+      whitespace = whitespace + " "
+    return whitespace
+
+  @staticmethod
+  def add_whitespace_indentation(view, region, string, replace="\t", add_whitespace_end=True) :
+    whitespace = Util.get_whitespace_from_line_begin(view, region)
+    if replace == "\n" :
+      lines = string.split("\n")
+      lines = [whitespace+line for line in lines]
+      lines[0] = lines[0].lstrip()
+      string = "\n".join(lines)
+      return string
+    if add_whitespace_end :
+      lines = string.split("\n")
+      lines[len(lines)-1] = whitespace + lines[-1:][0]
+    string = "\n".join(lines)
+    string = re.sub("(["+replace+"]+)", whitespace+r"\1", string)
+    return string
+
+  @staticmethod
+  def go_to_centered(view, row, col):
+    while view.is_loading() :
+      time.sleep(.1)
+    point = view.text_point(row, col)
+    view.sel().clear()
+    view.sel().add(point)
+    view.show_at_center(point)
+
+  @staticmethod
+  def wait_view(view, fun):
+    while view.is_loading() :
+      time.sleep(.1)
+    fun()
+
+  @staticmethod
+  def move_content_to_parent_folder(path):
+    for filename in os.listdir(path):
+      shutil.move(os.path.join(path, filename), os.path.dirname(path)) 
+    os.rmdir(path)
+
+  @staticmethod
+  def merge_dicts(*dict_args):
+      result = {}
+      for dictionary in dict_args:
+          result.update(dictionary)
+      return result
+
+  @staticmethod
+  def removeItemIfExists(arr, item):
+    if item in arr: arr.remove(item)
+
+  @staticmethod
+  def getListItemIfExists(arr, item):
+    if item in arr : 
+      return item
+    return None
+
+  @staticmethod
+  def delItemIfExists(obj, key):
+    try :
+      del obj[key]
+    except KeyError as e:
+      pass
+
+  @staticmethod
+  def getDictItemIfExists(obj, key):
+    try :
+      return obj[key]
+    except KeyError as e:
+      pass
+    return None
+
+  @staticmethod
+  def create_and_show_panel(output_panel_name, window = None):
+    window = sublime.active_window() if not window else window
+    panel = window.create_output_panel(output_panel_name, False)
+    panel.set_read_only(True)
+    panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
+    window.run_command("show_panel", {"panel": "output."+output_panel_name})
+    return panel
+
+  
+import time, os, re, threading, socket, traceback, sys, struct
+
+class mySocketClient():
+  def __init__(self, socket_name) :
+    self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    self.socket_name = socket_name
+    self.func_on_recv = None
+
+  def connect(self, host, port):
+    self.socket_name += "_"+host+":"+str(port)
+    try:
+      self.socket.connect((host, port))
+      self.socket.setblocking(False)
+      self.log('Client connected')
+      Util.create_and_start_thread(target=self.on_recv)
+    except socket.error as msg:
+      self.log('Connection failed. Error : ' + str(sys.exc_info()))
+      sys.exit()
+
+  def on_recv(self):
+    while True:
+      time.sleep(.1)
+      
+      input_from_server_bytes = self.recv_data() # the number means how the response can be in bytes  
+      if input_from_server_bytes is False :
+        break
+      if input_from_server_bytes :
+        input_from_server = input_from_server_bytes.decode("utf8") # the return will be in bytes, so decode
+        if self.func_on_recv :
+          self.func_on_recv(input_from_server)
+
+  def recv_data(self):
+    try:
+      size = self.socket.recv(struct.calcsize("<i"))
+      if size :
+        size = struct.unpack("<i", size)[0]
+        data = b""
+        while len(data) < size:
+          try:
+            msg = self.socket.recv(size - len(data))
+            if not msg:
+              return None
+            data += msg
+          except socket.error:
+            pass
+        return data
+      else :
+        return False
+    except socket.error:
+      pass
+    except OSError as e:
+      self.log(traceback.format_exc())
+      return False
+
+  def send_to_server(self, data) :
+    self.socket.settimeout(1)
+    try :
+      data = struct.pack("<i", len(data)) + data.encode("utf-8")
+      self.socket.sendall(data)
+      return True
+    except socket.timeout:
+      self.log("Socket server dead. Closing connection...")
+      self.close()
+      return False
+    except socket.error :
+      self.log("Socket server dead. Closing connection...")
+      self.close()
+      return False
+
+  def handle_recv(self, func):
+    self.func_on_recv = func
+
+  def get_socket(self):
+    return self.socket
+
+  def log(self, message) :
+    print(self.socket_name + ": "+message)
+
+  def close(self) :
+    if self.socket :
+      self.socket.close()
+      self.socket = None
+
+class mySocketServer():
+  def __init__(self, socket_name, accept=False) :
+    self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    self.clients = dict()
+    self.socket_name = socket_name
+    self.accept_only_one_client = accept
+    self.func_on_client_connected = None
+    self.func_on_client_disconnected = None
+    self.func_on_recv = None
+    self.log('Socket created')
+
+  def bind(self, host, port):
+    self.socket_name += "_"+host+":"+str(port)
+    try:
+      self.socket.bind((host, port))
+      self.log('Socket bind complete')
+    except socket.error as msg:
+      self.log('Bind failed. Error : ' + traceback.format_exc())
+
+  def listen(self, backlog=5) :
+    self.socket.listen(backlog)
+    self.log('Socket now listening')
+    Util.create_and_start_thread(target=self.main_loop)
+
+  def main_loop(self):
+    while True:
+      time.sleep(.1)
+
+      try :
+        conn, addr = self.socket.accept()   
+        if len(self.clients) > 0 and self.accept_only_one_client :
+          self.send_to(conn, addr, "server_accept_only_one_client")
+          continue
+        conn.setblocking(False)
+        ip, port = str(addr[0]), str(addr[1])
+        self.clients[ip+":"+str(port)] = dict()
+        self.clients[ip+":"+str(port)]["socket"] = conn
+        self.clients[ip+":"+str(port)]["addr"] = addr
+
+        self.log('Accepting connection from ' + ip + ':' + port)
+
+        if self.func_on_client_connected :
+          self.func_on_client_connected(conn, addr, ip, port, self.clients[ip+":"+str(port)])
+
+        try:
+          Util.create_and_start_thread(target=self.on_recv, args=(conn, addr, ip, port))
+        except:
+          self.log(traceback.format_exc())
+      except ConnectionAbortedError:
+        self.log("Connection aborted")
+        break
+
+  def on_recv(self, conn, addr, ip, port):
+    while True:
+      time.sleep(.1)
+
+      input_from_client_bytes = self.recv_data(conn)
+
+      if input_from_client_bytes is False :
+
+        self.delete_client(conn, addr)
+        if self.func_on_client_disconnected :
+          self.func_on_client_disconnected(conn, addr, ip, port)
+        self.log('Connection ' + ip + ':' + port + " ended")
+        break
+
+      if input_from_client_bytes :
+
+        # decode input and strip the end of line
+        input_from_client = input_from_client_bytes.decode("utf8").rstrip()
+
+        if self.func_on_recv :
+          self.func_on_recv(conn, addr, ip, port, input_from_client, self.clients[ip+":"+str(port)])
+
+  def recv_data(self, conn):
+    try:
+      size = conn.recv(struct.calcsize("<i"))
+      if size :
+        size = struct.unpack("<i", size)[0]
+        data = b""
+        while len(data) < size:
+          try:
+            msg = conn.recv(size - len(data))
+            if not msg:
+              return None
+            data += msg
+          except socket.error as e:
+            pass
+        return data
+      else :
+        return False
+    except socket.error as e:
+      pass
+    except OSError as e:
+      self.log(traceback.format_exc())
+      return False
+
+  def send_to(self, conn, addr, data) :
+    conn.settimeout(1)
+    try:
+      data = struct.pack("<i", len(data)) + data.encode("utf-8")
+      return self.send_all_data_to(conn, addr, data)
+    except socket.timeout:
+      self.delete_client(conn, addr)
+      self.log("Timed out "+str(addr[0])+":"+str(addr[1]))
+      return False
+    except OSError as e:
+      self.delete_client(conn, addr)
+      self.log(traceback.format_exc())
+      return False
+
+  def send_all_data_to(self, conn, addr, data):
+    totalsent = 0
+    data_size = len(data)
+    while totalsent < data_size:
+      sent = conn.sendto(data[totalsent:], addr)
+      if sent == 0:
+        self.delete_client(conn, addr)
+        self.log(traceback.format_exc())
+        return False
+      totalsent = totalsent + sent
+    return True
+
+  def send_all_clients(self, data) :
+    for key, value in self.clients.items() :
+      self.send_to(value["socket"], value["addr"], data)
+
+  def handle_recv(self, func):
+    self.func_on_recv = func
+
+  def handle_client_connection(self, func):
+    self.func_on_client_connected = func
+
+  def handle_client_disconnection(self, func):
+    self.func_on_client_disconnected = func
+
+  def get_socket(self):
+    return self.socket
+
+  def set_accept_only_one_client(accept):
+    self.accept_only_one_client = accept
+
+  def get_clients(self) :
+    return self.clients
+
+  def find_clients_by_field(self, field, field_value) :
+    clients_found = list()
+    for key, value in self.clients.items() :
+      if field in value and value[field] == field_value :
+        clients_found.append(value)
+    return clients_found
+
+  def get_first_client(self) :
+    for client in self.clients :
+      return client
+
+  def delete_client(self, conn, addr) :
+    try :
+      del self.clients[str(addr[0])+":"+str(addr[1])]
+    except KeyError:
+      pass
+    conn.close()
+
+  def log(self, message) :
+    print(self.socket_name + ": "+message)
+
+  def close_if_not_clients(self) :
+    if not self.clients:
+      self.close()
+      return True
+    return False
+
+  def close(self) :
+    if self.socket :
+      self.socket.close()
+      self.socket = None
+
 
 def subl(args):
   
@@ -111,14 +1634,10 @@ def overwrite_default_javascript_snippet():
 
 class startPlugin():
   def init(self):
-    import node.node_variables as node_variables
-    import node.installer as installer
-    from node.main import NodeJS
-    node = NodeJS()
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
-    sublime.set_timeout_async(lambda: installer.install(node_variables.NODE_JS_VERSION))
+    sublime.set_timeout_async(lambda: NodeJSInstaller.install(NODE_JS_VERSION))
 
     window = sublime.active_window()
     view = window.active_view()
@@ -131,7 +1650,6 @@ mainPlugin = startPlugin()
 import sublime, sublime_plugin
 import os
 from collections import namedtuple
-import util.main as Util
 
 flowCLIRequirements = namedtuple('flowCLIRequirements', [
     'filename', 'project_root', 'contents', 'cursor_pos', 'row', 'col', 'row_offset'
@@ -259,17 +1777,9 @@ def flow_parse_cli_dependencies(view, **kwargs):
 
 import sublime, sublime_plugin
 import json, os, re, webbrowser, cgi, threading, shutil
-import util.main as Util
-from util.animation_loader import AnimationLoader
-from util.repeated_timer import RepeatedTimer
 from distutils.version import LooseVersion
 
-HELPER_FOLDER_NAME = "helper"
-HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
-
 import os, time
-from my_socket.main import mySocketServer 
-import util.main as Util
 
 class SocketCallUI(object):
 
@@ -322,6 +1832,33 @@ class SocketCallUI(object):
         break
     fun(*args)
     
+
+class wait_modified_asyncViewEventListener():
+  last_change = time.time()
+  waiting = False
+  prefix_thread_name = ""
+  wait_time = 1
+
+  def on_modified_async(self, *args, **kwargs) :
+    self.last_change = time.time()
+    if not self.prefix_thread_name :
+      raise Exception("No prefix_thread_name to wait_modified_asyncViewEventListener")
+    Util.create_and_start_thread(self.on_modified_async_with_thread, self.prefix_thread_name+"_"+str(self.view.id()), args=args, kwargs=kwargs)
+
+  def wait(self):
+    if time.time() - self.last_change <= self.wait_time:
+      if not self.waiting:
+        self.waiting = True
+      else :
+        return
+      self.last_change = time.time()
+      while time.time() - self.last_change <= self.wait_time:
+        time.sleep(.1)
+      self.waiting = False
+
+  def on_modified_async_with_thread(self, *args, **kwargs):
+    return
+
 
 class surround_withCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -426,7 +1963,6 @@ class delete_surroundedCommand(sublime_plugin.TextCommand):
 
 class sort_arrayCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
-    from node.main import NodeJS
     node = NodeJS()
     view = self.view
     selections = view.sel()
@@ -436,7 +1972,6 @@ class sort_arrayCommand(sublime_plugin.TextCommand):
       if result :
         region = result.get("region")
         array_string = result.get("region_string_stripped")
-        from node.main import NodeJS
         node = NodeJS()
         case = args.get("case")
         sort_func = ""
@@ -492,7 +2027,6 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
         object_literal_region = item_object_literal.get("region")
         selection = item_object_literal.get("selection")
         object_literal = item_object_literal.get("region_string_stripped")
-        from node.main import NodeJS
         node = NodeJS()
         object_literal = re.sub(r'[\n\r\t]', ' ', object_literal)
         object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
@@ -611,7 +2145,6 @@ class add_type_any_parameterCommand(sublime_plugin.TextCommand):
 
 import sublime, sublime_plugin
 import sys, imp, os, webbrowser, re, cgi
-import util.main as Util
 
 class JavaScriptCompletions():
 
@@ -622,10 +2155,6 @@ javascriptCompletions = JavaScriptCompletions()
 
 import sublime, sublime_plugin
 import os
-from node.main import NodeJS
-import util.main as Util
-
-node = NodeJS()
 
 def build_type_from_func_details(comp_details):
   if comp_details :
@@ -724,6 +2253,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     if deps.project_root is '/':
       return
 
+    node = NodeJS()
+    
     result = node.execute_check_output(
       "flow",
       [
@@ -831,9 +2362,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
 import sublime, sublime_plugin
 import os
-from node.main import NodeJS
 
-node = NodeJS()
+
 
 class go_to_defCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -853,6 +2383,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       # try flow get-def
       sublime.status_message("")
       deps = flow_parse_cli_dependencies(view)
+      node = NodeJS()
       result = node.execute_check_output(
         "flow",
         [
@@ -933,10 +2464,6 @@ if int(sublime.version()) >= 3124 :
     return final_completions
 
   import sublime, sublime_plugin
-  import util.main as Util
-  from node.main import NodeJS
-  
-  node = NodeJS()
   
   def description_details_html(description):
     description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
@@ -1002,6 +2529,8 @@ if int(sublime.version()) >= 3124 :
     if deps.project_root is '/':
       return
   
+    node = NodeJS()
+  
     result = node.execute_check_output(
       "flow",
       [
@@ -1060,6 +2589,7 @@ if int(sublime.version()) >= 3124 :
       if deps.project_root is '/':
         return
       row, col = view.rowcol(point)
+      node = NodeJS()
       result = node.execute_check_output(
         "flow",
         [
@@ -1147,7 +2677,6 @@ if int(sublime.version()) >= 3124 :
     
 
   import sublime, sublime_plugin
-  import util.main as Util
   
   class show_hint_parametersCommand(sublime_plugin.TextCommand):
     
@@ -1283,6 +2812,8 @@ if int(sublime.version()) >= 3124 :
       if view_settings.get("flow_weak_mode") :
         deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
   
+      node = NodeJS()
+  
       result = node.execute_check_output(
         "flow",
         [
@@ -1332,9 +2863,12 @@ if int(sublime.version()) >= 3124 :
           if row >= 0 :
             row_description = description_by_row.get(row)
             if not row_description:
-              description_by_row[row] = description
+              description_by_row[row] = {
+                "col": col,
+                "description": description
+              }
             if row_description and description not in row_description:
-              description_by_row[row] += '; ' + description
+              description_by_row[row]["description"] += '; ' + description
               
         errors = result[1]['errors']
   
@@ -1365,7 +2899,7 @@ if int(sublime.version()) >= 3124 :
 
   import cgi, time
   
-  class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
+  class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
   
     description_by_row = {}
     errors = []
@@ -1475,7 +3009,7 @@ if int(sublime.version()) >= 3124 :
       error_for_row = self.description_by_row.get(row)
       
       if error_for_row:
-        text = cgi.escape(error_for_row).split(" ")
+        text = cgi.escape(error_for_row["description"]).split(" ")
         html = ""
         i = 0
         while i < len(text) - 1:
@@ -1486,7 +3020,8 @@ if int(sublime.version()) >= 3124 :
         if len(text) % 2 != 0 :
           html += text[len(text) - 1]
   
-        view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_INLINE)
+        region_phantom = sublime.Region( view.text_point(row, error_for_row["col"]), view.text_point(row, error_for_row["col"]) )
+        sublime.set_timeout_async(lambda: view.add_phantom("flow_error", region_phantom, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+'</body></html>', sublime.LAYOUT_BELOW))
   
   
     def on_selection_modified_async(self, *args) :
@@ -1526,7 +3061,7 @@ if int(sublime.version()) >= 3124 :
       error_for_row = self.description_by_row.get(row)
       if error_for_row:
         view.set_status(
-          'flow_error', error_count_text + ': ' + error_for_row
+          'flow_error', error_count_text + ': ' + error_for_row["description"]
         )
       else:
         view.set_status('flow_error', error_count_text)
@@ -1594,7 +3129,6 @@ if int(sublime.version()) >= 3124 :
 
 import sublime, sublime_plugin
 import traceback, os, json, io, sys, imp
-import util.main as Util
 
 result_js = ""
 region_selected = None
@@ -1707,7 +3241,6 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
     view.run_command("show_start_end_dot_eval")
 
     try:
-      from node.main import NodeJS
       node = NodeJS()
       result_js = node.eval(str_selected, eval_type, True)
       popup_is_showing = True
@@ -1785,10 +3318,6 @@ def back_to_popup(*str_arg):
 
 import sublime, sublime_plugin
 import subprocess, time, json
-from my_socket.main import mySocketServer  
-from node.main import NodeJS
-import util.main as Util
-node = NodeJS()
 
 socket_server_list["structure_javascript"] = SocketCallUI("structure_javascript", "localhost", 11113, os.path.join(HELPER_FOLDER, "structure_javascript", "ui", "client.js"), 1)
 
@@ -1796,6 +3325,8 @@ def update_structure_javascript(view, filename, clients=[]):
   global socket_server_list 
 
   deps = flow_parse_cli_dependencies(view)
+  
+  node = NodeJS()
 
   output = node.execute_check_output(
     "flow",
@@ -1948,7 +3479,6 @@ class view_structure_javascriptCommand(sublime_plugin.TextCommand):
 
 import sublime, sublime_plugin
 import json, time
-import util.main as Util
 
 bookmarks = []
 latest_bookmarks_view = dict()
@@ -2596,7 +4126,6 @@ def open_project_folder(project):
   subl(["--project", project])
   
 def call_ui(client_file, host, port) :
-  from node.main import NodeJS
   node = NodeJS()
   return Util.create_and_start_thread(node.execute, args=("electron", [client_file], True))
 
@@ -2656,7 +4185,7 @@ def get_project_settings():
   project_settings["project_file_name"] = project_file_name
   project_settings["project_dir_name"] = project_dir_name
   project_settings["settings_dir_name"] = settings_dir_name
-  settings_file = ["project_details.json", "flow_settings.json"]
+  settings_file = ["project_details.json", "project_settings.json", "flow_settings.json"]
   for setting_file in settings_file :
     with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
       key = os.path.splitext(setting_file)[0]
@@ -2841,7 +4370,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     self.before_execute()
 
     if ( self.can_execute() ) :
-      node = NodeJS()
+      node = NodeJS(check_local = True)
 
       if self.bin_path :
         node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
@@ -2948,33 +4477,35 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 ## Cordova ##
 import sublime, sublime_plugin
 import os, webbrowser, shlex
-from node.main import NodeJS
 
-def create_cordova_project_process(line, process, panel, project, sublime_project_file_name) :
+def create_cordova_project_process(line, process, panel, project_data, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
+    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
     open_project_folder(sublime_project_file_name)
 
 def create_cordova_project(json_data):
-  project = json_data["project"]
-  project_folder = project["path"]
+  project_data = json_data["project_data"]
+  project_details = project_data["project_details"]
+  project_folder = project_data["path"]
   types_options = []
 
-  if not "ionic" in project["type"] :
+  if not "ionic" in project_details["type"] :
 
-    if "cordova" in project["types_options"]:
-      types_options = project["types_options"]["cordova"]
+    if "cordova" in project_data["types_options"]:
+      types_options = project_data["types_options"]["cordova"]
       
     panel = Util.create_and_show_panel("cordova_panel_installer_project")
 
-    if "cordova_settings" in project and "package_json" in project["cordova_settings"] and "use_local_cli" in project["cordova_settings"] and project["cordova_settings"]["use_local_cli"] :
-      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    node = NodeJS()
+
+    if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
     else :  
-      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
     
 
   return json_data
@@ -3003,6 +4534,7 @@ class cordova_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
+      node = NodeJS()
       sublime.status_message(self.name_cli+": getting platform list...")
       node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
     else :
@@ -3058,6 +4590,7 @@ class cordova_baseCommand(manage_cliCommand):
     self.settings = get_project_settings()
     if self.settings :
       sublime.status_message(self.name_cli+": getting plugin list...")
+      node = NodeJS()
       node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
     else :
       sublime.error_message("Error: can't get project settings")
@@ -3211,8 +4744,10 @@ class sync_cordova_projectCommand(cordova_baseCommand):
     self.platform_list = []
     self.plugin_list = []
     self.settings = get_project_settings()
+
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
+      node = NodeJS()
       node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
       node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list)
     else :
@@ -3247,31 +4782,33 @@ class sync_cordova_projectCommand(cordova_baseCommand):
 ## Ionic ##
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
-from node.main import NodeJS
 
-def create_ionic_project_process(line, process, panel, project, sublime_project_file_name) :
+def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name) :
   print(line)
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
+    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
     open_project_folder(sublime_project_file_name)
 
 def create_ionic_project(json_data):
-  project = json_data["project"]
-  project_folder = project["path"]
+  project_data = json_data["project_data"]
+  project_details = project_data["project_details"]
+  project_folder = project_data["path"]
   types_options = []
 
-  if "ionic" in project["types_options"]:
-    types_options = project["types_options"]["ionic"]
+  if "ionic" in project_data["types_options"]:
+    types_options = project_data["types_options"]["ionic"]
 
   panel = Util.create_and_show_panel("ionic_panel_installer_project")
 
-  if "ionic_settings" in project and "package_json" in project["ionic_settings"] and "use_local_cli" in project["ionic_settings"] and project["ionic_settings"]["use_local_cli"] :
-    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+  node = NodeJS()
+
+  if "ionic_settings" in project_data and "package_json" in project_data["ionic_settings"] and "use_local_cli" in project_data["ionic_settings"] and project_data["ionic_settings"]["use_local_cli"] :
+    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
   else :  
-    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
 
   return json_data
 
@@ -3367,9 +4904,6 @@ class sync_ionic_projectCommand(ionic_baseCommand, sync_cordova_projectCommand):
 
 import sublime, sublime_plugin
 import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
-from node.main import NodeJS
-node = NodeJS()
 
 socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join(PROJECT_FOLDER, "create_new_project", "ui", "client.js"))
 
@@ -3391,8 +4925,8 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
           json_data = Hook.apply("before_create_new_project", json_data)
 
-          if "type" in json_data["project"] :
-            for project_type in json_data["project"]["type"]:
+          if "type" in json_data["project_data"]["project_details"] :
+            for project_type in json_data["project_data"]["project_details"]["type"]:
               json_data = Hook.apply(project_type+"_create_new_project", json_data)
 
           json_data = Hook.apply("after_create_new_project", json_data)
@@ -3404,10 +4938,11 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
         elif json_data["command"] == "try_flow_init":
           
+          node = NodeJS()
           data = dict()
           data["command"] = "result_flow_init"
-          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
-          data["project"] = json_data["project"]
+          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project_data"]["path"])
+          data["project_data"] = json_data["project_data"]
           data = json.dumps(data)
 
           socket_server_list["create_new_project"].socket.send_to(conn, addr, data)
@@ -3427,7 +4962,6 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
 import sublime, sublime_plugin
 import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
 
 socket_server_list["edit_project"] = SocketCallUI("edit_project", "localhost", 11112, os.path.join(PROJECT_FOLDER, "edit_project", "ui", "client.js"))
 
@@ -3480,7 +5014,6 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 
   def on_pre_close(self, view) :
 
-    from node.main import NodeJS
     node = NodeJS()
 
     global socket_server_list
@@ -3488,7 +5021,7 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
     if not sublime.windows() :
       
       sublime.status_message("flow server stopping")
-      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(PACKAGE_PATH, "flow")))
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
 
       for key, value in socket_server_list.items() :
         if not value["socket"].is_socket_closed() :
@@ -3502,7 +5035,7 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
     if is_javascript_project() and view.window() and len(view.window().views()) == 1 :
       settings = get_project_settings()
       sublime.status_message("flow server stopping")
-      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], True, os.path.join(settings["project_dir_name"])))
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(settings["project_dir_name"])))
 
 
 

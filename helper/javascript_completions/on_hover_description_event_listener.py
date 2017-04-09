@@ -1,8 +1,4 @@
 import sublime, sublime_plugin
-import util.main as Util
-from node.main import NodeJS
-
-node = NodeJS()
 
 def description_details_html(description):
   description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
@@ -68,6 +64,8 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
   if deps.project_root is '/':
     return
 
+  node = NodeJS()
+
   result = node.execute_check_output(
     "flow",
     [
@@ -126,6 +124,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
     if deps.project_root is '/':
       return
     row, col = view.rowcol(point)
+    node = NodeJS()
     result = node.execute_check_output(
       "flow",
       [

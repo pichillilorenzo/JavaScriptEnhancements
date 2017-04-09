@@ -1,6 +1,6 @@
 import cgi, time
 
-class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
+class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
 
   description_by_row = {}
   errors = []
@@ -110,7 +110,7 @@ class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListene
     error_for_row = self.description_by_row.get(row)
     
     if error_for_row:
-      text = cgi.escape(error_for_row).split(" ")
+      text = cgi.escape(error_for_row["description"]).split(" ")
       html = ""
       i = 0
       while i < len(text) - 1:
@@ -121,7 +121,8 @@ class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListene
       if len(text) % 2 != 0 :
         html += text[len(text) - 1]
 
-      view.add_phantom("flow_error", sel, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+"</body></html>", sublime.LAYOUT_INLINE)
+      region_phantom = sublime.Region( view.text_point(row, error_for_row["col"]), view.text_point(row, error_for_row["col"]) )
+      sublime.set_timeout_async(lambda: view.add_phantom("flow_error", region_phantom, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+'</body></html>', sublime.LAYOUT_BELOW))
 
 
   def on_selection_modified_async(self, *args) :
@@ -161,7 +162,7 @@ class show_flow_errorsViewEventListener(Util.wait_modified_asyncViewEventListene
     error_for_row = self.description_by_row.get(row)
     if error_for_row:
       view.set_status(
-        'flow_error', error_count_text + ': ' + error_for_row
+        'flow_error', error_count_text + ': ' + error_for_row["description"]
       )
     else:
       view.set_status('flow_error', error_count_text)

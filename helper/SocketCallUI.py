@@ -1,6 +1,4 @@
 import os, time
-from my_socket.main import mySocketServer 
-import util.main as Util
 
 class SocketCallUI(object):
 

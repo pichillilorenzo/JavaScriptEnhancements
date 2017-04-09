@@ -11,7 +11,8 @@ const app = new SocketWindow('localhost', 11112, __dirname, 960, 722)
 
 let project_dir_name = ""
 let jc_project_settings_dir_name = ""
-let settings_file = ""
+let project_details_file = ""
+let project_settings_file = ""
 let flow_settings = ""
 let data_project = {}
 
@@ -28,7 +29,8 @@ function get_update_type(_old, _new){
 app.listenSocketCommand('load_project_settings', (data) => {
   project_dir_name = data.settings.project_dir_name
   jc_project_settings_dir_name = data.settings.settings_dir_name
-  settings_file = path.join(jc_project_settings_dir_name, "project_details.json")
+  project_details_file = path.join(jc_project_settings_dir_name, "project_details.json")
+  project_settings_file = path.join(jc_project_settings_dir_name, "project_settings.json")
   flow_settings = path.join(jc_project_settings_dir_name, "flow_settings.json")
   data_project = data
   for(let i = 0, length1 = data.settings.project_details.type.length; i < length1; i++){
@@ -50,7 +52,7 @@ app.listenSocketCommand('load_project_settings', (data) => {
 })
 
 ipcMain.on('form-project-details', (event, project_details) => {
-  if (fs.existsSync(settings_file)) {
+  if (fs.existsSync(project_details_file)) {
 
     /* check dependencies */
     let dependencies = {}
@@ -125,10 +127,10 @@ ipcMain.on('form-project-details', (event, project_details) => {
     try{
       util.openWithSync((fd) => {
         fs.writeFileSync(fd, JSON.stringify(project_details, null, 2))
-      }, settings_file, "w+")
+      }, project_details_file, "w+")
     }
     catch(e){
-      app.sendWeb("error", `Can't modify "${settings_file}"\nError: ${e}.`)
+      app.sendWeb("error", `Can't modify "${project_details_file}"\nError: ${e}.`)
       return
     }
     try{
@@ -170,7 +172,27 @@ ${options}
     app.sendWeb("load_config", data_project)
   }
   else{
-    app.sendWeb("error", `File "${settings_file}" doesn't exists.`)
+    app.sendWeb("error", `File "${project_details_file}" doesn't exists.`)
+  }
+})
+
+ipcMain.on('form-project-settings', (event, project_settings) => {
+  if (fs.existsSync(project_settings_file)) {
+    try{
+      util.openWithSync((fd) => {
+        fs.writeFileSync(fd, JSON.stringify(project_settings, null, 2))
+      }, project_settings_file, "w+")
+    }
+    catch(e){
+      app.sendWeb("error", `Can't modify "${project_settings_file}"\nError: ${e}.`)
+      return
+    }
+
+    app.sendWeb("success", "Successfully saved.")
+    app.sendWeb("load_config", data_project)
+  }
+  else{
+    app.sendWeb("error", `File "${project_settings_file}" doesn't exists.`)
   }
 })
 

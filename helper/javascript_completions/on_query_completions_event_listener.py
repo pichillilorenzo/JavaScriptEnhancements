@@ -1,9 +1,5 @@
 import sublime, sublime_plugin
 import os
-from node.main import NodeJS
-import util.main as Util
-
-node = NodeJS()
 
 def build_type_from_func_details(comp_details):
   if comp_details :
@@ -102,6 +98,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     if deps.project_root is '/':
       return
 
+    node = NodeJS()
+    
     result = node.execute_check_output(
       "flow",
       [

@@ -1,5 +1,4 @@
 import sublime, sublime_plugin
-import util.main as Util
 
 class show_hint_parametersCommand(sublime_plugin.TextCommand):
   

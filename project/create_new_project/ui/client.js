@@ -23,7 +23,7 @@ app.listenSocketCommand('result_flow_init', (data) => {
     return
   }
 
-  let flowconfig = path.join(data.project.path, ".flowconfig")
+  let flowconfig = path.join(data.project_data.path, ".flowconfig")
   util.openWithSync((fd) => {
     let include = default_config.flow_settings.include.join("\n")
     let ignore = default_config.flow_settings.ignore.join("\n")
@@ -44,33 +44,33 @@ ${options}
     fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
   }, flowconfig, "w+")
 
-  let sublime_project_file_name = util.clearString(data.project.project_name)
+  let sublime_project_file_name = util.clearString(data.project_data.project_details.project_name)
   let data_to_send = {
-    "project": data.project,
-    "sublime_project_file_name": path.join(data.project.path, sublime_project_file_name+".sublime-project"),
+    "project_data": data.project_data,
+    "sublime_project_file_name": path.join(data.project_data.path, sublime_project_file_name+".sublime-project"),
     "command": "open_project"
   }
   util.openWithSync((fd) => {
     fs.writeFileSync(fd, JSON.stringify(default_config.sublime_project, null, 2))
-  }, path.join(data.project.path, sublime_project_file_name+".sublime-project"), "w+")
+  }, path.join(data.project_data.path, sublime_project_file_name+".sublime-project"), "w+")
 
   let package_json = {}
-  for(let i = 0, length1 = data.project.type.length; i < length1; i++){
-    if (data.project[data.project.type[i]+"_settings"] && data.project[data.project.type[i]+"_settings"].package_json) {
-      package_json = util.mergeObjectsRecursive(package_json, data.project[data.project.type[i]+"_settings"].package_json)
+  for(let i = 0, length1 = data.project_data.project_details.type.length; i < length1; i++){
+    if (data.project_data[data.project_data.project_details.type[i]+"_settings"] && data.project_data[data.project_data.project_details.type[i]+"_settings"].package_json) {
+      package_json = util.mergeObjectsRecursive(package_json, data.project_data[data.project_data.project_details.type[i]+"_settings"].package_json)
     }
   }
   if (package_json) {
     util.openWithSync((fd) => {
       fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
-    }, path.join(data.project.path, ".jc-project-settings", "package.json"), "w+")
-    process.chdir(path.join(data.project.path, ".jc-project-settings"));
+    }, path.join(data.project_data.path, ".jc-project-settings", "package.json"), "w+")
+    process.chdir(path.join(data.project_data.path, ".jc-project-settings"));
     npm.load(function(err){
       npm.commands.install(function(err, data){
         if(err){
           app.sendWeb("error", JSON.stringify(err, null, 2))
         }
-        else {
+        else {
           app.sendSocketJson(data_to_send)
         }
       })
@@ -83,29 +83,30 @@ ${options}
   
 })
 
-ipcMain.on('data', (event, project) => {
-
-  if (!fs.existsSync(project.path)){
-    fs.mkdirsSync(project.path)
+ipcMain.on('data', (event, project_data) => {
+  
+  if (!fs.existsSync(project_data.path)){
+    fs.mkdirsSync(project_data.path)
   }
 
-  let jc_project_settings = path.join(project.path, ".jc-project-settings")
+  let jc_project_settings = path.join(project_data.path, ".jc-project-settings")
   let bookmarks_path = path.join(jc_project_settings, "bookmarks.json")
-  let settings_file = path.join(jc_project_settings, "project_details.json")
+  let project_details_file = path.join(jc_project_settings, "project_details.json")
+  let project_settings = path.join(jc_project_settings, "project_settings.json")
   let flow_settings = path.join(jc_project_settings, "flow_settings.json")
 
   let project_type_default_settings = []
-  /* project.type.length evaluate each time because of possible type dependecies */
-  for(let i = 0; i < project.type.length; i++){
+  /* project_data.project_details.type.length evaluate each time because of possible type dependecies */
+  for(let i = 0; i < project_data.project_details.type.length; i++){
     let project_type_default_config = {}
     try {
-      project_type_default_config = require('../../default_settings/'+project.type[i]+'/default_config.js')
+      project_type_default_config = require('../../default_settings/'+project_data.project_details.type[i]+'/default_config.js')
       if (project_type_default_config.dependencies) {
         /* load dependencies */
         for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
           let dipendency = project_type_default_config.dependencies[j]
-          if (project.type.indexOf(dipendency) < 0) {
-            project.type.push(dipendency)
+          if (project_data.project_details.type.indexOf(dipendency) < 0) {
+            project_data.project_details.type.push(dipendency)
           }
         }
       }
@@ -122,9 +123,9 @@ ipcMain.on('data', (event, project) => {
         }
       }
     }
-    if(project_type_default_config[project.type[i]+"_settings"]){
+    if(project_type_default_config[project_data.project_details.type[i]+"_settings"]){
       project_type_default_settings.push(
-        [project.type[i], project_type_default_config[project.type[i]+"_settings"]]
+        [project_data.project_details.type[i], project_type_default_config[project_data.project_details.type[i]+"_settings"]]
       )
     }
   }
@@ -132,11 +133,14 @@ ipcMain.on('data', (event, project) => {
   if (!fs.existsSync(jc_project_settings)) {
     fs.mkdirSync(jc_project_settings)
     util.openWithSync((fd) => {
-      default_config.project_details = JSON.parse(JSON.stringify(project)) // clone project object
-      delete default_config.project_details.path
-      delete default_config.project_details.types_options
+      default_config.project_details = JSON.parse(JSON.stringify(project_data.project_details)) // clone project object
       fs.writeFileSync(fd, JSON.stringify(default_config.project_details, null, 2))
-    }, settings_file, "w+")
+    }, project_details_file, "w+")
+
+    util.openWithSync((fd) => {
+      default_config.project_settings = JSON.parse(JSON.stringify(project_data.project_settings))
+      fs.writeFileSync(fd, JSON.stringify(default_config.project_settings, null, 2))
+    }, project_settings, "w+")
 
     util.openWithSync((fd) => {
       fs.writeFileSync(fd, JSON.stringify(default_config.flow_settings, null, 2))
@@ -148,9 +152,9 @@ ipcMain.on('data', (event, project) => {
 
     for(let i = 0, length1 = project_type_default_settings.length; i < length1; i++){
 
-      if (project[project_type_default_settings[i][0]+"_settings"]) {
-        for (let key in project[project_type_default_settings[i][0]+"_settings"]) {
-          project_type_default_settings[i][1][key] = project[project_type_default_settings[i][0]+"_settings"][key]
+      if (project_data[project_type_default_settings[i][0]+"_settings"]) {
+        for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {
+          project_type_default_settings[i][1][key] = project_data[project_type_default_settings[i][0]+"_settings"][key]
         }
       }
         
@@ -160,7 +164,7 @@ ipcMain.on('data', (event, project) => {
     }
     app.sendSocketJson({
       "command": "try_flow_init",
-      "project": project
+      "project_data": project_data
     })
   }
   else{

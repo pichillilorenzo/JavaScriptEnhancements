@@ -1,8 +1,5 @@
 import sublime, sublime_plugin
 import subprocess, shutil, traceback
-from my_socket.main import mySocketServer  
-from node.main import NodeJS
-node = NodeJS()
 
 socket_server_list["create_new_project"] = SocketCallUI("create_new_project", "localhost", 11111, os.path.join(PROJECT_FOLDER, "create_new_project", "ui", "client.js"))
 
@@ -24,8 +21,8 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
           json_data = Hook.apply("before_create_new_project", json_data)
 
-          if "type" in json_data["project"] :
-            for project_type in json_data["project"]["type"]:
+          if "type" in json_data["project_data"]["project_details"] :
+            for project_type in json_data["project_data"]["project_details"]["type"]:
               json_data = Hook.apply(project_type+"_create_new_project", json_data)
 
           json_data = Hook.apply("after_create_new_project", json_data)
@@ -37,10 +34,11 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
         elif json_data["command"] == "try_flow_init":
           
+          node = NodeJS()
           data = dict()
           data["command"] = "result_flow_init"
-          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project"]["path"])
-          data["project"] = json_data["project"]
+          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project_data"]["path"])
+          data["project_data"] = json_data["project_data"]
           data = json.dumps(data)
 
           socket_server_list["create_new_project"].socket.send_to(conn, addr, data)

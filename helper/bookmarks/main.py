@@ -1,6 +1,5 @@
 import sublime, sublime_plugin
 import json, time
-import util.main as Util
 
 bookmarks = []
 latest_bookmarks_view = dict()

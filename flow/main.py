@@ -1,7 +1,6 @@
 import sublime, sublime_plugin
 import os
 from collections import namedtuple
-import util.main as Util
 
 flowCLIRequirements = namedtuple('flowCLIRequirements', [
     'filename', 'project_root', 'contents', 'cursor_pos', 'row', 'col', 'row_offset'

@@ -6,7 +6,6 @@ def open_project_folder(project):
   subl(["--project", project])
   
 def call_ui(client_file, host, port) :
-  from node.main import NodeJS
   node = NodeJS()
   return Util.create_and_start_thread(node.execute, args=("electron", [client_file], True))
 
@@ -66,7 +65,7 @@ def get_project_settings():
   project_settings["project_file_name"] = project_file_name
   project_settings["project_dir_name"] = project_dir_name
   project_settings["settings_dir_name"] = settings_dir_name
-  settings_file = ["project_details.json", "flow_settings.json"]
+  settings_file = ["project_details.json", "project_settings.json", "flow_settings.json"]
   for setting_file in settings_file :
     with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
       key = os.path.splitext(setting_file)[0]

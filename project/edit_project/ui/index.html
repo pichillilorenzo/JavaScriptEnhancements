@@ -88,85 +88,111 @@
       </div>
     </div>
 
-    <div class="tile tile-large bg-black fg-white" data-role="tile" onclick="metroDialog.open('#dialog-flow-settings')">
-        <div class="tile-content iconic">
-          <span class="icon"><img src="img/flow-logo.png" alt=""></span>
-          <span class="tile-label">Flow Settings</span>
-        </div>
-        <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-flow-settings" data-close-button="true">
-          <form id="form-flow-settings" action="#">
-            <h2>Flow Settings</h2>
-            <div class="accordion" data-role="accordion">
-              <div class="frame">
-                <div class="heading">Include</div>
-                <div id="include-flow" class="content">
-                  <div class="container-settings-flow-inputs"></div>
-                  <button data-id-flow="include-flow" class="flow-add-button button primary place-right" type="button">Add</button>
-                  <button data-id-flow="include-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
-                </div>
-              </div>
-              <div class="frame">
-                <div class="heading">Ignore</div>
-                <div id="ignore-flow" class="content">
-                  <div class="container-settings-flow-inputs"></div>
-                  <button data-id-flow="ignore-flow" class="flow-add-button button primary place-right" type="button">Add</button>
-                  <button data-id-flow="ignore-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
-                </div>
-              </div>
-              <div class="frame">
-                <div class="heading">Libs</div>
-                <div id="libs-flow" class="content">
-                  <div class="container-settings-flow-inputs"></div>
-                  <button data-id-flow="libs-flow" class="flow-add-button button primary place-right" type="button">Add</button>
-                  <button data-id-flow="libs-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
-                </div>
-              </div>
-              <div class="frame">
-                <div class="heading">Options</div>
-                <div id="options-flow" class="content">
-                  <div class="container-settings-flow-inputs"></div>
-                  <button data-id-flow="options-flow" class="flow-add-button button primary place-right" type="button">Add</button>
-                  <button data-id-flow="options-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
-                </div>
-              </div>
-              <div class="frame active">
-                <div class="heading">Global Settings</div>
-                <div id="global-flow" class="content">
-                  <div class="container-settings-flow-inputs">
-                    <div class="container-flow-input">
-                      <label class="switch">
-                        <input type="checkbox" id="use_flow_checker">
-                        <span class="check"></span>
-                        <span class="text-switch">Use Flow Checker</span>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="container-settings-flow-inputs">
-                    <div class="container-flow-input">
-                      <label class="switch">
-                        <input type="checkbox" id="use_always_weak_mode">
-                        <span class="check"></span>
-                        <span class="text-switch">Use Always Weak Mode</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="tile tile-large bg-yellow fg-black" data-role="tile" onclick="metroDialog.open('#dialog-project-settings')">
+      <div class="tile-content iconic">
+          <span class="icon mif-cogs"></span>
+          <span class="tile-label">Project Settings</span>
+      </div>
+      <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-project-settings" data-close-button="true">
+        <form id="form-project-settings" action="#">
+          <h2>Project Settings</h2>
 
-            <div class="floating-action"> 
-              <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
-            </div>
-          </form>
-        </div>
+          <div class="input-control text full-size" data-role="input">
+            <label for="node_js_custom_path">Node.js Custom Path:</label>
+            <input type="text" id="node_js_custom_path" name="node_js_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          
+          <div class="input-control text full-size" data-role="input">
+            <label for="npm_custom_path">Npm Custom Path:</label>
+            <input type="text" id="npm_custom_path" name="npm_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="floating-action"> 
+            <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
+          </div>
+        </form>
+      </div>
     </div>
-    
+
+    <div class="tile tile-large bg-black fg-white" data-role="tile" onclick="metroDialog.open('#dialog-flow-settings')">
+      <div class="tile-content iconic">
+        <span class="icon"><img src="img/flow-logo.png" alt=""></span>
+        <span class="tile-label">Flow Settings</span>
+      </div>
+      <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-flow-settings" data-close-button="true">
+        <form id="form-flow-settings" action="#">
+          <h2>Flow Settings</h2>
+          <div class="accordion" data-role="accordion">
+            <div class="frame">
+              <div class="heading">Include</div>
+              <div id="include-flow" class="content">
+                <div class="container-settings-flow-inputs"></div>
+                <button data-id-flow="include-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                <button data-id-flow="include-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+              </div>
+            </div>
+            <div class="frame">
+              <div class="heading">Ignore</div>
+              <div id="ignore-flow" class="content">
+                <div class="container-settings-flow-inputs"></div>
+                <button data-id-flow="ignore-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                <button data-id-flow="ignore-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+              </div>
+            </div>
+            <div class="frame">
+              <div class="heading">Libs</div>
+              <div id="libs-flow" class="content">
+                <div class="container-settings-flow-inputs"></div>
+                <button data-id-flow="libs-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                <button data-id-flow="libs-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+              </div>
+            </div>
+            <div class="frame">
+              <div class="heading">Options</div>
+              <div id="options-flow" class="content">
+                <div class="container-settings-flow-inputs"></div>
+                <button data-id-flow="options-flow" class="flow-add-button button primary place-right" type="button">Add</button>
+                <button data-id-flow="options-flow" class="flow-remove-button button danger no-float" type="button">Remove</button>
+              </div>
+            </div>
+            <div class="frame active">
+              <div class="heading">Global Settings</div>
+              <div id="global-flow" class="content">
+                <div class="container-settings-flow-inputs">
+                  <div class="container-flow-input">
+                    <label class="switch">
+                      <input type="checkbox" id="use_flow_checker">
+                      <span class="check"></span>
+                      <span class="text-switch">Use Flow Checker</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="container-settings-flow-inputs">
+                  <div class="container-flow-input">
+                    <label class="switch">
+                      <input type="checkbox" id="use_always_weak_mode">
+                      <span class="check"></span>
+                      <span class="text-switch">Use Always Weak Mode</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-action"> 
+            <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 
   <script>
     window.$ = window.jQuery = require('../../../vendor/jquery/jquery-1.12.2.min.js')
-    require('../../../js/vendor/bootstrap.min.js')
-    require('../../../js/vendor/propeller.min.js')
     require('../../../vendor/metro-dist/js/metro.min.js')
     const fs = require("fs")
     const utilWeb = require('../../../js/utilWeb.js')
@@ -215,6 +241,15 @@
           "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
         }
         ipcRenderer.send('form-project-details', project_details)
+      })
+
+      $("#form-project-settings").on("submit", function(event) {
+        event.preventDefault()
+        let project_settings = {
+          "node_js_custom_path": $("#node_js_custom_path").val().trim(),
+          "npm_custom_path": $("#npm_custom_path").val().trim()
+        }
+        ipcRenderer.send('form-project-settings', project_settings)
       })
 
       $("#type").change(type_change)
@@ -335,6 +370,10 @@
       $("#type").val(project_details.type)
       type_change()
       project_type = project_details.type
+
+      let project_settings = config.settings.project_settings
+      $("#node_js_custom_path").val(project_settings.node_js_custom_path),
+      $("#npm_custom_path").val(project_settings.npm_custom_path)
 
       for(let i = 0, length1 = project_type.length; i < length1; i++){
         let type = project_type[i]

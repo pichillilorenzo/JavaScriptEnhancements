@@ -1,6 +1,5 @@
 import sublime, sublime_plugin
 import sys, imp, os, webbrowser, re, cgi
-import util.main as Util
 
 class JavaScriptCompletions():
 

@@ -25,6 +25,10 @@ module.exports = {
     "tags": "",
     "type": []
   },
+  "project_settings": {
+    "node_js_custom_path": "",
+    "npm_custom_path": ""
+  },
   "flow_settings": {
     "ignore": [
 

@@ -23,20 +23,20 @@ module.exports = {
   "setProject":  (variables) => {
     let utilWeb = variables.utilWeb
     let $ = variables.$
-    let project = variables.project
-    project.ionic_settings = {}
+    let project_data = variables.project_data
+    project_data.ionic_settings = {}
     if($(".use_local_cli").prop("checked")){
-      project.ionic_settings.package_json = {
+      project_data.ionic_settings.package_json = {
         "dependencies": {
           "ionic": $("#custom-ionic-version input.ionic-version").val()
         }
       }
-      project.ionic_settings.use_local_cli = true
+      project_data.ionic_settings.use_local_cli = true
     }
-    project.ionic_settings.cli_custom_path = ""
+    project_data.ionic_settings.cli_custom_path = ""
     if($("#custom-ionic-path input.ionic-path").val().trim()){
-      project.ionic_settings.cli_custom_path = $("#custom-ionic-path input.ionic-path").val().trim()
+      project_data.ionic_settings.cli_custom_path = $("#custom-ionic-path input.ionic-path").val().trim()
     }
-    return utilWeb.get_cli_create_options(variables, "ionic")
+    project_data.types_option = utilWeb.get_cli_create_options(variables, "ionic")
   }
 }

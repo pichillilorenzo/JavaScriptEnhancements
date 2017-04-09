@@ -1,32 +1,34 @@
 import sublime, sublime_plugin
 import os, webbrowser, shlex
-from node.main import NodeJS
 
-def create_cordova_project_process(line, process, panel, project, sublime_project_file_name) :
+def create_cordova_project_process(line, process, panel, project_data, sublime_project_file_name) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project["path"], "temp"))
+    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
     open_project_folder(sublime_project_file_name)
 
 def create_cordova_project(json_data):
-  project = json_data["project"]
-  project_folder = project["path"]
+  project_data = json_data["project_data"]
+  project_details = project_data["project_details"]
+  project_folder = project_data["path"]
   types_options = []
 
-  if not "ionic" in project["type"] :
+  if not "ionic" in project_details["type"] :
 
-    if "cordova" in project["types_options"]:
-      types_options = project["types_options"]["cordova"]
+    if "cordova" in project_data["types_options"]:
+      types_options = project_data["types_options"]["cordova"]
       
     panel = Util.create_and_show_panel("cordova_panel_installer_project")
 
-    if "cordova_settings" in project and "package_json" in project["cordova_settings"] and "use_local_cli" in project["cordova_settings"] and project["cordova_settings"]["use_local_cli"] :
-      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+    node = NodeJS()
+
+    if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
     else :  
-      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project, json_data["sublime_project_file_name"]])
+      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
     
 
   return json_data
@@ -55,6 +57,7 @@ class cordova_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
+      node = NodeJS()
       sublime.status_message(self.name_cli+": getting platform list...")
       node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
     else :
@@ -110,6 +113,7 @@ class cordova_baseCommand(manage_cliCommand):
     self.settings = get_project_settings()
     if self.settings :
       sublime.status_message(self.name_cli+": getting plugin list...")
+      node = NodeJS()
       node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
     else :
       sublime.error_message("Error: can't get project settings")
@@ -263,8 +267,10 @@ class sync_cordova_projectCommand(cordova_baseCommand):
     self.platform_list = []
     self.plugin_list = []
     self.settings = get_project_settings()
+
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
+      node = NodeJS()
       node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
       node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list)
     else :

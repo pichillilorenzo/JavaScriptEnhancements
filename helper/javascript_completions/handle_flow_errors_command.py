@@ -32,6 +32,8 @@ def show_flow_errors(view) :
     if view_settings.get("flow_weak_mode") :
       deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
 
+    node = NodeJS()
+
     result = node.execute_check_output(
       "flow",
       [
@@ -81,9 +83,12 @@ def show_flow_errors(view) :
         if row >= 0 :
           row_description = description_by_row.get(row)
           if not row_description:
-            description_by_row[row] = description
+            description_by_row[row] = {
+              "col": col,
+              "description": description
+            }
           if row_description and description not in row_description:
-            description_by_row[row] += '; ' + description
+            description_by_row[row]["description"] += '; ' + description
             
       errors = result[1]['errors']
 

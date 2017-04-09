@@ -3,8 +3,6 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re
 from shutil import copyfile
 from threading import Timer
 
-${include ./helper/Hook.py}
-
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
@@ -16,17 +14,23 @@ PROJECT_FOLDER_NAME = "project"
 PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
 socket_server_list = dict()
 
-BOOKMARKS_FOLDER = os.path.join(PACKAGE_PATH, 'helper', 'bookmarks')
- 
-sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util', 'my_socket']]
+HELPER_FOLDER_NAME = "helper"
+HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
 
-if 'reloader' in sys.modules:
-  imp.reload(sys.modules['reloader'])
-import reloader
+BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
+os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
+
+${include ./helper/Hook.py}
+
+${include ./helper/AnimationLoader.py}
+${include ./helper/RepeatedTimer.py}
+${include ./helper/node/main.py}
+${include ./helper/util/main.py}
+${include ./helper/my_socket/main.py}
 
 def subl(args):
   
@@ -56,14 +60,10 @@ def overwrite_default_javascript_snippet():
 
 class startPlugin():
   def init(self):
-    import node.node_variables as node_variables
-    import node.installer as installer
-    from node.main import NodeJS
-    node = NodeJS()
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
-    sublime.set_timeout_async(lambda: installer.install(node_variables.NODE_JS_VERSION))
+    sublime.set_timeout_async(lambda: NodeJSInstaller.install(NODE_JS_VERSION))
 
     window = sublime.active_window()
     view = window.active_view()

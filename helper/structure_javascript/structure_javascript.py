@@ -1,9 +1,5 @@
 import sublime, sublime_plugin
 import subprocess, time, json
-from my_socket.main import mySocketServer  
-from node.main import NodeJS
-import util.main as Util
-node = NodeJS()
 
 socket_server_list["structure_javascript"] = SocketCallUI("structure_javascript", "localhost", 11113, os.path.join(HELPER_FOLDER, "structure_javascript", "ui", "client.js"), 1)
 
@@ -11,6 +7,8 @@ def update_structure_javascript(view, filename, clients=[]):
   global socket_server_list 
 
   deps = flow_parse_cli_dependencies(view)
+  
+  node = NodeJS()
 
   output = node.execute_check_output(
     "flow",
