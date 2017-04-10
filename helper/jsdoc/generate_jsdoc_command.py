@@ -27,7 +27,7 @@ class generate_jsdocCommand(sublime_plugin.WindowCommand):
         return            
 
   def exec_node(self, folder_path, node_command_args) :
-    node = NodeJS()
+    node = NodeJS(check_local=True)
     animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Generating docs ")
     interval_animation = RepeatedTimer(animation_loader.sec, animation_loader.animate)
     result = node.execute("jsdoc", node_command_args, is_from_bin=True, chdir=folder_path)

@@ -167,7 +167,7 @@ class NodeJS(object):
       if len(lines_error) > 0 :
         no_error = False
 
-      lines = lines_output + ( b"\n" if type(line) is bytes else "\n" )  + lines_error
+      lines = lines_output + ( b"\n" if type(lines_output) is bytes else "\n" )  + lines_error
 
       p.terminate()
 
