@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Project</title>
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro.min.css">
+  <link rel="stylesheet" href="../../../vendor/metro-dist/css/metro-icons.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form action="#">
+    <div class="wizard2" id="wizard">
+
+      <div class="step no-remove">
+        <div class="step-content">
+          <h2>Project Details</h2>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="project_name">Project Name *:</label>
+            <input type="text" id="project_name" name="project_name" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="project_path" class="control-label">Project path *:</label>
+            <input type="text" id="project_path" name="project_path" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <button class="button helper-button clear margin-right-button-clear" type="button"><span class="mif-cross"></span></button>
+            <div class="button-group">
+              <button class="button" type="button" id="choose-path"><span class="mif-folder"></span></button>
+            </div>
+          </div>
+          
+          <div class="input-control select multiple full-size">
+            <label for="type">Type:</label>
+            <select id="type" name="type" multiple="multiple">
+              <option value="">Blank</option>
+              <option value="cordova">Cordova</option>
+              <option value="ionic">Ionic</option>
+            </select>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="author_uri">Author URI:</label>
+            <input type="text" id="author_uri" name="author_uri">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control textarea full-size" data-role="input">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="version">Version:</label>
+            <input type="text" id="version" name="version">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="license">License:</label>
+            <input type="text" id="license" name="license">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="license_uri">License URI:</label>
+            <input type="text" id="license_uri" name="license_uri">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          
+          <div class="input-control text full-size" data-role="input">
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="step no-remove">
+        <div class="step-content">
+          <h2>Project Settings</h2>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="node_js_custom_path">Node.js Custom Path:</label>
+            <input type="text" id="node_js_custom_path" name="node_js_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+          
+          <div class="input-control text full-size" data-role="input">
+            <label for="npm_custom_path">Npm Custom Path:</label>
+            <input type="text" id="npm_custom_path" name="npm_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+  <script>
+    window.$ = window.jQuery = require('../../../vendor/jquery/jquery-1.12.2.min.js')
+    require('../../../vendor/metro-dist/js/metro.min.js')
+    const utilWeb = require('../../../js/utilWeb.js')
+    const fs = require("fs")
+    const {ipcRenderer} = require('electron')
+    const {dialog} = require('electron').remote
+    let project_types_options = {}
+
+    function setWizard(element){
+      element.wizard2({
+        buttonLabels: {
+          finish: 'Go'
+        },
+        onPrior: function(page, wiz){
+          $(document).scrollTop(0)
+          return true
+        },
+        onNext: function(page, wiz){
+          $(document).scrollTop(0)
+          return true
+        }
+      })
+    }
+
+    function test(){
+      console.log("...data")
+      return false
+    }
+    $(document).ready(() => {
+
+      setWizard($("#wizard"))
+
+      $("form").validator({
+        hideHint: 2500,
+        onBeforeSubmit: function(form, result){
+          return (result) ? false : true
+        },
+        onErrorInput: function(input){
+          let step_parent = $(input).closest(".step")
+          let index = step_parent.index(".step")
+          let current_index = $(".step.active").index(".step")
+          if (index != current_index) {
+            if (index > current_index) {
+              for(; index != current_index; current_index++){
+                $(".wizard2 .wiz-btn-next").click()
+              }
+            }
+            else {
+              for(; index != current_index; current_index--){
+                $(".wizard2 .wiz-btn-prev").click()
+              }
+            }
+          }
+        },
+        onSubmit: function(form) {
+          
+          let project_details = {
+            "project_name": $("#project_name").val().trim(),
+            "author": $("#author").val().trim(),
+            "author_uri": $("#author_uri").val().trim(),
+            "description": $("#description").val().trim(),
+            "version": $("#version").val().trim(),
+            "license": $("#license").val().trim(),
+            "license_uri": $("#license_uri").val().trim(),
+            "tags": $("#tags").val().trim(),
+            "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+          }
+
+          let project_settings = {
+            "node_js_custom_path": $("#node_js_custom_path").val().trim(),
+            "npm_custom_path": $("#npm_custom_path").val().trim()
+          }
+          
+          let project_data = {
+            "project_details": project_details,
+            "project_settings": project_settings,
+            "path": $("#project_path").val().trim(),
+            "types_options": {}
+          }
+
+          for (let type in project_types_options) {
+            project_types_options[type].setProject({
+              "project_data": project_data,
+              "ipcRenderer": ipcRenderer,
+              "$": $,
+              "utilWeb": utilWeb,
+              "fs": fs,
+              "electron": require('electron')
+            })
+          }
+
+          ipcRenderer.send("data", project_data)
+
+          return false
+        }
+      })
+
+
+      function choose_path (event) {
+        dialog.showOpenDialog({properties: ['openDirectory']}, function(directory) {
+          if (directory && directory.length > 0) {
+            $("#project_path").val(directory[0])
+          }
+        })
+      }
+      $("#choose-path").click(choose_path)
+
+      function type_change () {
+        let types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+        $(".step:not(.no-remove)").addClass("maybe-remove")
+        let one_add_at_least = false
+        let type_selected = []
+
+        $("#type option").prop("disabled", false)
+        for(let i = 0; i < types.length; i++){
+          let type = types[i]
+          if (fs.existsSync(__dirname+"/../../default_settings/"+type+"/default_config.js") ){
+            let default_config = require(__dirname+"/../../default_settings/"+type+"/default_config.js")
+            let dependencies = default_config.dependencies
+            if (dependencies) {
+              for(let i = 0, length1 = dependencies.length; i < length1; i++){
+                let dipendency = dependencies[i]
+                if (types.indexOf(dipendency) < 0) {
+                  types.push(dipendency)
+                }
+                $("#type option[value='"+dipendency+"']").prop("disabled", true)
+                $("#type option[value='"+dipendency+"']").prop("selected", false)
+              }
+            }
+          }
+        }
+
+        types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+        for(let i = 0, length1 = types.length; i < length1; i++){
+          let type = types[i]
+          type_selected.push(type)
+
+          $("#"+type).removeClass("maybe-remove")
+          if ($("#"+type).length > 0){
+            continue
+          }
+          if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
+            if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/style.css") ){
+              $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/create_new_project/style.css"}">`)
+            }
+
+            let html = fs.readFileSync(__dirname+"/../../"+type+"/create_new_project/index.html", "UTF-8")
+            let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
+
+            project_types_options[type] = client_js
+
+            let step = $('<div class="step" id="'+type+'"></div>')
+            let step_content = $('<div class="step-content"></div>')
+            step_content.append(html)
+            step.append(step_content)
+            $("#wizard").append( step )
+
+            one_add_at_least = true
+          }
+        }
+
+        $(".maybe-remove").each(function(index, item){
+          let id = $(item).attr("id")
+          delete project_types_options[id]
+        })
+        let will_remove = ($(".maybe-remove").length > 0) ? true : false
+        $(".maybe-remove").remove()
+
+        if (will_remove || one_add_at_least){
+          let wizard = $("#wizard").clone()
+          $("#wizard").remove()
+          wizard.find(".action-bar").remove()
+          wizard.find(".step").removeAttr("style")
+          $("form").prepend( wizard )
+          if ( type_selected.length > 0 ) {
+            for(let i = 0, length1 = type_selected.length; i < length1; i++){    
+              project_types_options[type_selected[i]].prepareClientHtml({
+                "ipcRenderer": ipcRenderer,
+                "$": $,
+                "utilWeb": utilWeb,
+                "fs": fs,
+                "electron": require('electron')
+              })
+              $("#type option[value='"+type_selected[i]+"']").prop("selected", true)
+            }
+          }
+          else {
+            $("#type option[value='']").prop("selected", true)
+          }
+          setWizard($("#wizard"))
+          $("#type").change(type_change)
+          $("#wizard .wiz-btn-next, #wizard .wiz-btn-prev, #wizard .wiz-btn-help").click(wizard_buttons)
+          $("#choose-path").click(choose_path)
+        }
+
+      }
+      $("#type").change(type_change)
+
+      function wizard_buttons(event){
+        event.preventDefault()
+      }
+      $("#wizard .wiz-btn-next, #wizard .wiz-btn-prev, #wizard .wiz-btn-help").click(wizard_buttons)
+    })
+
+    ipcRenderer.on("error", (event, msg) => {
+      console.log(msg)
+      $.Notify({
+        caption: 'Error',
+        content: msg,
+        type: 'alert'
+      });
+    })
+    
+    
+  </script>
+</body>
+</html>

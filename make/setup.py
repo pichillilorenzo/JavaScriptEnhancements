@@ -1,8 +1,8 @@
-import re, os, time
+import re, os, time, traceback
 
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 
-pattern = re.compile("^( *)\$\{include (\.\/)?(\w+\/)*(\w+\.\w+)\} *$", re.MULTILINE)
+pattern = re.compile("^( *)\$\{include (\.\/)?((\w+\/)*)(\w+\.\w+)\} *$", re.MULTILINE)
 start_from = "make/_init.py"
 code = ""
 last_dir_name = ""
@@ -19,7 +19,7 @@ def compile_code(code, last_dir_name_ric, whitespace_ric) :
       whitespace = whitespace_ric + matching.group(1)
       is_from_package_path = matching.group(2)
       path = matching.group(3)
-      name = matching.group(4)
+      name = matching.group(5)
       full_path = ""
       if is_from_package_path :
         if path :
@@ -33,13 +33,25 @@ def compile_code(code, last_dir_name_ric, whitespace_ric) :
       
       new_last_dir_name = os.path.abspath(os.path.dirname(full_path))
 
-      with open(full_path) as file :
-        file_code = file.read()
-        code += compile_code(file_code, new_last_dir_name, whitespace)
-
+      try :
+        with open(full_path) as file :
+          file_code = file.read()
+          code += compile_code(file_code, new_last_dir_name, whitespace)
+      except Exception as e:
+        print(matching.group(3))
+        print(name)
+        print("Line: "+line)
+        print("File: "+full_path)
+        print(traceback.format_exc())
     else :
       code += whitespace_ric+line+"\n" 
   return code
+
+for x in os.listdir(PACKAGE_PATH):
+  filename, extension = os.path.splitext(x)
+  if extension == ".py" and filename.startswith("_generated_") :
+    os.unlink(os.path.join(PACKAGE_PATH, x))
+    break
 
 file_name_compiled = "_generated_"+time.strftime("%Y_%m_%d_at_%H_%M_%S")+".py"
 with open(os.path.join(PACKAGE_PATH, file_name_compiled), "w+") as data_file :

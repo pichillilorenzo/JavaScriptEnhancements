@@ -1,0 +1,177 @@
+<h2>Ionic settings</h2>
+<div class="accordion" data-role="accordion">
+  <div class="frame">
+    <div class="heading">CLI 'platform' options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_platform_options">Options:</label>
+        <select class="cli_platform_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--noresources">--noresources</option>
+          <option value="--nosave">--nosave</option>
+        </select>
+        <small>Select options that apply to 'platform' command to all platforms and modes</small>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'build' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_build_options">Options:</label>
+        <select class="cli_build_options" multiple="multiple">
+          <option value="">None</option>
+            <option value="--nohooks">--nohooks</option>
+        </select>
+        <small>Select options that apply to 'build' command to all platforms and modes. The build command is a proxy for Cordova's build command.</small>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'emulate' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_emulate_options">Options:</label>
+        <select class="cli_emulate_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--livereload">--livereload</option>
+          <option value="--consolelogs">--consolelogs</option>
+          <option value="--serverlogs">--serverlogs</option>
+          <option value="--emulator">--emulator</option>
+        </select>
+        <small>Select options that apply to 'emulate' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-emulate"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-emulate"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'run' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_run_options">Options:</label>
+        <select class="cli_run_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--livereload">--livereload</option>
+          <option value="--consolelogs">--consolelogs</option>
+          <option value="--serverlogs">--serverlogs</option>
+          <option value="--emulator">--emulator</option>
+        </select>
+        <small>Select options that apply to 'run' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-address_run">Address:</label>
+        <input class="address_run" type="text" name="address_run" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-port_run">Port:</label>
+        <input class="port_run" type="number" min="0" name="port_run" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'serve' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_serve_options">Options:</label>
+        <select class="cli_serve_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--consolelogs">--consolelogs</option>
+          <option value="--serverlogs">--serverlogs</option>
+          <option value="--nobrowser">--nobrowser</option>
+          <option value="--nolivereload">--nolivereload</option>
+          <option value="--noproxy">--noproxy</option>
+          <option value="--all">--all</option>
+          <option value="--lab">--lab</option>
+          <option value="--nogulp">--nogulp</option>
+        </select>
+        <small>Select options that apply to 'serve' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-port_serve">Port:</label>
+        <input class="port_serve" type="number" min="0" name="port_serve" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-livereload-port_serve">Livereload-Port:</label>
+        <input class="livereload-port_serve" type="number" min="0" name="livereload-port_serve" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-address_serve">Address:</label>
+        <input class="address_serve" type="text" name="address_serve" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-browser_serve">Browser:</label>
+        <input class="browser_serve" type="text" name="browser_serve" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-browseroption_serve">Browseroption:</label>
+        <input class="browseroption_serve" type="text" name="browseroption_serve" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+      <div class="input-control text full-size " data-role="input">
+        <label for="ionic-platform_serve">Platform:</label>
+        <input class="platform_serve" type="text" name="platform_serve" value="">
+        <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+        <small></small>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'resources' options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_resources_options">Options:</label>
+        <select class="cli_resources_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--icon">--icon</option>
+          <option value="--splash">--splash</option>
+        </select>
+        <small>Select options that apply to 'resources' command to all platforms and modes</small>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">CLI 'state' options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_state_options">Options:</label>
+        <select class="cli_state_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--plugins">--plugins</option>
+          <option value="--platforms">--platforms</option>
+        </select>
+        <small>Select options that apply to 'state' command to all platforms and modes</small>
+      </div>
+    </div>
+  </div>
+</div>

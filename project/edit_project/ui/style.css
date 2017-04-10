@@ -1,0 +1,29 @@
+html, body{
+  height: 100%;
+}
+.tile-container{
+  min-width: 960px;
+  min-height: 700px;
+}
+.dialog{
+  height: 80% !important;
+  width: 80% !important;
+}
+.dialog[style*="visibility: visible"]{
+  overflow-y: scroll;
+  padding: 1.24rem;
+  display: block;
+}
+.dialog[style*="visibility: hidden"]{
+  display: none;
+}
+.input-control.text>label.checkbox{
+  top: -2.8rem;
+}
+
+#form-flow-settings .content .container-flow-input > .input-control{
+  margin: 17px 0;
+}
+#form-flow-settings .container-flow-input > .switch {
+  margin: 5px 0;
+}

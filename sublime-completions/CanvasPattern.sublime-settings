@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"setTransform( transform: SVGMatrix ): void\tCanvasPattern",
-			"setTransform(${1:transform: SVGMatrix})"
-		]
-	]
-}

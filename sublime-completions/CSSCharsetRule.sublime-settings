@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"encoding: DOMString\tCSSCharsetRule",
-			"encoding"
-		]
-	]
-}

@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"options: HTMLCollection\tHTMLDataListElement",
-			"options"
-		]
-	]
-}

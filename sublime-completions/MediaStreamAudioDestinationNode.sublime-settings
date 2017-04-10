@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"stream: MediaStream\tMediaStreamAudioDestinationNode",
-			"stream"
-		]
-	]
-}

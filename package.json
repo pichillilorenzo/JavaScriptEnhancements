@@ -1,5 +1,12 @@
 {
   "dependencies": {
-    "jsdoc": "3.4.3"
+    "cordova": "6.5.0",
+    "electron": "1.6.1",
+    "flow-bin": "0.43.1",
+    "fs-extra": "2.0.0",
+    "ionic": "2.2.2",
+    "jsdoc": "3.4.3",
+    "nodebootstrap": "3.7.1",
+    "python-struct": "1.0.4"
   }
 }

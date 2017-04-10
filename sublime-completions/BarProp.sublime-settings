@@ -1,9 +1,0 @@
-{
-	"scope": "source.js",
-	"completions": [
-		[
-			"visible: boolean\tBarProp",
-			"visible"
-		]
-	]
-}

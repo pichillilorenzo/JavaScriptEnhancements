@@ -1,0 +1,14 @@
+[
+  { "caption": "-" },
+  {
+    "caption": "Goto Definition",
+    "id": "go_to_def",
+    "command": "go_to_def"
+  },
+  { "caption": "-" },
+  {
+    "caption": "Show Hint Parameters",
+    "id": "show_hint_parameters",
+    "command": "show_hint_parameters"
+  }
+]

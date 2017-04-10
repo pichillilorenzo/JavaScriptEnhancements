@@ -1,0 +1,56 @@
+<h2 class="title">Ionic</h2>
+<div class="input-control text full-size required" data-role="input">
+  <label for="ionic-appname">App Name *:</label>
+  <input class=" ionic-appname cli_create_ionic_options" type="text" name="appname" value="HelloIonic" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top" data-field-type="option">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<div class="input-control text full-size" data-role="input">
+  <label for="ionic-io-app-id">App ID:</label>
+  <input class=" ionic-io-app-id cli_create_ionic_options" type="text" name="io-app-id" value="io.ionic.helloionic" data-field-type="option">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<div class="input-control select multiple full-size">
+  <label for="ionic-options">Options:</label>
+  <select class=" ionic-options cli_create_ionic_options" name="options" multiple="multiple" data-field-type="select">
+    <option value="--no-cordova">--no-cordova</option>
+    <option value="--sass">--sass</option>
+  </select>
+  <small></small>
+</div>
+<div class="input-control text full-size" data-role="input">
+  <label for="ionic-id">--id:</label>
+  <input class=" ionic-id cli_create_ionic_options" type="text" name="id" value="" data-field-type="option">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<div class="input-control text full-size" data-role="input">
+  <label for="ionic-template">--template:</label>
+  <input class=" ionic-template cli_create_ionic_options" type="text" name="template" value="tabs" data-field-type="option">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<div class="input-control text full-size" data-role="input">
+  <label for="ionic-zip-file">--zip-file:</label>
+  <input class=" ionic-zip-file cli_create_ionic_options" type="text" name="zip-file" value="" data-field-type="option">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<div id="custom-ionic-path" class="input-control text full-size" data-role="input">
+  <label for="ionic-path">Custom ionic path:</label>
+  <input class="ionic-path" type="text" name="path" value="">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<label class="switch">
+  <input type="checkbox" class="use_local_cli" data-toggle-show="custom-ionic-version">
+  <span class="check"></span>
+  <span class="text-switch">Use local ionic?</span>
+</label>
+<div id="custom-ionic-version" class="input-control text full-size hidden required" data-role="input">
+  <label for="ionic-version">Ionic Version:</label>
+  <input class="ionic-version" type="text" name="version" value="">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>

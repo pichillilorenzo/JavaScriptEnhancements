@@ -2,12 +2,12 @@ items_found_can_i_use = None
 can_i_use_file = None
 can_i_use_popup_is_showing = False
 can_i_use_list_from_main_menu = False
-path_to_can_i_use_data = os.path.join(H_SETTINGS_FOLDER, "can_i_use", "can_i_use_data.json")
-path_to_test_can_i_use_data = os.path.join(H_SETTINGS_FOLDER, "can_i_use", "can_i_use_data2.json")
+path_to_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data.json")
+path_to_test_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data2.json")
 url_can_i_use_json_data = "https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json"
 
 can_i_use_css = ""
-with open(os.path.join(H_SETTINGS_FOLDER, "can_i_use", "style.css")) as css_file:
+with open(os.path.join(HELPER_FOLDER, "can_i_use", "style.css")) as css_file:
   can_i_use_css = "<style>"+css_file.read()+"</style>"
 
 def donwload_can_i_use_json_data() :
@@ -219,7 +219,7 @@ class can_i_useCommand(sublime_plugin.TextCommand):
       can_i_use_list_from_main_menu = True
       items_found_can_i_use = find_in_can_i_use("")
       sublime.active_window().show_quick_panel([item["title"] for item in items_found_can_i_use], show_pop_can_i_use)
-
+  
   def is_enabled(self, **args):
     view = self.view
     if args.get("from") == "main-menu" or javascriptCompletions.get("enable_can_i_use_menu_option") :
@@ -235,9 +235,9 @@ class can_i_useCommand(sublime_plugin.TextCommand):
         return False
       return True
     return False
-
+    
 class can_i_use_hide_popupEventListener(sublime_plugin.EventListener):
-  def on_modified_async(self, view) :
+  def on_selection_modified_async(self, view) :
     global can_i_use_popup_is_showing
     if can_i_use_popup_is_showing :
       view.hide_popup()

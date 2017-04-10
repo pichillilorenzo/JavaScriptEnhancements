@@ -6,107 +6,80 @@ from threading import Timer
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
- 
-sys.path += [PACKAGE_PATH] + [os.path.join(PACKAGE_PATH, f) for f in ['node', 'util']]
 
-sublime_version = int(sublime.version())
+JC_SETTINGS_FOLDER_NAME = "javascript_completions"
+JC_SETTINGS_FOLDER = os.path.join(PACKAGE_PATH, "helper", JC_SETTINGS_FOLDER_NAME)
 
-if 'reloader' in sys.modules:
-  imp.reload(sys.modules['reloader'])
-import reloader
+PROJECT_FOLDER_NAME = "project"
+PROJECT_FOLDER = os.path.join(PACKAGE_PATH, PROJECT_FOLDER_NAME)
+socket_server_list = dict()
 
-# platform
+HELPER_FOLDER_NAME = "helper"
+HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
+
+BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
+
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
+os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-def setTimeout(time, func):
-  timer = Timer(time, func)
-  timer.start()
+${include ./helper/Hook.py}
 
-# class handle_settingCommand(sublime_plugin.WindowCommand) :
-#   def run(self, folder_from_package, file_name, extension) :
-#     open_setting(folder_from_package, file_name, extension)
+${include ./helper/AnimationLoader.py}
+${include ./helper/RepeatedTimer.py}
+${include ./helper/node/main.py}
+${include ./helper/util/main.py}
+${include ./helper/my_socket/main.py}
 
-#   def is_visible(self, folder_from_package, file_name, extension) :
-#     if file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") >= 0 :
-#       return True
-#     elif file_name.find(" (") >= 0 and file_name.find(" ("+PLATFORM+")") < 0 :
-#       return False
-#     return True
-    
-# def enable_setting(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   file_name_disabled = file_name + "_disabled" + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   path_file_disabled = os.path.join(path, file_name_disabled)
-#   try :
-#     if os.path.isfile(path_file_disabled) :
-#       os.rename(path_file_disabled, path_file_enabled)
-#   except Exception as e :
-#     print("Error: "+traceback.format_exc())
+def subl(args):
+  
+  executable_path = sublime.executable_path()
+  if sublime.platform() == 'osx':
+    app_path = executable_path[:executable_path.rfind(".app/") + 5]
+    executable_path = app_path + "Contents/SharedSupport/bin/subl"
 
-# def disable_setting(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   file_name_disabled = file_name + "_disabled" + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   path_file_disabled = os.path.join(path, file_name_disabled)
-#   try :
-#     if os.path.isfile(path_file_enabled) :
-#       os.rename(path_file_enabled, path_file_disabled)
-#   except Exception as e :
-#     print("Error: "+traceback.format_exc())
+  if sublime.platform() == 'windows' :
+    args = [executable_path] + args
+  else :
+    args_list = list()
+    for arg in args :
+      args_list.append(shlex.quote(arg))
+    args = shlex.quote(executable_path) + " " + " ".join(args_list)
 
-# def is_setting_enabled(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   return os.path.isfile(path_file_enabled)
-      
-# def open_setting(folder_from_package, file_name, extension) :
-#   path = os.path.join(PACKAGE_PATH, folder_from_package)
-#   file_name_enabled = file_name + "." + extension
-#   file_name_disabled = file_name + "_disabled" + "." + extension
-#   path_file_enabled = os.path.join(path, file_name_enabled)
-#   path_file_disabled = os.path.join(path, file_name_disabled)
+  return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-#   if os.path.isfile(path_file_enabled) :
-#     sublime.active_window().open_file(path_file_enabled)
-#   elif os.path.isfile(path_file_disabled) :
-#     sublime.active_window().open_file(path_file_disabled)
+def overwrite_default_javascript_snippet():
+  if not os.path.isdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript")) :
+    os.mkdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript"))
+  if not os.path.isdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets")) :
+    os.mkdir(os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets"))
+  for file_name in os.listdir(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet")) :
+    if file_name.endswith(".sublime-snippet") and os.path.isfile(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet", file_name)) :
+      shutil.copy(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet", file_name), os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets", file_name))
 
 class startPlugin():
   def init(self):
-    import node.node_variables as node_variables
-    import node.installer as installer
-
-    if int(sublime.version()) >= 3000 :
     
-      installer.install(node_variables.NODE_JS_VERSION)
+    sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
+
+    sublime.set_timeout_async(lambda: NodeJSInstaller.install(NODE_JS_VERSION))
+
+    window = sublime.active_window()
+    view = window.active_view()
+
+    sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
+    sublime.set_timeout_async(lambda: load_bookmarks_viewViewEventListener(view).on_load_async())
 
 mainPlugin = startPlugin()
 
-${include ./javascript_completions/javascript_completions_class.py}
-javascriptCompletions = JavaScriptCompletions()
-
-${include ./evaluate_javascript/evaluate_javascript_class.py}
-
-${include ./helper/helper_class.py}
-
-${include ./javascript_completions/main.py}
-
-${include ./evaluate_javascript/main.py}
+${include ./flow/main.py}
 
 ${include ./helper/main.py}
 
-if int(sublime.version()) < 3000 :
+${include ./project/main.py}
+
+def plugin_loaded():
+  global mainPlugin
   mainPlugin.init()
-  javascriptCompletions.init()
-else :
-  def plugin_loaded():
-    global mainPlugin
-    mainPlugin.init()
-    global javascriptCompletions
-    javascriptCompletions.init()
+

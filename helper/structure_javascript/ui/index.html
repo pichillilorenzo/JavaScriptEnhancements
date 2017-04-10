@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Structure</title>
+  <link rel="stylesheet" href="../../../css/reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <ul id="list">
+    
+  </ul>
+  <script>
+    const {ipcRenderer} = require('electron')
+    let list = document.querySelector("#list");
+    let text_structure = createLi("Structure:", -1)
+    let text_errors = createLi("Errors:", -1)
+    let list_structure = createUl("")
+    let list_errors = createUl("")
+    let lines = []
+    let block_ric = false
+
+    function createTag(tag, text){
+      let elem = document.createElement(tag)
+      elem.innerHTML = text
+      return elem
+    }
+
+    function createLi(text, line){
+      let elem = document.createElement("li")
+      elem.innerHTML = text
+      if (line > -1){
+        elem.classList.add("set-line")
+        elem.setAttribute("data-line", line)
+      }
+      return elem
+    }
+
+    function createUl(text, hidden = false){
+      let elem = document.createElement("ul")
+      elem.innerHTML = text
+      if(hidden){
+        elem.classList.add("hidden")
+      }
+      return elem
+    }
+
+    function createImg(type){
+      let elem = document.createElement("img")
+      elem.src = "image/"+type+".gif"
+      return elem
+    }
+
+    function toggleHidden(elem){
+      elem.classList.toggle("hidden")
+    }
+
+    function rec_declare(curr_declare, parent) {
+      if (curr_declare) {
+        if (Object.prototype.hasOwnProperty.call(curr_declare, "left") && curr_declare.left && Object.prototype.hasOwnProperty.call(curr_declare.left, "name") && curr_declare.left.name) {
+          let text = " " + curr_declare.left.name
+          text += ", line: " + curr_declare.left.loc.start.line
+          let li = createLi(text, curr_declare.left.loc.start.line)
+          li.prepend(createImg("variable"))
+          parent.appendChild(li)
+        }
+        if (Object.prototype.hasOwnProperty.call(curr_declare, "right") && curr_declare.right && Object.prototype.hasOwnProperty.call(curr_declare.right, "left") && curr_declare.right.left) {
+          rec_declare(curr_declare.right)
+        }
+      }
+    }
+
+    function get_obj_type_pattern(variable_name, curr_type_annotation){
+      if (Object.prototype.hasOwnProperty.call(curr_type_annotation, "properties") && curr_type_annotation.properties) {
+        for (let i = 0; i < curr_type_annotation.properties.length; i++) {
+          let element = curr_type_annotation.properties[i]
+          if (element.key.name == variable_name){
+            let row = element.value.loc.start.line
+            let col_start = element.value.loc.start.column
+            let col_end = element.value.loc.end.column
+            let return_type = lines[row-1].substring(col_start, col_end)
+            return return_type
+          }
+          else {
+            return get_obj_type_pattern(variable_name, element.value)
+          }
+        }
+      }
+      return ""
+    }
+
+    function rec_pattern(curr_obj, declaration, parent){
+      let key = ""
+      if (curr_obj.type == "ObjectPattern"){
+        key = "properties"
+      }
+      else if (curr_obj.type == "ArrayPattern"){
+        key = "elements"
+      }
+      else if (curr_obj.type == "Identifier"){
+        let text = " " + curr_obj.name 
+        text += ", line: " + curr_obj.loc.start.line
+        let li = createLi(text, curr_obj.loc.start.line)
+        li.prepend(createImg("variable"))
+        parent.appendChild(li)
+
+        return
+      }
+      if (!key) {
+        alert("No key found for variable")
+        return
+      }
+      for (let i = 0; i < curr_obj[key].length; i++) {
+        let element = curr_obj[key][i]
+
+        if (key == "properties" && Object.prototype.hasOwnProperty.call(element, "shorthand") && element.shorthand) {
+          let text = " " + element.key.name
+          if (declaration.id.typeAnnotation) { 
+            let return_type = get_obj_type_pattern(element.key.name, declaration.id.typeAnnotation.typeAnnotation)
+            if (return_type) {
+              text += ": " + return_type
+            }
+          }
+          text += ", line: " + declaration.loc.start.line
+          let li = createLi(text, declaration.loc.start.line)
+          li.prepend(createImg("variable"))
+          parent.appendChild(li)
+
+        }
+        else if (key == "elements" && element.type == "Identifier") {
+          let text = " " + element.name 
+          
+          if (element.typeAnnotation) {
+            let row = element.typeAnnotation.typeAnnotation.loc.start.line
+            let col_start = element.typeAnnotation.typeAnnotation.loc.start.column
+            let col_end = element.typeAnnotation.typeAnnotation.loc.end.column
+            let return_type = lines[row-1].substring(col_start, col_end)
+            text += ": " + return_type
+          }
+          text += ", line: " + declaration.loc.start.line
+          let li = createLi(text, declaration.loc.start.line)
+          li.prepend(createImg("variable"))
+          parent.appendChild(li)
+
+        }
+        else {
+          if (key == "properties") {
+            rec_pattern(element.pattern, declaration, parent)
+          }
+          else if (key == "elements") {
+            rec_pattern(element, declaration, parent)
+          }
+        }
+      }
+    }
+
+    function ric(obj, parent) {
+
+      block_ric = false
+
+      if (obj && typeof obj === 'object' && Object.prototype.hasOwnProperty.call(obj, "type") && obj.type) {
+        
+        if (obj.type == "ImportDeclaration") {
+    
+          let text = ""
+          let row_start = obj.loc.start.line
+          let col_start = obj.loc.start.column
+          let row_end = obj.loc.end.line
+          let col_end = obj.loc.end.column
+          if (row_start == row_end) {
+            text = " " + lines[row_start-1].substring(col_start, col_end)
+          }
+          else {
+            text = " " + lines[row_start-1].substring(col_start).trim()
+            for (let i = 0; i < row_end-row_start-1; i++){
+              text += " " + lines[row_start+i].trim()
+            }
+            text += " " + lines[row_end-1].substring(0,col_end).trim()
+          }
+          text += ", line: " + row_start
+          let li = createLi(text, row_start)
+          li.prepend(createImg("import"))
+          parent.appendChild(li)
+        }
+
+        if (obj.type == "ExportDeclaration" || obj.type == "ExportNamedDeclaration" || (obj.type == "ExpressionStatement" && obj.expression.left && obj.expression.left.object && obj.expression.left.object.name == "exports")) {
+          if(obj.type == "ExpressionStatement"){
+            obj = obj.expression.right
+            obj.specifiers = true
+          }
+          let text = ""
+          if (obj.specifiers) {
+            let row_start = obj.loc.start.line
+            let col_start = obj.loc.start.column
+            let row_end = obj.loc.end.line
+            let col_end = obj.loc.end.column
+            if (row_start == row_end) {
+              text = " " + lines[row_start-1].substring(col_start, col_end)
+            }
+            else {
+              text = " " + lines[row_start-1].substring(col_start).trim()
+              for (let i = 0; i < row_end-row_start-1; i++){
+                text += " " + lines[row_start+i].trim()
+              }
+              text += " " + lines[row_end-1].substring(0,col_end).trim()
+            }
+            text = (text.length > 80) ? text.substring(0, 80) + " ..." : text
+            text += ", line: " + row_start
+            let li = createLi(text, row_start)
+            let list_export = createUl("", true)
+            li.appendChild(list_export)
+            li.prepend(createImg("export"))
+            parent.appendChild(li)
+
+            if (!Array.isArray(obj) && typeof obj === 'object') {
+              block_ric = true
+              for (let key in obj) {
+                ric(obj[key], list_export)
+              }
+            }
+            else if (Array.isArray(obj)) {
+              block_ric = true
+              for (let i = 0; i < obj.length; i++) {
+                ric(obj[i], list_export)
+              }
+            }
+          }
+          else {
+            text = " export, line: " + obj.loc.start.line
+            let li = createLi(text, obj.loc.start.line)
+            let list_export = createUl("", true)
+            li.appendChild(list_export)
+            li.prepend(createImg("export"))
+            parent.appendChild(li)
+
+
+            if (!Array.isArray(obj) && typeof obj === 'object') {
+              block_ric = true
+              for (let key in obj) {
+                ric(obj[key], list_export)
+              }
+            }
+            else if (Array.isArray(obj)) {
+              block_ric = true
+              for (let i = 0; i < obj.length; i++) {
+                ric(obj[i], list_export)
+              }
+            }
+          }
+        }
+
+        if (obj.type == "VariableDeclaration") {
+          
+          for (let i = 0; i < obj.declarations.length; i++) {
+            let declaration = obj.declarations[i]
+
+            if (Object.prototype.hasOwnProperty.call(declaration.id, "name") && declaration.id.name) {
+              let text = " " + declaration.id.name
+              if (declaration.id.typeAnnotation) {
+                let row = declaration.id.typeAnnotation.typeAnnotation.loc.start.line
+                let col_start = declaration.id.typeAnnotation.typeAnnotation.loc.start.column
+                let col_end = declaration.id.typeAnnotation.typeAnnotation.loc.end.column
+                let return_type = lines[row-1].substring(col_start, col_end)
+                text += ": " + return_type
+              }
+              text += ", line: " + declaration.loc.start.line
+              let li = createLi(text, declaration.loc.start.line)
+              let list_elements = createUl("", true)
+              li.appendChild(list_elements)
+              li.prepend(createImg("variable"))
+              parent.appendChild(li)
+
+              if (Object.prototype.hasOwnProperty.call(declaration, "init") && declaration.init) {
+                if (Object.prototype.hasOwnProperty.call(declaration.init, "body") && declaration.init.body){
+                  ric(declaration.init, list_elements)
+                }
+                else {
+                  rec_declare(declaration.init, declaration, list_elements)
+                }
+              }
+            }
+
+            else if (Object.prototype.hasOwnProperty.call(declaration.id, "type") && declaration.id.type && (declaration.id.type == "ArrayPattern" || declaration.id.type == "ObjectPattern")) {
+              rec_pattern(declaration.id, declaration, parent)
+            }
+          }
+        }
+
+        else if (obj.type == "FunctionDeclaration" || obj.type == "FunctionExpression" || obj.type == "ArrowFunctionExpression") {
+
+          let text = " " + ((obj.type == "FunctionDeclaration") ? obj.id.name : "anonymous function") + ", line: " + obj.loc.start.line
+          let li = createLi(text, obj.loc.start.line)
+          let list_for_func = createUl("", true)
+          li.appendChild(list_for_func)
+          li.prepend(createImg("function"))
+          parent.appendChild(li)
+
+          if (obj.params && obj.params.length > 0) {
+            let li_params = createLi("Parameters:", obj.loc.start.line)
+            let list_params = createUl("", true)
+            li_params.appendChild(list_params)
+            list_for_func.appendChild(li_params)
+
+            let text_param = ""
+            for (let i = 0; i < obj.params.length; i++){
+              let param = obj.params[i]
+              let param_type = ""
+              let data_line = obj.loc.start.line
+              if (param.typeAnnotation) {
+                let row = param.typeAnnotation.typeAnnotation.loc.start.line
+                data_line = row
+                let col_start = param.typeAnnotation.typeAnnotation.loc.start.column
+                let col_end = param.typeAnnotation.typeAnnotation.loc.end.column
+                param_type = lines[row-1].substring(col_start, col_end)
+              }
+              text_param = " " + param.name + ( ((param.optional) ? "?" : "") + ":" + " " + ((param_type) ? param_type : "") )
+              let li_param = createLi(text_param, data_line)
+              li_param.prepend(createImg("variable"))
+              list_params.appendChild(li_param)
+            }
+          }
+          if (obj.returnType) {
+            let row = obj.returnType.typeAnnotation.loc.start.line
+            let col_start = obj.returnType.typeAnnotation.loc.start.column
+            let col_end = obj.returnType.typeAnnotation.loc.end.column
+            let return_type = lines[row-1].substring(col_start, col_end)
+            list_for_func.appendChild(createLi("Return Type: "+return_type, row))
+          }
+
+          if (Object.prototype.hasOwnProperty.call(obj, "body") && obj.body && Object.prototype.hasOwnProperty.call(obj.body, "body") && obj.body.body && Array.isArray(obj.body.body)) {
+            block_ric = true
+            for (let i = 0; i < obj.body.body.length; i++) {
+              ric(obj.body.body[i], list_for_func)
+            }
+          }
+        }
+        else if (obj.type == "ClassDeclaration" || obj.type == "ClassExpression") {
+
+          let text = " " + ( (obj.type == "ClassDeclaration") ? obj.id.name : "anonymous class") + ", line: " + obj.loc.start.line
+
+          let li_class = createLi(text, obj.loc.start.line)
+          let list_properties_and_methods = createUl("", true)
+          li_class.appendChild(list_properties_and_methods)
+          li_class.prepend(createImg("class"))
+          parent.appendChild(li_class)
+
+
+          for (let i = 0; i < obj.body.body.length; i++) {
+            let class_element = obj.body.body[i]
+            let text = ""
+            if (class_element.type == "ClassProperty") {
+              text = " " + class_element.key.name
+              if (class_element.typeAnnotation) {
+                let row = class_element.typeAnnotation.typeAnnotation.loc.start.line
+                let col_start = class_element.typeAnnotation.typeAnnotation.loc.start.column
+                let col_end = class_element.typeAnnotation.typeAnnotation.loc.end.column
+                let class_property_type = lines[row-1].substring(col_start, col_end)
+                text += " " + class_property_type
+              }
+              text += ", line: " + class_element.loc.start.line
+              
+              let li_property = createLi(text, class_element.loc.start.line)
+              li_property.prepend(createImg("property"))
+              list_properties_and_methods.appendChild(li_property)
+
+            }
+            else if (class_element.type == "MethodDefinition") {
+              text = " " + class_element.key.name + ", line: " + class_element.loc.start.line
+              
+              let li_method = createLi(text, class_element.loc.start.line)
+              let list_for_method = createUl("", true)
+              li_method.appendChild(list_for_method)
+              li_method.prepend(createImg("method"))
+              list_properties_and_methods.appendChild(li_method)
+
+              if (class_element.value.params) {
+                let li_params = createLi("Parameters:", class_element.loc.start.line)
+                let list_params = createUl("", true)
+                li_params.appendChild(list_params)
+                list_for_method.appendChild(li_params)
+
+                let text_param = ""
+                for (let j = 0; j < class_element.value.params.length; j++) {
+                  let param = class_element.value.params[j]
+                  let param_type = ""
+                  let data_line = class_element.loc.start.line
+                  if (param.typeAnnotation) {
+                    let row = param.typeAnnotation.typeAnnotation.loc.start.line
+                    data_line = row
+                    let col_start = param.typeAnnotation.typeAnnotation.loc.start.column
+                    let col_end = param.typeAnnotation.typeAnnotation.loc.end.column
+                    param_type = lines[row-1].substring(col_start, col_end)
+                  }
+                  text_param = " " + param.name + ( ((param.optional) ? "?" : "") + ":" + " " + ((param_type) ? param_type : "") )
+                  let li_param = createLi(text_param, data_line)
+                  li_param.prepend(createImg("variable"))
+                  list_params.appendChild(li_param)
+                }
+              }
+
+              if (class_element.value.returnType) {
+                let row = class_element.value.returnType.typeAnnotation.loc.start.line
+                let col_start = class_element.value.returnType.typeAnnotation.loc.start.column
+                let col_end = class_element.value.returnType.typeAnnotation.loc.end.column
+                let return_type = lines[row-1].substring(col_start, col_end)
+                list_for_method.appendChild(createLi("Return Type: "+return_type, row))
+              }
+
+              if (typeof class_element.value === "object") {
+                block_ric = true
+              }
+              
+              if (Object.prototype.hasOwnProperty.call(class_element.value, "body") && class_element.value.body && Object.prototype.hasOwnProperty.call(class_element.value.body, "body") && class_element.value.body.body && Array.isArray(class_element.value.body.body)) {
+
+                for (let i = 0; i < class_element.value.body.body.length; i++) {
+                  ric(class_element.value.body.body[i], list_for_method)
+                }
+                
+              }
+              
+            }
+          }
+        }
+      }
+    }
+    function update_structure(json_data, p=null){
+
+      list.innerHTML = ""
+      list_errors.innerHTML = ""
+      list_structure.innerHTML = ""
+
+      lines = json_data.file_content.split("\n")
+
+      if (json_data.errors && json_data.errors.length > 0){
+        text_errors.appendChild(list_errors)
+        list.appendChild(text_errors)
+
+        for(let i = 0; i < json_data.errors.length; i++){
+          error = json_data.errors[i]
+
+          let text = ""
+          let li
+
+          if(Array.isArray(error.message)){
+            text = " " + error.message[0].descr + ( (error.message.length > 1) ? ". " + error.message[1].descr :  "") + ", line: " + error.message[0].line
+            li = createLi(text, error.message[0].line)
+          }
+          else {
+            text = " " + error.message + ", line: " + error.loc.start.line
+            li = createLi(text, error.loc.start.line)
+          }
+          li.prepend(createImg("error"))
+          list_errors.appendChild(li)
+        }
+      }  
+
+      let start = (p) ? p : list_structure;
+
+      if (!Array.isArray(json_data.body) && typeof json_data.body === 'object') {
+        for (let key in json_data.body) {
+          ric(json_data.body[key], start)
+        }
+      }
+      else if (Array.isArray(json_data.body)) {
+        for (let i = 0; i < json_data.body.length; i++) {
+          ric(json_data.body[i], start)
+        }
+      }
+
+    }
+    ipcRenderer.on('data', (event, json_data) => {
+
+      update_structure(json_data, null)
+      text_structure.appendChild(list_structure)
+      list.appendChild(text_structure)
+
+      document.querySelectorAll("li > .hidden").forEach(function(item, index){
+        if(!item.hasChildNodes()){
+          return
+        }
+        let li = item.parentElement
+        let span = createTag("span", "")
+        span.className = "arrow arrow-right"
+        li.prepend(span)
+        li.addEventListener("click", function(event){
+          if(event.target == span){
+            toggleHidden(item)
+            if(span.classList.contains("arrow-right")){
+              span.classList.remove("arrow-right")
+              span.classList.add("arrow-down")
+            }
+            else{
+              span.classList.remove("arrow-down")
+              span.classList.add("arrow-right")
+            }
+          }
+        })
+      })
+
+      document.querySelectorAll("li.set-line").forEach(function(item, index){
+        item.addEventListener("click", function(event){
+          event.stopPropagation()
+          if(event.target.tagName != "SPAN" && event.target.tagName != "IMG"){
+            let line = item.getAttribute("data-line");
+            ipcRenderer.send("data", line)
+          }
+        })
+      })
+
+    })
+  </script>
+</body>
+</html>

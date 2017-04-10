@@ -1,0 +1,309 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Cordova",
+        "id": "cordova",
+        "children":[
+          {
+            "caption": "Info",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["info"],
+              "status_message_before": "",
+              "output_panel_name": "panel_info_cordova",
+              "hide_panel_on_success": false
+            }
+          },
+          {
+            "caption": "Requirements",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["requirements"],
+              "status_message_before": "",
+              "output_panel_name": "panel_requirements_cordova",
+              "hide_panel_on_success": false
+            }
+          },
+          {
+            "caption": "Telemetry",
+            "children": [
+              {
+                "caption": "On",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["telemetry", "on"],
+                  "status_message_before": "turning on telemetry...",
+                  "output_panel_name": "panel_telemetry_cordova",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Off",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["telemetry", "off"],
+                  "status_message_before": "turning off telemetry...",
+                  "output_panel_name": "panel_telemetry_cordova",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {"caption": "-"},
+          { 
+            "caption": "Platforms",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "manage_add_platform_cordova",
+                "args": {
+                  "command_with_options": ["platform", "add", ":platform:version", "--save"],
+                  "status_message_before": "adding :platform:version platform...",
+                  "output_panel_name": "panel_add_platform_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "available",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "Remove",
+                "command": "manage_remove_platform_cordova",
+                "args": {
+                  "command_with_options": ["platform", "remove", ":platform", "--save"],
+                  "status_message_before": "removing :platform platform...",
+                  "output_panel_name": "panel_remove_platform_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "Update",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "update", ":platform", "--save"],
+                  "status_message_before": "updating :platform platform...",
+                  "output_panel_name": "panel_update_platform_cordova",
+                  "ask_platform": true,
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "List",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "list"],
+                  "status_message_before": "listing platforms...",
+                  "output_panel_name": "panel_list_platform_cordova",
+                  "hide_panel_on_success": false
+                }
+              },
+              {
+
+                "caption": "Check",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "check"],
+                  "status_message_before": "checking platforms...",
+                  "output_panel_name": "panel_check_platform_cordova",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+
+                "caption": "Save",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["platform", "save"],
+                  "status_message_before": "saving platforms...",
+                  "output_panel_name": "panel_save_platform_cordova",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {"caption": "-"},
+          {
+            "caption": "Plugins",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "manage_plugin_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "add", ":plugin", "--save"],
+                  "status_message_before": "adding :plugin plugin...",
+                  "output_panel_name": "panel_add_plugin_cordova",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "manage_plugin_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "remove", ":plugin", "--save"],
+                  "status_message_before": "removing :plugin plugin...",
+                  "output_panel_name": "panel_remove_plugin_cordova",
+                  "hide_panel_on_success": true,
+                  "ask_plugin": true
+                }
+              },
+              {
+                "caption": "List",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "list"],
+                  "status_message_before": "listing plugins...",
+                  "output_panel_name": "panel_list_plugin_cordova",
+                  "hide_panel_on_success": false
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["plugin", "save"],
+                  "status_message_before": "saving plugins...",
+                  "output_panel_name": "panel_save_plugin_cordova",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {"caption": "-"},
+          {
+            "caption": "Prepare",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["prepare", ":platform"],
+              "status_message_before": "preparing :platform platform...",
+              "output_panel_name": "panel_prepare_cordova",
+              "ask_platform": true,
+              "ask_platform_type": "installed",
+              "hide_panel_on_success": true
+            }
+          },
+          {
+            "caption": "Compile",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["compile", ":platform", "--debug"],
+                  "status_message_before": "compiling :platform platform in debug mode...",
+                  "output_panel_name": "panel_debug_compile_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["compile", ":platform", "--release"],
+                  "status_message_before": "compiling :platform platform in release mode...",
+                  "output_panel_name": "panel_release_compile_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Build",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["build", ":platform", "--debug"],
+                  "status_message_before": "building :platform platform in debug mode...",
+                  "output_panel_name": "panel_debug_build_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["build", ":platform", "--release"],
+                  "status_message_before": "building :platform platform in release mode...",
+                  "output_panel_name": "panel_release_build_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Run",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["run", ":platform", "--debug"],
+                  "status_message_before": "launching :platform platform in debug mode...",
+                  "output_panel_name": "panel_debug_run_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "manage_cordova",
+                "args": {
+                  "command_with_options": ["run", ":platform", "--release"],
+                  "status_message_before": "launching :platform platform in release mode...",
+                  "output_panel_name": "panel_release_run_cordova",
+                  "ask_platform": true,
+                  "ask_platform_type": "installed",
+                  "hide_panel_on_success": true
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Toggle Serve",
+            "command": "manage_serve_cordova",
+            "args": {
+              "command_with_options": ["serve"],
+              "status_message_before": "serving app...",
+              "output_panel_name": "panel_serve_cordova",
+              "hide_panel_on_success": true,
+              "is_stoppable": true
+            }
+          },
+          {
+            "caption": "Clean",
+            "command": "manage_cordova",
+            "args": {
+              "command_with_options": ["clean", ":platform"],
+              "status_message_before": "cleaning :platform platform...",
+              "output_panel_name": "panel_clean_cordova",
+              "ask_platform": true,
+              "ask_platform_type": "installed",
+              "hide_panel_on_success": true
+            }
+          },
+          {
+            "caption": "Sync project",
+            "command": "sync_cordova_project"
+          }
+        ]
+      }
+    ]
+  }
+]

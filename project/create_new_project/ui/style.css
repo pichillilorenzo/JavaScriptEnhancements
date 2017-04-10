@@ -1,0 +1,17 @@
+html, body, form{
+  background: #fff;
+}
+.wizard2 .action-bar{
+  position: fixed;
+}
+.wiz-btn-help{
+  display: none;
+}
+.wizard2 .step.next:before{
+  left: initial;
+  position: fixed;
+}
+.wizard2 .step.prev:before{
+  left: initial;
+  position: fixed;
+}

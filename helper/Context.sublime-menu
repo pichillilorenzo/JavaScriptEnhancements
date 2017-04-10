@@ -96,5 +96,10 @@
       }
     ]
   },
-  { "caption": "-" }
+  { "caption": "-" },
+  {
+    "caption": "Expand Model",
+    "id": "expand_model",
+    "command": "expand_model"
+  }
 ]
