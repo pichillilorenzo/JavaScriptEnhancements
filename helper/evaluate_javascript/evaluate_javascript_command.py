@@ -109,8 +109,8 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
     view.run_command("show_start_end_dot_eval")
 
     try:
-      node = NodeJS()
-      result_js = node.eval(str_selected, eval_type, True)
+      node = NodeJS(check_local=True)
+      result_js = node.eval(str_selected, eval_type=eval_type, strict_mode=True)
       popup_is_showing = True
       view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
         <p class="result">Result: """+result_js+"""</p>
