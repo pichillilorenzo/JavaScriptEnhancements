@@ -4,7 +4,7 @@
     "id": "tools",
     "children": [
       {
-        "caption": "JavaScript Completions",
+        "caption": "JavaScript Enhancements",
         "mnemonic": "J",
         "id": "javascript_completions_tools",
         "children":[
@@ -96,7 +96,7 @@
           {
             "caption": "GitHub Project",
             "command": "open_url",
-            "args": {"url": "https://github.com/pichillilorenzo/JavaScript-Completions"}
+            "args": {"url": "https://github.com/pichillilorenzo/JavaScriptEnhancements"}
           }
         ]
       }
@@ -131,12 +131,12 @@
         "id": "package-settings",
         "children": [
           {
-            "caption": "JavaScript Completions",
+            "caption": "JavaScript Enhancements",
             "children": [
               {
                 "caption": "Settings - Default",
                 "command": "open_file",
-                "args": {"file": "${packages}/JavaScript Completions/JavaScript-Completions.sublime-settings"}
+                "args": {"file": "${packages}/JavaScript Enhancements/JavaScript-Completions.sublime-settings"}
               },
               {
                 "caption": "Settings - User",
@@ -147,7 +147,7 @@
               {
                   "command": "open_file",
                   "args": {
-                      "file": "${packages}/JavaScript Completions/Default (OSX).sublime-keymap",
+                      "file": "${packages}/JavaScript Enhancements/Default (OSX).sublime-keymap",
                       "platform": "OSX"
                   },
                   "caption": "Key Bindings – Default"
@@ -155,7 +155,7 @@
               {
                   "command": "open_file",
                   "args": {
-                      "file": "${packages}/JavaScript Completions/Default (Linux).sublime-keymap",
+                      "file": "${packages}/JavaScript Enhancements/Default (Linux).sublime-keymap",
                       "platform": "Linux"
                   },
                   "caption": "Key Bindings – Default"
@@ -163,7 +163,7 @@
               {
                   "command": "open_file",
                   "args": {
-                      "file": "${packages}/JavaScript Completions/Default (Windows).sublime-keymap",
+                      "file": "${packages}/JavaScript Enhancements/Default (Windows).sublime-keymap",
                       "platform": "Windows"
                   },
                   "caption": "Key Bindings – Default"
