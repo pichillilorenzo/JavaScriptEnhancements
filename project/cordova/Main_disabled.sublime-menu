@@ -276,14 +276,13 @@
             ]
           },
           {
-            "caption": "Toggle Serve",
+            "caption": "Serve",
             "command": "manage_serve_cordova",
             "args": {
               "command_with_options": ["serve"],
               "status_message_before": "serving app...",
               "output_panel_name": "panel_serve_cordova",
-              "hide_panel_on_success": true,
-              "is_stoppable": true
+              "hide_panel_on_success": true
             }
           },
           {

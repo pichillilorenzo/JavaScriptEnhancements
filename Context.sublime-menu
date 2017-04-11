@@ -4,5 +4,10 @@
     "caption": "Send input to CLI",
     "id": "send_input_to_cli",
     "command": "send_input_to_cli"
+  },
+  {
+    "caption": "Stop CLI Command",
+    "id": "stop_cli_command",
+    "command": "stop_cli_command"
   }
 ]

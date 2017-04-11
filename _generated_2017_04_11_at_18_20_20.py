@@ -132,8 +132,8 @@ NODE_JS_VERSION = "v6.10.1"
 NODE_JS_BINARIES_FOLDER_NAME = "node_binaries"
 NODE_JS_VERSION_URL_LIST_ONLINE = "https://nodejs.org/dist/index.json"
 NODE_JS_BINARIES_FOLDER = os.path.join(PACKAGE_PATH, NODE_JS_BINARIES_FOLDER_NAME)
-NODE_JS_BINARIES_FOLDER_PLATFORM = os.path.join(NODE_JS_BINARIES_FOLDER, PLATFORM + "-" + PLATFORM_ARCHITECTURE)
-NODE_JS_OS = os_switcher.get(PLATFORM)
+NODE_JS_OS = os_switcher.get(sublime.platform())
+NODE_JS_BINARIES_FOLDER_PLATFORM = os.path.join(NODE_JS_BINARIES_FOLDER, NODE_JS_OS + "-" + PLATFORM_ARCHITECTURE)
 NODE_JS_ARCHITECTURE = "x64" if PLATFORM_ARCHITECTURE == "64bit" else "x86"
 NODE_JS_BINARY_NAME = "node" if NODE_JS_OS != 'win' else "node.exe"
 NPM_NAME = "npm" if NODE_JS_OS != 'win' else "npm.cmd"
@@ -144,13 +144,13 @@ NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
 NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
 
 def get_node_js_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
   if json_file and "node_js_custom_path" in json_file :
     return json_file.get("node_js_custom_path").strip()
   return ""
 
 def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
   if json_file and "npm_custom_path" in json_file :
     return json_file.get("npm_custom_path").strip()
   return ""
@@ -1338,7 +1338,7 @@ class Util(object) :
     window = sublime.active_window() if not window else window
     panel = window.create_output_panel(output_panel_name, False)
     panel.set_read_only(True)
-    panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
+    panel.set_syntax_file(os.path.join("Packages", PACKAGE_NAME, "javascript_enhancements.sublime-syntax"))
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
 
@@ -2149,7 +2149,7 @@ import sys, imp, os, webbrowser, re, cgi
 class JavaScriptCompletions():
 
   def get(self, key):
-    return sublime.load_settings('JavaScript-Completions.sublime-settings').get(key)
+    return sublime.load_settings('settings.sublime-settings').get(key)
 
 javascriptCompletions = JavaScriptCompletions()
 
@@ -3629,7 +3629,7 @@ def open_bookmarks_and_show(index, bookmarks_view = []) :
 
   view = sublime.active_window().open_file(bookmark["file_name"])
 
-  sublime.set_timeout_async(lambda: Util.go_to_centered(view, bookmark["line"]-1, 0))
+  sublime.set_timeout_async(lambda: Util.go_to_centered(view, bookmark["line"], 0))
 
 def set_multiple_bookmarks_names(view, index, selections, is_project = False):
 
@@ -4258,7 +4258,53 @@ class send_input_to_cliCommand(sublime_plugin.TextCommand):
       self.last_output_panel_name = panel.replace("output.", "")
     settings = get_project_settings()
     return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
+
+
+class stop_cli_commandCommand(sublime_plugin.TextCommand):
+  last_output_panel_name = None
+  window = None
+  def run(self, edit, **args):
+    self.window = self.view.window()
+    panel = self.window.active_panel()
+    if panel :
+      self.last_output_panel_name = panel.replace("output.", "")
+    sublime.set_timeout_async(self.stop_command)
+
+  def stop_command(self) :
+    global manage_cli_window_command_processes
+    settings = get_project_settings()
+    if self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes :
+      process = manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]["process"]
+      if (process.poll() == None) :
+        process.terminate()
+        del manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]
+      else :
+        del manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]
+
+      panel = self.window.get_output_panel(self.last_output_panel_name)
+      if panel :
+        panel.run_command("print_panel_cli", {"line": "\n\nCommand Stopped\n\n"})
+        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 3000})
+
+  def is_enabled(self):
+    global manage_cli_window_command_processes
+    self.window = self.view.window()
+    panel = self.window.active_panel()
+    if panel :
+      self.last_output_panel_name = panel.replace("output.", "")
+    settings = get_project_settings()
+    return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
   
+  def is_visible(self):
+    global manage_cli_window_command_processes
+    self.window = self.view.window()
+    panel = self.window.active_panel()
+    if panel :
+      self.last_output_panel_name = panel.replace("output.", "")
+    settings = get_project_settings()
+    return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
+ 
+
 class print_panel_cliCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):   
     line = args.get("line")
@@ -4300,6 +4346,7 @@ class enable_menu_cliEventListener(sublime_plugin.EventListener):
   def on_load_async(self, view):
     self.on_activated_async(view)
 
+
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   name_cli = ""
@@ -4316,18 +4363,14 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   placeholders = {}
   hide_panel_on_success = True
   process = None
-  is_stoppable = False
-  stop_now = None
-  command_stopped_text = "\n\nCommand Stopped\n\n"
-  can_send_input = False
 
   def run(self, **kwargs):
-    self.is_stoppable = kwargs.get("is_stoppable") if "is_stoppable" in kwargs else self.is_stoppable
-    if self.is_stoppable and self.stop_process():
-      return
+
     self.settings = get_project_settings()
     if self.settings:
+
       self.callback_after_get_settings(**kwargs)
+
       self.cli = kwargs.get("cli") if "cli" in kwargs else self.cli
       if not self.cli:
         raise Exception("'cli' field of the manage_cliCommand not defined.")
@@ -4342,10 +4385,16 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.status_message_after_on_success = self.substitute_placeholders( str(kwargs.get("status_message_after_on_success")) if "status_message_after_on_success" in kwargs else self.status_message_after_on_success )
       self.status_message_after_on_error = self.substitute_placeholders( str(kwargs.get("status_message_after_on_error")) if "status_message_after_on_error" in kwargs else self.status_message_after_on_error )
       self.hide_panel_on_success = kwargs.get("hide_panel_on_success") if "hide_panel_on_success" in kwargs else self.hide_panel_on_success
-      self.can_send_input = kwargs.get("can_send_input") if "can_send_input" in kwargs else self.can_send_input
       
+      if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
+
+        sublime.error_message("This command is already running! If you want execute it, you must stop it first.")
+        return
+
       sublime.set_timeout_async(lambda: self.manage())
+
     else :
+
       sublime.error_message("Error: can't get project settings")
 
   def manage(self) :
@@ -4353,23 +4402,16 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     if self.status_message_before :
       self.window.status_message(self.name_cli+": "+self.status_message_before)
+
     if self.show_panel :
       self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window)
+
     self.command_with_options = self.command_with_options + self.append_args_execute()
-    
-    if self.is_stoppable and self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes:
-      if (manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"].poll() == None) :
-        self.stop_now = True
-        self.process = manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]["process"]
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-        self.stop_process()
-      else :
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-      return
 
     self.before_execute()
 
     if ( self.can_execute() ) :
+
       node = NodeJS(check_local = True)
 
       if self.bin_path :
@@ -4385,70 +4427,50 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     self.process_communicate(line)
 
-    if self.can_send_input :
-      if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-        manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name] = {
-          "process": self.process
-        }
+    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+      manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name] = {
+        "process": self.process
+      }
 
     if line != None and self.show_panel:
       self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
   
-    if line == "OUTPUT-SUCCESS" and self.status_message_after_on_success :
-      self.window.status_message(self.name_cli+": "+self.status_message_after_on_success)
-
-    if line == "OUTPUT-ERROR" and self.status_message_after_on_error :
-      self.window.status_message(self.name_cli+": "+self.status_message_after_on_error)
-
     if line == "OUTPUT-SUCCESS" :
+      if self.status_message_after_on_success :
+        self.window.status_message(self.name_cli+": "+self.status_message_after_on_success)
+
       self.on_success()
 
     if line == "OUTPUT-ERROR" :
+      if self.status_message_after_on_error :
+        self.window.status_message(self.name_cli+": "+self.status_message_after_on_error)
+
       self.on_error()
 
     if line == "OUTPUT-DONE":
       self.process = None
 
-      if self.can_send_input :
-        if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-          del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
+      if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
+        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
       self.on_done()
 
-  def stop_process(self):
-    if self.stop_now == None:
-      self.stop_now = False
-    elif self.stop_now == False and self.process != None:
-      self.stop_now = True
-
-    if self.stop_now:
-      self.before_kill_process()
-      self.process.terminate()
-      self.process = None
-      self.stop_now = None
-      self.panel.run_command(self.panel_command, {"line": self.command_stopped_text})
-      self.panel.run_command(self.panel_command, {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 3000})
-      self.after_killed_process()
-      return True
-
-    return False
-
   def substitute_placeholders(self, variable):
+
     if isinstance(variable, list) :
+
       for index in range(len(variable)):
         for key, placeholder in self.placeholders.items():
           variable[index] = variable[index].replace(key, placeholder)
-      return variable
-    elif isinstance(variable, str) :
-      for key, placeholder in self.placeholders.items():
-        variable = variable.replace(key, placeholder)
+
       return variable
 
-  def before_kill_process(self):
-    return
-  
-  def after_killed_process(self):
-    return
+    elif isinstance(variable, str) :
+
+      for key, placeholder in self.placeholders.items():
+        variable = variable.replace(key, placeholder)
+        
+      return variable
 
   def can_execute(self) :
     return True

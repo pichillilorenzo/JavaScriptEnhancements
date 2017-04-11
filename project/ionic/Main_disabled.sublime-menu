@@ -223,7 +223,6 @@
                   "output_panel_name": "panel_debug_emulate_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
-                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               },
@@ -236,7 +235,6 @@
                   "output_panel_name": "panel_release_emulate_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
-                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               }
@@ -254,7 +252,6 @@
                   "output_panel_name": "panel_debug_run_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
-                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               },
@@ -267,22 +264,19 @@
                   "output_panel_name": "panel_release_run_ionic",
                   "ask_platform": true,
                   "ask_platform_type": "installed",
-                  "can_send_input": true,
                   "hide_panel_on_success": true
                 }
               }
             ]
           },
           {
-            "caption": "Toggle Serve",
+            "caption": "Serve",
             "command": "manage_serve_ionic",
             "args": {
               "command_with_options": ["serve"],
               "status_message_before": "serving app...",
               "output_panel_name": "panel_serve_ionic",
-              "hide_panel_on_success": true,
-              "can_send_input": true,
-              "is_stoppable": true
+              "hide_panel_on_success": true
             }
           },
           {

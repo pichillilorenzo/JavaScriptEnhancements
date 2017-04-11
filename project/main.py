@@ -97,7 +97,7 @@ def save_project_flowconfig(flow_settings):
       data = "[ignore]\n{ignore}\n[include]\n{include}\n[libs]\n{libs}\n[options]\n{options}".format(ignore=ignore, include=include, libs=libs, options=options)
       file.write(data.replace(':PACKAGE_PATH', PACKAGE_PATH))
 
-${include manage_cliCommand.py}
+${include manage_cli/main.py}
 
 ## Cordova ##
 ${include cordova/main.py}

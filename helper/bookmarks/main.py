@@ -150,7 +150,7 @@ def open_bookmarks_and_show(index, bookmarks_view = []) :
 
   view = sublime.active_window().open_file(bookmark["file_name"])
 
-  sublime.set_timeout_async(lambda: Util.go_to_centered(view, bookmark["line"]-1, 0))
+  sublime.set_timeout_async(lambda: Util.go_to_centered(view, bookmark["line"], 0))
 
 def set_multiple_bookmarks_names(view, index, selections, is_project = False):
 

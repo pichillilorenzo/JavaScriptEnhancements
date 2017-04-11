@@ -32,6 +32,17 @@ This project is based on my other Sublime Text plugin <a href="https://github.co
 If you want use this plugin, you may want <span style="text-decoration: underline;">uninstall or disable</span> the JavaScript Completions plugin, if installed.
 </p>
 
+<h2>Flow Requirements</h2>
+<p>
+Flow works with:
+
+- Mac OS X
+- Linux (64-bit)
+- Windows (64-bit)
+
+You can find more information about Flow on <a href="https://github.com/facebook/flow">https://github.com/facebook/flow</a>
+</p>
+
 <p>
 Email me for any questions or doubts about this new project on: <a href="mailto:pichillilorenzo@gmail.com">pichillilorenzo@gmail.com</a>
 

@@ -60,7 +60,7 @@
             "caption": "Show Bookmarks Options",
             "id": "show_bookmarks_options",
             "command": "show_overlay" ,
-            "args": {"overlay": "command_palette", "text": "Bookmarks: "}
+            "args": {"overlay": "command_palette", "text": "JavaScript Enhancements Bookmarks: "}
           },
           { "caption": "-" },
           {
@@ -136,12 +136,12 @@
               {
                 "caption": "Settings - Default",
                 "command": "open_file",
-                "args": {"file": "${packages}/JavaScript Enhancements/JavaScript-Completions.sublime-settings"}
+                "args": {"file": "${packages}/JavaScript Enhancements/settings.sublime-settings"}
               },
               {
                 "caption": "Settings - User",
                 "command": "open_file",
-                "args": {"file": "${packages}/User/JavaScript-Completions.sublime-settings"}
+                "args": {"file": "${packages}/User/JavaScript Enhancements/settings.sublime-settings"}
               },
               { "caption": "-" },
               {

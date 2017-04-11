@@ -4,13 +4,13 @@ import sys, imp, codecs, shlex, os, json, traceback, tempfile
 ${include node_variables.py}
 
 def get_node_js_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
   if json_file and "node_js_custom_path" in json_file :
     return json_file.get("node_js_custom_path").strip()
   return ""
 
 def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript-Completions.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
   if json_file and "npm_custom_path" in json_file :
     return json_file.get("npm_custom_path").strip()
   return ""

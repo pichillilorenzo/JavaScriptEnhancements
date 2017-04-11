@@ -167,6 +167,7 @@ ${options}
       app.sendWeb("error", `Can't modify "${path.join(project_dir_name, ".flowconfig")}"\nError: ${e}.`)
       return
     }
+
     data_project.settings.project_details = project_details
     app.sendWeb("success", "Successfully saved.")
     app.sendWeb("load_config", data_project)
@@ -188,6 +189,7 @@ ipcMain.on('form-project-settings', (event, project_settings) => {
       return
     }
 
+    data_project.settings.project_settings = project_settings
     app.sendWeb("success", "Successfully saved.")
     app.sendWeb("load_config", data_project)
   }
@@ -229,8 +231,8 @@ ${options}
         fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
       }, path.join(project_dir_name, ".flowconfig"), "w+")
 
-      app.sendWeb("load_config", data_project)
       app.sendWeb("success", "Successfully saved.")
+      app.sendWeb("load_config", data_project)
     }
     catch(e){
       app.sendWeb("error", `Can't modify "${path.join(project_dir_name, ".flowconfig")}"\nError: ${e}.`)

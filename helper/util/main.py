@@ -428,7 +428,7 @@ class Util(object) :
     window = sublime.active_window() if not window else window
     panel = window.create_output_panel(output_panel_name, False)
     panel.set_read_only(True)
-    panel.set_syntax_file(os.path.join("Packages", "JavaScript Completions", "javascript_completions.sublime-syntax"))
+    panel.set_syntax_file(os.path.join("Packages", PACKAGE_NAME, "javascript_enhancements.sublime-syntax"))
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
 
