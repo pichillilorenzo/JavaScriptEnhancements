@@ -61,6 +61,14 @@ GIF link: <a href="https://gifyu.com/images/ionic_serve_example.gif" target="_bl
 </p>
 
 <p>
+Flow autocomplete and error showing example:
+
+<img src="https://gifyu.com/images/flow_example.gif" alt="flow_example">
+
+GIF link: <a href="https://gifyu.com/images/flow_example.gif">https://gifyu.com/images/flow_example.gif</a>
+</p>
+
+<p>
 Email me for any questions or doubts about this new project on: <a href="mailto:pichillilorenzo@gmail.com">pichillilorenzo@gmail.com</a>
 
 Thanks for your support!!!
