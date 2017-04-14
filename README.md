@@ -43,6 +43,25 @@ Flow works with:
 You can find more information about Flow on <a href="https://github.com/facebook/flow">https://github.com/facebook/flow</a>
 </p>
 
+<h2>Examples</h2>
+
+<p>
+Some Cordova commands:
+
+<img src="https://media.giphy.com/media/3o7btQalcq6tv0lsZi/giphy.gif" alt="cordova_example">
+
+GIF link: <a href="https://media.giphy.com/media/3o7btQalcq6tv0lsZi/giphy.gif">https://media.giphy.com/media/3o7btQalcq6tv0lsZi/giphy.gif</a>
+</p>
+
+<p>
+Ionic 'serve' command example:
+
+<img src="https://gifyu.com/images/ionic_serve_example.gif" alt="ionic_serve_example">
+
+GIF link: <a href="https://gifyu.com/images/ionic_serve_example.gif">https://gifyu.com/images/ionic_serve_example.gif</a>
+
+</p>
+
 <p>
 Email me for any questions or doubts about this new project on: <a href="mailto:pichillilorenzo@gmail.com">pichillilorenzo@gmail.com</a>
 
