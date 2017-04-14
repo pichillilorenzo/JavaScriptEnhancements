@@ -48,7 +48,7 @@ You can find more information about Flow on <a href="https://github.com/facebook
 <p>
 Some Cordova commands:
 
-GIF link: <a href="https://gifyu.com/images/cordova_example.gif">https://gifyu.com/images/cordova_example.gif</a> (8,4 MB)
+GIF link: <a href="https://gifyu.com/images/cordova_example.gif" target="_blank">https://gifyu.com/images/cordova_example.gif</a> (8,4 MB)
 </p>
 
 <p>
@@ -56,7 +56,7 @@ Ionic 'serve' command example:
 
 <img src="https://gifyu.com/images/ionic_serve_example.gif" alt="ionic_serve_example">
 
-GIF link: <a href="https://gifyu.com/images/ionic_serve_example.gif">https://gifyu.com/images/ionic_serve_example.gif</a>
+GIF link: <a href="https://gifyu.com/images/ionic_serve_example.gif" target="_blank">https://gifyu.com/images/ionic_serve_example.gif</a>
 
 </p>
 
