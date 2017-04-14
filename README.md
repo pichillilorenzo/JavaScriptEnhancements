@@ -48,9 +48,9 @@ You can find more information about Flow on <a href="https://github.com/facebook
 <p>
 Some Cordova commands:
 
-<img src="https://media.giphy.com/media/3o7btQalcq6tv0lsZi/giphy.gif" alt="cordova_example">
+<img src="https://gifyu.com/images/cordova_example.gif" alt="cordova_example">
 
-GIF link: <a href="https://media.giphy.com/media/3o7btQalcq6tv0lsZi/giphy.gif">https://media.giphy.com/media/3o7btQalcq6tv0lsZi/giphy.gif</a>
+GIF link: <a href="https://gifyu.com/images/cordova_example.gif">https://gifyu.com/images/cordova_example.gif</a>
 </p>
 
 <p>
