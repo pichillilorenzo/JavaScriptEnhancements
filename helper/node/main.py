@@ -250,27 +250,37 @@ class NodeJS(object):
         os.chdir(owd)
 
       if clean_output_flow :
-        out = output.decode("utf-8", "ignore")
+        out = output.decode("utf-8", "ignore").strip()
         out = out.split("\n")
-        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
-          out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
-          out = "\n".join(out)
-          result = json.loads(out) if is_output_json else out
-        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] "):
-          out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] ", "")[1:]
-          out = "\n".join(out)
-          result = json.loads(out) if is_output_json else out
-        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
-          out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -", "")
-          out = "\n".join(out)
+        # if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
+        #   out = out[3:]
+        #   out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
+        #   out = "\n".join(out)
+        #   print(out)
+        #   result = json.loads(out) if is_output_json else out
+        # elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] "):
+        #   out = out[3:]
+        #   out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] ", "")[1:]
+        #   out = "\n".join(out)
+        #   result = json.loads(out) if is_output_json else out
+        # elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
+        #   out = out[3:]
+        #   out[0] = out[0].replace("Started a new flow server: -", "")
+        #   out = "\n".join(out)
+        #   result = json.loads(out) if is_output_json else out
+        out = out[ len(out) - 1 ]
+        if '{"flowVersion":"' in out :
+          index = out.index('{"flowVersion":"')
+          out = out[index:]
           result = json.loads(out) if is_output_json else out
         else :
-          result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+          return [False, {}]
       else :
-        result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+        try:
+          result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+        except ValueError as e:
+          print(output.decode("utf-8", "ignore"))
+          return [False, {}]
 
       if use_fp_temp :
         fp.close()

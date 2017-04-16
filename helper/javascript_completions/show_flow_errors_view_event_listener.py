@@ -27,9 +27,19 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+      if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
+      elif settings["flow_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
+          hide_flow_errors(view)
+          return
     else :
       settings = view.settings()
       if not self.callback_setted_use_flow_checker_on_current_view :
@@ -65,9 +75,19 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+      if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
+      elif settings["flow_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
+          hide_flow_errors(view)
+          return
     elif not view.settings().get("use_flow_checker_on_current_view") :
       hide_flow_errors(view)
       return 
@@ -98,9 +118,19 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
     
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+      if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
+      elif settings["flow_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
+          hide_flow_errors(view)
+          return
     elif not view.settings().get("use_flow_checker_on_current_view") :
       hide_flow_errors(view)
       return 
@@ -146,9 +176,19 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
     settings = get_project_settings()
     if settings :
-      if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+      if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
+      elif settings["flow_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
+          hide_flow_errors(view)
+          return
     elif not view.settings().get("use_flow_checker_on_current_view") :
       hide_flow_errors(view)
       return 

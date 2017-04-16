@@ -21,19 +21,11 @@ def show_flow_errors(view) :
     if deps.project_root is '/':
       return None
 
-    """
-    if (
-      '// @flow' not in deps.contents and
-      '/* @flow */' not in deps.contents
-    ):
-      return view.erase_regions('flow_error')
-    """
-
-    if view_settings.get("flow_weak_mode") :
-      deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
+    # if view_settings.get("flow_weak_mode") :
+    #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
 
     node = NodeJS()
-
+    
     result = node.execute_check_output(
       "flow",
       [
@@ -66,9 +58,9 @@ def show_flow_errors(view) :
             col = int(message['start']) - 1
             endcol = int(message['end'])
 
-            if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
-              col = col - len("/* @flow weak */")
-              endcol = endcol - len("/* @flow weak */")
+            # if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
+            #   col = col - len("/* @flow weak */")
+            #   endcol = endcol - len("/* @flow weak */")
 
             regions.append(Util.rowcol_to_region(view, row, col, endcol))
 

@@ -99,6 +99,9 @@ def save_project_flowconfig(flow_settings):
 
 ${include manage_cli/main.py}
 
+## Build Flow ##
+${include build_flow/main.py}
+
 ## Cordova ##
 ${include cordova/main.py}
 

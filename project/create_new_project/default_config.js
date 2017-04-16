@@ -19,7 +19,7 @@ module.exports = {
     "author": "",
     "author_uri": "",
     "description": "",
-    "version": "1.0",
+    "version": "",
     "license": "",
     "license_uri": "",
     "tags": "",
@@ -27,7 +27,12 @@ module.exports = {
   },
   "project_settings": {
     "node_js_custom_path": "",
-    "npm_custom_path": ""
+    "npm_custom_path": "",
+    "build_flow": {
+      "source_folder": "",
+      "destination_folder": "",
+      "options": []
+    }
   },
   "flow_settings": {
     "ignore": [
@@ -42,8 +47,7 @@ module.exports = {
     "options":[
 
     ],
-    "use_flow_checker": true,
-    "use_always_weak_mode": false
+    "flow_checker_enabled": true
   },
   "bookmarks": []
 }

@@ -2,7 +2,8 @@
   "dependencies": {
     "cordova": "6.5.0",
     "electron": "1.6.1",
-    "flow-bin": "0.43.1",
+    "flow-bin": "0.44.0",
+    "flow-remove-types": "1.2.0",
     "fs-extra": "2.0.0",
     "ionic": "2.2.2",
     "jsdoc": "3.4.3",

@@ -14,19 +14,12 @@
             "id": "flow",
             "children": [
               {
-                "caption": "Use Flow checker on current view (Not in project)",
+                "caption": "Use Flow checker on current view (Not used in project)",
                 "id": "use_flow_checker_on_current_view",
                 "checkbox": true,
                 "command": "toggle_setting",
                 "args": {"setting": "use_flow_checker_on_current_view"}
-              },
-              {
-                "caption": "Flow weak mode",
-                "id": "flow_weak_mode",
-                "checkbox": true,
-                "command": "toggle_setting",
-                "args": {"setting": "flow_weak_mode"}
-              },
+              }
             ]
           },
           {

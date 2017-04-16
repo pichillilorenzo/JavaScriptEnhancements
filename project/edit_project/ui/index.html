@@ -108,6 +108,53 @@
             <input type="text" id="npm_custom_path" name="npm_custom_path">
             <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
           </div>
+          
+          <h3>Build Flow</h3>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="build_flow_source_folder">Source Folder:</label>
+            <input type="text" id="build_flow_source_folder" name="build_flow_source_folder">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="build_flow_destination_folder">Destination Folder:</label>
+            <input type="text" id="build_flow_destination_folder" name="build_flow_destination_folder">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <div class="input-control select multiple full-size">
+            <label for="build_flow_options">Options:</label>
+            <select class="build_flow_options" multiple="multiple" data-field-type="select">
+              <option value="">None</option>
+              <option value="--all">--all</option>
+              <option value="--pretty">--pretty</option>
+              <option value="--sourcemaps">--sourcemaps</option>
+            </select>
+            <small>Select options that apply to every time</small>
+          </div>
+          
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="build_flow-ignore">--ignore:</label>
+            <input class=" build_flow-ignore build_flow_options" type="text" name="ignore" value="" data-field-type="option">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="build_flow-sourcemaps">--sourcemaps:</label>
+            <input class=" build_flow-sourcemaps build_flow_options" type="text" name="sourcemaps" value="" data-field-type="option">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="build_flow-extensions">--extensions:</label>
+            <input class=" build_flow-extensions build_flow_options" type="text" name="extensions" value="" data-field-type="option">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
 
           <div class="floating-action"> 
             <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
@@ -163,18 +210,9 @@
                 <div class="container-settings-flow-inputs">
                   <div class="container-flow-input">
                     <label class="switch">
-                      <input type="checkbox" id="use_flow_checker">
+                      <input type="checkbox" id="flow_checker_enabled">
                       <span class="check"></span>
-                      <span class="text-switch">Use Flow Checker</span>
-                    </label>
-                  </div>
-                </div>
-                <div class="container-settings-flow-inputs">
-                  <div class="container-flow-input">
-                    <label class="switch">
-                      <input type="checkbox" id="use_always_weak_mode">
-                      <span class="check"></span>
-                      <span class="text-switch">Use Always Weak Mode</span>
+                      <span class="text-switch">Flow Checker Enabled</span>
                     </label>
                   </div>
                 </div>
@@ -247,7 +285,12 @@
         event.preventDefault()
         let project_settings = {
           "node_js_custom_path": $("#node_js_custom_path").val().trim(),
-          "npm_custom_path": $("#npm_custom_path").val().trim()
+          "npm_custom_path": $("#npm_custom_path").val().trim(),
+          "build_flow": {
+            "source_folder": $("#build_flow_source_folder").val().trim(),
+            "destination_folder": $("#build_flow_destination_folder").val().trim(),
+            "options": utilWeb.get_options(".build_flow_options")
+          }
         }
         ipcRenderer.send('form-project-settings', project_settings)
       })
@@ -273,8 +316,7 @@
           "include": includes,
           "libs": libs,
           "options": options,
-          "use_flow_checker": ($('#use_flow_checker:checked').length > 0) ? true : false,
-          "use_always_weak_mode": ($('#use_always_weak_mode:checked').length > 0) ? true : false
+          "flow_checker_enabled": ($('#flow_checker_enabled:checked').length > 0) ? true : false
         }
         ipcRenderer.send('form-flow-settings', flow_settings)
 
@@ -374,6 +416,9 @@
       let project_settings = config.settings.project_settings
       $("#node_js_custom_path").val(project_settings.node_js_custom_path),
       $("#npm_custom_path").val(project_settings.npm_custom_path)
+      $("#build_flow_source_folder").val(project_settings.build_flow.source_folder)
+      $("#build_flow_destination_folder").val(project_settings.build_flow.destination_folder)
+      utilWeb.set_options(".build_flow_options", project_settings.build_flow.options)
 
       for(let i = 0, length1 = project_type.length; i < length1; i++){
         let type = project_type[i]
@@ -433,11 +478,8 @@
         $($(".options-flow-select")[index]).val(item[0])
         $($(".options-flow-input")[index]).val(item[1])
       })
-      if(flow_settings.use_flow_checker){
-        $('#use_flow_checker').attr('checked', 'checked')
-      }
-      if(flow_settings.use_always_weak_mode){
-        $('#use_always_weak_mode').attr('checked', 'checked')
+      if(flow_settings.flow_checker_enabled){
+        $('#flow_checker_enabled').attr('checked', 'checked')
       }
     })
 

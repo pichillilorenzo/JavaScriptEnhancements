@@ -390,27 +390,37 @@ class NodeJS(object):
         os.chdir(owd)
 
       if clean_output_flow :
-        out = output.decode("utf-8", "ignore")
+        out = output.decode("utf-8", "ignore").strip()
         out = out.split("\n")
-        if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
-          out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
-          out = "\n".join(out)
-          result = json.loads(out) if is_output_json else out
-        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] "):
-          out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] ", "")[1:]
-          out = "\n".join(out)
-          result = json.loads(out) if is_output_json else out
-        elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
-          out = out[3:]
-          out[0] = out[0].replace("Started a new flow server: -", "")
-          out = "\n".join(out)
+        # if len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [processing] "):
+        #   out = out[3:]
+        #   out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [processing] ", "")[1:]
+        #   out = "\n".join(out)
+        #   print(out)
+        #   result = json.loads(out) if is_output_json else out
+        # elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] "):
+        #   out = out[3:]
+        #   out[0] = out[0].replace("Started a new flow server: -flow is still initializing; this can take some time. [merging inference] ", "")[1:]
+        #   out = "\n".join(out)
+        #   result = json.loads(out) if is_output_json else out
+        # elif len(out) > 1 and out[3:][0].startswith("Started a new flow server: -"):
+        #   out = out[3:]
+        #   out[0] = out[0].replace("Started a new flow server: -", "")
+        #   out = "\n".join(out)
+        #   result = json.loads(out) if is_output_json else out
+        out = out[ len(out) - 1 ]
+        if '{"flowVersion":"' in out :
+          index = out.index('{"flowVersion":"')
+          out = out[index:]
           result = json.loads(out) if is_output_json else out
         else :
-          result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+          return [False, {}]
       else :
-        result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+        try:
+          result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
+        except ValueError as e:
+          print(output.decode("utf-8", "ignore"))
+          return [False, {}]
 
       if use_fp_temp :
         fp.close()
@@ -2801,19 +2811,11 @@ if int(sublime.version()) >= 3124 :
       if deps.project_root is '/':
         return None
   
-      """
-      if (
-        '// @flow' not in deps.contents and
-        '/* @flow */' not in deps.contents
-      ):
-        return view.erase_regions('flow_error')
-      """
-  
-      if view_settings.get("flow_weak_mode") :
-        deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
+      # if view_settings.get("flow_weak_mode") :
+      #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
   
       node = NodeJS()
-  
+      
       result = node.execute_check_output(
         "flow",
         [
@@ -2846,9 +2848,9 @@ if int(sublime.version()) >= 3124 :
               col = int(message['start']) - 1
               endcol = int(message['end'])
   
-              if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
-                col = col - len("/* @flow weak */")
-                endcol = endcol - len("/* @flow weak */")
+              # if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
+              #   col = col - len("/* @flow weak */")
+              #   endcol = endcol - len("/* @flow weak */")
   
               regions.append(Util.rowcol_to_region(view, row, col, endcol))
   
@@ -2926,9 +2928,19 @@ if int(sublime.version()) >= 3124 :
   
       settings = get_project_settings()
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+        if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
+        elif settings["flow_settings"]["flow_checker_enabled"] :
+          comments = view.find_by_selector('source.js comment')
+          flow_comment_found = False
+          for comment in comments:
+            if "@flow" in view.substr(comment) :
+              flow_comment_found = True
+              break
+          if not flow_comment_found :
+            hide_flow_errors(view)
+            return
       else :
         settings = view.settings()
         if not self.callback_setted_use_flow_checker_on_current_view :
@@ -2964,9 +2976,19 @@ if int(sublime.version()) >= 3124 :
   
       settings = get_project_settings()
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+        if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
+        elif settings["flow_settings"]["flow_checker_enabled"] :
+          comments = view.find_by_selector('source.js comment')
+          flow_comment_found = False
+          for comment in comments:
+            if "@flow" in view.substr(comment) :
+              flow_comment_found = True
+              break
+          if not flow_comment_found :
+            hide_flow_errors(view)
+            return
       elif not view.settings().get("use_flow_checker_on_current_view") :
         hide_flow_errors(view)
         return 
@@ -2997,9 +3019,19 @@ if int(sublime.version()) >= 3124 :
       
       settings = get_project_settings()
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+        if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
+        elif settings["flow_settings"]["flow_checker_enabled"] :
+          comments = view.find_by_selector('source.js comment')
+          flow_comment_found = False
+          for comment in comments:
+            if "@flow" in view.substr(comment) :
+              flow_comment_found = True
+              break
+          if not flow_comment_found :
+            hide_flow_errors(view)
+            return
       elif not view.settings().get("use_flow_checker_on_current_view") :
         hide_flow_errors(view)
         return 
@@ -3045,9 +3077,19 @@ if int(sublime.version()) >= 3124 :
   
       settings = get_project_settings()
       if settings :
-        if not settings["flow_settings"]["use_flow_checker"] or not is_project_view(view) :
+        if not settings["flow_settings"]["flow_checker_enabled"] or not is_project_view(view) :
           hide_flow_errors(view)
           return
+        elif settings["flow_settings"]["flow_checker_enabled"] :
+          comments = view.find_by_selector('source.js comment')
+          flow_comment_found = False
+          for comment in comments:
+            if "@flow" in view.substr(comment) :
+              flow_comment_found = True
+              break
+          if not flow_comment_found :
+            hide_flow_errors(view)
+            return
       elif not view.settings().get("use_flow_checker_on_current_view") :
         hide_flow_errors(view)
         return 
@@ -4339,6 +4381,13 @@ class enable_menu_cliEventListener(sublime_plugin.EventListener):
       else :
         if os.path.isfile(self.path):
           os.rename(self.path, self.path_disabled)
+    elif self.path and self.path_disabled:
+      if is_javascript_project() :
+        if os.path.isfile(self.path_disabled):
+          os.rename(self.path_disabled, self.path)
+      else :
+        if os.path.isfile(self.path):
+          os.rename(self.path, self.path_disabled)
 
   def on_new_async(self, view):
     self.on_activated_async(view)
@@ -4496,6 +4545,32 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   def on_done(self):
     return
 
+## Build Flow ##
+class enable_menu_build_flowEventListener(enable_menu_cliEventListener):
+  path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "build_flow", "Main_disabled.sublime-menu")
+
+class build_flowCommand(manage_cliCommand):
+  cli = "flow-remove-types"
+  name_cli = "Flow Remove Types"
+  bin_path = ""
+
+  def callback_after_get_settings(self, **kwargs):
+    self.placeholders[":source_folder"] = self.settings["project_settings"]["build_flow"]["source_folder"]
+    self.placeholders[":destination_folder"] = self.settings["project_settings"]["build_flow"]["destination_folder"]
+
+  def append_args_execute(self) :
+    custom_args = []
+    custom_args = custom_args + self.settings["project_settings"]["build_flow"]["options"]
+
+    return custom_args
+
+  def is_enabled(self) :
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["build_flow"]["source_folder"] and settings["project_settings"]["build_flow"]["destination_folder"] :
+      return True
+    return False
+
 ## Cordova ##
 import sublime, sublime_plugin
 import os, webbrowser, shlex
@@ -4536,8 +4611,8 @@ Hook.add("cordova_create_new_project", create_cordova_project)
 
 class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
   cli = "cordova"
-  path = os.path.join(PACKAGE_PATH, "project", "cordova", "Main.sublime-menu")
-  path_disabled = os.path.join(PACKAGE_PATH, "project", "cordova", "Main_disabled.sublime-menu")
+  path = os.path.join(PROJECT_FOLDER, "cordova", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "cordova", "Main_disabled.sublime-menu")
 
 class cordova_baseCommand(manage_cliCommand):
   cli = "cordova"
@@ -4838,8 +4913,8 @@ Hook.add("ionic_create_new_project", create_ionic_project)
 
 class enable_menu_ionicEventListener(enable_menu_cliEventListener):
   cli = "ionic"
-  path = os.path.join(PACKAGE_PATH, "project", "ionic", "Main.sublime-menu")
-  path_disabled = os.path.join(PACKAGE_PATH, "project", "ionic", "Main_disabled.sublime-menu")
+  path = os.path.join(PROJECT_FOLDER, "ionic", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "ionic", "Main_disabled.sublime-menu")
 
 class ionic_baseCommand(cordova_baseCommand):
   cli = "ionic"

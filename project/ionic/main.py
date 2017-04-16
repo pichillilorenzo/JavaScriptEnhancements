@@ -34,8 +34,8 @@ Hook.add("ionic_create_new_project", create_ionic_project)
 
 class enable_menu_ionicEventListener(enable_menu_cliEventListener):
   cli = "ionic"
-  path = os.path.join(PACKAGE_PATH, "project", "ionic", "Main.sublime-menu")
-  path_disabled = os.path.join(PACKAGE_PATH, "project", "ionic", "Main_disabled.sublime-menu")
+  path = os.path.join(PROJECT_FOLDER, "ionic", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "ionic", "Main_disabled.sublime-menu")
 
 class ionic_baseCommand(cordova_baseCommand):
   cli = "ionic"
