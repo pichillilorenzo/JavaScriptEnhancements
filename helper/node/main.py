@@ -178,7 +178,7 @@ class NodeJS(object):
       Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout))
       
   def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[]):
-    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid) as p:
 
       func_stdout(None, p, *args_func_stdout)
       flag_error = False
@@ -279,6 +279,7 @@ class NodeJS(object):
         try:
           result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
         except ValueError as e:
+          print(traceback.format_exc())
           print(output.decode("utf-8", "ignore"))
           return [False, {}]
 
@@ -535,6 +536,20 @@ class NPM(object):
     p.terminate()
 
     return lines
+
+  def getPackageJson(self):
+
+    package_json_path = ""
+    settings = get_project_settings()
+
+    if self.check_local and settings and os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) :
+      package_json_path = os.path.join(settings["project_dir_name"], "package.json")
+    elif self.check_local and (not settings or not os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) ) :
+      return None
+    else :
+      package_json_path = os.path.join(PACKAGE_PATH, "package.json")
+
+    return Util.open_json(package_json_path)
 
   def getCurrentNPMVersion(self) :
 

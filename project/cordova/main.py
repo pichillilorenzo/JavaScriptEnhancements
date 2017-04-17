@@ -35,8 +35,8 @@ def create_cordova_project(json_data):
 
 Hook.add("cordova_create_new_project", create_cordova_project)
 
-class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
-  cli = "cordova"
+class enable_menu_cordovaEventListener(enable_menu_project_typeEventListener):
+  project_type = "cordova"
   path = os.path.join(PROJECT_FOLDER, "cordova", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "cordova", "Main_disabled.sublime-menu")
 

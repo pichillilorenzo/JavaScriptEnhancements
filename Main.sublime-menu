@@ -7,7 +7,7 @@
         "caption": "JavaScript Enhancements",
         "mnemonic": "J",
         "id": "javascript_completions_tools",
-        "children":[
+        "children":[       
           {
             "caption": "Flow",
             "mnemonic": "F",

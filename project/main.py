@@ -99,6 +99,9 @@ def save_project_flowconfig(flow_settings):
 
 ${include manage_cli/main.py}
 
+## Npm ##
+${include npm/main.py}
+
 ## Build Flow ##
 ${include build_flow/main.py}
 
@@ -107,6 +110,9 @@ ${include cordova/main.py}
 
 ## Ionic ##
 ${include ionic/main.py}
+
+## React ##
+${include react/main.py}
 
 ${include create_new_project/create_new_project.py}
 

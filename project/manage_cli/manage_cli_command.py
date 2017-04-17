@@ -26,7 +26,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.cli:
         raise Exception("'cli' field of the manage_cliCommand not defined.")
 
-      self.command_with_options = self.substitute_placeholders(kwargs.get("command_with_options"))
+      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options" if "command_with_options" in kwargs else self.command_with_options) )
       if not self.command_with_options or len(self.command_with_options) <= 0:
         raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
 
@@ -107,7 +107,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.on_done()
 
   def substitute_placeholders(self, variable):
-
+    
     if isinstance(variable, list) :
 
       for index in range(len(variable)):

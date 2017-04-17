@@ -1,4 +1,4 @@
-class enable_menu_build_flowEventListener(enable_menu_cliEventListener):
+class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "build_flow", "Main_disabled.sublime-menu")
 

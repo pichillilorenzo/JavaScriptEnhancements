@@ -318,7 +318,7 @@ class NodeJS(object):
       Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout))
       
   def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[]):
-    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1) as p:
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid) as p:
 
       func_stdout(None, p, *args_func_stdout)
       flag_error = False
@@ -419,6 +419,7 @@ class NodeJS(object):
         try:
           result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
         except ValueError as e:
+          print(traceback.format_exc())
           print(output.decode("utf-8", "ignore"))
           return [False, {}]
 
@@ -675,6 +676,20 @@ class NPM(object):
     p.terminate()
 
     return lines
+
+  def getPackageJson(self):
+
+    package_json_path = ""
+    settings = get_project_settings()
+
+    if self.check_local and settings and os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) :
+      package_json_path = os.path.join(settings["project_dir_name"], "package.json")
+    elif self.check_local and (not settings or not os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) ) :
+      return None
+    else :
+      package_json_path = os.path.join(PACKAGE_PATH, "package.json")
+
+    return Util.open_json(package_json_path)
 
   def getCurrentNPMVersion(self) :
 
@@ -4302,6 +4317,8 @@ class send_input_to_cliCommand(sublime_plugin.TextCommand):
     return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
 
 
+import signal
+
 class stop_cli_commandCommand(sublime_plugin.TextCommand):
   last_output_panel_name = None
   window = None
@@ -4318,7 +4335,7 @@ class stop_cli_commandCommand(sublime_plugin.TextCommand):
     if self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes :
       process = manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]["process"]
       if (process.poll() == None) :
-        process.terminate()
+        os.killpg(os.getpgid(process.pid), signal.SIGTERM)
         del manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]
       else :
         del manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]
@@ -4353,7 +4370,7 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     if line.strip() :
       if line == "OUTPUT-SUCCESS":
         if self.view.window() and args.get("hide_panel_on_success") :
-          sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 1000 )
+          sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 2000 )
         return
       elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
         return
@@ -4368,14 +4385,14 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     except AttributeError as e:
       pass
 
-class enable_menu_cliEventListener(sublime_plugin.EventListener):
-  cli = ""
+class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
+  project_type = ""
   path = ""
   path_disabled = ""
 
   def on_activated_async(self, view):
-    if self.cli and self.path and self.path_disabled:
-      if is_type_javascript_project(self.cli) :
+    if self.project_type and self.path and self.path_disabled:
+      if is_type_javascript_project(self.project_type) :
         if os.path.isfile(self.path_disabled):
           os.rename(self.path_disabled, self.path)
       else :
@@ -4424,7 +4441,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.cli:
         raise Exception("'cli' field of the manage_cliCommand not defined.")
 
-      self.command_with_options = self.substitute_placeholders(kwargs.get("command_with_options"))
+      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options" if "command_with_options" in kwargs else self.command_with_options) )
       if not self.command_with_options or len(self.command_with_options) <= 0:
         raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
 
@@ -4505,7 +4522,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.on_done()
 
   def substitute_placeholders(self, variable):
-
+    
     if isinstance(variable, list) :
 
       for index in range(len(variable)):
@@ -4545,8 +4562,165 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   def on_done(self):
     return
 
+
+## Npm ##
+class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
+  path = os.path.join(PROJECT_FOLDER, "npm", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "npm", "Main_disabled.sublime-menu")
+
+  def on_activated_async(self, view):
+    super(enable_menu_npmEventListener, self).on_activated_async(view)
+
+    default_value = [
+      {
+        "caption": "Tools",
+        "id": "tools",
+        "children": [
+          {
+            "caption": "Npm",
+            "id": "npm",
+            "children":[
+              {
+                "caption": "Scripts",
+                "id": "npm_scripts",
+                "children": []
+              },
+              {
+                "caption": "Install All",
+                "command": "manage_npm_package",
+                "args": {
+                  "command_with_options": ["install", ":save-mode"],
+                  "output_panel_name": "panel_install_all_npm_script",
+                  "hide_panel_on_success": True
+                }
+              },
+              {
+                "caption": "Update All",
+                "command": "manage_npm_package",
+                "args": {
+                  "command_with_options": ["update", ":save-mode"],
+                  "output_panel_name": "panel_update_all_npm_script",
+                  "hide_panel_on_success": True
+                }
+              },
+              {
+                "caption": "Install Package",
+                "command": "manage_npm_package",
+                "args": {
+                  "command_with_options": ["install", ":save-mode", ":package"],
+                  "status_message_before": "installing :package...",
+                  "output_panel_name": "panel_install_package_npm_script",
+                  "hide_panel_on_success": True
+                }
+              },
+              {
+                "caption": "Uninstall Package",
+                "command": "manage_npm_package",
+                "args": {
+                  "command_with_options": ["uninstall", ":save-mode", ":package"],
+                  "status_message_before": "uninstalling :package...",
+                  "output_panel_name": "panel_uninstall_package_npm_script",
+                  "hide_panel_on_success": True
+                }
+              },
+              {
+                "caption": "Update Package",
+                "command": "manage_npm_package",
+                "args": {
+                  "command_with_options": ["update", ":save-mode", ":package"],
+                  "status_message_before": "updating :package...",
+                  "output_panel_name": "panel_update_package_npm_script",
+                  "hide_panel_on_success": True
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+    if os.path.isfile(self.path) :
+      with open(self.path, 'r+') as menu:
+        content = menu.read()
+        menu.seek(0)
+        menu.write(json.dumps(default_value))
+        menu.truncate()
+        json_data = json.loads(content)
+        npm_scripts = None
+        for item in json_data :
+          if item["id"] == "tools" :
+            for item2 in item["children"] :
+              if item2["id"] == "npm" :
+                for item3 in item2["children"] :
+                  if "id" in item3 and item3["id"] == "npm_scripts" :
+                    item3["children"] = []
+                    npm_scripts = item3["children"]
+                break
+            break
+        if npm_scripts == None :
+          return 
+        try:
+          npm = NPM(check_local=True)
+          package_json = npm.getPackageJson()
+          if package_json and "scripts" in package_json and len(package_json["scripts"].keys()) > 0 :
+            for script in package_json["scripts"].keys():
+              npm_scripts.append({
+                "caption": script,
+                "command": "manage_npm",
+                "args": {
+                  "command_with_options": ["run", script],
+                  "output_panel_name": "panel_"+script+"_npm_script",
+                  "hide_panel_on_success": True
+                }
+              })
+            menu.seek(0)
+            menu.write(json.dumps(json_data))
+            menu.truncate()
+        except Exception as e:
+          print(traceback.format_exc())
+          menu.seek(0)
+          menu.write(json.dumps(default_value))
+          menu.truncate()
+
+    if os.path.isfile(self.path_disabled) :
+      with open(self.path_disabled, 'w+') as menu:
+        menu.write(json.dumps(default_value))
+
+class manage_npmCommand(manage_cliCommand):
+  cli = "npm"
+  name_cli = "NPM"
+  bin_path = ""
+
+  def is_enabled(self):
+    settings = get_project_settings()
+    return True if settings and os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) else False
+
+  def is_visible(self):
+    settings = get_project_settings()
+    return True if settings and os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) else False
+
+class manage_npm_packageCommand(manage_npmCommand):
+
+  def run(self, **kwargs):
+    if ":save-mode" in kwargs["command_with_options"]:
+      self.window.show_input_panel("Save mode: ", "--save", lambda save_mode="": self.set_save_mode(save_mode.strip(), **kwargs), None, None)
+    else :
+      self.set_save_mode('', **kwargs)
+
+  def set_save_mode(self, save_mode, **kwargs) :
+    self.placeholders[":save-mode"] = save_mode
+    if kwargs.get("command_with_options") :
+      if ":package" in kwargs["command_with_options"]:
+        self.window.show_input_panel("Package name: ", "", lambda package_name="": self.set_package_name(package_name.strip(), **kwargs), None, None)
+        return
+    super(manage_npm_packageCommand, self).run(**kwargs)
+
+  def set_package_name(self, package_name, **kwargs):
+    self.placeholders[":package"] = package_name
+    super(manage_npm_packageCommand, self).run(**kwargs)
+
 ## Build Flow ##
-class enable_menu_build_flowEventListener(enable_menu_cliEventListener):
+class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "build_flow", "Main_disabled.sublime-menu")
 
@@ -4609,8 +4783,8 @@ def create_cordova_project(json_data):
 
 Hook.add("cordova_create_new_project", create_cordova_project)
 
-class enable_menu_cordovaEventListener(enable_menu_cliEventListener):
-  cli = "cordova"
+class enable_menu_cordovaEventListener(enable_menu_project_typeEventListener):
+  project_type = "cordova"
   path = os.path.join(PROJECT_FOLDER, "cordova", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "cordova", "Main_disabled.sublime-menu")
 
@@ -4911,8 +5085,8 @@ def create_ionic_project(json_data):
 
 Hook.add("ionic_create_new_project", create_ionic_project)
 
-class enable_menu_ionicEventListener(enable_menu_cliEventListener):
-  cli = "ionic"
+class enable_menu_ionicEventListener(enable_menu_project_typeEventListener):
+  project_type = "ionic"
   path = os.path.join(PROJECT_FOLDER, "ionic", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "ionic", "Main_disabled.sublime-menu")
 
@@ -4998,6 +5172,56 @@ class sync_ionic_projectCommand(ionic_baseCommand, sync_cordova_projectCommand):
   def run(self, **kwargs):
     super(sync_ionic_projectCommand, self).run(**kwargs)
 
+
+## React ##
+import re, webbrowser
+
+def create_react_project_process(line, process, panel, project_data, sublime_project_file_name) :
+
+  if line != None and panel:
+    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
+
+  if line == "OUTPUT-SUCCESS":
+    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
+    open_project_folder(sublime_project_file_name)
+
+def create_react_project(json_data):
+  project_data = json_data["project_data"]
+  project_details = project_data["project_details"]
+  project_folder = project_data["path"]
+  types_options = []
+
+  if "react" in project_data["types_options"]:
+    types_options = project_data["types_options"]["react"]
+    
+  panel = Util.create_and_show_panel("react_panel_installer_project")
+
+  node = NodeJS()
+
+  node.execute('create-react-app', ["temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+    
+  return json_data
+
+Hook.add("react_create_new_project", create_react_project)
+
+class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
+  project_type = "react"
+  path = os.path.join(PROJECT_FOLDER, "react", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "react", "Main_disabled.sublime-menu")
+
+class manage_serve_reactCommand(manage_cliCommand):
+  cli = "serve"
+  name_cli = "Serve React"
+
+  def process_communicate(self, line) :
+
+    if line and "http://localhost" in line :
+      pattern = re.compile("http\:\/\/localhost\:([0-9]+)")
+      match = pattern.search(line)
+      if match :
+        port = match.group(1)
+        url = "http://localhost:"+port
+        webbrowser.open(url) 
 
 import sublime, sublime_plugin
 import subprocess, shutil, traceback
@@ -5105,7 +5329,7 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
     return is_javascript_project()
 
 import sublime, sublime_plugin
-import os, time
+import os, time, signal
 
 class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 
@@ -5115,10 +5339,17 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 
     global socket_server_list
 
+    global manage_cli_window_command_processes
+
     if not sublime.windows() :
       
       sublime.status_message("flow server stopping")
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
+
+      for key in manage_cli_window_command_processes.keys() :
+        process = manage_cli_window_command_processes[key]["process"]
+        if (process.poll() == None) :
+          os.killpg(os.getpgid(process.pid), signal.SIGTERM)
 
       for key, value in socket_server_list.items() :
         if not value["socket"].is_socket_closed() :

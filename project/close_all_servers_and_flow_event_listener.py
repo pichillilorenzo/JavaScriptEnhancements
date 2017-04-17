@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, time
+import os, time, signal
 
 class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 
@@ -9,10 +9,17 @@ class close_all_servers_and_flowEventListener(sublime_plugin.EventListener):
 
     global socket_server_list
 
+    global manage_cli_window_command_processes
+
     if not sublime.windows() :
       
       sublime.status_message("flow server stopping")
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
+
+      for key in manage_cli_window_command_processes.keys() :
+        process = manage_cli_window_command_processes[key]["process"]
+        if (process.poll() == None) :
+          os.killpg(os.getpgid(process.pid), signal.SIGTERM)
 
       for key, value in socket_server_list.items() :
         if not value["socket"].is_socket_closed() :

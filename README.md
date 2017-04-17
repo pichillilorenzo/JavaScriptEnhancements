@@ -13,6 +13,7 @@ developing and managing <strong>javascript projects</strong>, such as:
 - Cordova projects (run Cordova emulator, build, compile, serve Cordova projects, add plugins and available platforms, the ability to install local version of Cordova in the project, etc … directly on Sublime Text!)
 - Ionic projects (same as Cordova projects!)
 - Angular projects
+- React projects
 - Node.js projects
 - Local bookmarks project
 - Show javascript errors with Flow

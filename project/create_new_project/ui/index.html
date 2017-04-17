@@ -37,6 +37,7 @@
               <option value="">Blank</option>
               <option value="cordova">Cordova</option>
               <option value="ionic">Ionic</option>
+              <option value="react">React</option>
             </select>
           </div>
 
@@ -178,7 +179,12 @@
 
           let project_settings = {
             "node_js_custom_path": $("#node_js_custom_path").val().trim(),
-            "npm_custom_path": $("#npm_custom_path").val().trim()
+            "npm_custom_path": $("#npm_custom_path").val().trim(),
+            "build_flow": {
+              "source_folder": "",
+              "destination_folder": "",
+              "options": []
+            }
           }
           
           let project_data = {

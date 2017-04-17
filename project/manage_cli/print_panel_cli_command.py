@@ -4,7 +4,7 @@ class print_panel_cliCommand(sublime_plugin.TextCommand):
     if line.strip() :
       if line == "OUTPUT-SUCCESS":
         if self.view.window() and args.get("hide_panel_on_success") :
-          sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 1000 )
+          sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 2000 )
         return
       elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
         return

@@ -1,3 +1,5 @@
+import signal
+
 class stop_cli_commandCommand(sublime_plugin.TextCommand):
   last_output_panel_name = None
   window = None
@@ -14,7 +16,7 @@ class stop_cli_commandCommand(sublime_plugin.TextCommand):
     if self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes :
       process = manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]["process"]
       if (process.poll() == None) :
-        process.terminate()
+        os.killpg(os.getpgid(process.pid), signal.SIGTERM)
         del manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]
       else :
         del manage_cli_window_command_processes[settings["project_dir_name"]+"_"+self.last_output_panel_name]

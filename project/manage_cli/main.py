@@ -9,6 +9,6 @@ ${include stop_cli_command_command.py}
 
 ${include print_panel_cli_command.py}
 
-${include enable_menu_cli_event_listener.py}
+${include enable_menu_project_type_event_listener.py}
 
 ${include manage_cli_command.py}

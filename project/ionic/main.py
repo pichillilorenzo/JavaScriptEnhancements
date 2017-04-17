@@ -32,8 +32,8 @@ def create_ionic_project(json_data):
 
 Hook.add("ionic_create_new_project", create_ionic_project)
 
-class enable_menu_ionicEventListener(enable_menu_cliEventListener):
-  cli = "ionic"
+class enable_menu_ionicEventListener(enable_menu_project_typeEventListener):
+  project_type = "ionic"
   path = os.path.join(PROJECT_FOLDER, "ionic", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "ionic", "Main_disabled.sublime-menu")
 
