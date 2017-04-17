@@ -11,7 +11,7 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
         "id": "tools",
         "children": [
           {
-            "caption": "Npm",
+            "caption": "Npm/Yarn",
             "id": "npm",
             "children":[
               {
@@ -121,9 +121,17 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
         menu.write(json.dumps(default_value))
 
 class manage_npmCommand(manage_cliCommand):
-  cli = "npm"
-  name_cli = "NPM"
+  cli = "yarn"
+  name_cli = "YARN"
   bin_path = ""
+
+  def callback_after_get_settings(self, **kwargs) :
+    if not self.settings["project_settings"]["use_yarn"] :
+      self.cli = "npm"
+      self.name_cli = "NPM"
+    else :
+      self.cli = "yarn"
+      self.name_cli = "YARN"
 
   def is_enabled(self):
     settings = get_project_settings()

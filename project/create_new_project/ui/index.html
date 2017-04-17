@@ -101,6 +101,18 @@
             <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
           </div>
 
+          <div class="input-control text full-size" data-role="input">
+            <label for="yarn_custom_path">Yarn Custom Path:</label>
+            <input type="text" id="yarn_custom_path" name="yarn_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" id="use_yarn" checked="checked">
+            <span class="check"></span>
+            <span class="text-switch">Use yarn?</span>
+          </label>
+
         </div>
       </div>
 
@@ -180,6 +192,8 @@
           let project_settings = {
             "node_js_custom_path": $("#node_js_custom_path").val().trim(),
             "npm_custom_path": $("#npm_custom_path").val().trim(),
+            "yarn_custom_path": $("#yarn_custom_path").val().trim(),
+            "use_yarn": ($("#use_yarn").prop("checked")) ? true : false,
             "build_flow": {
               "source_folder": "",
               "destination_folder": "",
@@ -260,18 +274,21 @@
               $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/create_new_project/style.css"}">`)
             }
 
-            let html = fs.readFileSync(__dirname+"/../../"+type+"/create_new_project/index.html", "UTF-8")
             let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
 
             project_types_options[type] = client_js
 
-            let step = $('<div class="step" id="'+type+'"></div>')
-            let step_content = $('<div class="step-content"></div>')
-            step_content.append(html)
-            step.append(step_content)
-            $("#wizard").append( step )
+            if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/index.html") ){
+              let html = fs.readFileSync(__dirname+"/../../"+type+"/create_new_project/index.html", "UTF-8")
+              
 
-            one_add_at_least = true
+              let step = $('<div class="step" id="'+type+'"></div>')
+              let step_content = $('<div class="step-content"></div>')
+              step_content.append(html)
+              step.append(step_content)
+              $("#wizard").append( step )
+              one_add_at_least = true
+            }
           }
         }
 

@@ -2,6 +2,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   name_cli = ""
   bin_path = ""
+  is_node = True
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -14,9 +15,11 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   placeholders = {}
   hide_panel_on_success = True
   process = None
+  show_animation_loader = True
+  animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
+  interval_animation = None
 
   def run(self, **kwargs):
-
     self.settings = get_project_settings()
     if self.settings:
 
@@ -36,6 +39,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.status_message_after_on_success = self.substitute_placeholders( str(kwargs.get("status_message_after_on_success")) if "status_message_after_on_success" in kwargs else self.status_message_after_on_success )
       self.status_message_after_on_error = self.substitute_placeholders( str(kwargs.get("status_message_after_on_error")) if "status_message_after_on_error" in kwargs else self.status_message_after_on_error )
       self.hide_panel_on_success = kwargs.get("hide_panel_on_success") if "hide_panel_on_success" in kwargs else self.hide_panel_on_success
+      self.show_animation_loader = kwargs.get("show_animation_loader") if "show_animation_loader" in kwargs else self.show_animation_loader
       
       if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
 
@@ -63,12 +67,19 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     if ( self.can_execute() ) :
 
-      node = NodeJS(check_local = True)
+      if self.animation_loader and self.show_animation_loader :
+        self.interval_animation = RepeatedTimer(self.animation_loader.sec, self.animation_loader.animate)
 
-      if self.bin_path :
-        node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+      if self.is_node :
+        node = NodeJS(check_local = True)
+
+        if self.bin_path :
+          node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        else :
+          node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
       else :
-        node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        Util.execute(self.cli, self.command_with_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
 
   def print_panel(self, line, process):
     global manage_cli_window_command_processes
@@ -105,6 +116,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
       self.on_done()
+
+      if self.animation_loader and self.interval_animation :
+        self.animation_loader.on_complete()
+        self.interval_animation.stop()
 
   def substitute_placeholders(self, variable):
     

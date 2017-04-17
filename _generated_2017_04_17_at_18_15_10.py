@@ -150,82 +150,48 @@ def get_node_js_custom_path():
   return ""
 
 def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "settings.sublime-settings"))
   if json_file and "npm_custom_path" in json_file :
     return json_file.get("npm_custom_path").strip()
+  return ""
+
+def get_yarn_custom_path():
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "settings.sublime-settings"))
+  if json_file and "yarn_custom_path" in json_file :
+    return json_file.get("yarn_custom_path").strip()
   return ""
 
 class NodeJS(object):
   def __init__(self, check_local = False):
     self.check_local = check_local
-
-  def eval(self, js, eval_type="eval", strict_mode=False):
-
-    node_js_path = ""
+    self.node_js_path = ""
 
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
       else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        self.node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
     else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
+      self.node_js_path = NODE_JS_PATH_EXECUTABLE
+
+  def eval(self, js, eval_type="eval", strict_mode=False):
 
     js = ("'use strict'; " if strict_mode else "") + js
     eval_type = "--eval" if eval_type == "eval" else "--print"
 
-    args = ""
+    args = [self.node_js_path, eval_type, js]
 
-    if NODE_JS_OS == 'win':
-      args = [node_js_path, eval_type, js]
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(eval_type)+" "+shlex.quote(js)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
-
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
+    return Util.execute(args[0], args[1:])
 
   def getCurrentNodeJSVersion(self) :
 
-    node_js_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-
     args = ""
 
     if NODE_JS_OS == 'win':
-      args = [node_js_path, "-v"]
+      args = [self.node_js_path, "-v"]
     else :
-      args = shlex.quote(node_js_path)+" -v"
+      args = shlex.quote(self.node_js_path)+" -v"
 
     p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
@@ -254,104 +220,17 @@ class NodeJS(object):
 
   def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
 
-    node_js_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-
     if NODE_JS_OS == 'win':
       if is_from_bin :
         args = [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
-        args = [node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
+        args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     else :
-      command_args_list = list()
-      for command_arg in command_args :
-        command_args_list.append(shlex.quote(command_arg))
-      command_args = " ".join(command_args_list)
-      args = shlex.quote(node_js_path)+" "+shlex.quote(os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args
+      args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     
-    print(args)
+    return Util.execute(args[0], args[1:], chdir, wait_terminate, func_stdout, args_func_stdout)
     
-    #owd = os.getcwd()
-    if chdir :
-      os.chdir(chdir)
-
-    if wait_terminate :
-
-      p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-      # if chdir:
-      #   os.chdir(owd)
-
-      lines_output = ""
-      lines_error = ""
-      no_error = True
-
-      for line in p.stdout.readlines():
-        line = codecs.decode(line, "utf-8", "ignore").strip()
-        if line :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-      for line in p.stderr.readlines():
-        line = codecs.decode(line, "utf-8", "ignore").strip()
-        if line :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-      if len(lines_error) > 0 :
-        no_error = False
-
-      lines = lines_output + ( b"\n" if type(lines_output) is bytes else "\n" )  + lines_error
-
-      p.terminate()
-
-      return [no_error, lines]
-
-    elif not wait_terminate and func_stdout :
-
-      Util.create_and_start_thread(self.wrapper_func_stdout, "", (args, func_stdout, args_func_stdout))
-      
-  def wrapper_func_stdout(self, args, func_stdout, args_func_stdout=[]):
-    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid) as p:
-
-      func_stdout(None, p, *args_func_stdout)
-      flag_error = False
-      
-      for line in p.stdout:
-        line = codecs.decode(line, "utf-8", "ignore")
-        func_stdout(line, p, *args_func_stdout)
-
-      for line in p.stderr:
-        line = codecs.decode(line, "utf-8", "ignore")
-        if len(line.strip()) > 0 and not line.strip().startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) and not flag_error:
-          flag_error = True  
-        func_stdout(line, p, *args_func_stdout)
-
-      if not flag_error:
-        func_stdout("OUTPUT-SUCCESS", p, *args_func_stdout)
-      else :
-        func_stdout("OUTPUT-ERROR", p, *args_func_stdout)
-
-      func_stdout("OUTPUT-DONE", p, *args_func_stdout)
-      
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
-
-    node_js_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
 
     fp = None
     if use_fp_temp :
@@ -364,7 +243,7 @@ class NodeJS(object):
       if is_from_bin :
         args = [os.path.join(NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
       else :
-        args = [node_js_path, os.path.join(NODE_MODULES_BIN_PATH, command)] + command_args
+        args = [self.node_js_path, os.path.join(NODE_MODULES_BIN_PATH, command)] + command_args
       if fp :
         args += ["<", fp.name]
     else :
@@ -372,7 +251,7 @@ class NodeJS(object):
       for command_arg in command_args :
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
-      args = shlex.quote(node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
+      args = shlex.quote(self.node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
     try:
       output = None
@@ -448,6 +327,23 @@ class NodeJS(object):
 class NPM(object):
   def __init__(self, check_local = False):
     self.check_local = check_local
+    self.node_js_path = ""
+    self.npm_path = ""
+    self.yarn_path = ""
+
+    if self.check_local :
+      settings = get_project_settings()
+      if settings :
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
+        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or ""
+      else :
+        self.node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        self.npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
+        self.yarn_path = get_yarn_custom_path() or ""
+    else :
+      self.node_js_path = NODE_JS_PATH_EXECUTABLE
+      self.npm_path = NPM_PATH_EXECUTABLE
 
   def install_all(self, save = False, chdir="") :
 
@@ -1367,7 +1263,88 @@ class Util(object) :
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
 
+  @staticmethod
+  def execute(command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
+
+    if sublime.platform() == 'windows':
+      args = [command] + command_args
+    else :
+      command_args_list = list()
+      for command_arg in command_args :
+        command_args_list.append(shlex.quote(command_arg))
+      command_args = " ".join(command_args_list)
+      args = shlex.quote(command)+" "+command_args
+    
+    print(args)
+
+    if wait_terminate :
+
+      with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
+
+        lines_output = []
+        lines_error = []
+
+        thread_output = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_output, "", (p, None, [], lines_output))
+
+        thread_error = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_error, "", (p, None, [], lines_error))
+
+        if thread_output:
+          thread_output.join()
+
+        if thread_error:
+          thread_error.join()
+
+        lines = "\n".join(lines_output) + "\n" + "\n".join(lines_error)
+
+        return [True if p.wait() == 0 else False, lines]
+
+    elif not wait_terminate and func_stdout :
+
+      return Util.create_and_start_thread(Util._wrapper_func_stdout, "", (args, func_stdout, args_func_stdout, chdir))
   
+  @staticmethod
+  def _wrapper_func_stdout(args, func_stdout, args_func_stdout=[], chdir=""):
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
+
+      func_stdout(None, p, *args_func_stdout)
+      
+      thread_output = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_output, "", (p, func_stdout, args_func_stdout))
+
+      thread_error = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_error, "", (p, func_stdout, args_func_stdout))
+
+      if thread_output:
+        thread_output.join()
+
+      if thread_error:
+        thread_error.join()
+
+      if p.wait() == 0:
+        func_stdout("OUTPUT-SUCCESS", p, *args_func_stdout)
+      else :
+        func_stdout("OUTPUT-ERROR", p, *args_func_stdout)
+
+      func_stdout("OUTPUT-DONE", p, *args_func_stdout)
+
+  @staticmethod
+  def _wrapper_func_stdout_listen_output(process, func_stdout=None, args_func_stdout=[], lines_output=[]):
+    for line in process.stdout:
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      line = re.sub(r'[\n\r]', '\n', line)
+      lines_output.append(line)
+      line = line + ( b"\n" if type(line) is bytes else "\n" ) 
+      if func_stdout :
+        func_stdout(line, process, *args_func_stdout)
+  
+  @staticmethod
+  def _wrapper_func_stdout_listen_error(process, func_stdout=None, args_func_stdout=[], lines_error=[]):
+    for line in process.stderr:
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      line = re.sub(r'[\n\r]', '\n', line)
+      lines_error.append(line)
+      line = line + ( b"\n" if type(line) is bytes else "\n" ) 
+      if func_stdout :
+        func_stdout(line, process, *args_func_stdout)
+
 import time, os, re, threading, socket, traceback, sys, struct
 
 class mySocketClient():
@@ -3222,7 +3199,7 @@ def action_result(action):
   str_selected = view.substr(sel).strip()
 
   if action == "copy_to_clipboard" :
-    sublime.set_clipboard(result_js)
+    sublime.set_clipboard(result_js[1])
 
   elif action == "replace_text" :
     view.run_command("replace_text")
@@ -3231,14 +3208,14 @@ def action_result(action):
     view.run_command("view_result_formatted")
 
   view.hide_popup()
-  result_js = ""
+  result_js = []
 
 class view_result_formattedCommand(sublime_plugin.TextCommand):
   def run(self, edit):
     global result_js
     global region_selected
 
-    sublime.active_window().show_input_panel("Result", result_js, back_to_popup, back_to_popup, back_to_popup)
+    sublime.active_window().show_input_panel("Result", result_js[1], back_to_popup, back_to_popup, back_to_popup)
 
 class replace_textCommand(sublime_plugin.TextCommand):
 
@@ -3248,11 +3225,11 @@ class replace_textCommand(sublime_plugin.TextCommand):
 
     view = self.view
     sel = Util.trim_Region(view, region_selected)
-    view.replace(edit, sel, result_js)
+    view.replace(edit, sel, result_js[1])
     if region_selected.a < region_selected.b :
-      region_selected.b = region_selected.a+len(result_js)
+      region_selected.b = region_selected.a+len(result_js[1])
     else :
-      region_selected.a = region_selected.b+len(result_js)
+      region_selected.a = region_selected.b+len(result_js[1])
 
 class ej_hide_popupEventListener(sublime_plugin.EventListener):
   def on_modified_async(self, view) :
@@ -3300,17 +3277,20 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
     try:
       node = NodeJS(check_local=True)
       result_js = node.eval(str_selected, eval_type=eval_type, strict_mode=True)
-      popup_is_showing = True
-      view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
-        <p class="result">Result: """+result_js+"""</p>
-        <div><a href="view_result_formatted">View result with all spaces(\\t,\\n,...)</a></div>
-        <div><a href="copy_to_clipboard">Copy result to clipboard</a></div>
-        <div><a href="replace_text">Replace text with result</a></div>
-        </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 400, 400, action_result)
+      if result_js[0] :
+        popup_is_showing = True
+        view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
+          <p class="result">Result: """+result_js[1]+"""</p>
+          <div><a href="view_result_formatted">View result formatted with space(\\t,\\n,...)</a></div>
+          <div><a href="copy_to_clipboard">Copy result to clipboard</a></div>
+          <div><a href="replace_text">Replace text with result</a></div>
+          </div>
+        </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 400, 400, action_result)
+      else :
+        sublime.active_window().show_input_panel("Result", "Error: "+result_js[1], None , None, None)
     except Exception as e:
       #sublime.error_message("Error: "+traceback.format_exc())
-      sublime.active_window().show_input_panel("Result", "Error: "+traceback.format_exc(), lambda x: "" , lambda x: "", lambda : "")
+      sublime.active_window().show_input_panel("Result", "Error: "+traceback.format_exc(), None , None, None)
 
   def is_enabled(self, **args) :
     view = self.view
@@ -4212,31 +4192,37 @@ def is_project_view(view) :
     return view.file_name() and view.file_name().startswith(settings["project_dir_name"])
   return False
 
-def get_project_settings():
+def get_project_settings(project_dir_name = ""):
 
   project_settings = dict()
 
-  project_file_name = sublime.active_window().project_file_name()
-  project_dir_name = ""
+  project_file_name = sublime.active_window().project_file_name() if not project_dir_name else ""
   settings_dir_name = ""
+
+  if not project_dir_name :
+
+    if project_file_name :
+      project_dir_name = os.path.dirname(project_file_name)
+    else :
+      # try to look at window.folders()
+      folder = sublime.active_window().folders()
+      if len(folder) > 0:
+        project_dir_name = folder[0]
+
+  if not project_dir_name :
+    return dict()
+
   if project_file_name :
-    project_dir_name = os.path.dirname(project_file_name)
     settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
     if not os.path.isdir(settings_dir_name) :
       return dict()
   else :
-    # try to look at window.folders()
-    folder = sublime.active_window().folders()
-    if len(folder) > 0:
-      project_dir_name = folder[0]
-      for file in os.listdir(project_dir_name) :
-        if file.endswith(".sublime-project") :
-          project_file_name = os.path.join(project_dir_name, file)
-          break
-      settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
-      if not os.path.isdir(settings_dir_name) :
-        return dict()
-    else :
+    for file in os.listdir(project_dir_name) :
+      if file.endswith(".sublime-project") :
+        project_file_name = os.path.join(project_dir_name, file)
+        break
+    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    if not os.path.isdir(settings_dir_name) :
       return dict()
         
   project_settings["project_file_name"] = project_file_name
@@ -4417,6 +4403,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   name_cli = ""
   bin_path = ""
+  is_node = True
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -4429,9 +4416,11 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   placeholders = {}
   hide_panel_on_success = True
   process = None
+  show_animation_loader = True
+  animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
+  interval_animation = None
 
   def run(self, **kwargs):
-
     self.settings = get_project_settings()
     if self.settings:
 
@@ -4451,6 +4440,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.status_message_after_on_success = self.substitute_placeholders( str(kwargs.get("status_message_after_on_success")) if "status_message_after_on_success" in kwargs else self.status_message_after_on_success )
       self.status_message_after_on_error = self.substitute_placeholders( str(kwargs.get("status_message_after_on_error")) if "status_message_after_on_error" in kwargs else self.status_message_after_on_error )
       self.hide_panel_on_success = kwargs.get("hide_panel_on_success") if "hide_panel_on_success" in kwargs else self.hide_panel_on_success
+      self.show_animation_loader = kwargs.get("show_animation_loader") if "show_animation_loader" in kwargs else self.show_animation_loader
       
       if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
 
@@ -4478,12 +4468,19 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     if ( self.can_execute() ) :
 
-      node = NodeJS(check_local = True)
+      if self.animation_loader and self.show_animation_loader :
+        self.interval_animation = RepeatedTimer(self.animation_loader.sec, self.animation_loader.animate)
 
-      if self.bin_path :
-        node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+      if self.is_node :
+        node = NodeJS(check_local = True)
+
+        if self.bin_path :
+          node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        else :
+          node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
       else :
-        node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        Util.execute(self.cli, self.command_with_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
 
   def print_panel(self, line, process):
     global manage_cli_window_command_processes
@@ -4520,6 +4517,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
 
       self.on_done()
+
+      if self.animation_loader and self.interval_animation :
+        self.animation_loader.on_complete()
+        self.interval_animation.stop()
 
   def substitute_placeholders(self, variable):
     
@@ -4577,7 +4578,7 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
         "id": "tools",
         "children": [
           {
-            "caption": "Npm",
+            "caption": "Npm/Yarn",
             "id": "npm",
             "children":[
               {
@@ -4687,9 +4688,17 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
         menu.write(json.dumps(default_value))
 
 class manage_npmCommand(manage_cliCommand):
-  cli = "npm"
-  name_cli = "NPM"
+  cli = "yarn"
+  name_cli = "YARN"
   bin_path = ""
+
+  def callback_after_get_settings(self, **kwargs) :
+    if not self.settings["project_settings"]["use_yarn"] :
+      self.cli = "npm"
+      self.name_cli = "NPM"
+    else :
+      self.cli = "yarn"
+      self.name_cli = "YARN"
 
   def is_enabled(self):
     settings = get_project_settings()
@@ -5198,7 +5207,8 @@ def create_react_project(json_data):
 
   node = NodeJS()
 
-  node.execute('create-react-app', ["temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+  #node.execute('create-react-app', ["temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
     
   return json_data
 

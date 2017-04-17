@@ -33,7 +33,7 @@ def action_result(action):
   str_selected = view.substr(sel).strip()
 
   if action == "copy_to_clipboard" :
-    sublime.set_clipboard(result_js)
+    sublime.set_clipboard(result_js[1])
 
   elif action == "replace_text" :
     view.run_command("replace_text")
@@ -42,14 +42,14 @@ def action_result(action):
     view.run_command("view_result_formatted")
 
   view.hide_popup()
-  result_js = ""
+  result_js = []
 
 class view_result_formattedCommand(sublime_plugin.TextCommand):
   def run(self, edit):
     global result_js
     global region_selected
 
-    sublime.active_window().show_input_panel("Result", result_js, back_to_popup, back_to_popup, back_to_popup)
+    sublime.active_window().show_input_panel("Result", result_js[1], back_to_popup, back_to_popup, back_to_popup)
 
 class replace_textCommand(sublime_plugin.TextCommand):
 
@@ -59,11 +59,11 @@ class replace_textCommand(sublime_plugin.TextCommand):
 
     view = self.view
     sel = Util.trim_Region(view, region_selected)
-    view.replace(edit, sel, result_js)
+    view.replace(edit, sel, result_js[1])
     if region_selected.a < region_selected.b :
-      region_selected.b = region_selected.a+len(result_js)
+      region_selected.b = region_selected.a+len(result_js[1])
     else :
-      region_selected.a = region_selected.b+len(result_js)
+      region_selected.a = region_selected.b+len(result_js[1])
 
 class ej_hide_popupEventListener(sublime_plugin.EventListener):
   def on_modified_async(self, view) :
@@ -111,17 +111,20 @@ class evaluate_javascriptCommand(sublime_plugin.TextCommand):
     try:
       node = NodeJS(check_local=True)
       result_js = node.eval(str_selected, eval_type=eval_type, strict_mode=True)
-      popup_is_showing = True
-      view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
-        <p class="result">Result: """+result_js+"""</p>
-        <div><a href="view_result_formatted">View result with all spaces(\\t,\\n,...)</a></div>
-        <div><a href="copy_to_clipboard">Copy result to clipboard</a></div>
-        <div><a href="replace_text">Replace text with result</a></div>
-        </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 400, 400, action_result)
+      if result_js[0] :
+        popup_is_showing = True
+        view.show_popup("<html><head></head><body>"+ej_css+"""<div class=\"container\">
+          <p class="result">Result: """+result_js[1]+"""</p>
+          <div><a href="view_result_formatted">View result formatted with space(\\t,\\n,...)</a></div>
+          <div><a href="copy_to_clipboard">Copy result to clipboard</a></div>
+          <div><a href="replace_text">Replace text with result</a></div>
+          </div>
+        </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 400, 400, action_result)
+      else :
+        sublime.active_window().show_input_panel("Result", "Error: "+result_js[1], None , None, None)
     except Exception as e:
       #sublime.error_message("Error: "+traceback.format_exc())
-      sublime.active_window().show_input_panel("Result", "Error: "+traceback.format_exc(), lambda x: "" , lambda x: "", lambda : "")
+      sublime.active_window().show_input_panel("Result", "Error: "+traceback.format_exc(), None , None, None)
 
   def is_enabled(self, **args) :
     view = self.view

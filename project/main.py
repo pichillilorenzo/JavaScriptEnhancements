@@ -35,31 +35,37 @@ def is_project_view(view) :
     return view.file_name() and view.file_name().startswith(settings["project_dir_name"])
   return False
 
-def get_project_settings():
+def get_project_settings(project_dir_name = ""):
 
   project_settings = dict()
 
-  project_file_name = sublime.active_window().project_file_name()
-  project_dir_name = ""
+  project_file_name = sublime.active_window().project_file_name() if not project_dir_name else ""
   settings_dir_name = ""
+
+  if not project_dir_name :
+
+    if project_file_name :
+      project_dir_name = os.path.dirname(project_file_name)
+    else :
+      # try to look at window.folders()
+      folder = sublime.active_window().folders()
+      if len(folder) > 0:
+        project_dir_name = folder[0]
+
+  if not project_dir_name :
+    return dict()
+
   if project_file_name :
-    project_dir_name = os.path.dirname(project_file_name)
     settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
     if not os.path.isdir(settings_dir_name) :
       return dict()
   else :
-    # try to look at window.folders()
-    folder = sublime.active_window().folders()
-    if len(folder) > 0:
-      project_dir_name = folder[0]
-      for file in os.listdir(project_dir_name) :
-        if file.endswith(".sublime-project") :
-          project_file_name = os.path.join(project_dir_name, file)
-          break
-      settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
-      if not os.path.isdir(settings_dir_name) :
-        return dict()
-    else :
+    for file in os.listdir(project_dir_name) :
+      if file.endswith(".sublime-project") :
+        project_file_name = os.path.join(project_dir_name, file)
+        break
+    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    if not os.path.isdir(settings_dir_name) :
       return dict()
         
   project_settings["project_file_name"] = project_file_name

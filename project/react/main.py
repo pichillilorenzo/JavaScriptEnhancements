@@ -22,7 +22,8 @@ def create_react_project(json_data):
 
   node = NodeJS()
 
-  node.execute('create-react-app', ["temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+  #node.execute('create-react-app', ["temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
     
   return json_data
 

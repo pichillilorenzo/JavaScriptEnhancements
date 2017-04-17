@@ -432,4 +432,84 @@ class Util(object) :
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
 
+  @staticmethod
+  def execute(command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
+
+    if sublime.platform() == 'windows':
+      args = [command] + command_args
+    else :
+      command_args_list = list()
+      for command_arg in command_args :
+        command_args_list.append(shlex.quote(command_arg))
+      command_args = " ".join(command_args_list)
+      args = shlex.quote(command)+" "+command_args
+    
+    print(args)
+
+    if wait_terminate :
+
+      with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
+
+        lines_output = []
+        lines_error = []
+
+        thread_output = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_output, "", (p, None, [], lines_output))
+
+        thread_error = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_error, "", (p, None, [], lines_error))
+
+        if thread_output:
+          thread_output.join()
+
+        if thread_error:
+          thread_error.join()
+
+        lines = "\n".join(lines_output) + "\n" + "\n".join(lines_error)
+
+        return [True if p.wait() == 0 else False, lines]
+
+    elif not wait_terminate and func_stdout :
+
+      return Util.create_and_start_thread(Util._wrapper_func_stdout, "", (args, func_stdout, args_func_stdout, chdir))
   
+  @staticmethod
+  def _wrapper_func_stdout(args, func_stdout, args_func_stdout=[], chdir=""):
+    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
+
+      func_stdout(None, p, *args_func_stdout)
+      
+      thread_output = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_output, "", (p, func_stdout, args_func_stdout))
+
+      thread_error = Util.create_and_start_thread(Util._wrapper_func_stdout_listen_error, "", (p, func_stdout, args_func_stdout))
+
+      if thread_output:
+        thread_output.join()
+
+      if thread_error:
+        thread_error.join()
+
+      if p.wait() == 0:
+        func_stdout("OUTPUT-SUCCESS", p, *args_func_stdout)
+      else :
+        func_stdout("OUTPUT-ERROR", p, *args_func_stdout)
+
+      func_stdout("OUTPUT-DONE", p, *args_func_stdout)
+
+  @staticmethod
+  def _wrapper_func_stdout_listen_output(process, func_stdout=None, args_func_stdout=[], lines_output=[]):
+    for line in process.stdout:
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      line = re.sub(r'[\n\r]', '\n', line)
+      lines_output.append(line)
+      line = line + ( b"\n" if type(line) is bytes else "\n" ) 
+      if func_stdout :
+        func_stdout(line, process, *args_func_stdout)
+  
+  @staticmethod
+  def _wrapper_func_stdout_listen_error(process, func_stdout=None, args_func_stdout=[], lines_error=[]):
+    for line in process.stderr:
+      line = codecs.decode(line, "utf-8", "ignore").strip()
+      line = re.sub(r'[\n\r]', '\n', line)
+      lines_error.append(line)
+      line = line + ( b"\n" if type(line) is bytes else "\n" ) 
+      if func_stdout :
+        func_stdout(line, process, *args_func_stdout)

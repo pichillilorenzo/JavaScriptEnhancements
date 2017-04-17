@@ -28,6 +28,8 @@ module.exports = {
   "project_settings": {
     "node_js_custom_path": "",
     "npm_custom_path": "",
+    "yarn_custom_path": "",
+    "use_yarn": true,
     "build_flow": {
       "source_folder": "",
       "destination_folder": "",

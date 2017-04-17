@@ -109,6 +109,18 @@
             <input type="text" id="npm_custom_path" name="npm_custom_path">
             <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
           </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="yarn_custom_path">Yarn Custom Path:</label>
+            <input type="text" id="yarn_custom_path" name="yarn_custom_path">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" id="use_yarn">
+            <span class="check"></span>
+            <span class="text-switch">Use yarn?</span>
+          </label>
           
           <h3>Build Flow</h3>
 
@@ -287,6 +299,8 @@
         let project_settings = {
           "node_js_custom_path": $("#node_js_custom_path").val().trim(),
           "npm_custom_path": $("#npm_custom_path").val().trim(),
+          "yarn_custom_path": $("#yarn_custom_path").val().trim(),
+          "use_yarn": ($("#use_yarn").prop("checked")) ? true : false,
           "build_flow": {
             "source_folder": $("#build_flow_source_folder").val().trim(),
             "destination_folder": $("#build_flow_destination_folder").val().trim(),
@@ -417,8 +431,12 @@
       let project_settings = config.settings.project_settings
       $("#node_js_custom_path").val(project_settings.node_js_custom_path),
       $("#npm_custom_path").val(project_settings.npm_custom_path)
+      $("#yarn_custom_path").val(project_settings.yarn_custom_path)
+      $("#use_yarn").prop( "checked", project_settings.use_yarn )
+      $("#npm_custom_path").val(project_settings.npm_custom_path)
       $("#build_flow_source_folder").val(project_settings.build_flow.source_folder)
       $("#build_flow_destination_folder").val(project_settings.build_flow.destination_folder)
+
       utilWeb.set_options(".build_flow_options", project_settings.build_flow.options)
 
       for(let i = 0, length1 = project_type.length; i < length1; i++){
