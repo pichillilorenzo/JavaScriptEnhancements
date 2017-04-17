@@ -44,7 +44,7 @@ Flow works with:
 You can find more information about Flow on <a href="https://github.com/facebook/flow">https://github.com/facebook/flow</a>
 </p>
 
-<h2>Some features could require ```git``` command</h2>
+<h2>Some features could require <code>git</code> command</h2>
 
 <h2>Examples</h2>
 
