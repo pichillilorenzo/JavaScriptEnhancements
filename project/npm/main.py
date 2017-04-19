@@ -104,7 +104,8 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
                 "args": {
                   "command_with_options": ["run", script],
                   "output_panel_name": "panel_"+script+"_npm_script",
-                  "hide_panel_on_success": True
+                  "hide_panel_on_success": True,
+                  "ask_custom_options": True
                 }
               })
             menu.seek(0)
@@ -121,17 +122,8 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
         menu.write(json.dumps(default_value))
 
 class manage_npmCommand(manage_cliCommand):
-  cli = "yarn"
-  name_cli = "YARN"
-  bin_path = ""
-
-  def callback_after_get_settings(self, **kwargs) :
-    if not self.settings["project_settings"]["use_yarn"] :
-      self.cli = "npm"
-      self.name_cli = "NPM"
-    else :
-      self.cli = "yarn"
-      self.name_cli = "YARN"
+  is_node = False
+  is_npm = True
 
   def is_enabled(self):
     settings = get_project_settings()

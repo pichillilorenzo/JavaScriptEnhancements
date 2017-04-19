@@ -136,12 +136,20 @@ NODE_JS_OS = os_switcher.get(sublime.platform())
 NODE_JS_BINARIES_FOLDER_PLATFORM = os.path.join(NODE_JS_BINARIES_FOLDER, NODE_JS_OS + "-" + PLATFORM_ARCHITECTURE)
 NODE_JS_ARCHITECTURE = "x64" if PLATFORM_ARCHITECTURE == "64bit" else "x86"
 NODE_JS_BINARY_NAME = "node" if NODE_JS_OS != 'win' else "node.exe"
-NPM_NAME = "npm" if NODE_JS_OS != 'win' else "npm.cmd"
-NODE_JS_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NODE_JS_BINARY_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NODE_JS_BINARY_NAME)
-NPM_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NPM_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NPM_NAME)
+
 NODE_MODULES_FOLDER_NAME = "node_modules"
 NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
 NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
+
+NODE_JS_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NODE_JS_BINARY_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NODE_JS_BINARY_NAME)
+
+NPM_NAME = "npm" if NODE_JS_OS != 'win' else "npm.cmd"
+NPM_PATH_EXECUTABLE = os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, "bin", NPM_NAME) if NODE_JS_OS != 'win' else os.path.join(NODE_JS_BINARIES_FOLDER_PLATFORM, NPM_NAME)
+
+YARN_NAME = "yarn" if NODE_JS_OS != 'win' else "yarn.cmd"
+YARN_PATH_EXECUTABLE = os.path.join(NODE_MODULES_BIN_PATH, YARN_NAME)
+
+
 
 def get_node_js_custom_path():
   json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
@@ -180,43 +188,20 @@ class NodeJS(object):
     js = ("'use strict'; " if strict_mode else "") + js
     eval_type = "--eval" if eval_type == "eval" else "--print"
 
-    args = [self.node_js_path, eval_type, js]
+    args = [eval_type, js]
 
-    return Util.execute(args[0], args[1:])
+    return self.execute(args[0], args[1:])
 
   def getCurrentNodeJSVersion(self) :
 
-    args = ""
+    args = [self.node_js_path, "-v"]
 
-    if NODE_JS_OS == 'win':
-      args = [self.node_js_path, "-v"]
-    else :
-      args = shlex.quote(self.node_js_path)+" -v"
+    result = Util.execute(args[0], args[1:])
 
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
+    if result[0] :
+      return result[1].strip()
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output.strip()
-
-    p.terminate()
-
-    return lines
+    raise Exception(result[1])
 
   def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
 
@@ -228,7 +213,7 @@ class NodeJS(object):
     else :
       args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     
-    return Util.execute(args[0], args[1:], chdir, wait_terminate, func_stdout, args_func_stdout)
+    return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
@@ -330,248 +315,59 @@ class NPM(object):
     self.node_js_path = ""
     self.npm_path = ""
     self.yarn_path = ""
+    self.cli_path = ""
 
     if self.check_local :
       settings = get_project_settings()
       if settings :
         self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
         self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or ""
+        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_PATH_EXECUTABLE
+
+        if settings["project_settings"]["use_yarn"] and self.yarn_path :
+          self.cli_path = self.yarn_path
+        else :
+          self.cli_path = self.npm_path
+
       else :
         self.node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
         self.npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-        self.yarn_path = get_yarn_custom_path() or ""
+        self.yarn_path = get_yarn_custom_path() or YARN_PATH_EXECUTABLE
+
+        self.cli_path = self.npm_path
     else :
       self.node_js_path = NODE_JS_PATH_EXECUTABLE
       self.npm_path = NPM_PATH_EXECUTABLE
+      self.yarn_path = YARN_PATH_EXECUTABLE
 
-  def install_all(self, save = False, chdir="") :
+      self.cli_path = self.npm_path
 
-    node_js_path = ""
-    npm_path = ""
+  def execute(self, command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
+    args = []
 
     if NODE_JS_OS == 'win':
-      args = [npm_path, "install", "--save"] if save else [npm_path, "install"]
+      args = [self.cli_path, command] + command_args
     else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" install" + (" --save" if save else "")
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      args = [self.node_js_path, self.cli_path, command] + command_args
     
-    lines_output = ""
-    lines_error = ""
+    return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+  def install_all(self, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+    return self.execute('install', (["--save"] if save else []), chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
+  def update_all(self, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    lines = lines_output
+    return self.execute('update', (["--save"] if save else []), chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
-    p.terminate()
-
-    return lines
-
-  def update_all(self, save = False, chdir="") :
-
-    node_js_path = ""
-    npm_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
-    if NODE_JS_OS == 'win':
-      args = [npm_path, "update", "--save"] if save else [npm_path, "update"]
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" update" + (" --save" if save else "")
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  def install(self, package_name, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
     
-    lines_output = ""
-    lines_error = ""
+    return self.execute('install', (["--save"] if save else []) + [package_name], chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
+  
+  def update(self, package_name, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
-
-  def install(self, package_name, save = False, chdir="") :
-
-    node_js_path = ""
-    npm_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
-    if NODE_JS_OS == 'win':
-      args = [npm_path, "install", "--save", package_name] if save else [npm_path, "install", package_name] 
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" install" + (" --save" if save else "") + " " + shlex.quote(package_name)
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
-
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
-
-  def update(self, package_name, save = False, chdir="") :
-
-    node_js_path = ""
-    npm_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
-    if NODE_JS_OS == 'win':
-      args = [npm_path, "update", "--save", package_name] if save else [npm_path, "update", package_name] 
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" update" + (" --save" if save else "") + " " + shlex.quote(package_name)
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-    
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
-
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
+    return self.execute('update', (["--save"] if save else []) + [package_name], chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
   def getPackageJson(self):
 
@@ -589,53 +385,17 @@ class NPM(object):
 
   def getCurrentNPMVersion(self) :
 
-    node_js_path = ""
-    npm_path = ""
-    
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
     if NODE_JS_OS == 'win':
-      args = [npm_path, "-v"]
+      args = [self.cli_path, "-v"]
     else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" -v"
+      args = [self.node_js_path, self.cli_path, "-v"]
 
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
+    result = Util.execute(args[0], args[1:])
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+    if result[0] :
+      return result[1].strip()
 
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" )
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output.strip()
-
-    p.terminate()
-
-    return lines
+    raise Exception(result[1])
 
 import sublime
 import traceback, threading, os, sys, imp, tarfile, zipfile, urllib, json, shutil
@@ -4399,11 +4159,14 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
     self.on_activated_async(view)
 
 
+import shlex
+
 class manage_cliCommand(sublime_plugin.WindowCommand):
   cli = ""
   name_cli = ""
   bin_path = ""
   is_node = True
+  is_npm = False
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
@@ -4419,6 +4182,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   show_animation_loader = True
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
   interval_animation = None
+  ask_custom_options = False
 
   def run(self, **kwargs):
     self.settings = get_project_settings()
@@ -4427,7 +4191,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.callback_after_get_settings(**kwargs)
 
       self.cli = kwargs.get("cli") if "cli" in kwargs else self.cli
-      if not self.cli:
+      if not self.cli and not self.is_npm  :
         raise Exception("'cli' field of the manage_cliCommand not defined.")
 
       self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options" if "command_with_options" in kwargs else self.command_with_options) )
@@ -4441,6 +4205,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       self.status_message_after_on_error = self.substitute_placeholders( str(kwargs.get("status_message_after_on_error")) if "status_message_after_on_error" in kwargs else self.status_message_after_on_error )
       self.hide_panel_on_success = kwargs.get("hide_panel_on_success") if "hide_panel_on_success" in kwargs else self.hide_panel_on_success
       self.show_animation_loader = kwargs.get("show_animation_loader") if "show_animation_loader" in kwargs else self.show_animation_loader
+      self.ask_custom_options = kwargs.get("ask_custom_options") if "ask_custom_options" in kwargs else self.ask_custom_options
       
       if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
 
@@ -4459,10 +4224,19 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
     if self.status_message_before :
       self.window.status_message(self.name_cli+": "+self.status_message_before)
 
+    self.command_with_options = self.command_with_options + self.append_args_execute()
+
+    if self.ask_custom_options :
+      sublime.active_window().show_input_panel( 'Add custom options', '', lambda custom_options: self.execute(custom_options=shlex.split(custom_options)), None, self.execute )
+      return
+
+    self.execute()
+
+
+  def execute(self, custom_options=[]) :
+
     if self.show_panel :
       self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window)
-
-    self.command_with_options = self.command_with_options + self.append_args_execute()
 
     self.before_execute()
 
@@ -4475,12 +4249,17 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         node = NodeJS(check_local = True)
 
         if self.bin_path :
-          node.execute(self.cli, self.command_with_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
         else :
-          node.execute(self.cli, self.command_with_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+
+      elif self.is_npm :
+        npm = NPM(check_local = True)
+
+        npm.execute(self.command_with_options[0], self.command_with_options[1:] + custom_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
 
       else :
-        Util.execute(self.cli, self.command_with_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        Util.execute(self.cli, self.command_with_options + custom_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
 
   def print_panel(self, line, process):
     global manage_cli_window_command_processes
@@ -4671,7 +4450,8 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
                 "args": {
                   "command_with_options": ["run", script],
                   "output_panel_name": "panel_"+script+"_npm_script",
-                  "hide_panel_on_success": True
+                  "hide_panel_on_success": True,
+                  "ask_custom_options": True
                 }
               })
             menu.seek(0)
@@ -4688,17 +4468,8 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
         menu.write(json.dumps(default_value))
 
 class manage_npmCommand(manage_cliCommand):
-  cli = "yarn"
-  name_cli = "YARN"
-  bin_path = ""
-
-  def callback_after_get_settings(self, **kwargs) :
-    if not self.settings["project_settings"]["use_yarn"] :
-      self.cli = "npm"
-      self.name_cli = "NPM"
-    else :
-      self.cli = "yarn"
-      self.name_cli = "YARN"
+  is_node = False
+  is_npm = True
 
   def is_enabled(self):
     settings = get_project_settings()
@@ -5232,6 +5003,19 @@ class manage_serve_reactCommand(manage_cliCommand):
         port = match.group(1)
         url = "http://localhost:"+port
         webbrowser.open(url) 
+
+  def is_enabled(self) :
+    settings = get_project_settings()
+    if os.path.isdir(os.path.join( settings["project_dir_name"], "build" )) :
+      return True
+    return False
+
+  def is_visible(self) :
+    settings = get_project_settings()
+    if os.path.isdir(os.path.join( settings["project_dir_name"], "build" )) :
+      return True
+    return False
+
 
 import sublime, sublime_plugin
 import subprocess, shutil, traceback

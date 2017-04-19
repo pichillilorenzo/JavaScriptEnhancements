@@ -47,3 +47,15 @@ class manage_serve_reactCommand(manage_cliCommand):
         port = match.group(1)
         url = "http://localhost:"+port
         webbrowser.open(url) 
+
+  def is_enabled(self) :
+    settings = get_project_settings()
+    if os.path.isdir(os.path.join( settings["project_dir_name"], "build" )) :
+      return True
+    return False
+
+  def is_visible(self) :
+    settings = get_project_settings()
+    if os.path.isdir(os.path.join( settings["project_dir_name"], "build" )) :
+      return True
+    return False

@@ -40,43 +40,20 @@ class NodeJS(object):
     js = ("'use strict'; " if strict_mode else "") + js
     eval_type = "--eval" if eval_type == "eval" else "--print"
 
-    args = [self.node_js_path, eval_type, js]
+    args = [eval_type, js]
 
-    return Util.execute(args[0], args[1:])
+    return self.execute(args[0], args[1:])
 
   def getCurrentNodeJSVersion(self) :
 
-    args = ""
+    args = [self.node_js_path, "-v"]
 
-    if NODE_JS_OS == 'win':
-      args = [self.node_js_path, "-v"]
-    else :
-      args = shlex.quote(self.node_js_path)+" -v"
+    result = Util.execute(args[0], args[1:])
 
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
+    if result[0] :
+      return result[1].strip()
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output.strip()
-
-    p.terminate()
-
-    return lines
+    raise Exception(result[1])
 
   def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
 
@@ -88,7 +65,7 @@ class NodeJS(object):
     else :
       args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     
-    return Util.execute(args[0], args[1:], chdir, wait_terminate, func_stdout, args_func_stdout)
+    return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
 
@@ -190,248 +167,59 @@ class NPM(object):
     self.node_js_path = ""
     self.npm_path = ""
     self.yarn_path = ""
+    self.cli_path = ""
 
     if self.check_local :
       settings = get_project_settings()
       if settings :
         self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
         self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or ""
+        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_PATH_EXECUTABLE
+
+        if settings["project_settings"]["use_yarn"] and self.yarn_path :
+          self.cli_path = self.yarn_path
+        else :
+          self.cli_path = self.npm_path
+
       else :
         self.node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
         self.npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-        self.yarn_path = get_yarn_custom_path() or ""
+        self.yarn_path = get_yarn_custom_path() or YARN_PATH_EXECUTABLE
+
+        self.cli_path = self.npm_path
     else :
       self.node_js_path = NODE_JS_PATH_EXECUTABLE
       self.npm_path = NPM_PATH_EXECUTABLE
+      self.yarn_path = YARN_PATH_EXECUTABLE
 
-  def install_all(self, save = False, chdir="") :
+      self.cli_path = self.npm_path
 
-    node_js_path = ""
-    npm_path = ""
+  def execute(self, command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
+    args = []
 
     if NODE_JS_OS == 'win':
-      args = [npm_path, "install", "--save"] if save else [npm_path, "install"]
+      args = [self.cli_path, command] + command_args
     else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" install" + (" --save" if save else "")
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      args = [self.node_js_path, self.cli_path, command] + command_args
     
-    lines_output = ""
-    lines_error = ""
+    return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+  def install_all(self, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+    return self.execute('install', (["--save"] if save else []), chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
+  def update_all(self, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    lines = lines_output
+    return self.execute('update', (["--save"] if save else []), chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
-    p.terminate()
-
-    return lines
-
-  def update_all(self, save = False, chdir="") :
-
-    node_js_path = ""
-    npm_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
-    if NODE_JS_OS == 'win':
-      args = [npm_path, "update", "--save"] if save else [npm_path, "update"]
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" update" + (" --save" if save else "")
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  def install(self, package_name, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
     
-    lines_output = ""
-    lines_error = ""
+    return self.execute('install', (["--save"] if save else []) + [package_name], chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
+  
+  def update(self, package_name, save=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
-
-  def install(self, package_name, save = False, chdir="") :
-
-    node_js_path = ""
-    npm_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
-    if NODE_JS_OS == 'win':
-      args = [npm_path, "install", "--save", package_name] if save else [npm_path, "install", package_name] 
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" install" + (" --save" if save else "") + " " + shlex.quote(package_name)
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
-
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
-
-  def update(self, package_name, save = False, chdir="") :
-
-    node_js_path = ""
-    npm_path = ""
-
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
-    if NODE_JS_OS == 'win':
-      args = [npm_path, "update", "--save", package_name] if save else [npm_path, "update", package_name] 
-    else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" update" + (" --save" if save else "") + " " + shlex.quote(package_name)
-
-    if chdir :
-      os.chdir(chdir)
-    else :
-      os.chdir(PACKAGE_PATH)
-    
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
-
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" ) 
-        else :
-          lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output
-
-    p.terminate()
-
-    return lines
+    return self.execute('update', (["--save"] if save else []) + [package_name], chdir=(PACKAGE_PATH if not chdir else chdir), wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
   def getPackageJson(self):
 
@@ -449,52 +237,16 @@ class NPM(object):
 
   def getCurrentNPMVersion(self) :
 
-    node_js_path = ""
-    npm_path = ""
-    
-    if self.check_local :
-      settings = get_project_settings()
-      if settings :
-        node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-      else :
-        node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-    else :
-      node_js_path = NODE_JS_PATH_EXECUTABLE
-      npm_path = NPM_PATH_EXECUTABLE
-
-    args = ""
-
     if NODE_JS_OS == 'win':
-      args = [npm_path, "-v"]
+      args = [self.cli_path, "-v"]
     else :
-      args = shlex.quote(node_js_path)+" "+shlex.quote(npm_path)+" -v"
+      args = [self.node_js_path, self.cli_path, "-v"]
 
-    p = subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    lines_output = ""
-    lines_error = ""
+    result = Util.execute(args[0], args[1:])
 
-    for line in p.stdout.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        lines_output += line + ( b"\n" if type(line) is bytes else "\n" ) 
+    if result[0] :
+      return result[1].strip()
 
-    for line in p.stderr.readlines():
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      if line :
-        if not line.startswith( b"npm WARN" if type(line) is bytes else "npm WARN" ) :
-          lines_error += line + ( b"\n" if type(line) is bytes else "\n" )
-
-    if len(lines_error) > 0 :
-      p.terminate()
-      raise Exception(lines_error)
-
-    lines = lines_output.strip()
-
-    p.terminate()
-
-    return lines
+    raise Exception(result[1])
 
 ${include NodeJSInstaller.py}
