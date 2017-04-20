@@ -9,6 +9,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
+  line_prefix = ""
+  line_postfix = ""
   status_message_before = ""
   status_message_after_on_success = ""
   status_message_after_on_error = ""
@@ -21,7 +23,9 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   show_animation_loader = True
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
   interval_animation = None
+  syntax = os.path.join("Packages", PACKAGE_NAME,"javascript_enhancements.sublime-syntax")
   ask_custom_options = False
+  wait_panel = 2000
 
   def run(self, **kwargs):
     self.settings = get_project_settings()
@@ -33,9 +37,9 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.cli and not self.is_npm  :
         raise Exception("'cli' field of the manage_cliCommand not defined.")
 
-      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options" if "command_with_options" in kwargs else self.command_with_options) )
-      if not self.command_with_options or len(self.command_with_options) <= 0:
-        raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
+      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options") if "command_with_options" in kwargs else self.command_with_options )
+      # if not self.command_with_options or len(self.command_with_options) <= 0:
+      #   raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
 
       self.show_panel = kwargs.get("show_panel") if "show_panel" in kwargs != None else self.show_panel
       self.output_panel_name = self.substitute_placeholders( str(kwargs.get("output_panel_name") if "output_panel_name" in kwargs else self.output_panel_name) )
@@ -48,7 +52,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       
       if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
 
-        sublime.error_message("This command is already running! If you want execute it, you must stop it first.")
+        sublime.error_message("This command is already running! If you want execute it again, you must stop it first.")
+
+        self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+
         return
 
       sublime.set_timeout_async(lambda: self.manage())
@@ -75,7 +82,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   def execute(self, custom_options=[]) :
 
     if self.show_panel :
-      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window)
+      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window, syntax=self.syntax)
+      self.panel.settings().set("is_output_cli_panel", True)
 
     self.before_execute()
 
@@ -114,7 +122,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       }
 
     if line != None and self.show_panel:
-      self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
+      self.panel.run_command(self.panel_command, {"line": line, "prefix": self.line_prefix, "postfix": self.line_postfix, "hide_panel_on_success": self.hide_panel_on_success, "wait_panel": self.wait_panel})
   
     if line == "OUTPUT-SUCCESS" :
       if self.status_message_after_on_success :

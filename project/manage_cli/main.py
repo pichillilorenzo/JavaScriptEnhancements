@@ -12,3 +12,9 @@ ${include print_panel_cli_command.py}
 ${include enable_menu_project_type_event_listener.py}
 
 ${include manage_cli_command.py}
+
+${include open_live_terminal_command.py}
+
+${include set_read_only_output_cli_event_listener.py}
+
+${include move_history_cli_command.py}

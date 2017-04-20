@@ -1015,11 +1015,12 @@ class Util(object) :
     return None
 
   @staticmethod
-  def create_and_show_panel(output_panel_name, window = None):
+  def create_and_show_panel(output_panel_name, window = None, syntax=os.path.join("Packages", PACKAGE_NAME,"javascript_enhancements.sublime-syntax")):
     window = sublime.active_window() if not window else window
     panel = window.create_output_panel(output_panel_name, False)
     panel.set_read_only(True)
-    panel.set_syntax_file(os.path.join("Packages", PACKAGE_NAME, "javascript_enhancements.sublime-syntax"))
+    if syntax :
+      panel.set_syntax_file(syntax)
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
 
@@ -4089,7 +4090,7 @@ class stop_cli_commandCommand(sublime_plugin.TextCommand):
       panel = self.window.get_output_panel(self.last_output_panel_name)
       if panel :
         panel.run_command("print_panel_cli", {"line": "\n\nCommand Stopped\n\n"})
-        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 3000})
+        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 2000})
 
   def is_enabled(self):
     global manage_cli_window_command_processes
@@ -4108,22 +4109,30 @@ class stop_cli_commandCommand(sublime_plugin.TextCommand):
       self.last_output_panel_name = panel.replace("output.", "")
     settings = get_project_settings()
     return True if ( self.window and self.last_output_panel_name and settings and settings["project_dir_name"]+"_"+self.last_output_panel_name in manage_cli_window_command_processes ) else False
- 
+
 
 class print_panel_cliCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):   
-    line = args.get("line")
+    line = args.get("line") or ""
+    prefix = args.get("prefix") or ""
+    postfix = args.get("postfix") or ""
     if line.strip() :
       if line == "OUTPUT-SUCCESS":
         if self.view.window() and args.get("hide_panel_on_success") :
-          sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if args.get("wait_panel") else 2000 )
+          sublime.set_timeout_async(self.hide_window_panel, args.get("wait_panel") if "wait_panel" in args else 2000 )
         return
       elif line == "OUTPUT-ERROR" or line == "OUTPUT-DONE":
         return
+
+      is_read_only = self.view.is_read_only()
       self.view.set_read_only(False)
-      self.view.insert(edit, self.view.size(), line)
+      self.view.insert(edit, self.view.size(), prefix + line + postfix)
+      self.view.set_read_only(is_read_only)
       self.view.show_at_center(self.view.size())
-      self.view.set_read_only(True)
+      self.view.add_regions(
+        'output_cli',
+        self.view.split_by_newlines(sublime.Region(0, self.view.size()))
+      )
 
   def hide_window_panel(self):
     try :
@@ -4170,6 +4179,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   panel = None
   output_panel_name = "output_panel_cli"
   panel_command = "print_panel_cli"
+  line_prefix = ""
+  line_postfix = ""
   status_message_before = ""
   status_message_after_on_success = ""
   status_message_after_on_error = ""
@@ -4182,7 +4193,9 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   show_animation_loader = True
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
   interval_animation = None
+  syntax = os.path.join("Packages", PACKAGE_NAME,"javascript_enhancements.sublime-syntax")
   ask_custom_options = False
+  wait_panel = 2000
 
   def run(self, **kwargs):
     self.settings = get_project_settings()
@@ -4194,9 +4207,9 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.cli and not self.is_npm  :
         raise Exception("'cli' field of the manage_cliCommand not defined.")
 
-      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options" if "command_with_options" in kwargs else self.command_with_options) )
-      if not self.command_with_options or len(self.command_with_options) <= 0:
-        raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
+      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options") if "command_with_options" in kwargs else self.command_with_options )
+      # if not self.command_with_options or len(self.command_with_options) <= 0:
+      #   raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
 
       self.show_panel = kwargs.get("show_panel") if "show_panel" in kwargs != None else self.show_panel
       self.output_panel_name = self.substitute_placeholders( str(kwargs.get("output_panel_name") if "output_panel_name" in kwargs else self.output_panel_name) )
@@ -4209,7 +4222,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       
       if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
 
-        sublime.error_message("This command is already running! If you want execute it, you must stop it first.")
+        sublime.error_message("This command is already running! If you want execute it again, you must stop it first.")
+
+        self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
+
         return
 
       sublime.set_timeout_async(lambda: self.manage())
@@ -4236,7 +4252,8 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   def execute(self, custom_options=[]) :
 
     if self.show_panel :
-      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window)
+      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window, syntax=self.syntax)
+      self.panel.settings().set("is_output_cli_panel", True)
 
     self.before_execute()
 
@@ -4275,7 +4292,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       }
 
     if line != None and self.show_panel:
-      self.panel.run_command(self.panel_command, {"line": line, "hide_panel_on_success": self.hide_panel_on_success})
+      self.panel.run_command(self.panel_command, {"line": line, "prefix": self.line_prefix, "postfix": self.line_postfix, "hide_panel_on_success": self.hide_panel_on_success, "wait_panel": self.wait_panel})
   
     if line == "OUTPUT-SUCCESS" :
       if self.status_message_after_on_success :
@@ -4341,6 +4358,161 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
   def on_done(self):
     return
+
+
+class open_live_terminalCommand(manage_cliCommand):
+  cli = "/bin/bash" if sublime.platform() != 'windows' else "cmd.exe"
+  name_cli = "Bash"
+  is_node = False
+  is_npm = False
+  show_animation_loader = False
+  hide_panel_on_success = True
+  output_panel_name = "panel_terminal"
+  line_prefix = "$ "
+  syntax = "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+  wait_panel = 0
+
+  def is_enabled(self) :
+
+    return True if is_javascript_project() else False
+
+  def is_visible(self) :
+
+    return True if is_javascript_project() else False
+
+class set_read_only_output_cliEventListener(sublime_plugin.EventListener) :
+
+  def on_activated_async(self, view) :
+
+    if not view.settings().get("is_output_cli_panel", False) :
+      return 
+
+    is_in = False
+    for region in view.get_regions("output_cli"): 
+      if region.contains(view.sel()[0]) or region.intersects(view.sel()[0]) :
+        is_in = True
+        view.set_read_only(True)
+        break
+
+    if not is_in :
+      view.set_read_only(False)
+
+  def on_selection_modified_async(self, view) :
+
+    if not view.settings().get("is_output_cli_panel", False) :
+      return 
+
+    is_in = False
+    for region in view.get_regions("output_cli"): 
+      if region.contains(view.sel()[0]) or region.intersects(view.sel()[0]) :
+        is_in = True
+        view.set_read_only(True)
+        break
+
+    if not is_in :
+      view.set_read_only(False)
+
+  def on_modified_async(self, view) :
+
+    if not view.settings().get("is_output_cli_panel", False) :
+      return 
+
+    is_in = False
+    for region in view.get_regions("output_cli"): 
+      if region.contains(view.sel()[0]) or region.intersects(view.sel()[0]) :
+        is_in = True
+        view.set_read_only(True)
+        break
+
+    if not is_in :
+      view.set_read_only(False)
+
+  def on_text_command(self, view, command_name, args) :
+
+    if not view.settings().get("is_output_cli_panel", False) :
+      return 
+
+    is_in = False
+
+    if command_name == "left_delete" :
+      for region in view.get_regions("output_cli"): 
+        if region.intersects(sublime.Region( view.sel()[0].begin() - 2, view.sel()[0].end() ) ):
+          is_in = True
+          view.set_read_only(True)
+          break
+
+    elif command_name == "insert" and "characters" in args and args["characters"] == '\n' :
+      view.set_read_only(True)
+      window = view.window()
+      panel = window.active_panel()
+      if panel :
+        last_output_panel_name = panel.replace("output.", "")
+        global manage_cli_window_command_processes
+        settings = get_project_settings()
+        if window and last_output_panel_name and settings and settings["project_dir_name"]+"_"+last_output_panel_name in manage_cli_window_command_processes :
+          process = manage_cli_window_command_processes[settings["project_dir_name"]+"_"+last_output_panel_name]["process"]
+
+          regions = view.lines(sublime.Region(0, view.size()))
+
+          line = ""
+          for i in range(1, len(regions)+1):
+            line = view.substr(regions[-i]).strip()
+            if line and not line.startswith("$ ") :
+              break
+            line = ""
+            i = i + 1
+
+          if line :
+
+            view_settings = view.settings()
+            view_settings.set("lines", view_settings.get("lines", []) + [line] )
+
+            view.add_regions(
+              'output_cli',
+              view.split_by_newlines(sublime.Region(0, view.size()))
+            )
+
+            view_settings.set( "index_lines", len(view_settings.get("lines")) -1 )
+
+            view.sel().clear()
+            view.sel().add(sublime.Region(view.size(), view.size()))
+
+            process.stdin.write("{}\n".format(line).replace("PROJECT_PATH", shlex.quote(settings["project_dir_name"])).encode("utf-8"))
+            process.stdin.flush()
+
+            window.run_command("show_panel", {"panel": "output."+last_output_panel_name})
+
+    if not is_in :
+      view.set_read_only(False)
+
+
+class move_history_cliCommand(sublime_plugin.TextCommand) :
+  
+  def run(self, edit, **args):
+    
+    if "action" in args :
+      view = self.view
+
+      view_settings = view.settings()
+
+      if not view_settings.has("index_lines") or not view.substr(view.line(view.size())).strip() :
+        index_lines = len(view_settings.get("lines", [])) - 1
+
+      else :
+        if args.get("action") == "move_down" :
+          index_lines = view_settings.get("index_lines", len(view_settings.get("lines", [])) ) + 1
+        else :
+          index_lines = view_settings.get("index_lines", len(view_settings.get("lines", [])) ) - 1
+
+      if index_lines < 0 or index_lines >= len(view_settings.get("lines")) : 
+        return
+
+      if index_lines >= 0 :
+        line = view_settings.get("lines")[index_lines]
+        view.replace(edit, view.line(view.size()), '')
+        view.insert(edit, view.size(), line)
+        view.show_at_center(view.size())
+        view_settings.set("index_lines", index_lines)
 
 
 ## Npm ##

@@ -4,6 +4,10 @@
     "id": "tools",
     "children": [
       {
+        "caption": "Open Live Terminal",
+        "command": "open_live_terminal"
+      },
+      {
         "caption": "JavaScript Enhancements",
         "mnemonic": "J",
         "id": "javascript_completions_tools",

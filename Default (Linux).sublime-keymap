@@ -1,7 +1,13 @@
 [
   {
-    "keys": ["ctrl+super+c"],
-    "command": "find_description"
+    "keys": ["ctrl+up"],
+    "command": "move_history_cli",
+    "args": {"action": "move_up"}
+  },
+  {
+    "keys": ["ctrl+down"],
+    "command": "move_history_cli",
+    "args": {"action": "move_down"}
   },
   {
     "keys": ["ctrl+super+s"],
