@@ -16,7 +16,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
         global socket_server_list
 
         json_data = json.loads(client_data)
-
+ 
         if json_data["command"] == "open_project":
 
           json_data = Hook.apply("before_create_new_project", json_data)

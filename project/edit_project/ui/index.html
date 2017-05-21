@@ -32,14 +32,9 @@
             <input type="text" id="project_path" name="project_path" disabled="disabled">
           </div>
           
-          <div class="input-control select multiple full-size">
+          <div class="input-control select full-size">
             <label for="type">Type:</label>
-            <select id="type" name="type" multiple="multiple">
-              <option value="">Blank</option>
-              <option value="cordova">Cordova</option>
-              <option value="ionic">Ionic</option>
-              <option value="react">React</option>
-            </select>
+            <input type="text" id="type" name="type" disabled="disabled">
           </div>
 
           <div class="input-control text full-size" data-role="input">
@@ -176,6 +171,45 @@
       </div>
     </div>
 
+    <div class="tile tile-large bg-red fg-white" data-role="tile" onclick="metroDialog.open('#dialog-manage-project-types')">
+      <div class="tile-content iconic">
+          <span class="icon mif-cogs"></span>
+          <span class="tile-label">Manage Project Types</span>
+      </div>
+      <div class="padding20" data-overlay="true" data-overlay-click-close="true" data-overlay-color="op-dark" data-role="dialog" id="dialog-manage-project-types" data-close-button="true">
+        <form id="form-manage-project-types" action="#">
+          <h2>Manage Project Types</h2>
+
+          <div class="input-control select full-size">
+            <label for="secondary-types">Secondary Types:</label>
+            <select id="secondary-types" name="secondary-types">
+              <option value="cordova">Cordova</option>
+              <option value="ionic">Ionic</option>
+              <option value="react">React</option>
+            </select>
+          </div>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="working_directory">Working Directory:</label>
+            <input id="working_directory" type="text" placeholder="/" name="working_directory" value="" data-field-type="value" style="padding-right: 36px;" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+          
+          <div class="container-form">
+            <div class="wrapper-form"></div>
+            <button class="button primary rounded create-project-type" type="submit"><span class="mif-floppy-disk"></span> create</button>
+            <button class="button danger rounded cancel-project-type" type="button"><span class="mif-floppy-disk"></span> cancel</button>
+          </div>
+
+          <div class="floating-action"> 
+            <button class="button primary rounded add-project-type" type="button"><span class="mif-floppy-disk"></span> add</button>
+            <button class="button danger rounded remove-project-type" type="button"><span class="mif-floppy-disk"></span> remove</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="tile tile-large bg-black fg-white" data-role="tile" onclick="metroDialog.open('#dialog-flow-settings')">
       <div class="tile-content iconic">
         <span class="icon"><img src="img/flow-logo.png" alt=""></span>
@@ -252,29 +286,7 @@
     const {dialog} = require('electron').remote
 
     let project_type = []
-
-    function type_change () {
-      let types = ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
-
-      $("#type option").prop("disabled", false)
-      for(let i = 0; i < types.length; i++){
-        let type = types[i]
-        if (fs.existsSync(__dirname+"/../../default_settings/"+type+"/default_config.js") ){
-          let default_config = require(__dirname+"/../../default_settings/"+type+"/default_config.js")
-          let dependencies = default_config.dependencies
-          if (dependencies) {
-            for(let i = 0, length1 = dependencies.length; i < length1; i++){
-              let dipendency = dependencies[i]
-              if (types.indexOf(dipendency) < 0) {
-                types.push(dipendency)
-              }
-              $("#type option[value='"+dipendency+"']").prop("disabled", true)
-              $("#type option[value='"+dipendency+"']").prop("selected", false)
-            }
-          }
-        }
-      }
-    }
+    let project_data = {}
       
     $(document).ready(() => {
       
@@ -288,10 +300,65 @@
           "version": $("#version").val().trim(),
           "license": $("#license").val().trim(),
           "license_uri": $("#license_uri").val().trim(),
-          "tags": $("#tags").val().trim(),
-          "type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+          "tags": $("#tags").val().trim()
+          //"type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
         }
         ipcRenderer.send('form-project-details', project_details)
+      })
+
+      $(".add-project-type").click(function(event){
+        event.preventDefault()
+        let type = $("#secondary-types").val()
+
+        if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
+          if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/style.css") ){
+            $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/create_new_project/style.css"}">`)
+          }
+          let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
+
+          if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/index.html") ){
+            let html = fs.readFileSync(__dirname+"/../../"+type+"/create_new_project/index.html", "UTF-8")
+            $("#form-manage-project-types .container-form .wrapper-form").html(html)
+          }
+
+          client_js.prepareClientHtml({
+            "ipcRenderer": ipcRenderer,
+            "$": $,
+            "utilWeb": utilWeb,
+            "data_project": project_data,
+            "fs": fs,
+            "electron": require('electron')
+          })
+        }
+      })
+
+      $(".cancel-project-type").click(function(event){
+        event.preventDefault()
+        $("#form-manage-project-types .container-form .wrapper-form").html("")
+      })
+
+      $('#form-manage-project-types').on('submit', function(event){
+        event.preventDefault()
+        let type = $("#secondary-types").val()
+
+        if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
+
+          let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
+
+          project_data.type_added = type
+          project_data.working_directory = $('#working_directory').val().trim()
+
+          client_js.setProject({
+            "project_data": project_data,
+            "ipcRenderer": ipcRenderer,
+            "$": $,
+            "utilWeb": utilWeb,
+            "fs": fs,
+            "electron": require('electron')
+          })      
+
+          ipcRenderer.send("add_project_type", project_data)
+        }
       })
 
       $("#form-project-settings").on("submit", function(event) {
@@ -309,8 +376,6 @@
         }
         ipcRenderer.send('form-project-settings', project_settings)
       })
-
-      $("#type").change(type_change)
 
       $("#form-flow-settings").on("submit", function(event) {
         event.preventDefault()
@@ -414,6 +479,8 @@
     })
 
     ipcRenderer.on("load_config", (event, config) => {
+      project_data = config.settings
+
       let project_details = config.settings.project_details
       $("#project_name").val(project_details.project_name)
       $("#project_path").val(config.settings.project_dir_name)
@@ -424,8 +491,13 @@
       $("#license").val(project_details.license)
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
-      $("#type").val(project_details.type)
-      type_change()
+      $("#type").val(project_details.type[0])
+
+      for(let i = 0, length1 = project_details.type.length; i < length1; i++){
+        let type = project_details.type[i]
+        $("#secondary-types option[value='"+type+"']").remove()
+      }
+
       project_type = project_details.type
 
       let project_settings = config.settings.project_settings
@@ -518,6 +590,10 @@
       });
     })
     
+    ipcRenderer.on("console", (event, msg) => {
+      console.log(msg)
+    })
+
     ipcRenderer.on("delete-item-menu", (event, type) => {
       $("#dialog-"+type+"-settings").remove()
       $("#"+type+"-tile").remove()

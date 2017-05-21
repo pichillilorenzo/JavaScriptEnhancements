@@ -157,11 +157,14 @@ ipcMain.on('data', (event, project_data) => {
           project_type_default_settings[i][1][key] = project_data[project_type_default_settings[i][0]+"_settings"][key]
         }
       }
+
+      project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
         
       util.openWithSync((fd) => {
         fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))
       }, path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json"), "w+")
     }
+
     app.sendSocketJson({
       "command": "try_flow_init",
       "project_data": project_data

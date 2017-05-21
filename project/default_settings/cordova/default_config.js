@@ -17,6 +17,7 @@ module.exports = {
     ]
   },
   "cordova_settings": {
+    "working_directory": "",
     "serve_port": "",
     "cli_global_options": [],
     "cli_compile_options": [],

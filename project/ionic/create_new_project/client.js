@@ -37,6 +37,6 @@ module.exports = {
     if($("#custom-ionic-path input.ionic-path").val().trim()){
       project_data.ionic_settings.cli_custom_path = $("#custom-ionic-path input.ionic-path").val().trim()
     }
-    project_data.types_option = utilWeb.get_cli_create_options(variables, "ionic")
+    project_data.create_options = utilWeb.get_cli_create_options(variables, "ionic")
   }
 }

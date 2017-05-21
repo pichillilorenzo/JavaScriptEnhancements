@@ -1,5 +1,6 @@
 "use strict";
 
+const npm = require('npm')
 const fs = require('fs-extra')
 const path = require('path')
 const util = require('../../../js/util.js')
@@ -55,78 +56,84 @@ ipcMain.on('form-project-details', (event, project_details) => {
   if (fs.existsSync(project_details_file)) {
 
     /* check dependencies */
-    let dependencies = {}
-    for(let i = 0; i < project_details.type.length; i++){
-      let project_type_default_config = {}
-      try {
-        project_type_default_config = require('../../default_settings/'+project_details.type[i]+'/default_config.js')
-        if (project_type_default_config.dependencies) {
-          for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
-            let dipendency = project_type_default_config.dependencies[j]
-            if (project_details.type.indexOf(dipendency) < 0) {
-              let dependency_default_config = require('../../default_settings/'+dipendency+'/default_config.js')
-              if (dependency_default_config) {
-                dependencies[dipendency] = dependency_default_config
-              }
-              project_details.type.push(dipendency)
-            }
-          }
-        }
-      } catch(e) {
-        continue
-      }
-    }
+    // let dependencies = {}
+    // for(let i = 0; i < project_details.type.length; i++){
+    //   let project_type_default_config = {}
+    //   try {
+    //     project_type_default_config = require('../../default_settings/'+project_details.type[i]+'/default_config.js')
+    //     if (project_type_default_config.dependencies) {
+    //       for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
+    //         let dipendency = project_type_default_config.dependencies[j]
+    //         if (project_details.type.indexOf(dipendency) < 0) {
+    //           let dependency_default_config = require('../../default_settings/'+dipendency+'/default_config.js')
+    //           if (dependency_default_config) {
+    //             dependencies[dipendency] = dependency_default_config
+    //           }
+    //           project_details.type.push(dipendency)
+    //         }
+    //       }
+    //     }
+    //   } catch(e) {
+    //     continue
+    //   }
+    // }
 
-    let types = get_update_type(data_project.settings.project_details.type, project_details.type)
+    // let types = get_update_type(data_project.settings.project_details.type, project_details.type)
 
-    if(types.must_delete){
-      for(let i = 0, length1 = types.must_delete.length; i < length1; i++){
-        let project_type_default_config =  {}
-        try {
-          project_type_default_config = require('../../default_settings/'+types.must_delete[i]+'/default_config.js')
-        } catch(e) {
-          continue
-        }
-        if(project_type_default_config.flow_settings) {
-          for (let key in project_type_default_config.flow_settings) {
-            if (Array.isArray(data_project.settings.flow_settings[key])){
-              data_project.settings.flow_settings[key] = difference(data_project.settings.flow_settings[key], project_type_default_config.flow_settings[key])
-            }
-          }
-        }
-        if(project_type_default_config[types.must_delete[i]+"_settings"]){
-          fs.unlinkSync(path.join(jc_project_settings_dir_name, types.must_delete[i]+"_settings.json"))
-          app.sendWeb("delete-item-menu", types.must_delete[i])
-        }
-      }
-    }
+    // if(types.must_delete){
+    //   for(let i = 0, length1 = types.must_delete.length; i < length1; i++){
+    //     let project_type_default_config =  {}
+    //     try {
+    //       project_type_default_config = require('../../default_settings/'+types.must_delete[i]+'/default_config.js')
+    //     } catch(e) {
+    //       continue
+    //     }
+    //     if(project_type_default_config.flow_settings) {
+    //       for (let key in project_type_default_config.flow_settings) {
+    //         if (Array.isArray(data_project.settings.flow_settings[key])){
+    //           data_project.settings.flow_settings[key] = difference(data_project.settings.flow_settings[key], project_type_default_config.flow_settings[key])
+    //         }
+    //       }
+    //     }
+    //     if(project_type_default_config[types.must_delete[i]+"_settings"]){
+    //       fs.unlinkSync(path.join(jc_project_settings_dir_name, types.must_delete[i]+"_settings.json"))
+    //       app.sendWeb("delete-item-menu", types.must_delete[i])
+    //     }
+    //   }
+    // }
 
-    if(types.must_add){
-      for(let i = 0; i < types.must_add.length; i++){
-        let project_type_default_config =  {}
-        try {
-          project_type_default_config = require('../../default_settings/'+types.must_add[i]+'/default_config.js')
-        } catch(e) {
-          continue
-        }
-        if(project_type_default_config.flow_settings) {
-          for (let key in project_type_default_config.flow_settings) {
-            if (Array.isArray(data_project.settings.flow_settings[key])){
-              data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(project_type_default_config.flow_settings[key])
-            }
-          }
-        }
-        if(project_type_default_config[types.must_add[i]+"_settings"]){
-          util.openWithSync((fd) => {
-            fs.writeFileSync(fd, JSON.stringify(project_type_default_config[types.must_add[i]+"_settings"], null, 2))
-          }, path.join(jc_project_settings_dir_name, types.must_add[i]+"_settings.json"), "w+")
-        }
-      }
-    }
-
+    // if(types.must_add){
+    //   for(let i = 0; i < types.must_add.length; i++){
+    //     let project_type_default_config =  {}
+    //     try {
+    //       project_type_default_config = require('../../default_settings/'+types.must_add[i]+'/default_config.js')
+    //     } catch(e) {
+    //       continue
+    //     }
+    //     if(project_type_default_config.flow_settings) {
+    //       for (let key in project_type_default_config.flow_settings) {
+    //         if (Array.isArray(data_project.settings.flow_settings[key])){
+    //           data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(project_type_default_config.flow_settings[key])
+    //         }
+    //       }
+    //     }
+    //     if(project_type_default_config[types.must_add[i]+"_settings"]){
+    //       util.openWithSync((fd) => {
+    //         fs.writeFileSync(fd, JSON.stringify(project_type_default_config[types.must_add[i]+"_settings"], null, 2))
+    //       }, path.join(jc_project_settings_dir_name, types.must_add[i]+"_settings.json"), "w+")
+    //     }
+    //   }
+    // }
+    // app.sendWeb("console", JSON.parse( fs.readFileSync(project_details_file, {encoding: "utf-8"}) ) )
+    // app.sendWeb("console", project_details )
+    // project_details = util.mergeObjectsRecursive( JSON.parse( fs.readFileSync(project_details_file, {encoding: "utf-8"}) ), project_details)
+    // app.sendWeb("console", project_details )
+    // app.sendWeb("console", JSON.stringify(project_details, null, 2) )
+    // return
+    data_project.settings.project_details = util.mergeObjectsRecursive( data_project.settings.project_details, project_details )
     try{
       util.openWithSync((fd) => {
-        fs.writeFileSync(fd, JSON.stringify(project_details, null, 2))
+        fs.writeFileSync(fd, JSON.stringify(data_project.settings.project_details, null, 2))
       }, project_details_file, "w+")
     }
     catch(e){
@@ -168,7 +175,6 @@ ${options}
       return
     }
 
-    data_project.settings.project_details = project_details
     app.sendWeb("success", "Successfully saved.")
     app.sendWeb("load_config", data_project)
   }
@@ -242,6 +248,145 @@ ${options}
   else{
     app.sendWeb("error", `File "${flow_settings}" doesn't exists.`)
   }
+})
+
+ipcMain.on('add_project_type', (event, project_data) => {
+  
+  if (!fs.existsSync(project_data.project_dir_name)){
+    fs.mkdirsSync(project_data.project_dir_name)
+  }
+
+  let jc_project_settings = path.join(project_data.project_dir_name, ".jc-project-settings")
+  let project_details_file = path.join(jc_project_settings, "project_details.json")
+  let project_settings = path.join(jc_project_settings, "project_settings.json")
+  let flow_settings = path.join(jc_project_settings, "flow_settings.json")
+
+  let project_type_default_settings = []
+  /* project_data.project_details.type.length evaluate each time because of possible type dependecies */
+  let project_type_default_config = {}
+  try {
+    project_type_default_config = require('../../default_settings/'+project_data.type_added+'/default_config.js')
+    if (project_type_default_config.dependencies) {
+      /* load dependencies */
+      for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
+        let dipendency = project_type_default_config.dependencies[j]
+        if (project_data.project_details.type.indexOf(dipendency) < 0) {
+          project_data.project_details.type.push(dipendency)
+        }
+      }
+    }
+  } catch(e) {
+    
+  }
+
+  if (project_type_default_config) {
+    if(project_type_default_config.project_details) {
+      project_data.project_details.type = project_data.project_details.type.concat(project_type_default_config.project_details.type)
+    }
+    if(project_type_default_config.flow_settings) {
+      for (let key in project_type_default_config.flow_settings) {
+        if (Array.isArray(project_data.flow_settings[key])){
+          project_data.flow_settings[key] = project_data.flow_settings[key].concat(project_type_default_config.flow_settings[key])
+        }
+      }
+    }
+    if(project_type_default_config[project_data.type_added+"_settings"]){
+      project_type_default_settings.push(
+        [project_data.type_added, project_type_default_config[project_data.type_added+"_settings"]]
+      )
+    }
+  }
+
+  if (fs.existsSync(jc_project_settings)) {
+
+    util.openWithSync((fd) => {
+      project_data.project_details = JSON.parse(JSON.stringify(project_data.project_details)) // clone project object
+      fs.writeFileSync(fd, JSON.stringify(project_data.project_details, null, 2))
+    }, project_details_file, "w+")
+
+    util.openWithSync((fd) => {
+      project_data.project_settings = JSON.parse(JSON.stringify(project_data.project_settings))
+      fs.writeFileSync(fd, JSON.stringify(project_data.project_settings, null, 2))
+    }, project_settings, "w+")
+
+    util.openWithSync((fd) => {
+      fs.writeFileSync(fd, JSON.stringify(project_data.flow_settings, null, 2))
+    }, flow_settings, "w+")
+
+    for(let i = 0, length1 = project_type_default_settings.length; i < length1; i++){
+
+      if (!project_data[project_type_default_settings[i][0]+"_settings"]) {
+        project_data[project_type_default_settings[i][0]+"_settings"] = {}
+        project_data[project_type_default_settings[i][0]+"_settings"].working_directory = path.join(project_data.project_dir_name, project_data.working_directory)
+      }
+      
+      if (project_data[project_type_default_settings[i][0]+"_settings"]) {
+        for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {
+          project_type_default_settings[i][1][key] = project_data[project_type_default_settings[i][0]+"_settings"][key]
+        }
+      }
+      
+      if (!fs.existsSync(project_type_default_settings[i][1].working_directory)) {
+        fs.mkdirsSync(project_type_default_settings[i][1].working_directory)
+      }
+
+      util.openWithSync((fd) => {
+        fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))
+      }, path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json"), "w+")
+    }
+
+    util.openWithSync((fd) => {
+      let include = project_data.flow_settings.include.join("\n")
+      let ignore = project_data.flow_settings.ignore.join("\n")
+      let libs = project_data.flow_settings.libs.join("\n")
+      let options = project_data.flow_settings.options.map(function(item){
+        return item[0].trim()+"="+item[1].trim()
+      }).join("\n")
+
+      let str = `[ignore]
+  ${ignore}
+  [include]
+  ${include}
+  [libs]
+  ${libs}
+  [options]
+  ${options}
+  `
+      fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
+    }, path.join(project_dir_name, ".flowconfig"), "w+")
+
+    let sublime_project_file_name = util.clearString(project_data.project_details.project_name)
+
+    let package_json = {}
+    for(let i = 0, length1 = project_data.project_details.type.length; i < length1; i++){
+      if (project_data[project_data.project_details.type[i]+"_settings"] && project_data[project_data.project_details.type[i]+"_settings"].package_json) {
+        package_json = util.mergeObjectsRecursive(package_json, project_data[project_data.project_details.type[i]+"_settings"].package_json)
+      }
+    }
+    if (package_json) {
+      util.openWithSync((fd) => {
+        fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
+      }, path.join(project_data.project_dir_name, ".jc-project-settings", "package.json"), "w+")
+      process.chdir(path.join(project_data.project_dir_name, ".jc-project-settings"));
+      npm.load(function(err){
+        npm.commands.install(function(err, data){
+          if(err){
+            app.sendWeb("error", JSON.stringify(err, null, 2))
+          }
+        })
+
+      })
+    }
+    
+    app.sendSocketJson({
+      "command": "add_project_type",
+      "project_data": project_data
+    })
+  }
+  else{
+    app.sendWeb("error", "Can't find the project!")
+  }
+
 })
 
 app.start(() => {

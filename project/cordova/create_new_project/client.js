@@ -37,6 +37,6 @@ module.exports = {
     if($("#custom-cordova-path input.cordova-path").val().trim()){
       project_data.cordova_settings.cli_custom_path = $("#custom-cordova-path input.cordova-path").val().trim()
     }
-    project_data.types_option = utilWeb.get_cli_create_options(variables, "cordova")
+    project_data.create_options = utilWeb.get_cli_create_options(variables, "cordova")
   }
 }

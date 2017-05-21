@@ -2660,7 +2660,7 @@ if int(sublime.version()) >= 3124 :
     errors = []
     callback_setted_use_flow_checker_on_current_view = False
     prefix_thread_name = "show_flow_errors_view_event_listener"
-    wait_time = .5
+    wait_time = .35
   
     def on_activated_async(self) :
       
@@ -4487,7 +4487,7 @@ class set_read_only_output_cliEventListener(sublime_plugin.EventListener) :
 
 
 class move_history_cliCommand(sublime_plugin.TextCommand) :
-  
+
   def run(self, edit, **args):
     
     if "action" in args :
@@ -4513,6 +4513,17 @@ class move_history_cliCommand(sublime_plugin.TextCommand) :
         view.insert(edit, view.size(), line)
         view.show_at_center(view.size())
         view_settings.set("index_lines", index_lines)
+
+  def is_enabled(self) :
+
+    view = self.view
+    return True if view.settings().get("is_output_cli_panel", False) else False
+
+  def is_visible(self) :
+    
+    view = self.view
+    return True if view.settings().get("is_output_cli_panel", False) else False
+
 
 
 ## Npm ##
@@ -4701,39 +4712,43 @@ class build_flowCommand(manage_cliCommand):
 import sublime, sublime_plugin
 import os, webbrowser, shlex
 
-def create_cordova_project_process(line, process, panel, project_data, sublime_project_file_name) :
+def create_cordova_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
-    open_project_folder(sublime_project_file_name)
+    Util.move_content_to_parent_folder(os.path.join(project_data["cordova_settings"]["working_directory"], "temp"))
+    
+    if open_project :
+      open_project_folder(sublime_project_file_name)
 
 def create_cordova_project(json_data):
   project_data = json_data["project_data"]
   project_details = project_data["project_details"]
-  project_folder = project_data["path"]
-  types_options = []
+  project_folder = project_data["cordova_settings"]["working_directory"]
+  create_options = []
 
   if not "ionic" in project_details["type"] :
 
-    if "cordova" in project_data["types_options"]:
-      types_options = project_data["types_options"]["cordova"]
+    if "create_options" in project_data and project_data["create_options"]:
+      create_options = project_data["create_options"]
       
     panel = Util.create_and_show_panel("cordova_panel_installer_project")
 
     node = NodeJS()
 
     if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
-      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+      node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
     else :  
-      node.execute('cordova', ["create", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+      node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
     
 
   return json_data
 
 Hook.add("cordova_create_new_project", create_cordova_project)
+
+Hook.add("cordova_add_new_project_type", create_cordova_project)
 
 class enable_menu_cordovaEventListener(enable_menu_project_typeEventListener):
   project_type = "cordova"
@@ -5006,36 +5021,40 @@ class sync_cordova_projectCommand(cordova_baseCommand):
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name) :
+def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
   print(line)
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
-    open_project_folder(sublime_project_file_name)
+    Util.move_content_to_parent_folder(os.path.join(project_data["ionic_settings"]["working_directory"], "temp"))
+
+    if open_project :
+      open_project_folder(sublime_project_file_name)
 
 def create_ionic_project(json_data):
   project_data = json_data["project_data"]
   project_details = project_data["project_details"]
-  project_folder = project_data["path"]
-  types_options = []
+  project_folder = project_data["ionic_settings"]["working_directory"]
+  create_options = []
 
-  if "ionic" in project_data["types_options"]:
-    types_options = project_data["types_options"]["ionic"]
+  if "create_options" in project_data and project_data["create_options"]:
+    create_options = project_data["create_options"]
 
   panel = Util.create_and_show_panel("ionic_panel_installer_project")
 
   node = NodeJS()
 
   if "ionic_settings" in project_data and "package_json" in project_data["ionic_settings"] and "use_local_cli" in project_data["ionic_settings"] and project_data["ionic_settings"]["use_local_cli"] :
-    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
   else :  
-    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
 
   return json_data
 
 Hook.add("ionic_create_new_project", create_ionic_project)
+
+Hook.add("ionic_add_new_project_type", create_ionic_project)
 
 class enable_menu_ionicEventListener(enable_menu_project_typeEventListener):
   project_type = "ionic"
@@ -5128,34 +5147,38 @@ class sync_ionic_projectCommand(ionic_baseCommand, sync_cordova_projectCommand):
 ## React ##
 import re, webbrowser
 
-def create_react_project_process(line, process, panel, project_data, sublime_project_file_name) :
+def create_react_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
-    open_project_folder(sublime_project_file_name)
+    Util.move_content_to_parent_folder(os.path.join(project_data["react_settings"]["working_directory"], "temp"))
+    
+    if open_project :
+      open_project_folder(sublime_project_file_name)
 
 def create_react_project(json_data):
   project_data = json_data["project_data"]
   project_details = project_data["project_details"]
-  project_folder = project_data["path"]
-  types_options = []
+  project_folder = project_data["react_settings"]["working_directory"]
+  create_options = []
 
-  if "react" in project_data["types_options"]:
-    types_options = project_data["types_options"]["react"]
+  if "create_options" in project_data and project_data["create_options"]:
+    create_options = project_data["create_options"]
     
   panel = Util.create_and_show_panel("react_panel_installer_project")
 
   node = NodeJS()
 
-  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
-  #node.execute('create-react-app', ["temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+  #node.execute('create-react-app', ["temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
     
   return json_data
 
 Hook.add("react_create_new_project", create_react_project)
+
+Hook.add("react_add_new_project_type", create_react_project)
 
 class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
   project_type = "react"
@@ -5207,7 +5230,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
         global socket_server_list
 
         json_data = json.loads(client_data)
-
+ 
         if json_data["command"] == "open_project":
 
           json_data = Hook.apply("before_create_new_project", json_data)
@@ -5268,7 +5291,22 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
 
         json_data = json.loads(client_data)
 
-        if json_data["command"] == "ready":
+        #print(json_data)
+        #return
+        if json_data["command"] == "add_project_type":
+          
+          json_data = Hook.apply("before_add_new_project", json_data)
+
+          json_data = Hook.apply(json_data["project_data"]["type_added"]+"_add_new_project_type", json_data)
+
+          json_data = Hook.apply("after_add_new_project", json_data)
+
+          data = dict()
+          data["command"] = "add_project_type_done"
+          data = json.dumps(data)
+          socket_server_list["edit_project"].socket.send_to(conn, addr, data)
+
+        elif json_data["command"] == "ready":
           if settings :
             data = dict()
             data["command"] = "load_project_settings"

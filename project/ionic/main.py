@@ -1,36 +1,40 @@
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name) :
+def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
   print(line)
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
 
   if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["path"], "temp"))
-    open_project_folder(sublime_project_file_name)
+    Util.move_content_to_parent_folder(os.path.join(project_data["ionic_settings"]["working_directory"], "temp"))
+
+    if open_project :
+      open_project_folder(sublime_project_file_name)
 
 def create_ionic_project(json_data):
   project_data = json_data["project_data"]
   project_details = project_data["project_details"]
-  project_folder = project_data["path"]
-  types_options = []
+  project_folder = project_data["ionic_settings"]["working_directory"]
+  create_options = []
 
-  if "ionic" in project_data["types_options"]:
-    types_options = project_data["types_options"]["ionic"]
+  if "create_options" in project_data and project_data["create_options"]:
+    create_options = project_data["create_options"]
 
   panel = Util.create_and_show_panel("ionic_panel_installer_project")
 
   node = NodeJS()
 
   if "ionic_settings" in project_data and "package_json" in project_data["ionic_settings"] and "use_local_cli" in project_data["ionic_settings"] and project_data["ionic_settings"]["use_local_cli"] :
-    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
   else :  
-    node.execute('ionic', ["start", "temp"] + types_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, json_data["sublime_project_file_name"]])
+    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
 
   return json_data
 
 Hook.add("ionic_create_new_project", create_ionic_project)
+
+Hook.add("ionic_add_new_project_type", create_ionic_project)
 
 class enable_menu_ionicEventListener(enable_menu_project_typeEventListener):
   project_type = "ionic"

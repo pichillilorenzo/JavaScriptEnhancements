@@ -6,7 +6,7 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
   errors = []
   callback_setted_use_flow_checker_on_current_view = False
   prefix_thread_name = "show_flow_errors_view_event_listener"
-  wait_time = .5
+  wait_time = .35
 
   def on_activated_async(self) :
     

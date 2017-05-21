@@ -78,7 +78,7 @@ exports.get_cli_create_options = (variables, project_type) => {
       }
       else if (field_type == "select") {
         if($(item).prop("multiple")) {
-          cli_create_options =  cli_create_options.concat( value )
+          cli_create_options = cli_create_options.concat( value )
         }
         else {
           cli_create_options.push(value)

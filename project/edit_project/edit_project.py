@@ -19,7 +19,22 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
 
         json_data = json.loads(client_data)
 
-        if json_data["command"] == "ready":
+        #print(json_data)
+        #return
+        if json_data["command"] == "add_project_type":
+          
+          json_data = Hook.apply("before_add_new_project", json_data)
+
+          json_data = Hook.apply(json_data["project_data"]["type_added"]+"_add_new_project_type", json_data)
+
+          json_data = Hook.apply("after_add_new_project", json_data)
+
+          data = dict()
+          data["command"] = "add_project_type_done"
+          data = json.dumps(data)
+          socket_server_list["edit_project"].socket.send_to(conn, addr, data)
+
+        elif json_data["command"] == "ready":
           if settings :
             data = dict()
             data["command"] = "load_project_settings"

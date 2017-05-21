@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   "react_settings": {
-    
+    "working_directory": "",
   },
   "dependencies": []
 }

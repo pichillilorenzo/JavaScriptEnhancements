@@ -1,5 +1,5 @@
 class move_history_cliCommand(sublime_plugin.TextCommand) :
-  
+
   def run(self, edit, **args):
     
     if "action" in args :
@@ -25,3 +25,14 @@ class move_history_cliCommand(sublime_plugin.TextCommand) :
         view.insert(edit, view.size(), line)
         view.show_at_center(view.size())
         view_settings.set("index_lines", index_lines)
+
+  def is_enabled(self) :
+
+    view = self.view
+    return True if view.settings().get("is_output_cli_panel", False) else False
+
+  def is_visible(self) :
+    
+    view = self.view
+    return True if view.settings().get("is_output_cli_panel", False) else False
+

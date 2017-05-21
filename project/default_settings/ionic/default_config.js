@@ -14,6 +14,7 @@ module.exports = {
     ]
   },
   "ionic_settings": {
+    "working_directory": "",
     "cli_platform_options": [],
     "cli_build_options": [],
     "cli_emulate_options": [],
