@@ -15,6 +15,40 @@
     </div>
   </div>
   <div class="frame">
+    <div class="heading">CLI 'compile' command options</div>
+    <div class="content">
+      <div class="input-control select multiple full-size">
+        <label for="cli_compile_options">Options:</label>
+        <select class="cli_compile_options" multiple="multiple">
+          <option value="">None</option>
+          <option value="--device">--device</option>
+          <option value="--emulator">--emulator</option>
+          <option value="--browserify">--browserify</option>
+        </select>
+        <small>Select options that apply to 'compile' command to all platforms and modes</small>
+      </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-compile"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-compile"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
     <div class="heading">CLI 'build' command options</div>
     <div class="content">
       <div class="input-control select multiple full-size">
@@ -171,6 +205,18 @@
           <option value="--platforms">--platforms</option>
         </select>
         <small>Select options that apply to 'state' command to all platforms and modes</small>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="heading">Platform versions</div>
+    <div class="content">
+      <div class="input-control select full-size">
+        <label for="platform_list">Select Platform:</label>
+        <select class="platform_list">
+        </select>
+        <div class="container-input-platform-version"></div>
+        <small>Version (prepend version with '@' character, like @5.1.1)</small>
       </div>
     </div>
   </div>

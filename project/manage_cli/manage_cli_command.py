@@ -96,17 +96,17 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         node = NodeJS(check_local = True)
 
         if self.bin_path :
-          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, bin_path=self.bin_path, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, bin_path=self.bin_path, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
         else :
-          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
 
       elif self.is_npm :
         npm = NPM(check_local = True)
 
-        npm.execute(self.command_with_options[0], self.command_with_options[1:] + custom_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        npm.execute(self.command_with_options[0], self.command_with_options[1:] + custom_options, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
 
       else :
-        Util.execute(self.cli, self.command_with_options + custom_options, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.print_panel)
+        Util.execute(self.cli, self.command_with_options + custom_options, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
 
   def print_panel(self, line, process):
     global manage_cli_window_command_processes

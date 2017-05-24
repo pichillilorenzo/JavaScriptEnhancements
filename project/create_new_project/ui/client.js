@@ -152,13 +152,19 @@ ipcMain.on('data', (event, project_data) => {
 
     for(let i = 0, length1 = project_type_default_settings.length; i < length1; i++){
 
+      if (!project_data[project_type_default_settings[i][0]+"_settings"]) {
+        project_data[project_type_default_settings[i][0]+"_settings"] = {}
+        project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
+      }
+      else {
+        project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
+      }
+
       if (project_data[project_type_default_settings[i][0]+"_settings"]) {
         for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {
           project_type_default_settings[i][1][key] = project_data[project_type_default_settings[i][0]+"_settings"][key]
         }
       }
-
-      project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
         
       util.openWithSync((fd) => {
         fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))

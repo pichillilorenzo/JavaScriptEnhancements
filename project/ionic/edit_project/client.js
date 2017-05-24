@@ -13,6 +13,7 @@ module.exports = {
     let path = variables.path
 
     ipcMain.on("form-ionic-settings",(event, ionic_settings) => {
+      ionic_settings = util.mergeObjectsRecursive(data_project.settings.ionic_settings, ionic_settings)
       try{
         util.openWithSync((fd) => {
           fs.writeFileSync(fd, JSON.stringify(ionic_settings, null, 2))
@@ -33,13 +34,13 @@ module.exports = {
     let utilWeb = variables.utilWeb
     let data_project = variables.data_project.settings
 
-    let list_config = ["platform", "build", "run", "resources", "state"]
-    let list_config_debug_release = ["emulate"]
+    let list_config = ["platform", "build", "run", "resources", "state", "version"]
+    let list_config_debug_release = ["emulate", "run", "build", "compile"]
     let input_text_command = ["address", "port", "livereload-port", "browser", "browseroption", "platform"]
     let load_input_text_command = ["emulate", "run", "serve"]
 
-    for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
-      let platform = data_project.cordova_settings.installed_platform[i]
+    for(let i = 0, length1 = data_project.ionic_settings.installed_platform.length; i < length1; i++){
+      let platform = data_project.ionic_settings.installed_platform[i]
       $("#form-ionic-settings .platform_list").append('<option value="'+platform+'" '+( (i == 0) ? 'selected="selected"' : '' )+'>'+platform+'</option>')
       for(let j = 0, length2 = list_config.length; j < length2; j++){
         if (!$("#form-ionic-settings .container-input-platform-"+list_config[j])) {
@@ -107,6 +108,7 @@ module.exports = {
       event.preventDefault()
 
       let cli_platform_options = $("#form-ionic-settings .cli_platform_options").val()
+      let cli_compile_options = $("#form-ionic-settings .cli_compile_options").val()
       let cli_emulate_options = $("#form-ionic-settings .cli_emulate_options").val()
       let cli_build_options = $("#form-ionic-settings .cli_build_options").val()
       let cli_run_options = $("#form-ionic-settings .cli_run_options").val()
@@ -115,21 +117,36 @@ module.exports = {
       let cli_state_options = $("#form-ionic-settings .cli_state_options").val()
 
       cli_platform_options = (cli_platform_options) ? cli_platform_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_compile_options = (cli_compile_options) ? cli_compile_options.filter(function(item){ return (item !== "") ? true : false }) : []
       cli_emulate_options = (cli_emulate_options) ? cli_emulate_options.filter(function(item){ return (item !== "") ? true : false }) : []
       cli_build_options = (cli_build_options) ? cli_build_options.filter(function(item){ return (item !== "") ? true : false }) : []
       cli_run_options = (cli_run_options) ? cli_run_options.filter(function(item){ return (item !== "") ? true : false }) : []
-      cli_serve_options = (cli_run_options) ? cli_run_options.filter(function(item){ return (item !== "") ? true : false }) : []
-      cli_resources_options = (cli_run_options) ? cli_run_options.filter(function(item){ return (item !== "") ? true : false }) : []
-      cli_state_options = (cli_run_options) ? cli_run_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_serve_options = (cli_serve_options) ? cli_serve_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_resources_options = (cli_resources_options) ? cli_resources_options.filter(function(item){ return (item !== "") ? true : false }) : []
+      cli_state_options = (cli_state_options) ? cli_state_options.filter(function(item){ return (item !== "") ? true : false }) : []
 
       let ionic_settings = {
         "cli_platform_options": cli_platform_options,
+        "cli_compile_options": cli_compile_options,
         "cli_build_options": cli_build_options,
         "cli_emulate_options": cli_emulate_options,
         "cli_run_options": cli_run_options,
         "cli_serve_options": cli_serve_options,   
         "cli_resources_options": cli_resources_options,
         "cli_state_options": cli_state_options,
+        "platform_version_options": {},
+        "platform_compile_options": {
+          "debug": {},
+          "release": {}
+        }, 
+        "platform_build_options": {
+          "debug": {},
+          "release": {}
+        }, 
+        "platform_run_options": {
+          "debug": {},
+          "release": {}
+        },
         "platform_emulate_options": {
           "debug": {},
           "release": {}
@@ -145,8 +162,8 @@ module.exports = {
       }
 
       for(let j = 0, length2 = list_config.length; j < length2; j++){
-        for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
-          let platform = data_project.cordova_settings.installed_platform[i]
+        for(let i = 0, length1 = data_project.ionic_settings.installed_platform.length; i < length1; i++){
+          let platform = data_project.ionic_settings.installed_platform[i]
           if ($('#form-ionic-settings .'+platform+'_'+list_config[j]).length > 0) {
             ionic_settings["platform_"+list_config[j]+"_options"][platform] = $('#form-ionic-settings .'+platform+'_'+list_config[j]).val()
           }
@@ -154,8 +171,8 @@ module.exports = {
       }
       
       for(let j = 0, length2 = list_config_debug_release.length; j < length2; j++){
-        for(let i = 0, length1 = data_project.cordova_settings.installed_platform.length; i < length1; i++){
-          let platform = data_project.cordova_settings.installed_platform[i]
+        for(let i = 0, length1 = data_project.ionic_settings.installed_platform.length; i < length1; i++){
+          let platform = data_project.ionic_settings.installed_platform[i]
           if ($('#form-ionic-settings .'+platform+'_'+list_config_debug_release[j]+"_debug").length > 0) {
             ionic_settings["platform_"+list_config_debug_release[j]+"_options"].debug[platform] = $('#form-ionic-settings .'+platform+'_'+list_config_debug_release[j]+"_debug").val()
           }

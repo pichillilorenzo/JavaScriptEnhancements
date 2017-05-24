@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
+import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex, pty
 
 class Util(object) :
 
@@ -474,6 +474,7 @@ class Util(object) :
   
   @staticmethod
   def _wrapper_func_stdout(args, func_stdout, args_func_stdout=[], chdir=""):
+
     with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
 
       func_stdout(None, p, *args_func_stdout)
@@ -484,7 +485,7 @@ class Util(object) :
 
       if thread_output:
         thread_output.join()
-
+        
       if thread_error:
         thread_error.join()
 

@@ -13,6 +13,7 @@ module.exports = {
     let path = variables.path
 
     ipcMain.on("form-cordova-settings",(event, cordova_settings) => {
+      cordova_settings = util.mergeObjectsRecursive(data_project.settings.cordova_settings, cordova_settings)
       try{
         util.openWithSync((fd) => {
           fs.writeFileSync(fd, JSON.stringify(cordova_settings, null, 2))
@@ -109,7 +110,6 @@ module.exports = {
         "cli_compile_options": cli_compile_options,
         "cli_build_options": cli_build_options,
         "cli_run_options": cli_run_options,
-        "installed_platform": data_project.cordova_settings.installed_platform,
         "platform_version_options": {},
         "platform_compile_options": {
           "debug": {},

@@ -18,19 +18,17 @@ def create_cordova_project(json_data):
   project_folder = project_data["cordova_settings"]["working_directory"]
   create_options = []
 
-  if not "ionic" in project_details["type"] :
+  if "create_options" in project_data and project_data["create_options"]:
+    create_options = project_data["create_options"]
+    
+  panel = Util.create_and_show_panel("cordova_panel_installer_project")
 
-    if "create_options" in project_data and project_data["create_options"]:
-      create_options = project_data["create_options"]
-      
-    panel = Util.create_and_show_panel("cordova_panel_installer_project")
+  node = NodeJS()
 
-    node = NodeJS()
-
-    if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
-      node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-    else :  
-      node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+  if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
+    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+  else :  
+    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
     
 
   return json_data
@@ -63,7 +61,7 @@ class cordova_baseCommand(manage_cliCommand):
     if self.settings :
       node = NodeJS()
       sublime.status_message(self.name_cli+": getting platform list...")
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -118,7 +116,7 @@ class cordova_baseCommand(manage_cliCommand):
     if self.settings :
       sublime.status_message(self.name_cli+": getting plugin list...")
       node = NodeJS()
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -275,8 +273,8 @@ class sync_cordova_projectCommand(cordova_baseCommand):
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
       node = NodeJS()
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["project_dir_name"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
     else :
       sublime.error_message("Error: can't get project settings")
 
