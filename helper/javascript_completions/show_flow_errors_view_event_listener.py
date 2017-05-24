@@ -55,7 +55,7 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
   def on_modified_async(self):
     super(show_flow_errorsViewEventListener, self).on_modified_async()
     
-  def on_modified_async_with_thread(self) : 
+  def on_modified_async_with_thread(self, recheck=True) : 
     view = self.view
 
     selections = view.sel()
@@ -101,6 +101,12 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       self.description_by_row = result["description_by_row"]
 
     sublime.set_timeout_async(lambda: self.on_selection_modified_async())
+
+    # recheck only first time to avoid error showing bug (because of async method)
+    # while the code execution is here but the user is modifying content
+    if (recheck) :
+      sublime.set_timeout_async(lambda: self.on_modified_async_with_thread(recheck=False))
+
 
   def on_hover(self, point, hover_zone) :
     view = self.view
