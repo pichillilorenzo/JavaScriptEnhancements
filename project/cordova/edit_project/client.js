@@ -52,6 +52,10 @@ module.exports = {
         if (!$("#form-cordova-settings .container-input-platform-"+list_config_debug_release[j])) {
           break
         }
+
+        $("#form-cordova-settings .debug .container-input-platform-"+list_config_debug_release[j]).html('')
+        $("#form-cordova-settings .release .container-input-platform-"+list_config_debug_release[j]).html('')
+        
         $("#form-cordova-settings .debug .container-input-platform-"+list_config_debug_release[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-mode="debug" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_debug platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button><small>Platform specific options (--)</small></div>')
         $("#form-cordova-settings .release .container-input-platform-"+list_config_debug_release[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-mode="release" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_release platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button><small>Platform specific options (--)</small></div>')
       }

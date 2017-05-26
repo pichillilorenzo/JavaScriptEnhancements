@@ -499,7 +499,11 @@ class Util(object) :
   @staticmethod
   def _wrapper_func_stdout_listen_output(process, func_stdout=None, args_func_stdout=[], lines_output=[]):
     for line in process.stdout:
+      # if (line.strip().endswith(b"Looks like this is an Ionic 1 project, would you like to install @ionic/cli-pl")) :
+      #   line = line.strip() + process.stdout.read(len("gin-ionic1 and continue? (Y/n)")+1)
+      # print(line)
       line = codecs.decode(line, "utf-8", "ignore").strip()
+      line = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', line)
       line = re.sub(r'[\n\r]', '\n', line)
       lines_output.append(line)
       line = line + ( b"\n" if type(line) is bytes else "\n" ) 
@@ -510,6 +514,7 @@ class Util(object) :
   def _wrapper_func_stdout_listen_error(process, func_stdout=None, args_func_stdout=[], lines_error=[]):
     for line in process.stderr:
       line = codecs.decode(line, "utf-8", "ignore").strip()
+      line = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', line)
       line = re.sub(r'[\n\r]', '\n', line)
       lines_error.append(line)
       line = line + ( b"\n" if type(line) is bytes else "\n" ) 

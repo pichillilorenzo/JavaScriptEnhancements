@@ -59,6 +59,25 @@
         </select>
         <small>Select options that apply to 'build' command to all platforms and modes. The build command is a proxy for Cordova's build command.</small>
       </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-build"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-build"></div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="frame">
@@ -121,6 +140,25 @@
         <input class="port_run" type="number" min="0" name="port_run" value="">
         <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
         <small></small>
+      </div>
+      <div class="input-control text full-size mode-control" data-role="input">
+        <label for="mode_list">Mode:</label>
+        <select class="mode_list">
+          <option value="debug">debug</option>
+          <option value="release">release</option>
+        </select>
+        <div class="debug mode active">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-run"></div>
+        </div>
+        <div class="release mode">
+          <label for="platform_list">Select Platform:</label>
+          <select class="platform_list">
+          </select>
+          <div class="container-input-platform-run"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,12 +249,48 @@
   <div class="frame">
     <div class="heading">Platform versions</div>
     <div class="content">
-      <div class="input-control select full-size">
+      <div class="select full-size">
         <label for="platform_list">Select Platform:</label>
         <select class="platform_list">
         </select>
         <div class="container-input-platform-version"></div>
         <small>Version (prepend version with '@' character, like @5.1.1)</small>
+      </div>
+    </div>
+  </div>
+  <div class="frame active">
+    <div class="heading">Global Settings</div>
+    <div id="global-ionic" class="content">
+      <div class="container-settings-ionic-inputs">
+        <div class="container-ionic-input">
+          
+          <div class="input-control text full-size " data-role="input">
+            <label for="working_directory">Working Directory:</label>
+            <input class="working_directory" type="text" name="working_directory" value="">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+          
+          <div class="input-control text full-size " data-role="input">
+            <label for="cli_custom_path">CLI Custom Path:</label>
+            <input class="cli_custom_path" type="text" name="cli_custom_path" value="">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" class="use_local_cli" data-toggle-show="custom-ionic-version">
+            <span class="check"></span>
+            <span class="text-switch">Use local ionic?</span>
+          </label>
+          <div id="custom-ionic-version" class="input-control text full-size hidden required" data-role="input">
+            <label for="ionic-version">Ionic Version:</label>
+            <input class="ionic-version" type="text" name="version" value="latest">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

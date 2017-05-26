@@ -11,9 +11,10 @@ module.exports = {
     let fs = variables.fs
     let data_project = variables.data_project
     let path = variables.path
+    const npm = require('npm')
 
     ipcMain.on("form-ionic-settings",(event, ionic_settings) => {
-      ionic_settings = util.mergeObjectsRecursive(data_project.settings.ionic_settings, ionic_settings)
+      ionic_settings = util.mergeObjectsRecursive(data_project.settings.ionic_settings, ionic_settings, app)
       try{
         util.openWithSync((fd) => {
           fs.writeFileSync(fd, JSON.stringify(ionic_settings, null, 2))
@@ -23,9 +24,33 @@ module.exports = {
         app.sendWeb("error", `Can't modify "${path.join(data_project.settings.settings_dir_name, "ionic_settings.json")}"\nError: ${e}.`)
         return
       }
-      data_project.ionic_settings = ionic_settings
-      app.sendWeb("success", "Successfully saved.")
-      app.sendWeb("load_config", data_project)
+
+      if (ionic_settings.package_json) {
+        let package_json = JSON.parse(fs.readFileSync(path.join(data_project.settings.settings_dir_name, "package.json"), {encoding: 'utf8'}))
+        package_json = util.mergeObjectsRecursive(package_json, data_project.settings.ionic_settings.package_json)
+        util.openWithSync((fd) => {
+          fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
+        }, path.join(data_project.settings.settings_dir_name, "package.json"), "w+")
+        process.chdir(path.join(data_project.settings.settings_dir_name));
+        npm.load(function(err){
+          npm.commands.install(function(err, data){
+            if(err){
+              app.sendWeb("error", JSON.stringify(err, null, 2))
+              return
+            }
+            data_project.ionic_settings = ionic_settings
+            app.sendWeb("success", "Successfully saved.")
+            app.sendWeb("load_config", data_project)
+          })
+
+        })
+      }
+      else {
+        data_project.ionic_settings = ionic_settings
+        app.sendWeb("success", "Successfully saved.")
+        app.sendWeb("load_config", data_project)
+      }
+
     })
   },
   "prepareClientHtml": (variables) => {
@@ -52,6 +77,10 @@ module.exports = {
         if (!$("#form-ionic-settings .container-input-platform-"+list_config_debug_release[j])) {
           break
         }
+
+        $("#form-ionic-settings .debug .container-input-platform-"+list_config_debug_release[j]).html('')
+        $("#form-ionic-settings .release .container-input-platform-"+list_config_debug_release[j]).html('')
+
         $("#form-ionic-settings .debug .container-input-platform-"+list_config_debug_release[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-mode="debug" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_debug form-control platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button><small>Platform specific options (--)</small></div>')
         $("#form-ionic-settings .release .container-input-platform-"+list_config_debug_release[j]).append('<div class="input-control text full-size " data-role="input"><input type="text" data-mode="release" data-platform="'+platform+'" class="'+platform+'_'+list_config_debug_release[j]+'_release form-control platform platform_'+list_config_debug_release[j]+'_options '+( (i == 0) ? 'active' : '' )+'"><button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button><small>Platform specific options (--)</small></div>')
       }
@@ -104,6 +133,33 @@ module.exports = {
       $(mustActive).toggleClass("active");
     })
 
+    $("#global-ionic .use_local_cli").change(function(event){
+      let id = $(this).attr("data-toggle-show")
+      if($(this).prop("checked")){
+        $("#"+id).removeClass("hidden")
+        $("#"+id+" input.ionic-version").attr("data-validate-func", "required")
+        $("#"+id+" input.ionic-version").attr("data-validate-hint", "This field can not be empty!")
+        $("#"+id+" input.ionic-version").attr("data-validate-hint-position", "top")
+      }
+      else {
+        $("#"+id).addClass("hidden")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-func")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint-position")
+      }
+    })
+
+    $("#global-ionic .working_directory").val(data_project.ionic_settings.working_directory)
+
+    $("#global-ionic .cli_custom_path").val(data_project.ionic_settings.cli_custom_path)
+
+    $("#global-ionic .use_local_cli").prop('checked', data_project.ionic_settings.use_local_cli)
+    $("#global-ionic .use_local_cli").change()
+
+    if (data_project.ionic_settings.use_local_cli) {
+      $("#custom-ionic-version input.ionic-version").val(data_project.ionic_settings.package_json.dependencies.ionic)
+    }
+
     $("#form-ionic-settings").on("submit", function(event) {
       event.preventDefault()
 
@@ -150,7 +206,21 @@ module.exports = {
         "platform_emulate_options": {
           "debug": {},
           "release": {}
+        },
+        "working_directory": $("#global-ionic .working_directory").val(),
+        "cli_custom_path": $("#global-ionic .cli_custom_path").val(),
+        "use_local_cli": ($("#global-ionic .use_local_cli").prop('checked')) ? true : false,
+      }
+      
+      if (ionic_settings.use_local_cli) {
+        ionic_settings.package_json = {
+          "dependencies": {
+            "ionic": $("#custom-ionic-version input.ionic-version").val()
+          }
         }
+      }
+      else {
+        ionic_settings.package_json = {}
       }
 
       for(let i = 0, length1 = load_input_text_command.length; i < length1; i++){
