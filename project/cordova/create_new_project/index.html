@@ -11,6 +11,23 @@
   <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
   <small></small>
 </div>
+<div id="custom-cordova-path" class="input-control text full-size" data-role="input">
+  <label for="cordova-path">Custom cordova path:</label>
+  <input class="cordova-path" type="text" name="path" value="cordova">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
+<label class="switch">
+  <input type="checkbox" class="use_local_cli" data-toggle-show="custom-cordova-version">
+  <span class="check"></span>
+  <span class="text-switch">Use local cordova?</span>
+</label>
+<div id="custom-cordova-version" class="input-control text full-size hidden required" data-role="input">
+  <label for="cordova-version">Local Cordova Version:</label>
+  <input class="cordova-version" type="text" name="version" value="latest">
+  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+  <small></small>
+</div>
 <div class="input-control text full-size " data-role="input">
   <label for="cordova-config">Config file:</label>
   <input class=" cordova-config cli_create_cordova_options" type="text" name="config" value="" data-field-type="value">
@@ -32,23 +49,6 @@
 <div class="input-control text full-size " data-role="input">
   <label for="cordova-link-to">--link-to:</label>
   <input class=" cordova-link-to cli_create_cordova_options" type="text" name="link-to" value="" data-field-type="option">
-  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
-  <small></small>
-</div>
-<div id="custom-cordova-path" class="input-control text full-size" data-role="input">
-  <label for="cordova-path">Custom cordova path:</label>
-  <input class="cordova-path" type="text" name="path" value="">
-  <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
-  <small></small>
-</div>
-<label class="switch">
-  <input type="checkbox" class="use_local_cli" data-toggle-show="custom-cordova-version">
-  <span class="check"></span>
-  <span class="text-switch">Use local cordova?</span>
-</label>
-<div id="custom-cordova-version" class="input-control text full-size hidden required" data-role="input">
-  <label for="cordova-version">Cordova Version:</label>
-  <input class="cordova-version" type="text" name="version" value="">
   <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
   <small></small>
 </div>

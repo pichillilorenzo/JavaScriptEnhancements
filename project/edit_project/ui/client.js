@@ -256,6 +256,16 @@ ipcMain.on('add_project_type', (event, project_data) => {
     fs.mkdirsSync(project_data.project_dir_name)
   }
 
+  if ( !project_data.type_added || project_data.project_details.type.indexOf(project_data.type_added) >= 0 ) {
+    app.sendWeb("error", "Can't add project type. This type already exists")
+    return
+  }
+
+  if ( !project_data.working_directory ) {
+    app.sendWeb("error", "Can't add project type. Working Directory field is empty.")
+    return
+  }
+
   let jc_project_settings = path.join(project_data.project_dir_name, ".jc-project-settings")
   let project_details_file = path.join(jc_project_settings, "project_details.json")
   let project_settings = path.join(jc_project_settings, "project_settings.json")
@@ -285,8 +295,8 @@ ipcMain.on('add_project_type', (event, project_data) => {
     }
     if(project_type_default_config.flow_settings) {
       for (let key in project_type_default_config.flow_settings) {
-        if (Array.isArray(project_data.flow_settings[key])){
-          project_data.flow_settings[key] = project_data.flow_settings[key].concat(project_type_default_config.flow_settings[key])
+        if ( Array.isArray(project_data.flow_settings[key]) && project_data.flow_settings[key].indexOf() < 0 ){
+          project_data.flow_settings[key] = util.concatUnique( project_data.flow_settings[key], project_type_default_config.flow_settings[key])
         }
       }
     }
@@ -317,8 +327,9 @@ ipcMain.on('add_project_type', (event, project_data) => {
 
       if (!project_data[project_type_default_settings[i][0]+"_settings"]) {
         project_data[project_type_default_settings[i][0]+"_settings"] = {}
-        project_data[project_type_default_settings[i][0]+"_settings"].working_directory = path.join(project_data.project_dir_name, project_data.working_directory)
       }
+
+      project_data[project_type_default_settings[i][0]+"_settings"].working_directory = path.join(project_data.project_dir_name, project_data.working_directory)
       
       if (project_data[project_type_default_settings[i][0]+"_settings"]) {
         for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {
@@ -373,20 +384,74 @@ ipcMain.on('add_project_type', (event, project_data) => {
           if(err){
             app.sendWeb("error", JSON.stringify(err, null, 2))
           }
+          else {
+            app.sendSocketJson({
+              "command": "add_project_type",
+              "project_data": project_data
+            })
+            app.sendWeb("success", "Successfully added.")
+            app.app.quit()
+          }
         })
 
       })
     }
-    
-    app.sendSocketJson({
-      "command": "add_project_type",
-      "project_data": project_data
-    })
+    else {
+      app.sendSocketJson({
+        "command": "add_project_type",
+        "project_data": project_data
+      })
+      app.sendWeb("success", "Successfully added.")
+      app.app.quit()
+    }
   }
   else{
     app.sendWeb("error", "Can't find the project!")
   }
 
+})
+
+ipcMain.on('remove_project_type', (event, data) => {
+  let index_type = data.project_data.project_details.type.indexOf(data.type)
+  // index_type > 0 because user can't delete the first type of the project
+  if ( data.type && index_type > 0 ) {
+
+    let jc_project_settings = path.join(data.project_data.project_dir_name, ".jc-project-settings")
+    let project_details_file = path.join(jc_project_settings, "project_details.json")
+    data.project_data.project_details.type.splice(index_type, 1)
+    try{
+      util.openWithSync((fd) => {
+        fs.writeFileSync(fd, JSON.stringify(data.project_data.project_details, null, 2))
+      }, project_details_file, "w+")
+    }
+    catch(e){
+      app.sendWeb("error", `Can't modify "${project_details_file}"\nError: ${e}.`)
+      return
+    }
+
+    try{
+      fs.removeSync(path.join(jc_project_settings, data.type+"_settings.json"))
+    }
+    catch(e){
+      app.sendWeb("error", `Can't delete "${path.join(jc_project_settings, data.type+"_settings.json")}"\nError: ${e}.`)
+      return
+    }
+
+    try{
+      fs.removeSync(data.project_data[data.type+"_settings"].working_directory)
+    }
+    catch(e){
+      app.sendWeb("error", `Can't delete "${data.project_data[data.type+"_settings"].working_directory}"\nError: ${e}.`)
+      return
+    }
+
+    app.sendWeb("success", "Successfully added.")
+    data_project.settings.project_details = data.project_data.project_details
+    app.sendWeb("load_config", data_project)
+  }
+  else{
+    app.sendWeb("error", "Can't find the project type.")
+  }
 })
 
 app.start(() => {

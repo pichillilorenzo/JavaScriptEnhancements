@@ -11,12 +11,20 @@ module.exports = {
         $("#"+id+" input.ionic-version").attr("data-validate-func", "required")
         $("#"+id+" input.ionic-version").attr("data-validate-hint", "This field can not be empty!")
         $("#"+id+" input.ionic-version").attr("data-validate-hint-position", "top")
+        $('#custom-ionic-path').removeAttr("data-validate-func")
+        $('#custom-ionic-path').removeAttr("data-validate-hint")
+        $('#custom-ionic-path').removeAttr("data-validate-hint-position")
+        $('#custom-ionic-path').removeClass("required")
       }
       else {
         $("#"+id).addClass("hidden")
-        $("#"+id+" input.ionic-version").removeAttr("data-validate-func")
-        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint")
-        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint-position")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-func", "required")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint", "This field can not be empty!")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint-position", "top")
+        $('#custom-ionic-path').attr("data-validate-func")
+        $('#custom-ionic-path').attr("data-validate-hint")
+        $('#custom-ionic-path').attr("data-validate-hint-position")
+        $('#custom-ionic-path').addClass("required")
       }
     })
   },

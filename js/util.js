@@ -37,3 +37,9 @@ exports.mergeObjectsRecursive = (obj1, obj2, checkSubObjToDelete = false) => {
 
   return obj1;
 }
+
+exports.concatUnique = (arr1, arr2) => {
+  return arr1.concat(arr2.filter(function (item) {
+    return arr1.indexOf(item) < 0
+  }))
+}

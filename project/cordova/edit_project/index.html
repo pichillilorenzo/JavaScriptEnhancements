@@ -145,4 +145,40 @@
       </div>
     </div>
   </div>
+  <div class="frame active">
+    <div class="heading">Global Settings</div>
+    <div id="global-cordova" class="content">
+      <div class="container-settings-cordova-inputs">
+        <div class="container-cordova-input">
+          
+          <div class="input-control text full-size " data-role="input">
+            <label for="working_directory">Working Directory:</label>
+            <input class="working_directory" type="text" name="working_directory" value="">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+          
+          <div class="input-control text full-size " data-role="input">
+            <label for="cli_custom_path">CLI Custom Path:</label>
+            <input class="cli_custom_path" type="text" name="cli_custom_path" value="">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" class="use_local_cli" data-toggle-show="custom-cordova-version">
+            <span class="check"></span>
+            <span class="text-switch">Use local cordova?</span>
+          </label>
+          <div id="custom-cordova-version" class="input-control text full-size hidden required" data-role="input">
+            <label for="cordova-version">Local Cordova Version:</label>
+            <input class="cordova-version" type="text" name="version" value="latest">
+            <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+            <small></small>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

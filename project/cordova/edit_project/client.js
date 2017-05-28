@@ -11,6 +11,7 @@ module.exports = {
     let fs = variables.fs
     let data_project = variables.data_project
     let path = variables.path
+    const npm = require('npm')
 
     ipcMain.on("form-cordova-settings",(event, cordova_settings) => {
       cordova_settings = util.mergeObjectsRecursive(data_project.settings.cordova_settings, cordova_settings)
@@ -23,9 +24,33 @@ module.exports = {
         app.sendWeb("error", `Can't modify "${path.join(data_project.settings.settings_dir_name, "cordova_settings.json")}"\nError: ${e}.`)
         return
       }
-      data_project.cordova_settings = cordova_settings
-      app.sendWeb("success", "Successfully saved.")
-      app.sendWeb("load_config", data_project)
+
+      if (cordova_settings.package_json) {
+        let package_json = JSON.parse(fs.readFileSync(path.join(data_project.settings.settings_dir_name, "package.json"), {encoding: 'utf8'}))
+        package_json = util.mergeObjectsRecursive(package_json, data_project.settings.cordova_settings.package_json)
+        util.openWithSync((fd) => {
+          fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
+        }, path.join(data_project.settings.settings_dir_name, "package.json"), "w+")
+        process.chdir(path.join(data_project.settings.settings_dir_name));
+        npm.load(function(err){
+          npm.commands.install(function(err, data){
+            if(err){
+              app.sendWeb("error", JSON.stringify(err, null, 2))
+              return
+            }
+            data_project.cordova_settings = cordova_settings
+            app.sendWeb("success", "Successfully saved.")
+            app.sendWeb("load_config", data_project)
+          })
+
+        })
+      }
+      else {
+        data_project.cordova_settings = cordova_settings
+        app.sendWeb("success", "Successfully saved.")
+        app.sendWeb("load_config", data_project)
+      }
+    
     })
   },
   "prepareClientHtml": (variables) => {
@@ -95,6 +120,41 @@ module.exports = {
       $(mustActive).toggleClass("active");
     })
 
+    $("#global-cordova .use_local_cli").change(function(event){
+      let id = $(this).attr("data-toggle-show")
+      if($(this).prop("checked")){
+        $("#"+id).removeClass("hidden")
+        $("#"+id+" input.cordova-version").attr("data-validate-func", "required")
+        $("#"+id+" input.cordova-version").attr("data-validate-hint", "This field can not be empty!")
+        $("#"+id+" input.cordova-version").attr("data-validate-hint-position", "top")
+        $('#global-cordova .cli_custom_path').removeAttr("data-validate-func")
+        $('#global-cordova .cli_custom_path').removeAttr("data-validate-hint")
+        $('#global-cordova .cli_custom_path').removeAttr("data-validate-hint-position")
+        $('#global-cordova .cli_custom_path').removeClass("required")
+      }
+      else {
+        $("#"+id).addClass("hidden")
+        $("#"+id+" input.cordova-version").removeAttr("data-validate-func")
+        $("#"+id+" input.cordova-version").removeAttr("data-validate-hint")
+        $("#"+id+" input.cordova-version").removeAttr("data-validate-hint-position")
+        $('#global-cordova .cli_custom_path').attr("data-validate-func")
+        $('#global-cordova .cli_custom_path').attr("data-validate-hint")
+        $('#global-cordova .cli_custom_path').attr("data-validate-hint-position")
+        $('#global-cordova .cli_custom_path').addClass("required")
+      }
+    })
+
+    $("#global-cordova .working_directory").val(data_project.cordova_settings.working_directory)
+
+    $("#global-cordova .cli_custom_path").val(data_project.cordova_settings.cli_custom_path)
+
+    $("#global-cordova .use_local_cli").prop('checked', data_project.cordova_settings.use_local_cli)
+    $("#global-cordova .use_local_cli").change()
+
+    if (data_project.cordova_settings.use_local_cli) {
+      $("#custom-cordova-version input.cordova-version").val(data_project.cordova_settings.package_json.dependencies.cordova)
+    }
+
     $("#form-cordova-settings").on("submit", function(event) {
       event.preventDefault()
       
@@ -126,7 +186,21 @@ module.exports = {
         "platform_run_options": {
           "debug": {},
           "release": {}
+        },
+        "working_directory": $("#global-cordova .working_directory").val(),
+        "cli_custom_path": $("#global-cordova .cli_custom_path").val(),
+        "use_local_cli": ($("#global-cordova .use_local_cli").prop('checked')) ? true : false,
+      }
+
+      if (cordova_settings.use_local_cli) {
+        cordova_settings.package_json = {
+          "dependencies": {
+            "cordova": $("#custom-cordova-version input.cordova-version").val()
+          }
         }
+      }
+      else {
+        cordova_settings.package_json = {}
       }
 
       for(let j = 0, length2 = list_config.length; j < length2; j++){

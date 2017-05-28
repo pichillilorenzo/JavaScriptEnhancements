@@ -21,7 +21,7 @@
         <form id="form-project-details" action="#">
           <h2>Project Details</h2>
 
-          <div class="input-control text full-size" data-role="input">
+          <div class="input-control text required full-size" data-role="input">
             <label for="project_name">Project Name *:</label>
             <input type="text" id="project_name" name="project_name" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
             <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
@@ -189,11 +189,12 @@
             </select>
           </div>
 
-          <div class="input-control text full-size" data-role="input">
+          <div class="input-control text full-size required" data-role="input">
             <label for="working_directory">Working Directory:</label>
-            <input id="working_directory" type="text" placeholder="/" name="working_directory" value="" data-field-type="value" style="padding-right: 36px;" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <pre class="pre-working-directory"></pre>
+            <input id="working_directory" type="text" placeholder="Relative Path" name="working_directory" value="" data-field-type="value" style="padding-right: 36px;" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
             <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
-            <small></small>
+            <small>Relative path to the current project path.</small>
           </div>
           
           <div class="container-form">
@@ -280,6 +281,7 @@
     window.$ = window.jQuery = require('../../../vendor/jquery/jquery-1.12.2.min.js')
     require('../../../vendor/metro-dist/js/metro.min.js')
     const fs = require("fs")
+    const path = require('path')
     const utilWeb = require('../../../js/utilWeb.js')
 
     const {ipcRenderer} = require('electron')
@@ -290,20 +292,28 @@
       
     $(document).ready(() => {
       
-      $("#form-project-details").on("submit", function(event) {
-        event.preventDefault()
-        let project_details = {
-          "project_name": $("#project_name").val().trim(),
-          "author": $("#author").val().trim(),
-          "author_uri": $("#author_uri").val().trim(),
-          "description": $("#description").val().trim(),
-          "version": $("#version").val().trim(),
-          "license": $("#license").val().trim(),
-          "license_uri": $("#license_uri").val().trim(),
-          "tags": $("#tags").val().trim()
-          //"type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+      $("#form-project-details").validator({
+        hideHint: 2500,
+        onBeforeSubmit: function(form, result){
+          return (result) ? false : true
+        },
+        onSubmit: function(form) {
+
+          let project_details = {
+            "project_name": $("#project_name").val().trim(),
+            "author": $("#author").val().trim(),
+            "author_uri": $("#author_uri").val().trim(),
+            "description": $("#description").val().trim(),
+            "version": $("#version").val().trim(),
+            "license": $("#license").val().trim(),
+            "license_uri": $("#license_uri").val().trim(),
+            "tags": $("#tags").val().trim()
+            //"type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
+          }
+          ipcRenderer.send('form-project-details', project_details)
+
+          return false 
         }
-        ipcRenderer.send('form-project-details', project_details)
       })
 
       $(".add-project-type").click(function(event){
@@ -329,35 +339,57 @@
             "fs": fs,
             "electron": require('electron')
           })
+
+          $('#form-manage-project-types .container-form').show()
         }
+
+      })
+
+      $(".remove-project-type").click(function(event){
+        event.preventDefault()
+        let type = $("#secondary-types").val()
+
+        ipcRenderer.send('remove_project_type', {
+          type: type,
+          project_data: project_data
+        })
       })
 
       $(".cancel-project-type").click(function(event){
         event.preventDefault()
         $("#form-manage-project-types .container-form .wrapper-form").html("")
+        $('#form-manage-project-types .container-form').hide()
       })
 
-      $('#form-manage-project-types').on('submit', function(event){
-        event.preventDefault()
-        let type = $("#secondary-types").val()
+      $("#form-manage-project-types").validator({
+        hideHint: 2500,
+        onBeforeSubmit: function(form, result){
+          return (result) ? false : true
+        },
+        onSubmit: function(form) {
 
-        if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
+          let type = $("#secondary-types").val()
 
-          let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
+          if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
 
-          project_data.type_added = type
-          project_data.working_directory = $('#working_directory').val().trim()
+            let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
 
-          client_js.setProject({
-            "project_data": project_data,
-            "ipcRenderer": ipcRenderer,
-            "$": $,
-            "utilWeb": utilWeb,
-            "fs": fs,
-            "electron": require('electron')
-          })      
+            project_data.type_added = type
+            project_data.working_directory = $('#working_directory').val().trim()
 
-          ipcRenderer.send("add_project_type", project_data)
+            client_js.setProject({
+              "project_data": project_data,
+              "ipcRenderer": ipcRenderer,
+              "$": $,
+              "utilWeb": utilWeb,
+              "fs": fs,
+              "electron": require('electron')
+            })      
+
+            ipcRenderer.send("add_project_type", project_data)
+          }
+
+          return false 
         }
       })
 
@@ -492,10 +524,15 @@
       $("#license_uri").val(project_details.license_uri)
       $("#tags").val(project_details.tags)
       $("#type").val(project_details.type[0])
+      $(".pre-working-directory").html(config.settings.project_dir_name+path.sep)
+
+      $("#secondary-types option").each(function (index, item){
+        $(item).html( $(item).html().replace(' (added)', '') )
+      })
 
       for(let i = 0, length1 = project_details.type.length; i < length1; i++){
         let type = project_details.type[i]
-        $("#secondary-types option[value='"+type+"']").remove()
+        $("#secondary-types option[value='"+type+"']").html($("#secondary-types option[value='"+type+"']").html()+" (added)")
       }
 
       project_type = project_details.type
@@ -547,6 +584,10 @@
             "fs": fs,
             "electron": require('electron')
           })
+
+          if (i == 0) {
+            $("#dialog-"+type+"-settings form .working_directory").attr('disabled', 'disabled')
+          }
         }
       }
 

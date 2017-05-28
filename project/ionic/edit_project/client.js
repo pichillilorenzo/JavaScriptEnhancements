@@ -140,12 +140,20 @@ module.exports = {
         $("#"+id+" input.ionic-version").attr("data-validate-func", "required")
         $("#"+id+" input.ionic-version").attr("data-validate-hint", "This field can not be empty!")
         $("#"+id+" input.ionic-version").attr("data-validate-hint-position", "top")
+        $('#global-ionic .cli_custom_path').removeAttr("data-validate-func")
+        $('#global-ionic .cli_custom_path').removeAttr("data-validate-hint")
+        $('#global-ionic .cli_custom_path').removeAttr("data-validate-hint-position")
+        $('#global-ionic .cli_custom_path').removeClass("required")
       }
       else {
         $("#"+id).addClass("hidden")
-        $("#"+id+" input.ionic-version").removeAttr("data-validate-func")
-        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint")
-        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint-position")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-func", "required")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint", "This field can not be empty!")
+        $("#"+id+" input.ionic-version").removeAttr("data-validate-hint-position", "top")
+        $('#global-ionic .cli_custom_path').attr("data-validate-func")
+        $('#global-ionic .cli_custom_path').attr("data-validate-hint")
+        $('#global-ionic .cli_custom_path').attr("data-validate-hint-position")
+        $('#global-ionic .cli_custom_path').addClass("required")
       }
     })
 

@@ -154,11 +154,9 @@ ipcMain.on('data', (event, project_data) => {
 
       if (!project_data[project_type_default_settings[i][0]+"_settings"]) {
         project_data[project_type_default_settings[i][0]+"_settings"] = {}
-        project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
       }
-      else {
-        project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
-      }
+
+      project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
 
       if (project_data[project_type_default_settings[i][0]+"_settings"]) {
         for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {

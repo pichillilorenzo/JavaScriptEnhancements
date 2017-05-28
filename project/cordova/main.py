@@ -26,7 +26,7 @@ def create_cordova_project(json_data):
   node = NodeJS()
 
   if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
-    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
   else :  
     node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
     

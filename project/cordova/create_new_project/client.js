@@ -11,12 +11,20 @@ module.exports = {
         $("#"+id+" input.cordova-version").attr("data-validate-func", "required")
         $("#"+id+" input.cordova-version").attr("data-validate-hint", "This field can not be empty!")
         $("#"+id+" input.cordova-version").attr("data-validate-hint-position", "top")
+        $('#custom-cordova-path').removeAttr("data-validate-func")
+        $('#custom-cordova-path').removeAttr("data-validate-hint")
+        $('#custom-cordova-path').removeAttr("data-validate-hint-position")
+        $('#custom-cordova-path').removeClass("required")
       }
       else {
         $("#"+id).addClass("hidden")
         $("#"+id+" input.cordova-version").removeAttr("data-validate-func")
         $("#"+id+" input.cordova-version").removeAttr("data-validate-hint")
         $("#"+id+" input.cordova-version").removeAttr("data-validate-hint-position")
+        $('#custom-cordova-path').attr("data-validate-func")
+        $('#custom-cordova-path').attr("data-validate-hint")
+        $('#custom-cordova-path').attr("data-validate-hint-position")
+        $('#custom-cordova-path').addClass("required")
       }
     })
   },

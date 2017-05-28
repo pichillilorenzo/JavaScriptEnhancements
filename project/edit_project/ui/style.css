@@ -27,3 +27,14 @@ html, body{
 #form-flow-settings .container-flow-input > .switch {
   margin: 5px 0;
 }
+
+#form-manage-project-types .container-form{
+  display: none;
+  margin-top: 35px;
+}
+.validator-hint {
+  z-index: 99999;
+}
+.switch {
+  margin-bottom: 15px;
+}

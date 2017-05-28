@@ -1089,28 +1089,51 @@ class Util(object) :
 
   @staticmethod
   def _wrapper_func_stdout_listen_output(process, func_stdout=None, args_func_stdout=[], lines_output=[]):
-    for line in process.stdout:
-      # if (line.strip().endswith(b"Looks like this is an Ionic 1 project, would you like to install @ionic/cli-pl")) :
-      #   line = line.strip() + process.stdout.read(len("gin-ionic1 and continue? (Y/n)")+1)
-      # print(line)
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      line = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', line)
-      line = re.sub(r'[\n\r]', '\n', line)
-      lines_output.append(line)
-      line = line + ( b"\n" if type(line) is bytes else "\n" ) 
-      if func_stdout :
-        func_stdout(line, process, *args_func_stdout)
+
+    char = b""
+    line = b""
+
+    while True :
+      char = process.stdout.read(1)
+      if not char :
+        break
+      if not char.endswith(b'\n') :
+        line = line + char
+      else :
+        line = line + char
+        line = codecs.decode(line, "utf-8", "ignore").strip()
+        line = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', line)
+        line = re.sub(r'[\n\r]', '\n', line)
+        lines_output.append(line)
+        line = line + ( b"\n" if type(line) is bytes else "\n" ) 
+        if func_stdout :
+          func_stdout(line, process, *args_func_stdout)
+        line = b""
+      char = b""
   
   @staticmethod
   def _wrapper_func_stdout_listen_error(process, func_stdout=None, args_func_stdout=[], lines_error=[]):
-    for line in process.stderr:
-      line = codecs.decode(line, "utf-8", "ignore").strip()
-      line = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', line)
-      line = re.sub(r'[\n\r]', '\n', line)
-      lines_error.append(line)
-      line = line + ( b"\n" if type(line) is bytes else "\n" ) 
-      if func_stdout :
-        func_stdout(line, process, *args_func_stdout)
+
+    char = b""
+    line = b""
+
+    while True :
+      char = process.stderr.read(1)
+      if not char :
+        break
+      if not char.endswith(b'\n') :
+        line = line + char
+      else :
+        line = line + char
+        line = codecs.decode(line, "utf-8", "ignore").strip()
+        line = re.sub(r'\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))', '', line)
+        line = re.sub(r'[\n\r]', '\n', line)
+        lines_error.append(line)
+        line = line + ( b"\n" if type(line) is bytes else "\n" ) 
+        if func_stdout :
+          func_stdout(line, process, *args_func_stdout)
+        line = b""
+      char = b""
 
 import time, os, re, threading, socket, traceback, sys, struct
 
@@ -4749,7 +4772,7 @@ def create_cordova_project(json_data):
   node = NodeJS()
 
   if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
-    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
   else :  
     node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
     
@@ -5056,7 +5079,7 @@ def create_ionic_project(json_data):
   node = NodeJS()
 
   if "ionic_settings" in project_data and "package_json" in project_data["ionic_settings"] and "use_local_cli" in project_data["ionic_settings"] and project_data["ionic_settings"]["use_local_cli"] :
-    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_folder, ".jc-project-settings", "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
   else :  
     node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
 
@@ -5486,8 +5509,6 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
 
         json_data = json.loads(client_data)
 
-        #print(json_data)
-        #return
         if json_data["command"] == "add_project_type":
           
           json_data = Hook.apply("before_add_new_project", json_data)

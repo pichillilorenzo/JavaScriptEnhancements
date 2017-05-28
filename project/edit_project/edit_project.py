@@ -19,8 +19,6 @@ class edit_javascript_projectCommand(sublime_plugin.WindowCommand):
 
         json_data = json.loads(client_data)
 
-        #print(json_data)
-        #return
         if json_data["command"] == "add_project_type":
           
           json_data = Hook.apply("before_add_new_project", json_data)
