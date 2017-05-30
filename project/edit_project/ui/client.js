@@ -54,124 +54,16 @@ app.listenSocketCommand('load_project_settings', (data) => {
 
 ipcMain.on('form-project-details', (event, project_details) => {
   if (fs.existsSync(project_details_file)) {
-
-    /* check dependencies */
-    // let dependencies = {}
-    // for(let i = 0; i < project_details.type.length; i++){
-    //   let project_type_default_config = {}
-    //   try {
-    //     project_type_default_config = require('../../default_settings/'+project_details.type[i]+'/default_config.js')
-    //     if (project_type_default_config.dependencies) {
-    //       for(let j = 0, length2 = project_type_default_config.dependencies.length; j < length2; j++){
-    //         let dipendency = project_type_default_config.dependencies[j]
-    //         if (project_details.type.indexOf(dipendency) < 0) {
-    //           let dependency_default_config = require('../../default_settings/'+dipendency+'/default_config.js')
-    //           if (dependency_default_config) {
-    //             dependencies[dipendency] = dependency_default_config
-    //           }
-    //           project_details.type.push(dipendency)
-    //         }
-    //       }
-    //     }
-    //   } catch(e) {
-    //     continue
-    //   }
-    // }
-
-    // let types = get_update_type(data_project.settings.project_details.type, project_details.type)
-
-    // if(types.must_delete){
-    //   for(let i = 0, length1 = types.must_delete.length; i < length1; i++){
-    //     let project_type_default_config =  {}
-    //     try {
-    //       project_type_default_config = require('../../default_settings/'+types.must_delete[i]+'/default_config.js')
-    //     } catch(e) {
-    //       continue
-    //     }
-    //     if(project_type_default_config.flow_settings) {
-    //       for (let key in project_type_default_config.flow_settings) {
-    //         if (Array.isArray(data_project.settings.flow_settings[key])){
-    //           data_project.settings.flow_settings[key] = difference(data_project.settings.flow_settings[key], project_type_default_config.flow_settings[key])
-    //         }
-    //       }
-    //     }
-    //     if(project_type_default_config[types.must_delete[i]+"_settings"]){
-    //       fs.unlinkSync(path.join(jc_project_settings_dir_name, types.must_delete[i]+"_settings.json"))
-    //       app.sendWeb("delete-item-menu", types.must_delete[i])
-    //     }
-    //   }
-    // }
-
-    // if(types.must_add){
-    //   for(let i = 0; i < types.must_add.length; i++){
-    //     let project_type_default_config =  {}
-    //     try {
-    //       project_type_default_config = require('../../default_settings/'+types.must_add[i]+'/default_config.js')
-    //     } catch(e) {
-    //       continue
-    //     }
-    //     if(project_type_default_config.flow_settings) {
-    //       for (let key in project_type_default_config.flow_settings) {
-    //         if (Array.isArray(data_project.settings.flow_settings[key])){
-    //           data_project.settings.flow_settings[key] = data_project.settings.flow_settings[key].concat(project_type_default_config.flow_settings[key])
-    //         }
-    //       }
-    //     }
-    //     if(project_type_default_config[types.must_add[i]+"_settings"]){
-    //       util.openWithSync((fd) => {
-    //         fs.writeFileSync(fd, JSON.stringify(project_type_default_config[types.must_add[i]+"_settings"], null, 2))
-    //       }, path.join(jc_project_settings_dir_name, types.must_add[i]+"_settings.json"), "w+")
-    //     }
-    //   }
-    // }
-    // app.sendWeb("console", JSON.parse( fs.readFileSync(project_details_file, {encoding: "utf-8"}) ) )
-    // app.sendWeb("console", project_details )
-    // project_details = util.mergeObjectsRecursive( JSON.parse( fs.readFileSync(project_details_file, {encoding: "utf-8"}) ), project_details)
-    // app.sendWeb("console", project_details )
-    // app.sendWeb("console", JSON.stringify(project_details, null, 2) )
-    // return
+    
     data_project.settings.project_details = util.mergeObjectsRecursive( data_project.settings.project_details, project_details )
     try{
       util.openWithSync((fd) => {
+        app.sendWeb("overlay-message", "Saving "+project_details_file+"...")
         fs.writeFileSync(fd, JSON.stringify(data_project.settings.project_details, null, 2))
       }, project_details_file, "w+")
     }
     catch(e){
       app.sendWeb("error", `Can't modify "${project_details_file}"\nError: ${e}.`)
-      return
-    }
-    try{
-      util.openWithSync((fd) => {
-        fs.writeFileSync(fd, JSON.stringify(data_project.settings.flow_settings, null, 2))
-      }, flow_settings, "w+")
-    }
-    catch(e){
-      app.sendWeb("error", `Can't modify "${flow_settings}"\nError: ${e}.`)
-      return
-    }
-    try{
-      util.openWithSync((fd) => {
-        let include = data_project.settings.flow_settings.include.join("\n")
-        let ignore = data_project.settings.flow_settings.ignore.join("\n")
-        let libs = data_project.settings.flow_settings.libs.join("\n")
-        let options = data_project.settings.flow_settings.options.map(function(item){
-          return item[0].trim()+"="+item[1].trim()
-        }).join("\n")
-
-        let str = `[ignore]
-${ignore}
-[include]
-${include}
-[libs]
-${libs}
-[options]
-${options}
-`
-        fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
-      }, path.join(project_dir_name, ".flowconfig"), "w+")
-    }
-    catch(e){
-      app.sendWeb("error", `Can't modify "${path.join(project_dir_name, ".flowconfig")}"\nError: ${e}.`)
       return
     }
 
@@ -187,6 +79,7 @@ ipcMain.on('form-project-settings', (event, project_settings) => {
   if (fs.existsSync(project_settings_file)) {
     try{
       util.openWithSync((fd) => {
+        app.sendWeb("overlay-message", "Saving "+project_settings_file+"...")
         fs.writeFileSync(fd, JSON.stringify(project_settings, null, 2))
       }, project_settings_file, "w+")
     }
@@ -208,6 +101,7 @@ ipcMain.on('form-flow-settings', (event, flow_form_settings) => {
   if (fs.existsSync(flow_settings)) {
     try{
       util.openWithSync((fd) => {
+        app.sendWeb("overlay-message", "Saving "+flow_form_settings+"...")
         fs.writeFileSync(fd, JSON.stringify(flow_form_settings, null, 2))
       }, flow_settings, "w+")
     }
@@ -234,6 +128,7 @@ ${libs}
 [options]
 ${options}
 `
+        app.sendWeb("overlay-message", "Saving "+path.join(project_dir_name, ".flowconfig")+"...")
         fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
       }, path.join(project_dir_name, ".flowconfig"), "w+")
 
@@ -310,16 +205,19 @@ ipcMain.on('add_project_type', (event, project_data) => {
   if (fs.existsSync(jc_project_settings)) {
 
     util.openWithSync((fd) => {
-      project_data.project_details = JSON.parse(JSON.stringify(project_data.project_details)) // clone project object
+      app.sendWeb("overlay-message", "Saving "+project_details_file+"...")
+      //project_data.project_details = JSON.parse(JSON.stringify(project_data.project_details)) // clone project object
       fs.writeFileSync(fd, JSON.stringify(project_data.project_details, null, 2))
     }, project_details_file, "w+")
 
     util.openWithSync((fd) => {
-      project_data.project_settings = JSON.parse(JSON.stringify(project_data.project_settings))
+      app.sendWeb("overlay-message", "Saving "+project_settings+"...")
+      //project_data.project_settings = JSON.parse(JSON.stringify(project_data.project_settings))
       fs.writeFileSync(fd, JSON.stringify(project_data.project_settings, null, 2))
     }, project_settings, "w+")
 
     util.openWithSync((fd) => {
+      app.sendWeb("overlay-message", "Saving "+flow_settings+"...")
       fs.writeFileSync(fd, JSON.stringify(project_data.flow_settings, null, 2))
     }, flow_settings, "w+")
 
@@ -329,20 +227,17 @@ ipcMain.on('add_project_type', (event, project_data) => {
         project_data[project_type_default_settings[i][0]+"_settings"] = {}
       }
 
+      project_data[project_type_default_settings[i][0]+"_settings"] = util.mergeObjectsRecursive( project_type_default_settings[i][1], project_data[project_type_default_settings[i][0]+"_settings"] )
+
       project_data[project_type_default_settings[i][0]+"_settings"].working_directory = path.join(project_data.project_dir_name, project_data.working_directory)
       
-      if (project_data[project_type_default_settings[i][0]+"_settings"]) {
-        for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {
-          project_type_default_settings[i][1][key] = project_data[project_type_default_settings[i][0]+"_settings"][key]
-        }
-      }
-      
-      if (!fs.existsSync(project_type_default_settings[i][1].working_directory)) {
-        fs.mkdirsSync(project_type_default_settings[i][1].working_directory)
+      if (!fs.existsSync(project_data[project_type_default_settings[i][0]+"_settings"].working_directory)) {
+        fs.mkdirsSync(project_data[project_type_default_settings[i][0]+"_settings"].working_directory)
       }
 
       util.openWithSync((fd) => {
-        fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))
+        app.sendWeb("overlay-message", "Saving "+path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json")+"...")
+        fs.writeFileSync(fd, JSON.stringify(project_data[project_type_default_settings[i][0]+"_settings"], null, 2))
       }, path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json"), "w+")
     }
 
@@ -355,14 +250,15 @@ ipcMain.on('add_project_type', (event, project_data) => {
       }).join("\n")
 
       let str = `[ignore]
-  ${ignore}
-  [include]
-  ${include}
-  [libs]
-  ${libs}
-  [options]
-  ${options}
-  `
+${ignore}
+[include]
+${include}
+[libs]
+${libs}
+[options]
+${options}
+`
+      app.sendWeb("overlay-message", "Saving "+path.join(project_dir_name, ".flowconfig")+"...")
       fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
     }, path.join(project_dir_name, ".flowconfig"), "w+")
 
@@ -376,10 +272,12 @@ ipcMain.on('add_project_type', (event, project_data) => {
     }
     if (package_json) {
       util.openWithSync((fd) => {
+        app.sendWeb("overlay-message", "Saving "+path.join(project_data.project_dir_name, ".jc-project-settings", "package.json")+"...")
         fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
       }, path.join(project_data.project_dir_name, ".jc-project-settings", "package.json"), "w+")
       process.chdir(path.join(project_data.project_dir_name, ".jc-project-settings"));
       npm.load(function(err){
+        app.sendWeb("overlay-message", "Running 'npm install'...")
         npm.commands.install(function(err, data){
           if(err){
             app.sendWeb("error", JSON.stringify(err, null, 2))
@@ -421,6 +319,7 @@ ipcMain.on('remove_project_type', (event, data) => {
     data.project_data.project_details.type.splice(index_type, 1)
     try{
       util.openWithSync((fd) => {
+        app.sendWeb("overlay-message", "Saving "+project_details_file+"...")
         fs.writeFileSync(fd, JSON.stringify(data.project_data.project_details, null, 2))
       }, project_details_file, "w+")
     }
@@ -430,6 +329,7 @@ ipcMain.on('remove_project_type', (event, data) => {
     }
 
     try{
+      app.sendWeb("overlay-message", "Removing "+path.join(jc_project_settings, data.type+"_settings.json")+"...")
       fs.removeSync(path.join(jc_project_settings, data.type+"_settings.json"))
     }
     catch(e){
@@ -438,6 +338,7 @@ ipcMain.on('remove_project_type', (event, data) => {
     }
 
     try{
+      app.sendWeb("overlay-message", "Removing "+data.project_data[data.type+"_settings"].working_directory+"...")
       fs.removeSync(data.project_data[data.type+"_settings"].working_directory)
     }
     catch(e){

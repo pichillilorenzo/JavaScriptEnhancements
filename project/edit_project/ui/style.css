@@ -30,7 +30,6 @@ html, body{
 
 #form-manage-project-types .container-form{
   display: none;
-  margin-top: 35px;
 }
 .validator-hint {
   z-index: 99999;

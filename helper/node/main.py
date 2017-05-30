@@ -40,9 +40,14 @@ class NodeJS(object):
     js = ("'use strict'; " if strict_mode else "") + js
     eval_type = "--eval" if eval_type == "eval" else "--print"
 
-    args = [eval_type, js]
+    args = [self.node_js_path, eval_type, js]
 
-    return self.execute(args[0], args[1:])
+    result = Util.execute(args[0], args[1:])
+
+    if result[0] :
+      return result[1]
+
+    raise Exception(result[1])
 
   def getCurrentNodeJSVersion(self) :
 
@@ -90,6 +95,7 @@ class NodeJS(object):
       command_args = " ".join(command_args_list)
       args = shlex.quote(self.node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
+      #print(args)
     try:
       output = None
       result = None

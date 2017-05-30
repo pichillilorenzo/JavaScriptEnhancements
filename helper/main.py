@@ -26,6 +26,8 @@ ${include structure_javascript/structure_javascript.py}
 
 ${include bookmarks/main.py}
 
+${include jsdoc/generate_jsdoc_command.py}
+
 ${include expand_model.py}
 
 if int(sublime.version()) >= 3124 :

@@ -13,15 +13,18 @@ class Monkey(object):
     for x in listdir:   
       filename, extension = os.path.splitext(x)
       x = os.path.join(src, x)
-      inode = os.stat(x).st_ino
-      if not inode in self.files and not "_generated_" in x and os.path.isfile(x) and not "node_modules" in x and not "node_binaries" in x and not "vendor" in x and extension == ".py" and filename+extension != "setup.py" and filename+extension != "watch.py" :
-        self.files[inode] = {
-          "filename": x,
-          "st_ctime_ns_cached": os.stat(x).st_ctime_ns,
-          "st_mtime_ns_cached": os.stat(x).st_mtime_ns
-        }
-      if os.path.isdir(x):
-        self.runrec(x)
+      try:
+        inode = os.stat(x).st_ino
+        if not inode in self.files and not "_generated_" in x and os.path.isfile(x) and not "node_modules" in x and not "node_binaries" in x and not "vendor" in x and extension == ".py" and filename+extension != "setup.py" and filename+extension != "watch.py" :
+          self.files[inode] = {
+            "filename": x,
+            "st_ctime_ns_cached": os.stat(x).st_ctime_ns,
+            "st_mtime_ns_cached": os.stat(x).st_mtime_ns
+          }
+        if os.path.isdir(x):
+          self.runrec(x)
+      except FileNotFoundError as e:
+        pass
 
   def check_change(self, file):
     try:

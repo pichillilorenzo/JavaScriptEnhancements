@@ -34,11 +34,17 @@ module.exports = {
       "source_folder": "",
       "destination_folder": "",
       "options": []
+    },
+    "jsdoc": {
+      "conf_file": ""
+    },
+    "live_terminal": {
+      "shell": ""
     }
   },
   "flow_settings": {
     "ignore": [
-
+      "<PROJECT_ROOT>/.jc-project-settings/.*"
     ],
     "include": [
     

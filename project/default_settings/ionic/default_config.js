@@ -7,7 +7,8 @@ module.exports = {
       "<PROJECT_ROOT>/platforms/.*",
       "<PROJECT_ROOT>/hooks/.*",
       "<PROJECT_ROOT>/plugins/.*",
-      "<PROJECT_ROOT>/node_modules/.*"
+      "<PROJECT_ROOT>/node_modules/.*",
+      "<PROJECT_ROOT>/resources/.*"
     ],
     "include": [
     

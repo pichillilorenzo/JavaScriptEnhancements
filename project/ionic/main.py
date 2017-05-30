@@ -1,34 +1,9 @@
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
-  print(line)
-  if line != None and panel:
-    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
-
-  if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["ionic_settings"]["working_directory"], "temp"))
-
-    if open_project :
-      open_project_folder(sublime_project_file_name)
-
 def create_ionic_project(json_data):
-  project_data = json_data["project_data"]
-  project_details = project_data["project_details"]
-  project_folder = project_data["ionic_settings"]["working_directory"]
-  create_options = []
 
-  if "create_options" in project_data and project_data["create_options"]:
-    create_options = project_data["create_options"]
-
-  panel = Util.create_and_show_panel("ionic_panel_installer_project")
-
-  node = NodeJS()
-
-  if "ionic_settings" in project_data and "package_json" in project_data["ionic_settings"] and "use_local_cli" in project_data["ionic_settings"] and project_data["ionic_settings"]["use_local_cli"] :
-    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-  else :  
-    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+  sublime.active_window().run_command('create_new_project_ionic', {'json_data': json_data})
 
   return json_data
 
@@ -58,9 +33,20 @@ class ionic_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
-      node = NodeJS()
+
       sublime.status_message(self.name_cli+": getting platform list...")
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+
+      node = NodeJS(check_local = True)
+      cli = self.settings["ionic_settings"]["cli_custom_path"]
+
+      if self.settings["ionic_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["platform", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      elif cli :
+        Util.execute(cli, ["platform", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      else :
+        sublime.error_message('ERROR: No global or local ionic command specified!')
+        return
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -98,7 +84,7 @@ class ionic_baseCommand(manage_cliCommand):
     if line == "OUTPUT-DONE" :
       if self.platform_list :
         if show_panel :
-          self.window.show_quick_panel([cordova_platform for cordova_platform in self.platform_list], self.platform_list_on_success)
+          self.window.show_quick_panel([ionic_platform for ionic_platform in self.platform_list], self.platform_list_on_success)
         elif self.platform_list_on_success :
           self.platform_list_on_success()
       else :
@@ -113,9 +99,20 @@ class ionic_baseCommand(manage_cliCommand):
     self.plugin_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
+
       sublime.status_message(self.name_cli+": getting plugin list...")
-      node = NodeJS()
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+
+      node = NodeJS(check_local = True)
+      cli = self.settings["ionic_settings"]["cli_custom_path"]
+
+      if self.settings["ionic_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["plugin", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      elif cli :
+        Util.execute(cli, ["plugin", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      else :
+        sublime.error_message('ERROR: No global or local ionic command specified!')
+        return
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -161,14 +158,15 @@ class ionic_baseCommand(manage_cliCommand):
 
   def before_execute(self):
 
-    if self.settings["ionic_settings"]["cli_custom_path"] :
-      self.bin_path = self.settings["ionic_settings"]["cli_custom_path"]
-    elif self.settings["ionic_settings"]["use_local_cli"] :
+    if self.settings["ionic_settings"]["use_local_cli"] :
       self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
-
-    command = self.command_with_options[0]
-    if command == "serve" :
-      del self.command_with_options[1]
+      self.is_node = True
+    elif self.settings["ionic_settings"]["cli_custom_path"] :
+      self.cli = self.settings["ionic_settings"]["cli_custom_path"]
+      self.is_node = False
+    else :
+      sublime.error_message('ERROR: No global or local ionic command specified!')
+      return
 
   def is_enabled(self):
     return is_type_javascript_project("ionic")
@@ -176,6 +174,33 @@ class ionic_baseCommand(manage_cliCommand):
   def is_visible(self):
     return is_type_javascript_project("ionic")
 
+class create_new_project_ionicCommand(ionic_baseCommand):
+
+  def run(self, **kwargs):
+
+    json_data = kwargs.get('json_data')
+    project_data = json_data["project_data"]
+    create_options = []
+
+    if "create_options" in project_data and project_data["create_options"]:
+      create_options = project_data["create_options"]
+
+    self.custom_project_dir_name = project_data["project_dir_name"]
+
+    self.command_with_options = ["start", "temp"] + create_options
+
+    super(create_new_project_ionicCommand, self).run(**kwargs)
+
+  def on_done(self) :
+    
+    Util.move_content_to_parent_folder(os.path.join(self.settings["ionic_settings"]["working_directory"], "temp"))
+    open_project_folder(self.settings['project_file_name'])
+
+  def is_enabled(self):
+    return True
+
+  def is_visible(self):
+    return True
 
 class manage_ionicCommand(ionic_baseCommand):
 
@@ -205,14 +230,8 @@ class manage_ionicCommand(ionic_baseCommand):
 
 class manage_serve_ionicCommand(ionic_baseCommand):
 
-  def process_communicate(self, line):
-    if line and line.strip().startswith("Static file server running on: "):
-      line = line.strip()
-      url = line.replace("Static file server running on: ", "")
-      url = url.replace(" (CTRL + C to shut down)", "")
-      url = url.strip()
-      webbrowser.open(url) 
-
+  def run(self, **kwargs):
+    super(manage_serve_ionicCommand, self).run(**kwargs)
 
 class manage_plugin_ionicCommand(manage_ionicCommand):
 
@@ -277,9 +296,21 @@ class sync_ionic_projectCommand(ionic_baseCommand):
 
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
-      node = NodeJS()
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      
+      node = NodeJS(check_local = True)
+      cli = self.settings["ionic_settings"]["cli_custom_path"]
+
+      if self.settings["ionic_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["platform", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        node.execute(self.cli, ["plugin", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      elif cli :
+        Util.execute(cli, ["platform", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        Util.execute(cli, ["plugin", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      else :
+        sublime.error_message('ERROR: No global or local ionic command specified!')
+        return
+
     else :
       sublime.error_message("Error: can't get project settings")
 

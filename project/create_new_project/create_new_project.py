@@ -37,7 +37,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
           node = NodeJS()
           data = dict()
           data["command"] = "result_flow_init"
-          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project_data"]["path"])
+          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project_data"]["project_dir_name"])
           data["project_data"] = json_data["project_data"]
           data = json.dumps(data)
 

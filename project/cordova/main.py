@@ -1,35 +1,9 @@
 import sublime, sublime_plugin
 import os, webbrowser, shlex
 
-def create_cordova_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
-
-  if line != None and panel:
-    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
-
-  if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["cordova_settings"]["working_directory"], "temp"))
-    
-    if open_project :
-      open_project_folder(sublime_project_file_name)
-
 def create_cordova_project(json_data):
-  project_data = json_data["project_data"]
-  project_details = project_data["project_details"]
-  project_folder = project_data["cordova_settings"]["working_directory"]
-  create_options = []
 
-  if "create_options" in project_data and project_data["create_options"]:
-    create_options = project_data["create_options"]
-    
-  panel = Util.create_and_show_panel("cordova_panel_installer_project")
-
-  node = NodeJS()
-
-  if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
-    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-  else :  
-    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-    
+  sublime.active_window().run_command('create_new_project_cordova', {'json_data': json_data})
 
   return json_data
 
@@ -59,9 +33,20 @@ class cordova_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
-      node = NodeJS()
       sublime.status_message(self.name_cli+": getting platform list...")
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+
+      node = NodeJS(check_local = True)
+      cli = self.settings["cordova_settings"]["cli_custom_path"]
+
+      if self.settings["cordova_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["platform", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      elif cli :
+        Util.execute(cli, ["platform", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      else :
+        sublime.error_message('ERROR: No global or local cordova command specified!')
+        return
+
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -115,8 +100,18 @@ class cordova_baseCommand(manage_cliCommand):
     self.settings = get_project_settings()
     if self.settings :
       sublime.status_message(self.name_cli+": getting plugin list...")
-      node = NodeJS()
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      
+      node = NodeJS(check_local = True)
+      cli = self.settings["cordova_settings"]["cli_custom_path"]
+
+      if self.settings["cordova_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["plugin", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      elif cli :
+        Util.execute(cli, ["plugin", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      else :
+        sublime.error_message('ERROR: No global or local cordova command specified!')
+        return
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -164,16 +159,49 @@ class cordova_baseCommand(manage_cliCommand):
 
   def before_execute(self):
 
-    if self.settings["cordova_settings"]["cli_custom_path"] :
-      self.bin_path = self.settings["cordova_settings"]["cli_custom_path"]
-    elif self.settings["cordova_settings"]["use_local_cli"] :
+    if self.settings["cordova_settings"]["use_local_cli"] :
       self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+      self.is_node = True
+    elif self.settings["cordova_settings"]["cli_custom_path"] :
+      self.cli = self.settings["cordova_settings"]["cli_custom_path"]
+      self.is_node = False
+    else :
+      sublime.error_message('ERROR: No global or local cordova command specified!')
+      return
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")
 
   def is_visible(self):
     return is_type_javascript_project("cordova")
+
+class create_new_project_cordovaCommand(cordova_baseCommand):
+
+  def run(self, **kwargs):
+
+    json_data = kwargs.get('json_data')
+    project_data = json_data["project_data"]
+    create_options = []
+
+    if "create_options" in project_data and project_data["create_options"]:
+      create_options = project_data["create_options"]
+
+    self.custom_project_dir_name = project_data["project_dir_name"]
+
+    self.command_with_options = ["create", "temp"] + create_options
+
+    super(create_new_project_cordovaCommand, self).run(**kwargs)
+
+  def on_done(self) :
+    
+    Util.move_content_to_parent_folder(os.path.join(self.settings["cordova_settings"]["working_directory"], "temp"))
+    open_project_folder(self.settings['project_file_name'])
+
+  def is_enabled(self):
+    return True
+
+  def is_visible(self):
+    return True
 
 class manage_cordovaCommand(cordova_baseCommand):
 
@@ -272,9 +300,23 @@ class sync_cordova_projectCommand(cordova_baseCommand):
 
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
-      node = NodeJS()
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      
+      node = NodeJS(check_local = True)
+      cli = self.settings["cordova_settings"]["cli_custom_path"]
+
+      if self.settings["cordova_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+
+        node.execute(self.cli, ["platform", "list"], bin_path=bin_path, is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        node.execute(self.cli, ["plugin", "list"], bin_path=bin_path, is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      
+      elif cli :
+        node.execute(cli, ["platform", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        node.execute(cli, ["plugin", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      else :
+        sublime.error_message('ERROR: No global or local cordova command specified!')
+        return
+
     else :
       sublime.error_message("Error: can't get project settings")
 

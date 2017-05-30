@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="overlay">
+    <div class="messages"></div>
+  </div>
   <div class="tile-container bg-darkCobalt">
 
     <div class="tile tile-large bg-red fg-white" data-role="tile" onclick="metroDialog.open('#dialog-project-details')">
@@ -163,6 +166,25 @@
             <button class="button helper-button clear" type="button" tabindex="-1"><span class="mif-cross"></span></button>
             <small></small>
           </div>
+          
+          <h3>JSDoc</h3>
+
+          <div class="input-control text full-size height-auto" data-role="input">
+            <label for="jsdoc_conf_file">Configuration File:</label>
+            <pre class="pre-working-directory"></pre>
+            <input type="text" id="jsdoc_conf_file" name="jsdoc_conf_file">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+            <small>Relative path to the current project path.</small>
+          </div>
+
+          <h3>Live Terminal</h3>
+
+          <div class="input-control text full-size" data-role="input">
+            <label for="live_terminal_shell">Shell:</label>
+            <input type="text" id="live_terminal_shell" name="live_terminal_shell">
+            <button class="button helper-button clear" type="button"><span class="mif-cross"></span></button>
+            <small>Default shell: "/bin/bash" for OSX and Linux, "cmd.exe" for Windows</small>
+          </div>
 
           <div class="floating-action"> 
             <button class="button primary rounded" type="submit"><span class="mif-floppy-disk"></span> save</button>
@@ -189,7 +211,7 @@
             </select>
           </div>
 
-          <div class="input-control text full-size required" data-role="input">
+          <div class="input-control text full-size required height-auto" data-role="input">
             <label for="working_directory">Working Directory:</label>
             <pre class="pre-working-directory"></pre>
             <input id="working_directory" type="text" placeholder="Relative Path" name="working_directory" value="" data-field-type="value" style="padding-right: 36px;" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
@@ -299,6 +321,8 @@
         },
         onSubmit: function(form) {
 
+          $('.overlay').show()
+
           let project_details = {
             "project_name": $("#project_name").val().trim(),
             "author": $("#author").val().trim(),
@@ -368,6 +392,8 @@
         },
         onSubmit: function(form) {
 
+          $('.overlay').show()
+
           let type = $("#secondary-types").val()
 
           if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
@@ -395,6 +421,9 @@
 
       $("#form-project-settings").on("submit", function(event) {
         event.preventDefault()
+
+        $('.overlay').show()
+
         let project_settings = {
           "node_js_custom_path": $("#node_js_custom_path").val().trim(),
           "npm_custom_path": $("#npm_custom_path").val().trim(),
@@ -404,6 +433,12 @@
             "source_folder": $("#build_flow_source_folder").val().trim(),
             "destination_folder": $("#build_flow_destination_folder").val().trim(),
             "options": utilWeb.get_options(".build_flow_options")
+          },
+          "jsdoc": {
+            "conf_file": $("#jsdoc_conf_file").val().trim()
+          },
+          "live_terminal": {
+            "shell": $("#live_terminal_shell").val().trim()
           }
         }
         ipcRenderer.send('form-project-settings', project_settings)
@@ -411,6 +446,9 @@
 
       $("#form-flow-settings").on("submit", function(event) {
         event.preventDefault()
+
+        $('.overlay').show()
+        
         let includes = Array.prototype.map.call(document.querySelectorAll(".include-flow-input"), function (item) {
           return $(item).val().trim()
         })
@@ -545,6 +583,8 @@
       $("#npm_custom_path").val(project_settings.npm_custom_path)
       $("#build_flow_source_folder").val(project_settings.build_flow.source_folder)
       $("#build_flow_destination_folder").val(project_settings.build_flow.destination_folder)
+      $("#jsdoc_conf_file").val(project_settings.jsdoc.conf_file)
+      $("#live_terminal_shell").val(project_settings.live_terminal.shell)
 
       utilWeb.set_options(".build_flow_options", project_settings.build_flow.options)
 
@@ -616,6 +656,11 @@
     })
 
     ipcRenderer.on("error", (event, msg) => {
+
+      $('.overlay').fadeOut(1500, () => {
+        $('.overlay .messages').html('')
+      })
+
       $.Notify({
         caption: 'Error',
         content: msg,
@@ -624,11 +669,20 @@
     })
 
     ipcRenderer.on("success", (event, msg) => {
+
+      $('.overlay').fadeOut(1500, () => {
+        $('.overlay .messages').html('')
+      })
+
       $.Notify({
         caption: 'Success',
         content: msg,
         type: 'success'
       });
+    })
+
+    ipcRenderer.on("overlay-message", (event, msg) => {
+      $('.overlay .messages').html(msg)
     })
     
     ipcRenderer.on("console", (event, msg) => {

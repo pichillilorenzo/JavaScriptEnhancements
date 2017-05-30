@@ -24,7 +24,7 @@ class stop_cli_commandCommand(sublime_plugin.TextCommand):
       panel = self.window.get_output_panel(self.last_output_panel_name)
       if panel :
         panel.run_command("print_panel_cli", {"line": "\n\nCommand Stopped\n\n"})
-        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 2000})
+        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 1000})
 
   def is_enabled(self):
     global manage_cli_window_command_processes

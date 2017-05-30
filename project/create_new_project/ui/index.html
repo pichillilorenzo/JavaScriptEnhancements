@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="overlay">
+    <div class="messages"></div>
+  </div>
   <form action="#">
     <div class="wizard2" id="wizard">
 
@@ -23,8 +26,8 @@
           </div>
 
           <div class="input-control text full-size" data-role="input">
-            <label for="project_path" class="control-label">Project path *:</label>
-            <input type="text" id="project_path" name="project_path" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
+            <label for="project_dir_name" class="control-label">Project path *:</label>
+            <input type="text" id="project_dir_name" name="project_dir_name" data-validate-func="required" data-validate-hint="This field can not be empty!" data-validate-hint-position="top">
             <button class="button helper-button clear margin-right-button-clear" type="button"><span class="mif-cross"></span></button>
             <div class="button-group">
               <button class="button" type="button" id="choose-path"><span class="mif-folder"></span></button>
@@ -183,6 +186,8 @@
         },
         onSubmit: function(form) {
           
+          $('.overlay').show()
+
           let project_details = {
             "project_name": $("#project_name").val().trim(),
             "author": $("#author").val().trim(),
@@ -193,25 +198,19 @@
             "license_uri": $("#license_uri").val().trim(),
             "tags": $("#tags").val().trim(),
             "type": ( $("#type").val() ) ? [$("#type").val()] : []
-            //"type": ( $("#type").val() ) ? $("#type").val().filter(function(item){ return (item !== "") ? true : false }) : []
           }
 
           let project_settings = {
             "node_js_custom_path": $("#node_js_custom_path").val().trim(),
             "npm_custom_path": $("#npm_custom_path").val().trim(),
             "yarn_custom_path": $("#yarn_custom_path").val().trim(),
-            "use_yarn": ($("#use_yarn").prop("checked")) ? true : false,
-            "build_flow": {
-              "source_folder": "",
-              "destination_folder": "",
-              "options": []
-            }
+            "use_yarn": ($("#use_yarn").prop("checked")) ? true : false
           }
           
           let project_data = {
             "project_details": project_details,
             "project_settings": project_settings,
-            "path": $("#project_path").val().trim(),
+            "project_dir_name": $("#project_dir_name").val().trim(),
             "create_options": {}
           }
 
@@ -234,7 +233,7 @@
       function choose_path (event) {
         dialog.showOpenDialog({properties: ['openDirectory']}, function(directory) {
           if (directory && directory.length > 0) {
-            $("#project_path").val(directory[0])
+            $("#project_dir_name").val(directory[0])
           }
         })
       }
@@ -274,28 +273,11 @@
         $(".maybe-remove").remove()
 
         if (will_remove || one_add_at_least){
-          //let secondary_type = ( $("#secondary_type").val() ) ? $("#secondary_type").val().filter(function(item){ return (item !== "") ? true : false }) : []
           let wizard = $("#wizard").clone()
           $("#wizard").remove()
           wizard.find(".action-bar").remove()
           wizard.find(".step").removeAttr("style")
           $("form").prepend( wizard )
-
-          // if ( secondary_type.length > 0 ) {
-          //   for(let i = 0, length1 = secondary_type.length; i < length1; i++){    
-          //     project_types_options[secondary_type[i]].prepareClientHtml({
-          //       "ipcRenderer": ipcRenderer,
-          //       "$": $,
-          //       "utilWeb": utilWeb,
-          //       "fs": fs,
-          //       "electron": require('electron')
-          //     })
-          //     $("#secondary_type option[value='"+secondary_type[i]+"']").prop("selected", true)
-          //   }
-          // }
-          // else {
-          //   $("#secondary_type option[value='']").prop("selected", true)
-          // }
 
           if (type_selected) {
             project_create_options.prepareClientHtml({
@@ -310,124 +292,13 @@
 
           setWizard($("#wizard"))
           $("#type").change(type_change)
-          //$("#secondary_type").change(secondary_type_change)
+          
           $("#wizard .wiz-btn-next, #wizard .wiz-btn-prev, #wizard .wiz-btn-help").click(wizard_buttons)
           $("#choose-path").click(choose_path)
         }
 
       }
       $("#type").change(type_change)
-
-      // function secondary_type_change () {
-      //   let type = $("#secondary_type").val();
-      //   let types = ( $("#secondary_type").val() ) ? $("#secondary_type").val().filter(function(item){ return (item !== "") ? true : false }) : []
-      //   $(".step:not(.no-remove)").addClass("maybe-remove")
-      //   let one_add_at_least = false
-      //   let type_selected = []
-
-      //   $("#secondary_type option").prop("disabled", false)
-      //   for(let i = 0; i < types.length; i++){
-      //     let type = types[i]
-      //     if (fs.existsSync(__dirname+"/../../default_settings/"+type+"/default_config.js") ){
-      //       let default_config = require(__dirname+"/../../default_settings/"+type+"/default_config.js")
-      //       let dependencies = default_config.dependencies
-      //       if (dependencies) {
-      //         for(let i = 0, length1 = dependencies.length; i < length1; i++){
-      //           let dipendency = dependencies[i]
-      //           if (types.indexOf(dipendency) < 0) {
-      //             types.push(dipendency)
-      //           }
-      //           $("#secondary_type option[value='"+dipendency+"']").prop("disabled", true)
-      //           $("#secondary_type option[value='"+dipendency+"']").prop("selected", false)
-      //         }
-      //       }
-      //     }
-      //   }
-
-      //   $("#"+$("#type").val()).removeClass("maybe-remove")
-
-      //   types = ( $("#secondary_type").val() ) ? $("#secondary_type").val().filter(function(item){ return (item !== "") ? true : false }) : []
-      //   for(let i = 0, length1 = types.length; i < length1; i++){
-      //     let type = types[i]
-      //     type_selected.push(type)
-
-      //     $("#"+type).removeClass("maybe-remove")
-      //     if ($("#"+type).length > 0){
-      //       continue
-      //     }
-      //     if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/client.js") ){
-      //       if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/style.css") ){
-      //         $("head").append(`<link rel="stylesheet" href="${__dirname+"/../../"+type+"/create_new_project/style.css"}">`)
-      //       }
-
-      //       let client_js = require(__dirname+"/../../"+type+"/create_new_project/client.js")
-
-      //       project_types_options[type] = client_js
-
-      //       if (fs.existsSync(__dirname+"/../../"+type+"/create_new_project/index.html") ){
-      //         let html = fs.readFileSync(__dirname+"/../../"+type+"/create_new_project/index.html", "UTF-8")
-              
-
-      //         let step = $('<div class="step" id="'+type+'"></div>')
-      //         let step_content = $('<div class="step-content"></div>')
-      //         step_content.append(html)
-      //         step.append(step_content)
-      //         $("#wizard").append( step )
-      //         one_add_at_least = true
-      //       }
-      //     }
-      //   }
-
-      //   $(".maybe-remove").each(function(index, item){
-      //     let id = $(item).attr("id")
-      //     delete project_types_options[id]
-      //   })
-      //   let will_remove = ($(".maybe-remove").length > 0) ? true : false
-      //   $(".maybe-remove").remove()
-
-      //   if (will_remove || one_add_at_least){
-      //     let primary_type = $("#type").val()
-      //     let wizard = $("#wizard").clone()
-      //     $("#wizard").remove()
-      //     wizard.find(".action-bar").remove()
-      //     wizard.find(".step").removeAttr("style")
-      //     $("form").prepend( wizard )
-      //     if ( type_selected.length > 0 ) {
-      //       for(let i = 0, length1 = type_selected.length; i < length1; i++){    
-      //         project_types_options[type_selected[i]].prepareClientHtml({
-      //           "ipcRenderer": ipcRenderer,
-      //           "$": $,
-      //           "utilWeb": utilWeb,
-      //           "fs": fs,
-      //           "electron": require('electron')
-      //         })
-      //         $("#secondary_type option[value='"+type_selected[i]+"']").prop("selected", true)
-      //       }
-      //     }
-      //     else {
-      //       $("#secondary_type option[value='']").prop("selected", true)
-      //     }
-
-      //     if (primary_type) {
-      //       project_types_options[primary_type].prepareClientHtml({
-      //         "ipcRenderer": ipcRenderer,
-      //         "$": $,
-      //         "utilWeb": utilWeb,
-      //         "fs": fs,
-      //         "electron": require('electron')
-      //       })
-      //       $("#type option[value='"+primary_type+"']").prop("selected", true)
-      //     }
-
-      //     setWizard($("#wizard"))
-      //     $("#type").change(type_change)
-      //     $("#secondary_type").change(secondary_type_change)
-      //     $("#wizard .wiz-btn-next, #wizard .wiz-btn-prev, #wizard .wiz-btn-help").click(wizard_buttons)
-      //     $("#choose-path").click(choose_path)
-      //   }
-
-      // }
-      // $("#secondary_type").change(secondary_type_change)
 
       function wizard_buttons(event){
         event.preventDefault()
@@ -436,14 +307,25 @@
     })
 
     ipcRenderer.on("error", (event, msg) => {
-      console.log(msg)
+      
+      $('.overlay').fadeOut(1500, () => {
+        $('.overlay .messages').html('')
+      })
+
       $.Notify({
         caption: 'Error',
         content: msg,
         type: 'alert'
-      });
+      })
+    })
+
+    ipcRenderer.on("overlay-message", (event, msg) => {
+      $('.overlay .messages').html(msg)
     })
     
+    ipcRenderer.on("console", (event, msg) => {
+      console.log(msg)
+    })
     
   </script>
 </body>

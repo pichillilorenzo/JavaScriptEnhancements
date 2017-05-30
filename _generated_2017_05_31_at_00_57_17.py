@@ -188,9 +188,14 @@ class NodeJS(object):
     js = ("'use strict'; " if strict_mode else "") + js
     eval_type = "--eval" if eval_type == "eval" else "--print"
 
-    args = [eval_type, js]
+    args = [self.node_js_path, eval_type, js]
 
-    return self.execute(args[0], args[1:])
+    result = Util.execute(args[0], args[1:])
+
+    if result[0] :
+      return result[1]
+
+    raise Exception(result[1])
 
   def getCurrentNodeJSVersion(self) :
 
@@ -238,6 +243,7 @@ class NodeJS(object):
       command_args = " ".join(command_args_list)
       args = shlex.quote(self.node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
+      #print(args)
     try:
       output = None
       result = None
@@ -2169,35 +2175,40 @@ class go_to_defCommand(sublime_plugin.TextCommand):
   def go_to_def(self, view, point):
     view = sublime.active_window().active_view()
     view.sel().clear()
+    #sublime.active_window().run_command("goto_definition")
+
+    #if view.sel()[0].begin() == point :
+    # try flow get-def
+    sublime.set_timeout_async(lambda : self.find_def(view, point))
+
+  def find_def(self, view, point) :
     view.sel().add(point)
-    sublime.active_window().run_command("goto_definition")
-    if view.sel()[0].begin() == point :
-      # try flow get-def
-      sublime.status_message("")
-      deps = flow_parse_cli_dependencies(view)
-      node = NodeJS()
-      result = node.execute_check_output(
-        "flow",
-        [
-          'get-def',
-          '--from', 'sublime_text',
-          '--root', deps.project_root,
-          '--json',
-          view.file_name(),
-          str(deps.row + 1), str(deps.col + 1)
-        ],
-        is_from_bin=True,
-        use_fp_temp=True, 
-        fp_temp_contents=deps.contents, 
-        is_output_json=True,
-        use_only_filename_view_flow=True
-      )
-      if result[0] :
-        row = result[1]["line"]-1
-        col = result[1]["start"]-1
-        if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
-          view = sublime.active_window().open_file(result[1]["path"])     
-        sublime.set_timeout_async(lambda: Util.go_to_centered(view, row, col))
+    sublime.status_message("")
+    deps = flow_parse_cli_dependencies(view)
+    node = NodeJS()
+    result = node.execute_check_output(
+      "flow",
+      [
+        'get-def',
+        '--from', 'sublime_text',
+        '--root', deps.project_root,
+        '--json',
+        view.file_name(),
+        str(deps.row + 1), str(deps.col + 1)
+      ],
+      is_from_bin=True,
+      use_fp_temp=True, 
+      fp_temp_contents=deps.contents, 
+      is_output_json=True,
+      use_only_filename_view_flow=True
+    )
+
+    if result[0] :
+      row = result[1]["line"]-1
+      col = result[1]["start"]-1
+      if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
+        view = sublime.active_window().open_file(result[1]["path"])     
+      Util.go_to_centered(view, row, col)
 
   def is_enabled(self):
     view = self.view
@@ -3636,6 +3647,46 @@ class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
     lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, ( True if is_project_view(view) and is_javascript_project() else False ))]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
+class add_jsdoc_conf_to_curr_project_folder(sublime_plugin.WindowCommand) :
+  def run(self, **args):
+    settings = get_project_settings()
+    if settings :
+      jsdoc_conf_file = os.path.join(settings['project_dir_name'], settings['project_settings']['jsdoc']['conf_file'])
+      shutil.copyfile( os.path.join(HELPER_FOLDER, "jsdoc", "conf-default.json"), jsdoc_conf_file )
+  
+  def is_enabled(self):
+    return True if is_javascript_project() else False
+
+class generate_jsdocCommand(sublime_plugin.WindowCommand):
+  def run(self, **args):
+    settings = get_project_settings()
+    if settings :
+      jsdoc_conf_file = os.path.join(settings['project_dir_name'], settings['project_settings']['jsdoc']['conf_file'])
+      if os.path.isfile(jsdoc_conf_file) :
+        node = NodeJS(check_local=True)
+        panel = Util.create_and_show_panel("JSDoc", window=self.window)
+        animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Generating docs ")
+        interval_animation = RepeatedTimer(animation_loader.sec, animation_loader.animate)
+
+        node.execute("jsdoc", ['-c', jsdoc_conf_file], is_from_bin=True, wait_terminate=False, func_stdout=self.print_panel, args_func_stdout=[panel, animation_loader, interval_animation])
+
+      else :
+        sublime.error_message("JSDOC ERROR: Can't load "+jsdoc_json+" file!\nConfiguration file REQUIRED!")
+        return            
+
+  def print_panel(self, line, process, panel, animation_loader, interval_animation) :
+    
+    if line != None :
+      panel.run_command('print_panel_cli', {"line": line})
+  
+    if line == "OUTPUT-DONE":
+
+      animation_loader.on_complete()
+      interval_animation.stop()
+
+  def is_enabled(self):
+    return True if is_javascript_project() else False
+
 import sublime, sublime_plugin
 import re
 
@@ -3956,7 +4007,34 @@ import os, shlex
 
 def open_project_folder(project):
   
-  subl(["--project", project])
+  if not is_project_open(project) :
+    subl(["--project", project])
+
+def is_project_open(project): 
+
+  project_folder_to_find = os.path.dirname(project)
+
+  windows = sublime.windows()
+
+  for window in windows :
+
+    project_file_name = sublime.active_window().project_file_name()
+
+    if project_file_name :
+      project_folder = os.path.dirname(project_file_name)
+
+      return True if project_folder == project_folder_to_find else False
+
+    else :
+      # try to look at window.folders()
+      folders = sublime.active_window().folders()   
+      if len(folders) > 0:
+
+        project_folder = folders[0]
+
+        return True if project_folder == project_folder_to_find else False
+
+  return False
   
 def call_ui(client_file, host, port) :
   node = NodeJS()
@@ -3971,10 +4049,10 @@ def is_javascript_project():
     return os.path.isdir(settings_dir_name)
   else :
     # try to look at window.folders()
-    folder = sublime.active_window().folders()   
-    if len(folder) > 0:
-      folder = folder[0]
-      settings_dir_name = os.path.join(folder, ".jc-project-settings")
+    folders = sublime.active_window().folders()   
+    if len(folders) > 0:
+      folders = folders[0]
+      settings_dir_name = os.path.join(folders, ".jc-project-settings")
       return os.path.isdir(settings_dir_name)
   return False
 
@@ -4001,9 +4079,9 @@ def get_project_settings(project_dir_name = ""):
       project_dir_name = os.path.dirname(project_file_name)
     else :
       # try to look at window.folders()
-      folder = sublime.active_window().folders()
-      if len(folder) > 0:
-        project_dir_name = folder[0]
+      folders = sublime.active_window().folders()
+      if len(folders) > 0:
+        project_dir_name = folders[0]
 
   if not project_dir_name :
     return dict()
@@ -4125,7 +4203,7 @@ class stop_cli_commandCommand(sublime_plugin.TextCommand):
       panel = self.window.get_output_panel(self.last_output_panel_name)
       if panel :
         panel.run_command("print_panel_cli", {"line": "\n\nCommand Stopped\n\n"})
-        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 2000})
+        panel.run_command("print_panel_cli", {"line": "OUTPUT-SUCCESS", "hide_panel_on_success": True, "wait_panel": 1000})
 
   def is_enabled(self):
     global manage_cli_window_command_processes
@@ -4228,12 +4306,13 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   show_animation_loader = True
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
   interval_animation = None
-  syntax = os.path.join("Packages", PACKAGE_NAME,"javascript_enhancements.sublime-syntax")
+  syntax = os.path.join("Packages", PACKAGE_NAME, "javascript_enhancements.sublime-syntax")
   ask_custom_options = False
   wait_panel = 2000
+  custom_project_dir_name = ""
 
   def run(self, **kwargs):
-    self.settings = get_project_settings()
+    self.settings = get_project_settings(self.custom_project_dir_name)
     if self.settings:
 
       self.callback_after_get_settings(**kwargs)
@@ -4406,6 +4485,13 @@ class open_live_terminalCommand(manage_cliCommand):
   line_prefix = "$ "
   syntax = "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
   wait_panel = 0
+
+  def callback_after_get_settings(self, **kwargs) :
+
+    shell = self.settings['project_settings']['live_terminal']['shell']
+
+    if shell :
+      self.cli = shell
 
   def is_enabled(self) :
 
@@ -4747,35 +4833,9 @@ class build_flowCommand(manage_cliCommand):
 import sublime, sublime_plugin
 import os, webbrowser, shlex
 
-def create_cordova_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
-
-  if line != None and panel:
-    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
-
-  if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["cordova_settings"]["working_directory"], "temp"))
-    
-    if open_project :
-      open_project_folder(sublime_project_file_name)
-
 def create_cordova_project(json_data):
-  project_data = json_data["project_data"]
-  project_details = project_data["project_details"]
-  project_folder = project_data["cordova_settings"]["working_directory"]
-  create_options = []
 
-  if "create_options" in project_data and project_data["create_options"]:
-    create_options = project_data["create_options"]
-    
-  panel = Util.create_and_show_panel("cordova_panel_installer_project")
-
-  node = NodeJS()
-
-  if "cordova_settings" in project_data and "package_json" in project_data["cordova_settings"] and "use_local_cli" in project_data["cordova_settings"] and project_data["cordova_settings"]["use_local_cli"] :
-    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-  else :  
-    node.execute('cordova', ["create", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-    
+  sublime.active_window().run_command('create_new_project_cordova', {'json_data': json_data})
 
   return json_data
 
@@ -4805,9 +4865,20 @@ class cordova_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
-      node = NodeJS()
       sublime.status_message(self.name_cli+": getting platform list...")
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+
+      node = NodeJS(check_local = True)
+      cli = self.settings["cordova_settings"]["cli_custom_path"]
+
+      if self.settings["cordova_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["platform", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      elif cli :
+        Util.execute(cli, ["platform", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      else :
+        sublime.error_message('ERROR: No global or local cordova command specified!')
+        return
+
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -4861,8 +4932,18 @@ class cordova_baseCommand(manage_cliCommand):
     self.settings = get_project_settings()
     if self.settings :
       sublime.status_message(self.name_cli+": getting plugin list...")
-      node = NodeJS()
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      
+      node = NodeJS(check_local = True)
+      cli = self.settings["cordova_settings"]["cli_custom_path"]
+
+      if self.settings["cordova_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["plugin", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      elif cli :
+        Util.execute(cli, ["plugin", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      else :
+        sublime.error_message('ERROR: No global or local cordova command specified!')
+        return
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -4910,16 +4991,49 @@ class cordova_baseCommand(manage_cliCommand):
 
   def before_execute(self):
 
-    if self.settings["cordova_settings"]["cli_custom_path"] :
-      self.bin_path = self.settings["cordova_settings"]["cli_custom_path"]
-    elif self.settings["cordova_settings"]["use_local_cli"] :
+    if self.settings["cordova_settings"]["use_local_cli"] :
       self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+      self.is_node = True
+    elif self.settings["cordova_settings"]["cli_custom_path"] :
+      self.cli = self.settings["cordova_settings"]["cli_custom_path"]
+      self.is_node = False
+    else :
+      sublime.error_message('ERROR: No global or local cordova command specified!')
+      return
 
   def is_enabled(self):
     return is_type_javascript_project("cordova")
 
   def is_visible(self):
     return is_type_javascript_project("cordova")
+
+class create_new_project_cordovaCommand(cordova_baseCommand):
+
+  def run(self, **kwargs):
+
+    json_data = kwargs.get('json_data')
+    project_data = json_data["project_data"]
+    create_options = []
+
+    if "create_options" in project_data and project_data["create_options"]:
+      create_options = project_data["create_options"]
+
+    self.custom_project_dir_name = project_data["project_dir_name"]
+
+    self.command_with_options = ["create", "temp"] + create_options
+
+    super(create_new_project_cordovaCommand, self).run(**kwargs)
+
+  def on_done(self) :
+    
+    Util.move_content_to_parent_folder(os.path.join(self.settings["cordova_settings"]["working_directory"], "temp"))
+    open_project_folder(self.settings['project_file_name'])
+
+  def is_enabled(self):
+    return True
+
+  def is_visible(self):
+    return True
 
 class manage_cordovaCommand(cordova_baseCommand):
 
@@ -5018,9 +5132,23 @@ class sync_cordova_projectCommand(cordova_baseCommand):
 
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
-      node = NodeJS()
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      
+      node = NodeJS(check_local = True)
+      cli = self.settings["cordova_settings"]["cli_custom_path"]
+
+      if self.settings["cordova_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+
+        node.execute(self.cli, ["platform", "list"], bin_path=bin_path, is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        node.execute(self.cli, ["plugin", "list"], bin_path=bin_path, is_from_bin=True, chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      
+      elif cli :
+        node.execute(cli, ["platform", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        node.execute(cli, ["plugin", "list"], chdir=self.settings["cordova_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      else :
+        sublime.error_message('ERROR: No global or local cordova command specified!')
+        return
+
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -5054,34 +5182,9 @@ class sync_cordova_projectCommand(cordova_baseCommand):
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def create_ionic_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
-  print(line)
-  if line != None and panel:
-    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
-
-  if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["ionic_settings"]["working_directory"], "temp"))
-
-    if open_project :
-      open_project_folder(sublime_project_file_name)
-
 def create_ionic_project(json_data):
-  project_data = json_data["project_data"]
-  project_details = project_data["project_details"]
-  project_folder = project_data["ionic_settings"]["working_directory"]
-  create_options = []
 
-  if "create_options" in project_data and project_data["create_options"]:
-    create_options = project_data["create_options"]
-
-  panel = Util.create_and_show_panel("ionic_panel_installer_project")
-
-  node = NodeJS()
-
-  if "ionic_settings" in project_data and "package_json" in project_data["ionic_settings"] and "use_local_cli" in project_data["ionic_settings"] and project_data["ionic_settings"]["use_local_cli"] :
-    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, bin_path=os.path.join(project_data["settings_dir_name"], "node_modules", ".bin"), chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-  else :  
-    node.execute('ionic', ["start", "temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_ionic_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+  sublime.active_window().run_command('create_new_project_ionic', {'json_data': json_data})
 
   return json_data
 
@@ -5111,9 +5214,20 @@ class ionic_baseCommand(manage_cliCommand):
     self.platform_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
-      node = NodeJS()
+
       sublime.status_message(self.name_cli+": getting platform list...")
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+
+      node = NodeJS(check_local = True)
+      cli = self.settings["ionic_settings"]["cli_custom_path"]
+
+      if self.settings["ionic_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["platform", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      elif cli :
+        Util.execute(cli, ["platform", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=(self.get_list_installed_platform_window_panel if type == "installed" else self.get_list_available_platform_window_panel))
+      else :
+        sublime.error_message('ERROR: No global or local ionic command specified!')
+        return
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -5151,7 +5265,7 @@ class ionic_baseCommand(manage_cliCommand):
     if line == "OUTPUT-DONE" :
       if self.platform_list :
         if show_panel :
-          self.window.show_quick_panel([cordova_platform for cordova_platform in self.platform_list], self.platform_list_on_success)
+          self.window.show_quick_panel([ionic_platform for ionic_platform in self.platform_list], self.platform_list_on_success)
         elif self.platform_list_on_success :
           self.platform_list_on_success()
       else :
@@ -5166,9 +5280,20 @@ class ionic_baseCommand(manage_cliCommand):
     self.plugin_list_on_success = func
     self.settings = get_project_settings()
     if self.settings :
+
       sublime.status_message(self.name_cli+": getting plugin list...")
-      node = NodeJS()
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+
+      node = NodeJS(check_local = True)
+      cli = self.settings["ionic_settings"]["cli_custom_path"]
+
+      if self.settings["ionic_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["plugin", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      elif cli :
+        Util.execute(cli, ["plugin", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list_window_panel)
+      else :
+        sublime.error_message('ERROR: No global or local ionic command specified!')
+        return
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -5214,14 +5339,15 @@ class ionic_baseCommand(manage_cliCommand):
 
   def before_execute(self):
 
-    if self.settings["ionic_settings"]["cli_custom_path"] :
-      self.bin_path = self.settings["ionic_settings"]["cli_custom_path"]
-    elif self.settings["ionic_settings"]["use_local_cli"] :
+    if self.settings["ionic_settings"]["use_local_cli"] :
       self.bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
-
-    command = self.command_with_options[0]
-    if command == "serve" :
-      del self.command_with_options[1]
+      self.is_node = True
+    elif self.settings["ionic_settings"]["cli_custom_path"] :
+      self.cli = self.settings["ionic_settings"]["cli_custom_path"]
+      self.is_node = False
+    else :
+      sublime.error_message('ERROR: No global or local ionic command specified!')
+      return
 
   def is_enabled(self):
     return is_type_javascript_project("ionic")
@@ -5229,6 +5355,33 @@ class ionic_baseCommand(manage_cliCommand):
   def is_visible(self):
     return is_type_javascript_project("ionic")
 
+class create_new_project_ionicCommand(ionic_baseCommand):
+
+  def run(self, **kwargs):
+
+    json_data = kwargs.get('json_data')
+    project_data = json_data["project_data"]
+    create_options = []
+
+    if "create_options" in project_data and project_data["create_options"]:
+      create_options = project_data["create_options"]
+
+    self.custom_project_dir_name = project_data["project_dir_name"]
+
+    self.command_with_options = ["start", "temp"] + create_options
+
+    super(create_new_project_ionicCommand, self).run(**kwargs)
+
+  def on_done(self) :
+    
+    Util.move_content_to_parent_folder(os.path.join(self.settings["ionic_settings"]["working_directory"], "temp"))
+    open_project_folder(self.settings['project_file_name'])
+
+  def is_enabled(self):
+    return True
+
+  def is_visible(self):
+    return True
 
 class manage_ionicCommand(ionic_baseCommand):
 
@@ -5258,14 +5411,8 @@ class manage_ionicCommand(ionic_baseCommand):
 
 class manage_serve_ionicCommand(ionic_baseCommand):
 
-  def process_communicate(self, line):
-    if line and line.strip().startswith("Static file server running on: "):
-      line = line.strip()
-      url = line.replace("Static file server running on: ", "")
-      url = url.replace(" (CTRL + C to shut down)", "")
-      url = url.strip()
-      webbrowser.open(url) 
-
+  def run(self, **kwargs):
+    super(manage_serve_ionicCommand, self).run(**kwargs)
 
 class manage_plugin_ionicCommand(manage_ionicCommand):
 
@@ -5330,9 +5477,21 @@ class sync_ionic_projectCommand(ionic_baseCommand):
 
     if self.settings :
       sublime.status_message(self.name_cli+": synchronizing project...")
-      node = NodeJS()
-      node.execute(self.cli, ["platform", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
-      node.execute(self.cli, ["plugin", "list"], is_from_bin=True, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      
+      node = NodeJS(check_local = True)
+      cli = self.settings["ionic_settings"]["cli_custom_path"]
+
+      if self.settings["ionic_settings"]["use_local_cli"] :
+        bin_path = os.path.join(self.settings["settings_dir_name"], "node_modules", ".bin")
+        node.execute(self.cli, ["platform", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        node.execute(self.cli, ["plugin", "list"], is_from_bin=True, bin_path=bin_path, chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      elif cli :
+        Util.execute(cli, ["platform", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=lambda line, process: self.get_platform_list("installed", line, process))
+        Util.execute(cli, ["plugin", "list"], chdir=self.settings["ionic_settings"]["working_directory"], wait_terminate=False, func_stdout=self.get_plugin_list)
+      else :
+        sublime.error_message('ERROR: No global or local ionic command specified!')
+        return
+
     else :
       sublime.error_message("Error: can't get project settings")
 
@@ -5365,7 +5524,7 @@ class sync_ionic_projectCommand(ionic_baseCommand):
 ## React ##
 import re, webbrowser
 
-def create_react_project_process(line, process, panel, project_data, sublime_project_file_name, open_project) :
+def create_react_project_process(line, process, panel, project_data, open_project) :
 
   if line != None and panel:
     panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
@@ -5374,7 +5533,7 @@ def create_react_project_process(line, process, panel, project_data, sublime_pro
     Util.move_content_to_parent_folder(os.path.join(project_data["react_settings"]["working_directory"], "temp"))
     
     if open_project :
-      open_project_folder(sublime_project_file_name)
+      open_project_folder(project_data["project_file_name"])
 
 def create_react_project(json_data):
   project_data = json_data["project_data"]
@@ -5387,10 +5546,10 @@ def create_react_project(json_data):
     
   panel = Util.create_and_show_panel("react_panel_installer_project")
 
-  node = NodeJS()
+  node = NodeJS(check_local = True)
 
-  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
-  #node.execute('create-react-app', ["temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (project_data['project_file_name'] if "sublime_project_file_name" not in json_data else json_data["sublime_project_file_name"]), (False if "sublime_project_file_name" not in json_data else True) ])
+  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (False if "project_file_name" not in project_data else True) ])
+  #node.execute('create-react-app', ["temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (False if "project_file_name" not in project_data else True) ])
     
   return json_data
 
@@ -5469,7 +5628,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
           node = NodeJS()
           data = dict()
           data["command"] = "result_flow_init"
-          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project_data"]["path"])
+          data["result"] = node.execute("flow", ["init"], is_from_bin=True, chdir=json_data["project_data"]["project_dir_name"])
           data["project_data"] = json_data["project_data"]
           data = json.dumps(data)
 

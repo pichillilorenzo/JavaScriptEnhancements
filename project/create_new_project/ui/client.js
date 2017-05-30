@@ -23,7 +23,7 @@ app.listenSocketCommand('result_flow_init', (data) => {
     return
   }
 
-  let flowconfig = path.join(data.project_data.path, ".flowconfig")
+  let flowconfig = path.join(data.project_data.project_dir_name, ".flowconfig")
   util.openWithSync((fd) => {
     let include = default_config.flow_settings.include.join("\n")
     let ignore = default_config.flow_settings.ignore.join("\n")
@@ -41,18 +41,22 @@ ${libs}
 [options]
 ${options}
 `
+    app.sendWeb("overlay-message", "Saving "+flowconfig+"...")
     fs.writeFileSync(fd, str.replace(":PACKAGE_PATH", PACKAGE_PATH))
   }, flowconfig, "w+")
 
   let sublime_project_file_name = util.clearString(data.project_data.project_details.project_name)
+  sublime_project_file_name = path.join(data.project_data.project_dir_name, sublime_project_file_name+".sublime-project")
+  data.project_data.project_file_name = sublime_project_file_name
+
   let data_to_send = {
     "project_data": data.project_data,
-    "sublime_project_file_name": path.join(data.project_data.path, sublime_project_file_name+".sublime-project"),
     "command": "open_project"
   }
   util.openWithSync((fd) => {
+    app.sendWeb("overlay-message", "Saving "+data.project_data.project_file_name+"...")
     fs.writeFileSync(fd, JSON.stringify(default_config.sublime_project, null, 2))
-  }, path.join(data.project_data.path, sublime_project_file_name+".sublime-project"), "w+")
+  }, data.project_data.project_file_name, "w+")
 
   let package_json = {}
   for(let i = 0, length1 = data.project_data.project_details.type.length; i < length1; i++){
@@ -62,10 +66,12 @@ ${options}
   }
   if (package_json) {
     util.openWithSync((fd) => {
+      app.sendWeb("overlay-message", "Saving "+path.join(data.project_data.project_dir_name, ".jc-project-settings", "package.json")+"...")
       fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
-    }, path.join(data.project_data.path, ".jc-project-settings", "package.json"), "w+")
-    process.chdir(path.join(data.project_data.path, ".jc-project-settings"));
+    }, path.join(data.project_data.project_dir_name, ".jc-project-settings", "package.json"), "w+")
+    process.chdir(path.join(data.project_data.project_dir_name, ".jc-project-settings"));
     npm.load(function(err){
+      app.sendWeb("overlay-message", "Running 'npm install' ...")
       npm.commands.install(function(err, data){
         if(err){
           app.sendWeb("error", JSON.stringify(err, null, 2))
@@ -85,11 +91,13 @@ ${options}
 
 ipcMain.on('data', (event, project_data) => {
   
-  if (!fs.existsSync(project_data.path)){
-    fs.mkdirsSync(project_data.path)
+  if (!fs.existsSync(project_data.project_dir_name)){
+    fs.mkdirsSync(project_data.project_dir_name)
   }
 
-  let jc_project_settings = path.join(project_data.path, ".jc-project-settings")
+  let jc_project_settings = path.join(project_data.project_dir_name, ".jc-project-settings")
+  project_data.settings_dir_name = jc_project_settings
+  
   let bookmarks_path = path.join(jc_project_settings, "bookmarks.json")
   let project_details_file = path.join(jc_project_settings, "project_details.json")
   let project_settings = path.join(jc_project_settings, "project_settings.json")
@@ -133,20 +141,24 @@ ipcMain.on('data', (event, project_data) => {
   if (!fs.existsSync(jc_project_settings)) {
     fs.mkdirSync(jc_project_settings)
     util.openWithSync((fd) => {
-      default_config.project_details = JSON.parse(JSON.stringify(project_data.project_details)) // clone project object
+      app.sendWeb("overlay-message", "Saving "+project_details_file+"...")
+      default_config.project_details = util.mergeObjectsRecursive(default_config.project_details, JSON.parse(JSON.stringify(project_data.project_details)))
       fs.writeFileSync(fd, JSON.stringify(default_config.project_details, null, 2))
     }, project_details_file, "w+")
 
     util.openWithSync((fd) => {
-      default_config.project_settings = JSON.parse(JSON.stringify(project_data.project_settings))
+      app.sendWeb("overlay-message", "Saving "+project_settings+"...")
+      default_config.project_settings = util.mergeObjectsRecursive(default_config.project_settings, JSON.parse(JSON.stringify(project_data.project_settings)))
       fs.writeFileSync(fd, JSON.stringify(default_config.project_settings, null, 2))
     }, project_settings, "w+")
 
     util.openWithSync((fd) => {
+      app.sendWeb("overlay-message", "Saving "+flow_settings+"...")
       fs.writeFileSync(fd, JSON.stringify(default_config.flow_settings, null, 2))
     }, flow_settings, "w+")
 
     util.openWithSync((fd) => {
+      app.sendWeb("overlay-message", "Saving "+bookmarks_path+"...")
       fs.writeFileSync(fd, JSON.stringify(default_config.bookmarks, null, 2))
     }, bookmarks_path, "w+")
 
@@ -156,15 +168,12 @@ ipcMain.on('data', (event, project_data) => {
         project_data[project_type_default_settings[i][0]+"_settings"] = {}
       }
 
-      project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.path
+      project_data[project_type_default_settings[i][0]+"_settings"] = util.mergeObjectsRecursive( project_type_default_settings[i][1], project_data[project_type_default_settings[i][0]+"_settings"] )
 
-      if (project_data[project_type_default_settings[i][0]+"_settings"]) {
-        for (let key in project_data[project_type_default_settings[i][0]+"_settings"]) {
-          project_type_default_settings[i][1][key] = project_data[project_type_default_settings[i][0]+"_settings"][key]
-        }
-      }
-        
+      project_data[project_type_default_settings[i][0]+"_settings"].working_directory = project_data.project_dir_name
+  
       util.openWithSync((fd) => {
+        app.sendWeb("overlay-message", "Saving "+path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json")+"...")
         fs.writeFileSync(fd, JSON.stringify(project_type_default_settings[i][1], null, 2))
       }, path.join(jc_project_settings, project_type_default_settings[i][0]+"_settings.json"), "w+")
     }

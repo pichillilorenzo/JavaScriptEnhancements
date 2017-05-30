@@ -17,6 +17,7 @@ module.exports = {
       ionic_settings = util.mergeObjectsRecursive(data_project.settings.ionic_settings, ionic_settings, app)
       try{
         util.openWithSync((fd) => {
+          app.sendWeb("overlay-message", "Saving "+path.join(data_project.settings.settings_dir_name, "ionic_settings.json")+"...")
           fs.writeFileSync(fd, JSON.stringify(ionic_settings, null, 2))
         }, path.join(data_project.settings.settings_dir_name, "ionic_settings.json"), "w+")
       }
@@ -29,10 +30,12 @@ module.exports = {
         let package_json = JSON.parse(fs.readFileSync(path.join(data_project.settings.settings_dir_name, "package.json"), {encoding: 'utf8'}))
         package_json = util.mergeObjectsRecursive(package_json, data_project.settings.ionic_settings.package_json)
         util.openWithSync((fd) => {
+          app.sendWeb("overlay-message", "Saving "+path.join(data_project.settings.settings_dir_name, "package.json")+"...")
           fs.writeFileSync(fd, JSON.stringify(package_json, null, 2))
         }, path.join(data_project.settings.settings_dir_name, "package.json"), "w+")
         process.chdir(path.join(data_project.settings.settings_dir_name));
         npm.load(function(err){
+          app.sendWeb("overlay-message", "Running 'npm install' ...")
           npm.commands.install(function(err, data){
             if(err){
               app.sendWeb("error", JSON.stringify(err, null, 2))
@@ -170,6 +173,8 @@ module.exports = {
 
     $("#form-ionic-settings").on("submit", function(event) {
       event.preventDefault()
+
+      $('.overlay').show()
 
       let cli_platform_options = $("#form-ionic-settings .cli_platform_options").val()
       let cli_compile_options = $("#form-ionic-settings .cli_compile_options").val()

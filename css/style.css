@@ -25,3 +25,23 @@
 .text-switch{
   margin-left: 10px;
 }
+.height-auto{
+  height: auto;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1060; 
+  padding: 15px;
+}
+.overlay .messages{
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

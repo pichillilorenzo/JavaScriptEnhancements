@@ -23,12 +23,13 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   show_animation_loader = True
   animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
   interval_animation = None
-  syntax = os.path.join("Packages", PACKAGE_NAME,"javascript_enhancements.sublime-syntax")
+  syntax = os.path.join("Packages", PACKAGE_NAME, "javascript_enhancements.sublime-syntax")
   ask_custom_options = False
   wait_panel = 2000
+  custom_project_dir_name = ""
 
   def run(self, **kwargs):
-    self.settings = get_project_settings()
+    self.settings = get_project_settings(self.custom_project_dir_name)
     if self.settings:
 
       self.callback_after_get_settings(**kwargs)

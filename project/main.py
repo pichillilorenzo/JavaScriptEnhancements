@@ -3,7 +3,34 @@ import os, shlex
 
 def open_project_folder(project):
   
-  subl(["--project", project])
+  if not is_project_open(project) :
+    subl(["--project", project])
+
+def is_project_open(project): 
+
+  project_folder_to_find = os.path.dirname(project)
+
+  windows = sublime.windows()
+
+  for window in windows :
+
+    project_file_name = sublime.active_window().project_file_name()
+
+    if project_file_name :
+      project_folder = os.path.dirname(project_file_name)
+
+      return True if project_folder == project_folder_to_find else False
+
+    else :
+      # try to look at window.folders()
+      folders = sublime.active_window().folders()   
+      if len(folders) > 0:
+
+        project_folder = folders[0]
+
+        return True if project_folder == project_folder_to_find else False
+
+  return False
   
 def call_ui(client_file, host, port) :
   node = NodeJS()
@@ -18,10 +45,10 @@ def is_javascript_project():
     return os.path.isdir(settings_dir_name)
   else :
     # try to look at window.folders()
-    folder = sublime.active_window().folders()   
-    if len(folder) > 0:
-      folder = folder[0]
-      settings_dir_name = os.path.join(folder, ".jc-project-settings")
+    folders = sublime.active_window().folders()   
+    if len(folders) > 0:
+      folders = folders[0]
+      settings_dir_name = os.path.join(folders, ".jc-project-settings")
       return os.path.isdir(settings_dir_name)
   return False
 
@@ -48,9 +75,9 @@ def get_project_settings(project_dir_name = ""):
       project_dir_name = os.path.dirname(project_file_name)
     else :
       # try to look at window.folders()
-      folder = sublime.active_window().folders()
-      if len(folder) > 0:
-        project_dir_name = folder[0]
+      folders = sublime.active_window().folders()
+      if len(folders) > 0:
+        project_dir_name = folders[0]
 
   if not project_dir_name :
     return dict()
