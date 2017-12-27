@@ -45,14 +45,14 @@ If you want use this plugin, you may want <span style="text-decoration: underlin
 <h2>Plugin Dependencies</h2>
 <p>
 
-- Node.js and npm (<a href="https://nodejs.org">https://nodejs.org</a> or <a href="https://github.com/creationix/nvm">nvm</a>)
+- Node.js and npm (<a href="https://nodejs.org">nodejs.org</a> or <a href="https://github.com/creationix/nvm">nvm</a>)
 - TerminalView sublime text plugin (<a href="https://github.com/Wramberg/TerminalView">TerminalView</a>)
 
 </p>
 
 <h2>Flow Requirements</h2>
 <p>
-  
+
 - Mac OS X
 - Linux (64-bit)
 - Windows (64-bit)
