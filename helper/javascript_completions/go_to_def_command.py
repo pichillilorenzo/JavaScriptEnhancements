@@ -10,6 +10,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       point = args["point"]
     else :
       point = view.sel()[0].begin()
+    point = view.word(point).begin()
     self.go_to_def(view, point)
 
   def go_to_def(self, view, point):
@@ -23,7 +24,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
 
   def find_def(self, view, point) :
     view.sel().add(point)
-    sublime.status_message("")
+
     deps = flow_parse_cli_dependencies(view)
     node = NodeJS()
     result = node.execute_check_output(
@@ -33,7 +34,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
         '--from', 'sublime_text',
         '--root', deps.project_root,
         '--json',
-        view.file_name(),
+        ':temp_file',
         str(deps.row + 1), str(deps.col + 1)
       ],
       is_from_bin=True,
@@ -52,7 +53,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self):
     view = self.view
-    if not Util.selection_in_js_scope(view, -1, "- string - comment"):
+    if not Util.selection_in_js_scope(view):
       return False
     return True
 

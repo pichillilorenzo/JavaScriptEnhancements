@@ -1,6 +1,8 @@
 import sublime, sublime_plugin
 import os, shlex
 
+PROJECT_SETTINGS_FOLDER_NAME = ".je-project-settings"
+
 def open_project_folder(project):
   
   if not is_project_open(project) :
@@ -32,29 +34,25 @@ def is_project_open(project):
 
   return False
   
-def call_ui(client_file, host, port) :
-  node = NodeJS()
-  return Util.create_and_start_thread(node.execute, args=("electron", [client_file], True))
-
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
   project_dir_name = ""
   if project_file_name :
     project_dir_name = os.path.dirname(project_file_name)
-    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    settings_dir_name = os.path.join(project_dir_name, PROJECT_SETTINGS_FOLDER_NAME)
     return os.path.isdir(settings_dir_name)
   else :
     # try to look at window.folders()
     folders = sublime.active_window().folders()   
     if len(folders) > 0:
       folders = folders[0]
-      settings_dir_name = os.path.join(folders, ".jc-project-settings")
+      settings_dir_name = os.path.join(folders, PROJECT_SETTINGS_FOLDER_NAME)
       return os.path.isdir(settings_dir_name)
   return False
 
 def is_type_javascript_project(type):
   settings = get_project_settings()
-  return True if settings and type in settings["project_details"]["type"] else False
+  return True if settings and os.path.exists(os.path.join(settings["settings_dir_name"], type+"_settings.json")) else False
 
 def is_project_view(view) :
   settings = get_project_settings()
@@ -83,7 +81,7 @@ def get_project_settings(project_dir_name = ""):
     return dict()
 
   if project_file_name :
-    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    settings_dir_name = os.path.join(project_dir_name, PROJECT_SETTINGS_FOLDER_NAME)
     if not os.path.isdir(settings_dir_name) :
       return dict()
   else :
@@ -91,23 +89,19 @@ def get_project_settings(project_dir_name = ""):
       if file.endswith(".sublime-project") :
         project_file_name = os.path.join(project_dir_name, file)
         break
-    settings_dir_name = os.path.join(project_dir_name, ".jc-project-settings")
+    settings_dir_name = os.path.join(project_dir_name, PROJECT_SETTINGS_FOLDER_NAME)
     if not os.path.isdir(settings_dir_name) :
       return dict()
         
   project_settings["project_file_name"] = project_file_name
   project_settings["project_dir_name"] = project_dir_name
   project_settings["settings_dir_name"] = settings_dir_name
-  settings_file = ["project_details.json", "project_settings.json", "flow_settings.json"]
-  for setting_file in settings_file :
+  settings_file = ["project_details.json", "project_settings.json"]
+  for setting_file in os.listdir(project_settings["settings_dir_name"]) :
     with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
       key = os.path.splitext(setting_file)[0]
       project_settings[key] = json.loads(file.read(), encoding="utf-8")
-    if setting_file == "project_details.json" :
-      for project_type in project_settings["project_details"]["type"]:
-        with open(os.path.join(settings_dir_name, project_type+"_settings.json"), encoding="utf-8") as file :
-          project_settings[project_type+"_settings"] = json.loads(file.read(), encoding="utf-8")
-
+  
   return project_settings
 
 def save_project_setting(setting_file, data):
@@ -116,39 +110,20 @@ def save_project_setting(setting_file, data):
     with open(os.path.join(settings["settings_dir_name"], setting_file), 'w+', encoding="utf-8") as file :
       file.write(json.dumps(data, indent=2))
 
-def save_project_flowconfig(flow_settings):
-  settings = get_project_settings()
-  if settings :
-    with open(os.path.join(settings["settings_dir_name"], "flow_settings.json"), 'w+', encoding="utf-8") as file :
-      file.write(json.dumps(flow_settings, indent=2))
-    with open(os.path.join(settings["project_dir_name"], ".flowconfig"), 'w+', encoding="utf-8") as file :
-      include = "\n".join(flow_settings["include"])
-      ignore = "\n".join(flow_settings["ignore"])
-      libs = "\n".join(flow_settings["libs"])
-      options = "\n".join(list(map(lambda item: item[0].strip()+"="+item[1].strip(), flow_settings["options"])))
-
-      data = "[ignore]\n{ignore}\n[include]\n{include}\n[libs]\n{libs}\n[options]\n{options}".format(ignore=ignore, include=include, libs=libs, options=options)
-      file.write(data.replace(':PACKAGE_PATH', PACKAGE_PATH))
-
 ${include manage_cli/main.py}
 
-## Npm ##
 ${include npm/main.py}
 
-## Build Flow ##
 ${include build_flow/main.py}
 
-## Cordova ##
 ${include cordova/main.py}
 
-## Ionic ##
 ${include ionic/main.py}
 
-## React ##
 ${include react/main.py}
+
+${include yeoman/main.py}
 
 ${include create_new_project/create_new_project.py}
 
-${include edit_project/edit_project.py}
-
-${include close_all_servers_and_flow_event_listener.py}
+${include close_flow_event_listener.py}

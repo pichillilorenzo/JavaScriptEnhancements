@@ -3,19 +3,20 @@ class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener)
   path_disabled = os.path.join(PROJECT_FOLDER, "build_flow", "Main_disabled.sublime-menu")
 
 class build_flowCommand(manage_cliCommand):
-  cli = "flow-remove-types"
-  name_cli = "Flow Remove Types"
-  bin_path = ""
 
-  def callback_after_get_settings(self, **kwargs):
+  isNode = True
+  isBinPath = True
+
+  def prepare_command(self, **kwargs):
+
     self.placeholders[":source_folder"] = self.settings["project_settings"]["build_flow"]["source_folder"]
     self.placeholders[":destination_folder"] = self.settings["project_settings"]["build_flow"]["destination_folder"]
+    self.command += self.settings["project_settings"]["build_flow"]["options"]
+    self.command = self.substitute_placeholders(self.command)
+    self._run()
 
-  def append_args_execute(self) :
-    custom_args = []
-    custom_args = custom_args + self.settings["project_settings"]["build_flow"]["options"]
-
-    return custom_args
+  def _run(self):
+    super(build_flowCommand, self)._run()
 
   def is_enabled(self) :
     settings = get_project_settings()

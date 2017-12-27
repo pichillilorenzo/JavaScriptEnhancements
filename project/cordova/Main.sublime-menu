@@ -1,0 +1,85 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Cordova",
+        "id": "cordova",
+        "children":[
+          {
+            "caption": "Prepare",
+            "command": "cordova_cli",
+            "args": {
+              "command": ["prepare", ":platform"]
+            }
+          },
+          {
+            "caption": "Compile",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["compile", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["compile", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Build",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["build", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["build", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Run",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["run", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["run", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Serve",
+            "command": "cordova_cli",
+            "args": {
+              "command": ["serve"]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

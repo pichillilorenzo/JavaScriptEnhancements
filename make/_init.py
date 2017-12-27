@@ -1,7 +1,13 @@
 import sublime, sublime_plugin
-import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re
+import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, time
 from shutil import copyfile
 from threading import Timer
+
+try:
+  sys.modules["TerminalView"]
+except KeyError:
+  sublime.error_message("TerminalView plugin is missing. TerminalView is required to be able to use this plugin.")
+  exit()
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -23,6 +29,8 @@ platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
+
+PROJECT_TYPE_SUPPORTED = ['empty', 'angular', 'cordova', 'express', 'ionic', 'node.js', 'react', 'yeoman']
 
 ${include ./helper/Hook.py}
 
@@ -60,10 +68,25 @@ def overwrite_default_javascript_snippet():
 
 class startPlugin():
   def init(self):
+ 
+    node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
+    if not os.path.exists(node_modules_path):
+      node = NodeJS()
+      try:
+        node.getCurrentNodeJSVersion()
+      except Exception as e: 
+        sublime.error_message("Error during installation: node.js is not installed on your system.")
+        exit()
+      npm = NPM()
+      result = npm.install_all()
+      if result[0]: 
+        sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
+      else:
+        if os.path.exists(node_modules_path):
+          shutil.rmtree(node_modules_path)
+        sublime.error_message("Error during installation: can not install the npm dependencies for JavaScript Enhancements.")
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
-
-    sublime.set_timeout_async(lambda: NodeJSInstaller.install(NODE_JS_VERSION))
 
     window = sublime.active_window()
     view = window.active_view()
@@ -75,9 +98,9 @@ mainPlugin = startPlugin()
 
 ${include ./flow/main.py}
 
-${include ./helper/main.py}
-
 ${include ./project/main.py}
+
+${include ./helper/main.py}
 
 def plugin_loaded():
   global mainPlugin

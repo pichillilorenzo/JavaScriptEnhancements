@@ -1,0 +1,18 @@
+{
+  "use_local_cli": false, 
+  "cli_custom_path": "", 
+  "serve_port": "", 
+  "working_directory": "", 
+  "platform_build_options": {
+    "debug": {}, 
+    "release": {}
+  },
+  "platform_run_options": {
+    "debug": {}, 
+    "release": {}
+  }, 
+  "platform_compile_options": {
+    "debug": {}, 
+    "release": {}
+  }
+}

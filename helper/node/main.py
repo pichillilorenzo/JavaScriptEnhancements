@@ -1,7 +1,13 @@
 import subprocess, threading
 import sys, imp, codecs, shlex, os, json, traceback, tempfile
 
-${include node_variables.py}
+NODE_JS_EXEC = "node"
+NPM_EXEC = "npm"
+YARN_EXEC = "yarn"
+
+NODE_MODULES_FOLDER_NAME = "node_modules"
+NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
+NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
 
 def get_node_js_custom_path():
   json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
@@ -29,11 +35,11 @@ class NodeJS(object):
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_EXEC
       else :
-        self.node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
+        self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
     else :
-      self.node_js_path = NODE_JS_PATH_EXECUTABLE
+      self.node_js_path = NODE_JS_EXEC
 
   def eval(self, js, eval_type="eval", strict_mode=False):
 
@@ -62,7 +68,7 @@ class NodeJS(object):
 
   def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
 
-    if NODE_JS_OS == 'win':
+    if sublime.platform() == 'windows':
       if is_from_bin :
         args = [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
@@ -81,7 +87,7 @@ class NodeJS(object):
       fp.write(str.encode(fp_temp_contents))
       fp.flush()
 
-    if NODE_JS_OS == 'win':
+    if sublime.platform() == 'windows':
       if is_from_bin :
         args = [os.path.join(NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
       else :
@@ -91,8 +97,11 @@ class NodeJS(object):
     else :
       command_args_list = list()
       for command_arg in command_args :
+        if command_arg == ":temp_file":
+          command_arg = fp.name
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
+
       args = shlex.quote(self.node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
       #print(args)
@@ -170,7 +179,6 @@ class NodeJS(object):
 class NPM(object):
   def __init__(self, check_local = False):
     self.check_local = check_local
-    self.node_js_path = ""
     self.npm_path = ""
     self.yarn_path = ""
     self.cli_path = ""
@@ -178,9 +186,8 @@ class NPM(object):
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_PATH_EXECUTABLE
-        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_PATH_EXECUTABLE
+        self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
+        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_EXEC
 
         if settings["project_settings"]["use_yarn"] and self.yarn_path :
           self.cli_path = self.yarn_path
@@ -188,15 +195,13 @@ class NPM(object):
           self.cli_path = self.npm_path
 
       else :
-        self.node_js_path = get_node_js_custom_path() or NODE_JS_PATH_EXECUTABLE
-        self.npm_path = get_npm_custom_path() or NPM_PATH_EXECUTABLE
-        self.yarn_path = get_yarn_custom_path() or YARN_PATH_EXECUTABLE
+        self.npm_path = get_npm_custom_path() or NPM_EXEC
+        self.yarn_path = get_yarn_custom_path() or YARN_EXEC
 
         self.cli_path = self.npm_path
     else :
-      self.node_js_path = NODE_JS_PATH_EXECUTABLE
-      self.npm_path = NPM_PATH_EXECUTABLE
-      self.yarn_path = YARN_PATH_EXECUTABLE
+      self.npm_path = NPM_EXEC
+      self.yarn_path = YARN_EXEC
 
       self.cli_path = self.npm_path
 
@@ -204,10 +209,10 @@ class NPM(object):
 
     args = []
 
-    if NODE_JS_OS == 'win':
+    if sublime.platform() == 'windows':
       args = [self.cli_path, command] + command_args
     else :
-      args = [self.node_js_path, self.cli_path, command] + command_args
+      args = [self.cli_path, command] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
@@ -243,7 +248,7 @@ class NPM(object):
 
   def getCurrentNPMVersion(self) :
 
-    if NODE_JS_OS == 'win':
+    if sublime.platform() == 'windows':
       args = [self.cli_path, "-v"]
     else :
       args = [self.node_js_path, self.cli_path, "-v"]
@@ -254,5 +259,3 @@ class NPM(object):
       return result[1].strip()
 
     raise Exception(result[1])
-
-${include NodeJSInstaller.py}

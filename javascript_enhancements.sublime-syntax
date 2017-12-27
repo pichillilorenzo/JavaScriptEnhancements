@@ -1,9 +1,0 @@
-%YAML 1.2
----
-# See http://www.sublimetext.com/docs/3/syntax.html
-file_extensions:
-  - ec
-scope: source.javascript_completions
-contexts:
-  main:
-    - match: ""

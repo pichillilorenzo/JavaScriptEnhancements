@@ -98,8 +98,8 @@
   },
   { "caption": "-" },
   {
-    "caption": "Expand Model",
-    "id": "expand_model",
-    "command": "expand_model"
+    "caption": "Expand Abbreviation",
+    "id": "expand_abbreviation",
+    "command": "expand_abbreviation"
   }
 ]

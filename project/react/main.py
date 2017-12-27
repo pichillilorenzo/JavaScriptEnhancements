@@ -1,65 +1,50 @@
-import re, webbrowser
+import sublime, sublime_plugin
+import os, webbrowser, shlex, json
 
-def create_react_project_process(line, process, panel, project_data, open_project) :
+def react_ask_custom_path(project_path):
+  sublime.active_window().show_input_panel("React custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)), None, None)
 
-  if line != None and panel:
-    panel.run_command("print_panel_cli", {"line": line, "hide_panel_on_success": True})
+def react_prepare_project(project_path, react_custom_path):
+  open_project_folder(project_path)
+  window = sublime.active_window()
+  view = window.new_file() 
 
-  if line == "OUTPUT-SUCCESS":
-    Util.move_content_to_parent_folder(os.path.join(project_data["react_settings"]["working_directory"], "temp"))
-    
-    if open_project :
-      open_project_folder(project_data["project_file_name"])
+  if sublime.platform() in ("linux", "osx"): 
+    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
+    view.run_command('terminal_view_activate', args=args)
+    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" my-app && mv ./my-app/* ./ && rm -rf my-app\n"})
+  else:
+    # windows
+    pass
 
-def create_react_project(json_data):
-  project_data = json_data["project_data"]
-  project_details = project_data["project_details"]
-  project_folder = project_data["react_settings"]["working_directory"]
-  create_options = []
+  PROJECT_SETTINGS_FOLDER_PATH = os.path.join(project_path, PROJECT_SETTINGS_FOLDER_NAME)
 
-  if "create_options" in project_data and project_data["create_options"]:
-    create_options = project_data["create_options"]
-    
-  panel = Util.create_and_show_panel("react_panel_installer_project")
+  default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "react", "default_config.json")).read())
+  default_config["working_directory"] = project_path
+  default_config["cli_custom_path"] = react_custom_path
 
-  node = NodeJS(check_local = True)
+  react_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "react_settings.json")
 
-  Util.execute('git', ["clone", "--progress", "--depth=1", "https://github.com/react-boilerplate/react-boilerplate.git", "temp"], chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (False if "project_file_name" not in project_data else True) ])
-  #node.execute('create-react-app', ["temp"] + create_options, is_from_bin=True, chdir=project_folder, wait_terminate=False, func_stdout=create_cordova_project_process, args_func_stdout=[panel, project_data, (False if "project_file_name" not in project_data else True) ])
-    
-  return json_data
+  with open(react_settings, 'w+') as file:
+    file.write(json.dumps(default_config, indent=2))
 
-Hook.add("react_create_new_project", create_react_project)
-
-Hook.add("react_add_new_project_type", create_react_project)
+Hook.add("react_after_create_new_project", react_ask_custom_path)
 
 class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
   project_type = "react"
   path = os.path.join(PROJECT_FOLDER, "react", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "react", "Main_disabled.sublime-menu")
 
-class manage_serve_reactCommand(manage_cliCommand):
-  cli = "serve"
-  name_cli = "Serve React"
+class react_cliCommand(manage_cliCommand):
 
-  def process_communicate(self, line) :
+  cli = "create-react-app"
+  settings_name = "react_settings"
 
-    if line and "http://localhost" in line :
-      pattern = re.compile("http\:\/\/localhost\:([0-9]+)")
-      match = pattern.search(line)
-      if match :
-        port = match.group(1)
-        url = "http://localhost:"+port
-        webbrowser.open(url) 
+  def prepare_command(self, **kwargs):
 
-  def is_enabled(self) :
-    settings = get_project_settings()
-    if os.path.isdir(os.path.join( settings["project_dir_name"], "build" )) :
-      return True
-    return False
+    self._run()
 
-  def is_visible(self) :
-    settings = get_project_settings()
-    if os.path.isdir(os.path.join( settings["project_dir_name"], "build" )) :
-      return True
-    return False
+  def _run(self):
+
+    super(react_cliCommand, self)._run()
+

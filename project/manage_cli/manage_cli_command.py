@@ -1,153 +1,81 @@
-import shlex
-
 class manage_cliCommand(sublime_plugin.WindowCommand):
+  
   cli = ""
-  name_cli = ""
-  bin_path = ""
-  is_node = True
-  is_npm = False
-  panel = None
-  output_panel_name = "output_panel_cli"
-  panel_command = "print_panel_cli"
-  line_prefix = ""
-  line_postfix = ""
-  status_message_before = ""
-  status_message_after_on_success = ""
-  status_message_after_on_error = ""
-  settings = {}
-  command_with_options = []
-  show_panel = True
+  path_cli = ""
+  settings_name = ""
   placeholders = {}
-  hide_panel_on_success = True
-  process = None
-  show_animation_loader = True
-  animation_loader = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "Command is executing ")
-  interval_animation = None
-  syntax = os.path.join("Packages", PACKAGE_NAME, "javascript_enhancements.sublime-syntax")
-  ask_custom_options = False
-  wait_panel = 2000
-  custom_project_dir_name = ""
+  settings = None
+  command = []
+  working_directory = ""
+  isNode = False
+  isNpm = False
+  isBinPath = False
 
   def run(self, **kwargs):
-    self.settings = get_project_settings(self.custom_project_dir_name)
+
+    self.settings = get_project_settings()
+
     if self.settings:
 
-      self.callback_after_get_settings(**kwargs)
+      if not self.settings_name:
+        self.working_directory = self.settings["project_dir_name"]
+      else:
+        self.working_directory =  self.settings[self.settings_name]["working_directory"]
 
-      self.cli = kwargs.get("cli") if "cli" in kwargs else self.cli
-      if not self.cli and not self.is_npm  :
-        raise Exception("'cli' field of the manage_cliCommand not defined.")
+      if self.isNode:
+        self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_EXEC
+      elif self.isNpm:
+        if self.settings["project_settings"]["use_yarn"]:
+          self.path_cli = self.settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_EXEC
+        else:
+          self.path_cli = self.settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
+      else:
+        self.path_cli = os.path.join(self.settings["project_dir_name"], "node_modules", ".bin", self.cli) if self.settings[self.settings_name]["use_local_cli"] else ( self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.cli+"_custom_path") if javascriptCompletions.get(self.cli+"_custom_path") else self.cli ) )
+      self.command = kwargs.get("command")
 
-      self.command_with_options = self.substitute_placeholders( kwargs.get("command_with_options") if "command_with_options" in kwargs else self.command_with_options )
-      # if not self.command_with_options or len(self.command_with_options) <= 0:
-      #   raise Exception("'command_with_options' field of the manage_cliCommand not defined.")
-
-      self.show_panel = kwargs.get("show_panel") if "show_panel" in kwargs != None else self.show_panel
-      self.output_panel_name = self.substitute_placeholders( str(kwargs.get("output_panel_name") if "output_panel_name" in kwargs else self.output_panel_name) )
-      self.status_message_before = self.substitute_placeholders( str(kwargs.get("status_message_before")) if "status_message_before" in kwargs else self.status_message_before )
-      self.status_message_after_on_success = self.substitute_placeholders( str(kwargs.get("status_message_after_on_success")) if "status_message_after_on_success" in kwargs else self.status_message_after_on_success )
-      self.status_message_after_on_error = self.substitute_placeholders( str(kwargs.get("status_message_after_on_error")) if "status_message_after_on_error" in kwargs else self.status_message_after_on_error )
-      self.hide_panel_on_success = kwargs.get("hide_panel_on_success") if "hide_panel_on_success" in kwargs else self.hide_panel_on_success
-      self.show_animation_loader = kwargs.get("show_animation_loader") if "show_animation_loader" in kwargs else self.show_animation_loader
-      self.ask_custom_options = kwargs.get("ask_custom_options") if "ask_custom_options" in kwargs else self.ask_custom_options
-      
-      if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes : 
-
-        sublime.error_message("This command is already running! If you want execute it again, you must stop it first.")
-
-        self.window.run_command("show_panel", {"panel": "output."+self.output_panel_name})
-
-        return
-
-      sublime.set_timeout_async(lambda: self.manage())
+      self.prepare_command(**kwargs)
 
     else :
-
       sublime.error_message("Error: can't get project settings")
 
-  def manage(self) :
-    global manage_cli_window_command_processes
+  def prepare_command(self):
+    pass
 
-    if self.status_message_before :
-      self.window.status_message(self.name_cli+": "+self.status_message_before)
+  def _run(self):
 
-    self.command_with_options = self.command_with_options + self.append_args_execute()
+    if self.isNode and self.isBinPath:
+      self.command[0] = shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, self.command[0] if not sublime.platform() == 'windows' else self.command[0]+".cmd"))
 
-    if self.ask_custom_options :
-      sublime.active_window().show_input_panel( 'Add custom options', '', lambda custom_options: self.execute(custom_options=shlex.split(custom_options)), None, self.execute )
-      return
+    views = self.window.views()
+    view_with_term = None
+    for view in views:
+      if view.name() == "JavaScript Enhancements Terminal":
+        view_with_term = view
 
-    self.execute()
+    self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
+    self.window.focus_group(1)
 
+    if view_with_term:
+      self.window.focus_view(view_with_term)
+      if sublime.platform() in ("linux", "osx"): 
+        self.window.run_command("terminal_view_send_string", args={"string": "cd "+self.working_directory+"\n"})
+      else:
+        # windows
+        pass
+    else :
+      view = self.window.new_file() 
 
-  def execute(self, custom_options=[]) :
+      cmd = ""
+      if sublime.platform() in ("linux", "osx"): 
+        cmd = "/bin/bash -l"
+      else:
+        # windows
+        pass
 
-    if self.show_panel :
-      self.panel = Util.create_and_show_panel(self.output_panel_name, window=self.window, syntax=self.syntax)
-      self.panel.settings().set("is_output_cli_panel", True)
-
-    self.before_execute()
-
-    if ( self.can_execute() ) :
-
-      if self.animation_loader and self.show_animation_loader :
-        self.interval_animation = RepeatedTimer(self.animation_loader.sec, self.animation_loader.animate)
-
-      if self.is_node :
-        node = NodeJS(check_local = True)
-
-        if self.bin_path :
-          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, bin_path=self.bin_path, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
-        else :
-          node.execute(self.cli, self.command_with_options + custom_options, is_from_bin=True, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
-
-      elif self.is_npm :
-        npm = NPM(check_local = True)
-
-        npm.execute(self.command_with_options[0], self.command_with_options[1:] + custom_options, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
-
-      else :
-        Util.execute(self.cli, self.command_with_options + custom_options, chdir=( self.settings[self.cli + "_settings"]["working_directory"] if self.cli + "_settings" in self.settings and "working_directory" in self.settings[self.cli + "_settings"] else self.settings["project_dir_name"] ), wait_terminate=False, func_stdout=self.print_panel)
-
-  def print_panel(self, line, process):
-    global manage_cli_window_command_processes
-
-    if not self.process :
-      self.process = process
-
-    self.process_communicate(line)
-
-    if not self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-      manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name] = {
-        "process": self.process
-      }
-
-    if line != None and self.show_panel:
-      self.panel.run_command(self.panel_command, {"line": line, "prefix": self.line_prefix, "postfix": self.line_postfix, "hide_panel_on_success": self.hide_panel_on_success, "wait_panel": self.wait_panel})
-  
-    if line == "OUTPUT-SUCCESS" :
-      if self.status_message_after_on_success :
-        self.window.status_message(self.name_cli+": "+self.status_message_after_on_success)
-
-      self.on_success()
-
-    if line == "OUTPUT-ERROR" :
-      if self.status_message_after_on_error :
-        self.window.status_message(self.name_cli+": "+self.status_message_after_on_error)
-
-      self.on_error()
-
-    if line == "OUTPUT-DONE":
-      self.process = None
-
-      if self.settings["project_dir_name"]+"_"+self.output_panel_name in manage_cli_window_command_processes :
-        del manage_cli_window_command_processes[self.settings["project_dir_name"]+"_"+self.output_panel_name]
-
-      self.on_done()
-
-      if self.animation_loader and self.interval_animation :
-        self.animation_loader.on_complete()
-        self.interval_animation.stop()
+      args = {"cmd": cmd, "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
+      view.run_command('terminal_view_activate', args=args)
+    
+    self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"})
 
   def substitute_placeholders(self, variable):
     
@@ -165,27 +93,3 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         variable = variable.replace(key, placeholder)
         
       return variable
-
-  def can_execute(self) :
-    return True
-
-  def before_execute(self) :
-    return 
-
-  def append_args_execute(self):
-    return []
-
-  def process_communicate(self, line):
-    return
-    
-  def callback_after_get_settings(self, **kwargs):
-    return
-
-  def on_success(self):
-    return
-
-  def on_error(self):
-    return
-
-  def on_done(self):
-    return

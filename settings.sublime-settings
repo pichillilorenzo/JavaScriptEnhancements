@@ -1,7 +1,9 @@
 {
-	"enable_on_hover_description": true,
 	"enable_can_i_use_menu_option": true,
-	"node_js_custom_path": "",
-	"npm_custom_path": "",
-  "yarn_custom_path": ""
+	"node_js_custom_path": "node",
+	"npm_custom_path": "npm",
+  "yarn_custom_path": "yarn",
+  "cordova_custom_path": "cordova",
+  "ionic_custom_path": "ionic",
+  "react_custom_path": ""
 }

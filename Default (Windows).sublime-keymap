@@ -1,43 +1,7 @@
 [
   {
-    "keys": ["ctrl+up"],
-    "command": "move_history_cli",
-    "args": {"action": "move_up"}
-  },
-  {
-    "keys": ["ctrl+down"],
-    "command": "move_history_cli",
-    "args": {"action": "move_down"}
-  },
-  {
-    "keys": ["ctrl+super+s"],
-    "command": "evaluate_javascript",
-    "args": {"eval_type": "eval"}
-  },
-  {
-    "keys": ["ctrl+super+z"],
-    "command": "evaluate_javascript",
-    "args": {"is_line": "True", "eval_type": "eval"}
-  },
-  {
-    "keys": ["ctrl+super+h"],
-    "command": "hide_code_highlights_eval"
-  },
-  {
-    "keys": ["ctrl+super+j"],
-    "command": "show_code_highlights_eval"
-  },
-  {
     "keys": ["ctrl+alt+w"],
     "command": "can_i_use"
-  },
-  {
-    "keys": ["ctrl+super+b"],
-    "command": "show_overlay",
-    "args": {
-      "text": "Bookmarks: ",
-      "overlay": "command_palette"
-    }
   },
   {
     "keys": ["ctrl+alt+c"],

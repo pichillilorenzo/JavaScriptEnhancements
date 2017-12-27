@@ -424,7 +424,7 @@ class Util(object) :
     return None
 
   @staticmethod
-  def create_and_show_panel(output_panel_name, window = None, syntax=os.path.join("Packages", PACKAGE_NAME,"javascript_enhancements.sublime-syntax")):
+  def create_and_show_panel(output_panel_name, window = None, syntax=""):
     window = sublime.active_window() if not window else window
     panel = window.create_output_panel(output_panel_name, False)
     panel.set_read_only(True)

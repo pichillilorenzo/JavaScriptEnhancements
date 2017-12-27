@@ -1,0 +1,15 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Build Flow",
+        "command": "build_flow",
+        "args": {
+          "command": ["flow-remove-types", ":source_folder", "--out-dir", ":destination_folder"]
+        }
+      }
+    ]
+  }
+]

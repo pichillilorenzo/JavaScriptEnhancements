@@ -80,7 +80,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
         view, prefix, locations
       )
     )
-
+    
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 

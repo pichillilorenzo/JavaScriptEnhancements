@@ -8,149 +8,10 @@
         "id": "ionic",
         "children":[
           {
-            "caption": "Info",
-            "command": "manage_ionic",
-            "args": {
-              "command_with_options": ["info"],
-              "status_message_before": "",
-              "output_panel_name": "panel_info_ionic",
-              "hide_panel_on_success": false
-            }
-          },
-          {
-            "caption": "Requirements",
-            "command": "manage_ionic",
-            "args": {
-              "command_with_options": ["requirements"],
-              "status_message_before": "",
-              "output_panel_name": "panel_requirements_ionic",
-              "hide_panel_on_success": false
-            }
-          },
-          {"caption": "-"},
-          { 
-            "caption": "Platforms",
-            "children": [
-              {
-                "caption": "Add",
-                "command": "manage_add_platform_ionic",
-                "args": {
-                  "command_with_options": ["platform", "add", ":platform:version", "--save"],
-                  "status_message_before": "adding :platform:version platform...",
-                  "output_panel_name": "panel_add_platform_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "available",
-                  "hide_panel_on_success": true
-                }
-              },
-              {
-
-                "caption": "Remove",
-                "command": "manage_remove_platform_ionic",
-                "args": {
-                  "command_with_options": ["platform", "remove", ":platform", "--save"],
-                  "status_message_before": "removing :platform platform...",
-                  "output_panel_name": "panel_remove_platform_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
-                }
-              },
-              {
-
-                "caption": "Update",
-                "command": "manage_ionic",
-                "args": {
-                  "command_with_options": ["platform", "update", ":platform", "--save"],
-                  "status_message_before": "updating :platform platform...",
-                  "output_panel_name": "panel_update_platform_ionic",
-                  "ask_platform": true,
-                  "hide_panel_on_success": true
-                }
-              },
-              {
-
-                "caption": "List",
-                "command": "manage_ionic",
-                "args": {
-                  "command_with_options": ["platform", "list"],
-                  "status_message_before": "listing platforms...",
-                  "output_panel_name": "panel_list_platform_ionic",
-                  "hide_panel_on_success": false
-                }
-              },
-              {
-
-                "caption": "Check",
-                "command": "manage_ionic",
-                "args": {
-                  "command_with_options": ["platform", "check"],
-                  "status_message_before": "checking platforms...",
-                  "output_panel_name": "panel_check_platform_ionic",
-                  "hide_panel_on_success": true
-                }
-              },
-              {
-
-                "caption": "Save",
-                "command": "manage_ionic",
-                "args": {
-                  "command_with_options": ["platform", "save"],
-                  "status_message_before": "saving platforms...",
-                  "output_panel_name": "panel_save_platform_ionic",
-                  "hide_panel_on_success": true
-                }
-              }
-            ]
-          },
-          {"caption": "-"},
-          {
-            "caption": "Plugins",
-            "children": [
-              {
-                "caption": "Add",
-                "command": "manage_plugin_ionic",
-                "args": {
-                  "command_with_options": ["plugin", "add", ":plugin", "--save"],
-                  "status_message_before": "adding :plugin plugin...",
-                  "output_panel_name": "panel_add_plugin_ionic",
-                  "hide_panel_on_success": true
-                }
-              },
-              {
-                "caption": "Remove",
-                "command": "manage_plugin_ionic",
-                "args": {
-                  "command_with_options": ["plugin", "remove", ":plugin", "--save"],
-                  "status_message_before": "removing :plugin plugin...",
-                  "output_panel_name": "panel_remove_plugin_ionic",
-                  "hide_panel_on_success": true,
-                  "ask_plugin": true
-                }
-              },
-              {
-                "caption": "List",
-                "command": "manage_ionic",
-                "args": {
-                  "command_with_options": ["plugin", "list"],
-                  "status_message_before": "listing plugins...",
-                  "output_panel_name": "panel_list_plugin_ionic",
-                  "hide_panel_on_success": false
-                }
-              }
-            ]
-          },
-          {"caption": "-"},
-          {
             "caption": "Prepare",
-            "command": "manage_ionic",
+            "command": "ionic_cli",
             "args": {
-              "command_with_options": ["prepare", ":platform"],
-              "status_message_before": "preparing :platform platform...",
-              "output_panel_name": "panel_prepare_ionic",
-              "ask_platform": true,
-              "ask_platform_type": "installed",
-              "hide_panel_on_success": true
+              "command": ["prepare", ":platform"]
             }
           },
           {
@@ -158,26 +19,16 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["compile", ":platform", "--debug"],
-                  "status_message_before": "compiling :platform platform in debug mode...",
-                  "output_panel_name": "panel_debug_compile_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["compile", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["compile", ":platform", "--release"],
-                  "status_message_before": "compiling :platform platform in release mode...",
-                  "output_panel_name": "panel_release_compile_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["compile", ":platform", "--release"]
                 }
               }
             ]
@@ -187,26 +38,16 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["build", ":platform", "--debug"],
-                  "status_message_before": "building :platform platform in debug mode...",
-                  "output_panel_name": "panel_debug_build_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["build", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["build", ":platform", "--release"],
-                  "status_message_before": "building :platform platform in release mode...",
-                  "output_panel_name": "panel_release_build_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["build", ":platform", "--release"]
                 }
               }
             ]
@@ -216,26 +57,16 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["emulate", ":platform", "--debug"],
-                  "status_message_before": "emulating :platform platform in debug mode...",
-                  "output_panel_name": "panel_debug_emulate_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["emulate", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["emulate", ":platform", "--release"],
-                  "status_message_before": "emulating :platform platform in release mode...",
-                  "output_panel_name": "panel_release_emulate_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["emulate", ":platform", "--release"]
                 }
               }
             ]
@@ -245,98 +76,85 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["run", ":platform", "--debug"],
-                  "status_message_before": "launching :platform platform in debug mode...",
-                  "output_panel_name": "panel_debug_run_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["run", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["run", ":platform", "--release"],
-                  "status_message_before": "launching :platform platform in release mode...",
-                  "output_panel_name": "panel_release_run_ionic",
-                  "ask_platform": true,
-                  "ask_platform_type": "installed",
-                  "hide_panel_on_success": true
+                  "command": ["run", ":platform", "--release"]
                 }
               }
             ]
           },
           {
             "caption": "Serve",
-            "command": "manage_serve_ionic",
+            "command": "ionic_cli",
             "args": {
-              "command_with_options": ["serve"],
-              "status_message_before": "serving app...",
-              "output_panel_name": "panel_serve_ionic",
-              "hide_panel_on_success": true
+              "command": ["serve"]
             }
           },
           {
             "caption": "Resources",
-            "command": "manage_ionic",
-            "args": {
-              "command_with_options": ["resources"],
-              "status_message_before": "generating resources...",
-              "output_panel_name": "panel_resources_ionic",
-              "hide_panel_on_success": true
-            }
+            "children": [
+              {
+                "caption": "All",
+                "command": "ionic_cli",
+                "args": {
+                  "command": ["resources"]
+                }
+              },
+              {
+                "caption": "Only Icon",
+                "command": "ionic_cli",
+                "args": {
+                  "command": ["resources", "--icon"]
+                }
+              },
+              {
+                "caption": "Only Splash",
+                "command": "ionic_cli",
+                "args": {
+                  "command": ["resources", "--splash"]
+                }
+              }
+            ]
           },
           {
             "caption": "State",
             "children": [
               {
                 "caption": "Save",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["state", "save"],
-                  "status_message_before": "saving state...",
-                  "output_panel_name": "panel_save_state_ionic",
-                  "hide_panel_on_success": true
+                  "command": ["state", "save"]
                 }
               },
               {
                 "caption": "Restore",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["state", "restore"],
-                  "status_message_before": "restoring state...",
-                  "output_panel_name": "panel_restore_state_ionic",
-                  "hide_panel_on_success": true
+                  "command": ["state", "restore"]
                 }
               },
               {
                 "caption": "Clear",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["state", "clear"],
-                  "status_message_before": "clearing state...",
-                  "output_panel_name": "panel_clear_state_ionic",
-                  "hide_panel_on_success": true
+                  "command": ["state", "clear"]
                 }
               },
               {
                 "caption": "Reset",
-                "command": "manage_ionic",
+                "command": "ionic_cli",
                 "args": {
-                  "command_with_options": ["state", "reset"],
-                  "status_message_before": "resetting state...",
-                  "output_panel_name": "panel_reset_state_ionic",
-                  "hide_panel_on_success": true
+                  "command": ["state", "reset"]
                 }
               }
             ]
-          },
-          {
-            "caption": "Sync project",
-            "command": "sync_ionic_project"
           }
         ]
       }
