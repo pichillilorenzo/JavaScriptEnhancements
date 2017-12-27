@@ -64,10 +64,18 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
   if deps.project_root is '/':
     return
 
+  flow_cli_path = "flow"
+  is_from_bin = True
+
+  settings = get_project_settings()
+  if settings and settings["project_settings"]["flow_cli_custom_path"]:
+    flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+    is_from_bin = False
+
   node = NodeJS()
 
   result = node.execute_check_output(
-    "flow",
+    flow_cli_path,
     [
       'autocomplete',
       '--from', 'sublime_text',
@@ -75,7 +83,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       '--json',
       deps.filename
     ],
-    is_from_bin=True,
+    is_from_bin=is_from_bin,
     use_fp_temp=True, 
     fp_temp_contents=deps.contents, 
     is_output_json=True
@@ -124,9 +132,18 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
     if deps.project_root is '/':
       return
     row, col = view.rowcol(point)
+
+    flow_cli_path = "flow"
+    is_from_bin = True
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      is_from_bin = False
+      
     node = NodeJS()
     result = node.execute_check_output(
-      "flow",
+      flow_cli_path,
       [
         'type-at-pos',
         '--from', 'sublime_text',
@@ -135,7 +152,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
         '--json',
         str(row - deps.row_offset + 1), str(col + 1)
       ],
-      is_from_bin=True,
+      is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
       is_output_json=True

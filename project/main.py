@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, shlex
+import os, shlex, collections
 
 PROJECT_SETTINGS_FOLDER_NAME = ".je-project-settings"
 
@@ -16,7 +16,7 @@ def is_project_open(project):
 
   for window in windows :
 
-    project_file_name = sublime.active_window().project_file_name()
+    project_file_name = window.project_file_name()
 
     if project_file_name :
       project_folder = os.path.dirname(project_file_name)
@@ -25,7 +25,7 @@ def is_project_open(project):
 
     else :
       # try to look at window.folders()
-      folders = sublime.active_window().folders()   
+      folders = window.folders()   
       if len(folders) > 0:
 
         project_folder = folders[0]
@@ -100,7 +100,7 @@ def get_project_settings(project_dir_name = ""):
   for setting_file in os.listdir(project_settings["settings_dir_name"]) :
     with open(os.path.join(settings_dir_name, setting_file), encoding="utf-8") as file :
       key = os.path.splitext(setting_file)[0]
-      project_settings[key] = json.loads(file.read(), encoding="utf-8")
+      project_settings[key] = json.loads(file.read(), encoding="utf-8", object_pairs_hook=collections.OrderedDict)
   
   return project_settings
 
@@ -118,7 +118,7 @@ ${include build_flow/main.py}
 
 ${include cordova/main.py}
 
-${include ionic/main.py}
+${include ionicv1/main.py}
 
 ${include react/main.py}
 

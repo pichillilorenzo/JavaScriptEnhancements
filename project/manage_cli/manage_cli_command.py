@@ -30,7 +30,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         else:
           self.path_cli = self.settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
       else:
-        self.path_cli = os.path.join(self.settings["project_dir_name"], "node_modules", ".bin", self.cli) if self.settings[self.settings_name]["use_local_cli"] else ( self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.cli+"_custom_path") if javascriptCompletions.get(self.cli+"_custom_path") else self.cli ) )
+        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.cli+"_custom_path") if javascriptCompletions.get(self.cli+"_custom_path") else self.cli )
       self.command = kwargs.get("command")
 
       self.prepare_command(**kwargs)
@@ -45,6 +45,9 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     if self.isNode and self.isBinPath:
       self.command[0] = shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, self.command[0] if not sublime.platform() == 'windows' else self.command[0]+".cmd"))
+
+    self.working_directory = shlex.quote(self.working_directory)
+    self.path_cli = shlex.quote(self.path_cli)
 
     views = self.window.views()
     view_with_term = None

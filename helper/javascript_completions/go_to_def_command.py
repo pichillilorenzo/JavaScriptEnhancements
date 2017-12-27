@@ -26,9 +26,18 @@ class go_to_defCommand(sublime_plugin.TextCommand):
     view.sel().add(point)
 
     deps = flow_parse_cli_dependencies(view)
+    
+    flow_cli_path = "flow"
+    is_from_bin = True
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      is_from_bin = False
+    
     node = NodeJS()
     result = node.execute_check_output(
-      "flow",
+      flow_cli_path,
       [
         'get-def',
         '--from', 'sublime_text',
@@ -37,7 +46,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
         ':temp_file',
         str(deps.row + 1), str(deps.col + 1)
       ],
-      is_from_bin=True,
+      is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
       is_output_json=True,

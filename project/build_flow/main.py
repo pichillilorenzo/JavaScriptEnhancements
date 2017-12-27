@@ -1,3 +1,5 @@
+import shlex
+
 class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "build_flow", "Main_disabled.sublime-menu")
@@ -13,6 +15,11 @@ class build_flowCommand(manage_cliCommand):
     self.placeholders[":destination_folder"] = self.settings["project_settings"]["build_flow"]["destination_folder"]
     self.command += self.settings["project_settings"]["build_flow"]["options"]
     self.command = self.substitute_placeholders(self.command)
+
+    if self.settings["project_settings"]["flow_remove_types_custom_path"]:
+      self.isBinPath = False
+      self.command[0] = shlex.quote(self.settings["project_settings"]["flow_remove_types_custom_path"])
+
     self._run()
 
   def _run(self):

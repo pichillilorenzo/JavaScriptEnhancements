@@ -1,21 +1,14 @@
 import sublime, sublime_plugin
-import os, webbrowser, shlex, json
+import os, webbrowser, shlex, json, collections
 
-def cordova_ask_custom_path(project_path):
-  sublime.active_window().show_input_panel("Cordova custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)), None, None)
+def cordova_ask_custom_path(project_path, type):
+    sublime.active_window().show_input_panel("Cordova custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
 
-def cordova_prepare_project(project_path, cordova_custom_path):
-  open_project_folder(project_path)
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": cordova_custom_path+" create temp com.example.hello HelloWorld && mv ./temp/* ./ && rm -rf temp\n"})
-  else:
-    # windows
-    pass
+def add_cordova_settings(working_directory, cordova_custom_path):
+  project_path = working_directory
+  settings = get_project_settings()
+  if settings :
+    project_path = settings["project_dir_name"]
 
   flowconfig_file_path = os.path.join(project_path, ".flowconfig")
   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
@@ -31,8 +24,8 @@ def cordova_prepare_project(project_path, cordova_custom_path):
 
   PROJECT_SETTINGS_FOLDER_PATH = os.path.join(project_path, PROJECT_SETTINGS_FOLDER_NAME)
 
-  default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "cordova", "default_config.json")).read())
-  default_config["working_directory"] = project_path
+  default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "cordova", "default_config.json")).read(), object_pairs_hook=collections.OrderedDict)
+  default_config["working_directory"] = working_directory
   default_config["cli_custom_path"] = cordova_custom_path
 
   cordova_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "cordova_settings.json")
@@ -40,7 +33,24 @@ def cordova_prepare_project(project_path, cordova_custom_path):
   with open(cordova_settings, 'w+') as file:
     file.write(json.dumps(default_config, indent=2))
 
+def cordova_prepare_project(project_path, cordova_custom_path):
+
+  window = sublime.active_window()
+  view = window.new_file() 
+
+  if sublime.platform() in ("linux", "osx"): 
+    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
+    view.run_command('terminal_view_activate', args=args)
+    window.run_command("terminal_view_send_string", args={"string": cordova_custom_path+" create temp com.example.hello HelloWorld && mv ./temp/* ./ && rm -rf temp\n"})
+  else:
+    # windows
+    pass
+
+  add_cordova_settings(project_path, cordova_custom_path)
+
 Hook.add("cordova_after_create_new_project", cordova_ask_custom_path)
+Hook.add("cordova_add_javascript_project_configuration", cordova_ask_custom_path)
+Hook.add("cordova_add_javascript_project_type", cordova_ask_custom_path)
 
 class enable_menu_cordovaEventListener(enable_menu_project_typeEventListener):
   project_type = "cordova"
@@ -72,6 +82,8 @@ class cordova_cliCommand(manage_cliCommand):
         'build': lambda : self.command + self.settings["cordova_settings"]["platform_build_options"][self.command[2].replace('--', '')][self.command[1]],
         'serve': lambda : self.command + [self.settings["cordova_settings"]["serve_port"]]
       }[self.command[0]]()
+    except KeyError as err:
+      pass
     except Exception as err:
       print(traceback.format_exc())
       pass

@@ -35,6 +35,8 @@
       "options": []
     },
     "flow_checker_enabled": true,
+    "flow_cli_custom_path": "",
+    "flow_remove_types_custom_path": "",
     "jsdoc": {
       "conf_file": ""
     }

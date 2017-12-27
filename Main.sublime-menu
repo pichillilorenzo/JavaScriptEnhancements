@@ -111,9 +111,17 @@
         "id": "create_new_project"
       },
       {
-        "caption": "Edit JavaScript Project",
-        "command": "edit_javascript_project",
-        "id": "edit_javascript_project",
+        "caption": "Add JavaScript Project type",
+        "command": "add_javascript_project_type",
+        "id": "add_javascript_project_type",
+      },
+      {
+        "caption": "Add JavaScript type configuration",
+        "command": "add_javascript_project_type_configuration",
+        "id": "add_javascript_project_type_configuration",
+        "args": {
+          "add_only": true
+        }
       }
     ]
   },

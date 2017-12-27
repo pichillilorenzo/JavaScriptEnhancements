@@ -1,6 +1,8 @@
+import shlex
+
 def show_flow_errors(view) :
 
-  view_settings = view.settings()
+  #view_settings = view.settings()
   sel = view.sel()[0]
   if not view.match_selector(
       sel.begin(),
@@ -23,11 +25,19 @@ def show_flow_errors(view) :
 
     # if view_settings.get("flow_weak_mode") :
     #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
+    
+    flow_cli_path = "flow"
+    is_from_bin = True
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      is_from_bin = False
 
     node = NodeJS()
     
     result = node.execute_check_output(
-      "flow",
+      flow_cli_path,
       [
         'check-contents',
         '--from', 'sublime_text',
@@ -35,7 +45,7 @@ def show_flow_errors(view) :
         '--json',
         deps.filename
       ],
-      is_from_bin=True,
+      is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
       is_output_json=True,

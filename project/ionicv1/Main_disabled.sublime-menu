@@ -4,12 +4,12 @@
     "id": "tools",
     "children": [
       {
-        "caption": "Ionic",
-        "id": "ionic",
+        "caption": "Ionic v1",
+        "id": "ionicv1",
         "children":[
           {
             "caption": "Prepare",
-            "command": "ionic_cli",
+            "command": "ionicv1_cli",
             "args": {
               "command": ["prepare", ":platform"]
             }
@@ -19,14 +19,14 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["compile", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["compile", ":platform", "--release"]
                 }
@@ -38,14 +38,14 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["build", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["build", ":platform", "--release"]
                 }
@@ -57,14 +57,14 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["emulate", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["emulate", ":platform", "--release"]
                 }
@@ -76,14 +76,14 @@
             "children": [
               {
                 "caption": "Debug",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["run", ":platform", "--debug"]
                 }
               },
               {
                 "caption": "Release",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["run", ":platform", "--release"]
                 }
@@ -92,7 +92,7 @@
           },
           {
             "caption": "Serve",
-            "command": "ionic_cli",
+            "command": "ionicv1_cli",
             "args": {
               "command": ["serve"]
             }
@@ -102,21 +102,21 @@
             "children": [
               {
                 "caption": "All",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["resources"]
                 }
               },
               {
                 "caption": "Only Icon",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["resources", "--icon"]
                 }
               },
               {
                 "caption": "Only Splash",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["resources", "--splash"]
                 }
@@ -128,28 +128,28 @@
             "children": [
               {
                 "caption": "Save",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["state", "save"]
                 }
               },
               {
                 "caption": "Restore",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["state", "restore"]
                 }
               },
               {
                 "caption": "Clear",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["state", "clear"]
                 }
               },
               {
                 "caption": "Reset",
-                "command": "ionic_cli",
+                "command": "ionicv1_cli",
                 "args": {
                   "command": ["state", "reset"]
                 }

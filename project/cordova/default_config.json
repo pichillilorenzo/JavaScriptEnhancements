@@ -1,5 +1,4 @@
 {
-  "use_local_cli": false, 
   "cli_custom_path": "", 
   "serve_port": "", 
   "working_directory": "", 

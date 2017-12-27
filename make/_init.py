@@ -3,12 +3,6 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-try:
-  sys.modules["TerminalView"]
-except KeyError:
-  sublime.error_message("TerminalView plugin is missing. TerminalView is required to be able to use this plugin.")
-  exit()
-
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
@@ -30,7 +24,8 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-PROJECT_TYPE_SUPPORTED = ['empty', 'angular', 'cordova', 'express', 'ionic', 'node.js', 'react', 'yeoman']
+#PROJECT_TYPE_SUPPORTED = ['empty', 'angular', 'cordova', 'express', 'ionicv1', 'ionicv2', 'node.js', 'react', 'yeoman']
+PROJECT_TYPE_SUPPORTED = ['empty', 'cordova', 'ionicv1', 'react', 'yeoman']
 
 ${include ./helper/Hook.py}
 
@@ -70,14 +65,8 @@ class startPlugin():
   def init(self):
  
     node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
+    npm = NPM()
     if not os.path.exists(node_modules_path):
-      node = NodeJS()
-      try:
-        node.getCurrentNodeJSVersion()
-      except Exception as e: 
-        sublime.error_message("Error during installation: node.js is not installed on your system.")
-        exit()
-      npm = NPM()
       result = npm.install_all()
       if result[0]: 
         sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
@@ -85,6 +74,10 @@ class startPlugin():
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
         sublime.error_message("Error during installation: can not install the npm dependencies for JavaScript Enhancements.")
+    else:
+      result = npm.update_all()
+      if not result[0]: 
+        sublime.active_window().status_message("Error: JavaScript Enhancements - cannot update npm dependencies.")
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
@@ -103,6 +96,28 @@ ${include ./project/main.py}
 ${include ./helper/main.py}
 
 def plugin_loaded():
+
   global mainPlugin
+
+  try:
+    sys.modules["TerminalView"]
+  except Exception as err:
+    sublime.error_message("TerminalView plugin is missing. TerminalView is required to be able to use this plugin.")
+    return
+
+  try:
+    sys.modules["JavaScript Completions"]
+    sublime.error_message("Please uninstall/disable JavaScript Completions plugin.")
+    return
+  except Exception as err:
+    pass
+
+  node = NodeJS()
+  try:
+    node.getCurrentNodeJSVersion()
+  except Exception as err: 
+    sublime.error_message("Error during installation: node.js is not installed on your system.")
+    return
+ 
   mainPlugin.init()
 

@@ -98,10 +98,18 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     if deps.project_root is '/':
       return
 
+    flow_cli_path = "flow"
+    is_from_bin = True
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      is_from_bin = False
+
     node = NodeJS()
     
     result = node.execute_check_output(
-      "flow",
+      flow_cli_path,
       [
         'autocomplete',
         '--from', 'sublime_text',
@@ -109,7 +117,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
         '--json',
         deps.filename
       ],
-      is_from_bin=True,
+      is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
       is_output_json=True
