@@ -14,7 +14,7 @@ It will offer not only a better **javascript autocomplete** but a lot of feature
 developing and managing **javascript projects**, such as:
 
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
-- Ionic projects (same as Cordova projects!)
+- Ionic v1 and v2 projects (same as Cordova projects!)
 - Angular projects
 - React projects
 - Node.js projects
@@ -25,10 +25,10 @@ developing and managing **javascript projects**, such as:
 
 It will turn Sublime Text into a **JavaScript IDE** like!
 
-This project is based on my other Sublime Text plugin <a href="https://github.com/pichillilorenzo/JavaScript-Completions">JavaScript Completions</a>
+This project is based on my other Sublime Text plugin [JavaScript Completions](https://github.com/pichillilorenzo/JavaScript-Completions)
 
 **Note**: 
-If you want use this plugin, you may want <span style="text-decoration: underline;">uninstall/disable</span> the JavaScript Completions plugin, if installed.
+If you want use this plugin, you may want <span style="text-decoration: underline;">uninstall/disable</span> the **JavaScript Completions** plugin, if installed.
 
 ## OS supported now
 
@@ -41,6 +41,10 @@ In order to work properly, this plugin has some dependencies:
 
 - **Node.js** and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
 - **TerminalView** sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
+
+**Not required**, but **useful** for typescript files (Flow wont work on this type of files):
+
+- **TypeScript** sublime text plugin ([TypeScript](https://github.com/Microsoft/TypeScript-Sublime-Plugin)) 
 
 ### Flow Requirements
 

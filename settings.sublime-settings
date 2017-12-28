@@ -5,5 +5,6 @@
   "yarn_custom_path": "yarn",
   "cordova_custom_path": "cordova",
   "ionicv1_custom_path": "ionic",
+  "ionicv2_custom_path": "ionic",
   "react_custom_path": "create-react-app"
 }

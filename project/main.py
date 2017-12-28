@@ -120,6 +120,8 @@ ${include cordova/main.py}
 
 ${include ionicv1/main.py}
 
+${include ionicv2/main.py}
+
 ${include react/main.py}
 
 ${include yeoman/main.py}

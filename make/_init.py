@@ -25,7 +25,7 @@ PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
 #PROJECT_TYPE_SUPPORTED = ['empty', 'angular', 'cordova', 'express', 'ionicv1', 'ionicv2', 'node.js', 'react', 'yeoman']
-PROJECT_TYPE_SUPPORTED = ['empty', 'cordova', 'ionicv1', 'react', 'yeoman']
+PROJECT_TYPE_SUPPORTED = ['empty', 'cordova', 'ionicv1', 'ionicv2', 'react', 'yeoman']
 
 ${include ./helper/Hook.py}
 
@@ -95,9 +95,6 @@ ${include ./project/main.py}
 
 ${include ./helper/main.py}
 
-def plugin_loaded():
-  sublime.set_timeout_async(start)
-
 def start():
 
   global mainPlugin
@@ -123,4 +120,7 @@ def start():
     return
  
   mainPlugin.init()
+
+def plugin_loaded():
+  sublime.set_timeout_async(start)
 

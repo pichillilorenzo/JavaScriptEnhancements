@@ -82,6 +82,7 @@ class ionicv1_cliCommand(manage_cliCommand):
         'run': lambda : self.command + self.settings["ionicv1_settings"]["platform_run_options"][self.command[2].replace('--', '')][self.command[1]],
         'compile': lambda : self.command + self.settings["ionicv1_settings"]["platform_compile_options"][self.command[2].replace('--', '')][self.command[1]],
         'build': lambda : self.command + self.settings["ionicv1_settings"]["platform_build_options"][self.command[2].replace('--', '')][self.command[1]],
+        'prepare': lambda : self.command + self.settings["ionicv2_settings"]["platform_prepare_options"][self.command[1]],
         'serve': lambda : self.command + self.settings["ionicv1_settings"]["serve_options"]
       }[self.command[0]]()
     except KeyError as err:
