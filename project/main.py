@@ -122,6 +122,10 @@ ${include ionicv1/main.py}
 
 ${include ionicv2/main.py}
 
+${include angularv1/main.py}
+
+${include angularv2/main.py}
+
 ${include react/main.py}
 
 ${include yeoman/main.py}

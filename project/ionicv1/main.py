@@ -41,7 +41,7 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
   if sublime.platform() in ("linux", "osx"): 
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
   else:
     # windows
     pass
@@ -72,7 +72,7 @@ class ionicv1_cliCommand(manage_cliCommand):
       self._run()
 
   def platform_on_done(self, platform):
-    self.placeholders[":platform"] = platform
+    self.placeholders[":platform"] = shlex.quote(platform)
     self.command = self.substitute_placeholders(self.command)
     self._run()
 

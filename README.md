@@ -15,7 +15,7 @@ developing and managing **javascript projects**, such as:
 
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 projects (same as Cordova projects!)
-- Angular projects
+- Angular v1 and v2 projects
 - React projects
 - Node.js projects
 - Yeoman generators

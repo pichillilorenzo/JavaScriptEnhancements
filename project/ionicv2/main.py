@@ -17,7 +17,8 @@ def add_ionicv2_settings(working_directory, ionicv2_custom_path):
 <PROJECT_ROOT>/platforms/.*
 <PROJECT_ROOT>/hooks/.*
 <PROJECT_ROOT>/plugins/.*
-<PROJECT_ROOT>/resources/.*""")
+<PROJECT_ROOT>/resources/.*
+<PROJECT_ROOT>/.sourcemaps/.*""")
     file.seek(0)
     file.truncate()
     file.write(content)
@@ -41,7 +42,7 @@ def ionicv2_prepare_project(project_path, ionicv2_custom_path):
   if sublime.platform() in ("linux", "osx"): 
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
   else:
     # windows
     pass
@@ -72,7 +73,7 @@ class ionicv2_cliCommand(manage_cliCommand):
       self._run()
 
   def platform_on_done(self, platform):
-    self.placeholders[":platform"] = platform
+    self.placeholders[":platform"] = shlex.quote(platform)
     self.command = self.substitute_placeholders(self.command)
     self._run()
 

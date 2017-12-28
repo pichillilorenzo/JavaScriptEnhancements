@@ -1,0 +1,76 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Angular v2",
+        "id": "angularv2",
+        "children":[
+          {
+            "caption": "Serve",
+            "command": "angularv2_cli",
+            "args": {
+              "command": ["serve"]
+            }
+          },
+          {
+            "caption": "Lint",
+            "command": "angularv2_cli",
+            "args": {
+              "command": ["lint"]
+            }
+          },
+          {
+            "caption": "Test",
+            "command": "angularv2_cli",
+            "args": {
+              "command": ["test"]
+            }
+          },
+          {
+            "caption": "e2e",
+            "command": "angularv2_cli",
+            "args": {
+              "command": ["e2e"]
+            }
+          },
+          {
+            "caption": "Build",
+            "command": "angularv2_cli",
+            "children":[
+              {
+                "caption": "Dev",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["build", "run", "--dev"]
+                }
+              },
+              {
+                "caption": "Prod",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["build", "run", "--prod"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Eject",
+            "command": "angularv2_cli",
+            "args": {
+              "command": ["eject"]
+            }
+          },
+          {
+            "caption": "xi18n",
+            "command": "angularv2_cli",
+            "args": {
+              "command": ["xi18n"]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

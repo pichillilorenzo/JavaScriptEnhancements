@@ -37,7 +37,7 @@ def react_prepare_project(project_path, react_custom_path):
   if sublime.platform() in ("linux", "osx"): 
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" my-app && mv ./my-app/* ./ && rm -rf my-app\n"})
+    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
   else:
     # windows
     pass

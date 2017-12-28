@@ -6,5 +6,7 @@
   "cordova_custom_path": "cordova",
   "ionicv1_custom_path": "ionic",
   "ionicv2_custom_path": "ionic",
+  "angularv1_custom_path": "yo",
+  "angularv2_custom_path": "ng",
   "react_custom_path": "create-react-app"
 }
