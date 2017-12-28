@@ -16,7 +16,7 @@ def is_project_open(project):
 
   for window in windows :
 
-    project_file_name = window.project_file_name()
+    project_file_name = sublime.active_window().project_file_name()
 
     if project_file_name :
       project_folder = os.path.dirname(project_file_name)

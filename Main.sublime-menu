@@ -4,10 +4,6 @@
     "id": "tools",
     "children": [
       {
-        "caption": "Open Live Terminal",
-        "command": "open_live_terminal"
-      },
-      {
         "caption": "JavaScript Enhancements",
         "mnemonic": "J",
         "id": "javascript_completions_tools",
@@ -82,15 +78,6 @@
           },
           { "caption": "-" },
           {
-            "caption": "Go to Node.js site",
-            "command": "open_url",
-            "args": {
-                "url": "https://nodejs.org",
-                "platform": "Windows"
-            }
-          },
-          { "caption": "-" },
-          {
             "caption": "GitHub Project",
             "command": "open_url",
             "args": {"url": "https://github.com/pichillilorenzo/JavaScriptEnhancements"}
@@ -118,10 +105,7 @@
       {
         "caption": "Add JavaScript type configuration",
         "command": "add_javascript_project_type_configuration",
-        "id": "add_javascript_project_type_configuration",
-        "args": {
-          "add_only": true
-        }
+        "id": "add_javascript_project_type_configuration"
       }
     ]
   },

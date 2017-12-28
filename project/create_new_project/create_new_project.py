@@ -3,7 +3,6 @@ import subprocess, shutil, traceback, os, json, shlex, collections
 
 class create_new_projectCommand(sublime_plugin.WindowCommand):
   project_type = None
-  add_only = False
 
   def run(self, **kwargs):
 
@@ -18,6 +17,10 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     path = shlex.quote( path.strip() )
 
+    if os.path.exists(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
+      sublime.error_message(path+" is not empty. Can not create the project.")
+      return
+
     if not os.path.isdir(path):
       os.makedirs(path)
 
@@ -30,7 +33,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "create_new_project", "default_config.json")).read(), object_pairs_hook=collections.OrderedDict)
     
-    sublime_project_file_path = os.path.join(path, ".sublime-project")
+    sublime_project_file_path = os.path.join(path, os.path.basename(path)+".sublime-project")
     package_json_file_path = os.path.join(path, "package.json")
     flowconfig_file_path = os.path.join(path, ".flowconfig")
     bookmarks_path = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "bookmarks.json")
@@ -55,7 +58,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     node = NodeJS()
     result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
     if not result[0]:
-      sublime.error_message("Cannot init flow.")
+      sublime.error_message("Can not init flow.")
     else:
       with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
         content = file.read()
@@ -65,10 +68,11 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
         file.seek(0)
         file.truncate()
         file.write(content)
-      
-    open_project_folder(path)
+
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
+
+    open_project_folder(sublime_project_file_path)
 
 class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
   project_type = None
