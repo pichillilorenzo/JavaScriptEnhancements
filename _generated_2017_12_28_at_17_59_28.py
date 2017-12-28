@@ -1523,6 +1523,7 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   
+  custom_name = ""
   cli = ""
   path_cli = ""
   settings_name = ""
@@ -1553,7 +1554,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         else:
           self.path_cli = self.settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
       else:
-        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.cli+"_custom_path") if javascriptCompletions.get(self.cli+"_custom_path") else self.cli )
+        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli )
       self.command = kwargs.get("command")
 
       self.prepare_command(**kwargs)
@@ -1601,6 +1602,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       args = {"cmd": cmd, "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
       view.run_command('terminal_view_activate', args=args)
     
+    # stop the current process with SIGINT
+    self.window.run_command("terminal_view_send_string", args={"string": "\x03"})
+
+    # call command
     self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"})
 
   def substitute_placeholders(self, variable):
@@ -1700,7 +1705,7 @@ class manage_npmCommand(manage_cliCommand):
     return True if settings and os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) else False
 
 
-import shlex
+import shlex, shutil
 
 class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
@@ -1713,7 +1718,14 @@ class build_flowCommand(manage_cliCommand):
 
   def prepare_command(self, **kwargs):
 
-    self.placeholders[":source_folder"] = self.settings["project_settings"]["build_flow"]["source_folder"]
+    # dest_folder = self.settings["project_settings"]["build_flow"]["destination_folder"]
+
+    # if os.path.isabs(dest_folder):
+    #   shutil.rmtree(dest_folder)
+    # elif os.path.exists(os.path.join(self.settings["project_dir_name"], dest_folder)):
+    #   shutil.rmtree(os.path.join(self.settings["project_dir_name"], dest_folder))
+
+    self.placeholders[":source_folders"] = " ".join(self.settings["project_settings"]["build_flow"]["source_folders"])
     self.placeholders[":destination_folder"] = self.settings["project_settings"]["build_flow"]["destination_folder"]
     self.command += self.settings["project_settings"]["build_flow"]["options"]
     self.command = self.substitute_placeholders(self.command)
@@ -1729,7 +1741,7 @@ class build_flowCommand(manage_cliCommand):
 
   def is_enabled(self) :
     settings = get_project_settings()
-    if settings and settings["project_settings"]["build_flow"]["source_folder"] and settings["project_settings"]["build_flow"]["destination_folder"] :
+    if settings and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
       return True
     return False
 
@@ -1783,6 +1795,8 @@ def cordova_prepare_project(project_path, cordova_custom_path):
 
   add_cordova_settings(project_path, cordova_custom_path)
 
+  open_project_folder(get_project_settings()["project_file_name"])
+
 Hook.add("cordova_after_create_new_project", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_configuration", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_type", cordova_ask_custom_path)
@@ -1795,6 +1809,7 @@ class enable_menu_cordovaEventListener(enable_menu_project_typeEventListener):
 class cordova_cliCommand(manage_cliCommand):
 
   cli = "cordova"
+  custom_name = "cordova"
   settings_name = "cordova_settings"
 
   def prepare_command(self, **kwargs):
@@ -1831,7 +1846,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v1 custom path", "ionicv1", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v1 custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
 
 def add_ionicv1_settings(working_directory, ionicv1_custom_path):
   project_path = working_directory
@@ -1877,6 +1892,8 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
 
   add_ionicv1_settings(project_path, ionicv1_custom_path)
 
+  open_project_folder(get_project_settings()["project_file_name"])
+
 Hook.add("ionicv1_after_create_new_project", ionicv1_ask_custom_path)
 Hook.add("ionicv1_add_javascript_project_configuration", ionicv1_ask_custom_path)
 
@@ -1888,6 +1905,7 @@ class enable_menu_ionicv1EventListener(enable_menu_project_typeEventListener):
 class ionicv1_cliCommand(manage_cliCommand):
 
   cli = "ionic"
+  custom_name = "ionicv1"
   settings_name = "ionicv1_settings"
 
   def prepare_command(self, **kwargs):
@@ -1966,6 +1984,8 @@ def react_prepare_project(project_path, react_custom_path):
 
   add_react_settings(project_path, react_custom_path)
 
+  open_project_folder(get_project_settings()["project_file_name"])
+
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
 
@@ -1977,6 +1997,7 @@ class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
 class react_cliCommand(manage_cliCommand):
 
   cli = "create-react-app"
+  custom_name = "react"
   settings_name = "react_settings"
 
   def prepare_command(self, **kwargs):
@@ -2004,6 +2025,8 @@ def yeoman_prepare_project(project_path):
   else:
     # windows
     pass
+
+  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("yeoman_after_create_new_project", yeoman_prepare_project)
 
@@ -2082,8 +2105,6 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
-
-    open_project_folder(sublime_project_file_path)
 
 class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
   project_type = None
@@ -3949,7 +3970,7 @@ class generate_jsdocCommand(manage_cliCommand):
 
   def prepare_command(self):
 
-    jsdoc_conf_file = os.path.join(self.settings['project_dir_name'], self.settings['project_settings']['jsdoc']['conf_file'])
+    jsdoc_conf_file = self.settings['project_settings']['jsdoc']['conf_file']
     if os.path.isfile(jsdoc_conf_file) :
       self.command = ["jsdoc", "-c", jsdoc_conf_file]
 
@@ -4281,6 +4302,9 @@ if int(sublime.version()) >= 3124 :
 
 
 def plugin_loaded():
+  sublime.set_timeout_async(start)
+
+def start():
 
   global mainPlugin
 

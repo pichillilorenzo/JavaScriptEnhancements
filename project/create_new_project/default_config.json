@@ -30,7 +30,7 @@
     "yarn_custom_path": "",
     "use_yarn": false,
     "build_flow": {
-      "source_folder": "",
+      "source_folders": [],
       "destination_folder": "",
       "options": []
     },

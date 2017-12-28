@@ -18,7 +18,7 @@ class generate_jsdocCommand(manage_cliCommand):
 
   def prepare_command(self):
 
-    jsdoc_conf_file = os.path.join(self.settings['project_dir_name'], self.settings['project_settings']['jsdoc']['conf_file'])
+    jsdoc_conf_file = self.settings['project_settings']['jsdoc']['conf_file']
     if os.path.isfile(jsdoc_conf_file) :
       self.command = ["jsdoc", "-c", jsdoc_conf_file]
 

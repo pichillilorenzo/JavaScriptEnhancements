@@ -96,6 +96,9 @@ ${include ./project/main.py}
 ${include ./helper/main.py}
 
 def plugin_loaded():
+  sublime.set_timeout_async(start)
+
+def start():
 
   global mainPlugin
 

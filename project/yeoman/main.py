@@ -14,5 +14,7 @@ def yeoman_prepare_project(project_path):
     # windows
     pass
 
+  open_project_folder(get_project_settings()["project_file_name"])
+
 Hook.add("yeoman_after_create_new_project", yeoman_prepare_project)
 

@@ -1,1 +1,1 @@
-[{"caption": "Tools", "id": "tools", "children": [{"caption": "Npm/Yarn Scripts", "id": "npm_scripts", "children": []}]}]
+[{"caption": "Tools", "children": [{"caption": "Npm/Yarn Scripts", "children": [], "id": "npm_scripts"}], "id": "tools"}]

@@ -1,4 +1,4 @@
-import shlex
+import shlex, shutil
 
 class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
@@ -11,7 +11,14 @@ class build_flowCommand(manage_cliCommand):
 
   def prepare_command(self, **kwargs):
 
-    self.placeholders[":source_folder"] = self.settings["project_settings"]["build_flow"]["source_folder"]
+    # dest_folder = self.settings["project_settings"]["build_flow"]["destination_folder"]
+
+    # if os.path.isabs(dest_folder):
+    #   shutil.rmtree(dest_folder)
+    # elif os.path.exists(os.path.join(self.settings["project_dir_name"], dest_folder)):
+    #   shutil.rmtree(os.path.join(self.settings["project_dir_name"], dest_folder))
+
+    self.placeholders[":source_folders"] = " ".join(self.settings["project_settings"]["build_flow"]["source_folders"])
     self.placeholders[":destination_folder"] = self.settings["project_settings"]["build_flow"]["destination_folder"]
     self.command += self.settings["project_settings"]["build_flow"]["options"]
     self.command = self.substitute_placeholders(self.command)
@@ -27,6 +34,6 @@ class build_flowCommand(manage_cliCommand):
 
   def is_enabled(self) :
     settings = get_project_settings()
-    if settings and settings["project_settings"]["build_flow"]["source_folder"] and settings["project_settings"]["build_flow"]["destination_folder"] :
+    if settings and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
       return True
     return False

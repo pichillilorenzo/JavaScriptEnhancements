@@ -44,6 +44,8 @@ def react_prepare_project(project_path, react_custom_path):
 
   add_react_settings(project_path, react_custom_path)
 
+  open_project_folder(get_project_settings()["project_file_name"])
+
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
 
@@ -55,6 +57,7 @@ class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
 class react_cliCommand(manage_cliCommand):
 
   cli = "create-react-app"
+  custom_name = "react"
   settings_name = "react_settings"
 
   def prepare_command(self, **kwargs):

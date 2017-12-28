@@ -1,6 +1,5 @@
 [ignore]
-<PROJECT_ROOT>/node_modules/.*
-<PROJECT_ROOT>/bower_components/.*
+
 [include]
 
 [libs]
@@ -10,4 +9,3 @@
 [options]
 
 [strict]
-all=true

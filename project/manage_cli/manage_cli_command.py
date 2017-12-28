@@ -1,5 +1,6 @@
 class manage_cliCommand(sublime_plugin.WindowCommand):
   
+  custom_name = ""
   cli = ""
   path_cli = ""
   settings_name = ""
@@ -30,7 +31,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         else:
           self.path_cli = self.settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
       else:
-        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.cli+"_custom_path") if javascriptCompletions.get(self.cli+"_custom_path") else self.cli )
+        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli )
       self.command = kwargs.get("command")
 
       self.prepare_command(**kwargs)
@@ -78,6 +79,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       args = {"cmd": cmd, "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
       view.run_command('terminal_view_activate', args=args)
     
+    # stop the current process with SIGINT
+    self.window.run_command("terminal_view_send_string", args={"string": "\x03"})
+
+    # call command
     self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"})
 
   def substitute_placeholders(self, variable):

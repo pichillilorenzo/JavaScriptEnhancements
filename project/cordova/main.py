@@ -48,6 +48,8 @@ def cordova_prepare_project(project_path, cordova_custom_path):
 
   add_cordova_settings(project_path, cordova_custom_path)
 
+  open_project_folder(get_project_settings()["project_file_name"])
+
 Hook.add("cordova_after_create_new_project", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_configuration", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_type", cordova_ask_custom_path)
@@ -60,6 +62,7 @@ class enable_menu_cordovaEventListener(enable_menu_project_typeEventListener):
 class cordova_cliCommand(manage_cliCommand):
 
   cli = "cordova"
+  custom_name = "cordova"
   settings_name = "cordova_settings"
 
   def prepare_command(self, **kwargs):

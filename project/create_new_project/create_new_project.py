@@ -72,8 +72,6 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
 
-    open_project_folder(sublime_project_file_path)
-
 class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
   project_type = None
   settings = None
