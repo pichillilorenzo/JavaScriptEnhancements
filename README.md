@@ -53,7 +53,7 @@ It will use [Flow](https://github.com/facebook/flow) for type checking and auto-
 You can find more information about Flow on [flow.org](https://flow.org)
 
 ## Usage
-[Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki)
+[Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) in progress.
 
 ## Support
 
