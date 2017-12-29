@@ -62,13 +62,13 @@ class angularv1_cliCommand(manage_cliCommand):
 
   def prepare_command(self, **kwargs):
 
-    if self.command[0] in ["angular:controller", "angular:directive", "angular:filter", "angular:route", "angular:service", "angular:provider", "angular:factory", "angular:value", "angular:constant", "angular:decorator", "angular:view"]:
+    if ":name" in self.command:
       sublime.active_window().show_input_panel( (self.command[0].replace("angular:", ""))+" name:", "", self.name_on_done, None, None )
     else :
       self._run()
 
   def name_on_done(self, name):
-    self.placeholders[":name"] = shlex.quote(name)
+    self.placeholders[":name"] = shlex.quote(name.strip())
     self.command = self.substitute_placeholders(self.command)
     self._run()
 

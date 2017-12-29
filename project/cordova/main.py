@@ -73,7 +73,7 @@ class cordova_cliCommand(manage_cliCommand):
       self._run()
 
   def platform_on_done(self, platform):
-    self.placeholders[":platform"] = shlex.quote(platform)
+    self.placeholders[":platform"] = shlex.quote(platform.strip())
     self.command = self.substitute_placeholders(self.command)
     self._run()
 

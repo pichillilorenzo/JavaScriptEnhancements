@@ -15,6 +15,74 @@
             }
           },
           {
+            "caption": "Generate",
+            "children": [
+              {
+                "caption": "Class",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "class", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Component",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "component", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Directive",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "directive", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Enum",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "enum", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Guard",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "guard", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Interface",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "interface", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Module",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "module", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Pipe",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "pipe", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Service",
+                "command": "angularv2_cli",
+                "args": {
+                  "command": ["generate", "service", ":name_and_options"]
+                }
+              }
+            ]
+          },
+          {
             "caption": "Lint",
             "command": "angularv2_cli",
             "args": {

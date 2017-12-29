@@ -62,28 +62,33 @@ class angularv2_cliCommand(manage_cliCommand):
 
   def prepare_command(self, **kwargs):
 
-    # if self.command[0] in ["angular:controller", "angular:directive", "angular:filter", "angular:route", "angular:service", "angular:provider", "angular:factory", "angular:value", "angular:constant", "angular:decorator", "angular:view"]:
-    #   sublime.active_window().show_input_panel( (self.command[0].replace("angular:", ""))+" name:", "", self.name_on_done, None, None )
-    # else :
-    #   self._run()
+    if ":name_and_options" in self.command:
+      sublime.active_window().show_input_panel( self.command[0] + " " + self.command[1] + " name and options:", "", self.name_and_options_on_done, None, None )
+    else :
+      self._run()
 
-    self._run()
-
-  def name_on_done(self, name):
-    self.placeholders[":name"] = shlex.quote(name)
+  def name_and_options_on_done(self, name_and_options):
+    self.placeholders[":name_and_options"] = name_and_options.strip()
     self.command = self.substitute_placeholders(self.command)
     self._run()
 
   def _run(self):
-    # try:
-    #   self.command = {
-    #     'serve': lambda : self.command + self.settings["angularv2_settings"]
-    #   }[self.command[0]]()
-    # except KeyError as err:
-    #   pass
-    # except Exception as err:
-    #   print(traceback.format_exc())
-    #   pass
 
+    try:
+      self.command = {
+        'build': lambda : self.command + self.settings["angularv2_settings"]["platform_run_options"][self.command[2].replace('--', '')],
+        'serve': lambda : self.command + self.settings["angularv2_settings"]["serve_options"],
+        'lint': lambda : self.command + self.settings["angularv2_settings"]["lint_options"],
+        'test': lambda : self.command + self.settings["angularv2_settings"]["test_options"],
+        'e2e': lambda : self.command + self.settings["angularv2_settings"]["e2e_options"],
+        'eject': lambda : self.command + self.settings["angularv2_settings"]["eject_options"],
+        'xi18n': lambda : self.command + self.settings["angularv2_settings"]["xi18n_options"]
+      }[self.command[0]]()
+    except KeyError as err:
+      pass
+    except Exception as err:
+      print(traceback.format_exc())
+      pass
+ 
     super(angularv2_cliCommand, self)._run()
 
