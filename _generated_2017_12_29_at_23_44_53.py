@@ -137,19 +137,19 @@ NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
 NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
 
 def get_node_js_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript Enhancements.sublime-settings"))
   if json_file and "node_js_custom_path" in json_file :
     return json_file.get("node_js_custom_path").strip()
   return ""
 
 def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
   if json_file and "npm_custom_path" in json_file :
     return json_file.get("npm_custom_path").strip()
   return ""
 
 def get_yarn_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
   if json_file and "yarn_custom_path" in json_file :
     return json_file.get("yarn_custom_path").strip()
   return ""
@@ -246,7 +246,7 @@ class NodeJS(object):
       
       if chdir:
         os.chdir(owd)
-
+        
       if clean_output_flow :
         out = output.decode("utf-8", "ignore").strip()
         out = out.split("\n")
@@ -1087,7 +1087,7 @@ class mySocketServer():
       if input_from_client_bytes :
 
         # decode input and strip the end of line
-        input_from_client = input_from_client_bytes.decode("utf8").rstrip()
+        input_from_client = input_from_client_bytes.decode("utf8")
 
         if self.func_on_recv :
           self.func_on_recv(conn, addr, ip, port, input_from_client, self.clients[ip+":"+str(port)])
@@ -1235,10 +1235,10 @@ class startPlugin():
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
         sublime.error_message("Error during installation: can not install the npm dependencies for JavaScript Enhancements.")
-    else:
-      result = npm.update_all()
-      if not result[0]: 
-        sublime.active_window().status_message("Error: JavaScript Enhancements - cannot update npm dependencies.")
+    # else:
+    #   result = npm.update_all()
+    #   if not result[0]: 
+    #     sublime.active_window().status_message("Error: JavaScript Enhancements - cannot update npm dependencies.")
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
@@ -1744,6 +1744,15 @@ class build_flowCommand(manage_cliCommand):
     if settings and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
       return True
     return False
+
+class build_flow_on_save(sublime_plugin.EventListener):
+
+  def on_post_save_async(self, view):
+    settings = get_project_settings()
+    if Util.selection_in_js_scope(view) and settings and settings["project_settings"]["build_flow"]["on_save"] and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
+      view.window().run_command("build_flow", args={"command": ["flow-remove-types", ":source_folders", "--out-dir", ":destination_folder"]})
+
+
 
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
@@ -2298,7 +2307,7 @@ class react_cliCommand(manage_cliCommand):
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def yeoman_prepare_project(project_path):
+def yeoman_prepare_project(project_path, type):
 
   window = sublime.active_window()
   view = window.new_file() 
@@ -2378,15 +2387,13 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
     if not result[0]:
       sublime.error_message("Can not init flow.")
-    else:
-      with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
-        content = file.read()
-        content = content.replace("[ignore]", """[ignore]
-<PROJECT_ROOT>/node_modules/.*
-<PROJECT_ROOT>/bower_components/.*""")
-        file.seek(0)
-        file.truncate()
-        file.write(content)
+    # else:
+    #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+    #     content = file.read()
+    #     content = content.replace("[ignore]", """[ignore]""")
+    #     file.seek(0)
+    #     file.truncate()
+    #     file.write(content)
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
@@ -2466,7 +2473,7 @@ class close_flowEventListener(sublime_plugin.EventListener):
     node = NodeJS()
 
     if not sublime.windows() :
-      
+
       sublime.status_message("flow server stopping")
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
 
@@ -2784,7 +2791,7 @@ import sys, imp, os, webbrowser, re, cgi
 class JavaScriptCompletions():
 
   def get(self, key):
-    return sublime.load_settings('settings.sublime-settings').get(key)
+    return sublime.load_settings('JavaScript Enhancements.sublime-settings').get(key)
 
 javascriptCompletions = JavaScriptCompletions()
 
@@ -4613,6 +4620,6 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-  sublime.set_timeout_async(start)
+  sublime.set_timeout_async(start, 1000)
 
 

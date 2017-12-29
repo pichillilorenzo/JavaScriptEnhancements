@@ -74,10 +74,10 @@ class startPlugin():
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
         sublime.error_message("Error during installation: can not install the npm dependencies for JavaScript Enhancements.")
-    else:
-      result = npm.update_all()
-      if not result[0]: 
-        sublime.active_window().status_message("Error: JavaScript Enhancements - cannot update npm dependencies.")
+    # else:
+    #   result = npm.update_all()
+    #   if not result[0]: 
+    #     sublime.active_window().status_message("Error: JavaScript Enhancements - cannot update npm dependencies.")
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
@@ -122,5 +122,5 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-  sublime.set_timeout_async(start)
+  sublime.set_timeout_async(start, 1000)
 

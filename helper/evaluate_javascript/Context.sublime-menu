@@ -37,17 +37,6 @@
           "command": ["-e"],
           "is_line": true
         }
-      },
-      { "caption": "-" },
-      {
-        "caption": "Hide start and end white dot",
-        "id": "hide_start_end_dot_eval",
-        "command": "hide_start_end_dot_eval"
-      },
-      {
-        "caption": "Show start and end white dot",
-        "id": "show_start_end_dot_eval",
-        "command": "show_start_end_dot_eval"
       }
     ]
   },

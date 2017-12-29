@@ -32,7 +32,8 @@
     "build_flow": {
       "source_folders": [],
       "destination_folder": "",
-      "options": []
+      "options": [],
+      "on_save": true
     },
     "flow_checker_enabled": true,
     "flow_cli_custom_path": "",

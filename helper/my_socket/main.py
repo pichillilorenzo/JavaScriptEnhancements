@@ -152,7 +152,7 @@ class mySocketServer():
       if input_from_client_bytes :
 
         # decode input and strip the end of line
-        input_from_client = input_from_client_bytes.decode("utf8").rstrip()
+        input_from_client = input_from_client_bytes.decode("utf8")
 
         if self.func_on_recv :
           self.func_on_recv(conn, addr, ip, port, input_from_client, self.clients[ip+":"+str(port)])

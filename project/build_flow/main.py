@@ -37,3 +37,11 @@ class build_flowCommand(manage_cliCommand):
     if settings and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
       return True
     return False
+
+class build_flow_on_save(sublime_plugin.EventListener):
+
+  def on_post_save_async(self, view):
+    settings = get_project_settings()
+    if Util.selection_in_js_scope(view) and settings and settings["project_settings"]["build_flow"]["on_save"] and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
+      view.window().run_command("build_flow", args={"command": ["flow-remove-types", ":source_folders", "--out-dir", ":destination_folder"]})
+

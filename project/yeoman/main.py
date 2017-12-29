@@ -1,7 +1,7 @@
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def yeoman_prepare_project(project_path):
+def yeoman_prepare_project(project_path, type):
 
   window = sublime.active_window()
   view = window.new_file() 

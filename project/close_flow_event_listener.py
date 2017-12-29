@@ -8,7 +8,7 @@ class close_flowEventListener(sublime_plugin.EventListener):
     node = NodeJS()
 
     if not sublime.windows() :
-      
+
       sublime.status_message("flow server stopping")
       sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
 

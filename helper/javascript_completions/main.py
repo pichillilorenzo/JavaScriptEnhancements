@@ -4,7 +4,7 @@ import sys, imp, os, webbrowser, re, cgi
 class JavaScriptCompletions():
 
   def get(self, key):
-    return sublime.load_settings('settings.sublime-settings').get(key)
+    return sublime.load_settings('JavaScript Enhancements.sublime-settings').get(key)
 
 javascriptCompletions = JavaScriptCompletions()
 

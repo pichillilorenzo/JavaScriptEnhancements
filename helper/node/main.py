@@ -10,19 +10,19 @@ NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
 NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
 
 def get_node_js_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript Enhancements.sublime-settings"))
   if json_file and "node_js_custom_path" in json_file :
     return json_file.get("node_js_custom_path").strip()
   return ""
 
 def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
   if json_file and "npm_custom_path" in json_file :
     return json_file.get("npm_custom_path").strip()
   return ""
 
 def get_yarn_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "settings.sublime-settings"))
+  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
   if json_file and "yarn_custom_path" in json_file :
     return json_file.get("yarn_custom_path").strip()
   return ""
@@ -119,7 +119,7 @@ class NodeJS(object):
       
       if chdir:
         os.chdir(owd)
-
+        
       if clean_output_flow :
         out = output.decode("utf-8", "ignore").strip()
         out = out.split("\n")
