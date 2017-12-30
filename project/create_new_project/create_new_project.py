@@ -17,7 +17,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     path = shlex.quote( path.strip() )
 
-    if os.path.exists(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
+    if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
       sublime.error_message(path+" is not empty. Can not create the project.")
       return
 
@@ -69,6 +69,9 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
+
+    if self.project_type == "empty":
+      open_project_folder(get_project_settings(path)["project_file_name"])
 
 class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
   project_type = None

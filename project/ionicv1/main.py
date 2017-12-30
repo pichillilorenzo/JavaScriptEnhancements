@@ -39,16 +39,15 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_ionicv1_settings(project_path, ionicv1_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("ionicv1_after_create_new_project", ionicv1_ask_custom_path)
 Hook.add("ionicv1_add_javascript_project_configuration", ionicv1_ask_custom_path)

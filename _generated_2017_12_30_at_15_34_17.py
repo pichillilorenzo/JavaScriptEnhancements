@@ -24,7 +24,7 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-#PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'node.js', 'react', 'yeoman']
+#PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'yeoman']
 PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'ionicv1', 'ionicv2', 'react', 'yeoman']
 
 class Hook(object):
@@ -1196,12 +1196,17 @@ class mySocketServer():
       self.socket = None
 
 
-def subl(args):
-  
+def sublime_executable_path():
   executable_path = sublime.executable_path()
   if sublime.platform() == 'osx':
     app_path = executable_path[:executable_path.rfind(".app/") + 5]
     executable_path = app_path + "Contents/SharedSupport/bin/subl"
+
+  return executable_path
+
+def subl(args):
+  
+  executable_path = sublime_executable_path()
 
   if sublime.platform() == 'windows' :
     args = [executable_path] + args
@@ -1601,12 +1606,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
       args = {"cmd": cmd, "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
       view.run_command('terminal_view_activate', args=args)
-    
-    # stop the current process with SIGINT
-    self.window.run_command("terminal_view_send_string", args={"string": "\x03"})
 
-    # call command
-    self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"})
+    # stop the current process with SIGINT and call the command
+    sublime.set_timeout_async(lambda: self.window.run_command("terminal_view_send_string", args={"string": "\x03"}) or
+      self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
   def substitute_placeholders(self, variable):
     
@@ -1795,16 +1798,17 @@ def cordova_prepare_project(project_path, cordova_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": cordova_custom_path+" create temp com.example.hello HelloWorld && mv ./temp/{.[!.],}* ./ && rm -rf temp\n"})
+    window.run_command("terminal_view_send_string", args={"string": cordova_custom_path+" create myApp com.example.hello HelloWorld && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_cordova_settings(project_path, cordova_custom_path)
 
-  open_project_folder(get_project_settings()["project_file_name"])
+  #open_project_folder(get_project_settings(project_path)["project_file_name"])
 
 Hook.add("cordova_after_create_new_project", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_configuration", cordova_ask_custom_path)
@@ -1892,16 +1896,15 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_ionicv1_settings(project_path, ionicv1_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("ionicv1_after_create_new_project", ionicv1_ask_custom_path)
 Hook.add("ionicv1_add_javascript_project_configuration", ionicv1_ask_custom_path)
@@ -1990,16 +1993,15 @@ def ionicv2_prepare_project(project_path, ionicv2_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_ionicv2_settings(project_path, ionicv2_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("ionicv2_after_create_new_project", ionicv2_ask_custom_path)
 Hook.add("ionicv2_add_javascript_project_configuration", ionicv2_ask_custom_path)
@@ -2029,14 +2031,18 @@ class ionicv2_cliCommand(manage_cliCommand):
 
   def _run(self):
     try:
-      self.command = {
-        'run': lambda : self.command + self.settings["ionicv2_settings"]["platform_run_options"][self.command[3].replace('--', '')][self.command[2]],
-        'compile': lambda : self.command + self.settings["ionicv2_settings"]["platform_compile_options"][self.command[3].replace('--', '')][self.command[2]],
-        'build': lambda : self.command + self.settings["ionicv2_settings"]["platform_build_options"][self.command[3].replace('--', '')][self.command[2]],
-        'emulate': lambda : self.command + self.settings["ionicv2_settings"]["platform_emulate_options"][self.command[3].replace('--', '')][self.command[2]],
-        'prepare': lambda : self.command + self.settings["ionicv2_settings"]["platform_prepare_options"][self.command[2]],
-        'serve': lambda : self.command + self.settings["ionicv2_settings"]["serve_options"]
-      }[self.command[1]]()
+      if self.command[0] == "cordova":
+        self.command = {
+          'run': lambda : self.command + self.settings["ionicv2_settings"]["platform_run_options"][self.command[3].replace('--', '')][self.command[2]],
+          'compile': lambda : self.command + self.settings["ionicv2_settings"]["platform_compile_options"][self.command[3].replace('--', '')][self.command[2]],
+          'build': lambda : self.command + self.settings["ionicv2_settings"]["platform_build_options"][self.command[3].replace('--', '')][self.command[2]],
+          'emulate': lambda : self.command + self.settings["ionicv2_settings"]["platform_emulate_options"][self.command[3].replace('--', '')][self.command[2]],
+          'prepare': lambda : self.command + self.settings["ionicv2_settings"]["platform_prepare_options"][self.command[2]]
+        }[self.command[1]]()
+      else:
+        self.command = {
+          'serve': lambda : self.command + self.settings["ionicv2_settings"]["serve_options"]
+        }[self.command[0]]()
     except KeyError as err:
       pass
     except Exception as err:
@@ -2084,9 +2090,10 @@ def angularv1_prepare_project(project_path, angularv1_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": angularv1_custom_path+" angular\n"})
+    window.run_command("terminal_view_send_string", args={"string": angularv1_custom_path+" angular" + open_project + "\n"})
   else:
     # windows
     pass
@@ -2173,9 +2180,10 @@ def angularv2_prepare_project(project_path, angularv2_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": angularv2_custom_path+" new myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": angularv2_custom_path+" new myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
@@ -2269,16 +2277,15 @@ def react_prepare_project(project_path, react_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_react_settings(project_path, react_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
@@ -2313,14 +2320,13 @@ def yeoman_prepare_project(project_path, type):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": "yo\n"})
+    window.run_command("terminal_view_send_string", args={"string": "yo" + open_project + "\n"})
   else:
     # windows
     pass
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("yeoman_after_create_new_project", yeoman_prepare_project)
 
@@ -2345,7 +2351,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     path = shlex.quote( path.strip() )
 
-    if os.path.exists(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
+    if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
       sublime.error_message(path+" is not empty. Can not create the project.")
       return
 
@@ -2397,6 +2403,9 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
+
+    if self.project_type == "empty":
+      open_project_folder(get_project_settings(path)["project_file_name"])
 
 class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
   project_type = None

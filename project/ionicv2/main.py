@@ -40,16 +40,15 @@ def ionicv2_prepare_project(project_path, ionicv2_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_ionicv2_settings(project_path, ionicv2_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("ionicv2_after_create_new_project", ionicv2_ask_custom_path)
 Hook.add("ionicv2_add_javascript_project_configuration", ionicv2_ask_custom_path)
@@ -79,14 +78,18 @@ class ionicv2_cliCommand(manage_cliCommand):
 
   def _run(self):
     try:
-      self.command = {
-        'run': lambda : self.command + self.settings["ionicv2_settings"]["platform_run_options"][self.command[3].replace('--', '')][self.command[2]],
-        'compile': lambda : self.command + self.settings["ionicv2_settings"]["platform_compile_options"][self.command[3].replace('--', '')][self.command[2]],
-        'build': lambda : self.command + self.settings["ionicv2_settings"]["platform_build_options"][self.command[3].replace('--', '')][self.command[2]],
-        'emulate': lambda : self.command + self.settings["ionicv2_settings"]["platform_emulate_options"][self.command[3].replace('--', '')][self.command[2]],
-        'prepare': lambda : self.command + self.settings["ionicv2_settings"]["platform_prepare_options"][self.command[2]],
-        'serve': lambda : self.command + self.settings["ionicv2_settings"]["serve_options"]
-      }[self.command[1]]()
+      if self.command[0] == "cordova":
+        self.command = {
+          'run': lambda : self.command + self.settings["ionicv2_settings"]["platform_run_options"][self.command[3].replace('--', '')][self.command[2]],
+          'compile': lambda : self.command + self.settings["ionicv2_settings"]["platform_compile_options"][self.command[3].replace('--', '')][self.command[2]],
+          'build': lambda : self.command + self.settings["ionicv2_settings"]["platform_build_options"][self.command[3].replace('--', '')][self.command[2]],
+          'emulate': lambda : self.command + self.settings["ionicv2_settings"]["platform_emulate_options"][self.command[3].replace('--', '')][self.command[2]],
+          'prepare': lambda : self.command + self.settings["ionicv2_settings"]["platform_prepare_options"][self.command[2]]
+        }[self.command[1]]()
+      else:
+        self.command = {
+          'serve': lambda : self.command + self.settings["ionicv2_settings"]["serve_options"]
+        }[self.command[0]]()
     except KeyError as err:
       pass
     except Exception as err:

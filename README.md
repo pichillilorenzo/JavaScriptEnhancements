@@ -17,10 +17,10 @@ developing and managing **javascript projects**, such as:
 - Ionic v1 and v2 projects (same as Cordova projects!)
 - Angular v1 and v2 projects
 - React projects
-- Node.js projects
+- Express projects
 - Yeoman generators
 - Local bookmarks project
-- JavaScript errors with Flow
+- JavaScript real-time errors
 - etc.
 
 It will turn Sublime Text into a **JavaScript IDE** like!
@@ -59,9 +59,22 @@ You can find more information about Flow on [flow.org](https://flow.org)
 ## Usage
 [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) in progress.
 
+## Quick Overview
+
+### Autocompletions
+![](https://drive.google.com/uc?authuser=0&id=1NZYWq4kOx9l93zxN7A9TEMUv0VcLfWrt&export=download)
+
+### Errors
+![](https://drive.google.com/uc?authuser=0&id=1r8IDItL03tPFwCCsTIdW54rRpascnHAF&export=download)
+
+### Project with terminal
+![](https://drive.google.com/uc?authuser=0&id=1gmC6GROJXyhV8DZTHw8Zw_KGlB13g_bL&export=download)
+![](https://drive.google.com/uc?authuser=0&id=1Y0NS1eb8aFoxhdn75JLoGgZMPPpqld3Z&export=download)
+![](https://drive.google.com/uc?authuser=0&id=1lHXQGN3CoV5-IHAoesEmkiJBjnpU2Lxf&export=download)
+
 ## Support
 
-Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
+Email me for any Feature proposal, questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
 Thanks for your support!!!
 

@@ -24,7 +24,7 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-#PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'node.js', 'react', 'yeoman']
+#PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'yeoman']
 PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'ionicv1', 'ionicv2', 'react', 'yeoman']
 
 ${include ./helper/Hook.py}
@@ -35,12 +35,17 @@ ${include ./helper/node/main.py}
 ${include ./helper/util/main.py}
 ${include ./helper/my_socket/main.py}
 
-def subl(args):
-  
+def sublime_executable_path():
   executable_path = sublime.executable_path()
   if sublime.platform() == 'osx':
     app_path = executable_path[:executable_path.rfind(".app/") + 5]
     executable_path = app_path + "Contents/SharedSupport/bin/subl"
+
+  return executable_path
+
+def subl(args):
+  
+  executable_path = sublime_executable_path()
 
   if sublime.platform() == 'windows' :
     args = [executable_path] + args

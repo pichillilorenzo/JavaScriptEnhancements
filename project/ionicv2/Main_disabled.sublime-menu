@@ -141,7 +141,7 @@
             "caption": "Serve",
             "command": "ionicv2_cli",
             "args": {
-              "command": ["cordova", "serve"]
+              "command": ["serve"]
             }
           },
           {

@@ -35,16 +35,15 @@ def react_prepare_project(project_path, react_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass
 
   add_react_settings(project_path, react_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)

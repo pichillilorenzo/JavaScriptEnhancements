@@ -35,9 +35,10 @@ def angularv2_prepare_project(project_path, angularv2_custom_path):
   view = window.new_file() 
 
   if sublime.platform() in ("linux", "osx"): 
+    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": angularv2_custom_path+" new myApp && mv ./myApp/{.[!.],}* ./ && rm -rf myApp\n"})
+    window.run_command("terminal_view_send_string", args={"string": angularv2_custom_path+" new myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
   else:
     # windows
     pass

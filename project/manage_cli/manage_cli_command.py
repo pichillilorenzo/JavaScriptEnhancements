@@ -78,12 +78,10 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
       args = {"cmd": cmd, "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
       view.run_command('terminal_view_activate', args=args)
-    
-    # stop the current process with SIGINT
-    self.window.run_command("terminal_view_send_string", args={"string": "\x03"})
 
-    # call command
-    self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"})
+    # stop the current process with SIGINT and call the command
+    sublime.set_timeout_async(lambda: self.window.run_command("terminal_view_send_string", args={"string": "\x03"}) or
+      self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
   def substitute_placeholders(self, variable):
     
