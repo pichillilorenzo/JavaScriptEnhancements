@@ -6,9 +6,7 @@ I'm implementing new features thanks to **[Flow](https://github.com/facebook/flo
 
 This is in **Beta version**. 
 
-**It isn’t ready for public testing and there isn’t a documentation at the moment!**
-
-**Watch** this repository to stay tuned for any news!
+I'm going to **release** a first testable version these days, so **WATCH** the repository to stay tuned for any news!
 
 It will offer not only a better **javascript autocomplete** but a lot of features about creating, 
 developing and managing **javascript projects**, such as:
@@ -28,7 +26,7 @@ It will turn Sublime Text into a **JavaScript IDE** like!
 This project is based on my other Sublime Text plugin [JavaScript Completions](https://github.com/pichillilorenzo/JavaScript-Completions)
 
 **Note**: 
-If you want use this plugin, you may want <span style="text-decoration: underline;">uninstall/disable</span> the **JavaScript Completions** plugin, if installed.
+If you want use this plugin, you may want **uninstall/disable** the **JavaScript Completions** plugin, if installed.
 
 ## OS supported now
 
