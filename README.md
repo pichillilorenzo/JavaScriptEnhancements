@@ -39,6 +39,7 @@ If you want use this plugin, you may want <span style="text-decoration: underlin
 
 In order to work properly, this plugin has some dependencies:
 
+- Sublime Text 3 (build 3124 or newer)
 - **Node.js** and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
 - **TerminalView** sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 
@@ -56,25 +57,39 @@ It will use [Flow](https://github.com/facebook/flow) for type checking and auto-
 
 You can find more information about Flow on [flow.org](https://flow.org)
 
+## Installation
+
+~~With [Package Control](https://packagecontrol.io/):~~
+
+~~- Run “Package Control: Install Package” command or click to the `Preferences > Package Control` menu item, find and install `JavaScript Enhancements` plugin.~~
+
+Manually:
+
+- Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
+
 ## Usage
 [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) in progress.
 
 ## Quick Overview
 
-### Autocompletions
+### Auto-completions
 ![](https://drive.google.com/uc?authuser=0&id=1NZYWq4kOx9l93zxN7A9TEMUv0VcLfWrt&export=download)
 
 ### Errors
 ![](https://drive.google.com/uc?authuser=0&id=1r8IDItL03tPFwCCsTIdW54rRpascnHAF&export=download)
 
-### Project with terminal
+### Projects with terminal ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 ![](https://drive.google.com/uc?authuser=0&id=1gmC6GROJXyhV8DZTHw8Zw_KGlB13g_bL&export=download)
 ![](https://drive.google.com/uc?authuser=0&id=1Y0NS1eb8aFoxhdn75JLoGgZMPPpqld3Z&export=download)
 ![](https://drive.google.com/uc?authuser=0&id=1lHXQGN3CoV5-IHAoesEmkiJBjnpU2Lxf&export=download)
 
+## Feature request/enhancement
+
+For feature requests or them enhancement, please open an issue with the corresponding label.
+
 ## Support
 
-Email me for any Feature proposal, questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
+Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
 Thanks for your support!!!
 

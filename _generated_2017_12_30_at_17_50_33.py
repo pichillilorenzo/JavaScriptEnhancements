@@ -3097,126 +3097,418 @@ js_css = ""
 with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
   js_css = "<style>"+css_file.read()+"</style>"
 
-if int(sublime.version()) >= 3124 :
+default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
 
-  default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
+def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover = False):
 
-  def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover = False):
+  if not prefix :
+    return []
+  
+  scope = view.scope_name(location-(len(prefix)+1)).strip()
 
-    if not prefix :
-      return []
+  if scope.endswith(" punctuation.accessor.js") :
+    return []
+
+  prefix = prefix.lower()
+  completions = default_completions
+  completions_to_add = []
+  for completion in completions: 
+    c = completion[0].lower()
+    if not isHover:
+      if c.startswith(prefix):
+        completions_to_add.append((completion[0], completion[1]))
+    else :
+      if len(completion) == 3 and c.startswith(prefix) :
+        completions_to_add.append(completion[2])
+  final_completions = []
+  for completion in completions_to_add:
+    flag = False
+    for c_to_campare in comps_to_campare:
+      if not isHover and completion[0].split("\t")[0] == c_to_campare[0].split("\t")[0] :
+        flag = True
+        break
+      elif isHover and completion["name"] == c_to_campare["name"] :
+        flag = True
+        break
+    if not flag :
+      final_completions.append(completion)
+
+  return final_completions
+
+import sublime, sublime_plugin
+
+def description_details_html(description):
+  description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
+  description_return_type = ""
+
+  text_pre_params = ""
+
+  parameters_html = ""
+  if description['func_details'] :
+
+    if not description['type'].startswith("(") :
+      text_pre_params = description['type'][ : description['type'].rfind(" => ") if description['type'].rfind(" => ") >= 0 else None ]
+      text_pre_params = "<span class=\"text-pre-params\">" + cgi.escape(text_pre_params[:text_pre_params.find("(")]) + "</span>"
+
+    for param in description['func_details']["params"]:
+      is_optional = True if param['name'].find("?") >= 0 else False
+      param['name'] = cgi.escape(param['name'].replace("?", ""))
+      param['type'] = cgi.escape(param['type']) if param.get('type') else None
+      if not parameters_html:
+        parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+      else:
+        parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+    parameters_html = "("+parameters_html+")"
+
+    description_return_type = cgi.escape(description['func_details']["return_type"]) if description['func_details']["return_type"] else ""
+  elif description['type'] :
+    description_return_type = cgi.escape(description['type'])
+  if description_return_type :
+    description_return_type = " => <span class=\"return-type\">"+description_return_type+"</span>"
+
+  html = """ 
+  <div class=\"container-description\">
+    <div>"""+description_name+text_pre_params+parameters_html+description_return_type+"""</div>
+    <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
+  </div>
+  """
+  return html
+
+class on_hover_descriptionEventListener(sublime_plugin.EventListener):
+
+  def on_hover(self, view, point, hover_zone) :
+    sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
+
+def on_hover_description_async(view, point, hover_zone, popup_position) :
+  if not view.match_selector(
+      point,
+      'source.js - comment'
+  ):
+    return
+
+  if hover_zone != sublime.HOVER_TEXT :
+    return
+
+  region = view.word(point)
+  word = view.substr(region)
+  if not word.strip() :
+    return
     
-    scope = view.scope_name(location-(len(prefix)+1)).strip()
+  cursor_pos = region.end()
 
-    if scope.endswith(" punctuation.accessor.js") :
-      return []
+  deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
 
-    prefix = prefix.lower()
-    completions = default_completions
-    completions_to_add = []
-    for completion in completions: 
-      c = completion[0].lower()
-      if not isHover:
-        if c.startswith(prefix):
-          completions_to_add.append((completion[0], completion[1]))
-      else :
-        if len(completion) == 3 and c.startswith(prefix) :
-          completions_to_add.append(completion[2])
-    final_completions = []
-    for completion in completions_to_add:
-      flag = False
-      for c_to_campare in comps_to_campare:
-        if not isHover and completion[0].split("\t")[0] == c_to_campare[0].split("\t")[0] :
-          flag = True
-          break
-        elif isHover and completion["name"] == c_to_campare["name"] :
-          flag = True
-          break
-      if not flag :
-        final_completions.append(completion)
+  if deps.project_root is '/':
+    return
 
-    return final_completions
+  flow_cli_path = "flow"
+  is_from_bin = True
 
-  import sublime, sublime_plugin
-  
-  def description_details_html(description):
-    description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
-    description_return_type = ""
-  
-    text_pre_params = ""
-  
-    parameters_html = ""
-    if description['func_details'] :
-  
-      if not description['type'].startswith("(") :
-        text_pre_params = description['type'][ : description['type'].rfind(" => ") if description['type'].rfind(" => ") >= 0 else None ]
-        text_pre_params = "<span class=\"text-pre-params\">" + cgi.escape(text_pre_params[:text_pre_params.find("(")]) + "</span>"
-  
-      for param in description['func_details']["params"]:
-        is_optional = True if param['name'].find("?") >= 0 else False
-        param['name'] = cgi.escape(param['name'].replace("?", ""))
-        param['type'] = cgi.escape(param['type']) if param.get('type') else None
-        if not parameters_html:
-          parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-        else:
-          parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-      parameters_html = "("+parameters_html+")"
-  
-      description_return_type = cgi.escape(description['func_details']["return_type"]) if description['func_details']["return_type"] else ""
-    elif description['type'] :
-      description_return_type = cgi.escape(description['type'])
-    if description_return_type :
-      description_return_type = " => <span class=\"return-type\">"+description_return_type+"</span>"
-  
-    html = """ 
-    <div class=\"container-description\">
-      <div>"""+description_name+text_pre_params+parameters_html+description_return_type+"""</div>
-      <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
-    </div>
-    """
-    return html
-  
-  class on_hover_descriptionEventListener(sublime_plugin.EventListener):
-  
-    def on_hover(self, view, point, hover_zone) :
-      sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
-  
-  def on_hover_description_async(view, point, hover_zone, popup_position) :
-    if not view.match_selector(
-        point,
-        'source.js - comment'
-    ):
-      return
-  
-    if hover_zone != sublime.HOVER_TEXT :
-      return
-  
-    region = view.word(point)
-    word = view.substr(region)
-    if not word.strip() :
-      return
-      
-    cursor_pos = region.end()
-  
-    deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
-  
+  settings = get_project_settings()
+  if settings and settings["project_settings"]["flow_cli_custom_path"]:
+    flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+    is_from_bin = False
+
+  node = NodeJS()
+
+  result = node.execute_check_output(
+    flow_cli_path,
+    [
+      'autocomplete',
+      '--from', 'sublime_text',
+      '--root', deps.project_root,
+      '--json',
+      deps.filename
+    ],
+    is_from_bin=is_from_bin,
+    use_fp_temp=True, 
+    fp_temp_contents=deps.contents, 
+    is_output_json=True
+  )
+
+  html = ""
+
+  if result[0]:
+    descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
+
+    for description in descriptions :
+      if description['name'] == word :
+
+        if description['type'].startswith("((") or description['type'].find("&") >= 0 :
+          sub_completions = description['type'].split("&")
+          for sub_comp in sub_completions :
+
+            sub_comp = sub_comp.strip()
+            sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
+                       
+            text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
+            text_params = text_params.strip()
+            description["func_details"] = dict()
+            description["func_details"]["params"] = list()
+            description["func_details"]["return_type"] = ""
+            if sub_type.rfind(" => ") >= 0 :
+              description["func_details"]["return_type"] = sub_type[sub_type.rfind(" => ")+4:].strip()
+            start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
+            end = text_params.rfind(")")
+            params = text_params[start:end].split(",")
+            for param in params :
+              param_dict = dict()
+              param_info = param.split(":")
+              param_dict["name"] = param_info[0].strip()
+              if len(param_info) > 1 :
+                param_dict["type"] = param_info[1].strip()
+              description['func_details']["params"].append(param_dict)
+
+            html += description_details_html(description)
+        else :
+
+          html += description_details_html(description)
+
+  if not html :
+    deps = flow_parse_cli_dependencies(view)
     if deps.project_root is '/':
       return
-  
+    row, col = view.rowcol(point)
+
     flow_cli_path = "flow"
     is_from_bin = True
-  
+
     settings = get_project_settings()
     if settings and settings["project_settings"]["flow_cli_custom_path"]:
       flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
       is_from_bin = False
-  
+      
     node = NodeJS()
-  
     result = node.execute_check_output(
       flow_cli_path,
       [
-        'autocomplete',
+        'type-at-pos',
+        '--from', 'sublime_text',
+        '--root', deps.project_root,
+        '--path', deps.filename,
+        '--json',
+        str(row - deps.row_offset + 1), str(col + 1)
+      ],
+      is_from_bin=is_from_bin,
+      use_fp_temp=True, 
+      fp_temp_contents=deps.contents, 
+      is_output_json=True
+    )
+
+    if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
+      description = dict()
+      description["name"] = ""
+      description['func_details'] = dict()
+      description['func_details']["params"] = list()
+      description['func_details']["return_type"] = ""
+      is_function = False
+      matches = re.match("^([a-zA-Z_]\w+)", result[1]["type"])
+      if matches :
+        description["name"] = matches.group()
+      if result[1]["type"].find(" => ") >= 0 :
+        description['func_details']["return_type"] = cgi.escape(result[1]["type"][result[1]["type"].find(" => ")+4:])
+      else :
+        description['func_details']["return_type"] = cgi.escape(result[1]["type"])
+      if result[1]["type"].find("(") == 0:
+        is_function = True
+        start = 1
+        end = result[1]["type"].find(")")
+        params = result[1]["type"][start:end].split(",")
+        description['func_details']["params"] = list()
+        for param in params :
+          param_dict = dict()
+          param_info = param.split(":")
+          param_dict["name"] = cgi.escape(param_info[0].strip())
+          if len(param_info) == 2 :
+            param_dict["type"] = cgi.escape(param_info[1].strip())
+          else :
+            param_dict["type"] = None
+          description['func_details']["params"].append(param_dict)
+
+      description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
+      description_return_type = ""
+
+      parameters_html = ""
+      if description['func_details'] :
+
+        for param in description['func_details']["params"]:
+          is_optional = True if param['name'].find("?") >= 0 else False
+          param['name'] = param['name'].replace("?", "")
+          if not parameters_html:
+            parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+          else:
+            parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+        parameters_html = "("+parameters_html+")" if is_function else ""
+
+        description_return_type = description['func_details']["return_type"]
+      elif description['type'] :
+        description_return_type = description['type']
+      if description_return_type :
+        description_return_type = (" => " if description['name'] or is_function else "") + "<span class=\"return-type\">"+description_return_type+"</span>"
+
+      html += """ 
+      <div class=\"container-description\">
+        <div>"""+description_name+parameters_html+description_return_type+"""</div>
+        <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
+      </div>
+      """
+
+  func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
+
+  if html :
+      view.show_popup("""
+      <html><head></head><body>
+      """+js_css+"""
+        <div class=\"container-hint-popup\">
+          """ + html + """    
+        </div>
+      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 60, func_action )
+  
+
+import sublime, sublime_plugin
+
+class show_hint_parametersCommand(sublime_plugin.TextCommand):
+  
+  def run(self, edit, **args):
+    view = self.view
+
+    scope = view.scope_name(view.sel()[0].begin()).strip()
+
+    meta_fun_call = "meta.function-call.method.js"
+    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+
+    if not result :
+      meta_fun_call = "meta.function-call.js"
+      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+
+    if result :
+      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+      sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin()))
+
+  def is_enabled(self) :
+    view = self.view
+    sel = view.sel()[0]
+    if not view.match_selector(
+        sel.begin(),
+        'source.js - comment'
+    ):
+      return False
+
+    scope = view.scope_name(view.sel()[0].begin()).strip()
+    
+    meta_fun_call = "meta.function-call.method.js"
+    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+
+    if not result :
+      meta_fun_call = "meta.function-call.js"
+      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+
+    if result :
+      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+      scope_splitted = scope.split(" ")
+      find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
+      find_and_get_scope_splitted = find_and_get_scope.split(" ")
+      if (
+          (
+            len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
+            or scope == find_and_get_scope 
+            or (
+                len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
+                and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
+                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
+                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
+                  ) 
+              ) 
+          ) 
+          and not scope.endswith("meta.block.js") 
+          and not scope.endswith("meta.object-literal.js")
+        ) :
+        return True
+    return False
+
+  def is_visible(self) :
+    view = self.view
+    sel = view.sel()[0]
+    if not view.match_selector(
+        sel.begin(),
+        'source.js - comment'
+    ):
+      return False
+
+    scope = view.scope_name(view.sel()[0].begin()).strip()
+    
+    meta_fun_call = "meta.function-call.method.js"
+    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+
+    if not result :
+      meta_fun_call = "meta.function-call.js"
+      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+
+    if result :
+      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+      scope_splitted = scope.split(" ")
+      find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
+      find_and_get_scope_splitted = find_and_get_scope.split(" ")
+      if (
+          (
+            len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
+            or scope == find_and_get_scope 
+            or (
+                len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
+                and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
+                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
+                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
+                  ) 
+              ) 
+          ) 
+          and not scope.endswith("meta.block.js") 
+          and not scope.endswith("meta.object-literal.js")
+        ) :
+        return True
+    return False
+
+import shlex
+
+def show_flow_errors(view) :
+
+  #view_settings = view.settings()
+  sel = view.sel()[0]
+  if not view.match_selector(
+      sel.begin(),
+      'source.js'
+  ) and not view.find_by_selector("source.js.embedded.html") :
+    return None
+
+  deps_list = list()
+  if view.find_by_selector("source.js.embedded.html") :
+    deps_list = flow_parse_cli_dependencies(view, check_all_source_js_embedded=True)
+  else :
+    deps_list = [flow_parse_cli_dependencies(view)]
+
+  errors = []
+  description_by_row = {}
+  regions = []
+  for deps in deps_list:
+    if deps.project_root is '/':
+      return None
+
+    # if view_settings.get("flow_weak_mode") :
+    #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
+    
+    flow_cli_path = "flow"
+    is_from_bin = True
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      is_from_bin = False
+
+    node = NodeJS()
+    
+    result = node.execute_check_output(
+      flow_cli_path,
+      [
+        'check-contents',
         '--from', 'sublime_text',
         '--root', deps.project_root,
         '--json',
@@ -3225,646 +3517,352 @@ if int(sublime.version()) >= 3124 :
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
-      is_output_json=True
+      is_output_json=True,
+      clean_output_flow=True
     )
-  
-    html = ""
-  
+
     if result[0]:
-      descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
-  
-      for description in descriptions :
-        if description['name'] == word :
-  
-          if description['type'].startswith("((") or description['type'].find("&") >= 0 :
-            sub_completions = description['type'].split("&")
-            for sub_comp in sub_completions :
-  
-              sub_comp = sub_comp.strip()
-              sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
-                         
-              text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
-              text_params = text_params.strip()
-              description["func_details"] = dict()
-              description["func_details"]["params"] = list()
-              description["func_details"]["return_type"] = ""
-              if sub_type.rfind(" => ") >= 0 :
-                description["func_details"]["return_type"] = sub_type[sub_type.rfind(" => ")+4:].strip()
-              start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
-              end = text_params.rfind(")")
-              params = text_params[start:end].split(",")
-              for param in params :
-                param_dict = dict()
-                param_info = param.split(":")
-                param_dict["name"] = param_info[0].strip()
-                if len(param_info) > 1 :
-                  param_dict["type"] = param_info[1].strip()
-                description['func_details']["params"].append(param_dict)
-  
-              html += description_details_html(description)
+
+      if result[1]['passed']:
+        continue
+
+      for error in result[1]['errors']:
+        description = ''
+        operation = error.get('operation')
+        row = -1
+        for i in range(len(error['message'])):
+          message = error['message'][i]
+          if i == 0 :
+            row = int(message['line']) + deps.row_offset - 1
+            col = int(message['start']) - 1
+            endcol = int(message['end'])
+
+            # if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
+            #   col = col - len("/* @flow weak */")
+            #   endcol = endcol - len("/* @flow weak */")
+
+            regions.append(Util.rowcol_to_region(view, row, col, endcol))
+
+            if operation:
+              description += operation["descr"]
+
+          if not description :
+            description += message['descr']
           else :
-  
-            html += description_details_html(description)
-  
-    if not html :
-      deps = flow_parse_cli_dependencies(view)
-      if deps.project_root is '/':
-        return
-      row, col = view.rowcol(point)
-  
-      flow_cli_path = "flow"
-      is_from_bin = True
-  
-      settings = get_project_settings()
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
-        is_from_bin = False
-        
-      node = NodeJS()
-      result = node.execute_check_output(
-        flow_cli_path,
-        [
-          'type-at-pos',
-          '--from', 'sublime_text',
-          '--root', deps.project_root,
-          '--path', deps.filename,
-          '--json',
-          str(row - deps.row_offset + 1), str(col + 1)
-        ],
-        is_from_bin=is_from_bin,
-        use_fp_temp=True, 
-        fp_temp_contents=deps.contents, 
-        is_output_json=True
-      )
-  
-      if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
-        description = dict()
-        description["name"] = ""
-        description['func_details'] = dict()
-        description['func_details']["params"] = list()
-        description['func_details']["return_type"] = ""
-        is_function = False
-        matches = re.match("^([a-zA-Z_]\w+)", result[1]["type"])
-        if matches :
-          description["name"] = matches.group()
-        if result[1]["type"].find(" => ") >= 0 :
-          description['func_details']["return_type"] = cgi.escape(result[1]["type"][result[1]["type"].find(" => ")+4:])
-        else :
-          description['func_details']["return_type"] = cgi.escape(result[1]["type"])
-        if result[1]["type"].find("(") == 0:
-          is_function = True
-          start = 1
-          end = result[1]["type"].find(")")
-          params = result[1]["type"][start:end].split(",")
-          description['func_details']["params"] = list()
-          for param in params :
-            param_dict = dict()
-            param_info = param.split(":")
-            param_dict["name"] = cgi.escape(param_info[0].strip())
-            if len(param_info) == 2 :
-              param_dict["type"] = cgi.escape(param_info[1].strip())
-            else :
-              param_dict["type"] = None
-            description['func_details']["params"].append(param_dict)
-  
-        description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
-        description_return_type = ""
-  
-        parameters_html = ""
-        if description['func_details'] :
-  
-          for param in description['func_details']["params"]:
-            is_optional = True if param['name'].find("?") >= 0 else False
-            param['name'] = param['name'].replace("?", "")
-            if not parameters_html:
-              parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-            else:
-              parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-          parameters_html = "("+parameters_html+")" if is_function else ""
-  
-          description_return_type = description['func_details']["return_type"]
-        elif description['type'] :
-          description_return_type = description['type']
-        if description_return_type :
-          description_return_type = (" => " if description['name'] or is_function else "") + "<span class=\"return-type\">"+description_return_type+"</span>"
-  
-        html += """ 
-        <div class=\"container-description\">
-          <div>"""+description_name+parameters_html+description_return_type+"""</div>
-          <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
-        </div>
-        """
-  
-    func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
-  
-    if html :
-        view.show_popup("""
-        <html><head></head><body>
-        """+js_css+"""
-          <div class=\"container-hint-popup\">
-            """ + html + """    
-          </div>
-        </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 60, func_action )
-    
+            description += ". " + message['descr']
 
-  import sublime, sublime_plugin
-  
-  class show_hint_parametersCommand(sublime_plugin.TextCommand):
-    
-    def run(self, edit, **args):
-      view = self.view
-  
-      scope = view.scope_name(view.sel()[0].begin()).strip()
-  
-      meta_fun_call = "meta.function-call.method.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
-  
-      if not result :
-        meta_fun_call = "meta.function-call.js"
-        result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
-  
-      if result :
-        point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
-        sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin()))
-  
-    def is_enabled(self) :
-      view = self.view
-      sel = view.sel()[0]
-      if not view.match_selector(
-          sel.begin(),
-          'source.js - comment'
-      ):
-        return False
-  
-      scope = view.scope_name(view.sel()[0].begin()).strip()
-      
-      meta_fun_call = "meta.function-call.method.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
-  
-      if not result :
-        meta_fun_call = "meta.function-call.js"
-        result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
-  
-      if result :
-        point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
-        scope_splitted = scope.split(" ")
-        find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
-        find_and_get_scope_splitted = find_and_get_scope.split(" ")
-        if (
-            (
-              len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
-              or scope == find_and_get_scope 
-              or (
-                  len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
-                  and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
-                      or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
-                      or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
-                    ) 
-                ) 
-            ) 
-            and not scope.endswith("meta.block.js") 
-            and not scope.endswith("meta.object-literal.js")
-          ) :
-          return True
-      return False
-  
-    def is_visible(self) :
-      view = self.view
-      sel = view.sel()[0]
-      if not view.match_selector(
-          sel.begin(),
-          'source.js - comment'
-      ):
-        return False
-  
-      scope = view.scope_name(view.sel()[0].begin()).strip()
-      
-      meta_fun_call = "meta.function-call.method.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
-  
-      if not result :
-        meta_fun_call = "meta.function-call.js"
-        result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
-  
-      if result :
-        point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
-        scope_splitted = scope.split(" ")
-        find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
-        find_and_get_scope_splitted = find_and_get_scope.split(" ")
-        if (
-            (
-              len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
-              or scope == find_and_get_scope 
-              or (
-                  len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
-                  and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
-                      or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
-                      or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
-                    ) 
-                ) 
-            ) 
-            and not scope.endswith("meta.block.js") 
-            and not scope.endswith("meta.object-literal.js")
-          ) :
-          return True
-      return False
+        if row >= 0 :
+          row_description = description_by_row.get(row)
+          if not row_description:
+            description_by_row[row] = {
+              "col": col,
+              "description": description
+            }
+          if row_description and description not in row_description:
+            description_by_row[row]["description"] += '; ' + description
+            
+      errors = result[1]['errors']
 
-  import shlex
+  if errors :
+    view.add_regions(
+      'flow_error', regions, 'scope.js', 'dot',
+      sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
+    )
+    return {"errors": errors, "description_by_row": description_by_row}
   
-  def show_flow_errors(view) :
-  
-    #view_settings = view.settings()
-    sel = view.sel()[0]
+  view.erase_regions('flow_error')
+  view.set_status('flow_error', 'Flow: no errors')
+  return None
+
+def hide_flow_errors(view) :
+  view.erase_regions('flow_error')
+  view.erase_status('flow_error')
+
+class handle_flow_errorsCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, **args):
+    if args :
+      if args["type"] == "show" :
+        show_flow_errors(self.view)
+      elif args["type"] == "hide" :
+        hide_flow_errors(self.view)
+
+
+import cgi, time
+
+class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
+
+  description_by_row = {}
+  errors = []
+  callback_setted_use_flow_checker_on_current_view = False
+  prefix_thread_name = "show_flow_errors_view_event_listener"
+  wait_time = .35
+
+  def on_activated_async(self) :
+    
+    view = self.view
+
+    selections = view.sel()
+ 
+    if len(selections) == 0:
+      return
+      
+    sel = selections[0]
     if not view.match_selector(
         sel.begin(),
         'source.js'
-    ) and not view.find_by_selector("source.js.embedded.html") :
-      return None
-  
-    deps_list = list()
-    if view.find_by_selector("source.js.embedded.html") :
-      deps_list = flow_parse_cli_dependencies(view, check_all_source_js_embedded=True)
+    ) and not view.find_by_selector("source.js.embedded.html"):
+      hide_flow_errors(view)
+      return
+
+    settings = get_project_settings()
+    if settings :
+      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
+        hide_flow_errors(view)
+        return
+      elif settings["project_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
+          hide_flow_errors(view)
+          return
     else :
-      deps_list = [flow_parse_cli_dependencies(view)]
-  
-    errors = []
-    description_by_row = {}
-    regions = []
-    for deps in deps_list:
-      if deps.project_root is '/':
-        return None
-  
-      # if view_settings.get("flow_weak_mode") :
-      #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
-      
-      flow_cli_path = "flow"
-      is_from_bin = True
-  
-      settings = get_project_settings()
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
-        is_from_bin = False
-  
-      node = NodeJS()
-      
-      result = node.execute_check_output(
-        flow_cli_path,
-        [
-          'check-contents',
-          '--from', 'sublime_text',
-          '--root', deps.project_root,
-          '--json',
-          deps.filename
-        ],
-        is_from_bin=is_from_bin,
-        use_fp_temp=True, 
-        fp_temp_contents=deps.contents, 
-        is_output_json=True,
-        clean_output_flow=True
-      )
-  
-      if result[0]:
-  
-        if result[1]['passed']:
-          continue
-  
-        for error in result[1]['errors']:
-          description = ''
-          operation = error.get('operation')
-          row = -1
-          for i in range(len(error['message'])):
-            message = error['message'][i]
-            if i == 0 :
-              row = int(message['line']) + deps.row_offset - 1
-              col = int(message['start']) - 1
-              endcol = int(message['end'])
-  
-              # if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
-              #   col = col - len("/* @flow weak */")
-              #   endcol = endcol - len("/* @flow weak */")
-  
-              regions.append(Util.rowcol_to_region(view, row, col, endcol))
-  
-              if operation:
-                description += operation["descr"]
-  
-            if not description :
-              description += message['descr']
-            else :
-              description += ". " + message['descr']
-  
-          if row >= 0 :
-            row_description = description_by_row.get(row)
-            if not row_description:
-              description_by_row[row] = {
-                "col": col,
-                "description": description
-              }
-            if row_description and description not in row_description:
-              description_by_row[row]["description"] += '; ' + description
-              
-        errors = result[1]['errors']
-  
-    if errors :
-      view.add_regions(
-        'flow_error', regions, 'scope.js', 'dot',
-        sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
-      )
-      return {"errors": errors, "description_by_row": description_by_row}
+      settings = view.settings()
+      if not self.callback_setted_use_flow_checker_on_current_view :
+        settings.clear_on_change("use_flow_checker_on_current_view")
+        settings.add_on_change("use_flow_checker_on_current_view", lambda: sublime.set_timeout_async(lambda: self.on_modified_async()))
+        self.callback_setted_use_flow_checker_on_current_view = True
+      if not settings.get("use_flow_checker_on_current_view") :
+        hide_flow_errors(view)
+        return 
+
+    sublime.set_timeout_async(lambda: self.on_modified_async())
+
+  def on_modified_async(self):
+    super(show_flow_errorsViewEventListener, self).on_modified_async()
     
-    view.erase_regions('flow_error')
-    view.set_status('flow_error', 'Flow: no errors')
-    return None
-  
-  def hide_flow_errors(view) :
-    view.erase_regions('flow_error')
-    view.erase_status('flow_error')
-  
-  class handle_flow_errorsCommand(sublime_plugin.TextCommand):
-  
-    def run(self, edit, **args):
-      if args :
-        if args["type"] == "show" :
-          show_flow_errors(self.view)
-        elif args["type"] == "hide" :
-          hide_flow_errors(self.view)
-  
+  def on_modified_async_with_thread(self, recheck=True) : 
+    view = self.view
 
-  import cgi, time
-  
-  class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
-  
-    description_by_row = {}
-    errors = []
-    callback_setted_use_flow_checker_on_current_view = False
-    prefix_thread_name = "show_flow_errors_view_event_listener"
-    wait_time = .35
-  
-    def on_activated_async(self) :
+    selections = view.sel()
+ 
+    if len(selections) == 0:
+      return
       
-      view = self.view
-  
-      selections = view.sel()
-   
-      if len(selections) == 0:
-        return
-        
-      sel = selections[0]
-      if not view.match_selector(
-          sel.begin(),
-          'source.js'
-      ) and not view.find_by_selector("source.js.embedded.html"):
+    sel = selections[0]
+    if not view.match_selector(
+        sel.begin(),
+        'source.js'
+    ) and not view.find_by_selector("source.js.embedded.html"):
+      hide_flow_errors(view)
+      return
+    
+    self.wait()  
+
+    settings = get_project_settings()
+    if settings :
+      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
-  
-      settings = get_project_settings()
-      if settings :
-        if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
+      elif settings["project_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
           hide_flow_errors(view)
           return
-        elif settings["project_settings"]["flow_checker_enabled"] :
-          comments = view.find_by_selector('source.js comment')
-          flow_comment_found = False
-          for comment in comments:
-            if "@flow" in view.substr(comment) :
-              flow_comment_found = True
-              break
-          if not flow_comment_found :
-            hide_flow_errors(view)
-            return
-      else :
-        settings = view.settings()
-        if not self.callback_setted_use_flow_checker_on_current_view :
-          settings.clear_on_change("use_flow_checker_on_current_view")
-          settings.add_on_change("use_flow_checker_on_current_view", lambda: sublime.set_timeout_async(lambda: self.on_modified_async()))
-          self.callback_setted_use_flow_checker_on_current_view = True
-        if not settings.get("use_flow_checker_on_current_view") :
-          hide_flow_errors(view)
-          return 
-  
-      sublime.set_timeout_async(lambda: self.on_modified_async())
-  
-    def on_modified_async(self):
-      super(show_flow_errorsViewEventListener, self).on_modified_async()
-      
-    def on_modified_async_with_thread(self, recheck=True) : 
-      view = self.view
-  
-      selections = view.sel()
-   
-      if len(selections) == 0:
-        return
-        
-      sel = selections[0]
-      if not view.match_selector(
-          sel.begin(),
-          'source.js'
-      ) and not view.find_by_selector("source.js.embedded.html"):
+    elif not view.settings().get("use_flow_checker_on_current_view") :
+      hide_flow_errors(view)
+      return 
+
+    self.errors = []
+    self.description_by_row = {}
+    result = show_flow_errors(view)
+
+    if result :
+      self.errors = result["errors"]
+      self.description_by_row = result["description_by_row"]
+
+    sublime.set_timeout_async(lambda: self.on_selection_modified_async())
+
+    # recheck only first time to avoid error showing bug (because of async method)
+    # while the code execution is here but the user is modifying content
+    if (recheck) :
+      sublime.set_timeout_async(lambda: self.on_modified_async_with_thread(recheck=False))
+
+
+  def on_hover(self, point, hover_zone) :
+    view = self.view
+    view.erase_phantoms("flow_error")
+    if hover_zone != sublime.HOVER_GUTTER :
+      return
+
+    sel = sublime.Region(point, point)
+    if (not view.match_selector(
+        sel.begin(),
+        'source.js'
+    ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+      hide_flow_errors(view)
+      return
+    
+    settings = get_project_settings()
+    if settings :
+      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
-      
-      self.wait()  
-  
-      settings = get_project_settings()
-      if settings :
-        if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
-          hide_flow_errors(view)
-          return
-        elif settings["project_settings"]["flow_checker_enabled"] :
-          comments = view.find_by_selector('source.js comment')
-          flow_comment_found = False
-          for comment in comments:
-            if "@flow" in view.substr(comment) :
-              flow_comment_found = True
-              break
-          if not flow_comment_found :
-            hide_flow_errors(view)
-            return
-      elif not view.settings().get("use_flow_checker_on_current_view") :
-        hide_flow_errors(view)
-        return 
-  
-      self.errors = []
-      self.description_by_row = {}
-      result = show_flow_errors(view)
-  
-      if result :
-        self.errors = result["errors"]
-        self.description_by_row = result["description_by_row"]
-  
-      sublime.set_timeout_async(lambda: self.on_selection_modified_async())
-  
-      # recheck only first time to avoid error showing bug (because of async method)
-      # while the code execution is here but the user is modifying content
-      if (recheck) :
-        sublime.set_timeout_async(lambda: self.on_modified_async_with_thread(recheck=False))
-  
-  
-    def on_hover(self, point, hover_zone) :
-      view = self.view
-      view.erase_phantoms("flow_error")
-      if hover_zone != sublime.HOVER_GUTTER :
-        return
-  
-      sel = sublime.Region(point, point)
-      if (not view.match_selector(
-          sel.begin(),
-          'source.js'
-      ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
-        hide_flow_errors(view)
-        return
-      
-      settings = get_project_settings()
-      if settings :
-        if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
+      elif settings["project_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
           hide_flow_errors(view)
           return
-        elif settings["project_settings"]["flow_checker_enabled"] :
-          comments = view.find_by_selector('source.js comment')
-          flow_comment_found = False
-          for comment in comments:
-            if "@flow" in view.substr(comment) :
-              flow_comment_found = True
-              break
-          if not flow_comment_found :
-            hide_flow_errors(view)
-            return
-      elif not view.settings().get("use_flow_checker_on_current_view") :
-        hide_flow_errors(view)
-        return 
-  
-      row, col = view.rowcol(sel.begin())
-  
-      error_for_row = self.description_by_row.get(row)
+    elif not view.settings().get("use_flow_checker_on_current_view") :
+      hide_flow_errors(view)
+      return 
+
+    row, col = view.rowcol(sel.begin())
+
+    error_for_row = self.description_by_row.get(row)
+    
+    if error_for_row:
+      text = cgi.escape(error_for_row["description"]).split(" ")
+      html = ""
+      i = 0
+      while i < len(text) - 1:
+        html += text[i] + " " + text[i+1] + " "
+        i += 2
+        if i % 10 == 0 :
+          html += " <br> "
+      if len(text) % 2 != 0 :
+        html += text[len(text) - 1]
+
+      region_phantom = sublime.Region( view.text_point(row, error_for_row["col"]), view.text_point(row, error_for_row["col"]) )
+      sublime.set_timeout_async(lambda: view.add_phantom("flow_error", region_phantom, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+'</body></html>', sublime.LAYOUT_BELOW))
+
+
+  def on_selection_modified_async(self, *args) :
+
+    view = self.view
+    
+    selections = view.sel()
+ 
+    if len(selections) == 0:
+      return
       
-      if error_for_row:
-        text = cgi.escape(error_for_row["description"]).split(" ")
-        html = ""
-        i = 0
-        while i < len(text) - 1:
-          html += text[i] + " " + text[i+1] + " "
-          i += 2
-          if i % 10 == 0 :
-            html += " <br> "
-        if len(text) % 2 != 0 :
-          html += text[len(text) - 1]
-  
-        region_phantom = sublime.Region( view.text_point(row, error_for_row["col"]), view.text_point(row, error_for_row["col"]) )
-        sublime.set_timeout_async(lambda: view.add_phantom("flow_error", region_phantom, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+'</body></html>', sublime.LAYOUT_BELOW))
-  
-  
-    def on_selection_modified_async(self, *args) :
-  
-      view = self.view
-      
-      selections = view.sel()
-   
-      if len(selections) == 0:
-        return
-        
-      sel = selections[0]
-      if (not view.match_selector(
-          sel.begin(),
-          'source.js'
-      ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+    sel = selections[0]
+    if (not view.match_selector(
+        sel.begin(),
+        'source.js'
+    ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
+      hide_flow_errors(view)
+      return
+ 
+    view.erase_phantoms("flow_error")
+
+    settings = get_project_settings()
+    if settings :
+      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
         hide_flow_errors(view)
         return
-   
-      view.erase_phantoms("flow_error")
-  
-      settings = get_project_settings()
-      if settings :
-        if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
+      elif settings["project_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
           hide_flow_errors(view)
           return
-        elif settings["project_settings"]["flow_checker_enabled"] :
-          comments = view.find_by_selector('source.js comment')
-          flow_comment_found = False
-          for comment in comments:
-            if "@flow" in view.substr(comment) :
-              flow_comment_found = True
-              break
-          if not flow_comment_found :
-            hide_flow_errors(view)
-            return
-      elif not view.settings().get("use_flow_checker_on_current_view") :
-        hide_flow_errors(view)
-        return 
-  
-      row, col = view.rowcol(sel.begin())
-  
-      error_count = len(self.errors)
-      error_count_text = 'Flow: {} error{}'.format(
-        error_count, '' if error_count is 1 else 's'
+    elif not view.settings().get("use_flow_checker_on_current_view") :
+      hide_flow_errors(view)
+      return 
+
+    row, col = view.rowcol(sel.begin())
+
+    error_count = len(self.errors)
+    error_count_text = 'Flow: {} error{}'.format(
+      error_count, '' if error_count is 1 else 's'
+    )
+    error_for_row = self.description_by_row.get(row)
+    if error_for_row:
+      view.set_status(
+        'flow_error', error_count_text + ': ' + error_for_row["description"]
       )
-      error_for_row = self.description_by_row.get(row)
-      if error_for_row:
-        view.set_status(
-          'flow_error', error_count_text + ': ' + error_for_row["description"]
-        )
-      else:
-        view.set_status('flow_error', error_count_text)
-  
+    else:
+      view.set_status('flow_error', error_count_text)
 
-  import sublime, sublime_plugin
-  
-  class navigate_flow_errorsCommand(sublime_plugin.TextCommand):
-  
-    def run(self, edit, **args) :
-      
-      view = self.view
-  
-      regions = view.get_regions("flow_error")
-      if not regions:
-        return
-  
-      move_type = args.get("type")
-  
-      if move_type == "next" :
-  
-        r_next = self.find_next(regions)
-        if r_next :
-          row, col = view.rowcol(r_next.begin())
-  
-          Util.go_to_centered(view, row, col)
-  
-      elif move_type == "previous" :
-  
-        r_prev = self.find_prev(regions)
-        if r_prev :
-          row, col = view.rowcol(r_prev.begin())
-  
-          Util.go_to_centered(view, row, col)
-  
-    def find_next(self, regions):
-      view = self.view
-  
-      sel = view.sel()[0]
-  
-      for region in regions :
-        if region.begin() > sel.begin() :
-          return region
-  
-      if(len(regions) > 0) :
-        return regions[0]
-  
-      return None
-  
-    def find_prev(self, regions):
-      view = self.view
-  
-      sel = view.sel()[0]
-  
-      previous_regions = []
-      for region in regions :
-        if region.begin() < sel.begin() :
-          previous_regions.append(region)
-  
-      if not previous_regions and len(regions) > 0:
-        previous_regions.append(regions[len(regions)-1])
-  
-      return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
-  
+
+import sublime, sublime_plugin
+
+class navigate_flow_errorsCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, **args) :
+    
+    view = self.view
+
+    regions = view.get_regions("flow_error")
+    if not regions:
+      return
+
+    move_type = args.get("type")
+
+    if move_type == "next" :
+
+      r_next = self.find_next(regions)
+      if r_next :
+        row, col = view.rowcol(r_next.begin())
+
+        Util.go_to_centered(view, row, col)
+
+    elif move_type == "previous" :
+
+      r_prev = self.find_prev(regions)
+      if r_prev :
+        row, col = view.rowcol(r_prev.begin())
+
+        Util.go_to_centered(view, row, col)
+
+  def find_next(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    for region in regions :
+      if region.begin() > sel.begin() :
+        return region
+
+    if(len(regions) > 0) :
+      return regions[0]
+
+    return None
+
+  def find_prev(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    previous_regions = []
+    for region in regions :
+      if region.begin() < sel.begin() :
+        previous_regions.append(region)
+
+    if not previous_regions and len(regions) > 0:
+      previous_regions.append(regions[len(regions)-1])
+
+    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
+
 
 import sublime, sublime_plugin
 import traceback, os, json, io, sys, imp
@@ -4353,253 +4351,255 @@ class expand_abbreviationCommand(sublime_plugin.TextCommand):
 
     return False
 
-if int(sublime.version()) >= 3124 :
+items_found_can_i_use = None
+can_i_use_file = None
+can_i_use_popup_is_showing = False
+can_i_use_list_from_main_menu = False
+path_to_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data.json")
+path_to_test_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data2.json")
+url_can_i_use_json_data = "https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json"
 
-  items_found_can_i_use = None
-  can_i_use_file = None
-  can_i_use_popup_is_showing = False
-  can_i_use_list_from_main_menu = False
-  path_to_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data.json")
-  path_to_test_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data2.json")
-  url_can_i_use_json_data = "https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json"
-  
-  can_i_use_css = ""
-  with open(os.path.join(HELPER_FOLDER, "can_i_use", "style.css")) as css_file:
-    can_i_use_css = "<style>"+css_file.read()+"</style>"
-  
-  def donwload_can_i_use_json_data() :
-    global can_i_use_file
-  
+can_i_use_css = ""
+with open(os.path.join(HELPER_FOLDER, "can_i_use", "style.css")) as css_file:
+  can_i_use_css = "<style>"+css_file.read()+"</style>"
+
+def donwload_can_i_use_json_data() :
+  global can_i_use_file
+
+  if os.path.isfile(path_to_can_i_use_data) :
+    with open(path_to_can_i_use_data) as json_file:    
+      try :
+        can_i_use_file = json.load(json_file)
+      except Exception as e :
+        print("Error: "+traceback.format_exc())
+        sublime.active_window().status_message("Can't use \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+
+  if Util.download_and_save(url_can_i_use_json_data, path_to_test_can_i_use_data) :
     if os.path.isfile(path_to_can_i_use_data) :
-      with open(path_to_can_i_use_data) as json_file:    
+      if not Util.checksum_sha1_equalcompare(path_to_can_i_use_data, path_to_test_can_i_use_data) :
+        with open(path_to_test_can_i_use_data) as json_file:    
+          try :
+            can_i_use_file = json.load(json_file)
+            if os.path.isfile(path_to_can_i_use_data) :
+              os.remove(path_to_can_i_use_data)
+            os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
+          except Exception as e :
+            print("Error: "+traceback.format_exc())
+            sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+      if os.path.isfile(path_to_test_can_i_use_data) :
+        os.remove(path_to_test_can_i_use_data)
+    else :
+      os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
+      with open(path_to_can_i_use_data) as json_file :    
         try :
           can_i_use_file = json.load(json_file)
         except Exception as e :
           print("Error: "+traceback.format_exc())
           sublime.active_window().status_message("Can't use \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
-  
-    if Util.download_and_save(url_can_i_use_json_data, path_to_test_can_i_use_data) :
-      if os.path.isfile(path_to_can_i_use_data) :
-        if not Util.checksum_sha1_equalcompare(path_to_can_i_use_data, path_to_test_can_i_use_data) :
-          with open(path_to_test_can_i_use_data) as json_file:    
-            try :
-              can_i_use_file = json.load(json_file)
-              if os.path.isfile(path_to_can_i_use_data) :
-                os.remove(path_to_can_i_use_data)
-              os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
-            except Exception as e :
-              print("Error: "+traceback.format_exc())
-              sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
-        if os.path.isfile(path_to_test_can_i_use_data) :
-          os.remove(path_to_test_can_i_use_data)
-      else :
-        os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
-        with open(path_to_can_i_use_data) as json_file :    
-          try :
-            can_i_use_file = json.load(json_file)
-          except Exception as e :
-            print("Error: "+traceback.format_exc())
-            sublime.active_window().status_message("Can't use \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
-  
-  Util.create_and_start_thread(donwload_can_i_use_json_data, "DownloadCanIuseJsonData")
-  
-  def find_in_can_i_use(word) :
-    global can_i_use_file
-    can_i_use_data = can_i_use_file.get("data")
-    word = word.lower()
-    return [value for key, value in can_i_use_data.items() if value["title"].lower().find(word) >= 0]
-  
-  def back_to_can_i_use_list(action):
-    global can_i_use_popup_is_showing
-    if action.find("http") >= 0:
-      webbrowser.open(action)
-      return
-    view = sublime.active_window().active_view()
-    can_i_use_popup_is_showing = False
-    view.hide_popup()
-    if len(action.split(",")) > 1 and action.split(",")[1] == "main-menu" :
-      view.run_command("can_i_use", args={"from": "main-menu"})
-    else :  
-      view.run_command("can_i_use")
-  
-  def show_pop_can_i_use(index):
-    global can_i_use_file
-    global items_found_can_i_use
-    global can_i_use_popup_is_showing
-    if index < 0:
-      return
-    item = items_found_can_i_use[index]
-  
-    browser_accepted = ["ie", "edge", "firefox", "chrome", "safari", "opera", "ios_saf", "op_mini", "android", "and_chr"]
-    browser_name = [
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IE",
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDGE",
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firefox", 
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chrome", 
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Safari", 
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Opera", 
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS Safari", 
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Opera Mini", 
-      "&nbsp;&nbsp;&nbsp;Android Browser", 
-      "Chrome for Android"
-    ]
-  
-    html_browser = ""
-  
+
+Util.create_and_start_thread(donwload_can_i_use_json_data, "DownloadCanIuseJsonData")
+
+def find_in_can_i_use(word) :
+  global can_i_use_file
+  can_i_use_data = can_i_use_file.get("data")
+  word = word.lower()
+  return [value for key, value in can_i_use_data.items() if value["title"].lower().find(word) >= 0]
+
+def back_to_can_i_use_list(action):
+  global can_i_use_popup_is_showing
+  if action.find("http") >= 0:
+    webbrowser.open(action)
+    return
+  view = sublime.active_window().active_view()
+  can_i_use_popup_is_showing = False
+  view.hide_popup()
+  if len(action.split(",")) > 1 and action.split(",")[1] == "main-menu" :
+    view.run_command("can_i_use", args={"from": "main-menu"})
+  else :  
+    view.run_command("can_i_use")
+
+def show_pop_can_i_use(index):
+  global can_i_use_file
+  global items_found_can_i_use
+  global can_i_use_popup_is_showing
+  if index < 0:
+    return
+  item = items_found_can_i_use[index]
+
+  browser_accepted = ["ie", "edge", "firefox", "chrome", "safari", "opera", "ios_saf", "op_mini", "android", "and_chr"]
+  browser_name = [
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IE",
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDGE",
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firefox", 
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chrome", 
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Safari", 
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Opera", 
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS Safari", 
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Opera Mini", 
+    "&nbsp;&nbsp;&nbsp;Android Browser", 
+    "Chrome for Android"
+  ]
+
+  html_browser = ""
+
+  html_browser += "<div>"
+  html_browser += "<h1 class=\"title\">"+cgi.escape(item["title"])+" <a href=\""+item["spec"].replace(" ", "%20")+"\"><span class=\"status "+item["status"]+"\"> - "+item["status"].upper()+"</span></a></h1>"
+  html_browser += "<p class=\"description\">"+cgi.escape(item["description"])+"</p>"
+  html_browser += "<p class=\"\"><span class=\"support\">Global Support: <span class=\"support-y\">"+str(item["usage_perc_y"])+"%</span>"+( " + <span class=\"support-a\">"+str(item["usage_perc_a"])+"%</span> = " if float(item["usage_perc_a"]) > 0 else "" )+( "<span class=\"support-total\">"+str( "{:10.2f}".format(float(item["usage_perc_y"]) + float(item["usage_perc_a"])) )+"%</span>" if float(item["usage_perc_a"]) > 0 else "" )+"</span> "+( " ".join(["<span class=\"category\">"+category+"</span>" for category in item["categories"]]) )+"</p>"
+  html_browser += "</div>"
+
+  html_browser += "<div class=\"container-browser-list\">"
+  i = 0
+  for browser in browser_accepted :
+
+    browser_versions = can_i_use_file["agents"]
+    stat = item["stats"].get(browser)
+    stat_items_ordered = list()
+    for k in stat.keys() :
+      if k != "TP" : 
+        stat_items_ordered.append(k)
+
+    if len(stat_items_ordered) >= 1 and stat_items_ordered[0] != "all" :
+      stat_items_ordered.sort(key=LooseVersion)
+      stat_items_ordered = stat_items_ordered[::-1]
+
+    html_p = "<p class=\"version-stat-item\"><span class=\"browser-name\">"+browser_name[i]+"</span> : "
+    j = 0
+    while j < len(stat_items_ordered) :
+      if j == 7:
+        break
+      class_name = stat.get(stat_items_ordered[j])
+      html_annotation_numbers = ""
+      requires_prefix = ""
+      can_be_enabled = ""
+
+      if re.search(r"\bx\b", class_name) :
+        requires_prefix = "x"
+      if re.search(r"\bd\b", class_name) :
+        can_be_enabled = "d"
+
+      if class_name.find("#") >= 0 :
+        numbers = class_name[class_name.find("#"):].strip().split(" ")
+        for number in numbers :
+          number = int(number.replace("#", ""))
+          html_annotation_numbers += "<span class=\"annotation-number\">"+str(number)+"</span>"
+
+      html_p += "<span class=\"version-stat "+stat.get(stat_items_ordered[j])+" \">"+( html_annotation_numbers if html_annotation_numbers else "" )+stat_items_ordered[j]+( "<span class=\"can-be-enabled\">&nbsp;</span>" if can_be_enabled else "" )+( "<span class=\"requires-prefix\">&nbsp;</span>" if requires_prefix else "" )+"</span> "
+
+      j = j + 1
+
+    html_p += "</p>"
+    html_browser += html_p
+    i = i + 1
+
+  html_browser += "</div>"
+
+  if item["notes_by_num"] :
     html_browser += "<div>"
-    html_browser += "<h1 class=\"title\">"+cgi.escape(item["title"])+" <a href=\""+item["spec"].replace(" ", "%20")+"\"><span class=\"status "+item["status"]+"\"> - "+item["status"].upper()+"</span></a></h1>"
-    html_browser += "<p class=\"description\">"+cgi.escape(item["description"])+"</p>"
-    html_browser += "<p class=\"\"><span class=\"support\">Global Support: <span class=\"support-y\">"+str(item["usage_perc_y"])+"%</span>"+( " + <span class=\"support-a\">"+str(item["usage_perc_a"])+"%</span> = " if float(item["usage_perc_a"]) > 0 else "" )+( "<span class=\"support-total\">"+str( "{:10.2f}".format(float(item["usage_perc_y"]) + float(item["usage_perc_a"])) )+"%</span>" if float(item["usage_perc_a"]) > 0 else "" )+"</span> "+( " ".join(["<span class=\"category\">"+category+"</span>" for category in item["categories"]]) )+"</p>"
-    html_browser += "</div>"
-  
-    html_browser += "<div class=\"container-browser-list\">"
+    html_browser += "<h3>Notes</h3>"
+    notes_by_num = item["notes_by_num"]
+
+    notes_by_num_ordered = list()
+    for k in notes_by_num.keys() :
+      notes_by_num_ordered.append(k)
+    notes_by_num_ordered.sort()
+
     i = 0
-    for browser in browser_accepted :
-  
-      browser_versions = can_i_use_file["agents"]
-      stat = item["stats"].get(browser)
-      stat_items_ordered = list()
-      for k in stat.keys() :
-        if k != "TP" : 
-          stat_items_ordered.append(k)
-  
-      if len(stat_items_ordered) >= 1 and stat_items_ordered[0] != "all" :
-        stat_items_ordered.sort(key=LooseVersion)
-        stat_items_ordered = stat_items_ordered[::-1]
-  
-      html_p = "<p class=\"version-stat-item\"><span class=\"browser-name\">"+browser_name[i]+"</span> : "
-      j = 0
-      while j < len(stat_items_ordered) :
-        if j == 7:
-          break
-        class_name = stat.get(stat_items_ordered[j])
-        html_annotation_numbers = ""
-        requires_prefix = ""
-        can_be_enabled = ""
-  
-        if re.search(r"\bx\b", class_name) :
-          requires_prefix = "x"
-        if re.search(r"\bd\b", class_name) :
-          can_be_enabled = "d"
-  
-        if class_name.find("#") >= 0 :
-          numbers = class_name[class_name.find("#"):].strip().split(" ")
-          for number in numbers :
-            number = int(number.replace("#", ""))
-            html_annotation_numbers += "<span class=\"annotation-number\">"+str(number)+"</span>"
-  
-        html_p += "<span class=\"version-stat "+stat.get(stat_items_ordered[j])+" \">"+( html_annotation_numbers if html_annotation_numbers else "" )+stat_items_ordered[j]+( "<span class=\"can-be-enabled\">&nbsp;</span>" if can_be_enabled else "" )+( "<span class=\"requires-prefix\">&nbsp;</span>" if requires_prefix else "" )+"</span> "
-  
-        j = j + 1
-  
-      html_p += "</p>"
+    while i < len(notes_by_num_ordered) :
+      note = notes_by_num.get(notes_by_num_ordered[i])
+      html_p = "<p class=\"note\"><span class=\"annotation-number\">"+str(notes_by_num_ordered[i])+"</span>"+cgi.escape(note)+"</p>"
       html_browser += html_p
       i = i + 1
-  
     html_browser += "</div>"
+
+  if item["links"] :
+    html_browser += "<div>"
+    html_browser += "<h3>Links</h3>"
+    links = item["links"]
+
+    for link in links :
+      html_p = "<p class=\"link\"><a href=\""+link.get("url")+"\">"+cgi.escape(link.get("title"))+"</a></p>"
+      html_browser += html_p
+    html_browser += "</div>"
+
+  view = sublime.active_window().active_view()
   
-    if item["notes_by_num"] :
-      html_browser += "<div>"
-      html_browser += "<h3>Notes</h3>"
-      notes_by_num = item["notes_by_num"]
-  
-      notes_by_num_ordered = list()
-      for k in notes_by_num.keys() :
-        notes_by_num_ordered.append(k)
-      notes_by_num_ordered.sort()
-  
-      i = 0
-      while i < len(notes_by_num_ordered) :
-        note = notes_by_num.get(notes_by_num_ordered[i])
-        html_p = "<p class=\"note\"><span class=\"annotation-number\">"+str(notes_by_num_ordered[i])+"</span>"+cgi.escape(note)+"</p>"
-        html_browser += html_p
-        i = i + 1
-      html_browser += "</div>"
-  
-    if item["links"] :
-      html_browser += "<div>"
-      html_browser += "<h3>Links</h3>"
-      links = item["links"]
-  
-      for link in links :
-        html_p = "<p class=\"link\"><a href=\""+link.get("url")+"\">"+cgi.escape(link.get("title"))+"</a></p>"
-        html_browser += html_p
-      html_browser += "</div>"
-  
-    view = sublime.active_window().active_view()
-    
-    can_i_use_popup_is_showing = True
-    view.show_popup("""
-      <html>
-        <head></head>
-        <body>
-        """+can_i_use_css+"""
-        <div class=\"container-back-button\">
-          <a class=\"back-button\" href=\"back"""+( ",main-menu" if can_i_use_list_from_main_menu else "")+"""\">&lt; Back</a>
-          <a class=\"view-on-site\" href=\"http://caniuse.com/#search="""+item["title"].replace(" ", "%20")+"""\"># View on \"Can I use\" site #</a>
-        </div>
-        <div class=\"content\">
-          """+html_browser+"""
-          <div class=\"legend\">
-            <h3>Legend</h3>
-            <div class=\"container-legend-items\">
-              <span class=\"legend-item y\">&nbsp;</span> = Supported 
-              <span class=\"legend-item n\">&nbsp;</span> = Not Supported 
-              <span class=\"legend-item p a\">&nbsp;</span> = Partial support 
-              <span class=\"legend-item u\">&nbsp;</span> = Support unknown 
-              <span class=\"legend-item requires-prefix\">&nbsp;</span> = Requires Prefix 
-              <span class=\"legend-item can-be-enabled\">&nbsp;</span> = Can Be Enabled 
-            </div>
+  can_i_use_popup_is_showing = True
+  view.show_popup("""
+    <html>
+      <head></head>
+      <body>
+      """+can_i_use_css+"""
+      <div class=\"container-back-button\">
+        <a class=\"back-button\" href=\"back"""+( ",main-menu" if can_i_use_list_from_main_menu else "")+"""\">&lt; Back</a>
+        <a class=\"view-on-site\" href=\"http://caniuse.com/#search="""+item["title"].replace(" ", "%20")+"""\"># View on \"Can I use\" site #</a>
+      </div>
+      <div class=\"content\">
+        """+html_browser+"""
+        <div class=\"legend\">
+          <h3>Legend</h3>
+          <div class=\"container-legend-items\">
+            <span class=\"legend-item y\">&nbsp;</span> = Supported 
+            <span class=\"legend-item n\">&nbsp;</span> = Not Supported 
+            <span class=\"legend-item p a\">&nbsp;</span> = Partial support 
+            <span class=\"legend-item u\">&nbsp;</span> = Support unknown 
+            <span class=\"legend-item requires-prefix\">&nbsp;</span> = Requires Prefix 
+            <span class=\"legend-item can-be-enabled\">&nbsp;</span> = Can Be Enabled 
           </div>
         </div>
-        </body>
-      </html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 1250, 650, back_to_can_i_use_list)
-  
-  class can_i_useCommand(sublime_plugin.TextCommand):
-    def run(self, edit, **args):
-  
-      global items_found_can_i_use
-      global can_i_use_file
-      global can_i_use_list_from_main_menu
-      can_i_use_data = can_i_use_file.get("data")
-      if not can_i_use_data :
-        return
-  
-      view = self.view
-      selection = view.sel()[0]
-      if args.get("from") != "main-menu" :
-        can_i_use_list_from_main_menu = False
-        word = view.substr(view.word(selection)).strip()
-        items_found_can_i_use = find_in_can_i_use(word)
-        sublime.active_window().show_quick_panel([item["title"] for item in items_found_can_i_use], show_pop_can_i_use)
-      else :
-        can_i_use_list_from_main_menu = True
-        items_found_can_i_use = find_in_can_i_use("")
-        sublime.active_window().show_quick_panel([item["title"] for item in items_found_can_i_use], show_pop_can_i_use)
-    
-    def is_enabled(self, **args):
-      view = self.view
-      if args.get("from") == "main-menu" or javascriptCompletions.get("enable_can_i_use_menu_option") :
-        return True 
-      return False
-  
-    def is_visible(self, **args):
-      view = self.view
-      if args.get("from") == "main-menu" :
-        return True
-      if javascriptCompletions.get("enable_can_i_use_menu_option") :
-        if Util.split_string_and_find_on_multiple(view.scope_name(0), ["source.js", "text.html.basic", "source.css"]) < 0 :
-          return False
-        return True
-      return False
-      
-  class can_i_use_hide_popupEventListener(sublime_plugin.EventListener):
-    def on_selection_modified_async(self, view) :
-      global can_i_use_popup_is_showing
-      if can_i_use_popup_is_showing :
-        view.hide_popup()
-        can_i_use_popup_is_showing = False
+      </div>
+      </body>
+    </html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 1250, 650, back_to_can_i_use_list)
 
+class can_i_useCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+
+    global items_found_can_i_use
+    global can_i_use_file
+    global can_i_use_list_from_main_menu
+
+    if not can_i_use_file:
+      sublime.active_window().status_message("\"Can I use\" feature is not ready.")
+      return
+
+    can_i_use_data = can_i_use_file.get("data")
+    if not can_i_use_data :
+      return
+
+    view = self.view
+    selection = view.sel()[0]
+    if args.get("from") != "main-menu" :
+      can_i_use_list_from_main_menu = False
+      word = view.substr(view.word(selection)).strip()
+      items_found_can_i_use = find_in_can_i_use(word)
+      sublime.active_window().show_quick_panel([item["title"] for item in items_found_can_i_use], show_pop_can_i_use)
+    else :
+      can_i_use_list_from_main_menu = True
+      items_found_can_i_use = find_in_can_i_use("")
+      sublime.active_window().show_quick_panel([item["title"] for item in items_found_can_i_use], show_pop_can_i_use)
+  
+  def is_enabled(self, **args):
+    view = self.view
+    if args.get("from") == "main-menu" or javascriptCompletions.get("enable_can_i_use_menu_option") :
+      return True 
+    return False
+
+  def is_visible(self, **args):
+    view = self.view
+    if args.get("from") == "main-menu" :
+      return True
+    if javascriptCompletions.get("enable_can_i_use_menu_option") :
+      if Util.split_string_and_find_on_multiple(view.scope_name(0), ["source.js", "text.html.basic", "source.css"]) < 0 :
+        return False
+      return True
+    return False
+    
+class can_i_use_hide_popupEventListener(sublime_plugin.EventListener):
+  def on_selection_modified_async(self, view) :
+    global can_i_use_popup_is_showing
+    if can_i_use_popup_is_showing :
+      view.hide_popup()
+      can_i_use_popup_is_showing = False
 
 
 def start():
@@ -4629,6 +4629,10 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-  sublime.set_timeout_async(start, 1000)
+  
+  if int(sublime.version()) >= 3124 :
+    sublime.set_timeout_async(start, 1000)
+  else:
+    sublime.error_message("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your version build is: " + sublime.version())
 
 

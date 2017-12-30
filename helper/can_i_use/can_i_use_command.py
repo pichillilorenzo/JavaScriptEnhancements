@@ -204,6 +204,11 @@ class can_i_useCommand(sublime_plugin.TextCommand):
     global items_found_can_i_use
     global can_i_use_file
     global can_i_use_list_from_main_menu
+
+    if not can_i_use_file:
+      sublime.active_window().status_message("\"Can I use\" feature is not ready.")
+      return
+
     can_i_use_data = can_i_use_file.get("data")
     if not can_i_use_data :
       return

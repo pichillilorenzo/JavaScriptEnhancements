@@ -24,7 +24,4 @@ ${include jsdoc/generate_jsdoc_command.py}
 
 ${include expand_abbreviation.py}
 
-if int(sublime.version()) >= 3124 :
-
-  ${include can_i_use/can_i_use_command.py}
-
+${include can_i_use/can_i_use_command.py}

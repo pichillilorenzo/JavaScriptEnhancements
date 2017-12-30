@@ -127,5 +127,9 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-  sublime.set_timeout_async(start, 1000)
+  
+  if int(sublime.version()) >= 3124 :
+    sublime.set_timeout_async(start, 1000)
+  else:
+    sublime.error_message("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your version build is: " + sublime.version())
 
