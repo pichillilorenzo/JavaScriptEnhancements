@@ -1,4 +1,4 @@
-import os, subprocess, shlex
+import os, subprocess, shlex, codecs
 from datetime import datetime
 
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))

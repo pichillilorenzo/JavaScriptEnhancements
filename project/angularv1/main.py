@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Yeoman custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
 
 def add_angularv1_settings(working_directory, angularv1_custom_path):
   project_path = working_directory

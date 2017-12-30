@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def cordova_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Cordova custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Cordova CLI custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
 
 def add_cordova_settings(working_directory, cordova_custom_path):
   project_path = working_directory

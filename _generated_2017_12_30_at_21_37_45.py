@@ -24,8 +24,7 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-#PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'yeoman']
-PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'ionicv1', 'ionicv2', 'react', 'yeoman']
+PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'yeoman']
 
 class Hook(object):
   hook_list = {}
@@ -1628,6 +1627,176 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         
       return variable
 
+import sublime, sublime_plugin
+import subprocess, shutil, traceback, os, json, shlex, collections
+
+class create_new_projectCommand(sublime_plugin.WindowCommand):
+  project_type = None
+
+  def run(self, **kwargs):
+
+    self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
+
+  def project_type_selected(self, index):
+
+    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.window.show_input_panel("Project Path:", os.path.expanduser("~")+os.path.sep, self.project_path_on_done, None, None)
+
+  def project_path_on_done(self, path):
+
+    path = shlex.quote( path.strip() )
+
+    if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
+      sublime.error_message(path+" is not empty. Can not create the project.")
+      return
+
+    if not os.path.isdir(path):
+      os.makedirs(path)
+
+    Hook.apply("create_new_project", path)
+    Hook.apply(self.project_type+"_create_new_project", path)
+
+    os.makedirs(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME))
+
+    PROJECT_SETTINGS_FOLDER_PATH = os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)
+
+    default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "create_new_project", "default_config.json")).read(), object_pairs_hook=collections.OrderedDict)
+    
+    sublime_project_file_path = os.path.join(path, os.path.basename(path)+".sublime-project")
+    package_json_file_path = os.path.join(path, "package.json")
+    flowconfig_file_path = os.path.join(path, ".flowconfig")
+    bookmarks_path = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "bookmarks.json")
+    project_details_file = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "project_details.json")
+    project_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "project_settings.json")
+
+    if not os.path.exists(sublime_project_file_path) :
+      with open(sublime_project_file_path, 'w+', encoding="utf-8") as file:
+        file.write(json.dumps(default_config["sublime_project"], indent=2))
+
+    if ( self.project_type == "empty" or self.project_type == "cordova" ) and not os.path.exists(package_json_file_path) :
+      with open(package_json_file_path, 'w+', encoding="utf-8") as file:
+        file.write(json.dumps(default_config["package_json"], indent=2))
+
+    with open(bookmarks_path, 'w+', encoding="utf-8") as file:
+      file.write(json.dumps(default_config["bookmarks"], indent=2))
+    with open(project_details_file, 'w+', encoding="utf-8") as file:
+      file.write(json.dumps(default_config["project_details"], indent=2))
+    with open(project_settings, 'w+', encoding="utf-8") as file:
+      file.write(json.dumps(default_config["project_settings"], indent=2))
+
+    node = NodeJS()
+    result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
+    if not result[0]:
+      sublime.error_message("Can not init flow.")
+    # else:
+    #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+    #     content = file.read()
+    #     content = content.replace("[ignore]", """[ignore]""")
+    #     file.seek(0)
+    #     file.truncate()
+    #     file.write(content)
+
+    Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
+    Hook.apply("after_create_new_project", path, "create_new_project")
+
+    if self.project_type == "empty":
+      open_project_folder(get_project_settings(path)["project_file_name"])
+
+class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
+  project_type = None
+  settings = None
+
+  def run(self, **kwargs):
+    self.settings = get_project_settings()
+    if self.settings:
+      self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
+    else:
+      sublime.error_message("No JavaScript project found.")
+
+  def project_type_selected(self, index):
+
+    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.window.show_input_panel("Working Directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
+
+  def working_directory_on_done(self, working_directory):
+
+    working_directory = shlex.quote( working_directory.strip() )
+
+    if not os.path.isdir(working_directory):
+      os.makedirs(working_directory)
+
+    Hook.apply("add_javascript_project_type", working_directory, "add_project_type")
+    Hook.apply(self.project_type+"_add_javascript_project_type", working_directory, "add_project_type")
+
+  def is_visible(self):
+    return is_javascript_project()
+
+  def is_enabled(self):
+    return is_javascript_project()
+
+class add_javascript_project_type_configurationCommand(sublime_plugin.WindowCommand):
+  project_type = None
+  settings = None
+
+  def run(self, *args):
+    self.settings = get_project_settings()
+    if self.settings:
+      self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
+    else:
+      sublime.error_message("No JavaScript project found.")
+
+  def project_type_selected(self, index):
+
+    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.window.show_input_panel("Working directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
+
+  def working_directory_on_done(self, working_directory):
+
+    working_directory = shlex.quote( working_directory.strip() )
+
+    if not os.path.isdir(working_directory):
+      os.makedirs(working_directory)
+
+    Hook.apply("add_javascript_project_configuration", working_directory, "add_project_configuration")
+    Hook.apply(self.project_type+"_add_javascript_project_configuration", working_directory, "add_project_configuration")
+
+  def is_visible(self):
+    return is_javascript_project()
+
+  def is_enabled(self):
+    return is_javascript_project()
+
+
+import sublime, sublime_plugin
+import os, time, signal
+
+class close_flowEventListener(sublime_plugin.EventListener):
+
+  def on_pre_close(self, view) :
+
+    node = NodeJS()
+
+    if not sublime.windows() :
+
+      sublime.status_message("flow server stopping")
+      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
+
+    settings = get_project_settings()
+
+    if settings and view.window() and len(view.window().views()) == 1 :
+      settings = get_project_settings()
+      sublime.status_message("flow server stopping")
+
+      flow_cli_path = "flow"
+      is_from_bin = True
+
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+        is_from_bin = False
+    
+      sublime.set_timeout_async(lambda: node.execute(flow_cli_path, ["stop"], is_from_bin=is_from_bin, chdir=os.path.join(settings["project_dir_name"])))
+
+
 class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "npm", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "npm", "Main_disabled.sublime-menu")
@@ -1761,7 +1930,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def cordova_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Cordova custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Cordova CLI custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
 
 def add_cordova_settings(working_directory, cordova_custom_path):
   project_path = working_directory
@@ -1859,7 +2028,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v1 custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
 
 def add_ionicv1_settings(working_directory, ionicv1_custom_path):
   project_path = working_directory
@@ -1955,7 +2124,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v2 custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
 
 def add_ionicv2_settings(working_directory, ionicv2_custom_path):
   project_path = working_directory
@@ -2057,7 +2226,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Yeoman custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
 
 def add_angularv1_settings(working_directory, angularv1_custom_path):
   project_path = working_directory
@@ -2244,7 +2413,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def react_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("React custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
 
 def add_react_settings(working_directory, react_custom_path):
   project_path = working_directory
@@ -2252,13 +2421,13 @@ def add_react_settings(working_directory, react_custom_path):
   if settings :
     project_path = settings["project_dir_name"]
     
-  flowconfig_file_path = os.path.join(project_path, ".flowconfig")
-  with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
-    content = file.read()
-    content = content.replace("[ignore]", """[ignore]""")
-    file.seek(0)
-    file.truncate()
-    file.write(content)
+  # flowconfig_file_path = os.path.join(project_path, ".flowconfig")
+  # with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+  #   content = file.read()
+  #   content = content.replace("[ignore]", """[ignore]""")
+  #   file.seek(0)
+  #   file.truncate()
+  #   file.write(content)
 
   PROJECT_SETTINGS_FOLDER_PATH = os.path.join(project_path, PROJECT_SETTINGS_FOLDER_NAME)
 
@@ -2290,24 +2459,24 @@ def react_prepare_project(project_path, react_custom_path):
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
 
-class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
-  project_type = "react"
-  path = os.path.join(PROJECT_FOLDER, "react", "Main.sublime-menu")
-  path_disabled = os.path.join(PROJECT_FOLDER, "react", "Main_disabled.sublime-menu")
+# class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
+#   project_type = "react"
+#   path = os.path.join(PROJECT_FOLDER, "react", "Main.sublime-menu")
+#   path_disabled = os.path.join(PROJECT_FOLDER, "react", "Main_disabled.sublime-menu")
 
-class react_cliCommand(manage_cliCommand):
+# class react_cliCommand(manage_cliCommand):
 
-  cli = "create-react-app"
-  custom_name = "react"
-  settings_name = "react_settings"
+#   cli = "create-react-app"
+#   custom_name = "react"
+#   settings_name = "react_settings"
 
-  def prepare_command(self, **kwargs):
+#   def prepare_command(self, **kwargs):
 
-    self._run()
+#     self._run()
 
-  def _run(self):
+#   def _run(self):
 
-    super(react_cliCommand, self)._run()
+#     super(react_cliCommand, self)._run()
 
 
 
@@ -2333,173 +2502,74 @@ Hook.add("yeoman_after_create_new_project", yeoman_prepare_project)
 
 
 import sublime, sublime_plugin
-import subprocess, shutil, traceback, os, json, shlex, collections
+import os, webbrowser, shlex, json, collections
 
-class create_new_projectCommand(sublime_plugin.WindowCommand):
-  project_type = None
+def express_ask_custom_path(project_path, type):
+    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
 
-  def run(self, **kwargs):
-
-    self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
-
-  def project_type_selected(self, index):
-
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
-    self.window.show_input_panel("Project Path:", os.path.expanduser("~")+os.path.sep, self.project_path_on_done, None, None)
-
-  def project_path_on_done(self, path):
-
-    path = shlex.quote( path.strip() )
-
-    if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
-      sublime.error_message(path+" is not empty. Can not create the project.")
-      return
-
-    if not os.path.isdir(path):
-      os.makedirs(path)
-
-    Hook.apply("create_new_project", path)
-    Hook.apply(self.project_type+"_create_new_project", path)
-
-    os.makedirs(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME))
-
-    PROJECT_SETTINGS_FOLDER_PATH = os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)
-
-    default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "create_new_project", "default_config.json")).read(), object_pairs_hook=collections.OrderedDict)
+def add_express_settings(working_directory, express_custom_path):
+  project_path = working_directory
+  settings = get_project_settings()
+  if settings :
+    project_path = settings["project_dir_name"]
     
-    sublime_project_file_path = os.path.join(path, os.path.basename(path)+".sublime-project")
-    package_json_file_path = os.path.join(path, "package.json")
-    flowconfig_file_path = os.path.join(path, ".flowconfig")
-    bookmarks_path = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "bookmarks.json")
-    project_details_file = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "project_details.json")
-    project_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "project_settings.json")
+  # flowconfig_file_path = os.path.join(project_path, ".flowconfig")
+  # with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+  #   content = file.read()
+  #   content = content.replace("[ignore]", """[ignore]""")
+  #   file.seek(0)
+  #   file.truncate()
+  #   file.write(content)
 
-    if not os.path.exists(sublime_project_file_path) :
-      with open(sublime_project_file_path, 'w+', encoding="utf-8") as file:
-        file.write(json.dumps(default_config["sublime_project"], indent=2))
+  PROJECT_SETTINGS_FOLDER_PATH = os.path.join(project_path, PROJECT_SETTINGS_FOLDER_NAME)
 
-    if ( self.project_type == "empty" or self.project_type == "cordova" ) and not os.path.exists(package_json_file_path) :
-      with open(package_json_file_path, 'w+', encoding="utf-8") as file:
-        file.write(json.dumps(default_config["package_json"], indent=2))
+  default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "express", "default_config.json")).read(), object_pairs_hook=collections.OrderedDict)
+  default_config["working_directory"] = working_directory
+  default_config["cli_custom_path"] = express_custom_path
 
-    with open(bookmarks_path, 'w+', encoding="utf-8") as file:
-      file.write(json.dumps(default_config["bookmarks"], indent=2))
-    with open(project_details_file, 'w+', encoding="utf-8") as file:
-      file.write(json.dumps(default_config["project_details"], indent=2))
-    with open(project_settings, 'w+', encoding="utf-8") as file:
-      file.write(json.dumps(default_config["project_settings"], indent=2))
+  express_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "express_settings.json")
 
-    node = NodeJS()
-    result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
-    if not result[0]:
-      sublime.error_message("Can not init flow.")
-    # else:
-    #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
-    #     content = file.read()
-    #     content = content.replace("[ignore]", """[ignore]""")
-    #     file.seek(0)
-    #     file.truncate()
-    #     file.write(content)
+  with open(express_settings, 'w+') as file:
+    file.write(json.dumps(default_config, indent=2))
 
-    Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
-    Hook.apply("after_create_new_project", path, "create_new_project")
+def express_prepare_project(project_path, express_custom_path):
 
-    if self.project_type == "empty":
-      open_project_folder(get_project_settings(path)["project_file_name"])
+  window = sublime.active_window()
+  view = window.new_file() 
 
-class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
-  project_type = None
-  settings = None
+  if sublime.platform() in ("linux", "osx"): 
+    open_project = ( " " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
+    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
+    view.run_command('terminal_view_activate', args=args)
+    window.run_command("terminal_view_send_string", args={"string": express_custom_path+" myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp; npm install;" + open_project + "\n"})
+  else:
+    # windows
+    pass
 
-  def run(self, **kwargs):
-    self.settings = get_project_settings()
-    if self.settings:
-      self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
-    else:
-      sublime.error_message("No JavaScript project found.")
+  add_express_settings(project_path, express_custom_path)
 
-  def project_type_selected(self, index):
+Hook.add("express_after_create_new_project", express_ask_custom_path)
+Hook.add("express_add_javascript_project_configuration", express_ask_custom_path)
 
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
-    self.window.show_input_panel("Working Directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
+# class enable_menu_expressEventListener(enable_menu_project_typeEventListener):
+#   project_type = "express"
+#   path = os.path.join(PROJECT_FOLDER, "express", "Main.sublime-menu")
+#   path_disabled = os.path.join(PROJECT_FOLDER, "express", "Main_disabled.sublime-menu")
 
-  def working_directory_on_done(self, working_directory):
+# class express_cliCommand(manage_cliCommand):
 
-    working_directory = shlex.quote( working_directory.strip() )
+#   cli = "create-express-app"
+#   custom_name = "express"
+#   settings_name = "express_settings"
 
-    if not os.path.isdir(working_directory):
-      os.makedirs(working_directory)
+#   def prepare_command(self, **kwargs):
 
-    Hook.apply("add_javascript_project_type", working_directory, "add_project_type")
-    Hook.apply(self.project_type+"_add_javascript_project_type", working_directory, "add_project_type")
+#     self._run()
 
-  def is_visible(self):
-    return is_javascript_project()
+#   def _run(self):
 
-  def is_enabled(self):
-    return is_javascript_project()
+#     super(express_cliCommand, self)._run()
 
-class add_javascript_project_type_configurationCommand(sublime_plugin.WindowCommand):
-  project_type = None
-  settings = None
-
-  def run(self, *args):
-    self.settings = get_project_settings()
-    if self.settings:
-      self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
-    else:
-      sublime.error_message("No JavaScript project found.")
-
-  def project_type_selected(self, index):
-
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
-    self.window.show_input_panel("Working directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
-
-  def working_directory_on_done(self, working_directory):
-
-    working_directory = shlex.quote( working_directory.strip() )
-
-    if not os.path.isdir(working_directory):
-      os.makedirs(working_directory)
-
-    Hook.apply("add_javascript_project_configuration", working_directory, "add_project_configuration")
-    Hook.apply(self.project_type+"_add_javascript_project_configuration", working_directory, "add_project_configuration")
-
-  def is_visible(self):
-    return is_javascript_project()
-
-  def is_enabled(self):
-    return is_javascript_project()
-
-
-import sublime, sublime_plugin
-import os, time, signal
-
-class close_flowEventListener(sublime_plugin.EventListener):
-
-  def on_pre_close(self, view) :
-
-    node = NodeJS()
-
-    if not sublime.windows() :
-
-      sublime.status_message("flow server stopping")
-      sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
-
-    settings = get_project_settings()
-
-    if settings and view.window() and len(view.window().views()) == 1 :
-      settings = get_project_settings()
-      sublime.status_message("flow server stopping")
-
-      flow_cli_path = "flow"
-      is_from_bin = True
-
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
-        is_from_bin = False
-    
-      sublime.set_timeout_async(lambda: node.execute(flow_cli_path, ["stop"], is_from_bin=is_from_bin, chdir=os.path.join(settings["project_dir_name"])))
 
 
 
@@ -4625,7 +4695,33 @@ def start():
   except Exception as err: 
     sublime.error_message("Error during installation: node.js is not installed on your system.")
     return
+
+  # test
+  
+  # result = node.execute("flow-typed", command_args=["search", "express"])
+  # flow_typed_searched_items = []
+  # if result[0]:
+  #   lines = result[1].encode('ascii', errors='ignore').decode("utf-8").strip().split("\n")
+  #   linesNotDecoded = result[1].strip().split("\n")
+  #   found_definations_flag = False
+  #   for i in range(0, len(lines)):
+  #     line = lines[i].strip()
+  #     lineNotDecoded = linesNotDecoded[i].strip()
+
+  #     if found_definations_flag and line:
  
+  #       item = lineNotDecoded.split(b'\xe2\x94\x82'.decode("utf-8"))
+  #       for j in range(0, len(item)):
+  #         item[j] = item[j].encode('ascii', errors='ignore').decode("utf-8").strip()
+
+  #       flow_typed_searched_items += [item]
+
+  #     elif line.startswith("Name") and line.endswith("Flow Version"):
+  #       found_definations_flag = True
+      
+  # print(flow_typed_searched_items)
+
+
   mainPlugin.init()
 
 def plugin_loaded():

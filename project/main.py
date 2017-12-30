@@ -112,6 +112,10 @@ def save_project_setting(setting_file, data):
 
 ${include manage_cli/main.py}
 
+${include create_new_project/create_new_project.py}
+
+${include close_flow_event_listener.py}
+
 ${include npm/main.py}
 
 ${include build_flow/main.py}
@@ -130,6 +134,4 @@ ${include react/main.py}
 
 ${include yeoman/main.py}
 
-${include create_new_project/create_new_project.py}
-
-${include close_flow_event_listener.py}
+${include express/main.py}

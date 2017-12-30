@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v2 custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
 
 def add_ionicv2_settings(working_directory, ionicv2_custom_path):
   project_path = working_directory

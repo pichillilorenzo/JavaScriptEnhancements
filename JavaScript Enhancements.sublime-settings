@@ -8,5 +8,7 @@
   "ionicv2_custom_path": "ionic",
   "angularv1_custom_path": "yo",
   "angularv2_custom_path": "ng",
-  "react_custom_path": "create-react-app"
+  "react_custom_path": "create-react-app",
+  "express_custom_path": "express",
+  "yeoman_custom_path": "yo"
 }

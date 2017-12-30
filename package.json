@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "flow-bin": "0.61.0",
+    "flow-bin": "0.62.0",
+    "flow-typed": "2.2.3",
     "flow-remove-types": "1.2.3",
     "jsdoc": "3.5.5"
   }
