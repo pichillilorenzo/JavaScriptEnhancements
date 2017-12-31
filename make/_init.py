@@ -116,7 +116,7 @@ def start():
   except Exception as err:
     pass
 
-  node = NodeJS()
+  node = NodeJS(check_local=True)
   try:
     node.getCurrentNodeJSVersion()
   except Exception as err: 
