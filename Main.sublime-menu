@@ -58,8 +58,8 @@
                 "command": "generate_jsdoc"
               },
               {
-                "caption": "Add jsdoc configuration file to the current project folder",
-                "command": "add_jsdoc_conf_to_curr_project_folder"
+                "caption": "Add a jsdoc configuration file",
+                "command": "add_jsdoc_conf"
               },
               { "caption": "-" },
               {

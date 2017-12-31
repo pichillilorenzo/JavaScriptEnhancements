@@ -4458,7 +4458,7 @@ class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
     lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, ( True if is_project_view(view) and is_javascript_project() else False ))]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
-class add_jsdoc_conf_to_curr_project_folder(sublime_plugin.WindowCommand) :
+class add_jsdoc_conf(sublime_plugin.WindowCommand) :
   def run(self, **args):
     settings = get_project_settings()
     if settings :

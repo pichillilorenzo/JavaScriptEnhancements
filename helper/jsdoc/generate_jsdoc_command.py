@@ -1,4 +1,4 @@
-class add_jsdoc_conf_to_curr_project_folder(sublime_plugin.WindowCommand) :
+class add_jsdoc_conf(sublime_plugin.WindowCommand) :
   def run(self, **args):
     settings = get_project_settings()
     if settings :
