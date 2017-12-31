@@ -39,7 +39,7 @@ class NodeJS(object):
       else :
         self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
     else :
-      self.node_js_path = NODE_JS_EXEC
+      self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
 
   def eval(self, js, eval_type="eval", strict_mode=False):
 
@@ -66,19 +66,19 @@ class NodeJS(object):
 
     raise Exception(result[1])
 
-  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
+  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="", use_node=True) :
 
     if sublime.platform() == 'windows':
       if is_from_bin :
         args = [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
-        args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
+        args = ([self.node_js_path] if use_node else []) + [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     else :
-      args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
+      args = ([self.node_js_path] if use_node else []) + [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
-  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True) :
 
     fp = None
     if use_fp_temp :
@@ -89,9 +89,9 @@ class NodeJS(object):
 
     if sublime.platform() == 'windows':
       if is_from_bin :
-        args = [os.path.join(NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
+        args = [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
-        args = [self.node_js_path, os.path.join(NODE_MODULES_BIN_PATH, command)] + command_args
+        args = ([self.node_js_path] if use_node else []) + [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
       if fp :
         args += ["<", fp.name]
     else :
@@ -102,7 +102,7 @@ class NodeJS(object):
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
 
-      args = shlex.quote(self.node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
+      args = ( shlex.quote(self.node_js_path)+" " if use_node else "") +shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
       #print(args)
     try:
@@ -119,7 +119,7 @@ class NodeJS(object):
       
       if chdir:
         os.chdir(owd)
-        
+
       if clean_output_flow :
         out = output.decode("utf-8", "ignore").strip()
         out = out.split("\n")
@@ -200,8 +200,8 @@ class NPM(object):
 
         self.cli_path = self.npm_path
     else :
-      self.npm_path = NPM_EXEC
-      self.yarn_path = YARN_EXEC
+      self.npm_path = get_npm_custom_path() or NPM_EXEC
+      self.yarn_path = get_yarn_custom_path() or YARN_EXEC
 
       self.cli_path = self.npm_path
 

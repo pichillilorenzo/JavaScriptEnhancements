@@ -81,15 +81,21 @@ Manually:
 ![](https://drive.google.com/uc?authuser=0&id=1Y0NS1eb8aFoxhdn75JLoGgZMPPpqld3Z&export=download)
 ![](https://drive.google.com/uc?authuser=0&id=1lHXQGN3CoV5-IHAoesEmkiJBjnpU2Lxf&export=download)
 
-## Feature request/enhancement
-
-For feature requests or them enhancement, please open an issue with the corresponding label.
-
 ## Support
 
 Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
-Thanks for your support!!!
+### Feature request/enhancement
+
+For feature requests or them enhancement, please open an issue with the corresponding label.
+
+### Donation
+
+If this project help you reduce time to develop and also you like it, please support it with a donation :smile::thumbsup:. Thanks!
+
+<a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
+  <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
+</a>
 
 ## License
 

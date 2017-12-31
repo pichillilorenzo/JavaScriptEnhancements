@@ -1,7 +1,7 @@
 [
   { "caption": "-" },
   {
-    "caption": "Goto Definition",
+    "caption": "Flow Goto Definition",
     "id": "go_to_def",
     "command": "go_to_def"
   },

@@ -1,0 +1,27 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Flow",
+        "mnemonic": "F",
+        "id": "flow",
+        "children": [
+          {
+            "caption": "Build Flow",
+            "command": "build_flow",
+            "args": {
+              "command": ["flow-remove-types", ":source_folders", "--out-dir", ":destination_folder"]
+            }
+          },
+          {
+            "caption": "Add Flow definition",
+            "id": "add_flow_definition",
+            "command": "add_flow_definition"
+          }
+        ]
+      }
+    ]
+  }
+]

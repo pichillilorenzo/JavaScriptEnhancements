@@ -16,5 +16,13 @@
     "args": {
       "type":  "previous"
     }
+  },
+  {
+    "keys": ["ctrl+alt+g"],
+    "command": "go_to_def"
+  },
+  {
+    "keys": ["ctrl+alt+s"],
+    "command": "show_hint_parameters"
   }
 ]

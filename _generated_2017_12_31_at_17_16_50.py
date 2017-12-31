@@ -165,7 +165,7 @@ class NodeJS(object):
       else :
         self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
     else :
-      self.node_js_path = NODE_JS_EXEC
+      self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
 
   def eval(self, js, eval_type="eval", strict_mode=False):
 
@@ -192,19 +192,19 @@ class NodeJS(object):
 
     raise Exception(result[1])
 
-  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="") :
+  def execute(self, command, command_args, is_from_bin=False, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[], bin_path="", use_node=True) :
 
     if sublime.platform() == 'windows':
       if is_from_bin :
         args = [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
-        args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
+        args = ([self.node_js_path] if use_node else []) + [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     else :
-      args = [self.node_js_path, os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
+      args = ([self.node_js_path] if use_node else []) + [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
-  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False) :
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True) :
 
     fp = None
     if use_fp_temp :
@@ -215,9 +215,9 @@ class NodeJS(object):
 
     if sublime.platform() == 'windows':
       if is_from_bin :
-        args = [os.path.join(NODE_MODULES_BIN_PATH, command+".cmd")] + command_args
+        args = [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
       else :
-        args = [self.node_js_path, os.path.join(NODE_MODULES_BIN_PATH, command)] + command_args
+        args = ([self.node_js_path] if use_node else []) + [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
       if fp :
         args += ["<", fp.name]
     else :
@@ -228,7 +228,7 @@ class NodeJS(object):
         command_args_list.append(shlex.quote(command_arg))
       command_args = " ".join(command_args_list)
 
-      args = shlex.quote(self.node_js_path)+" "+shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
+      args = ( shlex.quote(self.node_js_path)+" " if use_node else "") +shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
       #print(args)
     try:
@@ -245,7 +245,7 @@ class NodeJS(object):
       
       if chdir:
         os.chdir(owd)
-        
+
       if clean_output_flow :
         out = output.decode("utf-8", "ignore").strip()
         out = out.split("\n")
@@ -326,8 +326,8 @@ class NPM(object):
 
         self.cli_path = self.npm_path
     else :
-      self.npm_path = NPM_EXEC
-      self.yarn_path = YARN_EXEC
+      self.npm_path = get_npm_custom_path() or NPM_EXEC
+      self.yarn_path = get_yarn_custom_path() or YARN_EXEC
 
       self.cli_path = self.npm_path
 
@@ -833,7 +833,7 @@ class Util(object) :
       command_args = " ".join(command_args_list)
       args = shlex.quote(command)+" "+command_args
     
-    print(args)
+    #print(args)
 
     if wait_terminate :
 
@@ -1639,6 +1639,9 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
   def project_type_selected(self, index):
 
+    if index == -1:
+      return
+      
     self.project_type = PROJECT_TYPE_SUPPORTED[index]
     self.window.show_input_panel("Project Path:", os.path.expanduser("~")+os.path.sep, self.project_path_on_done, None, None)
 
@@ -1684,10 +1687,10 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     with open(project_settings, 'w+', encoding="utf-8") as file:
       file.write(json.dumps(default_config["project_settings"], indent=2))
 
-    node = NodeJS()
-    result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
-    if not result[0]:
-      sublime.error_message("Can not init flow.")
+    # node = NodeJS()
+    # result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
+    # if not result[0]:
+    #   sublime.error_message("Can not init flow.")
     # else:
     #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
     #     content = file.read()
@@ -1787,14 +1790,19 @@ class close_flowEventListener(sublime_plugin.EventListener):
       settings = get_project_settings()
       sublime.status_message("flow server stopping")
 
-      flow_cli_path = "flow"
+      flow_cli = "flow"
       is_from_bin = True
+      chdir = settings["project_dir_name"]
+      use_node = True
+      bin_path = ""
 
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      if settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
         is_from_bin = False
+        use_node = False
     
-      sublime.set_timeout_async(lambda: node.execute(flow_cli_path, ["stop"], is_from_bin=is_from_bin, chdir=os.path.join(settings["project_dir_name"])))
+      sublime.set_timeout_async(lambda: node.execute(flow_cli, ["stop"], is_from_bin=is_from_bin, chdir=chdir, bin_path=bin_path, use_node=use_node))
 
 
 class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
@@ -1877,11 +1885,11 @@ class manage_npmCommand(manage_cliCommand):
     return True if settings and os.path.isfile( os.path.join(settings["project_dir_name"], "package.json") ) else False
 
 
-import shlex, shutil
+import shlex, shutil, json
 
 class enable_menu_build_flowEventListener(enable_menu_project_typeEventListener):
-  path = os.path.join(PROJECT_FOLDER, "build_flow", "Main.sublime-menu")
-  path_disabled = os.path.join(PROJECT_FOLDER, "build_flow", "Main_disabled.sublime-menu")
+  path = os.path.join(PROJECT_FOLDER, "flow", "Main.sublime-menu")
+  path_disabled = os.path.join(PROJECT_FOLDER, "flow", "Main_disabled.sublime-menu")
 
 class build_flowCommand(manage_cliCommand):
 
@@ -1924,6 +1932,89 @@ class build_flow_on_save(sublime_plugin.EventListener):
     if Util.selection_in_js_scope(view) and settings and settings["project_settings"]["build_flow"]["on_save"] and len(settings["project_settings"]["build_flow"]["source_folders"]) > 0 and settings["project_settings"]["build_flow"]["destination_folder"] :
       view.window().run_command("build_flow", args={"command": ["flow-remove-types", ":source_folders", "--out-dir", ":destination_folder"]})
 
+class add_flow_definitionCommand(sublime_plugin.WindowCommand):
+
+  flow_typed_searched_items = []
+
+  def run(self, **kwargs):
+
+    self.window.show_input_panel("Definition to search", "", lambda package_name: sublime.set_timeout_async(lambda: self.search(package_name)), None, None)
+
+  def search(self, package_name):
+
+    self.window.status_message("Searching for '" + package_name + "' definitions...")
+    node = NodeJS(check_local=True)
+    result = node.execute("flow-typed", command_args=["search", package_name], is_from_bin=True)
+
+    if result[0]:
+      lines = result[1].encode('ascii', errors='ignore').decode("utf-8").strip().split("\n")
+      linesNotDecoded = result[1].strip().split("\n")
+      found_definations_flag = False
+      for i in range(0, len(lines)):
+        line = lines[i].strip()
+        lineNotDecoded = linesNotDecoded[i].strip()
+
+        if found_definations_flag and line:
+   
+          item = lineNotDecoded.split(b'\xe2\x94\x82'.decode("utf-8"))
+          for j in range(0, len(item)):
+            item[j] = item[j].encode('ascii', errors='ignore').decode("utf-8").strip()
+
+          self.flow_typed_searched_items += [[item[0] + " " + item[1], "Flow version supported: " + item[2]]]
+
+        elif line.startswith("Name") and line.endswith("Flow Version"):
+          found_definations_flag = True
+
+      if len(self.flow_typed_searched_items) > 0:
+        self.window.show_quick_panel(self.flow_typed_searched_items, lambda index: sublime.set_timeout_async(lambda: self.install_definition(index)), sublime.KEEP_OPEN_ON_FOCUS_LOST)
+      else:
+        self.window.status_message("No definitions found, sorry!")
+
+  def install_definition(self, index):
+
+    if index == -1:
+      return
+      
+    settings = get_project_settings()
+    if settings: 
+      package = self.flow_typed_searched_items[index][0].rsplit(' ', 1)
+      package_name = package[0].strip()
+      version = package[1].strip()[1:]
+      flow_bin_version = ""
+
+      self.window.status_message("Installing definition '" + package_name + "@" + version + "'...")
+
+      if settings["project_settings"]["flow_cli_custom_path"]:
+        result = Util.execute(settings["project_settings"]["flow_cli_custom_path"], command_args=["version", "--json"], chdir=settings["project_dir_name"])
+        if result[0]:
+          flow_bin_version = json.loads(result[1])["semver"]
+
+      node = NodeJS(check_local=True)
+      if not flow_bin_version:
+        result = node.execute("flow", command_args=["version", "--json"], is_from_bin=True)
+        if result[0]:
+          flow_bin_version = json.loads(result[1])["semver"]
+
+      if flow_bin_version:
+        # example: flow-typed install -f 0.62.0 express@4.x.x
+        result = node.execute("flow-typed", command_args=["install", "-f", flow_bin_version, package_name+"@"+version], is_from_bin=True, chdir=settings["project_dir_name"])
+
+        if result[0]:
+          self.window.status_message("Defintion '" + package_name + "@" + version + "' installed successfully!")
+        else:
+          self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
+
+      else:
+          self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
+
+    else:
+      sublime.error_message("Error: can't get project settings")
+
+  def is_enabled(self):
+    return is_javascript_project()
+
+  def is_visible(self):
+    return is_javascript_project()
 
 
 import sublime, sublime_plugin
@@ -2483,7 +2574,10 @@ Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
-def yeoman_prepare_project(project_path, type):
+def yeoman_ask_custom_path(project_path, type):
+    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda yeoman_custom_path: yeoman_prepare_project(project_path, shlex.quote(yeoman_custom_path)), None, None)
+
+def yeoman_prepare_project(project_path, yeoman_custom_path):
 
   window = sublime.active_window()
   view = window.new_file() 
@@ -2492,13 +2586,12 @@ def yeoman_prepare_project(project_path, type):
     open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
     args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
     view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": "yo" + open_project + "\n"})
+    window.run_command("terminal_view_send_string", args={"string": yeoman_custom_path + open_project + "\n"})
   else:
     # windows
     pass
 
-Hook.add("yeoman_after_create_new_project", yeoman_prepare_project)
-
+Hook.add("yeoman_after_create_new_project", yeoman_ask_custom_path)
 
 
 import sublime, sublime_plugin
@@ -2875,7 +2968,7 @@ class JavaScriptCompletions():
 javascriptCompletions = JavaScriptCompletions()
 
 import sublime, sublime_plugin
-import os
+import os, tempfile
 
 def build_type_from_func_details(comp_details):
   if comp_details :
@@ -2974,18 +3067,24 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     if deps.project_root is '/':
       return
 
-    flow_cli_path = "flow"
+    flow_cli = "flow"
     is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
 
     settings = get_project_settings()
     if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
       is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
 
-    node = NodeJS()
+    node = NodeJS(check_local=True)
     
     result = node.execute_check_output(
-      flow_cli_path,
+      flow_cli,
       [
         'autocomplete',
         '--from', 'sublime_text',
@@ -2996,7 +3095,10 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
-      is_output_json=True
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
     )
 
     if result[0]:
@@ -3118,17 +3220,24 @@ class go_to_defCommand(sublime_plugin.TextCommand):
 
     deps = flow_parse_cli_dependencies(view)
     
-    flow_cli_path = "flow"
+    flow_cli = "flow"
     is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
 
     settings = get_project_settings()
     if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
       is_from_bin = False
-    
-    node = NodeJS()
+      chdir = settings["project_dir_name"]
+      use_node = False
+      
+    node = NodeJS(check_local=True)
+
     result = node.execute_check_output(
-      flow_cli_path,
+      flow_cli,
       [
         'get-def',
         '--from', 'sublime_text',
@@ -3141,7 +3250,10 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
       is_output_json=True,
-      use_only_filename_view_flow=True
+      use_only_filename_view_flow=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
     )
 
     if result[0] :
@@ -3271,18 +3383,24 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
   if deps.project_root is '/':
     return
 
-  flow_cli_path = "flow"
+  flow_cli = "flow"
   is_from_bin = True
+  chdir = ""
+  use_node = True
+  bin_path = ""
 
   settings = get_project_settings()
   if settings and settings["project_settings"]["flow_cli_custom_path"]:
-    flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+    flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+    bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
     is_from_bin = False
+    chdir = settings["project_dir_name"]
+    use_node = False
 
-  node = NodeJS()
+  node = NodeJS(check_local=True)
 
   result = node.execute_check_output(
-    flow_cli_path,
+    flow_cli,
     [
       'autocomplete',
       '--from', 'sublime_text',
@@ -3293,7 +3411,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
     is_from_bin=is_from_bin,
     use_fp_temp=True, 
     fp_temp_contents=deps.contents, 
-    is_output_json=True
+    is_output_json=True,
+    chdir=chdir,
+    bin_path=bin_path,
+    use_node=use_node
   )
 
   html = ""
@@ -3340,17 +3461,23 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       return
     row, col = view.rowcol(point)
 
-    flow_cli_path = "flow"
+    flow_cli = "flow"
     is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
 
     settings = get_project_settings()
     if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
       is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
       
-    node = NodeJS()
+    node = NodeJS(check_local=True)
     result = node.execute_check_output(
-      flow_cli_path,
+      flow_cli,
       [
         'type-at-pos',
         '--from', 'sublime_text',
@@ -3362,7 +3489,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
-      is_output_json=True
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
     )
 
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
@@ -3565,18 +3695,24 @@ def show_flow_errors(view) :
     # if view_settings.get("flow_weak_mode") :
     #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
     
-    flow_cli_path = "flow"
+    flow_cli = "flow"
     is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
 
     settings = get_project_settings()
     if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
       is_from_bin = False
-
-    node = NodeJS()
+      chdir = settings["project_dir_name"]
+      use_node = False
+      
+    node = NodeJS(check_local=True)
     
     result = node.execute_check_output(
-      flow_cli_path,
+      flow_cli,
       [
         'check-contents',
         '--from', 'sublime_text',
@@ -3588,7 +3724,10 @@ def show_flow_errors(view) :
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
       is_output_json=True,
-      clean_output_flow=True
+      clean_output_flow=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
     )
 
     if result[0]:
@@ -4695,32 +4834,6 @@ def start():
   except Exception as err: 
     sublime.error_message("Error during installation: node.js is not installed on your system.")
     return
-
-  # test
-  
-  # result = node.execute("flow-typed", command_args=["search", "express"])
-  # flow_typed_searched_items = []
-  # if result[0]:
-  #   lines = result[1].encode('ascii', errors='ignore').decode("utf-8").strip().split("\n")
-  #   linesNotDecoded = result[1].strip().split("\n")
-  #   found_definations_flag = False
-  #   for i in range(0, len(lines)):
-  #     line = lines[i].strip()
-  #     lineNotDecoded = linesNotDecoded[i].strip()
-
-  #     if found_definations_flag and line:
- 
-  #       item = lineNotDecoded.split(b'\xe2\x94\x82'.decode("utf-8"))
-  #       for j in range(0, len(item)):
-  #         item[j] = item[j].encode('ascii', errors='ignore').decode("utf-8").strip()
-
-  #       flow_typed_searched_items += [item]
-
-  #     elif line.startswith("Name") and line.endswith("Flow Version"):
-  #       found_definations_flag = True
-      
-  # print(flow_typed_searched_items)
-
 
   mainPlugin.init()
 

@@ -123,32 +123,6 @@ def start():
     sublime.error_message("Error during installation: node.js is not installed on your system.")
     return
 
-  # test
-  
-  # result = node.execute("flow-typed", command_args=["search", "express"])
-  # flow_typed_searched_items = []
-  # if result[0]:
-  #   lines = result[1].encode('ascii', errors='ignore').decode("utf-8").strip().split("\n")
-  #   linesNotDecoded = result[1].strip().split("\n")
-  #   found_definations_flag = False
-  #   for i in range(0, len(lines)):
-  #     line = lines[i].strip()
-  #     lineNotDecoded = linesNotDecoded[i].strip()
-
-  #     if found_definations_flag and line:
- 
-  #       item = lineNotDecoded.split(b'\xe2\x94\x82'.decode("utf-8"))
-  #       for j in range(0, len(item)):
-  #         item[j] = item[j].encode('ascii', errors='ignore').decode("utf-8").strip()
-
-  #       flow_typed_searched_items += [item]
-
-  #     elif line.startswith("Name") and line.endswith("Flow Version"):
-  #       found_definations_flag = True
-      
-  # print(flow_typed_searched_items)
-
-
   mainPlugin.init()
 
 def plugin_loaded():

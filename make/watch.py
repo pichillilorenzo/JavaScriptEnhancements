@@ -33,7 +33,7 @@ class Monkey(object):
       st_mtime_ns = os.stat(file["filename"]).st_mtime_ns  
 
       if st_ctime_ns != file["st_ctime_ns_cached"] or st_mtime_ns != file["st_mtime_ns_cached"]:
-        print(str(datetime.now().strftime('%H:%M:%S')) + " " + file["filename"] + " changed")
+        print("[" + str(datetime.now().strftime('%H:%M:%S')) + "] " + file["filename"] + " changed")
         file["st_ctime_ns_cached"] = st_ctime_ns
         file["st_mtime_ns_cached"] = st_mtime_ns
         p = subprocess.Popen("python3 "+shlex.quote(self.path_setup), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

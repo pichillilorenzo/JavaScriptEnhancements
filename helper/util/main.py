@@ -445,7 +445,7 @@ class Util(object) :
       command_args = " ".join(command_args_list)
       args = shlex.quote(command)+" "+command_args
     
-    print(args)
+    #print(args)
 
     if wait_terminate :
 

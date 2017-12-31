@@ -7,23 +7,16 @@
         "caption": "JavaScript Enhancements",
         "mnemonic": "J",
         "id": "javascript_completions_tools",
-        "children":[       
+        "children":[    
           {
-            "caption": "Flow",
-            "mnemonic": "F",
-            "id": "flow",
-            "children": [
-              {
-                "caption": "Use Flow checker on current view (Not used in project)",
-                "id": "use_flow_checker_on_current_view",
-                "checkbox": true,
-                "command": "toggle_setting",
-                "args": {"setting": "use_flow_checker_on_current_view"}
-              }
-            ]
+            "caption": "Use Flow checker on current view (Not used in project)",
+            "id": "use_flow_checker_on_current_view",
+            "checkbox": true,
+            "command": "toggle_setting",
+            "args": {"setting": "use_flow_checker_on_current_view"}
           },
           {
-            "caption": "Goto Definition",
+            "caption": "Flow Goto Definition",
             "id": "go_to_def",
             "command": "go_to_def"
           },
@@ -81,6 +74,11 @@
             "caption": "GitHub Project",
             "command": "open_url",
             "args": {"url": "https://github.com/pichillilorenzo/JavaScriptEnhancements"}
+          },
+          {
+            "caption": "Donate to this Project",
+            "command": "open_url",
+            "args": {"url": "https://opencollective.com/javascriptenhancements"}
           }
         ]
       }

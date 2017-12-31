@@ -1,7 +1,7 @@
 {
-	"enable_can_i_use_menu_option": true,
-	"node_js_custom_path": "node",
-	"npm_custom_path": "npm",
+  "enable_can_i_use_menu_option": true,
+  "node_js_custom_path": "node",
+  "npm_custom_path": "npm",
   "yarn_custom_path": "yarn",
   "cordova_custom_path": "cordova",
   "ionicv1_custom_path": "ionic",

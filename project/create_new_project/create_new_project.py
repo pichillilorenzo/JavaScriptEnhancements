@@ -10,6 +10,9 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
 
   def project_type_selected(self, index):
 
+    if index == -1:
+      return
+      
     self.project_type = PROJECT_TYPE_SUPPORTED[index]
     self.window.show_input_panel("Project Path:", os.path.expanduser("~")+os.path.sep, self.project_path_on_done, None, None)
 
@@ -55,10 +58,10 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     with open(project_settings, 'w+', encoding="utf-8") as file:
       file.write(json.dumps(default_config["project_settings"], indent=2))
 
-    node = NodeJS()
-    result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
-    if not result[0]:
-      sublime.error_message("Can not init flow.")
+    # node = NodeJS()
+    # result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
+    # if not result[0]:
+    #   sublime.error_message("Can not init flow.")
     # else:
     #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
     #     content = file.read()

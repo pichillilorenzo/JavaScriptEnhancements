@@ -118,7 +118,7 @@ ${include close_flow_event_listener.py}
 
 ${include npm/main.py}
 
-${include build_flow/main.py}
+${include flow/main.py}
 
 ${include cordova/main.py}
 

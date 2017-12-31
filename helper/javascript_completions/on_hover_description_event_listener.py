@@ -64,18 +64,24 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
   if deps.project_root is '/':
     return
 
-  flow_cli_path = "flow"
+  flow_cli = "flow"
   is_from_bin = True
+  chdir = ""
+  use_node = True
+  bin_path = ""
 
   settings = get_project_settings()
   if settings and settings["project_settings"]["flow_cli_custom_path"]:
-    flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+    flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+    bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
     is_from_bin = False
+    chdir = settings["project_dir_name"]
+    use_node = False
 
-  node = NodeJS()
+  node = NodeJS(check_local=True)
 
   result = node.execute_check_output(
-    flow_cli_path,
+    flow_cli,
     [
       'autocomplete',
       '--from', 'sublime_text',
@@ -86,7 +92,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
     is_from_bin=is_from_bin,
     use_fp_temp=True, 
     fp_temp_contents=deps.contents, 
-    is_output_json=True
+    is_output_json=True,
+    chdir=chdir,
+    bin_path=bin_path,
+    use_node=use_node
   )
 
   html = ""
@@ -133,17 +142,23 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       return
     row, col = view.rowcol(point)
 
-    flow_cli_path = "flow"
+    flow_cli = "flow"
     is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
 
     settings = get_project_settings()
     if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli_path = shlex.quote( settings["project_settings"]["flow_cli_custom_path"] )
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
       is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
       
-    node = NodeJS()
+    node = NodeJS(check_local=True)
     result = node.execute_check_output(
-      flow_cli_path,
+      flow_cli,
       [
         'type-at-pos',
         '--from', 'sublime_text',
@@ -155,7 +170,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
       fp_temp_contents=deps.contents, 
-      is_output_json=True
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
     )
 
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
