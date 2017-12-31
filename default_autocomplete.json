@@ -284,6 +284,66 @@
       }
     ],
     [
+      "setTimeout\t(func: function, milliseconds?: number, ...params?: any) => number",
+      "setTimeout(${1:func: function}, ${2:milliseconds?: number}, ${3:...params?: any})",
+      {
+        "name": "setTimeout",
+        "type": "(func: function, milliseconds: number, ...params?: any)",
+        "func_details": {
+          "params":[
+            {"name": "func", "type": "function"},
+            {"name": "milliseconds?", "type": "number"},
+            {"name": "...params?", "type": "any"}
+          ],
+          "return_type": "number"
+        }
+      }
+    ],
+    [
+      "clearTimeout\t(timeoutID: number)",
+      "clearTimeout(${1:timeoutID: number})",
+      {
+        "name": "clearTimeout",
+        "type": "(timeoutID: number)",
+        "func_details": {
+          "params":[
+            {"name": "timeoutID", "type": "number"}
+          ],
+          "return_type": "void"
+        }
+      }
+    ],
+    [
+      "setInterval\t(func: function, milliseconds: number, ...params?: any) => number",
+      "setInterval(${1:func: function}, ${2:milliseconds: number}, ${3:...params?: any})",
+      {
+        "name": "setInterval",
+        "type": "(func: function, milliseconds: number, ...params?: any)",
+        "func_details": {
+          "params":[
+            {"name": "func", "type": "function"},
+            {"name": "milliseconds", "type": "number"},
+            {"name": "...params?", "type": "any"}
+          ],
+          "return_type": "number"
+        }
+      }
+    ],
+    [
+      "clearInterval\t(intervalID: number)",
+      "clearInterval(${1:intervalID: number})",
+      {
+        "name": "clearInterval",
+        "type": "(intervalID: number)",
+        "func_details": {
+          "params":[
+            {"name": "intervalID", "type": "number"}
+          ],
+          "return_type": "void"
+        }
+      }
+    ],
+    [
       "Object\t[class: Object]",
       "Object",
       {
