@@ -93,6 +93,7 @@ For feature requests or them enhancement, please open an issue with the correspo
 
 If this project help you reduce time to develop and also you like it, please support it with a donation :smile::thumbsup:. Thanks!
 
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/LorenzoPichilli)
 <a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
   <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
 </a>
