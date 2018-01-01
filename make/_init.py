@@ -89,7 +89,6 @@ class startPlugin():
     view = window.active_view()
 
     sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
-    sublime.set_timeout_async(lambda: load_bookmarks_viewViewEventListener(view).on_load_async())
 
 mainPlugin = startPlugin()
 

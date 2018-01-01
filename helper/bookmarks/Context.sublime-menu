@@ -1,18 +1,8 @@
 [
   { "caption": "-" },
   {
-    "caption": "Add Global Bookmark here",
-    "id": "add_global_bookmark_here",
-    "command": "add_global_bookmark_here"
-  },
-  {
-    "caption": "Add Project's Bookmark here",
+    "caption": "Add Project Bookmark here",
     "id": "add_project_bookmark_here",
     "command": "add_project_bookmark_here"
-  },
-  {
-    "caption": "Delete Project's Bookmark here",
-    "id": "delete_project_bookmark_here",
-    "command": "delete_project_bookmark_here"
   }
 ]
