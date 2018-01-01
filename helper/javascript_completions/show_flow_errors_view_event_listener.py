@@ -94,11 +94,13 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
     self.errors = []
     self.description_by_row = {}
+    self.description_by_row_column = {}
     result = show_flow_errors(view)
 
     if result :
       self.errors = result["errors"]
       self.description_by_row = result["description_by_row"]
+      self.description_by_row_column = result["description_by_row_column"]
 
     sublime.set_timeout_async(lambda: self.on_selection_modified_async())
 
@@ -110,16 +112,28 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
   def on_hover(self, point, hover_zone) :
     view = self.view
-    view.erase_phantoms("flow_error")
-    if hover_zone != sublime.HOVER_GUTTER :
+    #view.erase_phantoms("flow_error")
+    if hover_zone != sublime.HOVER_TEXT :
       return
 
     sel = sublime.Region(point, point)
+
     if (not view.match_selector(
         sel.begin(),
         'source.js'
     ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
       hide_flow_errors(view)
+      return
+
+    is_hover_error = False
+    region_hover_error = None
+    for region in view.get_regions("flow_error"):
+      if region.contains(sel):
+        region_hover_error = region
+        is_hover_error = True
+        break
+
+    if not is_hover_error:
       return
     
     settings = get_project_settings()
@@ -141,12 +155,13 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       hide_flow_errors(view)
       return 
 
-    row, col = view.rowcol(sel.begin())
+    row_region, col_region = view.rowcol(region_hover_error.begin())
+    row_region, endcol_region = view.rowcol(region_hover_error.end())
 
-    error_for_row = self.description_by_row.get(row)
+    error = self.description_by_row_column[str(row_region)+":"+str(col_region)+":"+str(endcol_region)]
     
-    if error_for_row:
-      text = cgi.escape(error_for_row["description"]).split(" ")
+    if error:
+      text = cgi.escape(error).split(" ")
       html = ""
       i = 0
       while i < len(text) - 1:
@@ -157,9 +172,10 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       if len(text) % 2 != 0 :
         html += text[len(text) - 1]
 
-      region_phantom = sublime.Region( view.text_point(row, error_for_row["col"]), view.text_point(row, error_for_row["col"]) )
-      sublime.set_timeout_async(lambda: view.add_phantom("flow_error", region_phantom, '<html style="padding: 0px; margin: 5px; background-color: rgba(255,255,255,0);"><body style="border-radius: 10px; padding: 10px; background-color: #F44336; margin: 0px;">'+html+'</body></html>', sublime.LAYOUT_BELOW))
+      row_region, col_region = view.rowcol(region_hover_error.begin())
+      row_region, endcol_region = view.rowcol(region_hover_error.end())
 
+      view.show_popup('<html style="font-size: 0.75em; font-weight: bold; padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
   def on_selection_modified_async(self, *args) :
 

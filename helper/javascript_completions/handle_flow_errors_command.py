@@ -18,6 +18,7 @@ def show_flow_errors(view) :
 
   errors = []
   description_by_row = {}
+  description_by_row_column = {}
   regions = []
   for deps in deps_list:
     if deps.project_root is '/':
@@ -87,9 +88,9 @@ def show_flow_errors(view) :
               description += operation["descr"]
 
           if not description :
-            description += message['descr']
+            description += "'"+message['descr']+"'"
           else :
-            description += ". " + message['descr']
+            description += " " + message['descr']
 
         if row >= 0 :
           row_description = description_by_row.get(row)
@@ -100,6 +101,8 @@ def show_flow_errors(view) :
             }
           if row_description and description not in row_description:
             description_by_row[row]["description"] += '; ' + description
+
+          description_by_row_column[str(row)+":"+str(col)+":"+str(endcol)] = description
             
       errors = result[1]['errors']
 
@@ -108,7 +111,7 @@ def show_flow_errors(view) :
       'flow_error', regions, 'scope.js', 'dot',
       sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
     )
-    return {"errors": errors, "description_by_row": description_by_row}
+    return {"errors": errors, "description_by_row": description_by_row, "description_by_row_column": description_by_row_column}
   
   view.erase_regions('flow_error')
   view.set_status('flow_error', 'Flow: no errors')

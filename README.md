@@ -81,6 +81,8 @@ Manually:
 ![](https://drive.google.com/uc?authuser=0&id=1Y0NS1eb8aFoxhdn75JLoGgZMPPpqld3Z&export=download)
 ![](https://drive.google.com/uc?authuser=0&id=1lHXQGN3CoV5-IHAoesEmkiJBjnpU2Lxf&export=download)
 
+See the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) for complete examples and the other **features**.
+
 ## Support
 
 Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)

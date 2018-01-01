@@ -236,7 +236,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
 
   func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
 
-  if html :
+  if html and not view.is_popup_visible() :
       view.show_popup("""
       <html><head></head><body>
       """+js_css+"""
