@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def react_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
 
 def add_react_settings(working_directory, react_custom_path):
   project_path = working_directory
@@ -47,6 +47,7 @@ def react_prepare_project(project_path, react_custom_path):
 
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
+Hook.add("react_add_javascript_project_type", react_ask_custom_path)
 
 # class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
 #   project_type = "react"

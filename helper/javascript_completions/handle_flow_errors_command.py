@@ -61,7 +61,7 @@ def show_flow_errors(view) :
       bin_path=bin_path,
       use_node=use_node
     )
-
+    
     if result[0]:
 
       if result[1]['passed']:

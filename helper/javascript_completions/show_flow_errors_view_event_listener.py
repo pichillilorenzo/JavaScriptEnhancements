@@ -175,7 +175,7 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       row_region, col_region = view.rowcol(region_hover_error.begin())
       row_region, endcol_region = view.rowcol(region_hover_error.end())
 
-      view.show_popup('<html style="font-size: 0.75em; font-weight: bold; padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
+      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.75em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
   def on_selection_modified_async(self, *args) :
 
@@ -226,3 +226,4 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       )
     else:
       view.set_status('flow_error', error_count_text)
+  

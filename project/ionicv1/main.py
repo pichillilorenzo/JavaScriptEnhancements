@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
 
 def add_ionicv1_settings(working_directory, ionicv1_custom_path):
   project_path = working_directory
@@ -51,6 +51,7 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
 
 Hook.add("ionicv1_after_create_new_project", ionicv1_ask_custom_path)
 Hook.add("ionicv1_add_javascript_project_configuration", ionicv1_ask_custom_path)
+Hook.add("ionicv1_add_javascript_project_type", ionicv1_ask_custom_path)
 
 class enable_menu_ionicv1EventListener(enable_menu_project_typeEventListener):
   project_type = "ionicv1"

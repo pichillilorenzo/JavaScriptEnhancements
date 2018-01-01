@@ -19,3 +19,4 @@ def yeoman_prepare_project(project_path, yeoman_custom_path):
     pass
 
 Hook.add("yeoman_after_create_new_project", yeoman_ask_custom_path)
+Hook.add("yeoman_add_javascript_project_type", yeoman_ask_custom_path)

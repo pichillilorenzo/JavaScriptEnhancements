@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def express_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
 
 def add_express_settings(working_directory, express_custom_path):
   project_path = working_directory
@@ -47,6 +47,7 @@ def express_prepare_project(project_path, express_custom_path):
 
 Hook.add("express_after_create_new_project", express_ask_custom_path)
 Hook.add("express_add_javascript_project_configuration", express_ask_custom_path)
+Hook.add("express_add_javascript_project_type", express_ask_custom_path)
 
 # class enable_menu_expressEventListener(enable_menu_project_typeEventListener):
 #   project_type = "express"

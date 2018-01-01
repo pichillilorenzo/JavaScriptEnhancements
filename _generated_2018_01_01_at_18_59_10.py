@@ -1748,7 +1748,7 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
   def run(self, *args):
     self.settings = get_project_settings()
     if self.settings:
-      self.window.show_quick_panel(PROJECT_TYPE_SUPPORTED, self.project_type_selected)
+      self.window.show_quick_panel(list( set(PROJECT_TYPE_SUPPORTED) - set(["yeoman"]) ), self.project_type_selected)
     else:
       sublime.error_message("No JavaScript project found.")
 
@@ -1757,7 +1757,7 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
     if index == -1:
       return
 
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.project_type = list( set(PROJECT_TYPE_SUPPORTED) - set(["yeoman"]) )[index]
     self.window.show_input_panel("Working directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
 
   def working_directory_on_done(self, working_directory):
@@ -2126,7 +2126,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
 
 def add_ionicv1_settings(working_directory, ionicv1_custom_path):
   project_path = working_directory
@@ -2175,6 +2175,7 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
 
 Hook.add("ionicv1_after_create_new_project", ionicv1_ask_custom_path)
 Hook.add("ionicv1_add_javascript_project_configuration", ionicv1_ask_custom_path)
+Hook.add("ionicv1_add_javascript_project_type", ionicv1_ask_custom_path)
 
 class enable_menu_ionicv1EventListener(enable_menu_project_typeEventListener):
   project_type = "ionicv1"
@@ -2222,7 +2223,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
 
 def add_ionicv2_settings(working_directory, ionicv2_custom_path):
   project_path = working_directory
@@ -2272,6 +2273,7 @@ def ionicv2_prepare_project(project_path, ionicv2_custom_path):
 
 Hook.add("ionicv2_after_create_new_project", ionicv2_ask_custom_path)
 Hook.add("ionicv2_add_javascript_project_configuration", ionicv2_ask_custom_path)
+Hook.add("ionicv2_add_javascript_project_type", ionicv2_ask_custom_path)
 
 class enable_menu_ionicv2EventListener(enable_menu_project_typeEventListener):
   project_type = "ionicv2"
@@ -2324,7 +2326,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
 
 def add_angularv1_settings(working_directory, angularv1_custom_path):
   project_path = working_directory
@@ -2371,6 +2373,7 @@ def angularv1_prepare_project(project_path, angularv1_custom_path):
 
 Hook.add("angularv1_after_create_new_project", angularv1_ask_custom_path)
 Hook.add("angularv1_add_javascript_project_configuration", angularv1_ask_custom_path)
+Hook.add("angularv1_add_javascript_project_type", angularv1_ask_custom_path)
 
 class enable_menu_angularv1EventListener(enable_menu_project_typeEventListener):
   project_type = "angularv1"
@@ -2414,7 +2417,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("@angular/cli custom path", "ng", lambda angularv2_custom_path: angularv2_prepare_project(project_path, shlex.quote(angularv2_custom_path)) if type == "create_new_project" else add_angularv2_settings(project_path, shlex.quote(angularv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("@angular/cli custom path", "ng", lambda angularv2_custom_path: angularv2_prepare_project(project_path, shlex.quote(angularv2_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_angularv2_settings(project_path, shlex.quote(angularv2_custom_path)), None, None)
 
 def add_angularv2_settings(working_directory, angularv2_custom_path):
   project_path = working_directory
@@ -2461,6 +2464,7 @@ def angularv2_prepare_project(project_path, angularv2_custom_path):
 
 Hook.add("angularv2_after_create_new_project", angularv2_ask_custom_path)
 Hook.add("angularv2_add_javascript_project_configuration", angularv2_ask_custom_path)
+Hook.add("angularv2_add_javascript_project_type", angularv2_ask_custom_path)
 
 class enable_menu_angularv2EventListener(enable_menu_project_typeEventListener):
   project_type = "angularv2"
@@ -2511,7 +2515,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def react_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
 
 def add_react_settings(working_directory, react_custom_path):
   project_path = working_directory
@@ -2556,6 +2560,7 @@ def react_prepare_project(project_path, react_custom_path):
 
 Hook.add("react_after_create_new_project", react_ask_custom_path)
 Hook.add("react_add_javascript_project_configuration", react_ask_custom_path)
+Hook.add("react_add_javascript_project_type", react_ask_custom_path)
 
 # class enable_menu_reactEventListener(enable_menu_project_typeEventListener):
 #   project_type = "react"
@@ -2599,13 +2604,13 @@ def yeoman_prepare_project(project_path, yeoman_custom_path):
     pass
 
 Hook.add("yeoman_after_create_new_project", yeoman_ask_custom_path)
-
+Hook.add("yeoman_add_javascript_project_type", yeoman_ask_custom_path)
 
 import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def express_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
 
 def add_express_settings(working_directory, express_custom_path):
   project_path = working_directory
@@ -2650,6 +2655,7 @@ def express_prepare_project(project_path, express_custom_path):
 
 Hook.add("express_after_create_new_project", express_ask_custom_path)
 Hook.add("express_add_javascript_project_configuration", express_ask_custom_path)
+Hook.add("express_add_javascript_project_type", express_ask_custom_path)
 
 # class enable_menu_expressEventListener(enable_menu_project_typeEventListener):
 #   project_type = "express"
@@ -3366,107 +3372,29 @@ def description_details_html(description):
 class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
   def on_hover(self, view, point, hover_zone) :
-    sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
+    sublime.set_timeout_async(lambda: self.on_hover_description_async(view, point, hover_zone, point))
 
-def on_hover_description_async(view, point, hover_zone, popup_position) :
-  if not view.match_selector(
-      point,
-      'source.js - comment'
-  ):
-    return
+  def on_hover_description_async(self, view, point, hover_zone, popup_position) :
+    if not view.match_selector(
+        point,
+        'source.js - comment'
+    ):
+      return
 
-  if hover_zone != sublime.HOVER_TEXT :
-    return
+    if hover_zone != sublime.HOVER_TEXT :
+      return
 
-  region = view.word(point)
-  word = view.substr(region)
-  if not word.strip() :
-    return
-    
-  cursor_pos = region.end()
+    region = view.word(point)
+    word = view.substr(region)
+    if not word.strip() :
+      return
+      
+    cursor_pos = region.end()
 
-  deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
+    deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
 
-  if deps.project_root is '/':
-    return
-
-  flow_cli = "flow"
-  is_from_bin = True
-  chdir = ""
-  use_node = True
-  bin_path = ""
-
-  settings = get_project_settings()
-  if settings and settings["project_settings"]["flow_cli_custom_path"]:
-    flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-    bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-    is_from_bin = False
-    chdir = settings["project_dir_name"]
-    use_node = False
-
-  node = NodeJS(check_local=True)
-
-  result = node.execute_check_output(
-    flow_cli,
-    [
-      'autocomplete',
-      '--from', 'sublime_text',
-      '--root', deps.project_root,
-      '--json',
-      deps.filename
-    ],
-    is_from_bin=is_from_bin,
-    use_fp_temp=True, 
-    fp_temp_contents=deps.contents, 
-    is_output_json=True,
-    chdir=chdir,
-    bin_path=bin_path,
-    use_node=use_node
-  )
-
-  html = ""
-
-  if result[0]:
-    descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
-
-    for description in descriptions :
-      if description['name'] == word :
-
-        if description['type'].startswith("((") or description['type'].find("&") >= 0 :
-          sub_completions = description['type'].split("&")
-          for sub_comp in sub_completions :
-
-            sub_comp = sub_comp.strip()
-            sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
-                       
-            text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
-            text_params = text_params.strip()
-            description["func_details"] = dict()
-            description["func_details"]["params"] = list()
-            description["func_details"]["return_type"] = ""
-            if sub_type.rfind(" => ") >= 0 :
-              description["func_details"]["return_type"] = sub_type[sub_type.rfind(" => ")+4:].strip()
-            start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
-            end = text_params.rfind(")")
-            params = text_params[start:end].split(",")
-            for param in params :
-              param_dict = dict()
-              param_info = param.split(":")
-              param_dict["name"] = param_info[0].strip()
-              if len(param_info) > 1 :
-                param_dict["type"] = param_info[1].strip()
-              description['func_details']["params"].append(param_dict)
-
-            html += description_details_html(description)
-        else :
-
-          html += description_details_html(description)
-
-  if not html :
-    deps = flow_parse_cli_dependencies(view)
     if deps.project_root is '/':
       return
-    row, col = view.rowcol(point)
 
     flow_cli = "flow"
     is_from_bin = True
@@ -3481,17 +3409,17 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       is_from_bin = False
       chdir = settings["project_dir_name"]
       use_node = False
-      
+
     node = NodeJS(check_local=True)
+
     result = node.execute_check_output(
       flow_cli,
       [
-        'type-at-pos',
+        'autocomplete',
         '--from', 'sublime_text',
         '--root', deps.project_root,
-        '--path', deps.filename,
         '--json',
-        str(row - deps.row_offset + 1), str(col + 1)
+        deps.filename
       ],
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
@@ -3502,75 +3430,153 @@ def on_hover_description_async(view, point, hover_zone, popup_position) :
       use_node=use_node
     )
 
-    if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
-      description = dict()
-      description["name"] = ""
-      description['func_details'] = dict()
-      description['func_details']["params"] = list()
-      description['func_details']["return_type"] = ""
-      is_function = False
-      matches = re.match("^([a-zA-Z_]\w+)", result[1]["type"])
-      if matches :
-        description["name"] = matches.group()
-      if result[1]["type"].find(" => ") >= 0 :
-        description['func_details']["return_type"] = cgi.escape(result[1]["type"][result[1]["type"].find(" => ")+4:])
-      else :
-        description['func_details']["return_type"] = cgi.escape(result[1]["type"])
-      if result[1]["type"].find("(") == 0:
-        is_function = True
-        start = 1
-        end = result[1]["type"].find(")")
-        params = result[1]["type"][start:end].split(",")
-        description['func_details']["params"] = list()
-        for param in params :
-          param_dict = dict()
-          param_info = param.split(":")
-          param_dict["name"] = cgi.escape(param_info[0].strip())
-          if len(param_info) == 2 :
-            param_dict["type"] = cgi.escape(param_info[1].strip())
+    html = ""
+
+    if result[0]:
+      descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
+
+      for description in descriptions :
+        if description['name'] == word :
+
+          if description['type'].startswith("((") or description['type'].find("&") >= 0 :
+            sub_completions = description['type'].split("&")
+            for sub_comp in sub_completions :
+
+              sub_comp = sub_comp.strip()
+              sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
+                         
+              text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
+              text_params = text_params.strip()
+              description["func_details"] = dict()
+              description["func_details"]["params"] = list()
+              description["func_details"]["return_type"] = ""
+              if sub_type.rfind(" => ") >= 0 :
+                description["func_details"]["return_type"] = sub_type[sub_type.rfind(" => ")+4:].strip()
+              start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
+              end = text_params.rfind(")")
+              params = text_params[start:end].split(",")
+              for param in params :
+                param_dict = dict()
+                param_info = param.split(":")
+                param_dict["name"] = param_info[0].strip()
+                if len(param_info) > 1 :
+                  param_dict["type"] = param_info[1].strip()
+                description['func_details']["params"].append(param_dict)
+
+              html += description_details_html(description)
           else :
-            param_dict["type"] = None
-          description['func_details']["params"].append(param_dict)
 
-      description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
-      description_return_type = ""
+            html += description_details_html(description)
 
-      parameters_html = ""
-      if description['func_details'] :
+    if not html :
+      deps = flow_parse_cli_dependencies(view)
+      if deps.project_root is '/':
+        return
+      row, col = view.rowcol(point)
 
-        for param in description['func_details']["params"]:
-          is_optional = True if param['name'].find("?") >= 0 else False
-          param['name'] = param['name'].replace("?", "")
-          if not parameters_html:
-            parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-          else:
-            parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-        parameters_html = "("+parameters_html+")" if is_function else ""
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = ""
+      use_node = True
+      bin_path = ""
 
-        description_return_type = description['func_details']["return_type"]
-      elif description['type'] :
-        description_return_type = description['type']
-      if description_return_type :
-        description_return_type = (" => " if description['name'] or is_function else "") + "<span class=\"return-type\">"+description_return_type+"</span>"
+      settings = get_project_settings()
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        chdir = settings["project_dir_name"]
+        use_node = False
+        
+      node = NodeJS(check_local=True)
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'type-at-pos',
+          '--from', 'sublime_text',
+          '--root', deps.project_root,
+          '--path', deps.filename,
+          '--json',
+          str(row - deps.row_offset + 1), str(col + 1)
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=deps.contents, 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
 
-      html += """ 
-      <div class=\"container-description\">
-        <div>"""+description_name+parameters_html+description_return_type+"""</div>
-        <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
-      </div>
-      """
+      if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
+        description = dict()
+        description["name"] = ""
+        description['func_details'] = dict()
+        description['func_details']["params"] = list()
+        description['func_details']["return_type"] = ""
+        is_function = False
+        matches = re.match("^([a-zA-Z_]\w+)", result[1]["type"])
+        if matches :
+          description["name"] = matches.group()
+        if result[1]["type"].find(" => ") >= 0 :
+          description['func_details']["return_type"] = cgi.escape(result[1]["type"][result[1]["type"].find(" => ")+4:])
+        else :
+          description['func_details']["return_type"] = cgi.escape(result[1]["type"])
+        if result[1]["type"].find("(") == 0:
+          is_function = True
+          start = 1
+          end = result[1]["type"].find(")")
+          params = result[1]["type"][start:end].split(",")
+          description['func_details']["params"] = list()
+          for param in params :
+            param_dict = dict()
+            param_info = param.split(":")
+            param_dict["name"] = cgi.escape(param_info[0].strip())
+            if len(param_info) == 2 :
+              param_dict["type"] = cgi.escape(param_info[1].strip())
+            else :
+              param_dict["type"] = None
+            description['func_details']["params"].append(param_dict)
 
-  func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
+        description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
+        description_return_type = ""
 
-  if html and not view.is_popup_visible() :
-      view.show_popup("""
-      <html><head></head><body>
-      """+js_css+"""
-        <div class=\"container-hint-popup\">
-          """ + html + """    
+        parameters_html = ""
+        if description['func_details'] :
+
+          for param in description['func_details']["params"]:
+            is_optional = True if param['name'].find("?") >= 0 else False
+            param['name'] = param['name'].replace("?", "")
+            if not parameters_html:
+              parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+            else:
+              parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+          parameters_html = "("+parameters_html+")" if is_function else ""
+
+          description_return_type = description['func_details']["return_type"]
+        elif description['type'] :
+          description_return_type = description['type']
+        if description_return_type :
+          description_return_type = (" => " if description['name'] or is_function else "") + "<span class=\"return-type\">"+description_return_type+"</span>"
+
+        html += """ 
+        <div class=\"container-description\">
+          <div>"""+description_name+parameters_html+description_return_type+"""</div>
+          <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
         </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 60, func_action )
-  
+        """
+
+    func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
+
+    if html and not view.is_popup_visible() :
+        view.show_popup("""
+        <html><head></head><body>
+        """+js_css+"""
+          <div class=\"container-hint-popup\">
+            """ + html + """    
+          </div>
+        </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80, func_action )
+    
 
 import sublime, sublime_plugin
 
@@ -3737,7 +3743,7 @@ def show_flow_errors(view) :
       bin_path=bin_path,
       use_node=use_node
     )
-
+    
     if result[0]:
 
       if result[1]['passed']:
@@ -3984,7 +3990,7 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       row_region, col_region = view.rowcol(region_hover_error.begin())
       row_region, endcol_region = view.rowcol(region_hover_error.end())
 
-      view.show_popup('<html style="font-size: 0.75em; font-weight: bold; padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
+      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.75em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
   def on_selection_modified_async(self, *args) :
 
@@ -4035,7 +4041,7 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       )
     else:
       view.set_status('flow_error', error_count_text)
-
+  
 
 import sublime, sublime_plugin
 
@@ -4162,7 +4168,7 @@ import json, time
 bookmarks = []
 latest_bookmarks_view = dict()
 
-def set_bookmarks(is_project = False, set_dot = False):
+def set_bookmarks(is_project = False, set_dot = False, erase_regions = True):
   global bookmarks
   view = sublime.active_window().active_view()
 
@@ -4175,13 +4181,14 @@ def set_bookmarks(is_project = False, set_dot = False):
   else :
     bookmarks = Util.open_json(os.path.join(BOOKMARKS_FOLDER, 'bookmarks.json')) or []
 
-  view.erase_regions("region-dot-bookmarks")
-  if set_dot :
-    lines = []
-    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
-    view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
+  if erase_regions:
+    view.erase_regions("region-dot-bookmarks")
+    if set_dot :
+      lines = []
+      lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project, is_from_set = True)]
+      view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
 
-def update_bookmarks(is_project = False, set_dot = False):
+def update_bookmarks(is_project = False, set_dot = False, erase_regions = True):
   global bookmarks
   path = ""
   view = sublime.active_window().active_view()
@@ -4198,12 +4205,30 @@ def update_bookmarks(is_project = False, set_dot = False):
   with open(path, 'w+') as bookmarks_json:
     bookmarks_json.write(json.dumps(bookmarks))
 
-  view.erase_regions("region-dot-bookmarks")
-  if set_dot :
-    lines = []
-    lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
+  if erase_regions:
+    view.erase_regions("region-dot-bookmarks")
+    if set_dot :
+      lines = []
+      lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, is_project)]
 
-    view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
+      view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
+
+def get_bookmark_by_line(view, line, is_project = False):
+  if not view.file_name() or line < 0:
+    return False
+
+  global bookmarks
+
+  if is_project :
+    set_bookmarks(True, True, False)
+  else :
+    set_bookmarks(False, True, False)
+
+  for bookmark in bookmarks:
+    if bookmark['file_name'] == view.file_name() and bookmark["line"] == line :
+      return bookmark
+
+  return None
 
 def add_bookmark(view, line, name = "", is_project = False) :
   if not view.file_name() or line < 0:
@@ -4227,6 +4252,20 @@ def add_bookmark(view, line, name = "", is_project = False) :
     bookmarks.append(bookmark)
     update_bookmarks(is_project, True)
 
+def overwrite_bookmark(view, line, name = "", is_project = False) :
+  if not view.file_name() or line < 0:
+    return False
+
+  global bookmarks
+
+  for bookmark in bookmarks:
+    if bookmark['file_name'] == view.file_name() :
+      bookmark["line"] = line
+      if name:
+        bookmark["name"] = name
+      update_bookmarks(is_project, True)
+      break
+
 def remove_bookmark(bookmark, is_project = False) :
 
   if not bookmark["file_name"] or bookmark["line"] < 0:
@@ -4242,6 +4281,19 @@ def remove_bookmark(bookmark, is_project = False) :
   if bookmark in bookmarks :
     bookmarks.remove(bookmark)
     update_bookmarks(is_project, True)
+
+def remove_bookmark_by_line(view, line, is_project = False) :
+
+  if not view.file_name() or line < 0:
+    return False
+
+  global bookmarks
+
+  for bookmark in bookmarks:
+    if bookmark['file_name'] == view.file_name() and bookmark["line"] == line :
+      bookmarks.remove(bookmark)
+      update_bookmarks(is_project, True)
+      break
 
 def search_bookmarks_by_view(view, is_project = False, is_from_set = False):
   if not view.file_name():
@@ -4344,16 +4396,35 @@ class add_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
 
   def run(self, edit):
 
-    if not is_javascript_project() :
-      sublime.error_message("Can't recognize JavaScript Project.")
-      return 
-
     view = self.view
 
     selections = view.sel()
 
     set_multiple_bookmarks_names(view, 0, selections, True)
 
+  def is_enabled(self):
+    return is_javascript_project()
+
+  def is_visible(self):
+    return is_javascript_project()
+
+class delete_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
+
+  def run(self, edit):
+
+    view = self.view
+
+    selections = view.sel()
+
+    for sel in selections:
+      row, col = view.rowcol(sel.begin())
+      remove_bookmark_by_line(view, row, True)
+
+  def is_enabled(self):
+    return is_javascript_project()
+
+  def is_visible(self):
+    return is_javascript_project()
 
 class show_bookmarksCommand(sublime_plugin.TextCommand):
 
@@ -4481,6 +4552,39 @@ class load_bookmarks_viewViewEventListener(sublime_plugin.ViewEventListener):
     lines = []
     lines = [view.line(view.text_point(bookmark["line"], 0)) for bookmark in search_bookmarks_by_view(view, ( True if is_project_view(view) and is_javascript_project() else False ))]
     view.add_regions("region-dot-bookmarks", lines,  "code", "bookmark", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
+
+class update_bookmarks_lineEventListener(sublime_plugin.EventListener):
+
+  def on_post_save_async(self, view) :
+
+    regions = view.get_regions("region-dot-bookmarks")
+
+    for region in regions:
+      row, col = view.rowcol(region.begin())
+      overwrite_bookmark( view, row, "", True if is_project_view(view) and is_javascript_project() else False )
+
+# class on_hover_bookmarks_nameEventListener(sublime_plugin.EventListener):
+
+#   def on_hover(self, view, point, hover_zone) :
+#     sublime.set_timeout_async(lambda: self.on_hover_description_async(view, point, hover_zone))
+
+#   def on_hover_description_async(self, view, point, hover_zone) :
+
+#     if hover_zone != sublime.HOVER_GUTTER :
+#       return
+
+#     regions = view.get_regions("region-dot-bookmarks")
+
+#     if not regions:
+#       return
+
+#     row, col = view.rowcol(point)
+
+#     bookmark = get_bookmark_by_line(view, row, True if is_project_view(view) and is_javascript_project() else False)
+
+#     if bookmark:
+#       view.show_popup('<html style="padding: 0px; margin: 0px;"><body style="padding: 5px; margin: 0px;">'+bookmark["name"]+'<br></body></html>', sublime.HIDE_ON_MOUSE_MOVE_AWAY, point, 1150, 80, None )
+
 
 class add_jsdoc_conf(sublime_plugin.WindowCommand) :
   def run(self, **args):
