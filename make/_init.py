@@ -103,6 +103,10 @@ def start():
 
   global mainPlugin
 
+  if sublime.platform() == 'windows':
+    sublime.error_message("Windows is not supported by this plugin for now.")
+    return
+
   try:
     sys.modules["TerminalView"]
   except Exception as err:

@@ -112,7 +112,7 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
   def on_hover(self, point, hover_zone) :
     view = self.view
-    #view.erase_phantoms("flow_error")
+
     if hover_zone != sublime.HOVER_TEXT :
       return
 
@@ -193,8 +193,6 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
     ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
       hide_flow_errors(view)
       return
- 
-    view.erase_phantoms("flow_error")
 
     settings = get_project_settings()
     if settings :

@@ -21,7 +21,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     path = shlex.quote( path.strip() )
 
     if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
-      sublime.error_message(path+" is not empty. Can not create the project.")
+      sublime.error_message("Can't create the project. There is already another project in "+path+".")
       return
 
     if not os.path.isdir(path):
@@ -58,17 +58,18 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     with open(project_settings, 'w+', encoding="utf-8") as file:
       file.write(json.dumps(default_config["project_settings"], indent=2))
 
-    # node = NodeJS()
-    # result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
-    # if not result[0]:
-    #   sublime.error_message("Can not init flow.")
-    # else:
-    #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
-    #     content = file.read()
-    #     content = content.replace("[ignore]", """[ignore]""")
-    #     file.seek(0)
-    #     file.truncate()
-    #     file.write(content)
+    if not os.path.exists(flowconfig_file_path) :
+      node = NodeJS(check_local=True)
+      result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
+      if not result[0]:
+        sublime.error_message("Can't initialize flow.")
+      # else:
+      #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+      #     content = file.read()
+      #     content = content.replace("[ignore]", """[ignore]""")
+      #     file.seek(0)
+      #     file.truncate()
+      #     file.write(content)
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
@@ -88,6 +89,9 @@ class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
       sublime.error_message("No JavaScript project found.")
 
   def project_type_selected(self, index):
+
+    if index == -1:
+      return
 
     self.project_type = PROJECT_TYPE_SUPPORTED[index]
     self.window.show_input_panel("Working Directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
@@ -120,6 +124,9 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
       sublime.error_message("No JavaScript project found.")
 
   def project_type_selected(self, index):
+
+    if index == -1:
+      return
 
     self.project_type = PROJECT_TYPE_SUPPORTED[index]
     self.window.show_input_panel("Working directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)

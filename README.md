@@ -21,6 +21,8 @@ developing and managing **javascript projects**, such as:
 - JavaScript real-time errors
 - etc.
 
+You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki))!
+
 It will turn Sublime Text into a **JavaScript IDE** like!
 
 This project is based on my other Sublime Text plugin [JavaScript Completions](https://github.com/pichillilorenzo/JavaScript-Completions)
@@ -37,7 +39,7 @@ If you want use this plugin, you may want **uninstall/disable** the **JavaScript
 
 In order to work properly, this plugin has some dependencies:
 
-- Sublime Text 3 (build 3124 or newer)
+- **Sublime Text 3** (build **3124** or newer)
 - **Node.js** and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
 - **TerminalView** sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 
