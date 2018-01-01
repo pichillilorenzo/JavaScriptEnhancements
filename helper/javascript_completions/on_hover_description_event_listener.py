@@ -52,6 +52,10 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
     if hover_zone != sublime.HOVER_TEXT :
       return
 
+    for region in view.get_regions("flow_error"):
+      if region.contains(point):
+        return
+
     region = view.word(point)
     word = view.substr(region)
     if not word.strip() :
@@ -236,7 +240,7 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
     func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
 
-    if html and not view.is_popup_visible() :
+    if html:
         view.show_popup("""
         <html><head></head><body>
         """+js_css+"""

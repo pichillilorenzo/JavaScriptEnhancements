@@ -3383,6 +3383,10 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
     if hover_zone != sublime.HOVER_TEXT :
       return
 
+    for region in view.get_regions("flow_error"):
+      if region.contains(point):
+        return
+
     region = view.word(point)
     word = view.substr(region)
     if not word.strip() :
@@ -3567,7 +3571,7 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
     func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
 
-    if html and not view.is_popup_visible() :
+    if html:
         view.show_popup("""
         <html><head></head><body>
         """+js_css+"""
@@ -3988,8 +3992,8 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
       row_region, col_region = view.rowcol(region_hover_error.begin())
       row_region, endcol_region = view.rowcol(region_hover_error.end())
-
-      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.75em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
+      
+      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.8em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
   def on_selection_modified_async(self, *args) :
 
@@ -4852,10 +4856,16 @@ def start():
     sublime.error_message("Windows is not supported by this plugin for now.")
     return
 
+  if platform.architecture()[0] != "64bit":
+    sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
+    return
+
   try:
     sys.modules["TerminalView"]
   except Exception as err:
-    sublime.error_message("TerminalView plugin is missing. TerminalView is required to be able to use this plugin.")
+    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin. Do you want open the github repo of it?", "Yes, open it", "No")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
     return
 
   try:
@@ -4869,7 +4879,11 @@ def start():
   try:
     node.getCurrentNodeJSVersion()
   except Exception as err: 
-    sublime.error_message("Error during installation: node.js is not installed on your system.")
+    response = sublime.yes_no_cancel_dialog("Error during installation: node.js is not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin. Do you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
+    elif response == sublime.DIALOG_NO:
+      sublime.active_window().run_command("open_url", args={"url": "https://github.com/creationix/nvm"})
     return
 
   mainPlugin.init()
@@ -4879,6 +4893,7 @@ def plugin_loaded():
   if int(sublime.version()) >= 3124 :
     sublime.set_timeout_async(start, 1000)
   else:
-    sublime.error_message("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your version build is: " + sublime.version())
-
+    response = sublime.yes_no_cancel_dialog("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your build is: " + sublime.version() + ". Do you want open the download page?", "Yes, open it", "No")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://www.sublimetext.com/3"})
 

@@ -106,10 +106,16 @@ def start():
     sublime.error_message("Windows is not supported by this plugin for now.")
     return
 
+  if platform.architecture()[0] != "64bit":
+    sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
+    return
+
   try:
     sys.modules["TerminalView"]
   except Exception as err:
-    sublime.error_message("TerminalView plugin is missing. TerminalView is required to be able to use this plugin.")
+    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin. Do you want open the github repo of it?", "Yes, open it", "No")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
     return
 
   try:
@@ -123,7 +129,11 @@ def start():
   try:
     node.getCurrentNodeJSVersion()
   except Exception as err: 
-    sublime.error_message("Error during installation: node.js is not installed on your system.")
+    response = sublime.yes_no_cancel_dialog("Error during installation: node.js is not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin. Do you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
+    elif response == sublime.DIALOG_NO:
+      sublime.active_window().run_command("open_url", args={"url": "https://github.com/creationix/nvm"})
     return
 
   mainPlugin.init()
@@ -133,5 +143,6 @@ def plugin_loaded():
   if int(sublime.version()) >= 3124 :
     sublime.set_timeout_async(start, 1000)
   else:
-    sublime.error_message("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your version build is: " + sublime.version())
-
+    response = sublime.yes_no_cancel_dialog("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your build is: " + sublime.version() + ". Do you want open the download page?", "Yes, open it", "No")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://www.sublimetext.com/3"})

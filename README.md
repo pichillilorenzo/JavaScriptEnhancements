@@ -2,14 +2,11 @@
 
 **JavaScript Enhancements** is a plugin for **Sublime Text 3**.
 
-I'm implementing new features thanks to **[Flow](https://github.com/facebook/flow)** (javascript static type checker from Facebook).
+This plugin uses **[Flow](https://github.com/facebook/flow)** (javascript static type checker from Facebook) under the hood.
 
-This is in **Beta version**. 
+This is in **Beta** version for testing. 
 
-I'm going to **release** a first testable version these days, so **WATCH** the repository to stay tuned for any news!
-
-It will offer not only a better **javascript autocomplete** but a lot of features about creating, 
-developing and managing **javascript projects**, such as:
+It offers better **javascript autocomplete** and also a lot of features about creating, developing and managing **javascript projects**, such as:
 
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 projects (same as Cordova projects!)
@@ -23,7 +20,7 @@ developing and managing **javascript projects**, such as:
 
 You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki))!
 
-It will turn Sublime Text into a **JavaScript IDE** like!
+It turns Sublime Text into a **JavaScript IDE** like!
 
 This project is based on my other Sublime Text plugin [JavaScript Completions](https://github.com/pichillilorenzo/JavaScript-Completions)
 
@@ -59,9 +56,9 @@ You can find more information about Flow on [flow.org](https://flow.org)
 
 ## Installation
 
-~~With [Package Control](https://packagecontrol.io/):~~
+With [Package Control](https://packagecontrol.io/):
 
-~~- Run “Package Control: Install Package” command or click to the `Preferences > Package Control` menu item, find and install `JavaScript Enhancements` plugin.~~
+- Run “Package Control: Install Package” command or click to the `Preferences > Package Control` menu item, find and install `JavaScript Enhancements` plugin.
 
 Manually:
 
