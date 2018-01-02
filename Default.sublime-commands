@@ -1,5 +1,5 @@
 [
-  { "caption": "JavaScript Enhancements Bookmarks: Toggle on Current Project", "command": "toggle_project_bookmarks"},
+  { "caption": "JavaScript Enhancements Bookmarks: Toggle on Current View", "command": "toggle_project_bookmarks"},
   { "caption": "JavaScript Enhancements Bookmarks: Show All on Current Project", "command": "show_project_bookmarks", "args": {"type": "global_project"} },
   { "caption": "JavaScript Enhancements Bookmarks: Show on Current View Project", "command": "show_project_bookmarks", "args": {"type": "view_project"} },
   { "caption": "JavaScript Enhancements Bookmarks: Delete All on Current Project", "command": "delete_project_bookmarks", "args": {"type": "global_project"} },

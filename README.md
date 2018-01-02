@@ -65,7 +65,8 @@ Manually:
 - Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
 
 ## Usage
-[Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) in progress.
+
+[See the Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki).
 
 ## Quick Overview
 

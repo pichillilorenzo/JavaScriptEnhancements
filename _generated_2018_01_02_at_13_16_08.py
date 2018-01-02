@@ -2905,7 +2905,7 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
           js_syntax += constructor_body
           js_syntax += "\n\t}\n\n"
           js_syntax += get_set
-          js_syntax += "\n}"
+          js_syntax += "\n\n}"
           js_syntax = Util.add_whitespace_indentation(view, regions, js_syntax)
           view.replace(edit, regions, js_syntax)
 
@@ -2947,7 +2947,7 @@ class split_string_lines_to_variableCommand(sublime_plugin.TextCommand):
         if item :
           lines = item.get("region_string_stripped")[1:-1].split("\n")
           str_splitted = list()
-          str_splitted.append("var str = \"\"")
+          str_splitted.append("let str = \"\"")
           for line in lines :
             line = line if scope_string == "string.template.js" else line.strip()[0:-1]
             line = line.strip()
@@ -4306,10 +4306,10 @@ class toggle_project_bookmarksCommand(sublime_plugin.TextCommand) :
       set_bookmarks(True)
 
   def is_enabled(self):
-    return is_project_view(self.view) and is_javascript_project()
+    return True if is_project_view(self.view) and is_javascript_project() else False
 
   def is_visible(self):
-    return is_project_view(self.view) and is_javascript_project()    
+    return True if is_project_view(self.view) and is_javascript_project() else False    
 
 class add_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
 
@@ -4322,10 +4322,10 @@ class add_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
       add_bookmark(view, row)
 
   def is_enabled(self):
-    return is_project_view(self.view) and is_javascript_project()
+    return True if is_project_view(self.view) and is_javascript_project() else False
 
   def is_visible(self):
-    return is_project_view(self.view) and is_javascript_project()
+    return True if is_project_view(self.view) and is_javascript_project() else False
 
 class show_project_bookmarksCommand(sublime_plugin.TextCommand):
 

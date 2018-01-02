@@ -139,10 +139,10 @@ class toggle_project_bookmarksCommand(sublime_plugin.TextCommand) :
       set_bookmarks(True)
 
   def is_enabled(self):
-    return is_project_view(self.view) and is_javascript_project()
+    return True if is_project_view(self.view) and is_javascript_project() else False
 
   def is_visible(self):
-    return is_project_view(self.view) and is_javascript_project()    
+    return True if is_project_view(self.view) and is_javascript_project() else False    
 
 class add_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
 
@@ -155,10 +155,10 @@ class add_project_bookmark_hereCommand(sublime_plugin.TextCommand) :
       add_bookmark(view, row)
 
   def is_enabled(self):
-    return is_project_view(self.view) and is_javascript_project()
+    return True if is_project_view(self.view) and is_javascript_project() else False
 
   def is_visible(self):
-    return is_project_view(self.view) and is_javascript_project()
+    return True if is_project_view(self.view) and is_javascript_project() else False
 
 class show_project_bookmarksCommand(sublime_plugin.TextCommand):
 

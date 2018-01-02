@@ -44,7 +44,7 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
           js_syntax += constructor_body
           js_syntax += "\n\t}\n\n"
           js_syntax += get_set
-          js_syntax += "\n}"
+          js_syntax += "\n\n}"
           js_syntax = Util.add_whitespace_indentation(view, regions, js_syntax)
           view.replace(edit, regions, js_syntax)
 

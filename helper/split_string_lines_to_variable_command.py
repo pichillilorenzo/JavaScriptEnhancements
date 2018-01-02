@@ -14,7 +14,7 @@ class split_string_lines_to_variableCommand(sublime_plugin.TextCommand):
         if item :
           lines = item.get("region_string_stripped")[1:-1].split("\n")
           str_splitted = list()
-          str_splitted.append("var str = \"\"")
+          str_splitted.append("let str = \"\"")
           for line in lines :
             line = line if scope_string == "string.template.js" else line.strip()[0:-1]
             line = line.strip()
