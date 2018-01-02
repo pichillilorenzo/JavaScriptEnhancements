@@ -9,24 +9,6 @@ NODE_MODULES_FOLDER_NAME = "node_modules"
 NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
 NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
 
-def get_node_js_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript Enhancements.sublime-settings"))
-  if json_file and "node_js_custom_path" in json_file :
-    return json_file.get("node_js_custom_path").strip()
-  return ""
-
-def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
-  if json_file and "npm_custom_path" in json_file :
-    return json_file.get("npm_custom_path").strip()
-  return ""
-
-def get_yarn_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
-  if json_file and "yarn_custom_path" in json_file :
-    return json_file.get("yarn_custom_path").strip()
-  return ""
-
 class NodeJS(object):
   def __init__(self, check_local = False):
     self.check_local = check_local
@@ -35,11 +17,11 @@ class NodeJS(object):
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_EXEC
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
       else :
-        self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
+        self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
     else :
-      self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
+      self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
 
   def eval(self, js, eval_type="eval", strict_mode=False):
 
@@ -182,12 +164,14 @@ class NPM(object):
     self.npm_path = ""
     self.yarn_path = ""
     self.cli_path = ""
+    self.node_js_path = ""
 
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
-        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_EXEC
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+        self.npm_path = settings["project_settings"]["npm_custom_path"] or javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
 
         if settings["project_settings"]["use_yarn"] and self.yarn_path :
           self.cli_path = self.yarn_path
@@ -195,13 +179,15 @@ class NPM(object):
           self.cli_path = self.npm_path
 
       else :
-        self.npm_path = get_npm_custom_path() or NPM_EXEC
-        self.yarn_path = get_yarn_custom_path() or YARN_EXEC
+        self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+        self.npm_path = javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+        self.yarn_path = javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
 
         self.cli_path = self.npm_path
     else :
-      self.npm_path = get_npm_custom_path() or NPM_EXEC
-      self.yarn_path = get_yarn_custom_path() or YARN_EXEC
+      self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+      self.npm_path = javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+      self.yarn_path = javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
 
       self.cli_path = self.npm_path
 
@@ -212,7 +198,7 @@ class NPM(object):
     if sublime.platform() == 'windows':
       args = [self.cli_path, command] + command_args
     else :
-      args = [self.cli_path, command] + command_args
+      args = [self.node_js_path, self.cli_path, command] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
@@ -251,7 +237,7 @@ class NPM(object):
     if sublime.platform() == 'windows':
       args = [self.cli_path, "-v"]
     else :
-      args = [self.node_js_path, self.cli_path, "-v"]
+      args = [self.cli_path, "-v"]
 
     result = Util.execute(args[0], args[1:])
 

@@ -24,12 +24,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.working_directory =  self.settings[self.settings_name]["working_directory"]
 
       if self.isNode:
-        self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_EXEC
+        self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
       elif self.isNpm:
         if self.settings["project_settings"]["use_yarn"]:
-          self.path_cli = self.settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_EXEC
+          self.path_cli = self.settings["project_settings"]["yarn_custom_path"] or javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
         else:
-          self.path_cli = self.settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
+          self.path_cli = self.settings["project_settings"]["npm_custom_path"] or javascriptCompletions.get("npm_custom_path") or NPM_EXEC
       else:
         self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli )
       self.command = kwargs.get("command")

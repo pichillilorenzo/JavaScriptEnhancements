@@ -135,24 +135,6 @@ NODE_MODULES_FOLDER_NAME = "node_modules"
 NODE_MODULES_PATH = os.path.join(PACKAGE_PATH, NODE_MODULES_FOLDER_NAME)
 NODE_MODULES_BIN_PATH = os.path.join(NODE_MODULES_PATH, ".bin")
 
-def get_node_js_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH,  "JavaScript Enhancements.sublime-settings"))
-  if json_file and "node_js_custom_path" in json_file :
-    return json_file.get("node_js_custom_path").strip()
-  return ""
-
-def get_npm_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
-  if json_file and "npm_custom_path" in json_file :
-    return json_file.get("npm_custom_path").strip()
-  return ""
-
-def get_yarn_custom_path():
-  json_file = Util.open_json(os.path.join(PACKAGE_PATH, "JavaScript Enhancements.sublime-settings"))
-  if json_file and "yarn_custom_path" in json_file :
-    return json_file.get("yarn_custom_path").strip()
-  return ""
-
 class NodeJS(object):
   def __init__(self, check_local = False):
     self.check_local = check_local
@@ -161,11 +143,11 @@ class NodeJS(object):
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_EXEC
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
       else :
-        self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
+        self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
     else :
-      self.node_js_path = get_node_js_custom_path() or NODE_JS_EXEC
+      self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
 
   def eval(self, js, eval_type="eval", strict_mode=False):
 
@@ -308,12 +290,14 @@ class NPM(object):
     self.npm_path = ""
     self.yarn_path = ""
     self.cli_path = ""
+    self.node_js_path = ""
 
     if self.check_local :
       settings = get_project_settings()
       if settings :
-        self.npm_path = settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
-        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_EXEC
+        self.node_js_path = settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+        self.npm_path = settings["project_settings"]["npm_custom_path"] or javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+        self.yarn_path = settings["project_settings"]["yarn_custom_path"] or javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
 
         if settings["project_settings"]["use_yarn"] and self.yarn_path :
           self.cli_path = self.yarn_path
@@ -321,13 +305,15 @@ class NPM(object):
           self.cli_path = self.npm_path
 
       else :
-        self.npm_path = get_npm_custom_path() or NPM_EXEC
-        self.yarn_path = get_yarn_custom_path() or YARN_EXEC
+        self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+        self.npm_path = javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+        self.yarn_path = javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
 
         self.cli_path = self.npm_path
     else :
-      self.npm_path = get_npm_custom_path() or NPM_EXEC
-      self.yarn_path = get_yarn_custom_path() or YARN_EXEC
+      self.node_js_path = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+      self.npm_path = javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+      self.yarn_path = javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
 
       self.cli_path = self.npm_path
 
@@ -338,7 +324,7 @@ class NPM(object):
     if sublime.platform() == 'windows':
       args = [self.cli_path, command] + command_args
     else :
-      args = [self.cli_path, command] + command_args
+      args = [self.node_js_path, self.cli_path, command] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
@@ -377,7 +363,7 @@ class NPM(object):
     if sublime.platform() == 'windows':
       args = [self.cli_path, "-v"]
     else :
-      args = [self.node_js_path, self.cli_path, "-v"]
+      args = [self.cli_path, "-v"]
 
     result = Util.execute(args[0], args[1:])
 
@@ -837,7 +823,11 @@ class Util(object) :
 
     if wait_terminate :
 
-      with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
+      env = os.environ.copy()
+      env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
+      shell = os.getenv('SHELL')
+
+      with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
 
         lines_output = []
         lines_error = []
@@ -863,7 +853,11 @@ class Util(object) :
   @staticmethod
   def _wrapper_func_stdout(args, func_stdout, args_func_stdout=[], chdir=""):
 
-    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
+    env = os.environ.copy()
+    env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
+    shell = os.getenv('SHELL')
+
+    with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
 
       func_stdout(None, p, *args_func_stdout)
       
@@ -1550,12 +1544,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.working_directory =  self.settings[self.settings_name]["working_directory"]
 
       if self.isNode:
-        self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or get_node_js_custom_path() or NODE_JS_EXEC
+        self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
       elif self.isNpm:
         if self.settings["project_settings"]["use_yarn"]:
-          self.path_cli = self.settings["project_settings"]["yarn_custom_path"] or get_yarn_custom_path() or YARN_EXEC
+          self.path_cli = self.settings["project_settings"]["yarn_custom_path"] or javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
         else:
-          self.path_cli = self.settings["project_settings"]["npm_custom_path"] or get_npm_custom_path() or NPM_EXEC
+          self.path_cli = self.settings["project_settings"]["npm_custom_path"] or javascriptCompletions.get("npm_custom_path") or NPM_EXEC
       else:
         self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli )
       self.command = kwargs.get("command")
@@ -4863,7 +4857,7 @@ def start():
   try:
     sys.modules["TerminalView"]
   except Exception as err:
-    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin. Do you want open the github repo of it?", "Yes, open it", "No")
+    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
     return
@@ -4877,9 +4871,22 @@ def start():
 
   node = NodeJS(check_local=True)
   try:
-    node.getCurrentNodeJSVersion()
+    print(node.getCurrentNodeJSVersion())
   except Exception as err: 
-    response = sublime.yes_no_cancel_dialog("Error during installation: node.js is not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin. Do you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    print(err)
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
+    elif response == sublime.DIALOG_NO:
+      sublime.active_window().run_command("open_url", args={"url": "https://github.com/creationix/nvm"})
+    return
+
+  npm = NPM(check_local=True)
+  try:
+    print(npm.getCurrentNPMVersion())
+  except Exception as err: 
+    print(err)
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
     elif response == sublime.DIALOG_NO:

@@ -113,7 +113,7 @@ def start():
   try:
     sys.modules["TerminalView"]
   except Exception as err:
-    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin. Do you want open the github repo of it?", "Yes, open it", "No")
+    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
     return
@@ -127,9 +127,22 @@ def start():
 
   node = NodeJS(check_local=True)
   try:
-    node.getCurrentNodeJSVersion()
+    print(node.getCurrentNodeJSVersion())
   except Exception as err: 
-    response = sublime.yes_no_cancel_dialog("Error during installation: node.js is not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin. Do you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    print(err)
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    if response == sublime.DIALOG_YES:
+      sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
+    elif response == sublime.DIALOG_NO:
+      sublime.active_window().run_command("open_url", args={"url": "https://github.com/creationix/nvm"})
+    return
+
+  npm = NPM(check_local=True)
+  try:
+    print(npm.getCurrentNPMVersion())
+  except Exception as err: 
+    print(err)
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
     elif response == sublime.DIALOG_NO:

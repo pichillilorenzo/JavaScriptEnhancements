@@ -449,7 +449,11 @@ class Util(object) :
 
     if wait_terminate :
 
-      with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
+      env = os.environ.copy()
+      env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
+      shell = os.getenv('SHELL')
+
+      with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
 
         lines_output = []
         lines_error = []
@@ -475,7 +479,11 @@ class Util(object) :
   @staticmethod
   def _wrapper_func_stdout(args, func_stdout, args_func_stdout=[], chdir=""):
 
-    with subprocess.Popen(args, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
+    env = os.environ.copy()
+    env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
+    shell = os.getenv('SHELL')
+
+    with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
 
       func_stdout(None, p, *args_func_stdout)
       

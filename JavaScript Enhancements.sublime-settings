@@ -1,5 +1,6 @@
 {
   "enable_can_i_use_menu_option": true,
+  "PATH": "",
   "node_js_custom_path": "node",
   "npm_custom_path": "npm",
   "yarn_custom_path": "yarn",
