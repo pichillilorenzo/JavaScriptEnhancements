@@ -56,7 +56,7 @@ You can find more information about Flow on [flow.org](https://flow.org)
 
 ## Installation
 
-With [Package Control](https://packagecontrol.io/):
+With [Package Control](https://packagecontrol.io/) (**NOT PUBLISHED YET**):
 
 - Run “Package Control: Install Package” command or click to the `Preferences > Package Control` menu item, find and install `JavaScript Enhancements` plugin.
 
