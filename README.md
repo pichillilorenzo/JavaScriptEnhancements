@@ -62,9 +62,10 @@ With [Package Control](https://packagecontrol.io/) (**NOT PUBLISHED YET**):
 
 Manually:
 
-- Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
+1. Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
+2. Rename the folder with `JavaScript Enhancements` name (**THIS STEP IS IMPORTANT**).
 
-## Fixing node.js and npm custom path
+### Fixing node.js and npm custom path
 
 If the plugin gives to you message errors like `Error during installation: "node.js" seems not installed on your system...` but instead you have installed node.js and npm (for example using [nvm](https://github.com/creationix/nvm)), then you could try to set your custom path in the [Global settings](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Global-settings) of the plugin and then restart Sublime Text.
 
