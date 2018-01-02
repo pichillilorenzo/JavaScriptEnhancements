@@ -64,6 +64,26 @@ Manually:
 
 - Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
 
+## Fixing node.js and npm custom path
+
+If the plugin gives to you message errors like `Error during installation: "node.js" seems not installed on your system...` but instead you have installed node.js and npm (for example using [nvm](https://github.com/creationix/nvm)), then you could try to set your custom path in the [Global settings](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Global-settings) of the plugin and then restart Sublime Text.
+
+If this not works too, then you could try to add the custom path that contains binaries of node.js and npm in the **`PATH`** key-value on the same JavaScript Enhancements settings file. This variable will be **concatenated** to the **$PATH** environment variable, so you could use the same syntax in it. After that you need to restart Sublime Text. Example of a global setting for `Linux` that uses `nvm`:
+
+```
+{
+  // ...
+
+  "PATH": ":/home/lorenzo/.nvm/versions/node/v9.2.0/bin",
+  "node_js_custom_path": "node",
+  "npm_custom_path": "npm",
+
+  // ...
+}
+```
+
+**REMEMBER** to add `:` at the begin of the `PATH` value!! Like I already said, it uses the same syntax for the $PATH environment variable.
+
 ## Usage
 
 [See the Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki).
