@@ -1,6 +1,10 @@
 import sublime, sublime_plugin
 import os, tempfile
 
+# list of threads that are used to check if there are 
+# multiple async completions tooltip queued (fix for tooltip stuttering)
+javascript_completions_thread_list = []
+
 def build_type_from_func_details(comp_details):
   if comp_details :
 
@@ -54,7 +58,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
   def on_query_completions(self, view, prefix, locations):
     # Return the pending completions and clear them
-
+    # 
     if not view.match_selector(
         locations[0],
         'source.js - string - comment'
@@ -75,16 +79,20 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.completions_ready = False
       return self.completions
 
-    sublime.set_timeout_async(
-      lambda: self.on_query_completions_async(
-        view, prefix, locations
-      )
-    )
+    global javascript_completions_thread_list
+
+    javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, prefix, locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
+
+    # sublime.set_timeout_async(
+    #   lambda: self.on_query_completions_async(
+    #     view, prefix, locations
+    #   )
+    # )
     
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-  def on_query_completions_async(self, view, prefix, locations):
+  def on_query_completions_async(self, view, prefix, locations, index_thread):
     self.completions = None
 
     if not view.match_selector(
@@ -177,7 +185,15 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       view = sublime.active_window().active_view()
       sel = view.sel()[0]
       if view.substr(view.word(sel)).strip() :
+
+        global javascript_completions_thread_list
+
+        if len(javascript_completions_thread_list) == 0 or index_thread+1 < len(javascript_completions_thread_list):
+          return
+
         self.run_auto_complete()
+
+        javascript_completions_thread_list = []
 
   def on_text_command(self, view, command_name, args):
     sel = view.sel()[0]
@@ -215,8 +231,11 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       locations = list()
       locations.append(selections[0].begin())
 
-      sublime.set_timeout_async(
-        lambda: self.on_query_completions_async(
-          view, "", locations
-        )
-      )
+      global javascript_completions_thread_list
+
+      javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, "", locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
+      # sublime.set_timeout_async(
+      #   lambda: self.on_query_completions_async(
+      #     view, "", locations
+      #   )
+      # )

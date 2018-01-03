@@ -4,7 +4,7 @@
 
 This plugin uses **[Flow](https://github.com/facebook/flow)** (javascript static type checker from Facebook) under the hood.
 
-This is in **Beta** version for testing. 
+This is in **BETA** version for **testing**. 
 
 It offers better **javascript autocomplete** and also a lot of features about creating, developing and managing **javascript projects**, such as:
 
@@ -18,7 +18,7 @@ It offers better **javascript autocomplete** and also a lot of features about cr
 - JavaScript real-time errors
 - etc.
 
-You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki))!
+You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project))!
 
 It turns Sublime Text into a **JavaScript IDE** like!
 
@@ -69,7 +69,7 @@ Manually:
 
 If the plugin gives to you message errors like `Error during installation: "node.js" seems not installed on your system...` but instead you have installed node.js and npm (for example using [nvm](https://github.com/creationix/nvm)), then you could try to set your custom path in the [Global settings](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Global-settings) of the plugin and then restart Sublime Text.
 
-If this not works too, then you could try to add the custom path that contains binaries of node.js and npm in the **`PATH`** key-value on the same JavaScript Enhancements settings file. This variable will be **concatenated** to the **$PATH** environment variable, so you could use the same syntax in it. After that you need to restart Sublime Text. Example of a global setting for `Linux` that uses `nvm`:
+If this not works too, then you could try to add the custom path that contains binaries of node.js and npm in the **`PATH`** key-value on the same JavaScript Enhancements settings file. This variable will be **appended** to the **$PATH** environment variable, so you could use the same syntax in it. After that you need to restart Sublime Text. Example of a global setting for `Linux` that uses `nvm`:
 
 ```
 {
@@ -107,6 +107,10 @@ See the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) f
 ## Support
 
 Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
+
+### Issues
+
+For any problems, open an issue with the Sublime Text console logs please!
 
 ### Feature request/enhancement
 

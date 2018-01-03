@@ -1230,9 +1230,10 @@ class startPlugin():
       if result[0]: 
         sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
       else:
+        print(result)
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
-        sublime.error_message("Error during installation: can not install the npm dependencies for JavaScript Enhancements.")
+        sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
     # else:
     #   result = npm.update_all()
     #   if not result[0]: 
@@ -2976,6 +2977,10 @@ javascriptCompletions = JavaScriptCompletions()
 import sublime, sublime_plugin
 import os, tempfile
 
+# list of threads that are used to check if there are 
+# multiple async completions tooltip queued (fix for tooltip stuttering)
+javascript_completions_thread_list = []
+
 def build_type_from_func_details(comp_details):
   if comp_details :
 
@@ -3029,7 +3034,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
   def on_query_completions(self, view, prefix, locations):
     # Return the pending completions and clear them
-
+    # 
     if not view.match_selector(
         locations[0],
         'source.js - string - comment'
@@ -3050,16 +3055,20 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.completions_ready = False
       return self.completions
 
-    sublime.set_timeout_async(
-      lambda: self.on_query_completions_async(
-        view, prefix, locations
-      )
-    )
+    global javascript_completions_thread_list
+
+    javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, prefix, locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
+
+    # sublime.set_timeout_async(
+    #   lambda: self.on_query_completions_async(
+    #     view, prefix, locations
+    #   )
+    # )
     
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-  def on_query_completions_async(self, view, prefix, locations):
+  def on_query_completions_async(self, view, prefix, locations, index_thread):
     self.completions = None
 
     if not view.match_selector(
@@ -3152,7 +3161,15 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       view = sublime.active_window().active_view()
       sel = view.sel()[0]
       if view.substr(view.word(sel)).strip() :
+
+        global javascript_completions_thread_list
+
+        if len(javascript_completions_thread_list) == 0 or index_thread+1 < len(javascript_completions_thread_list):
+          return
+
         self.run_auto_complete()
+
+        javascript_completions_thread_list = []
 
   def on_text_command(self, view, command_name, args):
     sel = view.sel()[0]
@@ -3190,11 +3207,14 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       locations = list()
       locations.append(selections[0].begin())
 
-      sublime.set_timeout_async(
-        lambda: self.on_query_completions_async(
-          view, "", locations
-        )
-      )
+      global javascript_completions_thread_list
+
+      javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, "", locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
+      # sublime.set_timeout_async(
+      #   lambda: self.on_query_completions_async(
+      #     view, "", locations
+      #   )
+      # )
 
 
 import sublime, sublime_plugin
