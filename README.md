@@ -27,10 +27,14 @@ This project is based on my other Sublime Text plugin [JavaScript Completions](h
 **Note**: 
 If you want use this plugin, you may want **uninstall/disable** the **JavaScript Completions** plugin, if installed.
 
-## OS supported now
+## OS SUPPORTED NOW
 
 - Linux (64-bit)
-- Mac OS X 
+- Mac OS X
+
+### For Windows users
+
+For Windows support I will create a **degraded** mode without the use of **[TerminalView](https://github.com/Wramberg/TerminalView)** plugin these days, so **WATCH** the repository. Unfortunately the TerminalView plugin supports only **Linux-based OS** 😞 . Has someone any advice or idea about that? Is there something similar to the TerminalView plugin for Windows?? Thanks!
 
 ## Dependencies
 

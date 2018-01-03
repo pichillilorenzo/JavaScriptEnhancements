@@ -393,7 +393,7 @@ class NPM(object):
     raise Exception(result[1])
 
 import sublime, sublime_plugin
-import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex, pty
+import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
 
 class Util(object) :
 
