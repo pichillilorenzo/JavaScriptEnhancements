@@ -71,6 +71,7 @@ class startPlugin():
     node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
     npm = NPM()
     if not os.path.exists(node_modules_path):
+      sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
       result = npm.install_all()
       if result[0]: 
         sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
@@ -78,7 +79,7 @@ class startPlugin():
         print(result)
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
-        sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
+        sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in a way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
     # else:
     #   result = npm.update_all()
     #   if not result[0]: 
@@ -104,10 +105,12 @@ def start():
   global mainPlugin
 
   if sublime.platform() == 'windows':
+    print(sublime.platform())
     sublime.error_message("Windows is not supported by this plugin for now.")
     return
 
   if platform.architecture()[0] != "64bit":
+    print(platform.architecture())
     sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
     return
 

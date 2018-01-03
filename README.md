@@ -69,7 +69,7 @@ Manually:
 
 If the plugin gives to you message errors like `Error during installation: "node.js" seems not installed on your system...` but instead you have installed node.js and npm (for example using [nvm](https://github.com/creationix/nvm)), then you could try to set your custom path in the [Global settings](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Global-settings) of the plugin and then restart Sublime Text.
 
-If this not works too, then you could try to add the custom path that contains binaries of node.js and npm in the **`PATH`** key-value on the same JavaScript Enhancements settings file. This variable will be **appended** to the **$PATH** environment variable, so you could use the same syntax in it. After that you need to restart Sublime Text. Example of a global setting for `Linux` that uses `nvm`:
+If this doesn't work too, then you could try to add the custom path that contains binaries of node.js and npm in the **`PATH`** key-value on the same JavaScript Enhancements settings file. This variable will be **appended** to the **$PATH** environment variable, so you could use the same syntax in it. After this you need to restart Sublime Text. Example of a global setting for `Linux` that uses `nvm`:
 
 ```
 {

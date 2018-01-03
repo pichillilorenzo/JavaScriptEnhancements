@@ -212,7 +212,16 @@ class NodeJS(object):
 
       args = ( shlex.quote(self.node_js_path)+" " if use_node else "") +shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
-      #print(args)
+    #print(args)
+      
+    old_env = os.environ.copy()
+
+    new_env = old_env.copy()
+    new_env["PATH"] = new_env["PATH"] + javascriptCompletions.get("PATH")
+
+    # update the PATH environment variable
+    os.environ.update(new_env)
+      
     try:
       output = None
       result = None
@@ -224,7 +233,10 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT
       )
-      
+
+      # reset the PATH environment variable
+      os.environ.update(old_env)
+
       if chdir:
         os.chdir(owd)
 
@@ -266,7 +278,11 @@ class NodeJS(object):
         fp.close()
       return [True, result]
     except subprocess.CalledProcessError as e:
-      #print(traceback.format_exc())
+      print(traceback.format_exc())
+      
+      # reset the PATH environment variable
+      os.environ.update(old_env)
+
       try:
         result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
         if use_fp_temp :
@@ -279,6 +295,10 @@ class NodeJS(object):
 
         return [False, None]
     except:
+
+      # reset the PATH environment variable
+      os.environ.update(old_env)
+
       print(traceback.format_exc())
       if use_fp_temp :
         fp.close()
@@ -1226,6 +1246,7 @@ class startPlugin():
     node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
     npm = NPM()
     if not os.path.exists(node_modules_path):
+      sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
       result = npm.install_all()
       if result[0]: 
         sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
@@ -1233,7 +1254,7 @@ class startPlugin():
         print(result)
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
-        sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
+        sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in a way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
     # else:
     #   result = npm.update_all()
     #   if not result[0]: 
@@ -4867,10 +4888,12 @@ def start():
   global mainPlugin
 
   if sublime.platform() == 'windows':
+    print(sublime.platform())
     sublime.error_message("Windows is not supported by this plugin for now.")
     return
 
   if platform.architecture()[0] != "64bit":
+    print(platform.architecture())
     sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
     return
 
