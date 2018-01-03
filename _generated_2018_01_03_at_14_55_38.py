@@ -3055,7 +3055,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
   def on_query_completions(self, view, prefix, locations):
     # Return the pending completions and clear them
-    # 
+
     if not view.match_selector(
         locations[0],
         'source.js - string - comment'
@@ -3066,7 +3066,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
     scope = view.scope_name(view.sel()[0].begin()-1).strip()
 
-    if not prefix and not scope.endswith(" punctuation.accessor.js") :
+    # added "keyword.operator.accessor.js" for JavaScript (Babel) support
+    if not prefix and not (scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js")) :
       sublime.active_window().active_view().run_command(
         'hide_auto_complete'
       )
@@ -3202,7 +3203,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
     if command_name == "left_delete" :
       scope = view.scope_name(view.sel()[0].begin()-1).strip()
-      if scope.endswith(" punctuation.accessor.js") :
+      if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
         sublime.active_window().active_view().run_command(
           'hide_auto_complete'
         )
@@ -3223,7 +3224,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     scope1 = view.scope_name(selections[0].begin()-1).strip()
     scope2 = view.scope_name(selections[0].begin()-2).strip()
 
-    if scope1.endswith(" punctuation.accessor.js") and not scope2.endswith(" punctuation.accessor.js") and view.substr(selections[0].begin()-2).strip() :
+    if (scope1.endswith(" punctuation.accessor.js") or scope1.endswith(" keyword.operator.accessor.js")) and not (scope2.endswith(" punctuation.accessor.js") or scope2.endswith(" keyword.operator.accessor.js")) and view.substr(selections[0].begin()-2).strip() :
     
       locations = list()
       locations.append(selections[0].begin())
@@ -4010,7 +4011,10 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
     row_region, col_region = view.rowcol(region_hover_error.begin())
     row_region, endcol_region = view.rowcol(region_hover_error.end())
-
+    # print(view.substr(region_hover_error).split("\n"))
+    # print(self.description_by_row_column)
+    # print(str(row_region)+":"+str(col_region)+":"+str(endcol_region))
+    # return
     error = self.description_by_row_column[str(row_region)+":"+str(col_region)+":"+str(endcol_region)]
     
     if error:

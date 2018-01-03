@@ -157,7 +157,10 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
 
     row_region, col_region = view.rowcol(region_hover_error.begin())
     row_region, endcol_region = view.rowcol(region_hover_error.end())
-
+    # print(view.substr(region_hover_error).split("\n"))
+    # print(self.description_by_row_column)
+    # print(str(row_region)+":"+str(col_region)+":"+str(endcol_region))
+    # return
     error = self.description_by_row_column[str(row_region)+":"+str(col_region)+":"+str(endcol_region)]
     
     if error:

@@ -1,0 +1,79 @@
+v0.1.13
+
+## Fixes
+
+- added "keyword.operator.accessor.js" for JavaScript (Babel) support, fix "Not checking non-flow files" #7
+
+
+=================================================================
+** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **
+=================================================================
+
+If you like it, remember to star it ⭐ on GitHub: https://github.com/pichillilorenzo/JavaScriptEnhancements
+
+** USAGE **
+===========
+
+See how it works on the Wiki: 👉👉 https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki 👈👈
+
+
+** WHAT IS THIS? **
+===================
+
+This plugin uses Flow (javascript static type checker from Facebook) under the hood.
+
+It offers better javascript autocomplete and a lot of features about creating, 
+developing and managing javascript projects, such as:
+
+- Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
+- Ionic v1 and v2 projects (same as Cordova projects!)
+- Angular v1 and v2 projects
+- React projects
+- Express projects
+- Yeoman generators
+- Local bookmarks project
+- JavaScript real-time errors
+- etc.
+
+You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project)!
+
+It turns Sublime Text into a JavaScript IDE like!
+
+This project is based on my other Sublime Text plugin JavaScript Completions (https://github.com/pichillilorenzo/JavaScript-Completions)
+
+** NOTE **
+If you want use this plugin, you may want uninstall/disable the JavaScript Completions plugin, if installed.
+
+** OS SUPPORTED NOW **
+======================
+
+👉 Linux (64-bit)
+👉 Mac OS X 
+
+❗❗ Dependencies ❗❗
+=======================
+
+In order to work properly, this plugin has some dependencies:
+
+👉 Sublime Text 3 (build 3124 or newer)
+👉 Node.js and npm (https://nodejs.org or nvm (https://github.com/creationix/nvm))
+👉 TerminalView sublime text plugin (https://github.com/Wramberg/TerminalView)
+
+Not required, but useful for typescript files (Flow wont work on this type of files):
+
+👉 TypeScript sublime text plugin (https://github.com/Microsoft/TypeScript-Sublime-Plugin) 
+
+** Flow Requirements **
+=======================
+
+It use [Flow](https://github.com/facebook/flow) for type checking and auto-completions.
+
+👉 Mac OS X
+👉 Linux (64-bit)
+👉 Windows (64-bit)
+
+Email me for any questions or doubts about this new project on: pichillilorenzo@gmail.com
+
+Thanks for your support! 😄😄
+
+MIT License
