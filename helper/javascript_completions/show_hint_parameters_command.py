@@ -2,21 +2,56 @@ import sublime, sublime_plugin
 
 class show_hint_parametersCommand(sublime_plugin.TextCommand):
   
+  # flow doesn't work with meta.function-call.constructor.js
+  meta_fun_calls = [
+    "meta.function-call.method.js", 
+    "meta.function-call.js",
+    # JavaScript (Babel) Syntax support
+    "meta.function-call.with-arguments.js",
+    "meta.function-call.static.with-arguments.js",
+    "meta.function-call.method.with-arguments.js",
+    "meta.function-call.without-arguments.js",
+    "meta.function-call.static.without-arguments.js",
+    "meta.function-call.method.without-arguments.js",
+    "meta.function-call.tagged-template.js",
+    "source.js"
+  ]
+
+  meta_groups = [
+    "meta.group.js",
+    # JavaScript (Babel) Syntax support, this order is important!
+    "meta.group.braces.round.function.arguments.js",
+    "meta.group.braces.round.js"
+  ]
+
   def run(self, edit, **args):
     view = self.view
 
-    scope = view.scope_name(view.sel()[0].begin()).strip()
+    point = view.sel()[0].begin()
+    
+    meta_group = 0
+    mate_group_scope = ""
 
-    meta_fun_call = "meta.function-call.method.js"
-    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    for mt in self.meta_groups:
+      meta_group = view.scope_name(point).strip().split(" ").count(mt)
+      if meta_group > 0:
+        mate_group_scope = mt
+        break
 
-    if not result :
-      meta_fun_call = "meta.function-call.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    if meta_group == 0:
+      return
 
-    if result :
-      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
-      sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin()))
+    while point >= 0:
+      scope = view.scope_name(point).strip()
+      scope_splitted = scope.split(" ")
+      if len(scope_splitted) < 2:
+        return 
+
+      if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
+        sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin(), show_hint=True))
+        return
+
+      point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1
 
   def is_enabled(self) :
     view = self.view
@@ -27,36 +62,32 @@ class show_hint_parametersCommand(sublime_plugin.TextCommand):
     ):
       return False
 
-    scope = view.scope_name(view.sel()[0].begin()).strip()
+    point = view.sel()[0].begin()
     
-    meta_fun_call = "meta.function-call.method.js"
-    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    meta_group = 0
+    mate_group_scope = ""
 
-    if not result :
-      meta_fun_call = "meta.function-call.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    for mt in self.meta_groups:
+      meta_group = view.scope_name(point).strip().split(" ").count(mt)
+      if meta_group > 0:
+        mate_group_scope = mt
+        break
 
-    if result :
-      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+    if meta_group == 0:
+      return False
+
+    while point >= 0:
+      scope = view.scope_name(point).strip()
       scope_splitted = scope.split(" ")
-      find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
-      find_and_get_scope_splitted = find_and_get_scope.split(" ")
-      if (
-          (
-            len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
-            or scope == find_and_get_scope 
-            or (
-                len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
-                and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
-                  ) 
-              ) 
-          ) 
-          and not scope.endswith("meta.block.js") 
-          and not scope.endswith("meta.object-literal.js")
-        ) :
+      if len(scope_splitted) < 2:
+        return False
+
+      if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
+        #print(view.substr(view.word(point)))
         return True
+
+      point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1
+
     return False
 
   def is_visible(self) :
@@ -67,35 +98,31 @@ class show_hint_parametersCommand(sublime_plugin.TextCommand):
         'source.js - comment'
     ):
       return False
-
-    scope = view.scope_name(view.sel()[0].begin()).strip()
     
-    meta_fun_call = "meta.function-call.method.js"
-    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    point = view.sel()[0].begin()
+    
+    meta_group = 0
+    mate_group_scope = ""
 
-    if not result :
-      meta_fun_call = "meta.function-call.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    for mt in self.meta_groups:
+      meta_group = view.scope_name(point).strip().split(" ").count(mt)
+      if meta_group > 0:
+        mate_group_scope = mt
+        break
 
-    if result :
-      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+    if meta_group == 0:
+      return False
+
+    while point >= 0:
+      scope = view.scope_name(point).strip()
       scope_splitted = scope.split(" ")
-      find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
-      find_and_get_scope_splitted = find_and_get_scope.split(" ")
-      if (
-          (
-            len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
-            or scope == find_and_get_scope 
-            or (
-                len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
-                and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
-                  ) 
-              ) 
-          ) 
-          and not scope.endswith("meta.block.js") 
-          and not scope.endswith("meta.object-literal.js")
-        ) :
+      if len(scope_splitted) < 2:
+        return False
+
+      if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
         return True
+
+      point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1
+
     return False
+    

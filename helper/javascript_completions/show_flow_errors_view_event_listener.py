@@ -156,12 +156,9 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       return 
 
     row_region, col_region = view.rowcol(region_hover_error.begin())
-    row_region, endcol_region = view.rowcol(region_hover_error.end())
-    # print(view.substr(region_hover_error).split("\n"))
-    # print(self.description_by_row_column)
-    # print(str(row_region)+":"+str(col_region)+":"+str(endcol_region))
-    # return
-    error = self.description_by_row_column[str(row_region)+":"+str(col_region)+":"+str(endcol_region)]
+    end_row_region, endcol_region = view.rowcol(region_hover_error.end())
+
+    error = self.description_by_row_column[str(row_region)+":"+str(end_row_region)+":"+str(col_region)+":"+str(endcol_region)]
     
     if error:
       text = cgi.escape(error).split(" ")
@@ -176,9 +173,9 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
         html += text[len(text) - 1]
 
       row_region, col_region = view.rowcol(region_hover_error.begin())
-      row_region, endcol_region = view.rowcol(region_hover_error.end())
+      end_row_region, endcol_region = view.rowcol(region_hover_error.end())
       
-      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.8em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
+      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.8em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.HIDE_ON_MOUSE_MOVE_AWAY, point, 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
   def on_selection_modified_async(self, *args) :
 

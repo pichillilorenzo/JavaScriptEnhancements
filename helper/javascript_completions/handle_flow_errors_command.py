@@ -75,6 +75,7 @@ def show_flow_errors(view) :
           message = error['message'][i]
           if i == 0 :
             row = int(message['line']) + deps.row_offset - 1
+            endrow = int(message['endline']) + deps.row_offset - 1
             col = int(message['start']) - 1
             endcol = int(message['end'])
 
@@ -82,7 +83,7 @@ def show_flow_errors(view) :
             #   col = col - len("/* @flow weak */")
             #   endcol = endcol - len("/* @flow weak */")
 
-            regions.append(Util.rowcol_to_region(view, row, col, endcol))
+            regions.append(Util.rowcol_to_region(view, row, endrow, col, endcol))
 
             if operation:
               description += operation["descr"]
@@ -102,7 +103,8 @@ def show_flow_errors(view) :
           if row_description and description not in row_description:
             description_by_row[row]["description"] += '; ' + description
 
-          description_by_row_column[str(row)+":"+str(col)+":"+str(endcol)] = description
+          print(str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol))
+          description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)] = description
             
       errors = result[1]['errors']
 

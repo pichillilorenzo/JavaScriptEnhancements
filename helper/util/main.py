@@ -279,9 +279,9 @@ class Util(object) :
     return first_region
 
   @staticmethod
-  def rowcol_to_region(view, row, col, endcol):
+  def rowcol_to_region(view, row, endrow, col, endcol):
     start = view.text_point(row, col)
-    end = view.text_point(row, endcol)
+    end = view.text_point(endrow, endcol)
     return sublime.Region(start, end)
   
   @staticmethod

@@ -659,218 +659,218 @@
       }
     ],
     [
-      "Blob\t[class: Blobundefined]",
+      "Blob\t[class: Blob]",
       "Blob",
       {
         "name": "Blob",
-        "type": "[class: Blobundefined]",
+        "type": "[class: Blob]",
         "func_details": null
       }
     ],
     [
-      "FileReader\t[class: FileReaderundefined]",
+      "FileReader\t[class: FileReader]",
       "FileReader",
       {
         "name": "FileReader",
-        "type": "[class: FileReaderundefined]",
+        "type": "[class: FileReader]",
         "func_details": null
       }
     ],
     [
-      "File\t[class: Fileundefined]",
+      "File\t[class: File]",
       "File",
       {
         "name": "File",
-        "type": "[class: Fileundefined]",
+        "type": "[class: File]",
         "func_details": null
       }
     ],
     [
-      "FileList\t[class: FileListundefined]",
+      "FileList\t[class: FileList]",
       "FileList",
       {
         "name": "FileList",
-        "type": "[class: FileListundefined]",
+        "type": "[class: FileList]",
         "func_details": null
       }
     ],
     [
-      "DataTransfer\t[class: DataTransferundefined]",
+      "DataTransfer\t[class: DataTransfer]",
       "DataTransfer",
       {
         "name": "DataTransfer",
-        "type": "[class: DataTransferundefined]",
+        "type": "[class: DataTransfer]",
         "func_details": null
       }
     ],
     [
-      "DataTransferItemList\t[class: DataTransferItemListundefined]",
+      "DataTransferItemList\t[class: DataTransferItemList]",
       "DataTransferItemList",
       {
         "name": "DataTransferItemList",
-        "type": "[class: DataTransferItemListundefined]",
+        "type": "[class: DataTransferItemList]",
         "func_details": null
       }
     ],
     [
-      "DataTransferItem\t[class: DataTransferItemundefined]",
+      "DataTransferItem\t[class: DataTransferItem]",
       "DataTransferItem",
       {
         "name": "DataTransferItem",
-        "type": "[class: DataTransferItemundefined]",
+        "type": "[class: DataTransferItem]",
         "func_details": null
       }
     ],
     [
-      "DOMError\t[class: DOMErrorundefined]",
+      "DOMError\t[class: DOMError]",
       "DOMError",
       {
         "name": "DOMError",
-        "type": "[class: DOMErrorundefined]",
+        "type": "[class: DOMError]",
         "func_details": null
       }
     ],
     [
-      "EventTarget\t[class: EventTargetundefined]",
+      "EventTarget\t[class: EventTarget]",
       "EventTarget",
       {
         "name": "EventTarget",
-        "type": "[class: EventTargetundefined]",
+        "type": "[class: EventTarget]",
         "func_details": null
       }
     ],
     [
-      "Event\t[class: Eventundefined]",
+      "Event\t[class: Event]",
       "Event",
       {
         "name": "Event",
-        "type": "[class: Eventundefined]",
+        "type": "[class: Event]",
         "func_details": null
       }
     ],
     [
-      "CustomEvent\t[class: CustomEventundefined]",
+      "CustomEvent\t[class: CustomEvent]",
       "CustomEvent",
       {
         "name": "CustomEvent",
-        "type": "[class: CustomEventundefined]",
+        "type": "[class: CustomEvent]",
         "func_details": null
       }
     ],
     [
-      "UIEvent\t[class: UIEventundefined]",
+      "UIEvent\t[class: UIEvent]",
       "UIEvent",
       {
         "name": "UIEvent",
-        "type": "[class: UIEventundefined]",
+        "type": "[class: UIEvent]",
         "func_details": null
       }
     ],
     [
-      "MouseEvent\t[class: MouseEventundefined]",
+      "MouseEvent\t[class: MouseEvent]",
       "MouseEvent",
       {
         "name": "MouseEvent",
-        "type": "[class: MouseEventundefined]",
+        "type": "[class: MouseEvent]",
         "func_details": null
       }
     ],
     [
-      "WheelEvent\t[class: WheelEventundefined]",
+      "WheelEvent\t[class: WheelEvent]",
       "WheelEvent",
       {
         "name": "WheelEvent",
-        "type": "[class: WheelEventundefined]",
+        "type": "[class: WheelEvent]",
         "func_details": null
       }
     ],
     [
-      "DragEvent\t[class: DragEventundefined]",
+      "DragEvent\t[class: DragEvent]",
       "DragEvent",
       {
         "name": "DragEvent",
-        "type": "[class: DragEventundefined]",
+        "type": "[class: DragEvent]",
         "func_details": null
       }
     ],
     [
-      "ProgressEvent\t[class: ProgressEventundefined]",
+      "ProgressEvent\t[class: ProgressEvent]",
       "ProgressEvent",
       {
         "name": "ProgressEvent",
-        "type": "[class: ProgressEventundefined]",
+        "type": "[class: ProgressEvent]",
         "func_details": null
       }
     ],
     [
-      "PromiseRejectionEvent\t[class: PromiseRejectionEventundefined]",
+      "PromiseRejectionEvent\t[class: PromiseRejectionEvent]",
       "PromiseRejectionEvent",
       {
         "name": "PromiseRejectionEvent",
-        "type": "[class: PromiseRejectionEventundefined]",
+        "type": "[class: PromiseRejectionEvent]",
         "func_details": null
       }
     ],
     [
-      "MessageEvent\t[class: MessageEventundefined]",
+      "MessageEvent\t[class: MessageEvent]",
       "MessageEvent",
       {
         "name": "MessageEvent",
-        "type": "[class: MessageEventundefined]",
+        "type": "[class: MessageEvent]",
         "func_details": null
       }
     ],
     [
-      "KeyboardEvent\t[class: KeyboardEventundefined]",
+      "KeyboardEvent\t[class: KeyboardEvent]",
       "KeyboardEvent",
       {
         "name": "KeyboardEvent",
-        "type": "[class: KeyboardEventundefined]",
+        "type": "[class: KeyboardEvent]",
         "func_details": null
       }
     ],
     [
-      "AnimationEvent\t[class: AnimationEventundefined]",
+      "AnimationEvent\t[class: AnimationEvent]",
       "AnimationEvent",
       {
         "name": "AnimationEvent",
-        "type": "[class: AnimationEventundefined]",
+        "type": "[class: AnimationEvent]",
         "func_details": null
       }
     ],
     [
-      "Touch\t[class: Touchundefined]",
+      "Touch\t[class: Touch]",
       "Touch",
       {
         "name": "Touch",
-        "type": "[class: Touchundefined]",
+        "type": "[class: Touch]",
         "func_details": null
       }
     ],
     [
-      "TouchList\t[class: TouchListundefined]",
+      "TouchList\t[class: TouchList]",
       "TouchList",
       {
         "name": "TouchList",
-        "type": "[class: TouchListundefined]",
+        "type": "[class: TouchList]",
         "func_details": null
       }
     ],
     [
-      "TouchEvent\t[class: TouchEventundefined]",
+      "TouchEvent\t[class: TouchEvent]",
       "TouchEvent",
       {
         "name": "TouchEvent",
-        "type": "[class: TouchEventundefined]",
+        "type": "[class: TouchEvent]",
         "func_details": null
       }
     ],
     [
-      "Node\t[class: Nodeundefined]",
+      "Node\t[class: Node]",
       "Node",
       {
         "name": "Node",
-        "type": "[class: Nodeundefined]",
+        "type": "[class: Node]",
         "func_details": null
       }
     ],
@@ -884,20 +884,20 @@
       }
     ],
     [
-      "NamedNodeMap\t[class: NamedNodeMapundefined]",
+      "NamedNodeMap\t[class: NamedNodeMap]",
       "NamedNodeMap",
       {
         "name": "NamedNodeMap",
-        "type": "[class: NamedNodeMapundefined]",
+        "type": "[class: NamedNodeMap]",
         "func_details": null
       }
     ],
     [
-      "Attr\t[class: Attrundefined]",
+      "Attr\t[class: Attr]",
       "Attr",
       {
         "name": "Attr",
-        "type": "[class: Attrundefined]",
+        "type": "[class: Attr]",
         "func_details": null
       }
     ],
@@ -911,740 +911,740 @@
       }
     ],
     [
-      "Document\t[class: Documentundefined]",
+      "Document\t[class: Document]",
       "Document",
       {
         "name": "Document",
-        "type": "[class: Documentundefined]",
+        "type": "[class: Document]",
         "func_details": null
       }
     ],
     [
-      "DocumentFragment\t[class: DocumentFragmentundefined]",
+      "DocumentFragment\t[class: DocumentFragment]",
       "DocumentFragment",
       {
         "name": "DocumentFragment",
-        "type": "[class: DocumentFragmentundefined]",
+        "type": "[class: DocumentFragment]",
         "func_details": null
       }
     ],
     [
-      "Selection\t[class: Selectionundefined]",
+      "Selection\t[class: Selection]",
       "Selection",
       {
         "name": "Selection",
-        "type": "[class: Selectionundefined]",
+        "type": "[class: Selection]",
         "func_details": null
       }
     ],
     [
-      "Range\t[class: Rangeundefined]",
+      "Range\t[class: Range]",
       "Range",
       {
         "name": "Range",
-        "type": "[class: Rangeundefined]",
+        "type": "[class: Range]",
         "func_details": null
       }
     ],
     [
-      "DOMTokenList\t[class: DOMTokenListundefined]",
+      "DOMTokenList\t[class: DOMTokenList]",
       "DOMTokenList",
       {
         "name": "DOMTokenList",
-        "type": "[class: DOMTokenListundefined]",
+        "type": "[class: DOMTokenList]",
         "func_details": null
       }
     ],
     [
-      "Element\t[class: Elementundefined]",
+      "Element\t[class: Element]",
       "Element",
       {
         "name": "Element",
-        "type": "[class: Elementundefined]",
+        "type": "[class: Element]",
         "func_details": null
       }
     ],
     [
-      "HTMLElement\t[class: HTMLElementundefined]",
+      "HTMLElement\t[class: HTMLElement]",
       "HTMLElement",
       {
         "name": "HTMLElement",
-        "type": "[class: HTMLElementundefined]",
+        "type": "[class: HTMLElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLSlotElement\t[class: HTMLSlotElementundefined]",
+      "HTMLSlotElement\t[class: HTMLSlotElement]",
       "HTMLSlotElement",
       {
         "name": "HTMLSlotElement",
-        "type": "[class: HTMLSlotElementundefined]",
+        "type": "[class: HTMLSlotElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTableElement\t[class: HTMLTableElementundefined]",
+      "HTMLTableElement\t[class: HTMLTableElement]",
       "HTMLTableElement",
       {
         "name": "HTMLTableElement",
-        "type": "[class: HTMLTableElementundefined]",
+        "type": "[class: HTMLTableElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTableCaptionElement\t[class: HTMLTableCaptionElementundefined]",
+      "HTMLTableCaptionElement\t[class: HTMLTableCaptionElement]",
       "HTMLTableCaptionElement",
       {
         "name": "HTMLTableCaptionElement",
-        "type": "[class: HTMLTableCaptionElementundefined]",
+        "type": "[class: HTMLTableCaptionElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTableSectionElement\t[class: HTMLTableSectionElementundefined]",
+      "HTMLTableSectionElement\t[class: HTMLTableSectionElement]",
       "HTMLTableSectionElement",
       {
         "name": "HTMLTableSectionElement",
-        "type": "[class: HTMLTableSectionElementundefined]",
+        "type": "[class: HTMLTableSectionElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTableCellElement\t[class: HTMLTableCellElementundefined]",
+      "HTMLTableCellElement\t[class: HTMLTableCellElement]",
       "HTMLTableCellElement",
       {
         "name": "HTMLTableCellElement",
-        "type": "[class: HTMLTableCellElementundefined]",
+        "type": "[class: HTMLTableCellElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTableRowElement\t[class: HTMLTableRowElementundefined]",
+      "HTMLTableRowElement\t[class: HTMLTableRowElement]",
       "HTMLTableRowElement",
       {
         "name": "HTMLTableRowElement",
-        "type": "[class: HTMLTableRowElementundefined]",
+        "type": "[class: HTMLTableRowElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLMenuElement\t[class: HTMLMenuElementundefined]",
+      "HTMLMenuElement\t[class: HTMLMenuElement]",
       "HTMLMenuElement",
       {
         "name": "HTMLMenuElement",
-        "type": "[class: HTMLMenuElementundefined]",
+        "type": "[class: HTMLMenuElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLBaseElement\t[class: HTMLBaseElementundefined]",
+      "HTMLBaseElement\t[class: HTMLBaseElement]",
       "HTMLBaseElement",
       {
         "name": "HTMLBaseElement",
-        "type": "[class: HTMLBaseElementundefined]",
+        "type": "[class: HTMLBaseElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTemplateElement\t[class: HTMLTemplateElementundefined]",
+      "HTMLTemplateElement\t[class: HTMLTemplateElement]",
       "HTMLTemplateElement",
       {
         "name": "HTMLTemplateElement",
-        "type": "[class: HTMLTemplateElementundefined]",
+        "type": "[class: HTMLTemplateElement]",
         "func_details": null
       }
     ],
     [
-      "CanvasGradient\t[class: CanvasGradientundefined]",
+      "CanvasGradient\t[class: CanvasGradient]",
       "CanvasGradient",
       {
         "name": "CanvasGradient",
-        "type": "[class: CanvasGradientundefined]",
+        "type": "[class: CanvasGradient]",
         "func_details": null
       }
     ],
     [
-      "CanvasPattern\t[class: CanvasPatternundefined]",
+      "CanvasPattern\t[class: CanvasPattern]",
       "CanvasPattern",
       {
         "name": "CanvasPattern",
-        "type": "[class: CanvasPatternundefined]",
+        "type": "[class: CanvasPattern]",
         "func_details": null
       }
     ],
     [
-      "ImageBitmap\t[class: ImageBitmapundefined]",
+      "ImageBitmap\t[class: ImageBitmap]",
       "ImageBitmap",
       {
         "name": "ImageBitmap",
-        "type": "[class: ImageBitmapundefined]",
+        "type": "[class: ImageBitmap]",
         "func_details": null
       }
     ],
     [
-      "HitRegionOptions\t[class: HitRegionOptionsundefined]",
+      "HitRegionOptions\t[class: HitRegionOptions]",
       "HitRegionOptions",
       {
         "name": "HitRegionOptions",
-        "type": "[class: HitRegionOptionsundefined]",
+        "type": "[class: HitRegionOptions]",
         "func_details": null
       }
     ],
     [
-      "CanvasDrawingStyles\t[class: CanvasDrawingStylesundefined]",
+      "CanvasDrawingStyles\t[class: CanvasDrawingStyles]",
       "CanvasDrawingStyles",
       {
         "name": "CanvasDrawingStyles",
-        "type": "[class: CanvasDrawingStylesundefined]",
+        "type": "[class: CanvasDrawingStyles]",
         "func_details": null
       }
     ],
     [
-      "SVGMatrix\t[class: SVGMatrixundefined]",
+      "SVGMatrix\t[class: SVGMatrix]",
       "SVGMatrix",
       {
         "name": "SVGMatrix",
-        "type": "[class: SVGMatrixundefined]",
+        "type": "[class: SVGMatrix]",
         "func_details": null
       }
     ],
     [
-      "TextMetrics\t[class: TextMetricsundefined]",
+      "TextMetrics\t[class: TextMetrics]",
       "TextMetrics",
       {
         "name": "TextMetrics",
-        "type": "[class: TextMetricsundefined]",
+        "type": "[class: TextMetrics]",
         "func_details": null
       }
     ],
     [
-      "Path\t[class: Pathundefined]",
+      "Path\t[class: Path]",
       "Path",
       {
         "name": "Path",
-        "type": "[class: Pathundefined]",
+        "type": "[class: Path]",
         "func_details": null
       }
     ],
     [
-      "ImageData\t[class: ImageDataundefined]",
+      "ImageData\t[class: ImageData]",
       "ImageData",
       {
         "name": "ImageData",
-        "type": "[class: ImageDataundefined]",
+        "type": "[class: ImageData]",
         "func_details": null
       }
     ],
     [
-      "CanvasRenderingContext\t[class: CanvasRenderingContextundefined]",
+      "CanvasRenderingContext\t[class: CanvasRenderingContext]",
       "CanvasRenderingContext",
       {
         "name": "CanvasRenderingContext",
-        "type": "[class: CanvasRenderingContextundefined]",
+        "type": "[class: CanvasRenderingContext]",
         "func_details": null
       }
     ],
     [
-      "WebGLRenderingContext\t[class: WebGLRenderingContextundefined]",
+      "WebGLRenderingContext\t[class: WebGLRenderingContext]",
       "WebGLRenderingContext",
       {
         "name": "WebGLRenderingContext",
-        "type": "[class: WebGLRenderingContextundefined]",
+        "type": "[class: WebGLRenderingContext]",
         "func_details": null
       }
     ],
     [
-      "WebGLContextEvent\t[class: WebGLContextEventundefined]",
+      "WebGLContextEvent\t[class: WebGLContextEvent]",
       "WebGLContextEvent",
       {
         "name": "WebGLContextEvent",
-        "type": "[class: WebGLContextEventundefined]",
+        "type": "[class: WebGLContextEvent]",
         "func_details": null
       }
     ],
     [
-      "HTMLCanvasElement\t[class: HTMLCanvasElementundefined]",
+      "HTMLCanvasElement\t[class: HTMLCanvasElement]",
       "HTMLCanvasElement",
       {
         "name": "HTMLCanvasElement",
-        "type": "[class: HTMLCanvasElementundefined]",
+        "type": "[class: HTMLCanvasElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLFormElement\t[class: HTMLFormElementundefined]",
+      "HTMLFormElement\t[class: HTMLFormElement]",
       "HTMLFormElement",
       {
         "name": "HTMLFormElement",
-        "type": "[class: HTMLFormElementundefined]",
+        "type": "[class: HTMLFormElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLIFrameElement\t[class: HTMLIFrameElementundefined]",
+      "HTMLIFrameElement\t[class: HTMLIFrameElement]",
       "HTMLIFrameElement",
       {
         "name": "HTMLIFrameElement",
-        "type": "[class: HTMLIFrameElementundefined]",
+        "type": "[class: HTMLIFrameElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLImageElement\t[class: HTMLImageElementundefined]",
+      "HTMLImageElement\t[class: HTMLImageElement]",
       "HTMLImageElement",
       {
         "name": "HTMLImageElement",
-        "type": "[class: HTMLImageElementundefined]",
+        "type": "[class: HTMLImageElement]",
         "func_details": null
       }
     ],
     [
-      "Image\t[class: Imageundefined]",
+      "Image\t[class: Image]",
       "Image",
       {
         "name": "Image",
-        "type": "[class: Imageundefined]",
+        "type": "[class: Image]",
         "func_details": null
       }
     ],
     [
-      "MediaError\t[class: MediaErrorundefined]",
+      "MediaError\t[class: MediaError]",
       "MediaError",
       {
         "name": "MediaError",
-        "type": "[class: MediaErrorundefined]",
+        "type": "[class: MediaError]",
         "func_details": null
       }
     ],
     [
-      "TimeRanges\t[class: TimeRangesundefined]",
+      "TimeRanges\t[class: TimeRanges]",
       "TimeRanges",
       {
         "name": "TimeRanges",
-        "type": "[class: TimeRangesundefined]",
+        "type": "[class: TimeRanges]",
         "func_details": null
       }
     ],
     [
-      "AudioTrack\t[class: AudioTrackundefined]",
+      "AudioTrack\t[class: AudioTrack]",
       "AudioTrack",
       {
         "name": "AudioTrack",
-        "type": "[class: AudioTrackundefined]",
+        "type": "[class: AudioTrack]",
         "func_details": null
       }
     ],
     [
-      "AudioTrackList\t[class: AudioTrackListundefined]",
+      "AudioTrackList\t[class: AudioTrackList]",
       "AudioTrackList",
       {
         "name": "AudioTrackList",
-        "type": "[class: AudioTrackListundefined]",
+        "type": "[class: AudioTrackList]",
         "func_details": null
       }
     ],
     [
-      "VideoTrack\t[class: VideoTrackundefined]",
+      "VideoTrack\t[class: VideoTrack]",
       "VideoTrack",
       {
         "name": "VideoTrack",
-        "type": "[class: VideoTrackundefined]",
+        "type": "[class: VideoTrack]",
         "func_details": null
       }
     ],
     [
-      "VideoTrackList\t[class: VideoTrackListundefined]",
+      "VideoTrackList\t[class: VideoTrackList]",
       "VideoTrackList",
       {
         "name": "VideoTrackList",
-        "type": "[class: VideoTrackListundefined]",
+        "type": "[class: VideoTrackList]",
         "func_details": null
       }
     ],
     [
-      "TextTrackCue\t[class: TextTrackCueundefined]",
+      "TextTrackCue\t[class: TextTrackCue]",
       "TextTrackCue",
       {
         "name": "TextTrackCue",
-        "type": "[class: TextTrackCueundefined]",
+        "type": "[class: TextTrackCue]",
         "func_details": null
       }
     ],
     [
-      "TextTrackCueList\t[class: TextTrackCueListundefined]",
+      "TextTrackCueList\t[class: TextTrackCueList]",
       "TextTrackCueList",
       {
         "name": "TextTrackCueList",
-        "type": "[class: TextTrackCueListundefined]",
+        "type": "[class: TextTrackCueList]",
         "func_details": null
       }
     ],
     [
-      "TextTrack\t[class: TextTrackundefined]",
+      "TextTrack\t[class: TextTrack]",
       "TextTrack",
       {
         "name": "TextTrack",
-        "type": "[class: TextTrackundefined]",
+        "type": "[class: TextTrack]",
         "func_details": null
       }
     ],
     [
-      "TextTrackList\t[class: TextTrackListundefined]",
+      "TextTrackList\t[class: TextTrackList]",
       "TextTrackList",
       {
         "name": "TextTrackList",
-        "type": "[class: TextTrackListundefined]",
+        "type": "[class: TextTrackList]",
         "func_details": null
       }
     ],
     [
-      "HTMLMediaElement\t[class: HTMLMediaElementundefined]",
+      "HTMLMediaElement\t[class: HTMLMediaElement]",
       "HTMLMediaElement",
       {
         "name": "HTMLMediaElement",
-        "type": "[class: HTMLMediaElementundefined]",
+        "type": "[class: HTMLMediaElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLAudioElement\t[class: HTMLAudioElementundefined]",
+      "HTMLAudioElement\t[class: HTMLAudioElement]",
       "HTMLAudioElement",
       {
         "name": "HTMLAudioElement",
-        "type": "[class: HTMLAudioElementundefined]",
+        "type": "[class: HTMLAudioElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLVideoElement\t[class: HTMLVideoElementundefined]",
+      "HTMLVideoElement\t[class: HTMLVideoElement]",
       "HTMLVideoElement",
       {
         "name": "HTMLVideoElement",
-        "type": "[class: HTMLVideoElementundefined]",
+        "type": "[class: HTMLVideoElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLSourceElement\t[class: HTMLSourceElementundefined]",
+      "HTMLSourceElement\t[class: HTMLSourceElement]",
       "HTMLSourceElement",
       {
         "name": "HTMLSourceElement",
-        "type": "[class: HTMLSourceElementundefined]",
+        "type": "[class: HTMLSourceElement]",
         "func_details": null
       }
     ],
     [
-      "ValidityState\t[class: ValidityStateundefined]",
+      "ValidityState\t[class: ValidityState]",
       "ValidityState",
       {
         "name": "ValidityState",
-        "type": "[class: ValidityStateundefined]",
+        "type": "[class: ValidityState]",
         "func_details": null
       }
     ],
     [
-      "HTMLInputElement\t[class: HTMLInputElementundefined]",
+      "HTMLInputElement\t[class: HTMLInputElement]",
       "HTMLInputElement",
       {
         "name": "HTMLInputElement",
-        "type": "[class: HTMLInputElementundefined]",
+        "type": "[class: HTMLInputElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLButtonElement\t[class: HTMLButtonElementundefined]",
+      "HTMLButtonElement\t[class: HTMLButtonElement]",
       "HTMLButtonElement",
       {
         "name": "HTMLButtonElement",
-        "type": "[class: HTMLButtonElementundefined]",
+        "type": "[class: HTMLButtonElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLTextAreaElement\t[class: HTMLTextAreaElementundefined]",
+      "HTMLTextAreaElement\t[class: HTMLTextAreaElement]",
       "HTMLTextAreaElement",
       {
         "name": "HTMLTextAreaElement",
-        "type": "[class: HTMLTextAreaElementundefined]",
+        "type": "[class: HTMLTextAreaElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLSelectElement\t[class: HTMLSelectElementundefined]",
+      "HTMLSelectElement\t[class: HTMLSelectElement]",
       "HTMLSelectElement",
       {
         "name": "HTMLSelectElement",
-        "type": "[class: HTMLSelectElementundefined]",
+        "type": "[class: HTMLSelectElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLOptionsCollection\t[class: HTMLOptionsCollectionundefined]",
+      "HTMLOptionsCollection\t[class: HTMLOptionsCollection]",
       "HTMLOptionsCollection",
       {
         "name": "HTMLOptionsCollection",
-        "type": "[class: HTMLOptionsCollectionundefined]",
+        "type": "[class: HTMLOptionsCollection]",
         "func_details": null
       }
     ],
     [
-      "HTMLOptionElement\t[class: HTMLOptionElementundefined]",
+      "HTMLOptionElement\t[class: HTMLOptionElement]",
       "HTMLOptionElement",
       {
         "name": "HTMLOptionElement",
-        "type": "[class: HTMLOptionElementundefined]",
+        "type": "[class: HTMLOptionElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLOptGroupElement\t[class: HTMLOptGroupElementundefined]",
+      "HTMLOptGroupElement\t[class: HTMLOptGroupElement]",
       "HTMLOptGroupElement",
       {
         "name": "HTMLOptGroupElement",
-        "type": "[class: HTMLOptGroupElementundefined]",
+        "type": "[class: HTMLOptGroupElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLAnchorElement\t[class: HTMLAnchorElementundefined]",
+      "HTMLAnchorElement\t[class: HTMLAnchorElement]",
       "HTMLAnchorElement",
       {
         "name": "HTMLAnchorElement",
-        "type": "[class: HTMLAnchorElementundefined]",
+        "type": "[class: HTMLAnchorElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLLabelElement\t[class: HTMLLabelElementundefined]",
+      "HTMLLabelElement\t[class: HTMLLabelElement]",
       "HTMLLabelElement",
       {
         "name": "HTMLLabelElement",
-        "type": "[class: HTMLLabelElementundefined]",
+        "type": "[class: HTMLLabelElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLLinkElement\t[class: HTMLLinkElementundefined]",
+      "HTMLLinkElement\t[class: HTMLLinkElement]",
       "HTMLLinkElement",
       {
         "name": "HTMLLinkElement",
-        "type": "[class: HTMLLinkElementundefined]",
+        "type": "[class: HTMLLinkElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLScriptElement\t[class: HTMLScriptElementundefined]",
+      "HTMLScriptElement\t[class: HTMLScriptElement]",
       "HTMLScriptElement",
       {
         "name": "HTMLScriptElement",
-        "type": "[class: HTMLScriptElementundefined]",
+        "type": "[class: HTMLScriptElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLStyleElement\t[class: HTMLStyleElementundefined]",
+      "HTMLStyleElement\t[class: HTMLStyleElement]",
       "HTMLStyleElement",
       {
         "name": "HTMLStyleElement",
-        "type": "[class: HTMLStyleElementundefined]",
+        "type": "[class: HTMLStyleElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLParagraphElement\t[class: HTMLParagraphElementundefined]",
+      "HTMLParagraphElement\t[class: HTMLParagraphElement]",
       "HTMLParagraphElement",
       {
         "name": "HTMLParagraphElement",
-        "type": "[class: HTMLParagraphElementundefined]",
+        "type": "[class: HTMLParagraphElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLDivElement\t[class: HTMLDivElementundefined]",
+      "HTMLDivElement\t[class: HTMLDivElement]",
       "HTMLDivElement",
       {
         "name": "HTMLDivElement",
-        "type": "[class: HTMLDivElementundefined]",
+        "type": "[class: HTMLDivElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLSpanElement\t[class: HTMLSpanElementundefined]",
+      "HTMLSpanElement\t[class: HTMLSpanElement]",
       "HTMLSpanElement",
       {
         "name": "HTMLSpanElement",
-        "type": "[class: HTMLSpanElementundefined]",
+        "type": "[class: HTMLSpanElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLAppletElement\t[class: HTMLAppletElementundefined]",
+      "HTMLAppletElement\t[class: HTMLAppletElement]",
       "HTMLAppletElement",
       {
         "name": "HTMLAppletElement",
-        "type": "[class: HTMLAppletElementundefined]",
+        "type": "[class: HTMLAppletElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLEmbedElement\t[class: HTMLEmbedElementundefined]",
+      "HTMLEmbedElement\t[class: HTMLEmbedElement]",
       "HTMLEmbedElement",
       {
         "name": "HTMLEmbedElement",
-        "type": "[class: HTMLEmbedElementundefined]",
+        "type": "[class: HTMLEmbedElement]",
         "func_details": null
       }
     ],
     [
-      "HTMLMetaElement\t[class: HTMLMetaElementundefined]",
+      "HTMLMetaElement\t[class: HTMLMetaElement]",
       "HTMLMetaElement",
       {
         "name": "HTMLMetaElement",
-        "type": "[class: HTMLMetaElementundefined]",
+        "type": "[class: HTMLMetaElement]",
         "func_details": null
       }
     ],
     [
-      "TextRange\t[class: TextRangeundefined]",
+      "TextRange\t[class: TextRange]",
       "TextRange",
       {
         "name": "TextRange",
-        "type": "[class: TextRangeundefined]",
+        "type": "[class: TextRange]",
         "func_details": null
       }
     ],
     [
-      "ClientRect\t[class: ClientRectundefined]",
+      "ClientRect\t[class: ClientRect]",
       "ClientRect",
       {
         "name": "ClientRect",
-        "type": "[class: ClientRectundefined]",
+        "type": "[class: ClientRect]",
         "func_details": null
       }
     ],
     [
-      "ClientRectList\t[class: ClientRectListundefined]",
+      "ClientRectList\t[class: ClientRectList]",
       "ClientRectList",
       {
         "name": "ClientRectList",
-        "type": "[class: ClientRectListundefined]",
+        "type": "[class: ClientRectList]",
         "func_details": null
       }
     ],
     [
-      "DOMImplementation\t[class: DOMImplementationundefined]",
+      "DOMImplementation\t[class: DOMImplementation]",
       "DOMImplementation",
       {
         "name": "DOMImplementation",
-        "type": "[class: DOMImplementationundefined]",
+        "type": "[class: DOMImplementation]",
         "func_details": null
       }
     ],
     [
-      "DocumentType\t[class: DocumentTypeundefined]",
+      "DocumentType\t[class: DocumentType]",
       "DocumentType",
       {
         "name": "DocumentType",
-        "type": "[class: DocumentTypeundefined]",
+        "type": "[class: DocumentType]",
         "func_details": null
       }
     ],
     [
-      "CharacterData\t[class: CharacterDataundefined]",
+      "CharacterData\t[class: CharacterData]",
       "CharacterData",
       {
         "name": "CharacterData",
-        "type": "[class: CharacterDataundefined]",
+        "type": "[class: CharacterData]",
         "func_details": null
       }
     ],
     [
-      "Text\t[class: Textundefined]",
+      "Text\t[class: Text]",
       "Text",
       {
         "name": "Text",
-        "type": "[class: Textundefined]",
+        "type": "[class: Text]",
         "func_details": null
       }
     ],
     [
-      "Comment\t[class: Commentundefined]",
+      "Comment\t[class: Comment]",
       "Comment",
       {
         "name": "Comment",
-        "type": "[class: Commentundefined]",
+        "type": "[class: Comment]",
         "func_details": null
       }
     ],
     [
-      "URL\t[class: URLundefined]",
+      "URL\t[class: URL]",
       "URL",
       {
         "name": "URL",
-        "type": "[class: URLundefined]",
+        "type": "[class: URL]",
         "func_details": null
       }
     ],
     [
-      "MediaSource\t[class: MediaSourceundefined]",
+      "MediaSource\t[class: MediaSource]",
       "MediaSource",
       {
         "name": "MediaSource",
-        "type": "[class: MediaSourceundefined]",
+        "type": "[class: MediaSource]",
         "func_details": null
       }
     ],
     [
-      "SourceBuffer\t[class: SourceBufferundefined]",
+      "SourceBuffer\t[class: SourceBuffer]",
       "SourceBuffer",
       {
         "name": "SourceBuffer",
-        "type": "[class: SourceBufferundefined]",
+        "type": "[class: SourceBuffer]",
         "func_details": null
       }
     ],
     [
-      "SourceBufferList\t[class: SourceBufferListundefined]",
+      "SourceBufferList\t[class: SourceBufferList]",
       "SourceBufferList",
       {
         "name": "SourceBufferList",
-        "type": "[class: SourceBufferListundefined]",
+        "type": "[class: SourceBufferList]",
         "func_details": null
       }
     ],
     [
-      "Storage\t[class: Storageundefined]",
+      "Storage\t[class: Storage]",
       "Storage",
       {
         "name": "Storage",
-        "type": "[class: Storageundefined]",
+        "type": "[class: Storage]",
         "func_details": null
       }
     ],
     [
-      "TrackDefaultList\t[class: TrackDefaultListundefined]",
+      "TrackDefaultList\t[class: TrackDefaultList]",
       "TrackDefaultList",
       {
         "name": "TrackDefaultList",
-        "type": "[class: TrackDefaultListundefined]",
+        "type": "[class: TrackDefaultList]",
         "func_details": null
       }
     ],
     [
-      "TrackDefault\t[class: TrackDefaultundefined]",
+      "TrackDefault\t[class: TrackDefault]",
       "TrackDefault",
       {
         "name": "TrackDefault",
-        "type": "[class: TrackDefaultundefined]",
+        "type": "[class: TrackDefault]",
         "func_details": null
       }
     ],
     [
-      "NodeFilter\t[class: NodeFilterundefined]",
+      "NodeFilter\t[class: NodeFilter]",
       "NodeFilter",
       {
         "name": "NodeFilter",
-        "type": "[class: NodeFilterundefined]",
+        "type": "[class: NodeFilter]",
         "func_details": null
       }
     ],

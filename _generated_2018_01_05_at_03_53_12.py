@@ -673,9 +673,9 @@ class Util(object) :
     return first_region
 
   @staticmethod
-  def rowcol_to_region(view, row, col, endcol):
+  def rowcol_to_region(view, row, endrow, col, endcol):
     start = view.text_point(row, col)
-    end = view.text_point(row, endcol)
+    end = view.text_point(endrow, endcol)
     return sublime.Region(start, end)
   
   @staticmethod
@@ -3407,33 +3407,113 @@ def description_details_html(description):
 class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
   def on_hover(self, view, point, hover_zone) :
-    sublime.set_timeout_async(lambda: self.on_hover_description_async(view, point, hover_zone, point))
+    sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
 
-  def on_hover_description_async(self, view, point, hover_zone, popup_position) :
-    if not view.match_selector(
-        point,
-        'source.js - comment'
-    ):
-      return
+# used also by show_hint_parametersCommand
+def on_hover_description_async(view, point, hover_zone, popup_position, show_hint=False) :
+  if not view.match_selector(
+      point,
+      'source.js - comment'
+  ):
+    return
 
-    if hover_zone != sublime.HOVER_TEXT :
-      return
+  if hover_zone != sublime.HOVER_TEXT :
+    return
 
+  if not show_hint:
     for region in view.get_regions("flow_error"):
       if region.contains(point):
         return
 
-    region = view.word(point)
-    word = view.substr(region)
-    if not word.strip() :
-      return
-      
-    cursor_pos = region.end()
+  region = view.word(point)
+  word = view.substr(region)
+  if not word.strip() :
+    return
+    
+  cursor_pos = region.end()
 
-    deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
+  deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
 
+  if deps.project_root is '/':
+    return
+
+  flow_cli = "flow"
+  is_from_bin = True
+  chdir = ""
+  use_node = True
+  bin_path = ""
+
+  settings = get_project_settings()
+  if settings and settings["project_settings"]["flow_cli_custom_path"]:
+    flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+    bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+    is_from_bin = False
+    chdir = settings["project_dir_name"]
+    use_node = False
+
+  node = NodeJS(check_local=True)
+
+  result = node.execute_check_output(
+    flow_cli,
+    [
+      'autocomplete',
+      '--from', 'sublime_text',
+      '--root', deps.project_root,
+      '--json',
+      deps.filename
+    ],
+    is_from_bin=is_from_bin,
+    use_fp_temp=True, 
+    fp_temp_contents=deps.contents, 
+    is_output_json=True,
+    chdir=chdir,
+    bin_path=bin_path,
+    use_node=use_node
+  )
+
+  html = ""
+
+  if result[0]:
+    descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
+
+    for description in descriptions :
+      if description['name'] == word :
+
+        if description['type'].startswith("((") or description['type'].find("&") >= 0 :
+          sub_completions = description['type'].split("&")
+          for sub_comp in sub_completions :
+
+            sub_comp = sub_comp.strip()
+            sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
+                       
+            text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
+            text_params = text_params.strip()
+            description["func_details"] = dict()
+            description["func_details"]["params"] = list()
+            description["func_details"]["return_type"] = ""
+            if sub_type.rfind(" => ") >= 0 :
+              description["func_details"]["return_type"] = sub_type[sub_type.rfind(" => ")+4:].strip()
+            start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
+            end = text_params.rfind(")")
+            params = text_params[start:end].split(",")
+            for param in params :
+              param_dict = dict()
+              param_info = param.split(":")
+              param_dict["name"] = param_info[0].strip()
+              if len(param_info) > 1 :
+                param_dict["type"] = param_info[1].strip()
+              description['func_details']["params"].append(param_dict)
+
+            html += description_details_html(description)
+        else :
+
+          html += description_details_html(description)
+
+  if not html :
+    deps = flow_parse_cli_dependencies(view)
     if deps.project_root is '/':
       return
+    row, col = view.rowcol(point)
 
     flow_cli = "flow"
     is_from_bin = True
@@ -3448,17 +3528,17 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
       is_from_bin = False
       chdir = settings["project_dir_name"]
       use_node = False
-
+      
     node = NodeJS(check_local=True)
-
     result = node.execute_check_output(
       flow_cli,
       [
-        'autocomplete',
+        'type-at-pos',
         '--from', 'sublime_text',
         '--root', deps.project_root,
+        '--path', deps.filename,
         '--json',
-        deps.filename
+        str(row - deps.row_offset + 1), str(col + 1)
       ],
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
@@ -3469,173 +3549,130 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
       use_node=use_node
     )
 
-    html = ""
-
-    if result[0]:
-      descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
-
-      for description in descriptions :
-        if description['name'] == word :
-
-          if description['type'].startswith("((") or description['type'].find("&") >= 0 :
-            sub_completions = description['type'].split("&")
-            for sub_comp in sub_completions :
-
-              sub_comp = sub_comp.strip()
-              sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
-                         
-              text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
-              text_params = text_params.strip()
-              description["func_details"] = dict()
-              description["func_details"]["params"] = list()
-              description["func_details"]["return_type"] = ""
-              if sub_type.rfind(" => ") >= 0 :
-                description["func_details"]["return_type"] = sub_type[sub_type.rfind(" => ")+4:].strip()
-              start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
-              end = text_params.rfind(")")
-              params = text_params[start:end].split(",")
-              for param in params :
-                param_dict = dict()
-                param_info = param.split(":")
-                param_dict["name"] = param_info[0].strip()
-                if len(param_info) > 1 :
-                  param_dict["type"] = param_info[1].strip()
-                description['func_details']["params"].append(param_dict)
-
-              html += description_details_html(description)
-          else :
-
-            html += description_details_html(description)
-
-    if not html :
-      deps = flow_parse_cli_dependencies(view)
-      if deps.project_root is '/':
-        return
-      row, col = view.rowcol(point)
-
-      flow_cli = "flow"
-      is_from_bin = True
-      chdir = ""
-      use_node = True
-      bin_path = ""
-
-      settings = get_project_settings()
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-        is_from_bin = False
-        chdir = settings["project_dir_name"]
-        use_node = False
-        
-      node = NodeJS(check_local=True)
-      result = node.execute_check_output(
-        flow_cli,
-        [
-          'type-at-pos',
-          '--from', 'sublime_text',
-          '--root', deps.project_root,
-          '--path', deps.filename,
-          '--json',
-          str(row - deps.row_offset + 1), str(col + 1)
-        ],
-        is_from_bin=is_from_bin,
-        use_fp_temp=True, 
-        fp_temp_contents=deps.contents, 
-        is_output_json=True,
-        chdir=chdir,
-        bin_path=bin_path,
-        use_node=use_node
-      )
-
-      if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
-        description = dict()
-        description["name"] = ""
-        description['func_details'] = dict()
+    if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
+      description = dict()
+      description["name"] = ""
+      description['func_details'] = dict()
+      description['func_details']["params"] = list()
+      description['func_details']["return_type"] = ""
+      is_function = False
+      matches = re.match("^([a-zA-Z_]\w+)", result[1]["type"])
+      if matches :
+        description["name"] = matches.group()
+      if result[1]["type"].find(" => ") >= 0 :
+        description['func_details']["return_type"] = cgi.escape(result[1]["type"][result[1]["type"].find(" => ")+4:])
+      else :
+        description['func_details']["return_type"] = cgi.escape(result[1]["type"])
+      if result[1]["type"].find("(") == 0:
+        is_function = True
+        start = 1
+        end = result[1]["type"].find(")")
+        params = result[1]["type"][start:end].split(",")
         description['func_details']["params"] = list()
-        description['func_details']["return_type"] = ""
-        is_function = False
-        matches = re.match("^([a-zA-Z_]\w+)", result[1]["type"])
-        if matches :
-          description["name"] = matches.group()
-        if result[1]["type"].find(" => ") >= 0 :
-          description['func_details']["return_type"] = cgi.escape(result[1]["type"][result[1]["type"].find(" => ")+4:])
-        else :
-          description['func_details']["return_type"] = cgi.escape(result[1]["type"])
-        if result[1]["type"].find("(") == 0:
-          is_function = True
-          start = 1
-          end = result[1]["type"].find(")")
-          params = result[1]["type"][start:end].split(",")
-          description['func_details']["params"] = list()
-          for param in params :
-            param_dict = dict()
-            param_info = param.split(":")
-            param_dict["name"] = cgi.escape(param_info[0].strip())
-            if len(param_info) == 2 :
-              param_dict["type"] = cgi.escape(param_info[1].strip())
-            else :
-              param_dict["type"] = None
-            description['func_details']["params"].append(param_dict)
+        for param in params :
+          param_dict = dict()
+          param_info = param.split(":")
+          param_dict["name"] = cgi.escape(param_info[0].strip())
+          if len(param_info) == 2 :
+            param_dict["type"] = cgi.escape(param_info[1].strip())
+          else :
+            param_dict["type"] = None
+          description['func_details']["params"].append(param_dict)
 
-        description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
-        description_return_type = ""
+      description_name = "<span class=\"name\">" + cgi.escape(description['name']) + "</span>"
+      description_return_type = ""
 
-        parameters_html = ""
-        if description['func_details'] :
+      parameters_html = ""
+      if description['func_details'] :
 
-          for param in description['func_details']["params"]:
-            is_optional = True if param['name'].find("?") >= 0 else False
-            param['name'] = param['name'].replace("?", "")
-            if not parameters_html:
-              parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-            else:
-              parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
-          parameters_html = "("+parameters_html+")" if is_function else ""
+        for param in description['func_details']["params"]:
+          is_optional = True if param['name'].find("?") >= 0 else False
+          param['name'] = param['name'].replace("?", "")
+          if not parameters_html:
+            parameters_html += "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+          else:
+            parameters_html += ', ' + "<span class=\"parameter-name\">" + param['name'] + "</span>" + ( "<span class=\"parameter-is-optional\">?</span>" if is_optional else "" ) + ( ": <span class=\"parameter-type\">" + param['type'] + "</span>" if param['type'] else "" )
+        parameters_html = "("+parameters_html+")" if is_function else ""
 
-          description_return_type = description['func_details']["return_type"]
-        elif description['type'] :
-          description_return_type = description['type']
-        if description_return_type :
-          description_return_type = (" => " if description['name'] or is_function else "") + "<span class=\"return-type\">"+description_return_type+"</span>"
+        description_return_type = description['func_details']["return_type"]
+      elif description['type'] :
+        description_return_type = description['type']
+      if description_return_type :
+        description_return_type = (" => " if description['name'] or is_function else "") + "<span class=\"return-type\">"+description_return_type+"</span>"
 
-        html += """ 
-        <div class=\"container-description\">
-          <div>"""+description_name+parameters_html+description_return_type+"""</div>
-          <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
+      html += """ 
+      <div class=\"container-description\">
+        <div>"""+description_name+parameters_html+description_return_type+"""</div>
+        <div class=\"container-go-to-def\"><a href="go_to_def" class="go-to-def">Go to definition</a></div>
+      </div>
+      """
+
+  func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
+
+  if html:
+      view.show_popup("""
+      <html><head></head><body>
+      """+js_css+"""
+        <div class=\"container-hint-popup\">
+          """ + html + """    
         </div>
-        """
-
-    func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
-
-    if html:
-        view.show_popup("""
-        <html><head></head><body>
-        """+js_css+"""
-          <div class=\"container-hint-popup\">
-            """ + html + """    
-          </div>
-        </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80, func_action )
-    
+      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80, func_action )
+  
 
 import sublime, sublime_plugin
 
 class show_hint_parametersCommand(sublime_plugin.TextCommand):
   
+  # flow doesn't work with meta.function-call.constructor.js
+  meta_fun_calls = [
+    "meta.function-call.method.js", 
+    "meta.function-call.js",
+    # JavaScript (Babel) Syntax support
+    "meta.function-call.with-arguments.js",
+    "meta.function-call.static.with-arguments.js",
+    "meta.function-call.method.with-arguments.js",
+    "meta.function-call.without-arguments.js",
+    "meta.function-call.static.without-arguments.js",
+    "meta.function-call.method.without-arguments.js",
+    "meta.function-call.tagged-template.js",
+    "source.js"
+  ]
+
+  meta_groups = [
+    "meta.group.js",
+    # JavaScript (Babel) Syntax support, this order is important!
+    "meta.group.braces.round.function.arguments.js",
+    "meta.group.braces.round.js"
+  ]
+
   def run(self, edit, **args):
     view = self.view
 
-    scope = view.scope_name(view.sel()[0].begin()).strip()
+    point = view.sel()[0].begin()
+    
+    meta_group = 0
+    mate_group_scope = ""
 
-    meta_fun_call = "meta.function-call.method.js"
-    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    for mt in self.meta_groups:
+      meta_group = view.scope_name(point).strip().split(" ").count(mt)
+      if meta_group > 0:
+        mate_group_scope = mt
+        break
 
-    if not result :
-      meta_fun_call = "meta.function-call.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    if meta_group == 0:
+      return
 
-    if result :
-      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
-      sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin()))
+    while point >= 0:
+      scope = view.scope_name(point).strip()
+      scope_splitted = scope.split(" ")
+      if len(scope_splitted) < 2:
+        return 
+
+      if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
+        sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin(), show_hint=True))
+        return
+
+      point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1
 
   def is_enabled(self) :
     view = self.view
@@ -3646,36 +3683,32 @@ class show_hint_parametersCommand(sublime_plugin.TextCommand):
     ):
       return False
 
-    scope = view.scope_name(view.sel()[0].begin()).strip()
+    point = view.sel()[0].begin()
     
-    meta_fun_call = "meta.function-call.method.js"
-    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    meta_group = 0
+    mate_group_scope = ""
 
-    if not result :
-      meta_fun_call = "meta.function-call.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    for mt in self.meta_groups:
+      meta_group = view.scope_name(point).strip().split(" ").count(mt)
+      if meta_group > 0:
+        mate_group_scope = mt
+        break
 
-    if result :
-      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+    if meta_group == 0:
+      return False
+
+    while point >= 0:
+      scope = view.scope_name(point).strip()
       scope_splitted = scope.split(" ")
-      find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
-      find_and_get_scope_splitted = find_and_get_scope.split(" ")
-      if (
-          (
-            len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
-            or scope == find_and_get_scope 
-            or (
-                len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
-                and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
-                  ) 
-              ) 
-          ) 
-          and not scope.endswith("meta.block.js") 
-          and not scope.endswith("meta.object-literal.js")
-        ) :
+      if len(scope_splitted) < 2:
+        return False
+
+      if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
+        #print(view.substr(view.word(point)))
         return True
+
+      point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1
+
     return False
 
   def is_visible(self) :
@@ -3686,38 +3719,34 @@ class show_hint_parametersCommand(sublime_plugin.TextCommand):
         'source.js - comment'
     ):
       return False
-
-    scope = view.scope_name(view.sel()[0].begin()).strip()
     
-    meta_fun_call = "meta.function-call.method.js"
-    result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    point = view.sel()[0].begin()
+    
+    meta_group = 0
+    mate_group_scope = ""
 
-    if not result :
-      meta_fun_call = "meta.function-call.js"
-      result = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call+" meta.group.js")
+    for mt in self.meta_groups:
+      meta_group = view.scope_name(point).strip().split(" ").count(mt)
+      if meta_group > 0:
+        mate_group_scope = mt
+        break
 
-    if result :
-      point = Util.get_region_scope_last_match(view, scope, view.sel()[0], meta_fun_call)["region"].begin()
+    if meta_group == 0:
+      return False
+
+    while point >= 0:
+      scope = view.scope_name(point).strip()
       scope_splitted = scope.split(" ")
-      find_and_get_scope = Util.find_and_get_pre_string_and_matches(scope, meta_fun_call+" meta.group.js")
-      find_and_get_scope_splitted = find_and_get_scope.split(" ")
-      if (
-          (
-            len(scope_splitted) == len(find_and_get_scope_splitted) + 1 
-            or scope == find_and_get_scope 
-            or (
-                len(scope_splitted) == len(find_and_get_scope_splitted) + 2 
-                and ( Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.double.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.quoted.single.js"
-                    or Util.get_parent_region_scope(view, view.sel()[0])["scope"].split(" ")[-1] == "string.template.js"
-                  ) 
-              ) 
-          ) 
-          and not scope.endswith("meta.block.js") 
-          and not scope.endswith("meta.object-literal.js")
-        ) :
+      if len(scope_splitted) < 2:
+        return False
+
+      if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
         return True
+
+      point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1
+
     return False
+    
 
 import shlex
 
@@ -3796,6 +3825,7 @@ def show_flow_errors(view) :
           message = error['message'][i]
           if i == 0 :
             row = int(message['line']) + deps.row_offset - 1
+            endrow = int(message['endline']) + deps.row_offset - 1
             col = int(message['start']) - 1
             endcol = int(message['end'])
 
@@ -3803,7 +3833,7 @@ def show_flow_errors(view) :
             #   col = col - len("/* @flow weak */")
             #   endcol = endcol - len("/* @flow weak */")
 
-            regions.append(Util.rowcol_to_region(view, row, col, endcol))
+            regions.append(Util.rowcol_to_region(view, row, endrow, col, endcol))
 
             if operation:
               description += operation["descr"]
@@ -3823,7 +3853,8 @@ def show_flow_errors(view) :
           if row_description and description not in row_description:
             description_by_row[row]["description"] += '; ' + description
 
-          description_by_row_column[str(row)+":"+str(col)+":"+str(endcol)] = description
+          print(str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol))
+          description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)] = description
             
       errors = result[1]['errors']
 
@@ -4010,12 +4041,9 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       return 
 
     row_region, col_region = view.rowcol(region_hover_error.begin())
-    row_region, endcol_region = view.rowcol(region_hover_error.end())
-    # print(view.substr(region_hover_error).split("\n"))
-    # print(self.description_by_row_column)
-    # print(str(row_region)+":"+str(col_region)+":"+str(endcol_region))
-    # return
-    error = self.description_by_row_column[str(row_region)+":"+str(col_region)+":"+str(endcol_region)]
+    end_row_region, endcol_region = view.rowcol(region_hover_error.end())
+
+    error = self.description_by_row_column[str(row_region)+":"+str(end_row_region)+":"+str(col_region)+":"+str(endcol_region)]
     
     if error:
       text = cgi.escape(error).split(" ")
@@ -4030,9 +4058,9 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
         html += text[len(text) - 1]
 
       row_region, col_region = view.rowcol(region_hover_error.begin())
-      row_region, endcol_region = view.rowcol(region_hover_error.end())
+      end_row_region, endcol_region = view.rowcol(region_hover_error.end())
       
-      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.8em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, region_hover_error.begin(), 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
+      view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.8em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.HIDE_ON_MOUSE_MOVE_AWAY, point, 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
   def on_selection_modified_async(self, *args) :
 
