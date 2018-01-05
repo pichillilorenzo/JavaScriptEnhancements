@@ -1,5 +1,9 @@
 # JavaScript Enhancements
 
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
+[![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate)
+[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/LorenzoPichilli)
+
 **JavaScript Enhancements** is a plugin for **Sublime Text 3**.
 
 This plugin uses **[Flow](https://github.com/facebook/flow)** (javascript static type checker from Facebook) under the hood.
@@ -114,11 +118,11 @@ Email me for any questions or doubts about this project on: [pichillilorenzo@gma
 
 ### Issues
 
-For any problems, open an issue with the Sublime Text console logs please!
+For any problems, open an issue with the Sublime Text console logs please! [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
 
 ### Feature request/enhancement
 
-For feature requests or them enhancement, please open an issue with the corresponding label.
+For feature requests/enhancement, please open an issue. [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Features)
 
 ### Donation
 
