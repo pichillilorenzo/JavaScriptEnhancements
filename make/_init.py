@@ -36,9 +36,13 @@ ${include ./helper/my_socket/main.py}
 
 def sublime_executable_path():
   executable_path = sublime.executable_path()
+
   if sublime.platform() == 'osx':
     app_path = executable_path[:executable_path.rfind(".app/") + 5]
     executable_path = app_path + "Contents/SharedSupport/bin/subl"
+
+  elif sublime.platform() == 'windows':
+    executable_path = os.path.join(os.path.dirname(executable_path), "subl.exe")
 
   return executable_path
 
@@ -46,13 +50,19 @@ def subl(args):
   
   executable_path = sublime_executable_path()
 
+  args_list = list()
+
   if sublime.platform() == 'windows' :
     args = [executable_path] + args
+    for arg in args :
+      args_list.append(json.dumps(arg))
+    json.dumps(executable_path)
   else :
-    args_list = list()
     for arg in args :
       args_list.append(shlex.quote(arg))
-    args = shlex.quote(executable_path) + " " + " ".join(args_list)
+    shlex.quote(executable_path)
+  
+  args = executable_path + " " + " ".join(args_list)
 
   return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -104,23 +114,23 @@ def start():
 
   global mainPlugin
 
-  if sublime.platform() == 'windows':
-    print(sublime.platform())
-    sublime.error_message("Windows is not supported by this plugin for now.")
-    return
+  # if sublime.platform() == 'windows':
+  #   print(sublime.platform())
+  #   sublime.error_message("Windows is not supported by this plugin for now.")
+  #   return
 
   if platform.architecture()[0] != "64bit":
     print(platform.architecture())
     sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
     return
 
-  try:
-    sys.modules["TerminalView"]
-  except Exception as err:
-    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
-    if response == sublime.DIALOG_YES:
-      sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
-    return
+  # try:
+  #   sys.modules["TerminalView"]
+  # except Exception as err:
+  #   response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
+  #   if response == sublime.DIALOG_YES:
+  #     sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
+  #   return
 
   try:
     sys.modules["JavaScript Completions"]
@@ -156,7 +166,7 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-  
+
   if int(sublime.version()) >= 3124 :
     sublime.set_timeout_async(start, 1000)
   else:

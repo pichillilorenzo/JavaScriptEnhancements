@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+   <key>name</key>
+   <string>JavaScript Enhancements</string>
+   <key>settings</key>
+   <array>
+      <!-- Global settings -->
+      <dict>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#191919</string>
+
+            <key>foreground</key>
+            <string>#F8F8F2</string>
+
+            <key>caret</key>
+            <string>#FFEA00</string>
+
+            <key>lineHighlight</key>
+            <string>#000000</string>
+            <key>invisibles</key>
+            <string>#ffffff</string>
+
+            <key>selection</key>
+            <string>#ffffff40</string>
+            <key>selectionBorder</key>
+            <string>#ffffff80</string>
+            <key>inactiveSelection</key>
+            <string>#ffffff40</string>
+
+            <key>shadow</key>
+            <string>#00000080</string>
+            <key>shadowWidth</key>
+            <string>0</string>
+         </dict>
+      </dict>
+      <!-- Scope styles -->
+      <dict>
+         <key>scope</key>
+         <string>javascriptenhancements.title</string>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#01579B</string>
+            <key>foreground</key>
+            <string>#ffffff</string>
+         </dict>
+      </dict>
+
+      <dict>
+         <key>scope</key>
+         <string>javascriptenhancements.subtitle</string>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#FF9800</string>
+            <key>foreground</key>
+            <string>#000000</string>
+         </dict>
+      </dict>
+
+      <dict>
+         <key>scope</key>
+         <string>javascriptenhancements.input</string>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#BDBDBD</string>
+            <key>foreground</key>
+            <string>#000000</string>
+         </dict>
+      </dict>
+     
+      <dict>
+         <key>scope</key>
+         <string>javascriptenhancements.button_cancel</string>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#B71C1C</string>
+            <key>foreground</key>
+            <string>#FFCDD2</string>
+         </dict>
+      </dict>
+
+       <dict>
+         <key>scope</key>
+         <string>javascriptenhancements.button_ok</string>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#01579B</string>
+            <key>foreground</key>
+            <string>#B3E5FC</string>
+         </dict>
+      </dict>
+   </array>
+</dict>
+</plist>

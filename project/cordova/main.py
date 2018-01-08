@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def cordova_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Cordova CLI custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Cordova CLI custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, cordova_custom_path) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, cordova_custom_path), None, None)
 
 def add_cordova_settings(working_directory, cordova_custom_path):
   project_path = working_directory
@@ -35,21 +35,18 @@ def add_cordova_settings(working_directory, cordova_custom_path):
 
 def cordova_prepare_project(project_path, cordova_custom_path):
 
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": cordova_custom_path+" create myApp com.example.hello HelloWorld && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path, window=sublime.active_window())
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(cordova_custom_path), "create", "myApp", "com.example.hello", "HelloWorld", "&&", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([cordova_custom_path, "create", "myApp", "com.example.hello", "HelloWorld", "&&", "robocopy", "/move", "/e", "myApp", "."])
+    if open_project:
+      terminal.run(open_project)
 
   add_cordova_settings(project_path, cordova_custom_path)
-
-  #open_project_folder(get_project_settings(project_path)["project_file_name"])
 
 Hook.add("cordova_after_create_new_project", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_configuration", cordova_ask_custom_path)

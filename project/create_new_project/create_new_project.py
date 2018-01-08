@@ -14,18 +14,38 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
       return
       
     self.project_type = PROJECT_TYPE_SUPPORTED[index]
+
+    # Testing WindowView()
+    # self.WindowView = WindowView()
+    # self.WindowView.addTitle(text="Create JavaScript Project")
+    # self.WindowView.add(text="\n")
+    # self.WindowView.add(text="Project Path: ", region_id="test")
+    # self.WindowView.addInput(value=os.path.expanduser("~")+os.path.sep, region_id="project_path")
+    # self.WindowView.add(text="\n\n")
+    # Hook.apply(self.project_type+"_create_window_view", self.WindowView)
+    # self.WindowView.add(text="\n\n")
+    # self.WindowView.addButton(text="CREATE", scope="javascriptenhancements.button_ok")
+    # self.WindowView.add(text="        ")
+    # self.WindowView.addButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+    # self.WindowView.add(text=" \n")
+    # self.WindowView.addEventListener("drag_select", "click.javascriptenhancements.button_ok", lambda view: self.project_path_on_done(self.WindowView.getInput("project_path")))
+    # self.WindowView.addEventListener("drag_select", "click.javascriptenhancements.button_cancel", lambda view: self.WindowView.close())
+
     self.window.show_input_panel("Project Path:", os.path.expanduser("~")+os.path.sep, self.project_path_on_done, None, None)
 
   def project_path_on_done(self, path):
 
-    path = shlex.quote( path.strip() )
+    path = path.strip()
 
     if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
       sublime.error_message("Can't create the project. There is already another project in "+path+".")
       return
 
     if not os.path.isdir(path):
-      os.makedirs(path)
+      if sublime.ok_cancel_dialog("The path \""+path+"\" doesn't exists.\n\nDo you want create it?", "Yes"):
+        os.makedirs(path)
+      else:
+        return
 
     Hook.apply("create_new_project", path)
     Hook.apply(self.project_type+"_create_new_project", path)

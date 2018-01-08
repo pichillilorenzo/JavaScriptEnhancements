@@ -48,8 +48,9 @@ class Hook(object):
 
     if hook_name in Hook.hook_list :
       for hook in Hook.hook_list[hook_name] :
-        value = hook["hook_func"](*args, **kwargs)
-        args = (value,) + args[1:]
+        hook["hook_func"](*args, **kwargs)
+        #value = hook["hook_func"](*args, **kwargs)
+        #args = (value,) + args[1:]
 
     return value
 
@@ -189,28 +190,33 @@ class NodeJS(object):
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True) :
 
     fp = None
+    args = ""
+
     if use_fp_temp :
       
-      fp = tempfile.NamedTemporaryFile()
-      fp.write(str.encode(fp_temp_contents))
-      fp.flush()
+      if sublime.platform() == "windows":
+        fp = tempfile.NamedTemporaryFile(delete=False)
+        fp.write(str.encode(fp_temp_contents))
+        fp.close()
+      else :
+        fp = tempfile.NamedTemporaryFile()
+        fp.write(str.encode(fp_temp_contents))
+        fp.flush()
+
+    command_args_list = list()
+    for command_arg in command_args :
+      if command_arg == ":temp_file":
+        command_arg = fp.name
+      command_args_list.append(shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg))
+    command_args = " ".join(command_args_list)
 
     if sublime.platform() == 'windows':
       if is_from_bin :
-        args = [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
+        args = json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)+'.cmd')+' '+command_args+(' < '+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
       else :
-        args = ([self.node_js_path] if use_node else []) + [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
-      if fp :
-        args += ["<", fp.name]
-    else :
-      command_args_list = list()
-      for command_arg in command_args :
-        if command_arg == ":temp_file":
-          command_arg = fp.name
-        command_args_list.append(shlex.quote(command_arg))
-      command_args = " ".join(command_args_list)
-
-      args = ( shlex.quote(self.node_js_path)+" " if use_node else "") +shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
+        args = ( json.dumps(self.node_js_path)+" " if use_node else "")+json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
+    else:
+      args = ( shlex.quote(self.node_js_path)+" " if use_node else "")+shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
     #print(args)
       
@@ -233,6 +239,9 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT
       )
+
+      if sublime.platform() == "windows" and use_fp_temp: 
+        os.unlink(fp.name)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -279,9 +288,12 @@ class NodeJS(object):
       return [True, result]
     except subprocess.CalledProcessError as e:
       print(traceback.format_exc())
-      
+
       # reset the PATH environment variable
       os.environ.update(old_env)
+
+      if sublime.platform() == "windows" and use_fp_temp: 
+        os.unlink(fp.name)
 
       try:
         result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
@@ -300,8 +312,12 @@ class NodeJS(object):
       os.environ.update(old_env)
 
       print(traceback.format_exc())
+
       if use_fp_temp :
-        fp.close()
+        if sublime.platform() == "windows": 
+          os.unlink(fp.name)
+        else:
+          fp.close()
       return [False, None]
 
 class NPM(object):
@@ -1211,9 +1227,13 @@ class mySocketServer():
 
 def sublime_executable_path():
   executable_path = sublime.executable_path()
+
   if sublime.platform() == 'osx':
     app_path = executable_path[:executable_path.rfind(".app/") + 5]
     executable_path = app_path + "Contents/SharedSupport/bin/subl"
+
+  elif sublime.platform() == 'windows':
+    executable_path = os.path.join(os.path.dirname(executable_path), "subl.exe")
 
   return executable_path
 
@@ -1221,13 +1241,19 @@ def subl(args):
   
   executable_path = sublime_executable_path()
 
+  args_list = list()
+
   if sublime.platform() == 'windows' :
     args = [executable_path] + args
+    for arg in args :
+      args_list.append(json.dumps(arg))
+    json.dumps(executable_path)
   else :
-    args_list = list()
     for arg in args :
       args_list.append(shlex.quote(arg))
-    args = shlex.quote(executable_path) + " " + " ".join(args_list)
+    shlex.quote(executable_path)
+  
+  args = executable_path + " " + " ".join(args_list)
 
   return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -1540,6 +1566,9 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
     self.on_activated_async(view)
 
 
+import sublime, sublime_plugin
+import shlex, json
+
 class manage_cliCommand(sublime_plugin.WindowCommand):
   
   custom_name = ""
@@ -1587,43 +1616,36 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   def _run(self):
 
     if self.isNode and self.isBinPath:
-      self.command[0] = shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, self.command[0] if not sublime.platform() == 'windows' else self.command[0]+".cmd"))
+      self.command[0] = shlex.quote(os.path.join(NODE_MODULES_BIN_PATH, self.command[0])) if sublime.platform() != "windows" else os.path.join(NODE_MODULES_BIN_PATH, self.command[0]+".cmd")
 
-    self.working_directory = shlex.quote(self.working_directory)
-    self.path_cli = shlex.quote(self.path_cli)
+    self.working_directory = shlex.quote(self.working_directory) if sublime.platform() != "windows" else self.working_directory
+    self.path_cli = shlex.quote(self.path_cli) if sublime.platform() != "windows" else self.path_cli
 
-    views = self.window.views()
-    view_with_term = None
-    for view in views:
-      if view.name() == "JavaScript Enhancements Terminal":
-        view_with_term = view
+    if sublime.platform() != "windows": 
+      views = self.window.views()
+      view_with_term = None
+      for view in views:
+        if view.name() == "JavaScript Enhancements Terminal":
+          view_with_term = view
 
-    self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
-    self.window.focus_group(1)
+      self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
+      self.window.focus_group(1)
 
-    if view_with_term:
-      self.window.focus_view(view_with_term)
-      if sublime.platform() in ("linux", "osx"): 
+      if view_with_term:
+        self.window.focus_view(view_with_term)
         self.window.run_command("terminal_view_send_string", args={"string": "cd "+self.working_directory+"\n"})
-      else:
-        # windows
-        pass
-    else :
-      view = self.window.new_file() 
+      else :
+        view = self.window.new_file() 
+        args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
+        view.run_command('terminal_view_activate', args=args)
 
-      cmd = ""
-      if sublime.platform() in ("linux", "osx"): 
-        cmd = "/bin/bash -l"
-      else:
-        # windows
-        pass
+      # stop the current process with SIGINT and call the command
+      sublime.set_timeout_async(lambda: self.window.run_command("terminal_view_send_string", args={"string": "\x03"}) or
+        self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
-      args = {"cmd": cmd, "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
-      view.run_command('terminal_view_activate', args=args)
-
-    # stop the current process with SIGINT and call the command
-    sublime.set_timeout_async(lambda: self.window.run_command("terminal_view_send_string", args={"string": "\x03"}) or
-      self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
+    else:
+      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal")
+      terminal.run([self.path_cli]+self.command)
 
   def substitute_placeholders(self, variable):
     
@@ -1658,18 +1680,38 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
       return
       
     self.project_type = PROJECT_TYPE_SUPPORTED[index]
+
+    # Testing WindowView()
+    # self.WindowView = WindowView()
+    # self.WindowView.addTitle(text="Create JavaScript Project")
+    # self.WindowView.add(text="\n")
+    # self.WindowView.add(text="Project Path: ", region_id="test")
+    # self.WindowView.addInput(value=os.path.expanduser("~")+os.path.sep, region_id="project_path")
+    # self.WindowView.add(text="\n\n")
+    # Hook.apply(self.project_type+"_create_window_view", self.WindowView)
+    # self.WindowView.add(text="\n\n")
+    # self.WindowView.addButton(text="CREATE", scope="javascriptenhancements.button_ok")
+    # self.WindowView.add(text="        ")
+    # self.WindowView.addButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+    # self.WindowView.add(text=" \n")
+    # self.WindowView.addEventListener("drag_select", "click.javascriptenhancements.button_ok", lambda view: self.project_path_on_done(self.WindowView.getInput("project_path")))
+    # self.WindowView.addEventListener("drag_select", "click.javascriptenhancements.button_cancel", lambda view: self.WindowView.close())
+
     self.window.show_input_panel("Project Path:", os.path.expanduser("~")+os.path.sep, self.project_path_on_done, None, None)
 
   def project_path_on_done(self, path):
 
-    path = shlex.quote( path.strip() )
+    path = path.strip()
 
     if os.path.isdir(os.path.join(path, PROJECT_SETTINGS_FOLDER_NAME)):
       sublime.error_message("Can't create the project. There is already another project in "+path+".")
       return
 
     if not os.path.isdir(path):
-      os.makedirs(path)
+      if sublime.ok_cancel_dialog("The path \""+path+"\" doesn't exists.\n\nDo you want create it?", "Yes"):
+        os.makedirs(path)
+      else:
+        return
 
     Hook.apply("create_new_project", path)
     Hook.apply(self.project_type+"_create_new_project", path)
@@ -2043,7 +2085,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def cordova_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Cordova CLI custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, shlex.quote(cordova_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, shlex.quote(cordova_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Cordova CLI custom path", "cordova", lambda cordova_custom_path: cordova_prepare_project(project_path, cordova_custom_path) if type == "create_new_project" or type == "add_project_type" else add_cordova_settings(project_path, cordova_custom_path), None, None)
 
 def add_cordova_settings(working_directory, cordova_custom_path):
   project_path = working_directory
@@ -2076,21 +2118,18 @@ def add_cordova_settings(working_directory, cordova_custom_path):
 
 def cordova_prepare_project(project_path, cordova_custom_path):
 
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": cordova_custom_path+" create myApp com.example.hello HelloWorld && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path, window=sublime.active_window())
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(cordova_custom_path), "create", "myApp", "com.example.hello", "HelloWorld", "&&", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([cordova_custom_path, "create", "myApp", "com.example.hello", "HelloWorld", "&&", "robocopy", "/move", "/e", "myApp", "."])
+    if open_project:
+      terminal.run(open_project)
 
   add_cordova_settings(project_path, cordova_custom_path)
-
-  #open_project_folder(get_project_settings(project_path)["project_file_name"])
 
 Hook.add("cordova_after_create_new_project", cordova_ask_custom_path)
 Hook.add("cordova_add_javascript_project_configuration", cordova_ask_custom_path)
@@ -2384,8 +2423,6 @@ def angularv1_prepare_project(project_path, angularv1_custom_path):
 
   add_angularv1_settings(project_path, angularv1_custom_path)
 
-  open_project_folder(get_project_settings()["project_file_name"])
-
 Hook.add("angularv1_after_create_new_project", angularv1_ask_custom_path)
 Hook.add("angularv1_add_javascript_project_configuration", angularv1_ask_custom_path)
 Hook.add("angularv1_add_javascript_project_type", angularv1_ask_custom_path)
@@ -2474,8 +2511,6 @@ def angularv2_prepare_project(project_path, angularv2_custom_path):
     pass
 
   add_angularv2_settings(project_path, angularv2_custom_path)
-
-  open_project_folder(get_project_settings()["project_file_name"])
 
 Hook.add("angularv2_after_create_new_project", angularv2_ask_custom_path)
 Hook.add("angularv2_add_javascript_project_configuration", angularv2_ask_custom_path)
@@ -2697,6 +2732,402 @@ Hook.add("express_add_javascript_project_type", express_ask_custom_path)
 import sublime, sublime_plugin
 import json, os, re, webbrowser, cgi, threading, shutil
 from distutils.version import LooseVersion
+
+import sublime, sublime_plugin
+import shlex, json, os
+from os.path import expanduser
+
+class Terminal():
+
+  def __init__(self, cmd="", title="", cwd="", syntax=None, keep_open=False, window=None):
+
+    if sublime.platform() != "windows": 
+      self.cmd = cmd or "/bin/bash -l"
+    else :
+      self.cmd = cmd or "cmd.exe"
+
+    self.title = title or "Terminal"
+    self.cwd = cwd or os.path.expanduser("~")
+    self.syntax = syntax
+    self.keep_open = keep_open
+    self.window = window
+
+  def run(self, cmd_args):
+    if sublime.platform() != "windows": 
+      view = self.window.new_file() 
+      view.run_command('terminal_view_activate', args={"cmd": self.cmd, "title": self.title, "cwd": self.cwd, "syntax": self.syntax, "keep_open": self.keep_open} )
+      self.window.run_command("terminal_view_send_string", args={"string": " ".join(cmd_args) + "\n"})
+    else:
+      print([self.cmd] + 
+        ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
+        + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
+        + ( [";", "CD", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", self.cwd] ) 
+        + ( [";"] if self.cmd.startswith("powershell") else ["&&"] ) 
+        + cmd_args )
+      subprocess.Popen( [self.cmd] + 
+        ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
+        + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
+        + ( [";", "CD", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", self.cwd] ) 
+        + ( [";"] if self.cmd.startswith("powershell") else ["&&"] ) 
+        + cmd_args 
+      )
+
+
+import sublime, sublime_plugin
+
+class WindowView():
+
+  def __init__(self, title="WindowView", window=None, view=None):
+    self.view = ( sublime.active_window().new_file() if not window else window.new_file() ) if not view else view
+    self.view.set_name(title)
+    self.view.set_read_only(True)
+    self.view.set_scratch(True)
+    self.view.settings().set("javascript_enhancements_window", True)
+    self.view.settings().set("gutter", False)
+    self.view.settings().set("highlight_line", False)
+    self.view.settings().set("auto_complete_commit_on_tab", False)
+    self.view.settings().set("draw_centered", False)
+    self.view.settings().set("word_wrap", False)
+    self.view.settings().set("auto_complete", False)
+    self.view.settings().set("draw_white_space", "none")
+    self.view.settings().set("draw_indent_guides", False)
+    self.view.settings().set("wide_caret", True)
+    self.view.settings().set("rulers", "blink")
+    self.view.settings().add_on_change('color_scheme', lambda: self.setColorScheme())
+    self.events = dict()
+    self.region_ids = []
+    self.region_input_ids = []
+
+    Hook.add("javascript_enhancements_window_close_"+str(self.view.id()), self.destroy)
+
+  def __del__(self):
+    Hook.removeAllHook("javascript_enhancements_window_close_"+str(self.view.id()))
+    for event in self.events.keys():
+      for eventRegionKey in self.events[event].keys():
+        for callback in self.events[event][eventRegionKey].keys():
+          self.removeEventListener(event, eventRegionKey, self.events[event][eventRegionKey][callback])
+
+  def add(self, text, key="", scope="", icon="", flags=sublime.HIDDEN, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
+
+    if region_id in self.region_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
+    space = (" "*int(padding))
+    text = space+text+space
+
+    self.view.set_read_only(False)
+
+    if insert_point:
+
+      self.view.run_command("insert_text_view", args={"text": text, "key": key, "scope": scope, "icon": icon, "flags": flags, "region_id": region_id, "point": insert_point})
+      if display_block:
+        self.view.run_command("insert_text_view", args={"text": "\n", "key": "", "scope": "", "icon": "", "flags": sublime.HIDDEN, "point": insert_point+len(text)})
+
+    elif replace_points:
+
+      self.view.run_command("replace_region_view", args={"text": text, "key": key, "scope": scope, "icon": icon, "flags": flags, "region_id": region_id, "start": replace_points[0], "end": replace_points[1]})
+    
+    else:
+
+      self.view.run_command("append_text_view", args={"text": text, "key": key, "scope": scope, "icon": icon, "flags": flags, "region_id": region_id})
+      if display_block:
+        self.view.run_command("append_text_view", args={"text": "\n", "key": "", "scope": "", "icon": "", "flags": sublime.HIDDEN})
+
+    self.view.set_read_only(True)
+    if region_id:
+      self.region_ids.append(region_id)
+
+  def addTitle(self, text, key="", scope="javascriptenhancements.title", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=2, display_block=True, insert_point=None, replace_points=[]):
+    space_padding = (" "*int(padding))
+    space_row = (" "*len(text))+(" "*int(padding)*2)
+    text = space_row+"\n"+space_padding+text+space_padding+"\n"+space_row+" "
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=0, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+  def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+  def addButton(self, text, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+  def addInput(self, value=" ", key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+
+    if not region_id:
+      raise Exception("Error: ID isn't setted.")
+
+    if region_id in self.region_input_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
+    self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.region_input_ids.append(region_id)
+
+  def getInput(self, region_input_id):
+    region = self.view.get_regions(region_input_id)
+    if region:
+      region = region[0]
+      return self.view.substr(region)[1:-1]
+    return None
+
+  def getInputs(self):
+    inputs = dict()
+    for region_input_id in self.region_input_ids:
+      inputs[region_id] = self.getInput(region_input_id)
+    return inputs
+
+  def replaceById(self, replace_region_id, text, key="", scope="", icon="", flags=sublime.HIDDEN, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
+
+    print(self.view.get_regions("input.javascriptenhancements.input"))
+    region = self.view.get_regions(replace_region_id)
+    if region:
+      region = region[0]
+    else:
+      return
+
+    self.removeById(replace_region_id)
+
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=[region.begin(), region.end()])
+
+    print(region)
+    print(self.view.get_regions("input.javascriptenhancements.input"))
+
+  def removeById(self, region_id):
+    self.view.erase_regions(region_id)
+
+    if region_id in self.region_ids:
+      self.region_ids.remove(region_id)
+
+    if region_id in self.region_input_ids:
+      self.region_input_ids.remove(region_id)
+
+  def addEventListener(self, event, region_key, callback):
+    if not event in self.events:
+      self.events[event] = dict()
+
+    if not region_key in self.events[event]:
+      self.events[event][region_key] = dict()
+
+    eventCallback = lambda view, cmd_args: callback(self.view) if self.canCallback(view, cmd_args, region_key) else None
+    self.events[event][region_key][callback] = eventCallback
+
+    Hook.add(event, eventCallback)
+
+  def removeEventListener(self, event, region_key, callback):
+
+    if not event in self.events:
+      return 
+
+    if not region_key in self.events[event]:
+      return 
+
+    if not callback in self.events[event][region_key]:
+      return 
+
+    eventCallback = self.events[event][region_key][callback]
+
+    Hook.removeHook(event, eventCallback)
+    del self.events[event][region_key][callback]
+
+  def canCallback(self, view, cmd_args, region_key):
+    if not view:
+      return False
+    if view.id() != self.view.id():
+      return False
+
+    point = view.window_to_text((cmd_args.get("event").get("x"), cmd_args.get("event").get("y"))) if "event" in cmd_args and "x" in cmd_args.get("event") else self.view.sel()[0]
+
+    for region in self.view.get_regions(region_key):
+      if region.contains(point):
+        return True
+
+    return False
+
+  def getView(self):
+    return self.view
+
+  def setColorScheme(self):
+    color_scheme = "Packages/JavaScript Enhancements/JavaScript Enhancements.tmTheme"
+    if self.view.settings().get('color_scheme') != color_scheme:
+      self.view.settings().set('color_scheme', color_scheme)
+
+  def close(self):
+    self.view.close()
+    self.destroy()
+
+  def destroy(self, *args, **kwargs):
+    self.__del__()
+
+class insertTextViewCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    point = args.get("point")
+    view.insert(edit, point, args.get("text"))
+    region = sublime.Region(point, len(args.get("text")))
+    if "key" in args:
+      scope = args.get("scope") if "scope" in args else ""
+      scope_dot = "." + scope if scope else ""
+      icon = args.get("icon") if "icon" in args else ""
+      flags = args.get("flags") if "flags" in args else sublime.HIDDEN
+      key = args.get("key") + scope_dot
+      regions = [region] + view.get_regions(args.get("key") + scope_dot)
+
+      view.add_regions(key, regions, scope, icon, flags)
+
+      if "region_id" in args and args.get("region_id"):
+        view.add_regions(args.get("region_id"), [region], scope, icon, flags)
+
+class replaceRegionViewCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    view.erase(edit, sublime.Region(args.get("start"), args.get("end")))
+    view.insert(edit, args.get("start"), args.get("text"))
+    region = sublime.Region(args.get("start"), args.get("start")+len(args.get("text")))
+    if "key" in args:
+      scope = args.get("scope") if "scope" in args else ""
+      scope_dot = "." + scope if scope else ""
+      icon = args.get("icon") if "icon" in args else ""
+      flags = args.get("flags") if "flags" in args else sublime.HIDDEN
+      key = args.get("key") + scope_dot
+      regions = [region] + view.get_regions(args.get("key") + scope_dot)
+
+      view.add_regions(key, regions, scope, icon, flags)
+
+      if "region_id" in args and args.get("region_id"):
+        view.add_regions(args.get("region_id"), [region], scope, icon, flags)
+
+class replaceTextViewCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    region = sublime.Region(args.get("start"), args.get("end"))
+    view.replace(edit, region, args.get("text"))
+    if "key" in args:
+      scope = args.get("scope") if "scope" in args else ""
+      scope_dot = "." + scope if scope else ""
+      icon = args.get("icon") if "icon" in args else ""
+      flags = args.get("flags") if "flags" in args else sublime.HIDDEN
+      key = args.get("key") + scope_dot
+      regions = [region] + view.get_regions(args.get("key") + scope_dot)
+
+      view.add_regions(key, regions, scope, icon, flags)
+
+      if "region_id" in args and args.get("region_id"):
+        view.add_regions(args.get("region_id"), [region], scope, icon, flags)
+
+class appendTextViewCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    point = view.size()
+    view.insert(edit, point, args.get("text"))
+    region = sublime.Region(point, view.size())
+    if "key" in args:
+      scope = args.get("scope") if "scope" in args else ""
+      scope_dot = "." + scope if scope else ""
+      icon = args.get("icon") if "icon" in args else ""
+      flags = args.get("flags") if "flags" in args else sublime.HIDDEN
+      key = args.get("key") + scope_dot
+      regions = [region] + view.get_regions(args.get("key") + scope_dot)
+
+      view.add_regions(key, regions, scope, icon, flags)
+
+      if "region_id" in args and args.get("region_id"):
+        view.add_regions(args.get("region_id"), [region], scope, icon, flags)
+
+class windowKeypressCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+
+    if view.settings().get("javascript_enhancements_window"):
+      key = args.get("key")
+
+      if key == "tab" or key =="shift+tab":
+        input_regions = view.get_regions("input.javascriptenhancements.input")
+        for index in range(0, len(input_regions)):
+          region = input_regions[index]
+          if region.contains(view.sel()[0]):
+            view.sel().clear()
+            next_region = None
+            if key == "tab":
+              next_region = input_regions[index + 1] if index < len(input_regions) - 1 else input_regions[0]
+            else:
+              next_region = input_regions[index - 1] if index - 1 >= 0 else input_regions[-1]
+            view.sel().add(next_region.begin()+1)
+            return
+
+        if len(input_regions) > 0:
+          view.sel().clear()
+          view.sel().add(input_regions[0].begin()+1)
+
+      if key == "ctrl+alt+a":
+        input_regions = view.get_regions("input.javascriptenhancements.input")
+        for region in input_regions:
+          if region.contains(view.sel()[0]):   
+            view.sel().clear()
+            view.sel().add(sublime.Region(region.begin()+1, region.end()-1))
+
+class windowEventListener(sublime_plugin.EventListener):
+
+  def on_modified_async(self, view):
+    if view.settings().get("javascript_enhancements_window"):
+
+      for region in view.get_regions("input.javascriptenhancements.input"):
+
+        # this order is important!
+        
+        if region.contains(view.sel()[0]) and view.substr(region)[0] != " ":
+          view.set_read_only(False)
+          char = view.substr(region)[0]
+          view.run_command("insert_text_view", args={"text": " ", "point": region.begin()+1})
+          view.run_command("replace_text_view", args={"text": " ", "start": region.begin(), "end": region.begin()+1})
+          view.run_command("replace_text_view", args={"text": char, "start": region.begin()+1, "end": region.begin()+2})
+          view.set_read_only(True)
+          view.sel().clear()
+          view.sel().add(region.begin()+1)
+
+        elif region.contains(view.sel()[0]) and view.substr(region)[-1] != " ":
+          view.set_read_only(False)
+          char = view.substr(region)[-1]
+          view.run_command("insert_text_view", args={"text": " ", "point": region.end()-1})
+          view.run_command("replace_text_view", args={"text": " ", "start": region.end(), "end": region.end()+1})
+          view.run_command("replace_text_view", args={"text": char, "start": region.end()-1, "end": region.end()})
+          view.set_read_only(True)
+          view.sel().clear()
+          view.sel().add(region.end())
+
+        elif region.contains(view.sel()[0]) and region.size() == 2:
+          view.set_read_only(False)
+          view.run_command("insert_text_view", args={"text": " ", "point": region.begin()+1})
+          view.set_read_only(True)
+          view.sel().clear()
+          view.sel().add(region.begin()+1)
+          break 
+
+    return
+
+  def on_selection_modified_async(self, view):
+    if view.settings().get("javascript_enhancements_window"):
+
+      for region in view.get_regions("input.javascriptenhancements.input"):
+        if view.sel()[0].begin() >= region.begin() + 1 and view.sel()[0].end() <= region.end() - 1:
+          view.set_read_only(False)
+          return
+        elif view.sel()[0].begin() == view.sel()[0].end():
+          if view.sel()[0].begin() == region.begin():
+            view.sel().clear()
+            view.sel().add(region.begin()+1)
+            return
+          elif view.sel()[0].end() == region.end() :
+            view.sel().clear()
+            view.sel().add(region.end()-1)
+            return
+
+      view.set_read_only(True)
+
+  def on_text_command(self, view, command_name, args):
+    if view.settings().get("javascript_enhancements_window"):
+      Hook.apply(command_name, view, args)
+
+  def on_close(self, view):
+    if view.settings().get("javascript_enhancements_window"):
+      Hook.apply("javascript_enhancements_window_close_"+str(view.id()))
+
 
 class wait_modified_asyncViewEventListener():
   last_change = time.time()
@@ -3853,7 +4284,6 @@ def show_flow_errors(view) :
           if row_description and description not in row_description:
             description_by_row[row]["description"] += '; ' + description
 
-          print(str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol))
           description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)] = description
             
       errors = result[1]['errors']
@@ -4914,28 +5344,27 @@ class can_i_use_hide_popupEventListener(sublime_plugin.EventListener):
       view.hide_popup()
       can_i_use_popup_is_showing = False
 
-
 def start():
 
   global mainPlugin
 
-  if sublime.platform() == 'windows':
-    print(sublime.platform())
-    sublime.error_message("Windows is not supported by this plugin for now.")
-    return
+  # if sublime.platform() == 'windows':
+  #   print(sublime.platform())
+  #   sublime.error_message("Windows is not supported by this plugin for now.")
+  #   return
 
   if platform.architecture()[0] != "64bit":
     print(platform.architecture())
     sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
     return
 
-  try:
-    sys.modules["TerminalView"]
-  except Exception as err:
-    response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
-    if response == sublime.DIALOG_YES:
-      sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
-    return
+  # try:
+  #   sys.modules["TerminalView"]
+  # except Exception as err:
+  #   response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
+  #   if response == sublime.DIALOG_YES:
+  #     sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
+  #   return
 
   try:
     sys.modules["JavaScript Completions"]
@@ -4971,7 +5400,7 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-  
+
   if int(sublime.version()) >= 3124 :
     sublime.set_timeout_async(start, 1000)
   else:

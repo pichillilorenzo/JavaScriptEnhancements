@@ -103,7 +103,6 @@ def show_flow_errors(view) :
           if row_description and description not in row_description:
             description_by_row[row]["description"] += '; ' + description
 
-          print(str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol))
           description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)] = description
             
       errors = result[1]['errors']

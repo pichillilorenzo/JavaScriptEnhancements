@@ -63,28 +63,33 @@ class NodeJS(object):
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True) :
 
     fp = None
+    args = ""
+
     if use_fp_temp :
       
-      fp = tempfile.NamedTemporaryFile()
-      fp.write(str.encode(fp_temp_contents))
-      fp.flush()
+      if sublime.platform() == "windows":
+        fp = tempfile.NamedTemporaryFile(delete=False)
+        fp.write(str.encode(fp_temp_contents))
+        fp.close()
+      else :
+        fp = tempfile.NamedTemporaryFile()
+        fp.write(str.encode(fp_temp_contents))
+        fp.flush()
+
+    command_args_list = list()
+    for command_arg in command_args :
+      if command_arg == ":temp_file":
+        command_arg = fp.name
+      command_args_list.append(shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg))
+    command_args = " ".join(command_args_list)
 
     if sublime.platform() == 'windows':
       if is_from_bin :
-        args = [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command+".cmd")] + command_args
+        args = json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)+'.cmd')+' '+command_args+(' < '+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
       else :
-        args = ([self.node_js_path] if use_node else []) + [os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
-      if fp :
-        args += ["<", fp.name]
-    else :
-      command_args_list = list()
-      for command_arg in command_args :
-        if command_arg == ":temp_file":
-          command_arg = fp.name
-        command_args_list.append(shlex.quote(command_arg))
-      command_args = " ".join(command_args_list)
-
-      args = ( shlex.quote(self.node_js_path)+" " if use_node else "") +shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
+        args = ( json.dumps(self.node_js_path)+" " if use_node else "")+json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
+    else:
+      args = ( shlex.quote(self.node_js_path)+" " if use_node else "")+shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
     #print(args)
       
@@ -107,6 +112,9 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT
       )
+
+      if sublime.platform() == "windows" and use_fp_temp: 
+        os.unlink(fp.name)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -153,9 +161,12 @@ class NodeJS(object):
       return [True, result]
     except subprocess.CalledProcessError as e:
       print(traceback.format_exc())
-      
+
       # reset the PATH environment variable
       os.environ.update(old_env)
+
+      if sublime.platform() == "windows" and use_fp_temp: 
+        os.unlink(fp.name)
 
       try:
         result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
@@ -174,8 +185,12 @@ class NodeJS(object):
       os.environ.update(old_env)
 
       print(traceback.format_exc())
+
       if use_fp_temp :
-        fp.close()
+        if sublime.platform() == "windows": 
+          os.unlink(fp.name)
+        else:
+          fp.close()
       return [False, None]
 
 class NPM(object):

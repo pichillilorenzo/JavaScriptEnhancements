@@ -20,8 +20,9 @@ class Hook(object):
 
     if hook_name in Hook.hook_list :
       for hook in Hook.hook_list[hook_name] :
-        value = hook["hook_func"](*args, **kwargs)
-        args = (value,) + args[1:]
+        hook["hook_func"](*args, **kwargs)
+        #value = hook["hook_func"](*args, **kwargs)
+        #args = (value,) + args[1:]
 
     return value
 

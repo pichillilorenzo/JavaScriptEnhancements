@@ -45,8 +45,6 @@ def angularv1_prepare_project(project_path, angularv1_custom_path):
 
   add_angularv1_settings(project_path, angularv1_custom_path)
 
-  open_project_folder(get_project_settings()["project_file_name"])
-
 Hook.add("angularv1_after_create_new_project", angularv1_ask_custom_path)
 Hook.add("angularv1_add_javascript_project_configuration", angularv1_ask_custom_path)
 Hook.add("angularv1_add_javascript_project_type", angularv1_ask_custom_path)

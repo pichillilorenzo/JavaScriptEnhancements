@@ -45,8 +45,6 @@ def angularv2_prepare_project(project_path, angularv2_custom_path):
 
   add_angularv2_settings(project_path, angularv2_custom_path)
 
-  open_project_folder(get_project_settings()["project_file_name"])
-
 Hook.add("angularv2_after_create_new_project", angularv2_ask_custom_path)
 Hook.add("angularv2_add_javascript_project_configuration", angularv2_ask_custom_path)
 Hook.add("angularv2_add_javascript_project_type", angularv2_ask_custom_path)
