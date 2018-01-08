@@ -20,7 +20,7 @@ It offers better **javascript autocomplete** and also a lot of features about cr
 - Yeoman generators
 - Local bookmarks project
 - JavaScript real-time errors
-- etc.
+- etc. (I will add also **React Native** and **NativeScript** support)
 
 You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project))!
 
@@ -35,10 +35,7 @@ If you want use this plugin, you may want **uninstall/disable** the **JavaScript
 
 - Linux (64-bit)
 - Mac OS X
-
-### For Windows users
-
-For Windows support I will create a **degraded** mode without the use of **[TerminalView](https://github.com/Wramberg/TerminalView)** plugin these days, so **WATCH** the repository. Unfortunately the TerminalView plugin supports only **Linux-based OS** 😞 . Has someone any advice or idea about that? Is there something similar to the TerminalView plugin for Windows?? Thanks!
+- Windows (64-bit): released without the use of [TerminalView](https://github.com/Wramberg/TerminalView) plugin. For each feature (like also creating a project) will be used the `cmd.exe` shell (so during the creation of a project **don't close it** until it finishes!). Unfortunately the TerminalView plugin supports only **Linux-based OS** 😞 . Has someone any advice or idea about that? Is there something similar to the TerminalView plugin for Windows?? Thanks!
 
 ## Dependencies
 
@@ -46,7 +43,7 @@ In order to work properly, this plugin has some dependencies:
 
 - **Sublime Text 3** (build **3124** or newer)
 - **Node.js** and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
-- **TerminalView** sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
+- **TerminalView** (only for _Linux_ and _Mac OS X_) sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 
 **Not required**, but **useful** for typescript files (Flow wont work on this type of files):
 
@@ -91,7 +88,7 @@ If this doesn't work too, then you could try to add the custom path that contain
 }
 ```
 
-**REMEMBER** to add `:` at the begin of the `PATH` value!! Like I already said, it uses the same syntax for the $PATH environment variable.
+For _Linux-based OS_ **REMEMBER** to add `:` (for _Windows OS_ **REMEMBER** to add `;`) at the begin of the `PATH` value!! Like I already said, it uses the same syntax for the $PATH environment variable.
 
 ## Usage
 

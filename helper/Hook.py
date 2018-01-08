@@ -24,7 +24,7 @@ class Hook(object):
         #value = hook["hook_func"](*args, **kwargs)
         #args = (value,) + args[1:]
 
-    return value
+    #return value
 
   @staticmethod
   def count(hook_name) :

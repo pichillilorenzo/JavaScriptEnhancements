@@ -7,7 +7,7 @@ class WindowView():
     self.view.set_name(title)
     self.view.set_read_only(True)
     self.view.set_scratch(True)
-    self.view.settings().set("javascript_enhancements_window", True)
+    self.view.settings().set("javascript_enhancements_window_view", True)
     self.view.settings().set("gutter", False)
     self.view.settings().set("highlight_line", False)
     self.view.settings().set("auto_complete_commit_on_tab", False)
@@ -23,10 +23,10 @@ class WindowView():
     self.region_ids = []
     self.region_input_ids = []
 
-    Hook.add("javascript_enhancements_window_close_"+str(self.view.id()), self.destroy)
+    Hook.add("javascript_enhancements_window_view_close_"+str(self.view.id()), self.destroy)
 
   def __del__(self):
-    Hook.removeAllHook("javascript_enhancements_window_close_"+str(self.view.id()))
+    Hook.removeAllHook("javascript_enhancements_window_view_close_"+str(self.view.id()))
     for event in self.events.keys():
       for eventRegionKey in self.events[event].keys():
         for callback in self.events[event][eventRegionKey].keys():
@@ -100,7 +100,6 @@ class WindowView():
 
   def replaceById(self, replace_region_id, text, key="", scope="", icon="", flags=sublime.HIDDEN, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
 
-    print(self.view.get_regions("input.javascriptenhancements.input"))
     region = self.view.get_regions(replace_region_id)
     if region:
       region = region[0]
@@ -110,9 +109,6 @@ class WindowView():
     self.removeById(replace_region_id)
 
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=[region.begin(), region.end()])
-
-    print(region)
-    print(self.view.get_regions("input.javascriptenhancements.input"))
 
   def removeById(self, region_id):
     self.view.erase_regions(region_id)
@@ -255,11 +251,11 @@ class appendTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class windowKeypressCommand(sublime_plugin.TextCommand):
+class windowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
 
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
       key = args.get("key")
 
       if key == "tab" or key =="shift+tab":
@@ -287,10 +283,10 @@ class windowKeypressCommand(sublime_plugin.TextCommand):
             view.sel().clear()
             view.sel().add(sublime.Region(region.begin()+1, region.end()-1))
 
-class windowEventListener(sublime_plugin.EventListener):
+class windowViewEventListener(sublime_plugin.EventListener):
 
   def on_modified_async(self, view):
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
 
       for region in view.get_regions("input.javascriptenhancements.input"):
 
@@ -327,7 +323,7 @@ class windowEventListener(sublime_plugin.EventListener):
     return
 
   def on_selection_modified_async(self, view):
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
 
       for region in view.get_regions("input.javascriptenhancements.input"):
         if view.sel()[0].begin() >= region.begin() + 1 and view.sel()[0].end() <= region.end() - 1:
@@ -346,9 +342,9 @@ class windowEventListener(sublime_plugin.EventListener):
       view.set_read_only(True)
 
   def on_text_command(self, view, command_name, args):
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
       Hook.apply(command_name, view, args)
 
   def on_close(self, view):
-    if view.settings().get("javascript_enhancements_window"):
-      Hook.apply("javascript_enhancements_window_close_"+str(view.id()))
+    if view.settings().get("javascript_enhancements_window_view"):
+      Hook.apply("javascript_enhancements_window_view_close_"+str(view.id()))

@@ -19,6 +19,8 @@ HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
 
 BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
+WINDOWS_BATCH_FOLDER = os.path.join(PACKAGE_PATH, 'windows_batch')
+
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
@@ -90,6 +92,7 @@ class startPlugin():
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
         sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in a way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
+        return
     # else:
     #   result = npm.update_all()
     #   if not result[0]: 
@@ -124,13 +127,14 @@ def start():
     sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
     return
 
-  # try:
-  #   sys.modules["TerminalView"]
-  # except Exception as err:
-  #   response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
-  #   if response == sublime.DIALOG_YES:
-  #     sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
-  #   return
+  if sublime.platform() != 'windows':
+    try:
+      sys.modules["TerminalView"]
+    except Exception as err:
+      response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
+      if response == sublime.DIALOG_YES:
+        sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
+      return
 
   try:
     sys.modules["JavaScript Completions"]
@@ -166,7 +170,7 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-
+  
   if int(sublime.version()) >= 3124 :
     sublime.set_timeout_async(start, 1000)
   else:

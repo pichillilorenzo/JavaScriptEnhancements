@@ -8,6 +8,53 @@
         "id": "ionicv2",
         "children":[
           {
+            "caption": "Platform",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "add", ":platform"]
+                }
+              },
+              {
+                "caption": "Update",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "update", ":platform"]
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "remove", ":platform"]
+                }
+              },
+              {
+                "caption": "List",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "list"]
+                }
+              },
+              {
+                "caption": "Check",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "check"]
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "save"]
+                }
+              }
+            ]
+          },
+          {
             "caption": "Generate",
             "children": [
               {
@@ -169,6 +216,32 @@
                 }
               }
             ]
+          },
+          {
+            "caption": "Integration",
+            "children": [
+              {
+                "caption": "Enable",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["integrations", "enable", ":integration_id"]
+                }
+              },
+              {
+                "caption": "Disable",
+                "command": "ionicv2_cli",
+                "args": {
+                  "command": ["integrations", "disable", ":integration_id"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Info",
+            "command": "ionicv2_cli",
+            "args": {
+              "command": ["info"]
+            }
           },
           {
             "caption": "Open Docs",

@@ -57,7 +57,8 @@ def is_type_javascript_project(type):
 def is_project_view(view) :
   settings = get_project_settings()
   if settings :
-    return view.file_name() and view.file_name().startswith(settings["project_dir_name"])
+    # added view.file_name() == None because of new files without a name
+    return ( view.file_name() and view.file_name().startswith(settings["project_dir_name"]) ) or view.file_name() == None
   return False
 
 def get_project_settings(project_dir_name = ""):

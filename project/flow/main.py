@@ -102,23 +102,37 @@ class add_flow_definitionCommand(sublime_plugin.WindowCommand):
         if result[0]:
           flow_bin_version = json.loads(result[1])["semver"]
 
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = settings["project_dir_name"]
+      use_node = True
+      bin_path = ""
+
+      if settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        use_node = False
+
       node = NodeJS(check_local=True)
       if not flow_bin_version:
-        result = node.execute("flow", command_args=["version", "--json"], is_from_bin=True)
+        result = node.execute(flow_cli, command_args=["version", "--json"], is_from_bin=is_from_bin, chdir=chdir, bin_path=bin_path, use_node=use_node)
         if result[0]:
           flow_bin_version = json.loads(result[1])["semver"]
 
       if flow_bin_version:
         # example: flow-typed install -f 0.62.0 express@4.x.x
-        result = node.execute("flow-typed", command_args=["install", "-f", flow_bin_version, package_name+"@"+version], is_from_bin=True, chdir=settings["project_dir_name"])
+        result = node.execute("flow-typed", command_args=["install", "-f", flow_bin_version, package_name+"@"+version], is_from_bin=True, chdir=chdir)
 
         if result[0]:
           self.window.status_message("Defintion '" + package_name + "@" + version + "' installed successfully!")
         else:
+          print(result)
           self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
 
       else:
-          self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
+        print(result)
+        self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
 
     else:
       sublime.error_message("Error: can't get project settings")

@@ -19,6 +19,8 @@ HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
 
 BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
+WINDOWS_BATCH_FOLDER = os.path.join(PACKAGE_PATH, 'windows_batch')
+
 platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
 os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
@@ -52,7 +54,7 @@ class Hook(object):
         #value = hook["hook_func"](*args, **kwargs)
         #args = (value,) + args[1:]
 
-    return value
+    #return value
 
   @staticmethod
   def count(hook_name) :
@@ -360,7 +362,7 @@ class NPM(object):
     if sublime.platform() == 'windows':
       args = [self.cli_path, command] + command_args
     else :
-      args = [self.node_js_path, self.cli_path, command] + command_args
+      args = [self.cli_path, command] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 
@@ -1281,6 +1283,7 @@ class startPlugin():
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
         sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in a way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
+        return
     # else:
     #   result = npm.update_all()
     #   if not result[0]: 
@@ -1482,7 +1485,8 @@ def is_type_javascript_project(type):
 def is_project_view(view) :
   settings = get_project_settings()
   if settings :
-    return view.file_name() and view.file_name().startswith(settings["project_dir_name"])
+    # added view.file_name() == None because of new files without a name
+    return ( view.file_name() and view.file_name().startswith(settings["project_dir_name"]) ) or view.file_name() == None
   return False
 
 def get_project_settings(project_dir_name = ""):
@@ -1625,7 +1629,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       views = self.window.views()
       view_with_term = None
       for view in views:
-        if view.name() == "JavaScript Enhancements Terminal":
+        if view.name() == "JavaScript Enhancements Terminal (bash)":
           view_with_term = view
 
       self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
@@ -1636,7 +1640,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.window.run_command("terminal_view_send_string", args={"string": "cd "+self.working_directory+"\n"})
       else :
         view = self.window.new_file() 
-        args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
+        args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal (bash)", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
         view.run_command('terminal_view_activate', args=args)
 
       # stop the current process with SIGINT and call the command
@@ -1644,7 +1648,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
     else:
-      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal")
+      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal (bash)")
       terminal.run([self.path_cli]+self.command)
 
   def substitute_placeholders(self, variable):
@@ -2053,23 +2057,37 @@ class add_flow_definitionCommand(sublime_plugin.WindowCommand):
         if result[0]:
           flow_bin_version = json.loads(result[1])["semver"]
 
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = settings["project_dir_name"]
+      use_node = True
+      bin_path = ""
+
+      if settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        use_node = False
+
       node = NodeJS(check_local=True)
       if not flow_bin_version:
-        result = node.execute("flow", command_args=["version", "--json"], is_from_bin=True)
+        result = node.execute(flow_cli, command_args=["version", "--json"], is_from_bin=is_from_bin, chdir=chdir, bin_path=bin_path, use_node=use_node)
         if result[0]:
           flow_bin_version = json.loads(result[1])["semver"]
 
       if flow_bin_version:
         # example: flow-typed install -f 0.62.0 express@4.x.x
-        result = node.execute("flow-typed", command_args=["install", "-f", flow_bin_version, package_name+"@"+version], is_from_bin=True, chdir=settings["project_dir_name"])
+        result = node.execute("flow-typed", command_args=["install", "-f", flow_bin_version, package_name+"@"+version], is_from_bin=True, chdir=chdir)
 
         if result[0]:
           self.window.status_message("Defintion '" + package_name + "@" + version + "' installed successfully!")
         else:
+          print(result)
           self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
 
       else:
-          self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
+        print(result)
+        self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
 
     else:
       sublime.error_message("Error: can't get project settings")
@@ -2118,14 +2136,14 @@ def add_cordova_settings(working_directory, cordova_custom_path):
 
 def cordova_prepare_project(project_path, cordova_custom_path):
 
-  terminal = Terminal(cwd=project_path, window=sublime.active_window())
+  terminal = Terminal(cwd=project_path)
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(cordova_custom_path), "create", "myApp", "com.example.hello", "HelloWorld", "&&", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(cordova_custom_path), "create", "myApp", "com.example.hello", "HelloWorld", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([cordova_custom_path, "create", "myApp", "com.example.hello", "HelloWorld", "&&", "robocopy", "/move", "/e", "myApp", "."])
+    terminal.run([cordova_custom_path, "create", "myApp", "com.example.hello", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
     if open_project:
       terminal.run(open_project)
 
@@ -2180,7 +2198,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, shlex.quote(ionicv1_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_ionicv1_settings(project_path, shlex.quote(ionicv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v1 CLI custom path", "ionic", lambda ionicv1_custom_path: ionicv1_prepare_project(project_path, ionicv1_custom_path) if type == "create_new_project" or type == "add_project_type" else add_ionicv1_settings(project_path, ionicv1_custom_path), None, None)
 
 def add_ionicv1_settings(working_directory, ionicv1_custom_path):
   project_path = working_directory
@@ -2213,17 +2231,16 @@ def add_ionicv1_settings(working_directory, ionicv1_custom_path):
 
 def ionicv1_prepare_project(project_path, ionicv1_custom_path):
   
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv1_custom_path+" start myApp blank --type ionic1 && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(ionicv1_custom_path), "start", "myApp", "blank", "--type", "ionic1", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([ionicv1_custom_path, "start", "myApp", "blank", "--type", "ionic1", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
 
   add_ionicv1_settings(project_path, ionicv1_custom_path)
 
@@ -2277,7 +2294,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, ionicv2_custom_path) if type == "create_new_project" or type == "add_project_type" else add_ionicv2_settings(project_path, ionicv2_custom_path), None, None)
 
 def add_ionicv2_settings(working_directory, ionicv2_custom_path):
   project_path = working_directory
@@ -2311,17 +2328,16 @@ def add_ionicv2_settings(working_directory, ionicv2_custom_path):
 
 def ionicv2_prepare_project(project_path, ionicv2_custom_path):
   
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(ionicv2_custom_path), "start", "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([ionicv2_custom_path, "start", "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
 
   add_ionicv2_settings(project_path, ionicv2_custom_path)
 
@@ -2344,11 +2360,18 @@ class ionicv2_cliCommand(manage_cliCommand):
 
     if ":platform" in self.command:
       self.window.show_input_panel("Platform:", "", self.platform_on_done, None, None)
+    elif ":integration_id" in self.command:
+      self.window.show_input_panel("Integration id:", "", self.integration_id_on_done, None, None)
     else :
       self._run()
 
   def platform_on_done(self, platform):
     self.placeholders[":platform"] = shlex.quote(platform.strip())
+    self.command = self.substitute_placeholders(self.command)
+    self._run()
+
+  def integration_id_on_done(self, integration_id):
+    self.placeholders[":integration_id"] = shlex.quote(integration_id.strip())
     self.command = self.substitute_placeholders(self.command)
     self._run()
 
@@ -2380,7 +2403,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv1_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, shlex.quote(angularv1_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_angularv1_settings(project_path, shlex.quote(angularv1_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda angularv1_custom_path: angularv1_prepare_project(project_path, angularv1_custom_path) if type == "create_new_project" or type == "add_project_type" else add_angularv1_settings(project_path, angularv1_custom_path), None, None)
 
 def add_angularv1_settings(working_directory, angularv1_custom_path):
   project_path = working_directory
@@ -2409,17 +2432,16 @@ def add_angularv1_settings(working_directory, angularv1_custom_path):
 
 def angularv1_prepare_project(project_path, angularv1_custom_path):
   
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": angularv1_custom_path+" angular" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(angularv1_custom_path), "angular"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([angularv1_custom_path, "angular"])
+    if open_project:
+      terminal.run(open_project)
 
   add_angularv1_settings(project_path, angularv1_custom_path)
 
@@ -2469,7 +2491,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("@angular/cli custom path", "ng", lambda angularv2_custom_path: angularv2_prepare_project(project_path, shlex.quote(angularv2_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_angularv2_settings(project_path, shlex.quote(angularv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("@angular/cli custom path", "ng", lambda angularv2_custom_path: angularv2_prepare_project(project_path, angularv2_custom_path) if type == "create_new_project" or type == "add_project_type" else add_angularv2_settings(project_path, angularv2_custom_path), None, None)
 
 def add_angularv2_settings(working_directory, angularv2_custom_path):
   project_path = working_directory
@@ -2498,17 +2520,16 @@ def add_angularv2_settings(working_directory, angularv2_custom_path):
 
 def angularv2_prepare_project(project_path, angularv2_custom_path):
   
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": angularv2_custom_path+" new myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(angularv2_custom_path), "new", "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([angularv2_custom_path, "new", "myApp", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
 
   add_angularv2_settings(project_path, angularv2_custom_path)
 
@@ -2565,7 +2586,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def react_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, shlex.quote(react_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_react_settings(project_path, shlex.quote(react_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Create-react-app CLI custom path", "create-react-app", lambda react_custom_path: react_prepare_project(project_path, react_custom_path) if type == "create_new_project" or type == "add_project_type" else add_react_settings(project_path, react_custom_path), None, None)
 
 def add_react_settings(working_directory, react_custom_path):
   project_path = working_directory
@@ -2594,17 +2615,16 @@ def add_react_settings(working_directory, react_custom_path):
 
 def react_prepare_project(project_path, react_custom_path):
 
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": react_custom_path+" myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(react_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([react_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
 
   add_react_settings(project_path, react_custom_path)
 
@@ -2637,21 +2657,20 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
 def yeoman_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda yeoman_custom_path: yeoman_prepare_project(project_path, shlex.quote(yeoman_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Yeoman CLI custom path", "yo", lambda yeoman_custom_path: yeoman_prepare_project(project_path, yeoman_custom_path), None, None)
 
 def yeoman_prepare_project(project_path, yeoman_custom_path):
 
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": yeoman_custom_path + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(yeoman_custom_path)] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([yeoman_custom_path])
+    if open_project:
+      terminal.run(open_project)
 
 Hook.add("yeoman_after_create_new_project", yeoman_ask_custom_path)
 Hook.add("yeoman_add_javascript_project_type", yeoman_ask_custom_path)
@@ -2660,7 +2679,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def express_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, express_custom_path) if type == "create_new_project" or type == "add_project_type" else add_express_settings(project_path, express_custom_path), None, None)
 
 def add_express_settings(working_directory, express_custom_path):
   project_path = working_directory
@@ -2689,17 +2708,16 @@ def add_express_settings(working_directory, express_custom_path):
 
 def express_prepare_project(project_path, express_custom_path):
 
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = ( " " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": express_custom_path+" myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp; npm install;" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(express_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp", ";", NPM().cli_path, "install"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([express_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp", "&", NPM().cli_path, "install"])
+    if open_project:
+      terminal.run(open_project)
 
   add_express_settings(project_path, express_custom_path)
 
@@ -2714,7 +2732,7 @@ Hook.add("express_add_javascript_project_type", express_ask_custom_path)
 
 # class express_cliCommand(manage_cliCommand):
 
-#   cli = "create-express-app"
+#   cli = "express"
 #   custom_name = "express"
 #   settings_name = "express_settings"
 
@@ -2750,7 +2768,7 @@ class Terminal():
     self.cwd = cwd or os.path.expanduser("~")
     self.syntax = syntax
     self.keep_open = keep_open
-    self.window = window
+    self.window = window or sublime.active_window()
 
   def run(self, cmd_args):
     if sublime.platform() != "windows": 
@@ -2758,12 +2776,6 @@ class Terminal():
       view.run_command('terminal_view_activate', args={"cmd": self.cmd, "title": self.title, "cwd": self.cwd, "syntax": self.syntax, "keep_open": self.keep_open} )
       self.window.run_command("terminal_view_send_string", args={"string": " ".join(cmd_args) + "\n"})
     else:
-      print([self.cmd] + 
-        ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
-        + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
-        + ( [";", "CD", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", self.cwd] ) 
-        + ( [";"] if self.cmd.startswith("powershell") else ["&&"] ) 
-        + cmd_args )
       subprocess.Popen( [self.cmd] + 
         ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
         + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
@@ -2782,7 +2794,7 @@ class WindowView():
     self.view.set_name(title)
     self.view.set_read_only(True)
     self.view.set_scratch(True)
-    self.view.settings().set("javascript_enhancements_window", True)
+    self.view.settings().set("javascript_enhancements_window_view", True)
     self.view.settings().set("gutter", False)
     self.view.settings().set("highlight_line", False)
     self.view.settings().set("auto_complete_commit_on_tab", False)
@@ -2798,10 +2810,10 @@ class WindowView():
     self.region_ids = []
     self.region_input_ids = []
 
-    Hook.add("javascript_enhancements_window_close_"+str(self.view.id()), self.destroy)
+    Hook.add("javascript_enhancements_window_view_close_"+str(self.view.id()), self.destroy)
 
   def __del__(self):
-    Hook.removeAllHook("javascript_enhancements_window_close_"+str(self.view.id()))
+    Hook.removeAllHook("javascript_enhancements_window_view_close_"+str(self.view.id()))
     for event in self.events.keys():
       for eventRegionKey in self.events[event].keys():
         for callback in self.events[event][eventRegionKey].keys():
@@ -2875,7 +2887,6 @@ class WindowView():
 
   def replaceById(self, replace_region_id, text, key="", scope="", icon="", flags=sublime.HIDDEN, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
 
-    print(self.view.get_regions("input.javascriptenhancements.input"))
     region = self.view.get_regions(replace_region_id)
     if region:
       region = region[0]
@@ -2885,9 +2896,6 @@ class WindowView():
     self.removeById(replace_region_id)
 
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=[region.begin(), region.end()])
-
-    print(region)
-    print(self.view.get_regions("input.javascriptenhancements.input"))
 
   def removeById(self, region_id):
     self.view.erase_regions(region_id)
@@ -3030,11 +3038,11 @@ class appendTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class windowKeypressCommand(sublime_plugin.TextCommand):
+class windowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
 
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
       key = args.get("key")
 
       if key == "tab" or key =="shift+tab":
@@ -3062,10 +3070,10 @@ class windowKeypressCommand(sublime_plugin.TextCommand):
             view.sel().clear()
             view.sel().add(sublime.Region(region.begin()+1, region.end()-1))
 
-class windowEventListener(sublime_plugin.EventListener):
+class windowViewEventListener(sublime_plugin.EventListener):
 
   def on_modified_async(self, view):
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
 
       for region in view.get_regions("input.javascriptenhancements.input"):
 
@@ -3102,7 +3110,7 @@ class windowEventListener(sublime_plugin.EventListener):
     return
 
   def on_selection_modified_async(self, view):
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
 
       for region in view.get_regions("input.javascriptenhancements.input"):
         if view.sel()[0].begin() >= region.begin() + 1 and view.sel()[0].end() <= region.end() - 1:
@@ -3121,12 +3129,12 @@ class windowEventListener(sublime_plugin.EventListener):
       view.set_read_only(True)
 
   def on_text_command(self, view, command_name, args):
-    if view.settings().get("javascript_enhancements_window"):
+    if view.settings().get("javascript_enhancements_window_view"):
       Hook.apply(command_name, view, args)
 
   def on_close(self, view):
-    if view.settings().get("javascript_enhancements_window"):
-      Hook.apply("javascript_enhancements_window_close_"+str(view.id()))
+    if view.settings().get("javascript_enhancements_window_view"):
+      Hook.apply("javascript_enhancements_window_view_close_"+str(view.id()))
 
 
 class wait_modified_asyncViewEventListener():
@@ -5120,15 +5128,18 @@ def donwload_can_i_use_json_data() :
   if Util.download_and_save(url_can_i_use_json_data, path_to_test_can_i_use_data) :
     if os.path.isfile(path_to_can_i_use_data) :
       if not Util.checksum_sha1_equalcompare(path_to_can_i_use_data, path_to_test_can_i_use_data) :
-        with open(path_to_test_can_i_use_data) as json_file:    
-          try :
-            can_i_use_file = json.load(json_file)
-            if os.path.isfile(path_to_can_i_use_data) :
-              os.remove(path_to_can_i_use_data)
-            os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
-          except Exception as e :
-            print("Error: "+traceback.format_exc())
-            sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+        json_file = open(path_to_test_can_i_use_data) 
+        try :
+          can_i_use_file = json.load(json_file)
+          if os.path.isfile(path_to_can_i_use_data) :
+            os.remove(path_to_can_i_use_data)
+          json_file.close()
+          os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
+        except Exception as e :
+          print("Error: "+traceback.format_exc())
+          sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+        if not json_file.closed:
+          json_file.close()
       if os.path.isfile(path_to_test_can_i_use_data) :
         os.remove(path_to_test_can_i_use_data)
     else :
@@ -5358,13 +5369,14 @@ def start():
     sublime.error_message("Your architecture is not supported by this plugin. This plugin supports only 64bit architectures.")
     return
 
-  # try:
-  #   sys.modules["TerminalView"]
-  # except Exception as err:
-  #   response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
-  #   if response == sublime.DIALOG_YES:
-  #     sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
-  #   return
+  if sublime.platform() != 'windows':
+    try:
+      sys.modules["TerminalView"]
+    except Exception as err:
+      response = sublime.yes_no_cancel_dialog("TerminalView plugin is missing. TerminalView is required to be able to use \"JavaScript Enhancements\" plugin.\n\nDo you want open the github repo of it?", "Yes, open it", "No")
+      if response == sublime.DIALOG_YES:
+        sublime.active_window().run_command("open_url", args={"url": "https://github.com/Wramberg/TerminalView"})
+      return
 
   try:
     sys.modules["JavaScript Completions"]
@@ -5400,7 +5412,7 @@ def start():
   mainPlugin.init()
 
 def plugin_loaded():
-
+  
   if int(sublime.version()) >= 3124 :
     sublime.set_timeout_async(start, 1000)
   else:

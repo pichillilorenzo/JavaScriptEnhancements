@@ -57,7 +57,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       views = self.window.views()
       view_with_term = None
       for view in views:
-        if view.name() == "JavaScript Enhancements Terminal":
+        if view.name() == "JavaScript Enhancements Terminal (bash)":
           view_with_term = view
 
       self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
@@ -68,7 +68,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.window.run_command("terminal_view_send_string", args={"string": "cd "+self.working_directory+"\n"})
       else :
         view = self.window.new_file() 
-        args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
+        args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal (bash)", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
         view.run_command('terminal_view_activate', args=args)
 
       # stop the current process with SIGINT and call the command
@@ -76,7 +76,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
     else:
-      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal")
+      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal (bash)")
       terminal.run([self.path_cli]+self.command)
 
   def substitute_placeholders(self, variable):

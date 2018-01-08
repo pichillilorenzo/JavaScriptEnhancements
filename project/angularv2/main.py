@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def angularv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("@angular/cli custom path", "ng", lambda angularv2_custom_path: angularv2_prepare_project(project_path, shlex.quote(angularv2_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_angularv2_settings(project_path, shlex.quote(angularv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("@angular/cli custom path", "ng", lambda angularv2_custom_path: angularv2_prepare_project(project_path, angularv2_custom_path) if type == "create_new_project" or type == "add_project_type" else add_angularv2_settings(project_path, angularv2_custom_path), None, None)
 
 def add_angularv2_settings(working_directory, angularv2_custom_path):
   project_path = working_directory
@@ -31,17 +31,16 @@ def add_angularv2_settings(working_directory, angularv2_custom_path):
 
 def angularv2_prepare_project(project_path, angularv2_custom_path):
   
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": angularv2_custom_path+" new myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(angularv2_custom_path), "new", "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([angularv2_custom_path, "new", "myApp", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
 
   add_angularv2_settings(project_path, angularv2_custom_path)
 

@@ -24,15 +24,18 @@ def donwload_can_i_use_json_data() :
   if Util.download_and_save(url_can_i_use_json_data, path_to_test_can_i_use_data) :
     if os.path.isfile(path_to_can_i_use_data) :
       if not Util.checksum_sha1_equalcompare(path_to_can_i_use_data, path_to_test_can_i_use_data) :
-        with open(path_to_test_can_i_use_data) as json_file:    
-          try :
-            can_i_use_file = json.load(json_file)
-            if os.path.isfile(path_to_can_i_use_data) :
-              os.remove(path_to_can_i_use_data)
-            os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
-          except Exception as e :
-            print("Error: "+traceback.format_exc())
-            sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+        json_file = open(path_to_test_can_i_use_data) 
+        try :
+          can_i_use_file = json.load(json_file)
+          if os.path.isfile(path_to_can_i_use_data) :
+            os.remove(path_to_can_i_use_data)
+          json_file.close()
+          os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
+        except Exception as e :
+          print("Error: "+traceback.format_exc())
+          sublime.active_window().status_message("Can't use new \"Can I use\" json data from: https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json")
+        if not json_file.closed:
+          json_file.close()
       if os.path.isfile(path_to_test_can_i_use_data) :
         os.remove(path_to_test_can_i_use_data)
     else :

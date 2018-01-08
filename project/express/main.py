@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def express_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, shlex.quote(express_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_express_settings(project_path, shlex.quote(express_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Express generator CLI custom path", "express", lambda express_custom_path: express_prepare_project(project_path, express_custom_path) if type == "create_new_project" or type == "add_project_type" else add_express_settings(project_path, express_custom_path), None, None)
 
 def add_express_settings(working_directory, express_custom_path):
   project_path = working_directory
@@ -31,17 +31,16 @@ def add_express_settings(working_directory, express_custom_path):
 
 def express_prepare_project(project_path, express_custom_path):
 
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = ( " " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": express_custom_path+" myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp; npm install;" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(express_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp", ";", NPM().cli_path, "install"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([express_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp", "&", NPM().cli_path, "install"])
+    if open_project:
+      terminal.run(open_project)
 
   add_express_settings(project_path, express_custom_path)
 
@@ -56,7 +55,7 @@ Hook.add("express_add_javascript_project_type", express_ask_custom_path)
 
 # class express_cliCommand(manage_cliCommand):
 
-#   cli = "create-express-app"
+#   cli = "express"
 #   custom_name = "express"
 #   settings_name = "express_settings"
 

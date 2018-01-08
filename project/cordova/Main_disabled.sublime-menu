@@ -8,6 +8,53 @@
         "id": "cordova",
         "children":[
           {
+            "caption": "Platform",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["platform", "add", ":platform"]
+                }
+              },
+              {
+                "caption": "Update",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["platform", "update", ":platform"]
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["platform", "remove", ":platform"]
+                }
+              },
+              {
+                "caption": "List",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["platform", "list"]
+                }
+              },
+              {
+                "caption": "Check",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["platform", "check"]
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["platform", "save"]
+                }
+              }
+            ]
+          },
+          {
             "caption": "Prepare",
             "command": "cordova_cli",
             "args": {
@@ -77,6 +124,46 @@
             "args": {
               "command": ["serve"]
             }
+          },
+          {
+            "caption": "Clean",
+            "command": "cordova_cli",
+            "args": {
+              "command": ["clean", ":platform"]
+            }
+          },
+          {
+            "caption": "Requirements",
+            "command": "cordova_cli",
+            "args": {
+              "command": ["requirements", ":platform"]
+            }
+          },
+          {
+            "caption": "Info",
+            "command": "cordova_cli",
+            "args": {
+              "command": ["info"]
+            }
+          },
+          {
+            "caption": "Telemetry",
+            "children": [
+              {
+                "caption": "On",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["telemetry", "on"]
+                }
+              },
+              {
+                "caption": "Off",
+                "command": "cordova_cli",
+                "args": {
+                  "command": ["telemetry", "off"]
+                }
+              }
+            ]
           }
         ]
       }

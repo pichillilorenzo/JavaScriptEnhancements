@@ -25,7 +25,7 @@
     "keys": ["ctrl+alt+s"],
     "command": "show_hint_parameters"
   },
-  {"keys": ["tab"], "command": "window_keypress", "args": {"key": "tab"}, "context": [{"key": "setting.javascript_enhancements_window"}]},
-  {"keys": ["shift+tab"], "command": "window_keypress", "args": {"key": "shift+tab"}, "context": [{"key": "setting.javascript_enhancements_window"}]},
-  {"keys": ["ctrl+alt+a"], "command": "window_keypress", "args": {"key": "ctrl+alt+a"}, "context": [{"key": "setting.javascript_enhancements_window"}]}
+  {"keys": ["tab"], "command": "window_view_keypress", "args": {"key": "tab"}, "context": [{"key": "setting.javascript_enhancements_window"}]},
+  {"keys": ["shift+tab"], "command": "window_view_keypress", "args": {"key": "shift+tab"}, "context": [{"key": "setting.javascript_enhancements_window"}]},
+  {"keys": ["ctrl+alt+a"], "command": "window_view_keypress", "args": {"key": "ctrl+alt+a"}, "context": [{"key": "setting.javascript_enhancements_window"}]}
 ]

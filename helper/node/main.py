@@ -233,7 +233,7 @@ class NPM(object):
     if sublime.platform() == 'windows':
       args = [self.cli_path, command] + command_args
     else :
-      args = [self.node_js_path, self.cli_path, command] + command_args
+      args = [self.cli_path, command] + command_args
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
 

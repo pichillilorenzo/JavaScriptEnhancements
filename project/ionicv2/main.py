@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os, webbrowser, shlex, json, collections
 
 def ionicv2_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, shlex.quote(ionicv2_custom_path)) if type == "create_new_project" or type == "add_project_type" else add_ionicv2_settings(project_path, shlex.quote(ionicv2_custom_path)), None, None)
+    sublime.active_window().show_input_panel("Ionic v2 CLI custom path", "ionic", lambda ionicv2_custom_path: ionicv2_prepare_project(project_path, ionicv2_custom_path) if type == "create_new_project" or type == "add_project_type" else add_ionicv2_settings(project_path, ionicv2_custom_path), None, None)
 
 def add_ionicv2_settings(working_directory, ionicv2_custom_path):
   project_path = working_directory
@@ -36,17 +36,16 @@ def add_ionicv2_settings(working_directory, ionicv2_custom_path):
 
 def ionicv2_prepare_project(project_path, ionicv2_custom_path):
   
-  window = sublime.active_window()
-  view = window.new_file() 
-
-  if sublime.platform() in ("linux", "osx"): 
-    open_project = (" && " + shlex.quote(sublime_executable_path()) + " " +shlex.quote(get_project_settings(project_path)["project_file_name"])) if not is_project_open(get_project_settings(project_path)["project_file_name"]) else ""
-    args = {"cmd": "/bin/bash -l", "title": "Terminal", "cwd": project_path, "syntax": None, "keep_open": False} 
-    view.run_command('terminal_view_activate', args=args)
-    window.run_command("terminal_view_send_string", args={"string": ionicv2_custom_path+" start myApp && mv ./myApp/{.[!.],}* ./; rm -rf myApp" + open_project + "\n"})
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(ionicv2_custom_path), "start", "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
   else:
-    # windows
-    pass
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([ionicv2_custom_path, "start", "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
 
   add_ionicv2_settings(project_path, ionicv2_custom_path)
 
@@ -69,11 +68,18 @@ class ionicv2_cliCommand(manage_cliCommand):
 
     if ":platform" in self.command:
       self.window.show_input_panel("Platform:", "", self.platform_on_done, None, None)
+    elif ":integration_id" in self.command:
+      self.window.show_input_panel("Integration id:", "", self.integration_id_on_done, None, None)
     else :
       self._run()
 
   def platform_on_done(self, platform):
     self.placeholders[":platform"] = shlex.quote(platform.strip())
+    self.command = self.substitute_placeholders(self.command)
+    self._run()
+
+  def integration_id_on_done(self, integration_id):
+    self.placeholders[":integration_id"] = shlex.quote(integration_id.strip())
     self.command = self.substitute_placeholders(self.command)
     self._run()
 

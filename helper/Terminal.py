@@ -15,7 +15,7 @@ class Terminal():
     self.cwd = cwd or os.path.expanduser("~")
     self.syntax = syntax
     self.keep_open = keep_open
-    self.window = window
+    self.window = window or sublime.active_window()
 
   def run(self, cmd_args):
     if sublime.platform() != "windows": 
@@ -23,12 +23,6 @@ class Terminal():
       view.run_command('terminal_view_activate', args={"cmd": self.cmd, "title": self.title, "cwd": self.cwd, "syntax": self.syntax, "keep_open": self.keep_open} )
       self.window.run_command("terminal_view_send_string", args={"string": " ".join(cmd_args) + "\n"})
     else:
-      print([self.cmd] + 
-        ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
-        + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
-        + ( [";", "CD", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", self.cwd] ) 
-        + ( [";"] if self.cmd.startswith("powershell") else ["&&"] ) 
-        + cmd_args )
       subprocess.Popen( [self.cmd] + 
         ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
         + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 

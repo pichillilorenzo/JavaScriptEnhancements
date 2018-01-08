@@ -1,3 +1,14 @@
+v0.11.00
+
+## Fixes
+
+- some bug fixes for create project feature
+
+## Improvements
+
+- Added support for Windows without TermivalView plugin but using the cmd.exe shell
+
+
 =================================================================
 ** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **
 =================================================================
@@ -28,7 +39,7 @@ developing and managing javascript projects, such as:
 - JavaScript real-time errors
 - etc. (I will add also React Native and NativeScript support)
 
-You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki)!
+You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project)!
 
 It turns Sublime Text into a JavaScript IDE like!
 
