@@ -1,6 +1,12 @@
-v0.1.01
+v0.11.0
 
-## Just a little improvement
+## Fixes
+
+- some bug fixes for create project feature
+
+## Improvements
+
+- Added support for Windows without TermivalView plugin but using the cmd.exe shell
 
 
 =================================================================
@@ -31,9 +37,9 @@ developing and managing javascript projects, such as:
 - Yeoman generators
 - Local bookmarks project
 - JavaScript real-time errors
-- etc.
+- etc. (I will add also React Native and NativeScript support)
 
-You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki)!
+You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project)!
 
 It turns Sublime Text into a JavaScript IDE like!
 
@@ -47,6 +53,7 @@ If you want use this plugin, you may want uninstall/disable the JavaScript Compl
 
 👉 Linux (64-bit)
 👉 Mac OS X 
+👉 Windows (64-bit): released without the use of TerminalView plugin. For each feature (like also creating a project) will be used the cmd.exe shell (so during the creation of a project don't close it until it finishes!). Unfortunately the TerminalView plugin supports only Linux-based OS 😞. Has someone any advice or idea about that? Is there something similar to the TerminalView plugin for Windows?? Thanks!
 
 ❗❗ Dependencies ❗❗
 =======================
@@ -55,7 +62,7 @@ In order to work properly, this plugin has some dependencies:
 
 👉 Sublime Text 3 (build 3124 or newer)
 👉 Node.js and npm (https://nodejs.org or nvm (https://github.com/creationix/nvm))
-👉 TerminalView sublime text plugin (https://github.com/Wramberg/TerminalView)
+👉 TerminalView (only for Linux and Mac OS X) sublime text plugin (https://github.com/Wramberg/TerminalView)
 
 Not required, but useful for typescript files (Flow wont work on this type of files):
 
