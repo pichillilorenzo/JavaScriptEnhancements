@@ -13,10 +13,10 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
     view = self.view
 
     selections = view.sel()
- 
+    
     if len(selections) == 0:
       return
-      
+
     sel = selections[0]
     if not view.match_selector(
         sel.begin(),

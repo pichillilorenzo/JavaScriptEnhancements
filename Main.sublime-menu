@@ -136,6 +136,11 @@
                       "default": "{}"
                   },
                   "caption": "Key Bindings"
+              },
+              { "caption": "-" },
+              {
+                "caption": "Version",
+                "command": "show_javascript_enhancements_version"
               }
             ]
           }

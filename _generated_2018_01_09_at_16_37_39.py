@@ -3,6 +3,8 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
+PLUGIN_VERSION = "0.11.1"
+
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
 SUBLIME_PACKAGES_PATH = os.path.dirname(PACKAGE_PATH)
@@ -1267,6 +1269,11 @@ def overwrite_default_javascript_snippet():
   for file_name in os.listdir(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet")) :
     if file_name.endswith(".sublime-snippet") and os.path.isfile(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet", file_name)) :
       shutil.copy(os.path.join(PACKAGE_PATH, "JavaScript-overwrite-default-snippet", file_name), os.path.join(SUBLIME_PACKAGES_PATH, "JavaScript", "Snippets", file_name))
+
+class show_javascript_enhancements_versionCommand(sublime_plugin.WindowCommand):
+  def run(self):
+    if sublime.ok_cancel_dialog("JavaScript Enhancements plugin version: "+PLUGIN_VERSION, "Copy"):
+      sublime.set_clipboard(PLUGIN_VERSION)
 
 class startPlugin():
   def init(self):
@@ -4336,10 +4343,10 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
     view = self.view
 
     selections = view.sel()
- 
+    
     if len(selections) == 0:
       return
-      
+
     sel = selections[0]
     if not view.match_selector(
         sel.begin(),
@@ -5359,10 +5366,7 @@ def start():
 
   global mainPlugin
 
-  # if sublime.platform() == 'windows':
-  #   print(sublime.platform())
-  #   sublime.error_message("Windows is not supported by this plugin for now.")
-  #   return
+  print("JavaScript Enhancements plugin version: "+PLUGIN_VERSION)
 
   if platform.architecture()[0] != "64bit":
     print(platform.architecture())
@@ -5387,7 +5391,7 @@ def start():
 
   node = NodeJS(check_local=True)
   try:
-    print(node.getCurrentNodeJSVersion())
+    print("node.js version: " + str(node.getCurrentNodeJSVersion()))
   except Exception as err: 
     print(err)
     response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
@@ -5399,7 +5403,7 @@ def start():
 
   npm = NPM(check_local=True)
   try:
-    print(npm.getCurrentNPMVersion())
+    print("npm version: " + str(npm.getCurrentNPMVersion()))
   except Exception as err: 
     print(err)
     response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
