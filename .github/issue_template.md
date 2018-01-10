@@ -21,3 +21,4 @@
 - Sublime Text 3 build:
 - OS:
 - JavaScript Enhancements version: 
+<!-- to see the plugin version, go to Preferences > Package Settings > JavaScript Enhancements > Version -->
