@@ -46,6 +46,8 @@ def create_completion(comp_name, comp_type, comp_details) :
 class javascript_completionsEventListener(sublime_plugin.EventListener):
   completions = None
   completions_ready = False
+  searching = False
+  modified = False
 
   # Used for async completions.
   def run_auto_complete(self):
@@ -80,20 +82,23 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.completions_ready = False
       return self.completions
 
-    global javascript_completions_thread_list
+    if not self.searching:
+      self.searching = True
+      self.modified = False
+    else: 
+      return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-    javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, prefix, locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
-
-    # sublime.set_timeout_async(
-    #   lambda: self.on_query_completions_async(
-    #     view, prefix, locations
-    #   )
-    # )
+    sublime.set_timeout_async(
+      lambda: self.on_query_completions_async(
+        view, prefix, locations
+      )
+    )
     
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-  def on_query_completions_async(self, view, prefix, locations, index_thread):
+  def on_query_completions_async(self, view, prefix, locations):
+
     self.completions = None
 
     if not view.match_selector(
@@ -103,9 +108,6 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       return
 
     deps = flow_parse_cli_dependencies(view, add_magic_token=True, cursor_pos=locations[0])
-
-    if deps.project_root is '/':
-      return
 
     flow_cli = "flow"
     is_from_bin = True
@@ -120,6 +122,10 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       is_from_bin = False
       chdir = settings["project_dir_name"]
       use_node = False
+
+    if self.modified == True:
+      self.searching = False
+      return
 
     node = NodeJS(check_local=True)
     
@@ -142,6 +148,11 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     )
 
     if result[0]:
+
+      if self.modified == True:
+        self.searching = False
+        return
+          
       result = result[1]
       self.completions = list()
       for match in result['result'] :
@@ -179,22 +190,21 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 
-      sublime.active_window().active_view().run_command(
-        'hide_auto_complete'
-      )
-      
       view = sublime.active_window().active_view()
       sel = view.sel()[0]
+
       if view.substr(view.word(sel)).strip() :
 
-        global javascript_completions_thread_list
-
-        if len(javascript_completions_thread_list) == 0 or index_thread+1 < len(javascript_completions_thread_list):
+        if self.modified == True:
+          self.searching = False
           return
-
+        
+        sublime.active_window().active_view().run_command(
+          'hide_auto_complete'
+        )
         self.run_auto_complete()
+        self.searching = False
 
-        javascript_completions_thread_list = []
 
   def on_text_command(self, view, command_name, args):
     sel = view.sel()[0]
@@ -205,6 +215,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       return
 
     if command_name == "left_delete" :
+      self.modified = True
+      self.searching = False
       scope = view.scope_name(view.sel()[0].begin()-1).strip()
       if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
         sublime.active_window().active_view().run_command(
@@ -232,11 +244,14 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       locations = list()
       locations.append(selections[0].begin())
 
-      global javascript_completions_thread_list
+      if not self.searching:
+        self.searching = True
+        self.modified = False
+      else: 
+        return 
 
-      javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, "", locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
-      # sublime.set_timeout_async(
-      #   lambda: self.on_query_completions_async(
-      #     view, "", locations
-      #   )
-      # )
+      sublime.set_timeout_async(
+        lambda: self.on_query_completions_async(
+          view, "", locations
+        )
+      )

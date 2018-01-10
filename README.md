@@ -15,12 +15,13 @@ It offers better **javascript autocomplete** and also a lot of features about cr
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 projects (same as Cordova projects!)
 - Angular v1 and v2 projects
-- React projects
-- Express projects
+- React projects (only about the creation for the moment)
+- React Native projects (only about the creation for the moment. I will add also **NativeScript** support)
+- Express projects (only about the creation for the moment)
 - Yeoman generators
 - Local bookmarks project
 - JavaScript real-time errors
-- etc. (I will add also **React Native** and **NativeScript** support)
+- etc.
 
 You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project))!
 

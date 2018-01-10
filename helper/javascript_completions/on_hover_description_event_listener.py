@@ -40,6 +40,26 @@ def description_details_html(description):
 class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
   def on_hover(self, view, point, hover_zone) :
+    if not view.match_selector(
+        point,
+        'source.js - comment'
+    ):
+      return
+
+    if hover_zone != sublime.HOVER_TEXT :
+      return
+
+    for region in view.get_regions("flow_error"):
+      if region.contains(point):
+        return
+
+    region = view.word(point)
+    word = view.substr(region)
+    if not word.strip() :
+      return
+
+    view.hide_popup()
+
     sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
 
 # used also by show_hint_parametersCommand
@@ -62,13 +82,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
   word = view.substr(region)
   if not word.strip() :
     return
-    
+
   cursor_pos = region.end()
 
   deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
-
-  if deps.project_root is '/':
-    return
 
   flow_cli = "flow"
   is_from_bin = True
@@ -144,8 +161,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
   if not html :
     deps = flow_parse_cli_dependencies(view)
-    if deps.project_root is '/':
-      return
+
     row, col = view.rowcol(point)
 
     flow_cli = "flow"

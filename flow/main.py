@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os
+import os, tempfile, queue
 from collections import namedtuple
 
 flowCLIRequirements = namedtuple('flowCLIRequirements', [
@@ -9,20 +9,29 @@ flowCLIRequirements = namedtuple('flowCLIRequirements', [
 FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow", ".flowconfig")
 
 def find_flow_config(filename):
-  if not filename or filename is '/':
-    return FLOW_DEFAULT_CONFIG_PATH
 
-  potential_root = os.path.dirname(filename)
-  if os.path.isfile(os.path.join(potential_root, '.flowconfig')):
-    return potential_root
+  platform = sublime.platform()
 
-  return find_flow_config(potential_root)
+  while True:
+
+    if not filename:
+      return FLOW_DEFAULT_CONFIG_PATH
+
+    if platform == "windows" and len(filename) == 2 and filename[1] == ":":
+      return FLOW_DEFAULT_CONFIG_PATH
+
+    elif filename == '/':
+      return FLOW_DEFAULT_CONFIG_PATH
+
+    filename = os.path.dirname(filename)
+    if os.path.isfile(os.path.join(filename, '.flowconfig')):
+      return filename
 
 def flow_parse_cli_dependencies(view, **kwargs):
   filename = view.file_name()
   contextual_keys = sublime.active_window().extract_variables()
   folder_path = contextual_keys.get("folder")
-  if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :    
+  if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :  
     project_root = folder_path
   else :
     project_root = find_flow_config(filename)

@@ -1,3 +1,12 @@
+v0.11.11
+
+## Fixes
+
+- try to fix "Auto completions slow and incorrect" #11
+- try to fix "Various errors in the command window" #12 on Windows
+
+
+
 =================================================================
 ** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **
 =================================================================
@@ -21,7 +30,7 @@ developing and managing javascript projects, such as:
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 projects (same as Cordova projects!)
 - Angular v1 and v2 projects
-- React projects
+- React projects (only about the creation for the moment)
 - React Native projects (only about the creation for the moment. I will add also NativeScript support)
 - Express projects (only about the creation for the moment)
 - Yeoman generators
@@ -29,7 +38,7 @@ developing and managing javascript projects, such as:
 - JavaScript real-time errors
 - etc.
 
-You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki)!
+You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project)!
 
 It turns Sublime Text into a JavaScript IDE like!
 

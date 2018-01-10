@@ -37,6 +37,8 @@ def donwload_can_i_use_json_data() :
         if not json_file.closed:
           json_file.close()
       if os.path.isfile(path_to_test_can_i_use_data) :
+        if not json_file.closed:
+          json_file.close()
         os.remove(path_to_test_can_i_use_data)
     else :
       os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)

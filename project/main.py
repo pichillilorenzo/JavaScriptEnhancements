@@ -133,6 +133,8 @@ ${include angularv2/main.py}
 
 ${include react/main.py}
 
+${include react-native/main.py}
+
 ${include yeoman/main.py}
 
 ${include express/main.py}

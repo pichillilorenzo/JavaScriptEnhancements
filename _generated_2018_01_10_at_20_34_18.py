@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.11.1"
+PLUGIN_VERSION = "0.11.11"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -28,7 +28,7 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'yeoman']
+PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'react-native', 'yeoman']
 
 class Hook(object):
   hook_list = {}
@@ -1306,7 +1306,7 @@ class startPlugin():
 mainPlugin = startPlugin()
 
 import sublime, sublime_plugin
-import os
+import os, tempfile, queue
 from collections import namedtuple
 
 flowCLIRequirements = namedtuple('flowCLIRequirements', [
@@ -1316,20 +1316,29 @@ flowCLIRequirements = namedtuple('flowCLIRequirements', [
 FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow", ".flowconfig")
 
 def find_flow_config(filename):
-  if not filename or filename is '/':
-    return FLOW_DEFAULT_CONFIG_PATH
 
-  potential_root = os.path.dirname(filename)
-  if os.path.isfile(os.path.join(potential_root, '.flowconfig')):
-    return potential_root
+  platform = sublime.platform()
 
-  return find_flow_config(potential_root)
+  while True:
+
+    if not filename:
+      return FLOW_DEFAULT_CONFIG_PATH
+
+    if platform == "windows" and len(filename) == 2 and filename[1] == ":":
+      return FLOW_DEFAULT_CONFIG_PATH
+
+    elif filename == '/':
+      return FLOW_DEFAULT_CONFIG_PATH
+
+    filename = os.path.dirname(filename)
+    if os.path.isfile(os.path.join(filename, '.flowconfig')):
+      return filename
 
 def flow_parse_cli_dependencies(view, **kwargs):
   filename = view.file_name()
   contextual_keys = sublime.active_window().extract_variables()
   folder_path = contextual_keys.get("folder")
-  if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :    
+  if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :  
     project_root = folder_path
   else :
     project_root = find_flow_config(filename)
@@ -2661,6 +2670,77 @@ Hook.add("react_add_javascript_project_type", react_ask_custom_path)
 
 
 import sublime, sublime_plugin
+import os, webbrowser, shlex, json, collections
+
+def react_native_ask_custom_path(project_path, type):
+    sublime.active_window().show_input_panel("Create-react-native-app CLI custom path", "create-react-native-app", lambda react_native_custom_path: react_native_prepare_project(project_path, react_native_custom_path) if type == "create_new_project" or type == "add_project_type" else add_react_native_settings(project_path, react_native_custom_path), None, None)
+
+def add_react_native_settings(working_directory, react_native_custom_path):
+  project_path = working_directory
+  settings = get_project_settings()
+  if settings :
+    project_path = settings["project_dir_name"]
+    
+  # flowconfig_file_path = os.path.join(project_path, ".flowconfig")
+  # with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+  #   content = file.read()
+  #   content = content.replace("[ignore]", """[ignore]""")
+  #   file.seek(0)
+  #   file.truncate()
+  #   file.write(content)
+
+  PROJECT_SETTINGS_FOLDER_PATH = os.path.join(project_path, PROJECT_SETTINGS_FOLDER_NAME)
+
+  default_config = json.loads(open(os.path.join(PROJECT_FOLDER, "react-native", "default_config.json")).read(), object_pairs_hook=collections.OrderedDict)
+  default_config["working_directory"] = working_directory
+  default_config["cli_custom_path"] = react_native_custom_path
+
+  react_native_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "react_native_settings.json")
+
+  with open(react_native_settings, 'w+') as file:
+    file.write(json.dumps(default_config, indent=2))
+
+def react_native_prepare_project(project_path, react_native_custom_path):
+
+  terminal = Terminal(cwd=project_path)
+  
+  if sublime.platform() != "windows": 
+    open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([shlex.quote(react_native_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+  else:
+    open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
+    terminal.run([react_native_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    if open_project:
+      terminal.run(open_project)
+
+  add_react_native_settings(project_path, react_native_custom_path)
+
+Hook.add("react-native_after_create_new_project", react_native_ask_custom_path)
+Hook.add("react-native_add_javascript_project_configuration", react_native_ask_custom_path)
+Hook.add("react-native_add_javascript_project_type", react_native_ask_custom_path)
+
+# class enable_menu_react_nativeEventListener(enable_menu_project_typeEventListener):
+#   project_type = "react-native"
+#   path = os.path.join(PROJECT_FOLDER, "react_native", "Main.sublime-menu")
+#   path_disabled = os.path.join(PROJECT_FOLDER, "react_native", "Main_disabled.sublime-menu")
+
+# class react_native_cliCommand(manage_cliCommand):
+
+#   cli = "create-react-native-app"
+#   custom_name = "react_native"
+#   settings_name = "react_native_settings"
+
+#   def prepare_command(self, **kwargs):
+
+#     self._run()
+
+#   def _run(self):
+
+#     super(react_native_cliCommand, self)._run()
+
+
+
+import sublime, sublime_plugin
 import os, webbrowser, shlex, json
 
 def yeoman_ask_custom_path(project_path, type):
@@ -3489,6 +3569,8 @@ def create_completion(comp_name, comp_type, comp_details) :
 class javascript_completionsEventListener(sublime_plugin.EventListener):
   completions = None
   completions_ready = False
+  searching = False
+  modified = False
 
   # Used for async completions.
   def run_auto_complete(self):
@@ -3523,20 +3605,23 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.completions_ready = False
       return self.completions
 
-    global javascript_completions_thread_list
+    if not self.searching:
+      self.searching = True
+      self.modified = False
+    else: 
+      return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-    javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, prefix, locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
-
-    # sublime.set_timeout_async(
-    #   lambda: self.on_query_completions_async(
-    #     view, prefix, locations
-    #   )
-    # )
+    sublime.set_timeout_async(
+      lambda: self.on_query_completions_async(
+        view, prefix, locations
+      )
+    )
     
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-  def on_query_completions_async(self, view, prefix, locations, index_thread):
+  def on_query_completions_async(self, view, prefix, locations):
+
     self.completions = None
 
     if not view.match_selector(
@@ -3546,9 +3631,6 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       return
 
     deps = flow_parse_cli_dependencies(view, add_magic_token=True, cursor_pos=locations[0])
-
-    if deps.project_root is '/':
-      return
 
     flow_cli = "flow"
     is_from_bin = True
@@ -3563,6 +3645,10 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       is_from_bin = False
       chdir = settings["project_dir_name"]
       use_node = False
+
+    if self.modified == True:
+      self.searching = False
+      return
 
     node = NodeJS(check_local=True)
     
@@ -3585,6 +3671,11 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     )
 
     if result[0]:
+
+      if self.modified == True:
+        self.searching = False
+        return
+          
       result = result[1]
       self.completions = list()
       for match in result['result'] :
@@ -3622,22 +3713,21 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       self.completions_ready = True
 
-      sublime.active_window().active_view().run_command(
-        'hide_auto_complete'
-      )
-      
       view = sublime.active_window().active_view()
       sel = view.sel()[0]
+
       if view.substr(view.word(sel)).strip() :
 
-        global javascript_completions_thread_list
-
-        if len(javascript_completions_thread_list) == 0 or index_thread+1 < len(javascript_completions_thread_list):
+        if self.modified == True:
+          self.searching = False
           return
-
+        
+        sublime.active_window().active_view().run_command(
+          'hide_auto_complete'
+        )
         self.run_auto_complete()
+        self.searching = False
 
-        javascript_completions_thread_list = []
 
   def on_text_command(self, view, command_name, args):
     sel = view.sel()[0]
@@ -3648,6 +3738,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       return
 
     if command_name == "left_delete" :
+      self.modified = True
+      self.searching = False
       scope = view.scope_name(view.sel()[0].begin()-1).strip()
       if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
         sublime.active_window().active_view().run_command(
@@ -3675,14 +3767,17 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       locations = list()
       locations.append(selections[0].begin())
 
-      global javascript_completions_thread_list
+      if not self.searching:
+        self.searching = True
+        self.modified = False
+      else: 
+        return 
 
-      javascript_completions_thread_list.append(Util.create_and_start_thread(target=lambda: self.on_query_completions_async(view, "", locations, len(javascript_completions_thread_list)+1), thread_name="JavaScriptEnhancementsCompletions"))
-      # sublime.set_timeout_async(
-      #   lambda: self.on_query_completions_async(
-      #     view, "", locations
-      #   )
-      # )
+      sublime.set_timeout_async(
+        lambda: self.on_query_completions_async(
+          view, "", locations
+        )
+      )
 
 
 import sublime, sublime_plugin
@@ -3853,6 +3948,26 @@ def description_details_html(description):
 class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
   def on_hover(self, view, point, hover_zone) :
+    if not view.match_selector(
+        point,
+        'source.js - comment'
+    ):
+      return
+
+    if hover_zone != sublime.HOVER_TEXT :
+      return
+
+    for region in view.get_regions("flow_error"):
+      if region.contains(point):
+        return
+
+    region = view.word(point)
+    word = view.substr(region)
+    if not word.strip() :
+      return
+
+    view.hide_popup()
+
     sublime.set_timeout_async(lambda: on_hover_description_async(view, point, hover_zone, point))
 
 # used also by show_hint_parametersCommand
@@ -3875,13 +3990,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
   word = view.substr(region)
   if not word.strip() :
     return
-    
+
   cursor_pos = region.end()
 
   deps = flow_parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
-
-  if deps.project_root is '/':
-    return
 
   flow_cli = "flow"
   is_from_bin = True
@@ -3957,8 +4069,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
   if not html :
     deps = flow_parse_cli_dependencies(view)
-    if deps.project_root is '/':
-      return
+
     row, col = view.rowcol(point)
 
     flow_cli = "flow"
@@ -5148,6 +5259,8 @@ def donwload_can_i_use_json_data() :
         if not json_file.closed:
           json_file.close()
       if os.path.isfile(path_to_test_can_i_use_data) :
+        if not json_file.closed:
+          json_file.close()
         os.remove(path_to_test_can_i_use_data)
     else :
       os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
