@@ -1,4 +1,4 @@
-import shlex
+import shlex, tempfile
 
 class evaluate_javascriptCommand(manage_cliCommand):
 
@@ -35,7 +35,15 @@ class evaluate_javascriptCommand(manage_cliCommand):
     if not region_selected :
       return
 
-    self.command += [shlex.quote(str_selected)]
+    fp = tempfile.NamedTemporaryFile(delete=False)
+    fp.write(str.encode("console.log('\\n'); console.time('Execution Time');\n"+str_selected+"\nconsole.log('\\n'); console.timeEnd('Execution Time');"))
+    fp.close()
+
+    if sublime.platform() == "windows":
+      self.command = ["-p", "<", json.dumps(fp.name), "&", "del", "/f", "/q", json.dumps(fp.name)]
+    else :
+      self.command = ["-p", "<", shlex.quote(fp.name), ";", "rm", "-rf", shlex.quote(fp.name)]
+
     self._run()
     
   def _run(self):

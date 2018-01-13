@@ -241,10 +241,12 @@ class NodeJS(object):
         os.chdir(chdir)
 
       output = subprocess.check_output(
-          args, shell=True, stderr=subprocess.STDOUT
+          args, shell=True, stderr=subprocess.STDOUT, timeout=10
       )
 
       if sublime.platform() == "windows" and use_fp_temp: 
+        if not fp.closed:
+          fp.close()
         os.unlink(fp.name)
 
       # reset the PATH environment variable
@@ -297,6 +299,8 @@ class NodeJS(object):
       os.environ.update(old_env)
 
       if sublime.platform() == "windows" and use_fp_temp: 
+        if not fp.closed:
+          fp.close()
         os.unlink(fp.name)
 
       try:
@@ -310,6 +314,22 @@ class NodeJS(object):
           fp.close()
 
         return [False, None]
+
+    except subprocess.TimeoutExpired as e:
+      # reset the PATH environment variable
+      os.environ.update(old_env)
+
+      #print(traceback.format_exc())
+
+      if use_fp_temp :
+        if sublime.platform() == "windows": 
+          if not fp.closed:
+            fp.close()
+          os.unlink(fp.name)
+        else:
+          fp.close()
+      return [False, None]
+
     except:
 
       # reset the PATH environment variable
@@ -319,6 +339,8 @@ class NodeJS(object):
 
       if use_fp_temp :
         if sublime.platform() == "windows": 
+          if not fp.closed:
+            fp.close()
           os.unlink(fp.name)
         else:
           fp.close()
@@ -414,6 +436,7 @@ class NPM(object):
 
 import sublime, sublime_plugin
 import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
+from six import iteritems
 
 class Util(object) :
 
@@ -710,6 +733,7 @@ class Util(object) :
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
     sel_begin = view.sel()[0].begin() if point == -1 else point
+
     return view.match_selector(
       sel_begin,
       'source.js ' + except_for
@@ -966,6 +990,32 @@ class Util(object) :
         line = b""
       char = b""
 
+  @staticmethod
+  def nested_lookup(key, values, document, wild=False):
+      """Lookup a key in a nested document, return a list of values"""
+      return list(Util._nested_lookup(key, values, document, wild=wild))
+
+  @staticmethod
+  def _nested_lookup(key, values, document, wild=False):
+      """Lookup a key in a nested document, yield a value"""
+      if isinstance(document, list):
+          for d in document:
+              for result in Util._nested_lookup(key, values, d, wild=wild):
+                  yield result
+
+      if isinstance(document, dict):
+          for k, v in iteritems(document):
+              if values and v in values and (key == k or (wild and key.lower() in k.lower())):
+                  yield document
+              elif not values and key == k or (wild and key.lower() in k.lower()):
+                  yield document
+              elif isinstance(v, dict):
+                  for result in Util._nested_lookup(key, values, v, wild=wild):
+                      yield result
+              elif isinstance(v, list):
+                  for d in v:
+                      for result in Util._nested_lookup(key, values, d, wild=wild):
+                          yield result
 import time, os, re, threading, socket, traceback, sys, struct
 
 class mySocketClient():
@@ -1313,35 +1363,21 @@ flowCLIRequirements = namedtuple('flowCLIRequirements', [
     'filename', 'project_root', 'contents', 'cursor_pos', 'row', 'col', 'row_offset'
 ])
 
-FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow", ".flowconfig")
-
-def find_flow_config(filename):
-
-  platform = sublime.platform()
-
-  while True:
-
-    if not filename:
-      return FLOW_DEFAULT_CONFIG_PATH
-
-    if platform == "windows" and len(filename) == 2 and filename[1] == ":":
-      return FLOW_DEFAULT_CONFIG_PATH
-
-    elif filename == '/':
-      return FLOW_DEFAULT_CONFIG_PATH
-
-    filename = os.path.dirname(filename)
-    if os.path.isfile(os.path.join(filename, '.flowconfig')):
-      return filename
+FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow")
 
 def flow_parse_cli_dependencies(view, **kwargs):
   filename = view.file_name()
-  contextual_keys = sublime.active_window().extract_variables()
-  folder_path = contextual_keys.get("folder")
-  if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :  
-    project_root = folder_path
-  else :
-    project_root = find_flow_config(filename)
+  
+  project_settings = get_project_settings()
+  if project_settings:
+    project_root = project_settings["project_dir_name"]
+  else:
+    contextual_keys = sublime.active_window().extract_variables()
+    folder_path = contextual_keys.get("folder")
+    if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :  
+      project_root = folder_path
+    else :
+      project_root = FLOW_DEFAULT_CONFIG_PATH
 
   cursor_pos = 0
   if kwargs.get('cursor_pos') :
@@ -1563,7 +1599,7 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
   path = ""
   path_disabled = ""
 
-  def on_activated_async(self, view):
+  def on_activated(self, view):
     if self.project_type and self.path and self.path_disabled:
       if is_type_javascript_project(self.project_type) :
         if os.path.isfile(self.path_disabled):
@@ -1579,11 +1615,11 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
         if os.path.isfile(self.path):
           os.rename(self.path, self.path_disabled)
 
-  def on_new_async(self, view):
-    self.on_activated_async(view)
+  def on_new(self, view):
+    self.on_activated(view)
 
-  def on_load_async(self, view):
-    self.on_activated_async(view)
+  def on_load(self, view):
+    self.on_activated(view)
 
 
 import sublime, sublime_plugin
@@ -1648,13 +1684,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         if view.name() == "JavaScript Enhancements Terminal (bash)":
           view_with_term = view
 
-      self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
-      self.window.focus_group(1)
-
       if view_with_term:
         self.window.focus_view(view_with_term)
         self.window.run_command("terminal_view_send_string", args={"string": "cd "+self.working_directory+"\n"})
       else :
+        self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
+        self.window.focus_group(1)
         view = self.window.new_file() 
         args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal (bash)", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
         view.run_command('terminal_view_activate', args=args)
@@ -1769,13 +1804,14 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
       result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
       if not result[0]:
         sublime.error_message("Can't initialize flow.")
-      # else:
-      #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
-      #     content = file.read()
-      #     content = content.replace("[ignore]", """[ignore]""")
-      #     file.seek(0)
-      #     file.truncate()
-      #     file.write(content)
+      else:
+        with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+          content = file.read()
+          content = content.replace("[ignore]", """[ignore]
+<PROJECT_ROOT>/"""+PROJECT_SETTINGS_FOLDER_NAME+"""/.*""")
+          file.seek(0)
+          file.truncate()
+          file.write(content)
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")
@@ -1893,8 +1929,8 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "npm", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "npm", "Main_disabled.sublime-menu")
 
-  def on_activated_async(self, view):
-    super(enable_menu_npmEventListener, self).on_activated_async(view)
+  def on_activated(self, view):
+    super(enable_menu_npmEventListener, self).on_activated(view)
 
     default_value = [
       {
@@ -3224,11 +3260,74 @@ class windowViewEventListener(sublime_plugin.EventListener):
       Hook.apply("javascript_enhancements_window_view_close_"+str(view.id()))
 
 
+import sublime, sublime_plugin
+
+class navigate_regionsCommand():
+
+  region_key = ""
+
+  def run(self, edit, **args) :
+    
+    view = self.view
+
+    regions = view.get_regions(self.region_key)
+    if not regions:
+      return
+      
+    move_type = args.get("type")
+
+    if move_type == "next" :
+
+      r_next = self.find_next(regions)
+      if r_next != None :
+        row, col = view.rowcol(r_next.begin())
+
+        Util.go_to_centered(view, row, col)
+
+    elif move_type == "previous" :
+
+      r_prev = self.find_prev(regions)
+      if r_prev != None :
+        row, col = view.rowcol(r_prev.begin())
+
+        Util.go_to_centered(view, row, col)
+
+  def find_next(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    for region in regions :
+      if region.begin() > sel.begin() :
+        return region
+
+    if(len(regions) > 0) :
+      return regions[0]
+
+    return None
+
+  def find_prev(self, regions):
+    view = self.view
+
+    sel = view.sel()[0]
+
+    previous_regions = []
+    for region in regions :
+      if region.begin() < sel.begin() :
+        previous_regions.append(region)
+
+    if not previous_regions and len(regions) > 0:
+      previous_regions.append(regions[len(regions)-1])
+
+    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
+
+
 class wait_modified_asyncViewEventListener():
   last_change = time.time()
   waiting = False
   prefix_thread_name = ""
   wait_time = 1
+  modified = False
 
   def on_modified_async(self, *args, **kwargs) :
     self.last_change = time.time()
@@ -3650,6 +3749,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.searching = False
       return
 
+    
     node = NodeJS(check_local=True)
     
     result = node.execute_check_output(
@@ -3726,7 +3826,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           'hide_auto_complete'
         )
         self.run_auto_complete()
-        self.searching = False
+
+    self.searching = False
 
 
   def on_text_command(self, view, command_name, args):
@@ -4305,125 +4406,7 @@ class show_hint_parametersCommand(sublime_plugin.TextCommand):
     return False
     
 
-import shlex
-
-def show_flow_errors(view) :
-
-  #view_settings = view.settings()
-  sel = view.sel()[0]
-  if not view.match_selector(
-      sel.begin(),
-      'source.js'
-  ) and not view.find_by_selector("source.js.embedded.html") :
-    return None
-
-  deps_list = list()
-  if view.find_by_selector("source.js.embedded.html") :
-    deps_list = flow_parse_cli_dependencies(view, check_all_source_js_embedded=True)
-  else :
-    deps_list = [flow_parse_cli_dependencies(view)]
-
-  errors = []
-  description_by_row = {}
-  description_by_row_column = {}
-  regions = []
-  for deps in deps_list:
-    if deps.project_root is '/':
-      return None
-
-    # if view_settings.get("flow_weak_mode") :
-    #   deps = deps._replace(contents = "/* @flow weak */" + deps.contents)
-    
-    flow_cli = "flow"
-    is_from_bin = True
-    chdir = ""
-    use_node = True
-    bin_path = ""
-
-    settings = get_project_settings()
-    if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-      is_from_bin = False
-      chdir = settings["project_dir_name"]
-      use_node = False
-      
-    node = NodeJS(check_local=True)
-    
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'check-contents',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--json',
-        deps.filename
-      ],
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      fp_temp_contents=deps.contents, 
-      is_output_json=True,
-      clean_output_flow=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
-    
-    if result[0]:
-
-      if result[1]['passed']:
-        continue
-
-      for error in result[1]['errors']:
-        description = ''
-        operation = error.get('operation')
-        row = -1
-        for i in range(len(error['message'])):
-          message = error['message'][i]
-          if i == 0 :
-            row = int(message['line']) + deps.row_offset - 1
-            endrow = int(message['endline']) + deps.row_offset - 1
-            col = int(message['start']) - 1
-            endcol = int(message['end'])
-
-            # if row == 0 and view_settings.get("flow_weak_mode") : #fix when error start at the first line with @flow weak mode
-            #   col = col - len("/* @flow weak */")
-            #   endcol = endcol - len("/* @flow weak */")
-
-            regions.append(Util.rowcol_to_region(view, row, endrow, col, endcol))
-
-            if operation:
-              description += operation["descr"]
-
-          if not description :
-            description += "'"+message['descr']+"'"
-          else :
-            description += " " + message['descr']
-
-        if row >= 0 :
-          row_description = description_by_row.get(row)
-          if not row_description:
-            description_by_row[row] = {
-              "col": col,
-              "description": description
-            }
-          if row_description and description not in row_description:
-            description_by_row[row]["description"] += '; ' + description
-
-          description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)] = description
-            
-      errors = result[1]['errors']
-
-  if errors :
-    view.add_regions(
-      'flow_error', regions, 'scope.js', 'dot',
-      sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
-    )
-    return {"errors": errors, "description_by_row": description_by_row, "description_by_row_column": description_by_row_column}
-  
-  view.erase_regions('flow_error')
-  view.set_status('flow_error', 'Flow: no errors')
-  return None
+import sublime, sublime_plugin
 
 def hide_flow_errors(view) :
   view.erase_regions('flow_error')
@@ -4432,87 +4415,54 @@ def hide_flow_errors(view) :
 class handle_flow_errorsCommand(sublime_plugin.TextCommand):
 
   def run(self, edit, **args):
+    view = self.view
+
     if args :
       if args["type"] == "show" :
-        show_flow_errors(self.view)
+        sublime.set_timeout_async(lambda: show_flow_errorsViewEventListener(view).on_activated_async())
       elif args["type"] == "hide" :
-        hide_flow_errors(self.view)
+        hide_flow_errors(view)
+
+  def is_enabled(self):
+    view = self.view
+    return Util.selection_in_js_scope(view)
+
+  def is_visible(self):
+    view = self.view
+    return Util.selection_in_js_scope(view)
 
 
+import sublime, sublime_plugin
 import cgi, time
 
 class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
 
   description_by_row = {}
   errors = []
+  errorRegions = []
   callback_setted_use_flow_checker_on_current_view = False
   prefix_thread_name = "show_flow_errors_view_event_listener"
-  wait_time = .35
+  wait_time = .15
+  modified = False
 
-  def on_activated_async(self) :
-    
-    view = self.view
+  def on_activated_async(self):
+    self.on_modified_async()
 
-    selections = view.sel()
-    
-    if len(selections) == 0:
-      return
-
-    sel = selections[0]
-    if not view.match_selector(
-        sel.begin(),
-        'source.js'
-    ) and not view.find_by_selector("source.js.embedded.html"):
-      hide_flow_errors(view)
-      return
-
-    settings = get_project_settings()
-    if settings :
-      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
-        hide_flow_errors(view)
-        return
-      elif settings["project_settings"]["flow_checker_enabled"] :
-        comments = view.find_by_selector('source.js comment')
-        flow_comment_found = False
-        for comment in comments:
-          if "@flow" in view.substr(comment) :
-            flow_comment_found = True
-            break
-        if not flow_comment_found :
-          hide_flow_errors(view)
-          return
-    else :
-      settings = view.settings()
-      if not self.callback_setted_use_flow_checker_on_current_view :
-        settings.clear_on_change("use_flow_checker_on_current_view")
-        settings.add_on_change("use_flow_checker_on_current_view", lambda: sublime.set_timeout_async(lambda: self.on_modified_async()))
-        self.callback_setted_use_flow_checker_on_current_view = True
-      if not settings.get("use_flow_checker_on_current_view") :
-        hide_flow_errors(view)
-        return 
-
-    sublime.set_timeout_async(lambda: self.on_modified_async())
+  def on_modified(self):
+    self.modified = True
 
   def on_modified_async(self):
     super(show_flow_errorsViewEventListener, self).on_modified_async()
-    
-  def on_modified_async_with_thread(self, recheck=True) : 
+
+  def on_selection_modified_async(self):
     view = self.view
 
-    selections = view.sel()
- 
-    if len(selections) == 0:
-      return
-      
-    sel = selections[0]
-    if not view.match_selector(
-        sel.begin(),
-        'source.js'
-    ) and not view.find_by_selector("source.js.embedded.html"):
+    if view.find_by_selector('source.js.embedded.html') and (self.errors or view.get_regions("flow_error")):
+      pass
+
+    elif not Util.selection_in_js_scope(view) or not self.errors or not view.get_regions("flow_error"):
       hide_flow_errors(view)
       return
-    
-    self.wait()  
 
     settings = get_project_settings()
     if settings :
@@ -4533,38 +4483,171 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       hide_flow_errors(view)
       return 
 
-    self.errors = []
-    self.description_by_row = {}
-    self.description_by_row_column = {}
-    result = show_flow_errors(view)
+    row, col = view.rowcol(view.sel()[0].begin())
 
-    if result :
-      self.errors = result["errors"]
-      self.description_by_row = result["description_by_row"]
-      self.description_by_row_column = result["description_by_row_column"]
+    if self.errors:
+      error_count = len(self.errors)
+      error_count_text = 'Flow: {} error{}'.format(
+        error_count, '' if error_count is 1 else 's'
+      )
+      error_for_row = self.description_by_row.get(row)
+      if error_for_row:
+        view.set_status(
+          'flow_error', error_count_text + ': ' + error_for_row["description"]
+        )
+      else:
+        view.set_status('flow_error', error_count_text)
 
-    sublime.set_timeout_async(lambda: self.on_selection_modified_async())
+  def on_modified_async_with_thread(self, recheck=True):
 
-    # recheck only first time to avoid error showing bug (because of async method)
-    # while the code execution is here but the user is modifying content
-    if (recheck) :
+    self.modified = False
+
+    view = self.view
+
+    if view.find_by_selector('source.js.embedded.html'):
+      pass
+    elif not Util.selection_in_js_scope(view):
+      hide_flow_errors(view)
+      return
+
+    settings = get_project_settings()
+    if settings :
+      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
+        hide_flow_errors(view)
+        return
+      elif settings["project_settings"]["flow_checker_enabled"] :
+        comments = view.find_by_selector('source.js comment')
+        flow_comment_found = False
+        for comment in comments:
+          if "@flow" in view.substr(comment) :
+            flow_comment_found = True
+            break
+        if not flow_comment_found :
+          hide_flow_errors(view)
+          return
+    elif not view.settings().get("use_flow_checker_on_current_view") :
+      hide_flow_errors(view)
+      return 
+
+    self.wait()  
+
+    deps_list = list()
+    if view.find_by_selector("source.js.embedded.html") :
+      deps_list = flow_parse_cli_dependencies(view, check_all_source_js_embedded=True)
+    else :
+      deps_list = [flow_parse_cli_dependencies(view)]
+
+    flag = False
+
+    for deps in deps_list:
+
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = ""
+      use_node = True
+      bin_path = ""
+
+      settings = get_project_settings()
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        chdir = settings["project_dir_name"]
+        use_node = False
+        
+      node = NodeJS(check_local=True)
+      
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'check-contents',
+          '--from', 'sublime_text',
+          '--root', deps.project_root,
+          '--json',
+          deps.filename
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=deps.contents, 
+        is_output_json=True,
+        clean_output_flow=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if not flag:
+        self.errors = []
+        self.description_by_row = {}
+        self.description_by_row_column = {}
+        self.errorRegions = []
+        flag = True
+
+      if result[0]:
+
+        if result[1]['passed']:
+          continue
+
+        for error in result[1]['errors']:
+          description = ''
+          operation = error.get('operation')
+          row = -1
+          for i in range(len(error['message'])):
+            message = error['message'][i]
+            if i == 0 :
+              row = int(message['line']) + deps.row_offset - 1
+              endrow = int(message['endline']) + deps.row_offset - 1
+              col = int(message['start']) - 1
+              endcol = int(message['end'])
+
+              self.errorRegions.append(Util.rowcol_to_region(view, row, endrow, col, endcol))
+
+              if operation:
+                description += operation["descr"]
+
+            if not description :
+              description += "'"+message['descr']+"'"
+            else :
+              description += " " + message['descr']
+
+          if row >= 0 :
+            row_description = self.description_by_row.get(row)
+            if not row_description:
+              self.description_by_row[row] = {
+                "col": col,
+                "description": description
+              }
+            if row_description and description not in row_description:
+              self.description_by_row[row]["description"] += '; ' + description
+
+            self.description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)] = description
+              
+        self.errors += result[1]['errors']
+
+    if not self.modified :
+      view.erase_regions('flow_error')
+      if self.errorRegions:
+        view.add_regions( 'flow_error', self.errorRegions, 'keyword', 'dot', sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE )
+      else:
+        view.erase_status("flow_error")
+    elif (recheck) :
       sublime.set_timeout_async(lambda: self.on_modified_async_with_thread(recheck=False))
 
 
   def on_hover(self, point, hover_zone) :
     view = self.view
 
+    if view.find_by_selector('source.js.embedded.html') and (self.errors or view.get_regions("flow_error")):
+      pass
+
+    elif not Util.selection_in_js_scope(view) or not self.errors or not view.get_regions("flow_error"):
+      hide_flow_errors(view)
+      return
+
     if hover_zone != sublime.HOVER_TEXT :
       return
 
     sel = sublime.Region(point, point)
-
-    if (not view.match_selector(
-        sel.begin(),
-        'source.js'
-    ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
-      hide_flow_errors(view)
-      return
 
     is_hover_error = False
     region_hover_error = None
@@ -4618,121 +4701,19 @@ class show_flow_errorsViewEventListener(wait_modified_asyncViewEventListener, su
       
       view.show_popup('<html style="padding: 0px; margin: 0px; background-color: rgba(255,255,255,1);"><body style="font-size: 0.8em; font-weight: bold; padding: 5px; background-color: #F44336; margin: 0px;">'+html+'<br><a style="margin-top: 10px; display: block; color: #000;" href="copy_to_clipboard">Copy</a></body></html>', sublime.HIDE_ON_MOUSE_MOVE_AWAY, point, 1150, 80, lambda action: sublime.set_clipboard(error) or view.hide_popup() )
 
-  def on_selection_modified_async(self, *args) :
 
-    view = self.view
-    
-    selections = view.sel()
- 
-    if len(selections) == 0:
-      return
-      
-    sel = selections[0]
-    if (not view.match_selector(
-        sel.begin(),
-        'source.js'
-    ) and not view.find_by_selector("source.js.embedded.html")) or not self.errors or not view.get_regions("flow_error"):
-      hide_flow_errors(view)
-      return
 
-    settings = get_project_settings()
-    if settings :
-      if not settings["project_settings"]["flow_checker_enabled"] or not is_project_view(view) :
-        hide_flow_errors(view)
-        return
-      elif settings["project_settings"]["flow_checker_enabled"] :
-        comments = view.find_by_selector('source.js comment')
-        flow_comment_found = False
-        for comment in comments:
-          if "@flow" in view.substr(comment) :
-            flow_comment_found = True
-            break
-        if not flow_comment_found :
-          hide_flow_errors(view)
-          return
-    elif not view.settings().get("use_flow_checker_on_current_view") :
-      hide_flow_errors(view)
-      return 
-
-    row, col = view.rowcol(sel.begin())
-
-    error_count = len(self.errors)
-    error_count_text = 'Flow: {} error{}'.format(
-      error_count, '' if error_count is 1 else 's'
-    )
-    error_for_row = self.description_by_row.get(row)
-    if error_for_row:
-      view.set_status(
-        'flow_error', error_count_text + ': ' + error_for_row["description"]
-      )
-    else:
-      view.set_status('flow_error', error_count_text)
-  
 
 import sublime, sublime_plugin
 
-class navigate_flow_errorsCommand(sublime_plugin.TextCommand):
+class navigate_flow_errorsCommand(navigate_regionsCommand, sublime_plugin.TextCommand):
 
-  def run(self, edit, **args) :
-    
-    view = self.view
-
-    regions = view.get_regions("flow_error")
-    if not regions:
-      return
-
-    move_type = args.get("type")
-
-    if move_type == "next" :
-
-      r_next = self.find_next(regions)
-      if r_next :
-        row, col = view.rowcol(r_next.begin())
-
-        Util.go_to_centered(view, row, col)
-
-    elif move_type == "previous" :
-
-      r_prev = self.find_prev(regions)
-      if r_prev :
-        row, col = view.rowcol(r_prev.begin())
-
-        Util.go_to_centered(view, row, col)
-
-  def find_next(self, regions):
-    view = self.view
-
-    sel = view.sel()[0]
-
-    for region in regions :
-      if region.begin() > sel.begin() :
-        return region
-
-    if(len(regions) > 0) :
-      return regions[0]
-
-    return None
-
-  def find_prev(self, regions):
-    view = self.view
-
-    sel = view.sel()[0]
-
-    previous_regions = []
-    for region in regions :
-      if region.begin() < sel.begin() :
-        previous_regions.append(region)
-
-    if not previous_regions and len(regions) > 0:
-      previous_regions.append(regions[len(regions)-1])
-
-    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
-
+  region_key = "flow_error"
 
 import sublime, sublime_plugin
 import traceback, os, json, io, sys, imp
 
-import shlex
+import shlex, tempfile
 
 class evaluate_javascriptCommand(manage_cliCommand):
 
@@ -4769,7 +4750,15 @@ class evaluate_javascriptCommand(manage_cliCommand):
     if not region_selected :
       return
 
-    self.command += [shlex.quote(str_selected)]
+    fp = tempfile.NamedTemporaryFile(delete=False)
+    fp.write(str.encode("console.log('\\n'); console.time('Execution Time');\n"+str_selected+"\nconsole.log('\\n'); console.timeEnd('Execution Time');"))
+    fp.close()
+
+    if sublime.platform() == "windows":
+      self.command = ["-p", "<", json.dumps(fp.name), "&", "del", "/f", "/q", json.dumps(fp.name)]
+    else :
+      self.command = ["-p", "<", shlex.quote(fp.name), ";", "rm", "-rf", shlex.quote(fp.name)]
+
     self._run()
     
   def _run(self):
@@ -5025,60 +5014,9 @@ class delete_project_bookmarksCommand(sublime_plugin.TextCommand):
   def is_visible(self):
     return is_javascript_project()
 
-class navigate_project_bookmarksCommand(sublime_plugin.TextCommand):
+class navigate_project_bookmarksCommand(navigate_regionsCommand, sublime_plugin.TextCommand):
 
-  def run(self, edit, **args) :
-
-    window = sublime.active_window()
-    view = self.view
-
-    move_type = args.get("type")
-
-    regions = view.get_regions("region-dot-bookmarks")
-
-    if move_type == "next" :
-
-      r_next = self.find_next(regions)
-      if r_next != None :
-        row, col = view.rowcol(r_next.begin())
-        Util.go_to_centered(view, row, col)
-
-    elif move_type == "previous" :
-
-      r_prev = self.find_prev(regions)
-      if r_prev != None :
-        row, col = view.rowcol(r_prev.begin())
-        Util.go_to_centered(view, row, col)
-
-  def find_next(self, regions):
-    view = self.view
-
-    sel = view.sel()[0]
-
-    for region in regions :
-      if region.begin() > sel.begin() :
-        return region
-
-    if(len(regions) > 0) :
-      return regions[0]
-
-    return None
-
-  def find_prev(self, regions):
-    view = self.view
-
-    sel = view.sel()[0]
-
-    previous_regions = []
-    for region in regions :
-      if region.begin() < sel.begin() :
-        previous_regions.append(region)
-
-    if not previous_regions and len(regions) > 0:
-      previous_regions.append(regions[len(regions)-1])
-
-    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
-      
+  region_key = "region-dot-bookmarks" 
 
 class update_bookmarks_lineEventListener(sublime_plugin.EventListener):
 
@@ -5094,28 +5032,6 @@ class update_bookmarks_lineEventListener(sublime_plugin.EventListener):
 
       if lines:
         overwrite_bookmarks( view, lines )
-
-# class on_hover_bookmarks_nameEventListener(sublime_plugin.EventListener):
-
-#   def on_hover(self, view, point, hover_zone) :
-#     sublime.set_timeout_async(lambda: self.on_hover_description_async(view, point, hover_zone))
-
-#   def on_hover_description_async(self, view, point, hover_zone) :
-
-#     if hover_zone != sublime.HOVER_GUTTER :
-#       return
-
-#     regions = view.get_regions("region-dot-bookmarks")
-
-#     if not regions:
-#       return
-
-#     row, col = view.rowcol(point)
-
-#     bookmark = get_bookmark_by_line(view, row, True if is_project_view(view) and is_javascript_project() else False)
-
-#     if bookmark:
-#       view.show_popup('<html style="padding: 0px; margin: 0px;"><body style="padding: 5px; margin: 0px;">'+bookmark["name"]+'<br></body></html>', sublime.HIDE_ON_MOUSE_MOVE_AWAY, point, 1150, 80, None )
 
 
 class add_jsdoc_conf(sublime_plugin.WindowCommand) :
@@ -5261,7 +5177,10 @@ def donwload_can_i_use_json_data() :
       if os.path.isfile(path_to_test_can_i_use_data) :
         if not json_file.closed:
           json_file.close()
-        os.remove(path_to_test_can_i_use_data)
+        try :
+          os.remove(path_to_test_can_i_use_data)
+        except Exception as e :
+          pass
     else :
       os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
       with open(path_to_can_i_use_data) as json_file :    
@@ -5474,6 +5393,351 @@ class can_i_use_hide_popupEventListener(sublime_plugin.EventListener):
     if can_i_use_popup_is_showing :
       view.hide_popup()
       can_i_use_popup_is_showing = False
+
+import sublime, sublime_plugin
+
+class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, sublime_plugin.ViewEventListener):
+
+  unusedVariableRegions = []
+  prefix_thread_name = "unused_variables"
+  wait_time = .15
+  modified = False
+
+  def on_activated_async(self):
+    self.on_modified_async()
+
+  def on_modified(self):
+    self.modified = True
+
+  def on_modified_async(self):
+    super(unused_variablesViewEventListener, self).on_modified_async()
+
+  def on_selection_modified_async(self):
+    view = self.view
+
+    if view.find_by_selector('source.js.embedded.html'):
+      pass
+    elif not Util.selection_in_js_scope(view):
+      view.erase_status("unused_variables")
+      view.erase_regions("unused_variables")
+      return
+
+    statusInRegion = ""
+    for region in self.unusedVariableRegions:
+      if region.contains(view.sel()[0]):
+        statusInRegion = "'" + view.substr(region) + "'"
+
+    if self.unusedVariableRegions:
+      if statusInRegion:
+        view.set_status("unused_variables", str(len(self.unusedVariableRegions)) + " unused variables: " + statusInRegion )
+      else:
+        view.set_status("unused_variables", str(len(self.unusedVariableRegions)) + " unused variables" )
+
+  def on_modified_async_with_thread(self, recheck=True):
+
+    self.modified = False
+
+    view = self.view
+
+    if view.find_by_selector('source.js.embedded.html'):
+      pass
+    elif not Util.selection_in_js_scope(view):
+      view.erase_status("unused_variables")
+      view.erase_regions("unused_variables")
+      return
+
+    self.wait()
+
+    deps_list = list()
+    if view.find_by_selector("source.js.embedded.html") :
+      deps_list = flow_parse_cli_dependencies(view, check_all_source_js_embedded=True)
+    else :
+      deps_list = [flow_parse_cli_dependencies(view)]
+
+    flag = False
+
+    for deps in deps_list:
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = ""
+      use_node = True
+      bin_path = ""
+
+      settings = get_project_settings()
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        chdir = settings["project_dir_name"]
+        use_node = False
+
+      node = NodeJS(check_local=True)
+      
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'ast',
+          '--from', 'sublime_text'
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=deps.contents, 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      repetitions = dict()
+
+      if result[0]:
+        if "body" in result[1]:
+          body = result[1]["body"]
+          items = Util.nested_lookup("type", ["VariableDeclarator", "FunctionDeclaration", "ClassDeclaration", "ImportDefaultSpecifier", "ImportNamespaceSpecifier", "ImportSpecifier", "ArrayPattern", "ObjectPattern"], body)
+          for item in items:
+
+            if "id" in item and isinstance(item["id"],dict) and "name" in item["id"] and item["id"]["type"] == "Identifier":
+              item = item["id"]
+
+            elif "local" in item and isinstance(item["local"],dict) and "name" in item["local"] and item["local"]["type"] == "Identifier":
+              item = item["local"]
+
+            elif "properties" in item:
+              for prop in item["properties"]:
+                if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
+                  items += [prop["key"]]
+              continue
+
+            elif "elements" in item:
+              for element in item["elements"]:
+                if isinstance(element,dict) and "name" in element and element["type"] == "Identifier":
+                  items += [element]
+              continue
+
+            #else :
+            #  item = Util.nested_lookup("type", ["Identifier"], item)[0]
+
+            variableName = ""
+            try:
+              variableName = item["name"]
+            except (KeyError) as e:
+              continue
+            startRegion = view.text_point(int(item["loc"]["start"]["line"]) + deps.row_offset - 1, int(item["loc"]["start"]["column"]))
+            endRegion = view.text_point(int(item["loc"]["end"]["line"]) + deps.row_offset - 1, int(item["loc"]["end"]["column"]))
+            variableRegion = sublime.Region(startRegion, endRegion) 
+
+            scope = view.scope_name(variableRegion.begin()-1).strip()
+            scope_splitted = scope.split(" ")
+
+            if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
+              continue
+
+            if view.substr(view.line(variableRegion)).strip().startswith("export") and not scope.startswith("source.js meta.export.js meta.block.js") and not scope.startswith("source.js meta.group.braces.curly.js") and len(scope_splitted) <= 4:
+              continue  
+
+            repetitions[variableName] = [variableRegion]
+
+          items = Util.nested_lookup("type", ["MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression"], body)
+          for item in items:
+
+            if "object" in item :
+              if "property" in item and isinstance(item["property"],dict) and "name" in item["property"] and item["property"]["type"] == "Identifier":
+                items += [item["property"]]
+              if "object" in item and isinstance(item["object"],dict) and "name" in item["object"] and item["object"]["type"] == "Identifier":
+                item = item["object"]
+              else:
+                continue
+
+            elif "callee" in item :    
+              if "arguments" in item:
+                for argument in item["arguments"]:
+                  if isinstance(argument,dict) and "name" in argument and argument["type"] == "Identifier":
+                    items += [argument]
+
+              item = item["callee"]
+
+            elif "left" in item or "right" in item:
+
+              if "left" in item and isinstance(item["left"],dict) and "name" in item["left"] and item["left"]["type"] == "Identifier":
+                items += [item["left"]]
+              if "right" in item and isinstance(item["right"],dict) and "name" in item["right"] and item["right"]["type"] == "Identifier":
+                items += [item["right"]]
+
+            elif "test" in item:
+              if "consequent" in item and isinstance(item["consequent"],dict) and "name" in item["consequent"] and item["consequent"]["type"] == "Identifier":
+                items += [item["consequent"]]
+              if "alternate" in item and isinstance(item["alternate"],dict) and "name" in item["alternate"] and item["alternate"]["type"] == "Identifier":
+                items += [item["alternate"]]
+              if isinstance(item["test"],dict) and "name" in item["test"] and item["test"]["type"] == "Identifier":
+                item = item["test"]
+              else:
+                continue
+
+            elif "expression" in item and isinstance(item["expression"],dict) and "name" in item["expression"] and item["expression"]["type"] == "Identifier":
+              item = item["expression"]
+
+            elif "argument" in item and isinstance(item["argument"],dict) and "name" in item["argument"] and item["argument"]["type"] == "Identifier":
+              item = item["argument"]
+
+            elif "elements" in item :
+              for element in item["elements"]:
+                if isinstance(element,dict) and "name" in element and element["type"] == "Identifier":
+                  items += [element]
+              continue
+
+            elif "value" in item and isinstance(item["value"],dict) and "name" in item["value"] and item["value"]["type"] == "Identifier":
+              item = item["value"]
+
+            elif "body" in item and isinstance(item["body"],dict) and "name" in item["body"] and item["body"]["type"] == "Identifier":
+              item = item["body"]
+
+            variableName = ""
+            try:
+              variableName = item["name"]
+            except (KeyError) as e:
+              continue
+
+            startRegion = view.text_point(int(item["loc"]["start"]["line"]) + deps.row_offset - 1, int(item["loc"]["start"]["column"]))
+            endRegion = view.text_point(int(item["loc"]["end"]["line"]) + deps.row_offset - 1, int(item["loc"]["end"]["column"]))
+            variableRegion = sublime.Region(startRegion, endRegion) 
+
+            scope = view.scope_name(variableRegion.begin()-1).strip()
+
+            if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
+              continue
+
+            if variableName in repetitions and not variableRegion in repetitions[variableName]:
+              repetitions[variableName] += [variableRegion]
+
+          if not flag:
+            self.unusedVariableRegions = [] 
+            flag = True
+          
+          errorRegions = view.get_regions("flow_error")
+          for variableName in repetitions.keys():
+            count = len(repetitions[variableName])
+            if count == 1:
+              intersects = False
+              for errorRegion in errorRegions:
+                if errorRegion.intersects(repetitions[variableName][0]):
+                  intersects = True
+                  break
+              if not intersects:
+                self.unusedVariableRegions += [repetitions[variableName][0]]
+
+    if not self.modified :
+      view.erase_regions("unused_variables")
+      if self.unusedVariableRegions:
+        view.add_regions("unused_variables", self.unusedVariableRegions, "string", "dot", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SQUIGGLY_UNDERLINE)
+      else:
+        view.erase_status("unused_variables")
+    elif (recheck) :
+        sublime.set_timeout_async(lambda: self.on_modified_async_with_thread(recheck=False))
+
+class navigate_unused_variablesCommand(navigate_regionsCommand, sublime_plugin.TextCommand):
+
+  region_key = "unused_variables"
+
+import sublime, sublime_plugin
+
+class sort_javascript_importsCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit, **args):
+    view = self.view
+
+    if "imports" in args and "regionPoints" in args:
+      imports = args.get('imports')
+      regionPoints = args.get('regionPoints')
+      first_line = view.substr(view.full_line(0)).strip()
+      first_line_empty = True if not first_line or not first_line.startswith("import") else False
+      if regionPoints:
+        for i in range(1, len(regionPoints)+1):
+          regionPoint = regionPoints[-i]
+          region = sublime.Region(regionPoint[0], regionPoint[1])
+          full_line = view.substr(view.full_line(region)).replace(view.substr(region), '').strip()
+          if not full_line:
+            region = sublime.Region(regionPoint[0]-1, regionPoint[1])
+          view.erase(edit, region)
+
+        if view.match_selector(0, 'comment'):
+          comment = view.extract_scope(0)
+          view.replace(edit, sublime.Region(comment.end(), comment.end()), "\n" + "\n".join(sorted(imports)))
+        elif first_line_empty:
+          view.replace(edit, sublime.Region(0,0), "\n".join(sorted(imports)) + "\n\n")
+        else:
+          view.replace(edit, sublime.Region(0,0), "\n".join(sorted(imports)))
+
+    else:
+      sublime.set_timeout_async(self.get_imports)
+
+  def get_imports(self):
+
+    view = self.view
+
+    deps = flow_parse_cli_dependencies(view)
+
+    flow_cli = "flow"
+    is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+      is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
+
+    node = NodeJS(check_local=True)
+    
+    result = node.execute_check_output(
+      flow_cli,
+      [
+        'ast',
+        '--from', 'sublime_text'
+      ],
+      is_from_bin=is_from_bin,
+      use_fp_temp=True, 
+      fp_temp_contents=deps.contents, 
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
+    )
+
+    if result[0]:
+      if "body" in result[1]:
+        body = result[1]["body"]
+        items = Util.nested_lookup("type", ["ImportDeclaration"], body)
+        imports = []
+        regionPoints = []
+        for item in items:
+          row = int(item['loc']['start']['line']) - 1
+          endrow = int(item['loc']['end']['line']) - 1
+          col = int(item['loc']['start']['column']) - 1
+          endcol = int(item['loc']['end']['column'])
+
+          startRegion = view.text_point(row, col)
+          endRegion = view.text_point(endrow, endcol)
+          regionPoints += [[startRegion, endRegion]]
+
+          importRegion = sublime.Region(startRegion, endRegion) 
+
+          imports += [view.substr(importRegion)]
+
+        view.run_command('sort_javascript_imports', args={"imports": imports, "regionPoints": regionPoints})
+  
+  def is_enabled(self):
+    view = self.view
+    return Util.selection_in_js_scope(view) and not view.find_by_selector('source.js.embedded.html')
+
+  def is_visible(self):
+    view = self.view
+    return Util.selection_in_js_scope(view) and not view.find_by_selector('source.js.embedded.html')
+
+
 
 def start():
 

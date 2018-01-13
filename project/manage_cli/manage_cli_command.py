@@ -60,13 +60,12 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         if view.name() == "JavaScript Enhancements Terminal (bash)":
           view_with_term = view
 
-      self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
-      self.window.focus_group(1)
-
       if view_with_term:
         self.window.focus_view(view_with_term)
         self.window.run_command("terminal_view_send_string", args={"string": "cd "+self.working_directory+"\n"})
       else :
+        self.window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
+        self.window.focus_group(1)
         view = self.window.new_file() 
         args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal (bash)", "cwd": self.working_directory, "syntax": None, "keep_open": False} 
         view.run_command('terminal_view_activate', args=args)

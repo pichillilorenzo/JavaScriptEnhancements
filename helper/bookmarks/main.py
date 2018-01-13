@@ -235,60 +235,9 @@ class delete_project_bookmarksCommand(sublime_plugin.TextCommand):
   def is_visible(self):
     return is_javascript_project()
 
-class navigate_project_bookmarksCommand(sublime_plugin.TextCommand):
+class navigate_project_bookmarksCommand(navigate_regionsCommand, sublime_plugin.TextCommand):
 
-  def run(self, edit, **args) :
-
-    window = sublime.active_window()
-    view = self.view
-
-    move_type = args.get("type")
-
-    regions = view.get_regions("region-dot-bookmarks")
-
-    if move_type == "next" :
-
-      r_next = self.find_next(regions)
-      if r_next != None :
-        row, col = view.rowcol(r_next.begin())
-        Util.go_to_centered(view, row, col)
-
-    elif move_type == "previous" :
-
-      r_prev = self.find_prev(regions)
-      if r_prev != None :
-        row, col = view.rowcol(r_prev.begin())
-        Util.go_to_centered(view, row, col)
-
-  def find_next(self, regions):
-    view = self.view
-
-    sel = view.sel()[0]
-
-    for region in regions :
-      if region.begin() > sel.begin() :
-        return region
-
-    if(len(regions) > 0) :
-      return regions[0]
-
-    return None
-
-  def find_prev(self, regions):
-    view = self.view
-
-    sel = view.sel()[0]
-
-    previous_regions = []
-    for region in regions :
-      if region.begin() < sel.begin() :
-        previous_regions.append(region)
-
-    if not previous_regions and len(regions) > 0:
-      previous_regions.append(regions[len(regions)-1])
-
-    return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
-      
+  region_key = "region-dot-bookmarks" 
 
 class update_bookmarks_lineEventListener(sublime_plugin.EventListener):
 
@@ -304,25 +253,3 @@ class update_bookmarks_lineEventListener(sublime_plugin.EventListener):
 
       if lines:
         overwrite_bookmarks( view, lines )
-
-# class on_hover_bookmarks_nameEventListener(sublime_plugin.EventListener):
-
-#   def on_hover(self, view, point, hover_zone) :
-#     sublime.set_timeout_async(lambda: self.on_hover_description_async(view, point, hover_zone))
-
-#   def on_hover_description_async(self, view, point, hover_zone) :
-
-#     if hover_zone != sublime.HOVER_GUTTER :
-#       return
-
-#     regions = view.get_regions("region-dot-bookmarks")
-
-#     if not regions:
-#       return
-
-#     row, col = view.rowcol(point)
-
-#     bookmark = get_bookmark_by_line(view, row, True if is_project_view(view) and is_javascript_project() else False)
-
-#     if bookmark:
-#       view.show_popup('<html style="padding: 0px; margin: 0px;"><body style="padding: 5px; margin: 0px;">'+bookmark["name"]+'<br></body></html>', sublime.HIDE_ON_MOUSE_MOVE_AWAY, point, 1150, 80, None )

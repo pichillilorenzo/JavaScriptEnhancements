@@ -2,8 +2,8 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
   path = os.path.join(PROJECT_FOLDER, "npm", "Main.sublime-menu")
   path_disabled = os.path.join(PROJECT_FOLDER, "npm", "Main_disabled.sublime-menu")
 
-  def on_activated_async(self, view):
-    super(enable_menu_npmEventListener, self).on_activated_async(view)
+  def on_activated(self, view):
+    super(enable_menu_npmEventListener, self).on_activated(view)
 
     default_value = [
       {

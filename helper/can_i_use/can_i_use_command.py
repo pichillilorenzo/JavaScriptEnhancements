@@ -39,7 +39,10 @@ def donwload_can_i_use_json_data() :
       if os.path.isfile(path_to_test_can_i_use_data) :
         if not json_file.closed:
           json_file.close()
-        os.remove(path_to_test_can_i_use_data)
+        try :
+          os.remove(path_to_test_can_i_use_data)
+        except Exception as e :
+          pass
     else :
       os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
       with open(path_to_can_i_use_data) as json_file :    

@@ -8,5 +8,7 @@
   { "caption": "JavaScript Enhancements Bookmarks: Next", "command": "navigate_project_bookmarks", "args": {"type": "next"} },
   { "caption": "JavaScript Enhancements Bookmarks: Previous", "command": "navigate_project_bookmarks", "args": {"type": "previous"} },
   { "caption": "Flow: Next Error", "command": "navigate_flow_errors", "args": {"type": "next"} },
-  { "caption": "Flow: Previous Error", "command": "navigate_flow_errors", "args": {"type": "previous"} }
+  { "caption": "Flow: Previous Error", "command": "navigate_flow_errors", "args": {"type": "previous"} },
+  { "caption": "Unused Variable: Next", "command": "navigate_unused_variables", "args": {"type": "next"} },
+  { "caption": "Unused Variable: Previous", "command": "navigate_unused_variables", "args": {"type": "previous"} }
 ]

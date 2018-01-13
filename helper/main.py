@@ -6,6 +6,8 @@ ${include Terminal.py}
 
 ${include WindowView.py}
 
+${include navigate_regions.py}
+
 ${include wait_modified_async_view_event_listener.py}
 
 ${include surround_with_command.py}
@@ -29,3 +31,7 @@ ${include jsdoc/generate_jsdoc_command.py}
 ${include expand_abbreviation.py}
 
 ${include can_i_use/can_i_use_command.py}
+
+${include unused_variables_view_event_listener.py}
+
+${include sort_javascript_imports/main.py}

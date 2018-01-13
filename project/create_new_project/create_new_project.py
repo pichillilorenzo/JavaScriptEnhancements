@@ -83,13 +83,14 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
       result = node.execute("flow", ["init"], is_from_bin=True, chdir=path)
       if not result[0]:
         sublime.error_message("Can't initialize flow.")
-      # else:
-      #   with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
-      #     content = file.read()
-      #     content = content.replace("[ignore]", """[ignore]""")
-      #     file.seek(0)
-      #     file.truncate()
-      #     file.write(content)
+      else:
+        with open(flowconfig_file_path, 'r+', encoding="utf-8") as file:
+          content = file.read()
+          content = content.replace("[ignore]", """[ignore]
+<PROJECT_ROOT>/"""+PROJECT_SETTINGS_FOLDER_NAME+"""/.*""")
+          file.seek(0)
+          file.truncate()
+          file.write(content)
 
     Hook.apply(self.project_type+"_after_create_new_project", path, "create_new_project")
     Hook.apply("after_create_new_project", path, "create_new_project")

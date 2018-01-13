@@ -1,5 +1,6 @@
 import sublime, sublime_plugin
 import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
+from six import iteritems
 
 class Util(object) :
 
@@ -296,6 +297,7 @@ class Util(object) :
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
     sel_begin = view.sel()[0].begin() if point == -1 else point
+
     return view.match_selector(
       sel_begin,
       'source.js ' + except_for
@@ -551,3 +553,30 @@ class Util(object) :
           func_stdout(line, process, *args_func_stdout)
         line = b""
       char = b""
+
+  @staticmethod
+  def nested_lookup(key, values, document, wild=False):
+      """Lookup a key in a nested document, return a list of values"""
+      return list(Util._nested_lookup(key, values, document, wild=wild))
+
+  @staticmethod
+  def _nested_lookup(key, values, document, wild=False):
+      """Lookup a key in a nested document, yield a value"""
+      if isinstance(document, list):
+          for d in document:
+              for result in Util._nested_lookup(key, values, d, wild=wild):
+                  yield result
+
+      if isinstance(document, dict):
+          for k, v in iteritems(document):
+              if values and v in values and (key == k or (wild and key.lower() in k.lower())):
+                  yield document
+              elif not values and key == k or (wild and key.lower() in k.lower()):
+                  yield document
+              elif isinstance(v, dict):
+                  for result in Util._nested_lookup(key, values, v, wild=wild):
+                      yield result
+              elif isinstance(v, list):
+                  for d in v:
+                      for result in Util._nested_lookup(key, values, d, wild=wild):
+                          yield result

@@ -3,7 +3,7 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
   path = ""
   path_disabled = ""
 
-  def on_activated_async(self, view):
+  def on_activated(self, view):
     if self.project_type and self.path and self.path_disabled:
       if is_type_javascript_project(self.project_type) :
         if os.path.isfile(self.path_disabled):
@@ -19,8 +19,8 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
         if os.path.isfile(self.path):
           os.rename(self.path, self.path_disabled)
 
-  def on_new_async(self, view):
-    self.on_activated_async(view)
+  def on_new(self, view):
+    self.on_activated(view)
 
-  def on_load_async(self, view):
-    self.on_activated_async(view)
+  def on_load(self, view):
+    self.on_activated(view)

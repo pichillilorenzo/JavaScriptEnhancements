@@ -6,35 +6,21 @@ flowCLIRequirements = namedtuple('flowCLIRequirements', [
     'filename', 'project_root', 'contents', 'cursor_pos', 'row', 'col', 'row_offset'
 ])
 
-FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow", ".flowconfig")
-
-def find_flow_config(filename):
-
-  platform = sublime.platform()
-
-  while True:
-
-    if not filename:
-      return FLOW_DEFAULT_CONFIG_PATH
-
-    if platform == "windows" and len(filename) == 2 and filename[1] == ":":
-      return FLOW_DEFAULT_CONFIG_PATH
-
-    elif filename == '/':
-      return FLOW_DEFAULT_CONFIG_PATH
-
-    filename = os.path.dirname(filename)
-    if os.path.isfile(os.path.join(filename, '.flowconfig')):
-      return filename
+FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow")
 
 def flow_parse_cli_dependencies(view, **kwargs):
   filename = view.file_name()
-  contextual_keys = sublime.active_window().extract_variables()
-  folder_path = contextual_keys.get("folder")
-  if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :  
-    project_root = folder_path
-  else :
-    project_root = find_flow_config(filename)
+  
+  project_settings = get_project_settings()
+  if project_settings:
+    project_root = project_settings["project_dir_name"]
+  else:
+    contextual_keys = sublime.active_window().extract_variables()
+    folder_path = contextual_keys.get("folder")
+    if folder_path and os.path.isdir(folder_path) and os.path.isfile(os.path.join(folder_path, '.flowconfig')) :  
+      project_root = folder_path
+    else :
+      project_root = FLOW_DEFAULT_CONFIG_PATH
 
   cursor_pos = 0
   if kwargs.get('cursor_pos') :

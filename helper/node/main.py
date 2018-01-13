@@ -110,10 +110,12 @@ class NodeJS(object):
         os.chdir(chdir)
 
       output = subprocess.check_output(
-          args, shell=True, stderr=subprocess.STDOUT
+          args, shell=True, stderr=subprocess.STDOUT, timeout=10
       )
 
       if sublime.platform() == "windows" and use_fp_temp: 
+        if not fp.closed:
+          fp.close()
         os.unlink(fp.name)
 
       # reset the PATH environment variable
@@ -166,6 +168,8 @@ class NodeJS(object):
       os.environ.update(old_env)
 
       if sublime.platform() == "windows" and use_fp_temp: 
+        if not fp.closed:
+          fp.close()
         os.unlink(fp.name)
 
       try:
@@ -179,6 +183,22 @@ class NodeJS(object):
           fp.close()
 
         return [False, None]
+
+    except subprocess.TimeoutExpired as e:
+      # reset the PATH environment variable
+      os.environ.update(old_env)
+
+      #print(traceback.format_exc())
+
+      if use_fp_temp :
+        if sublime.platform() == "windows": 
+          if not fp.closed:
+            fp.close()
+          os.unlink(fp.name)
+        else:
+          fp.close()
+      return [False, None]
+
     except:
 
       # reset the PATH environment variable
@@ -188,6 +208,8 @@ class NodeJS(object):
 
       if use_fp_temp :
         if sublime.platform() == "windows": 
+          if not fp.closed:
+            fp.close()
           os.unlink(fp.name)
         else:
           fp.close()

@@ -3,6 +3,7 @@ class wait_modified_asyncViewEventListener():
   waiting = False
   prefix_thread_name = ""
   wait_time = 1
+  modified = False
 
   def on_modified_async(self, *args, **kwargs) :
     self.last_change = time.time()

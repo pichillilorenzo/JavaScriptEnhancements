@@ -127,6 +127,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.searching = False
       return
 
+    
     node = NodeJS(check_local=True)
     
     result = node.execute_check_output(
@@ -203,7 +204,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           'hide_auto_complete'
         )
         self.run_auto_complete()
-        self.searching = False
+
+    self.searching = False
 
 
   def on_text_command(self, view, command_name, args):

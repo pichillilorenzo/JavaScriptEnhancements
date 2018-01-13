@@ -85,7 +85,7 @@
          </dict>
       </dict>
 
-       <dict>
+      <dict>
          <key>scope</key>
          <string>javascriptenhancements.button_ok</string>
          <key>settings</key>
@@ -96,6 +96,7 @@
             <string>#B3E5FC</string>
          </dict>
       </dict>
+
    </array>
 </dict>
 </plist>
