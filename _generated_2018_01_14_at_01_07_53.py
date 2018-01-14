@@ -732,7 +732,12 @@ class Util(object) :
 
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
-    sel_begin = view.sel()[0].begin() if point == -1 else point
+    selections = view.sel()
+
+    if not selections:
+      return False
+
+    sel_begin = selections[0].begin() if point == -1 else point
 
     return view.match_selector(
       sel_begin,
@@ -783,14 +788,7 @@ class Util(object) :
 
   @staticmethod
   def get_whitespace_from_line_begin(view, region) :
-    line = view.line(region)
-    whitespace = ""
-    count = line.begin()
-    sel_begin = region.begin()
-    while count != sel_begin :
-      count = count + 1
-      whitespace = whitespace + " "
-    return whitespace
+    return " " * ( region.begin() - view.line(region).begin() )
 
   @staticmethod
   def add_whitespace_indentation(view, region, string, replace="\t", add_whitespace_end=True) :
@@ -1658,8 +1656,20 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         else:
           self.path_cli = self.settings["project_settings"]["npm_custom_path"] or javascriptCompletions.get("npm_custom_path") or NPM_EXEC
       else:
-        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli )
-      self.command = kwargs.get("command")
+        self.path_cli = self.settings[self.settings_name]["cli_custom_path"] if self.settings[self.settings_name]["cli_custom_path"] else ( javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli )    
+
+        if sublime.platform() != "windows" and (self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path")):
+          if os.path.isabs(self.path_cli) :
+            self.command = [shlex.quote(self.path_cli)]
+          else:
+            self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
+          self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path")
+
+
+      if not self.command:
+        self.command = kwargs.get("command")
+      else:
+        self.command += kwargs.get("command")
 
       self.prepare_command(**kwargs)
 
@@ -3350,12 +3360,12 @@ class wait_modified_asyncViewEventListener():
     return
 
 
+import sublime, sublime_plugin
+
 class surround_withCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     selections = view.sel()
-    region = None
-    sub = None
     case = args.get("case")
     if case == "if_else_statement" :
       if len(selections) != 2 :
@@ -3397,8 +3407,20 @@ class surround_withCommand(sublime_plugin.TextCommand):
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
 
+        elif case == "try_finally_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
         elif case == "try_catch_finally_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "function" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"function () {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "block" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"{\n"+space, "\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
           
   def is_enabled(self, **args) :
@@ -4711,9 +4733,7 @@ class navigate_flow_errorsCommand(navigate_regionsCommand, sublime_plugin.TextCo
   region_key = "flow_error"
 
 import sublime, sublime_plugin
-import traceback, os, json, io, sys, imp
-
-import shlex, tempfile
+import traceback, os, json, io, sys, imp,shlex, tempfile
 
 class evaluate_javascriptCommand(manage_cliCommand):
 
@@ -4775,7 +4795,6 @@ class evaluate_javascriptCommand(manage_cliCommand):
     if not Util.selection_in_js_scope(view) :
       return False
     return True
-
 
 import sublime, sublime_plugin
 import json, time
@@ -5731,13 +5750,101 @@ class sort_javascript_importsCommand(sublime_plugin.TextCommand):
   
   def is_enabled(self):
     view = self.view
-    return Util.selection_in_js_scope(view) and not view.find_by_selector('source.js.embedded.html')
+    if not Util.selection_in_js_scope(view) and view.find_by_selector('source.js.embedded.html'):
+      return False
+
+    if view.find_by_selector('meta.import.js'):
+      return True
+
+    # try JavaScript (Babel) syntax
+    import_regions = view.find_by_selector('keyword.operator.module.js')
+    for import_region in import_regions:
+      if (view.substr(import_region).startswith("import")) :
+        return True
+
+    return False
 
   def is_visible(self):
     view = self.view
-    return Util.selection_in_js_scope(view) and not view.find_by_selector('source.js.embedded.html')
+    if not Util.selection_in_js_scope(view) and view.find_by_selector('source.js.embedded.html'):
+      return False
+
+    if view.find_by_selector('meta.import.js'):
+      return True
+
+    # try JavaScript (Babel) syntax
+    import_regions = view.find_by_selector('keyword.operator.module.js')
+    for import_region in import_regions:
+      if (view.substr(import_region).startswith("import")) :
+        return True
+
+    return False
 
 
+# import sublime, sublime_plugin
+# import re
+
+
+#   { "caption": "-" },
+#   {
+#     "caption": "Refactor (Working on it ...)",
+#     "id": "refactor",
+#     "children": [
+#       {
+#         "caption": "Extract",
+#         "children": [
+#           {
+#             "caption": "Method",
+#             "command": "refactor",
+#             "args": {"case": "extract_method"}
+#           }
+#         ]
+#       }
+#     ]
+#   }
+
+# class refactorCommand(sublime_plugin.TextCommand):
+#   def run(self, edit, **args):
+#     view = self.view
+#     case = args.get("case")
+#     if not "answer" in args :
+#       caption = ""
+#       initial_text = ""
+
+#       if case == "extract_method" :
+#         caption = "Method:"
+#         initial_text = "func ()"
+
+#       view.window().show_input_panel(caption, initial_text, lambda answer: view.run_command('refactor', args={"case": case, "answer": answer}), None, None)
+#     else :
+#       answer = args.get("answer").strip()
+#       scope = view.scope_name(view.sel()[0].begin())
+#       space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
+#       if case == "extract_method" :
+#         new_text = Util.replace_with_tab(view, view.sel()[0], "\t\n\t"+answer+" {\n\t", "\n\t}\n")
+#         view.replace(edit, view.sel()[0], "this."+(re.sub('\s+\(', '(', answer)) )
+#         region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], 'meta.class.js')["region"]
+#         view.insert(edit, region_class.end()-1, new_text)
+
+#   def is_enabled(self, **args) :
+#     view = self.view
+#     if not Util.selection_in_js_scope(view) :
+#       return False
+#     selections = view.sel()
+#     for selection in selections :
+#       if view.substr(selection).strip() != "" :
+#         return True
+#     return False
+
+#   def is_visible(self, **args) :
+#     view = self.view
+#     if not Util.selection_in_js_scope(view) :
+#       return False
+#     selections = view.sel()
+#     for selection in selections :
+#       if view.substr(selection).strip() != "" :
+#         return True
+#     return False
 
 def start():
 

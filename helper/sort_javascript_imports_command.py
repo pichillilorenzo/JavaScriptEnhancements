@@ -91,9 +91,32 @@ class sort_javascript_importsCommand(sublime_plugin.TextCommand):
   
   def is_enabled(self):
     view = self.view
-    return Util.selection_in_js_scope(view) and not view.find_by_selector('source.js.embedded.html')
+    if not Util.selection_in_js_scope(view) and view.find_by_selector('source.js.embedded.html'):
+      return False
+
+    if view.find_by_selector('meta.import.js'):
+      return True
+
+    # try JavaScript (Babel) syntax
+    import_regions = view.find_by_selector('keyword.operator.module.js')
+    for import_region in import_regions:
+      if (view.substr(import_region).startswith("import")) :
+        return True
+
+    return False
 
   def is_visible(self):
     view = self.view
-    return Util.selection_in_js_scope(view) and not view.find_by_selector('source.js.embedded.html')
+    if not Util.selection_in_js_scope(view) and view.find_by_selector('source.js.embedded.html'):
+      return False
 
+    if view.find_by_selector('meta.import.js'):
+      return True
+
+    # try JavaScript (Babel) syntax
+    import_regions = view.find_by_selector('keyword.operator.module.js')
+    for import_region in import_regions:
+      if (view.substr(import_region).startswith("import")) :
+        return True
+
+    return False

@@ -296,7 +296,12 @@ class Util(object) :
 
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
-    sel_begin = view.sel()[0].begin() if point == -1 else point
+    selections = view.sel()
+
+    if not selections:
+      return False
+
+    sel_begin = selections[0].begin() if point == -1 else point
 
     return view.match_selector(
       sel_begin,
@@ -347,14 +352,7 @@ class Util(object) :
 
   @staticmethod
   def get_whitespace_from_line_begin(view, region) :
-    line = view.line(region)
-    whitespace = ""
-    count = line.begin()
-    sel_begin = region.begin()
-    while count != sel_begin :
-      count = count + 1
-      whitespace = whitespace + " "
-    return whitespace
+    return " " * ( region.begin() - view.line(region).begin() )
 
   @staticmethod
   def add_whitespace_indentation(view, region, string, replace="\t", add_whitespace_end=True) :

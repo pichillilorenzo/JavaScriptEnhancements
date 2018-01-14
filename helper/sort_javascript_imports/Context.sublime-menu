@@ -1,8 +1,0 @@
-[
-  { "caption": "-" },
-  {
-    "caption": "Sort JavaScript Imports",
-    "id": "sort_javascript_imports",
-    "command": "sort_javascript_imports"
-  }
-]

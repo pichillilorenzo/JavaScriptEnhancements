@@ -102,6 +102,7 @@ For _Linux-based OS_ **REMEMBER** to add `:` (for _Windows OS_ **REMEMBER** to a
 
 ### Errors
 ![](https://drive.google.com/uc?authuser=0&id=1r8IDItL03tPFwCCsTIdW54rRpascnHAF&export=download)
+![](https://drive.google.com/uc?authuser=0&id=1hjtcvuMNZe7NP3_nE10X_6qEEbLvl-AA&export=download)
 
 ### Projects with terminal ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 ![](https://drive.google.com/uc?authuser=0&id=1gmC6GROJXyhV8DZTHw8Zw_KGlB13g_bL&export=download)

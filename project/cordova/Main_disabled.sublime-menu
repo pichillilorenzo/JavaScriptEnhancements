@@ -14,21 +14,21 @@
                 "caption": "Add",
                 "command": "cordova_cli",
                 "args": {
-                  "command": ["platform", "add", ":platform"]
+                  "command": ["platform", "add", ":platform", "--save"]
                 }
               },
               {
                 "caption": "Update",
                 "command": "cordova_cli",
                 "args": {
-                  "command": ["platform", "update", ":platform"]
+                  "command": ["platform", "update", ":platform", "--save"]
                 }
               },
               {
                 "caption": "Remove",
                 "command": "cordova_cli",
                 "args": {
-                  "command": ["platform", "remove", ":platform"]
+                  "command": ["platform", "remove", ":platform", "--save"]
                 }
               },
               {

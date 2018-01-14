@@ -1,9 +1,9 @@
+import sublime, sublime_plugin
+
 class surround_withCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     selections = view.sel()
-    region = None
-    sub = None
     case = args.get("case")
     if case == "if_else_statement" :
       if len(selections) != 2 :
@@ -45,8 +45,20 @@ class surround_withCommand(sublime_plugin.TextCommand):
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
 
+        elif case == "try_finally_statement" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
         elif case == "try_catch_finally_statement" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "function" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"function () {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "block" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"{\n"+space, "\n"+space+"}\n"+space)
           view.replace(edit, selection, new_text)
           
   def is_enabled(self, **args) :

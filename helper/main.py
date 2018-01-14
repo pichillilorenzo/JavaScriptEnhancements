@@ -22,7 +22,7 @@ ${include split_string_lines_to_variable_command.py}
 
 ${include javascript_completions/main.py}
 
-${include evaluate_javascript/main.py}
+${include evaluate_javascript_command.py}
 
 ${include bookmarks/main.py}
 
@@ -34,4 +34,6 @@ ${include can_i_use/can_i_use_command.py}
 
 ${include unused_variables_view_event_listener.py}
 
-${include sort_javascript_imports/main.py}
+${include sort_javascript_imports_command.py}
+
+${include refactor_command.py}

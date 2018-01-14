@@ -1,4 +1,24 @@
 [
+  { "caption": "-" },
+  {
+    "caption": "Evaluate JavaScript",
+    "children": [
+      {
+        "caption": "Evaluate JavaScript",
+        "id": "evaluate_javascript",
+        "command": "evaluate_javascript",
+      },
+      { "caption": "-" },
+      {
+        "caption": "Evaluate JavaScript on this line",
+        "id": "evaluate_javascript_line",
+        "command": "evaluate_javascript",
+        "args": {
+          "is_line": true
+        }
+      }
+    ]
+  },
   {"caption": "-"},
   {
     "caption": "Split string lines to variable",
@@ -79,9 +99,24 @@
         "args": {"case": "try_catch_statement"}
       },
       {
+        "caption": "try finally statement",
+        "command": "surround_with",
+        "args": {"case": "try_finally_statement"}
+      },
+      {
         "caption": "try catch finally statement",
         "command": "surround_with",
         "args": {"case": "try_catch_finally_statement"}
+      },
+      {
+        "caption": "block {}",
+        "command": "surround_with",
+        "args": {"case": "block"}
+      },
+      {
+        "caption": "function",
+        "command": "surround_with",
+        "args": {"case": "function"}
       }
     ]
   },
@@ -97,6 +132,11 @@
     ]
   },
   { "caption": "-" },
+  {
+    "caption": "Sort JavaScript Imports",
+    "id": "sort_javascript_imports",
+    "command": "sort_javascript_imports"
+  },
   {
     "caption": "Expand Abbreviation",
     "id": "expand_abbreviation",

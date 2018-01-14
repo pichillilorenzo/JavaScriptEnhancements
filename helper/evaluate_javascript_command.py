@@ -1,4 +1,5 @@
-import shlex, tempfile
+import sublime, sublime_plugin
+import traceback, os, json, io, sys, imp,shlex, tempfile
 
 class evaluate_javascriptCommand(manage_cliCommand):
 
