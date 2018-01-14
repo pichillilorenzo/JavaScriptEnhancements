@@ -1,6 +1,7 @@
 # JavaScript Enhancements
 
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/LorenzoPichilli)
 
@@ -15,9 +16,9 @@ It offers better **javascript autocomplete** and also a lot of features about cr
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 projects (same as Cordova projects!)
 - Angular v1 and v2 projects
-- React projects (only about the creation for the moment)
-- React Native projects (only about the creation for the moment. I will add also **NativeScript** support)
-- Express projects (only about the creation for the moment)
+- React projects (only about the creation at this time)
+- React Native projects (only about the creation at this time. I will add also **NativeScript** support)
+- Express projects (only about the creation at this time)
 - Yeoman generators
 - Local bookmarks project
 - JavaScript real-time errors

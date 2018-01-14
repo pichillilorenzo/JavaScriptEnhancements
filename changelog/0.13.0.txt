@@ -6,7 +6,7 @@ v0.13.0
 - fix menu_disabled error setting sync functions in enable_menu_project_type_event_listener
 
 ## Improvements
-- added unusedd_variables feature
+- added unused_variables feature
 - added sort_javascript_imports feature
 - extended surround_with options
 - started working on refactor command
