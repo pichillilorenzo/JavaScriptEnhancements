@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import shlex, json
+import shlex, json, os
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   
@@ -14,6 +14,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   isNode = False
   isNpm = False
   isBinPath = False
+  alsoNonProject = False
 
   def run(self, **kwargs):
 
@@ -43,6 +44,34 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
             self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
           self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path")
 
+      if not self.command:
+        self.command = kwargs.get("command")
+      else:
+        self.command += kwargs.get("command")
+
+      self.prepare_command(**kwargs)
+
+    elif self.alsoNonProject:
+
+      self.working_directory = os.path.expanduser("~")
+
+      if self.isNode:
+        self.path_cli = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+      elif self.isNpm:
+        if self.settings["project_settings"]["use_yarn"]:
+          self.path_cli = javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
+        else:
+          self.path_cli = javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+      else:
+        self.path_cli = javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli
+
+        if sublime.platform() != "windows" and javascriptCompletions.get("node_js_custom_path"):
+          if os.path.isabs(self.path_cli) :
+            self.command = [shlex.quote(self.path_cli)]
+          else:
+            self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
+          self.path_cli = javascriptCompletions.get("node_js_custom_path")
+
 
       if not self.command:
         self.command = kwargs.get("command")
@@ -53,6 +82,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     else :
       sublime.error_message("Error: can't get project settings")
+
 
   def prepare_command(self):
     pass

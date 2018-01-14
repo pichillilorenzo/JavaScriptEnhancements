@@ -114,9 +114,7 @@ class NodeJS(object):
       )
 
       if sublime.platform() == "windows" and use_fp_temp: 
-        if not fp.closed:
-          fp.close()
-        os.unlink(fp.name)
+        os.remove(fp.name)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -168,9 +166,7 @@ class NodeJS(object):
       os.environ.update(old_env)
 
       if sublime.platform() == "windows" and use_fp_temp: 
-        if not fp.closed:
-          fp.close()
-        os.unlink(fp.name)
+        os.remove(fp.name)
 
       try:
         result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
@@ -192,9 +188,7 @@ class NodeJS(object):
 
       if use_fp_temp :
         if sublime.platform() == "windows": 
-          if not fp.closed:
-            fp.close()
-          os.unlink(fp.name)
+          os.remove(fp.name)
         else:
           fp.close()
       return [False, None]
@@ -208,9 +202,7 @@ class NodeJS(object):
 
       if use_fp_temp :
         if sublime.platform() == "windows": 
-          if not fp.closed:
-            fp.close()
-          os.unlink(fp.name)
+          os.remove(fp.name)
         else:
           fp.close()
       return [False, None]

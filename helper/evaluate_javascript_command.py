@@ -4,6 +4,7 @@ import traceback, os, json, io, sys, imp,shlex, tempfile
 class evaluate_javascriptCommand(manage_cliCommand):
 
   isNode = True
+  alsoNonProject = True
 
   def prepare_command(self, **kwargs):
 

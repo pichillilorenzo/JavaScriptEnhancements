@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.0"
+PLUGIN_VERSION = "0.13.1"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -245,9 +245,7 @@ class NodeJS(object):
       )
 
       if sublime.platform() == "windows" and use_fp_temp: 
-        if not fp.closed:
-          fp.close()
-        os.unlink(fp.name)
+        os.remove(fp.name)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -299,9 +297,7 @@ class NodeJS(object):
       os.environ.update(old_env)
 
       if sublime.platform() == "windows" and use_fp_temp: 
-        if not fp.closed:
-          fp.close()
-        os.unlink(fp.name)
+        os.remove(fp.name)
 
       try:
         result = json.loads(output.decode("utf-8", "ignore")) if is_output_json else output.decode("utf-8", "ignore")
@@ -323,9 +319,7 @@ class NodeJS(object):
 
       if use_fp_temp :
         if sublime.platform() == "windows": 
-          if not fp.closed:
-            fp.close()
-          os.unlink(fp.name)
+          os.remove(fp.name)
         else:
           fp.close()
       return [False, None]
@@ -339,9 +333,7 @@ class NodeJS(object):
 
       if use_fp_temp :
         if sublime.platform() == "windows": 
-          if not fp.closed:
-            fp.close()
-          os.unlink(fp.name)
+          os.remove(fp.name)
         else:
           fp.close()
       return [False, None]
@@ -436,7 +428,6 @@ class NPM(object):
 
 import sublime, sublime_plugin
 import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
-from six import iteritems
 
 class Util(object) :
 
@@ -1002,7 +993,7 @@ class Util(object) :
                   yield result
 
       if isinstance(document, dict):
-          for k, v in iteritems(document):
+          for k, v in document.items():
               if values and v in values and (key == k or (wild and key.lower() in k.lower())):
                   yield document
               elif not values and key == k or (wild and key.lower() in k.lower()):
@@ -1621,7 +1612,7 @@ class enable_menu_project_typeEventListener(sublime_plugin.EventListener):
 
 
 import sublime, sublime_plugin
-import shlex, json
+import shlex, json, os
 
 class manage_cliCommand(sublime_plugin.WindowCommand):
   
@@ -1636,6 +1627,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
   isNode = False
   isNpm = False
   isBinPath = False
+  alsoNonProject = False
 
   def run(self, **kwargs):
 
@@ -1665,6 +1657,34 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
             self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
           self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path")
 
+      if not self.command:
+        self.command = kwargs.get("command")
+      else:
+        self.command += kwargs.get("command")
+
+      self.prepare_command(**kwargs)
+
+    elif self.alsoNonProject:
+
+      self.working_directory = os.path.expanduser("~")
+
+      if self.isNode:
+        self.path_cli = javascriptCompletions.get("node_js_custom_path") or NODE_JS_EXEC
+      elif self.isNpm:
+        if self.settings["project_settings"]["use_yarn"]:
+          self.path_cli = javascriptCompletions.get("yarn_custom_path") or YARN_EXEC
+        else:
+          self.path_cli = javascriptCompletions.get("npm_custom_path") or NPM_EXEC
+      else:
+        self.path_cli = javascriptCompletions.get(self.custom_name+"_custom_path") if javascriptCompletions.get(self.custom_name+"_custom_path") else self.cli
+
+        if sublime.platform() != "windows" and javascriptCompletions.get("node_js_custom_path"):
+          if os.path.isabs(self.path_cli) :
+            self.command = [shlex.quote(self.path_cli)]
+          else:
+            self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
+          self.path_cli = javascriptCompletions.get("node_js_custom_path")
+
 
       if not self.command:
         self.command = kwargs.get("command")
@@ -1675,6 +1695,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
 
     else :
       sublime.error_message("Error: can't get project settings")
+
 
   def prepare_command(self):
     pass
@@ -4738,6 +4759,7 @@ import traceback, os, json, io, sys, imp,shlex, tempfile
 class evaluate_javascriptCommand(manage_cliCommand):
 
   isNode = True
+  alsoNonProject = True
 
   def prepare_command(self, **kwargs):
 

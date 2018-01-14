@@ -1,6 +1,5 @@
 import sublime, sublime_plugin
 import re, urllib, shutil, traceback, threading, time, os, hashlib, json, multiprocessing, shlex
-from six import iteritems
 
 class Util(object) :
 
@@ -566,7 +565,7 @@ class Util(object) :
                   yield result
 
       if isinstance(document, dict):
-          for k, v in iteritems(document):
+          for k, v in document.items():
               if values and v in values and (key == k or (wild and key.lower() in k.lower())):
                   yield document
               elif not values and key == k or (wild and key.lower() in k.lower()):
