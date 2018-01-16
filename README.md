@@ -69,8 +69,10 @@ With [Package Control](https://packagecontrol.io/) (**NOT PUBLISHED YET**):
 
 Manually:
 
-1. Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
+1. Download [latest release](https://github.com/pichillilorenzo/JavaScriptEnhancements/releases) (**DON'T CLONE THE REPOSITORY!**) and unzip it into your **Packages folder** (go to `Preferences > Browse Packages...` menu item to open this folder)
 2. Rename the folder with `JavaScript Enhancements` name (**THIS STEP IS IMPORTANT**).
+
+If all is going in the right way, you will see `JavaScript Enhancements - installing npm dependencies...` and, after a while, `JavaScript Enhancements - npm dependencies installed correctly.` messages in the status bar of Sublime Text 3. Now the plugin is ready!
 
 ### Fixing node.js and npm custom path
 

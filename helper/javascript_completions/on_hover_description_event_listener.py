@@ -122,6 +122,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
   )
 
   html = ""
+  results_found = 0
 
   if result[0]:
     descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
@@ -132,6 +133,8 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
         if description['type'].startswith("((") or description['type'].find("&") >= 0 :
           sub_completions = description['type'].split("&")
           for sub_comp in sub_completions :
+
+            results_found += 1
 
             sub_comp = sub_comp.strip()
             sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
@@ -199,6 +202,9 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
     )
 
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
+
+      results_found = 1
+
       description = dict()
       description["name"] = ""
       description['func_details'] = dict()
@@ -260,10 +266,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
   if html:
       view.show_popup("""
-      <html><head></head><body>
+      <html><head></head><body class=\""""+("single-result-found" if results_found == 1 else "more-results-found")+"""\">
       """+js_css+"""
         <div class=\"container-hint-popup\">
           """ + html + """    
         </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80, func_action )
+      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80 if results_found == 1 else 160, func_action )
   

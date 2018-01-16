@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.1"
+PLUGIN_VERSION = "0.13.2"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -4174,6 +4174,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
   )
 
   html = ""
+  results_found = 0
 
   if result[0]:
     descriptions = result[1]["result"] + load_default_autocomplete(view, result[1]["result"], word, region.begin(), True)
@@ -4184,6 +4185,8 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
         if description['type'].startswith("((") or description['type'].find("&") >= 0 :
           sub_completions = description['type'].split("&")
           for sub_comp in sub_completions :
+
+            results_found += 1
 
             sub_comp = sub_comp.strip()
             sub_type = sub_comp[1:-1] if description['type'].startswith("((") else sub_comp
@@ -4251,6 +4254,9 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
     )
 
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
+
+      results_found = 1
+
       description = dict()
       description["name"] = ""
       description['func_details'] = dict()
@@ -4312,12 +4318,12 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
   if html:
       view.show_popup("""
-      <html><head></head><body>
+      <html><head></head><body class=\""""+("single-result-found" if results_found == 1 else "more-results-found")+"""\">
       """+js_css+"""
         <div class=\"container-hint-popup\">
           """ + html + """    
         </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80, func_action )
+      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80 if results_found == 1 else 160, func_action )
   
 
 import sublime, sublime_plugin
@@ -5890,7 +5896,7 @@ def start():
 
   try:
     sys.modules["JavaScript Completions"]
-    sublime.error_message("Please uninstall/disable JavaScript Completions plugin.")
+    sublime.error_message("Please uninstall/disable my other plugin \"JavaScript Completions\". It could conflict with this one!")
     return
   except Exception as err:
     pass

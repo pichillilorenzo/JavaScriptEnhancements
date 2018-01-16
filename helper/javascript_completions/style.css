@@ -8,6 +8,12 @@ body{
   padding: 0;
   font-size: 0.9rem;
 }
+body.single-result-found{
+  
+}
+body.more-results-found{
+
+}
 .container{
   background-color: #202A31;
   padding: 10px; 
@@ -44,8 +50,11 @@ body{
   font-style: normal;
   color: #fff;
 }
-.container-hint-popup .container-description{
+body.single-result-found .container-hint-popup .container-description{
   margin-bottom: 5px;
+}
+body.more-results-found .container-hint-popup .container-description{
+  margin-bottom: 10px;
 }
 .container-hint-popup .container-info{
   display: inline;
