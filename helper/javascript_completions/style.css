@@ -6,7 +6,7 @@ body{
   color: #fff;
   margin: 0;
   padding: 0;
-  font-size: 0.85em;
+  font-size: 0.95rem;
 }
 .container{
   background-color: #202A31;
@@ -54,8 +54,8 @@ body{
 }
 .container-hint-popup .container-url-doc{
   margin-top: 5px;
-  font-size: 10px;
+  font-size: 0.75rem;
 }
 .go-to-def{
-  font-size: 10px;
+  font-size: 0.75rem;
 }
