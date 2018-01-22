@@ -42,7 +42,7 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
   def on_hover(self, view, point, hover_zone) :
     if not view.match_selector(
         point,
-        'source.js - comment'
+        'source.js - string - constant - comment'
     ):
       return
 
@@ -203,6 +203,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
 
+      print(result[1])
       results_found = 1
 
       description = dict()

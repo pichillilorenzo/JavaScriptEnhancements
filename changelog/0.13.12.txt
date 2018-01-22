@@ -1,3 +1,17 @@
+v0.13.12
+
+## Fixes
+
+- Fixed "Unused variables - variable remains underlined also when it is used in an assignment statement" #18
+- Fixed "Evaluate JavaScript - TypeError: 'NoneType' object is not iterable on self.command += kwargs.get("command")" #17
+- Not showing the on_hover_description tooltip on a quoted strings or numeric constants, in order to prevent "Go to definition" on them
+
+## Improvements
+
+- Finally published on Package Control ⭐
+
+
+
 =================================================================
 ** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **
 =================================================================

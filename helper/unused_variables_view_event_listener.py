@@ -141,7 +141,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             repetitions[variableName] = [variableRegion]
 
-          items = Util.nested_lookup("type", ["MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression"], body)
+          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression"], body)
           for item in items:
 
             if "object" in item :
@@ -191,6 +191,9 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             elif "value" in item and isinstance(item["value"],dict) and "name" in item["value"] and item["value"]["type"] == "Identifier":
               item = item["value"]
+
+            elif "init" in item and isinstance(item["init"],dict) and "name" in item["init"] and item["init"]["type"] == "Identifier":
+              item = item["init"]
 
             elif "body" in item and isinstance(item["body"],dict) and "name" in item["body"] and item["body"]["type"] == "Identifier":
               item = item["body"]

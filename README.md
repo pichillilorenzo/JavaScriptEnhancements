@@ -16,9 +16,9 @@ It offers better **javascript autocomplete** and also a lot of features about cr
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 projects (same as Cordova projects!)
 - Angular v1 and v2 projects
-- React projects (only about the creation at this time)
-- React Native projects (only about the creation at this time. I will add also **NativeScript** support)
-- Express projects (only about the creation at this time)
+- React projects (only about the creation at this moment)
+- React Native projects (only about the creation at this moment. I will add also **NativeScript** support)
+- Express projects (only about the creation at this moment)
 - Yeoman generators
 - Local bookmarks project
 - JavaScript real-time errors
@@ -63,7 +63,7 @@ You can find more information about Flow on [flow.org](https://flow.org)
 
 ## Installation
 
-With [Package Control](https://packagecontrol.io/) (**NOT PUBLISHED YET**):
+With [Package Control](https://packagecontrol.io/):
 
 - Run “Package Control: Install Package” command or click to the `Preferences > Package Control` menu item, find and install `JavaScript Enhancements` plugin.
 

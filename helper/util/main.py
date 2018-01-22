@@ -295,20 +295,20 @@ class Util(object) :
 
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
-    selections = view.sel()
+    try :
 
-    if not selections:
-      return False
+      sel_begin = view.sel()[0].begin() if point == -1 else point
 
-    sel_begin = selections[0].begin() if point == -1 else point
+      return view.match_selector(
+        sel_begin,
+        'source.js ' + except_for
+      ) or view.match_selector(
+        sel_begin,
+        'source.js.embedded.html ' + except_for
+      )
 
-    return view.match_selector(
-      sel_begin,
-      'source.js ' + except_for
-    ) or view.match_selector(
-      sel_begin,
-      'source.js.embedded.html ' + except_for
-    )
+    except IndexError as e:
+      return False   
   
   @staticmethod
   def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :

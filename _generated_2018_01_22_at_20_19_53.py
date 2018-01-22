@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.11"
+PLUGIN_VERSION = "0.13.12"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -723,20 +723,20 @@ class Util(object) :
 
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
-    selections = view.sel()
+    try :
 
-    if not selections:
-      return False
+      sel_begin = view.sel()[0].begin() if point == -1 else point
 
-    sel_begin = selections[0].begin() if point == -1 else point
+      return view.match_selector(
+        sel_begin,
+        'source.js ' + except_for
+      ) or view.match_selector(
+        sel_begin,
+        'source.js.embedded.html ' + except_for
+      )
 
-    return view.match_selector(
-      sel_begin,
-      'source.js ' + except_for
-    ) or view.match_selector(
-      sel_begin,
-      'source.js.embedded.html ' + except_for
-    )
+    except IndexError as e:
+      return False   
   
   @staticmethod
   def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
@@ -1660,7 +1660,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.command:
         self.command = kwargs.get("command")
       else:
-        self.command += kwargs.get("command")
+        self.command += [kwargs.get("command")]
 
       self.prepare_command(**kwargs)
 
@@ -1689,7 +1689,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.command:
         self.command = kwargs.get("command")
       else:
-        self.command += kwargs.get("command")
+        self.command += [kwargs.get("command")]
 
       self.prepare_command(**kwargs)
 
@@ -4094,7 +4094,7 @@ class on_hover_descriptionEventListener(sublime_plugin.EventListener):
   def on_hover(self, view, point, hover_zone) :
     if not view.match_selector(
         point,
-        'source.js - comment'
+        'source.js - string - constant - comment'
     ):
       return
 
@@ -4255,6 +4255,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
 
+      print(result[1])
       results_found = 1
 
       description = dict()
@@ -5584,7 +5585,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             repetitions[variableName] = [variableRegion]
 
-          items = Util.nested_lookup("type", ["MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression"], body)
+          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression"], body)
           for item in items:
 
             if "object" in item :
@@ -5634,6 +5635,9 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             elif "value" in item and isinstance(item["value"],dict) and "name" in item["value"] and item["value"]["type"] == "Identifier":
               item = item["value"]
+
+            elif "init" in item and isinstance(item["init"],dict) and "name" in item["init"] and item["init"]["type"] == "Identifier":
+              item = item["init"]
 
             elif "body" in item and isinstance(item["body"],dict) and "name" in item["body"] and item["body"]["type"] == "Identifier":
               item = item["body"]

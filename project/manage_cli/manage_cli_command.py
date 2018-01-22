@@ -47,7 +47,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.command:
         self.command = kwargs.get("command")
       else:
-        self.command += kwargs.get("command")
+        self.command += [kwargs.get("command")]
 
       self.prepare_command(**kwargs)
 
@@ -76,7 +76,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
       if not self.command:
         self.command = kwargs.get("command")
       else:
-        self.command += kwargs.get("command")
+        self.command += [kwargs.get("command")]
 
       self.prepare_command(**kwargs)
 
