@@ -1,3 +1,15 @@
+v0.13.13
+
+## Fixes
+
+- Fixed "Unused variable shows up in React project" #20
+
+## Improvements
+
+- Added a message in the status bar in case of a subprocess.CalledProcessError error. For example, it could be caused by a malformed .flowconfig in a project.
+
+
+
 =================================================================
 ** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **
 =================================================================

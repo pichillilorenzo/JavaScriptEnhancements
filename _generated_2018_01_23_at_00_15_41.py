@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.12"
+PLUGIN_VERSION = "0.13.13"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -231,7 +231,7 @@ class NodeJS(object):
 
     # update the PATH environment variable
     os.environ.update(new_env)
-      
+
     try:
       output = None
       result = None
@@ -272,7 +272,7 @@ class NodeJS(object):
         #   out[0] = out[0].replace("Started a new flow server: -", "")
         #   out = "\n".join(out)
         #   result = json.loads(out) if is_output_json else out
-        out = out[ len(out) - 1 ]
+        out = out[-1]
         if '{"flowVersion":"' in out :
           index = out.index('{"flowVersion":"')
           out = out[index:]
@@ -289,9 +289,18 @@ class NodeJS(object):
 
       if use_fp_temp :
         fp.close()
+
       return [True, result]
     except subprocess.CalledProcessError as e:
       print(traceback.format_exc())
+
+      if e.output:
+        output_error_message = e.output.decode("utf-8", "ignore").strip()
+        output_error_message = output_error_message.split("\n")
+        output_error_message = "\n".join(output_error_message[:-2]) if '{"flowVersion":"' in output_error_message[-1] else "\n".join(output_error_message)
+
+        print(e.output)
+        sublime.active_window().status_message(output_error_message)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -5538,6 +5547,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
       repetitions = dict()
 
       if result[0]:
+        
         if "body" in result[1]:
           body = result[1]["body"]
           items = Util.nested_lookup("type", ["VariableDeclarator", "FunctionDeclaration", "ClassDeclaration", "ImportDefaultSpecifier", "ImportNamespaceSpecifier", "ImportSpecifier", "ArrayPattern", "ObjectPattern"], body)
@@ -5584,10 +5594,13 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             repetitions[variableName] = [variableRegion]
 
-          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression"], body)
+          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration"], body)
           for item in items:
 
-            if "object" in item :
+            if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
+              item = item["declaration"]
+
+            elif "object" in item :
               if "property" in item and isinstance(item["property"],dict) and "name" in item["property"] and item["property"]["type"] == "Identifier":
                 items += [item["property"]]
               if "object" in item and isinstance(item["object"],dict) and "name" in item["object"] and item["object"]["type"] == "Identifier":

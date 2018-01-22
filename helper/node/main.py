@@ -100,7 +100,7 @@ class NodeJS(object):
 
     # update the PATH environment variable
     os.environ.update(new_env)
-      
+
     try:
       output = None
       result = None
@@ -141,7 +141,7 @@ class NodeJS(object):
         #   out[0] = out[0].replace("Started a new flow server: -", "")
         #   out = "\n".join(out)
         #   result = json.loads(out) if is_output_json else out
-        out = out[ len(out) - 1 ]
+        out = out[-1]
         if '{"flowVersion":"' in out :
           index = out.index('{"flowVersion":"')
           out = out[index:]
@@ -158,9 +158,18 @@ class NodeJS(object):
 
       if use_fp_temp :
         fp.close()
+
       return [True, result]
     except subprocess.CalledProcessError as e:
       print(traceback.format_exc())
+
+      if e.output:
+        output_error_message = e.output.decode("utf-8", "ignore").strip()
+        output_error_message = output_error_message.split("\n")
+        output_error_message = "\n".join(output_error_message[:-2]) if '{"flowVersion":"' in output_error_message[-1] else "\n".join(output_error_message)
+
+        print(e.output)
+        sublime.active_window().status_message(output_error_message)
 
       # reset the PATH environment variable
       os.environ.update(old_env)

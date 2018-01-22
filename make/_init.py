@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.12"
+PLUGIN_VERSION = "0.13.13"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
