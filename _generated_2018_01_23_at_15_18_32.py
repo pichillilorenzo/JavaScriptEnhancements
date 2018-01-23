@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.13"
+PLUGIN_VERSION = "0.13.14"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -243,7 +243,7 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT, timeout=10
       )
-
+      
       if sublime.platform() == "windows" and use_fp_temp: 
         os.remove(fp.name)
 
@@ -5469,9 +5469,14 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
     super(unused_variablesViewEventListener, self).on_modified_async()
 
   def on_selection_modified_async(self):
+
     view = self.view
 
-    if view.find_by_selector('source.js.embedded.html'):
+    if not javascriptCompletions.get("enable_unused_variables_feature"):
+      view.erase_status("unused_variables")
+      view.erase_regions("unused_variables")
+      return 
+    elif view.find_by_selector('source.js.embedded.html'):
       pass
     elif not Util.selection_in_js_scope(view):
       view.erase_status("unused_variables")
@@ -5495,7 +5500,11 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
     view = self.view
 
-    if view.find_by_selector('source.js.embedded.html'):
+    if not javascriptCompletions.get("enable_unused_variables_feature"):
+      view.erase_status("unused_variables")
+      view.erase_regions("unused_variables")
+      return 
+    elif view.find_by_selector('source.js.embedded.html'):
       pass
     elif not Util.selection_in_js_scope(view):
       view.erase_status("unused_variables")
@@ -5594,7 +5603,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             repetitions[variableName] = [variableRegion]
 
-          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration"], body)
+          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement"], body)
           for item in items:
 
             if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
@@ -5613,6 +5622,10 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
                 for argument in item["arguments"]:
                   if isinstance(argument,dict) and "name" in argument and argument["type"] == "Identifier":
                     items += [argument]
+                  elif "expressions" in argument and argument["expressions"]:
+                    for expression in argument["expressions"]:
+                      if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
+                        items += [expression]
 
               item = item["callee"]
 

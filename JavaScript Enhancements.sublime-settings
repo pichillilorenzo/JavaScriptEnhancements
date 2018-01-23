@@ -1,9 +1,9 @@
 {
-  "enable_can_i_use_menu_option": true,
   "PATH": "",
   "node_js_custom_path": "node",
   "npm_custom_path": "npm",
   "yarn_custom_path": "yarn",
+
   "cordova_custom_path": "cordova",
   "ionicv1_custom_path": "ionic",
   "ionicv2_custom_path": "ionic",
@@ -11,5 +11,8 @@
   "angularv2_custom_path": "ng",
   "react_custom_path": "create-react-app",
   "express_custom_path": "express",
-  "yeoman_custom_path": "yo"
+  "yeoman_custom_path": "yo",
+
+  "enable_can_i_use_menu_option": true,
+  "enable_unused_variables_feature": true
 }
