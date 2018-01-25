@@ -10,6 +10,8 @@ ${include navigate_regions.py}
 
 ${include wait_modified_async_view_event_listener.py}
 
+${include enable_keymap_event_listener.py}
+
 ${include surround_with_command.py}
 
 ${include delete_surrounded_command.py}

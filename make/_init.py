@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.14"
+PLUGIN_VERSION = "0.13.15"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -37,6 +37,12 @@ ${include ./helper/RepeatedTimer.py}
 ${include ./helper/node/main.py}
 ${include ./helper/util/main.py}
 ${include ./helper/my_socket/main.py}
+
+KEYMAP_COMMANDS = []
+keymaps = Util.open_json(os.path.join(PACKAGE_PATH, 'Default.sublime-keymap'))
+for keymap in keymaps:
+  if keymap["command"] != "window_view_keypress":
+    KEYMAP_COMMANDS += [keymap["command"]]
 
 def sublime_executable_path():
   executable_path = sublime.executable_path()
@@ -90,11 +96,17 @@ class startPlugin():
     node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
     npm = NPM()
     if not os.path.exists(node_modules_path):
-      sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
+      animation_npm_installer = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "JavaScript Enhancements - installing npm dependencies ")
+      interval_animation = RepeatedTimer(animation_npm_installer.sec, animation_npm_installer.animate)
+      # sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
       result = npm.install_all()
       if result[0]: 
+        animation_npm_installer.on_complete()
+        interval_animation.stop()
         sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
       else:
+        animation_npm_installer.on_complete()
+        interval_animation.stop()
         print(result)
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
@@ -152,7 +164,7 @@ def start():
     print("node.js version: " + str(node.getCurrentNodeJSVersion()))
   except Exception as err: 
     print(err)
-    response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text. If you don't know the path of it, use \"which node\" (for Linux-based OS) or \"where node.exe\" (for Windows OS) to get it.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
     elif response == sublime.DIALOG_NO:
@@ -164,7 +176,7 @@ def start():
     print("npm version: " + str(npm.getCurrentNPMVersion()))
   except Exception as err: 
     print(err)
-    response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text. If you don't know the path of it, use \"which npm\" (for Linux-based OS) or \"where npm\" (for Windows OS) to get it.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
     elif response == sublime.DIALOG_NO:

@@ -25,7 +25,7 @@ def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover 
   
   scope = view.scope_name(location-(len(prefix)+1)).strip()
 
-  if scope.endswith(" punctuation.accessor.js") :
+  if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js") :
     return []
 
   prefix = prefix.lower()

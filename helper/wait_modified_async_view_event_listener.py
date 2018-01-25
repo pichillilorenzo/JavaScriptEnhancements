@@ -1,3 +1,5 @@
+import sublime, sublime_plugin
+
 class wait_modified_asyncViewEventListener():
   last_change = time.time()
   waiting = False
@@ -17,9 +19,7 @@ class wait_modified_asyncViewEventListener():
         self.waiting = True
       else :
         return
-      self.last_change = time.time()
-      while time.time() - self.last_change <= self.wait_time:
-        time.sleep(.1)
+      sublime.set_timeout(self.wait_time)
       self.waiting = False
 
   def on_modified_async_with_thread(self, *args, **kwargs):

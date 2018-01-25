@@ -3,7 +3,7 @@ import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, t
 from shutil import copyfile
 from threading import Timer
 
-PLUGIN_VERSION = "0.13.14"
+PLUGIN_VERSION = "0.13.15"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -887,7 +887,7 @@ class Util(object) :
 
       env = os.environ.copy()
       env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
-      shell = os.getenv('SHELL')
+      shell = None if sublime.platform() == 'windows' else '/bin/bash'
 
       with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
 
@@ -917,7 +917,7 @@ class Util(object) :
 
     env = os.environ.copy()
     env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
-    shell = os.getenv('SHELL')
+    shell = None if sublime.platform() == 'windows' else '/bin/bash'
 
     with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
 
@@ -1277,6 +1277,12 @@ class mySocketServer():
       self.socket = None
 
 
+KEYMAP_COMMANDS = []
+keymaps = Util.open_json(os.path.join(PACKAGE_PATH, 'Default.sublime-keymap'))
+for keymap in keymaps:
+  if keymap["command"] != "window_view_keypress":
+    KEYMAP_COMMANDS += [keymap["command"]]
+
 def sublime_executable_path():
   executable_path = sublime.executable_path()
 
@@ -1329,11 +1335,17 @@ class startPlugin():
     node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
     npm = NPM()
     if not os.path.exists(node_modules_path):
-      sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
+      animation_npm_installer = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "JavaScript Enhancements - installing npm dependencies ")
+      interval_animation = RepeatedTimer(animation_npm_installer.sec, animation_npm_installer.animate)
+      # sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
       result = npm.install_all()
       if result[0]: 
+        animation_npm_installer.on_complete()
+        interval_animation.stop()
         sublime.active_window().status_message("JavaScript Enhancements - npm dependencies installed correctly.")
       else:
+        animation_npm_installer.on_complete()
+        interval_animation.stop()
         print(result)
         if os.path.exists(node_modules_path):
           shutil.rmtree(node_modules_path)
@@ -1666,10 +1678,11 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
             self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
           self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path")
 
-      if not self.command:
-        self.command = kwargs.get("command")
-      else:
-        self.command += [kwargs.get("command")]
+      if kwargs.get("command"):
+        if not self.command:
+          self.command = kwargs.get("command")
+        else:
+          self.command += kwargs.get("command")
 
       self.prepare_command(**kwargs)
 
@@ -1694,11 +1707,11 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
             self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
           self.path_cli = javascriptCompletions.get("node_js_custom_path")
 
-
-      if not self.command:
-        self.command = kwargs.get("command")
-      else:
-        self.command += [kwargs.get("command")]
+      if kwargs.get("command"):
+        if not self.command:
+          self.command = kwargs.get("command")
+        else:
+          self.command += kwargs.get("command")
 
       self.prepare_command(**kwargs)
 
@@ -3362,6 +3375,8 @@ class navigate_regionsCommand():
     return previous_regions[len(previous_regions)-1] if len(previous_regions) > 0 else None
 
 
+import sublime, sublime_plugin
+
 class wait_modified_asyncViewEventListener():
   last_change = time.time()
   waiting = False
@@ -3381,14 +3396,21 @@ class wait_modified_asyncViewEventListener():
         self.waiting = True
       else :
         return
-      self.last_change = time.time()
-      while time.time() - self.last_change <= self.wait_time:
-        time.sleep(.1)
+      sublime.set_timeout(self.wait_time)
       self.waiting = False
 
   def on_modified_async_with_thread(self, *args, **kwargs):
     return
 
+
+import sublime, sublime_plugin
+
+class enableKeymap(sublime_plugin.EventListener):
+
+  def on_text_command(self, view, command_name, args):
+
+    if command_name in KEYMAP_COMMANDS and not javascriptCompletions.get("enable_keymap"):
+      return ("noop", {})
 
 import sublime, sublime_plugin
 
@@ -4030,7 +4052,7 @@ def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover 
   
   scope = view.scope_name(location-(len(prefix)+1)).strip()
 
-  if scope.endswith(" punctuation.accessor.js") :
+  if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js") :
     return []
 
   prefix = prefix.lower()
@@ -5603,7 +5625,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
             repetitions[variableName] = [variableRegion]
 
-          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement"], body)
+          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral"], body)
           for item in items:
 
             if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
@@ -5628,6 +5650,12 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
                         items += [expression]
 
               item = item["callee"]
+
+            elif "expressions" in item and item["expressions"]:
+              for expression in item["expressions"]:
+                if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
+                  items += [expression]
+              continue
 
             elif "left" in item or "right" in item:
 
@@ -5935,7 +5963,7 @@ def start():
     print("node.js version: " + str(node.getCurrentNodeJSVersion()))
   except Exception as err: 
     print(err)
-    response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"node.js\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please then change the path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text. If you don't know the path of it, use \"which node\" (for Linux-based OS) or \"where node.exe\" (for Windows OS) to get it.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
     elif response == sublime.DIALOG_NO:
@@ -5947,7 +5975,7 @@ def start():
     print("npm version: " + str(npm.getCurrentNPMVersion()))
   except Exception as err: 
     print(err)
-    response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
+    response = sublime.yes_no_cancel_dialog("Error during installation: \"npm\" seems not installed on your system. Node.js and npm are required to be able to use JavaScript Enhancements plugin.\n\nIf you are using \"nvm\" or you have a different path for node.js and npm, please change their custom path on:\n\nPreferences > Package Settings > JavaScript Enhancements > Settings\n\nand restart Sublime Text. If you don't know the path of it, use \"which npm\" (for Linux-based OS) or \"where npm\" (for Windows OS) to get it.\n\nIf this doesn't work then try also to add the path of their binaries in the PATH key-value on the same JavaScript Enhancements settings file. This variable will be used to add them in the $PATH environment variable, so put the symbol \":\" (instead \";\" for Windows) in front of your path.\n\nDo you want open the website of node.js?", "Yes, open it", "Or use nvm")
     if response == sublime.DIALOG_YES:
       sublime.active_window().run_command("open_url", args={"url": "https://nodejs.org"})
     elif response == sublime.DIALOG_NO:

@@ -44,10 +44,11 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
             self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
           self.path_cli = self.settings["project_settings"]["node_js_custom_path"] or javascriptCompletions.get("node_js_custom_path")
 
-      if not self.command:
-        self.command = kwargs.get("command")
-      else:
-        self.command += [kwargs.get("command")]
+      if kwargs.get("command"):
+        if not self.command:
+          self.command = kwargs.get("command")
+        else:
+          self.command += kwargs.get("command")
 
       self.prepare_command(**kwargs)
 
@@ -72,11 +73,11 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
             self.command = ["$(which "+shlex.quote(self.path_cli)+")"]
           self.path_cli = javascriptCompletions.get("node_js_custom_path")
 
-
-      if not self.command:
-        self.command = kwargs.get("command")
-      else:
-        self.command += [kwargs.get("command")]
+      if kwargs.get("command"):
+        if not self.command:
+          self.command = kwargs.get("command")
+        else:
+          self.command += kwargs.get("command")
 
       self.prepare_command(**kwargs)
 

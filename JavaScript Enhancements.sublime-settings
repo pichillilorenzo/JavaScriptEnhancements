@@ -10,8 +10,11 @@
   "angularv1_custom_path": "yo",
   "angularv2_custom_path": "ng",
   "react_custom_path": "create-react-app",
+  "react_native_custom_path": "create-react-native-app",
   "express_custom_path": "express",
   "yeoman_custom_path": "yo",
+
+  "enable_keymap": true,
 
   "enable_can_i_use_menu_option": true,
   "enable_unused_variables_feature": true

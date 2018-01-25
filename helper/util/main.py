@@ -450,7 +450,7 @@ class Util(object) :
 
       env = os.environ.copy()
       env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
-      shell = os.getenv('SHELL')
+      shell = None if sublime.platform() == 'windows' else '/bin/bash'
 
       with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=(None if not chdir else chdir)) as p:
 
@@ -480,7 +480,7 @@ class Util(object) :
 
     env = os.environ.copy()
     env["PATH"] = env["PATH"] + javascriptCompletions.get("PATH")
-    shell = os.getenv('SHELL')
+    shell = None if sublime.platform() == 'windows' else '/bin/bash'
 
     with subprocess.Popen(args, shell=True, executable=shell, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, preexec_fn=os.setsid, cwd=(None if not chdir else chdir)) as p:
 
