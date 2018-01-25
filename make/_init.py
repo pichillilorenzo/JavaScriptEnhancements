@@ -2,8 +2,10 @@ import sublime, sublime_plugin
 import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, time
 from shutil import copyfile
 from threading import Timer
+from os import environ
+from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.13.15"
+PLUGIN_VERSION = "0.13.16"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -185,10 +187,79 @@ def start():
 
   mainPlugin.init()
 
+##
+## start - Fix Mac Path plugin code with some fixes
+##
+
+fixPathSettings = None
+fixPathOriginalEnv = {}
+
+def getSysPath():
+  command = ""
+  if platform.system() == "Darwin":
+    command = "TERM=ansi CLICOLOR=\"\" SUBLIME=1 /usr/bin/login -fqpl $USER $SHELL -l -c 'TERM=ansi CLICOLOR=\"\" SUBLIME=1 printf \"%s\" \"$PATH\"'"
+  elif platform.system() == "Linux":
+    command = "TERM=ansi CLICOLOR=\"\" SUBLIME=1 $SHELL --login -c 'TERM=ansi CLICOLOR=\"\" printf \"%s\" $PATH'"
+  else:
+    return ""
+
+  # Execute command with original environ. Otherwise, our changes to the PATH propogate down to
+  # the shell we spawn, which re-adds the system path & returns it, leading to duplicate values.
+  sysPath = Popen(command, stdout=PIPE, shell=True, env=fixPathOriginalEnv).stdout.read()
+
+  sysPathString = sysPath.decode("utf-8")
+  # Remove ANSI control characters (see: http://www.commandlinefu.com/commands/view/3584/remove-color-codes-special-characters-with-sed )
+  sysPathString = re.sub(r'\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]', '', sysPathString)
+  sysPathString = sysPathString.strip().rstrip(':')
+
+  # Decode the byte array into a string, remove trailing whitespace, remove trailing ':'
+  return sysPathString
+
+def fixPath():
+  currSysPath = getSysPath()
+  # Basic sanity check to make sure our new path is not empty
+  if len(currSysPath) < 1:
+    return False
+
+  environ['PATH'] = currSysPath
+
+  for pathItem in fixPathSettings.get("additional_path_items", []):
+    environ['PATH'] = pathItem + ':' + environ['PATH']
+
+  return True
+
+
+def plugin_unloaded():
+  # When we unload, reset PATH to original value. Otherwise, reloads of this plugin will cause
+  # the PATH to be duplicated.
+  environ['PATH'] = fixPathOriginalEnv['PATH']
+
+  global fixPathSettings
+  fixPathSettings.clear_on_change('fixpath-reload')
+
+##
+## end - Fix Mac Path plugin code
+##
+
 def plugin_loaded():
   
   if int(sublime.version()) >= 3124 :
+
+    if platform.system() == "Darwin" or platform.system() == "Linux":
+      global fixPathSettings
+      fixPathSettings = sublime.load_settings("Preferences.sublime-settings")
+      fixPathSettings.clear_on_change('fixpath-reload')
+      fixPathSettings.add_on_change('fixpath-reload', fixPath)
+
+      # Save the original environ (particularly the original PATH) to restore later
+      global fixPathOriginalEnv
+      for key in environ:
+        fixPathOriginalEnv[key] = environ[key]
+
+      fixPath()
+
     sublime.set_timeout_async(start, 1000)
+
   else:
     response = sublime.yes_no_cancel_dialog("JavaScript Enhancements plugin requires Sublime Text 3 (build 3124 or newer). Your build is: " + sublime.version() + ". Do you want open the download page?", "Yes, open it", "No")
     if response == sublime.DIALOG_YES:

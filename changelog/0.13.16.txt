@@ -1,0 +1,90 @@
+v0.13.16
+
+## Fixes
+
+- Fixing node.js and npm PATH problem, loading automatically the PATH from the user's shell env.
+
+
+
+=================================================================
+** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **
+=================================================================
+
+If you like it, remember to star it ⭐ on GitHub: https://github.com/pichillilorenzo/JavaScriptEnhancements
+
+** USAGE **
+===========
+
+See how it works on the Wiki: 👉👉 https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki 👈👈
+
+
+** WHAT IS THIS? **
+===================
+
+This plugin uses Flow (javascript static type checker from Facebook) under the hood.
+
+It offers better javascript autocomplete and a lot of features about creating, 
+developing and managing javascript projects, such as:
+
+- Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
+- Ionic v1 and v2 projects (same as Cordova projects!)
+- Angular v1 and v2 projects
+- React projects (only about the creation at this moment)
+- React Native projects (only about the creation at this moment. I will add also NativeScript support)
+- Express projects (only about the creation at this moment)
+- Yeoman generators
+- Local bookmarks project
+- JavaScript real-time errors
+- etc.
+
+You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project)!
+
+It turns Sublime Text into a JavaScript IDE like!
+
+This project is based on my other Sublime Text plugin JavaScript Completions (https://github.com/pichillilorenzo/JavaScript-Completions)
+
+** NOTE **
+If you want use this plugin, you may want uninstall/disable the JavaScript Completions plugin, if installed.
+
+** OS SUPPORTED NOW **
+======================
+
+👉 Linux (64-bit)
+👉 Mac OS X 
+👉 Windows (64-bit): released without the use of TerminalView plugin. For each feature (like also creating a project) will be used the cmd.exe shell (so during the creation of a project don't close it until it finishes!). Unfortunately the TerminalView plugin supports only Linux-based OS 😞. Has someone any advice or idea about that? Is there something similar to the TerminalView plugin for Windows?? Thanks!
+
+❗❗ Dependencies ❗❗
+=======================
+
+In order to work properly, this plugin has some dependencies:
+
+👉 Sublime Text 3 (build 3124 or newer)
+👉 Node.js and npm (https://nodejs.org or nvm (https://github.com/creationix/nvm))
+👉 TerminalView (only for Linux and Mac OS X) sublime text plugin (https://github.com/Wramberg/TerminalView)
+
+Not required, but useful for typescript files (Flow wont work on this type of files):
+
+👉 TypeScript sublime text plugin (https://github.com/Microsoft/TypeScript-Sublime-Plugin) 
+
+** Flow Requirements **
+=======================
+
+It use [Flow](https://github.com/facebook/flow) for type checking and auto-completions.
+
+👉 Mac OS X
+👉 Linux (64-bit)
+👉 Windows (64-bit)
+
+Email me for any questions or doubts about this new project on: pichillilorenzo@gmail.com
+
+** Donation **
+==============
+
+If this project help you reduce time to develop and also you like it, please support it with a donation 😄👍. Thanks!
+
+Open Collective: https://opencollective.com/javascriptenhancements/donate
+PayPal: https://www.paypal.me/LorenzoPichilli
+
+Thanks anyway for your support! 😄😄
+
+MIT License
