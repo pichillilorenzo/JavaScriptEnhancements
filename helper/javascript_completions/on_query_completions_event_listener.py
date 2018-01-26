@@ -127,7 +127,6 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       self.searching = False
       return
 
-    
     node = NodeJS(check_local=True)
     
     result = node.execute_check_output(
@@ -153,6 +152,8 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       if self.modified == True:
         self.searching = False
         return
+
+
           
       result = result[1]
       self.completions = list()
@@ -225,6 +226,11 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
           'hide_auto_complete'
         )
 
+    elif command_name == "drag_select" :
+      if view.sel()[0].begin() < view.word(view.sel()[0].begin()).end():
+        self.modified = True
+        self.searching = False
+
   def on_selection_modified_async(self, view) :
 
     selections = view.sel()
@@ -238,13 +244,13 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     ):
       return
 
-    scope1 = view.scope_name(selections[0].begin()-1).strip()
-    scope2 = view.scope_name(selections[0].begin()-2).strip()
+    scope1 = view.scope_name(sel.begin()-1).strip()
+    scope2 = view.scope_name(sel.begin()-2).strip()
 
-    if (scope1.endswith(" punctuation.accessor.js") or scope1.endswith(" keyword.operator.accessor.js")) and not (scope2.endswith(" punctuation.accessor.js") or scope2.endswith(" keyword.operator.accessor.js")) and view.substr(selections[0].begin()-2).strip() :
-    
+    if (scope1.endswith(" punctuation.accessor.js") or scope1.endswith(" keyword.operator.accessor.js")) and not (scope2.endswith(" punctuation.accessor.js") or scope2.endswith(" keyword.operator.accessor.js")) and view.substr(sel.begin()-2).strip() :
+      
       locations = list()
-      locations.append(selections[0].begin())
+      locations.append(sel.begin())
 
       if not self.searching:
         self.searching = True

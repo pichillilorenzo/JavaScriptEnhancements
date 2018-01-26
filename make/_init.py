@@ -5,7 +5,7 @@ from threading import Timer
 from os import environ
 from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.13.16"
+PLUGIN_VERSION = "0.13.17"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -97,10 +97,16 @@ class startPlugin():
  
     node_modules_path = os.path.join(PACKAGE_PATH, "node_modules")
     npm = NPM()
+
+    if os.path.exists(node_modules_path) and not os.path.exists(os.path.join(node_modules_path, ".bin")):
+      if sublime.platform() == "windows":
+        os.system("taskkill /f /im flow.exe")
+      shutil.rmtree(node_modules_path)
+
     if not os.path.exists(node_modules_path):
       animation_npm_installer = AnimationLoader(["[=     ]", "[ =    ]", "[   =  ]", "[    = ]", "[     =]", "[    = ]", "[   =  ]", "[ =    ]"], 0.067, "JavaScript Enhancements - installing npm dependencies ")
       interval_animation = RepeatedTimer(animation_npm_installer.sec, animation_npm_installer.animate)
-      # sublime.active_window().status_message("JavaScript Enhancements - installing npm dependencies...")
+
       result = npm.install_all()
       if result[0]: 
         animation_npm_installer.on_complete()
@@ -114,10 +120,6 @@ class startPlugin():
           shutil.rmtree(node_modules_path)
         sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in a way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
         return
-    # else:
-    #   result = npm.update_all()
-    #   if not result[0]: 
-    #     sublime.active_window().status_message("Error: JavaScript Enhancements - cannot update npm dependencies.")
     
     sublime.set_timeout_async(lambda: overwrite_default_javascript_snippet())
 
@@ -230,12 +232,16 @@ def fixPath():
 
 
 def plugin_unloaded():
-  # When we unload, reset PATH to original value. Otherwise, reloads of this plugin will cause
-  # the PATH to be duplicated.
-  environ['PATH'] = fixPathOriginalEnv['PATH']
+  if platform.system() == "Darwin" or platform.system() == "Linux":
+    # When we unload, reset PATH to original value. Otherwise, reloads of this plugin will cause
+    # the PATH to be duplicated.
+    environ['PATH'] = fixPathOriginalEnv['PATH']
 
-  global fixPathSettings
-  fixPathSettings.clear_on_change('fixpath-reload')
+    global fixPathSettings
+    fixPathSettings.clear_on_change('fixpath-reload')
+
+  node = NodeJS(check_local=True)
+  sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=os.path.join(PACKAGE_PATH, "flow")))
 
 ##
 ## end - Fix Mac Path plugin code

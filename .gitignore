@@ -3,3 +3,4 @@ node_binaries/
 node_modules/
 **/__pycache__
 /helper/bookmarks/bookmarks.json
+package-lock.json
