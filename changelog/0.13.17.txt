@@ -3,7 +3,7 @@ v0.13.17
 ## Fixes
 
 - Fixed node_modules folder issue #23 during plugin upgrade on Windows
-- Fixed auto-complete tooltip that was showing up also in on_selection_modified event
+- Fixed auto-complete tooltip that was showing up also when selection position has been changed
 
 ## Improvements
 
