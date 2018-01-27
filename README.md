@@ -1,8 +1,8 @@
 # JavaScript Enhancements
 
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
+ [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate)
+[![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate) [![Backers on Open Collective](https://opencollective.com/javascriptenhancements/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/javascriptenhancements/sponsors/badge.svg)](#sponsors)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/LorenzoPichilli)
 
 **JavaScript Enhancements** is a plugin for **Sublime Text 3**.
@@ -136,6 +136,37 @@ If this project help you reduce time to develop and also you like it, please sup
 <a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
   <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
 </a>
+
+## Credits
+### Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/javascriptenhancements/contributors.svg?width=890" /></a>
+
+
+### Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/javascriptenhancements#backer)]
+
+<a href="https://opencollective.com/javascriptenhancements#backers" target="_blank"><img src="https://opencollective.com/javascriptenhancements/backers.svg?width=890"></a>
+
+
+### Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/javascriptenhancements#sponsor)]
+
+<a href="https://opencollective.com/javascriptenhancements/sponsor/0/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/1/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/2/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/3/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/4/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/5/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/6/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/7/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/8/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/javascriptenhancements/sponsor/9/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/9/avatar.svg"></a>
+
+
 
 ## License
 
