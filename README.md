@@ -155,16 +155,7 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/javascriptenhancements#sponsor)]
 
-<a href="https://opencollective.com/javascriptenhancements/sponsor/1/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/2/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/3/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/4/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/5/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/6/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/7/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/8/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/javascriptenhancements/sponsor/9/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/9/avatar.svg"></a>
-
+<a href="https://opencollective.com/javascriptenhancements#sponsors" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsors.svg?width=890"></a>
 
 
 ## License
