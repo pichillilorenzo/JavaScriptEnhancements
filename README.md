@@ -142,6 +142,9 @@ If this project help you reduce time to develop and also you like it, please sup
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/javascriptenhancements#sponsor)]
 
+<!-- 
+<a href="https://opencollective.com/javascriptenhancements/sponsor/0/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/0/avatar.svg"></a>
+-->
 <a href="https://opencollective.com/javascriptenhancements#sponsors" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsors.svg?width=890"></a>
 
 ### Backers
