@@ -77,8 +77,19 @@
           },
           {
             "caption": "Donate to this Project",
-            "command": "open_url",
-            "args": {"url": "https://opencollective.com/javascriptenhancements"}
+            "children": [
+              {
+                "caption": "PayPal",
+                "command": "open_url",
+                "args": {"url": "https://www.paypal.me/LorenzoPichilli"}
+              },
+              {
+                "caption": "Open Collective",
+                "command": "open_url",
+                "args": {"url": "https://opencollective.com/javascriptenhancements"}
+              }
+            ]
+                
           }
         ]
       }

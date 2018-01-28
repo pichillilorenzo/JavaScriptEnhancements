@@ -30,7 +30,18 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'react-native', 'yeoman']
+PROJECT_TYPE_SUPPORTED = [
+  ['Empty', 'empty'], 
+  ['Angular v1', 'angularv1'], 
+  ['Angular v2, v4, v5', 'angularv2'], 
+  ['Cordova', 'cordova'], 
+  ['Express', 'express'],
+  ['Ionic v1', 'ionicv1'],
+  ['Ionic v2, v3', 'ionicv2'],
+  ['React', 'react'],
+  ['React Native', 'react-native'],
+  ['Yeoman', 'yeoman']
+]
 
 class Hook(object):
   hook_list = {}
@@ -1802,7 +1813,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     if index == -1:
       return
       
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.project_type = PROJECT_TYPE_SUPPORTED[index][1]
 
     # Testing WindowView()
     # self.WindowView = WindowView()
@@ -1903,7 +1914,7 @@ class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
     if index == -1:
       return
 
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.project_type = PROJECT_TYPE_SUPPORTED[index][1]
     self.window.show_input_panel("Working Directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
 
   def working_directory_on_done(self, working_directory):
@@ -1929,7 +1940,7 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
   def run(self, *args):
     self.settings = get_project_settings()
     if self.settings:
-      self.window.show_quick_panel(list( set(PROJECT_TYPE_SUPPORTED) - set(["yeoman"]) ), self.project_type_selected)
+      self.window.show_quick_panel([ item for item in PROJECT_TYPE_SUPPORTED if item != ['Yeoman', 'yeoman'] ], self.project_type_selected)
     else:
       sublime.error_message("No JavaScript project found.")
 
@@ -1938,7 +1949,7 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
     if index == -1:
       return
 
-    self.project_type = list( set(PROJECT_TYPE_SUPPORTED) - set(["yeoman"]) )[index]
+    self.project_type = [ item for item in PROJECT_TYPE_SUPPORTED if item != ['Yeoman', 'yeoman'] ][index][1]
     self.window.show_input_panel("Working directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
 
   def working_directory_on_done(self, working_directory):

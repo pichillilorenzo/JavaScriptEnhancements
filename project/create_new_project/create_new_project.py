@@ -13,7 +13,7 @@ class create_new_projectCommand(sublime_plugin.WindowCommand):
     if index == -1:
       return
       
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.project_type = PROJECT_TYPE_SUPPORTED[index][1]
 
     # Testing WindowView()
     # self.WindowView = WindowView()
@@ -114,7 +114,7 @@ class add_javascript_project_typeCommand(sublime_plugin.WindowCommand):
     if index == -1:
       return
 
-    self.project_type = PROJECT_TYPE_SUPPORTED[index]
+    self.project_type = PROJECT_TYPE_SUPPORTED[index][1]
     self.window.show_input_panel("Working Directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
 
   def working_directory_on_done(self, working_directory):
@@ -140,7 +140,7 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
   def run(self, *args):
     self.settings = get_project_settings()
     if self.settings:
-      self.window.show_quick_panel(list( set(PROJECT_TYPE_SUPPORTED) - set(["yeoman"]) ), self.project_type_selected)
+      self.window.show_quick_panel([ item for item in PROJECT_TYPE_SUPPORTED if item != ['Yeoman', 'yeoman'] ], self.project_type_selected)
     else:
       sublime.error_message("No JavaScript project found.")
 
@@ -149,7 +149,7 @@ class add_javascript_project_type_configurationCommand(sublime_plugin.WindowComm
     if index == -1:
       return
 
-    self.project_type = list( set(PROJECT_TYPE_SUPPORTED) - set(["yeoman"]) )[index]
+    self.project_type = [ item for item in PROJECT_TYPE_SUPPORTED if item != ['Yeoman', 'yeoman'] ][index][1]
     self.window.show_input_panel("Working directory:", self.settings["project_dir_name"]+os.path.sep, self.working_directory_on_done, None, None)
 
   def working_directory_on_done(self, working_directory):

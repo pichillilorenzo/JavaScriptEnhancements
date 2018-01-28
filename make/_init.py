@@ -30,7 +30,18 @@ os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
 PLATFORM = platform_switcher.get(sublime.platform())
 PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
-PROJECT_TYPE_SUPPORTED = ['empty', 'angularv1', 'angularv2', 'cordova', 'express', 'ionicv1', 'ionicv2', 'react', 'react-native', 'yeoman']
+PROJECT_TYPE_SUPPORTED = [
+  ['Empty', 'empty'], 
+  ['Angular v1', 'angularv1'], 
+  ['Angular v2, v4, v5', 'angularv2'], 
+  ['Cordova', 'cordova'], 
+  ['Express', 'express'],
+  ['Ionic v1', 'ionicv1'],
+  ['Ionic v2, v3', 'ionicv2'],
+  ['React', 'react'],
+  ['React Native', 'react-native'],
+  ['Yeoman', 'yeoman']
+]
 
 ${include ./helper/Hook.py}
 

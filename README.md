@@ -14,8 +14,8 @@ This is in **BETA** version for **testing**.
 It offers better **javascript autocomplete** and also a lot of features about creating, developing and managing **javascript projects**, such as:
 
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
-- Ionic v1 and v2 projects (same as Cordova projects!)
-- Angular v1 and v2 projects
+- Ionic v1 and v2 (it includes also v3) projects (same as Cordova projects!)
+- Angular v1 and v2 (it includes also v4 and v5) projects
 - React projects (only about the creation at this moment)
 - React Native projects (only about the creation at this moment. I will add also **NativeScript** support)
 - Express projects (only about the creation at this moment)
@@ -33,7 +33,7 @@ This project is based on my other Sublime Text plugin [JavaScript Completions](h
 **Note**: 
 If you want use this plugin, you may want **uninstall/disable** the **JavaScript Completions** plugin, if installed.
 
-## OS SUPPORTED NOW
+## OS SUPPORTED
 
 - Linux (64-bit)
 - Mac OS X
