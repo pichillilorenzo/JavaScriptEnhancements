@@ -33,6 +33,16 @@ To test the plugin changes/updates quickly, you can execute `python3 make/watch.
 The bigger the pull request, the longer it will take to review and merge. Try to break down large pull requests in smaller chunks that are easier to review and merge.
 It is also always helpful to have some context for your pull request. What was the purpose? Why does it matter to you?
 
+## Issues/Questions
+
+If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!). For small questions, you can use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby).
+
+Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
+
+## Feature request/enhancement
+
+For feature requests/enhancement, create an issue or use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Features).
+
 ## Financial contributions
 
 If this project help you reduce time to develop and also you like it, please support it with a donation on [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli) 😄👍. Thanks!
@@ -41,12 +51,6 @@ If this project help you reduce time to develop and also you like it, please sup
 <a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
   <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
 </a>
-
-## Issues/Questions
-
-If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!). For small questions, you can use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby).
-
-Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
 ## Credits
 
