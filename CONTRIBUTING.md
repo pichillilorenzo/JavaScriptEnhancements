@@ -35,11 +35,17 @@ It is also always helpful to have some context for your pull request. What was t
 
 ## Financial contributions
 
-We also welcome financial contributions in full transparency on our [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli).
+If this project help you reduce time to develop and also you like it, please support it with a donation on [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli) 😄👍. Thanks!
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/LorenzoPichilli)
+<a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
+  <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
+</a>
 
 ## Questions
 
-If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!).
+If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!). For small questions, you can use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby).
+
 Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
 ## Credits
