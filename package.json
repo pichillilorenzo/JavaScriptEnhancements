@@ -3,15 +3,6 @@
     "flow-bin": "0.64.0",
     "flow-remove-types": "1.2.3",
     "flow-typed": "2.2.3",
-    "jsdoc": "3.5.5",
-    "opencollective": "^1.0.3"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/javascriptenhancements",
-    "logo": "https://opencollective.com/javascriptenhancements/logo.txt"
-  },
-  "scripts": {
-    "postinstall": "opencollective postinstall"
+    "jsdoc": "3.5.5"
   }
 }
