@@ -120,7 +120,7 @@ See the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) f
 
 ### Issues/Questions
 
-If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!). For small questions, you can use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby).
+If you have any problems, create an [issue](https://github.com/pichillilorenzo/JavaScriptEnhancements/issues) (protip: do a quick search first to see if someone else didn't ask the same question before!). For small questions, you can use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby).
 
 Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
