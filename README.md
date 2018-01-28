@@ -155,7 +155,6 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/javascriptenhancements#sponsor)]
 
-<a href="https://opencollective.com/javascriptenhancements/sponsor/0/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/javascriptenhancements/sponsor/1/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/1/avatar.svg"></a>
 <a href="https://opencollective.com/javascriptenhancements/sponsor/2/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/2/avatar.svg"></a>
 <a href="https://opencollective.com/javascriptenhancements/sponsor/3/website" target="_blank"><img src="https://opencollective.com/javascriptenhancements/sponsor/3/avatar.svg"></a>
