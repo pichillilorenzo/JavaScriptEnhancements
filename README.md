@@ -138,6 +138,7 @@ If this project help you reduce time to develop and also you like it, please sup
 </a>
 
 ## Credits
+
 ### Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/javascriptenhancements#sponsor)]
