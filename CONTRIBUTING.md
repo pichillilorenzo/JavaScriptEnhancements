@@ -2,14 +2,13 @@
 
 ## Introduction
 
-First, thank you for considering contributing to javascriptenhancements! It's people like you that make the open source community such a great community! 😊
+First, thank you for considering contributing to JavaScript Enhancements! It's people like you that make the open source community such a great community! 😊
 
 We welcome any type of contribution, not only code. You can help with 
 - **QA**: file bug reports, the more details you can give the better (e.g. screenshots with the console open)
-- **Marketing**: writing blog posts, howto's, printing stickers, ...
-- **Community**: presenting the project at meetups, organizing a dedicated meetup for the local community, ...
+- **Marketing**: writing blog posts, howto's, videos, ...
 - **Code**: take a look at the [open issues](issues). Even if you can't write code, commenting on them, showing that you care about a given issue matters. It helps us triage them.
-- **Money**: we welcome financial contributions in full transparency on our [open collective](https://opencollective.com/javascriptenhancements).
+- **Money**: we welcome financial contributions in full transparency on [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli).
 
 ## Your First Contribution
 
@@ -17,7 +16,17 @@ Working on your first Pull Request? You can learn how from this *free* series, [
 
 ## Submitting code
 
-Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. The pull request should also contain tests.
+Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. If necessary, the description should also contain screenshots showing up the new behaviour.
+
+You can notice that in the main folder of the plugin there is a file named something like `_generated_2018_01_28_at_03_01_29.py`. This file is compiled executing `python3 make/setup.py` and it contains the whole plugin code. So, if you want to make changes/updates to this plugin, don't change this file. Instead change the other files that you can find in the `helper`, `project` and `flow` folders. The `make/_init.py` file contains the main code to boot up the plugin, with various constants.
+
+Syntax accepted by `make/setup.py`:
+* `${include ./helper/Hook.py}`: with `./` at the beginning of the path, you are pointing to the root path of the plugin folder, like an "absolute path" 
+* `${include javascript_completions/main.py}`: in this case this is a relative path to the current folder
+
+With this, you can separate your code in different files that will be added to the final compiled code.
+
+To test the plugin changes/updates quickly, you can execute `python3 make/watch.py`. So, for every changes that you make in the code, it will call automatically `make/setup.py`. If you add new files while you are using `python3 make/watch.py`, it may require restart the command in order to allow the change/update recognition of these new files.
 
 ## Code review process
 
@@ -26,19 +35,18 @@ It is also always helpful to have some context for your pull request. What was t
 
 ## Financial contributions
 
-We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/javascriptenhancements).
-Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
+We also welcome financial contributions in full transparency on our [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli).
 
 ## Questions
 
-If you have any questions, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!).
-You can also reach us at hello@javascriptenhancements.opencollective.com.
+If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!).
+Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
 
 ## Credits
 
 ### Contributors
 
-Thank you to all the people who have already contributed to javascriptenhancements!
+Thank you to all the people who have already contributed to JavaScript Enhancements!
 <a href="graphs/contributors"><img src="https://opencollective.com/javascriptenhancements/contributors.svg?width=890" /></a>
 
 
