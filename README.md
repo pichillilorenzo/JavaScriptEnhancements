@@ -2,8 +2,8 @@
 
  [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate) [![Backers on Open Collective](https://opencollective.com/javascriptenhancements/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/javascriptenhancements/sponsors/badge.svg)](#sponsors)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/LorenzoPichilli)
+[![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate) [![Backers on Open Collective](https://opencollective.com/javascriptenhancements/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/javascriptenhancements/sponsors/badge.svg)](#sponsors)
 
 **JavaScript Enhancements** is a plugin for **Sublime Text 3**.
 
@@ -118,19 +118,19 @@ See the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki) f
 
 ## Support
 
+### Issues/Questions
+
+If you have any problems, create an [issue](issue) (protip: do a quick search first to see if someone else didn't ask the same question before!). For small questions, you can use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby).
+
 Email me for any questions or doubts about this project on: [pichillilorenzo@gmail.com](mailto:pichillilorenzo@gmail.com)
-
-### Issues
-
-For any problems, open an issue with the Sublime Text console logs please! [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
 
 ### Feature request/enhancement
 
-For feature requests/enhancement, please open an issue. [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Features)
+For feature requests/enhancement, create an issue or use [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Features).
 
-### Donation
+### Financial contributions
 
-If this project help you reduce time to develop and also you like it, please support it with a donation :smile::thumbsup:. Thanks!
+If this project help you reduce time to develop and also you like it, please support it with a donation on [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli) 😄👍. Thanks!
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/LorenzoPichilli)
 <a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
