@@ -3,7 +3,7 @@ import os, tempfile, queue
 from collections import namedtuple
 
 flowCLIRequirements = namedtuple('flowCLIRequirements', [
-    'filename', 'project_root', 'contents', 'cursor_pos', 'row', 'col', 'row_offset'
+    'filename', 'project_root', 'contents', 'cursor_pos', 'row', 'col'
 ])
 
 FLOW_DEFAULT_CONFIG_PATH = os.path.join(PACKAGE_PATH, "flow")
@@ -31,91 +31,72 @@ def flow_parse_cli_dependencies(view, **kwargs):
     
   row, col = view.rowcol(cursor_pos)
 
-  if kwargs.get('check_all_source_js_embedded'):
-    embedded_regions = view.find_by_selector("source.js.embedded.html")
-    if not embedded_regions :
-      return flowCLIRequirements(
-        filename=None,
-        project_root=None,
-        contents="",
-        cursor_pos=None,
-        row=None, col=None,
-        row_offset=0
-      )
-    flowCLIRequirements_list = list()
-    for region in embedded_regions:
-      current_contents = view.substr(region)
-      row_scope, col_scope = view.rowcol(region.begin())
-      row_offset = row_scope
-      row_scope = row - row_scope
-
-      flowCLIRequirements_list.append(flowCLIRequirements(
-        filename=filename,
-        project_root=project_root,
-        contents=current_contents,
-        cursor_pos=cursor_pos,
-        row=row, col=col,
-        row_offset=row_offset
-      ))
-    return flowCLIRequirements_list
-  else :
-    scope_region = None
-    if view.match_selector(
+  if view.match_selector(
         cursor_pos,
         'source.js'
-    ) and view.substr(sublime.Region(0, view.size()) ) == "" :
-      scope_region = sublime.Region(0, 0)
-    else :
-      scope = view.scope_name(cursor_pos)
-      result = Util.get_region_scope_first_match(view, scope, sublime.Region(cursor_pos, cursor_pos), "source.js")
-      if not result:
-        result = Util.get_region_scope_first_match(view, scope, sublime.Region(cursor_pos, cursor_pos), "source.js.embedded.html")
-        if not result:
-          return flowCLIRequirements(
-            filename=None,
-            project_root=None,
-            contents="",
-            cursor_pos=None,
-            row=None, col=None,
-            row_offset=0
-          )
-      scope_region = result["region"]
-    current_contents = view.substr(scope_region)
-    row_scope, col_scope = view.rowcol(scope_region.begin())
-    row_offset = row_scope
-    row_scope = row - row_scope
-    """
-    current_contents = view.substr(
-      sublime.Region(0, view.size())
-    )
-    """
-    
-    if kwargs.get('add_magic_token'):
-      current_lines = current_contents.splitlines()
-      try :
-        current_line = current_lines[row_scope]
-      except IndexError as e:
-        return flowCLIRequirements(
-            filename=None,
-            project_root=None,
-            contents="",
-            cursor_pos=None,
-            row=None, col=None,
-            row_offset=0
-          )
-      tokenized_line = ""
-      if not kwargs.get('not_add_last_part_tokenized_line') :
-        tokenized_line = current_line[0:col] + 'AUTO332' + current_line[col:-1]
-      else :
-        tokenized_line = current_line[0:col] + 'AUTO332'
-      current_lines[row_scope] = tokenized_line
-      current_contents = '\n'.join(current_lines)
+    ) and view.substr( sublime.Region(0, view.size()) ) == "" :
+  
+      current_contents = ""
 
-    return flowCLIRequirements(
-      filename=filename,
-      project_root=project_root,
-      contents=current_contents,
-      cursor_pos=cursor_pos,
-      row=row, col=col,
-      row_offset=row_offset
-    )
+  else :
+    scope = view.scope_name(cursor_pos)
+
+    if scope.startswith("source.js"):
+      current_contents = view.substr(
+        sublime.Region(0, view.size())
+      )
+
+    elif view.find_by_selector("source.js.embedded.html"):
+      embedded_regions = view.find_by_selector("source.js.embedded.html")
+      current_contents = ""
+      prev_row_offset_end = 0
+      prev_col_scope_end = 0
+      for region in embedded_regions:
+        row_scope, col_scope = view.rowcol(region.begin())
+        row_offset = row_scope
+        row_offset_end, col_scope_end = view.rowcol(region.end())
+        row_scope = row - row_scope
+        
+        current_contents += (" " * (col_scope - prev_col_scope_end)) + ("\n" * (row_offset - prev_row_offset_end))
+        prev_row_offset_end = row_offset_end
+        prev_col_scope_end = col_scope_end
+        current_contents += view.substr(region)
+
+    else:
+      return flowCLIRequirements(
+          filename=None,
+          project_root=None,
+          contents="",
+          cursor_pos=None,
+          row=None, col=None
+        )
+  
+  if kwargs.get('add_magic_token'):
+    current_lines = current_contents.splitlines()
+
+    try :
+      current_line = current_lines[row]
+    except IndexError as e:
+      return flowCLIRequirements(
+          filename=None,
+          project_root=None,
+          contents="",
+          cursor_pos=None,
+          row=None, col=None
+        )
+
+    tokenized_line = ""
+    if not kwargs.get('not_add_last_part_tokenized_line') :
+      tokenized_line = current_line[0:col] + 'AUTO332' + current_line[col:-1]
+    else :
+      tokenized_line = current_line[0:col] + 'AUTO332'
+    current_lines[row] = tokenized_line
+    current_contents = '\n'.join(current_lines)
+
+  return flowCLIRequirements(
+    filename=filename,
+    project_root=project_root,
+    contents=current_contents,
+    cursor_pos=cursor_pos,
+    row=row, col=col
+  )

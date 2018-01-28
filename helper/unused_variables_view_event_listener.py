@@ -61,199 +61,190 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
     self.wait()
 
-    deps_list = list()
-    if view.find_by_selector("source.js.embedded.html") :
-      deps_list = flow_parse_cli_dependencies(view, check_all_source_js_embedded=True)
-    else :
-      deps_list = [flow_parse_cli_dependencies(view)]
+    deps = flow_parse_cli_dependencies(view)
 
-    flag = False
+    flow_cli = "flow"
+    is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
 
-    for deps in deps_list:
-      flow_cli = "flow"
-      is_from_bin = True
-      chdir = ""
-      use_node = True
-      bin_path = ""
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+      is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
 
-      settings = get_project_settings()
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-        is_from_bin = False
-        chdir = settings["project_dir_name"]
-        use_node = False
+    node = NodeJS(check_local=True)
+    
+    result = node.execute_check_output(
+      flow_cli,
+      [
+        'ast',
+        '--from', 'sublime_text'
+      ],
+      is_from_bin=is_from_bin,
+      use_fp_temp=True, 
+      fp_temp_contents=deps.contents, 
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
+    )
 
-      node = NodeJS(check_local=True)
+    repetitions = dict()
+
+    if result[0]:
       
-      result = node.execute_check_output(
-        flow_cli,
-        [
-          'ast',
-          '--from', 'sublime_text'
-        ],
-        is_from_bin=is_from_bin,
-        use_fp_temp=True, 
-        fp_temp_contents=deps.contents, 
-        is_output_json=True,
-        chdir=chdir,
-        bin_path=bin_path,
-        use_node=use_node
-      )
+      if "body" in result[1]:
+        body = result[1]["body"]
+        items = Util.nested_lookup("type", ["VariableDeclarator", "FunctionDeclaration", "ClassDeclaration", "ImportDefaultSpecifier", "ImportNamespaceSpecifier", "ImportSpecifier", "ArrayPattern", "ObjectPattern"], body)
+        for item in items:
 
-      repetitions = dict()
+          if "id" in item and isinstance(item["id"],dict) and "name" in item["id"] and item["id"]["type"] == "Identifier":
+            item = item["id"]
 
-      if result[0]:
-        
-        if "body" in result[1]:
-          body = result[1]["body"]
-          items = Util.nested_lookup("type", ["VariableDeclarator", "FunctionDeclaration", "ClassDeclaration", "ImportDefaultSpecifier", "ImportNamespaceSpecifier", "ImportSpecifier", "ArrayPattern", "ObjectPattern"], body)
-          for item in items:
+          elif "local" in item and isinstance(item["local"],dict) and "name" in item["local"] and item["local"]["type"] == "Identifier":
+            item = item["local"]
 
-            if "id" in item and isinstance(item["id"],dict) and "name" in item["id"] and item["id"]["type"] == "Identifier":
-              item = item["id"]
+          elif "properties" in item:
+            for prop in item["properties"]:
+              if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
+                items += [prop["key"]]
+            continue
 
-            elif "local" in item and isinstance(item["local"],dict) and "name" in item["local"] and item["local"]["type"] == "Identifier":
-              item = item["local"]
+          elif "elements" in item:
+            for element in item["elements"]:
+              if isinstance(element,dict) and "name" in element and element["type"] == "Identifier":
+                items += [element]
+            continue
 
-            elif "properties" in item:
-              for prop in item["properties"]:
-                if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
-                  items += [prop["key"]]
+          #else :
+          #  item = Util.nested_lookup("type", ["Identifier"], item)[0]
+
+          variableName = ""
+          try:
+            variableName = item["name"]
+          except (KeyError) as e:
+            continue
+            
+          startRegion = view.text_point(int(item["loc"]["start"]["line"]) - 1, int(item["loc"]["start"]["column"]))
+          endRegion = view.text_point(int(item["loc"]["end"]["line"]) - 1, int(item["loc"]["end"]["column"]))
+          variableRegion = sublime.Region(startRegion, endRegion) 
+
+          scope = view.scope_name(variableRegion.begin()-1).strip()
+          scope_splitted = scope.split(" ")
+
+          if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
+            continue
+
+          if view.substr(view.line(variableRegion)).strip().startswith("export") and not scope.startswith("source.js meta.export.js meta.block.js") and not scope.startswith("source.js meta.group.braces.curly.js") and len(scope_splitted) <= 4:
+            continue  
+
+          repetitions[variableName] = [variableRegion]
+
+        items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral"], body)
+        for item in items:
+
+          if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
+            item = item["declaration"]
+
+          elif "object" in item :
+            if "property" in item and isinstance(item["property"],dict) and "name" in item["property"] and item["property"]["type"] == "Identifier":
+              items += [item["property"]]
+            if "object" in item and isinstance(item["object"],dict) and "name" in item["object"] and item["object"]["type"] == "Identifier":
+              item = item["object"]
+            else:
               continue
 
-            elif "elements" in item:
-              for element in item["elements"]:
-                if isinstance(element,dict) and "name" in element and element["type"] == "Identifier":
-                  items += [element]
+          elif "callee" in item :    
+            if "arguments" in item:
+              for argument in item["arguments"]:
+                if isinstance(argument,dict) and "name" in argument and argument["type"] == "Identifier":
+                  items += [argument]
+                elif "expressions" in argument and argument["expressions"]:
+                  for expression in argument["expressions"]:
+                    if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
+                      items += [expression]
+
+            item = item["callee"]
+
+          elif "expressions" in item and item["expressions"]:
+            for expression in item["expressions"]:
+              if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
+                items += [expression]
+            continue
+
+          elif "left" in item or "right" in item:
+
+            if "left" in item and isinstance(item["left"],dict) and "name" in item["left"] and item["left"]["type"] == "Identifier":
+              items += [item["left"]]
+            if "right" in item and isinstance(item["right"],dict) and "name" in item["right"] and item["right"]["type"] == "Identifier":
+              items += [item["right"]]
+
+          elif "test" in item:
+            if "consequent" in item and isinstance(item["consequent"],dict) and "name" in item["consequent"] and item["consequent"]["type"] == "Identifier":
+              items += [item["consequent"]]
+            if "alternate" in item and isinstance(item["alternate"],dict) and "name" in item["alternate"] and item["alternate"]["type"] == "Identifier":
+              items += [item["alternate"]]
+            if isinstance(item["test"],dict) and "name" in item["test"] and item["test"]["type"] == "Identifier":
+              item = item["test"]
+            else:
               continue
 
-            #else :
-            #  item = Util.nested_lookup("type", ["Identifier"], item)[0]
+          elif "expression" in item and isinstance(item["expression"],dict) and "name" in item["expression"] and item["expression"]["type"] == "Identifier":
+            item = item["expression"]
 
-            variableName = ""
-            try:
-              variableName = item["name"]
-            except (KeyError) as e:
-              continue
-            startRegion = view.text_point(int(item["loc"]["start"]["line"]) + deps.row_offset - 1, int(item["loc"]["start"]["column"]))
-            endRegion = view.text_point(int(item["loc"]["end"]["line"]) + deps.row_offset - 1, int(item["loc"]["end"]["column"]))
-            variableRegion = sublime.Region(startRegion, endRegion) 
+          elif "argument" in item and isinstance(item["argument"],dict) and "name" in item["argument"] and item["argument"]["type"] == "Identifier":
+            item = item["argument"]
 
-            scope = view.scope_name(variableRegion.begin()-1).strip()
-            scope_splitted = scope.split(" ")
+          elif "elements" in item :
+            for element in item["elements"]:
+              if isinstance(element,dict) and "name" in element and element["type"] == "Identifier":
+                items += [element]
+            continue
 
-            if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
-              continue
+          elif "value" in item and isinstance(item["value"],dict) and "name" in item["value"] and item["value"]["type"] == "Identifier":
+            item = item["value"]
 
-            if view.substr(view.line(variableRegion)).strip().startswith("export") and not scope.startswith("source.js meta.export.js meta.block.js") and not scope.startswith("source.js meta.group.braces.curly.js") and len(scope_splitted) <= 4:
-              continue  
+          elif "init" in item and isinstance(item["init"],dict) and "name" in item["init"] and item["init"]["type"] == "Identifier":
+            item = item["init"]
 
-            repetitions[variableName] = [variableRegion]
+          elif "body" in item and isinstance(item["body"],dict) and "name" in item["body"] and item["body"]["type"] == "Identifier":
+            item = item["body"]
 
-          items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral"], body)
-          for item in items:
+          variableName = ""
+          try:
+            variableName = item["name"]
+          except (KeyError) as e:
+            continue
 
-            if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
-              item = item["declaration"]
+          startRegion = view.text_point(int(item["loc"]["start"]["line"]) - 1, int(item["loc"]["start"]["column"]))
+          endRegion = view.text_point(int(item["loc"]["end"]["line"]) - 1, int(item["loc"]["end"]["column"]))
+          variableRegion = sublime.Region(startRegion, endRegion) 
 
-            elif "object" in item :
-              if "property" in item and isinstance(item["property"],dict) and "name" in item["property"] and item["property"]["type"] == "Identifier":
-                items += [item["property"]]
-              if "object" in item and isinstance(item["object"],dict) and "name" in item["object"] and item["object"]["type"] == "Identifier":
-                item = item["object"]
-              else:
-                continue
+          scope = view.scope_name(variableRegion.begin()-1).strip()
 
-            elif "callee" in item :    
-              if "arguments" in item:
-                for argument in item["arguments"]:
-                  if isinstance(argument,dict) and "name" in argument and argument["type"] == "Identifier":
-                    items += [argument]
-                  elif "expressions" in argument and argument["expressions"]:
-                    for expression in argument["expressions"]:
-                      if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
-                        items += [expression]
+          if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
+            continue
 
-              item = item["callee"]
+          if variableName in repetitions and not variableRegion in repetitions[variableName]:
+            repetitions[variableName] += [variableRegion]
 
-            elif "expressions" in item and item["expressions"]:
-              for expression in item["expressions"]:
-                if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
-                  items += [expression]
-              continue
-
-            elif "left" in item or "right" in item:
-
-              if "left" in item and isinstance(item["left"],dict) and "name" in item["left"] and item["left"]["type"] == "Identifier":
-                items += [item["left"]]
-              if "right" in item and isinstance(item["right"],dict) and "name" in item["right"] and item["right"]["type"] == "Identifier":
-                items += [item["right"]]
-
-            elif "test" in item:
-              if "consequent" in item and isinstance(item["consequent"],dict) and "name" in item["consequent"] and item["consequent"]["type"] == "Identifier":
-                items += [item["consequent"]]
-              if "alternate" in item and isinstance(item["alternate"],dict) and "name" in item["alternate"] and item["alternate"]["type"] == "Identifier":
-                items += [item["alternate"]]
-              if isinstance(item["test"],dict) and "name" in item["test"] and item["test"]["type"] == "Identifier":
-                item = item["test"]
-              else:
-                continue
-
-            elif "expression" in item and isinstance(item["expression"],dict) and "name" in item["expression"] and item["expression"]["type"] == "Identifier":
-              item = item["expression"]
-
-            elif "argument" in item and isinstance(item["argument"],dict) and "name" in item["argument"] and item["argument"]["type"] == "Identifier":
-              item = item["argument"]
-
-            elif "elements" in item :
-              for element in item["elements"]:
-                if isinstance(element,dict) and "name" in element and element["type"] == "Identifier":
-                  items += [element]
-              continue
-
-            elif "value" in item and isinstance(item["value"],dict) and "name" in item["value"] and item["value"]["type"] == "Identifier":
-              item = item["value"]
-
-            elif "init" in item and isinstance(item["init"],dict) and "name" in item["init"] and item["init"]["type"] == "Identifier":
-              item = item["init"]
-
-            elif "body" in item and isinstance(item["body"],dict) and "name" in item["body"] and item["body"]["type"] == "Identifier":
-              item = item["body"]
-
-            variableName = ""
-            try:
-              variableName = item["name"]
-            except (KeyError) as e:
-              continue
-
-            startRegion = view.text_point(int(item["loc"]["start"]["line"]) + deps.row_offset - 1, int(item["loc"]["start"]["column"]))
-            endRegion = view.text_point(int(item["loc"]["end"]["line"]) + deps.row_offset - 1, int(item["loc"]["end"]["column"]))
-            variableRegion = sublime.Region(startRegion, endRegion) 
-
-            scope = view.scope_name(variableRegion.begin()-1).strip()
-
-            if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
-              continue
-
-            if variableName in repetitions and not variableRegion in repetitions[variableName]:
-              repetitions[variableName] += [variableRegion]
-
-          if not flag:
-            self.unusedVariableRegions = [] 
-            flag = True
-          
-          errorRegions = view.get_regions("flow_error")
-          for variableName in repetitions.keys():
-            count = len(repetitions[variableName])
-            if count == 1:
-              intersects = False
-              for errorRegion in errorRegions:
-                if errorRegion.intersects(repetitions[variableName][0]):
-                  intersects = True
-                  break
-              if not intersects:
-                self.unusedVariableRegions += [repetitions[variableName][0]]
+        self.unusedVariableRegions = [] 
+        errorRegions = view.get_regions("flow_error")
+        for variableName in repetitions.keys():
+          count = len(repetitions[variableName])
+          if count == 1:
+            intersects = False
+            for errorRegion in errorRegions:
+              if errorRegion.intersects(repetitions[variableName][0]):
+                intersects = True
+                break
+            if not intersects:
+              self.unusedVariableRegions += [repetitions[variableName][0]]
 
     if not self.modified :
       view.erase_regions("unused_variables")

@@ -5,7 +5,7 @@ from threading import Timer
 from os import environ
 from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.13.17"
+PLUGIN_VERSION = "0.13.18"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -39,6 +39,7 @@ ${include ./helper/RepeatedTimer.py}
 ${include ./helper/node/main.py}
 ${include ./helper/util/main.py}
 ${include ./helper/my_socket/main.py}
+${include ./helper/PopupManager.py}
 
 KEYMAP_COMMANDS = []
 keymaps = Util.open_json(os.path.join(PACKAGE_PATH, 'Default.sublime-keymap'))

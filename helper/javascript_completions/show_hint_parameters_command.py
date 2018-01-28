@@ -48,7 +48,7 @@ class show_hint_parametersCommand(sublime_plugin.TextCommand):
         return 
 
       if scope_splitted[-2] in self.meta_fun_calls and scope_splitted.count(mate_group_scope) == meta_group - 1:
-        sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, view.sel()[0].begin(), show_hint=True))
+        sublime.set_timeout_async(lambda: on_hover_description_async(view, point, sublime.HOVER_TEXT, point if 'popup_position_on_point' in args and args.get('popup_position_on_point') else view.sel()[0].begin(), show_hint=True))
         return
 
       point = view.word(point).begin() - 1 if view.substr(point) != "(" else point - 1

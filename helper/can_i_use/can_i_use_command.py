@@ -1,6 +1,5 @@
 items_found_can_i_use = None
 can_i_use_file = None
-can_i_use_popup_is_showing = False
 can_i_use_list_from_main_menu = False
 path_to_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data.json")
 path_to_test_can_i_use_data = os.path.join(HELPER_FOLDER, "can_i_use", "can_i_use_data2.json")
@@ -61,12 +60,10 @@ def find_in_can_i_use(word) :
   return [value for key, value in can_i_use_data.items() if value["title"].lower().find(word) >= 0]
 
 def back_to_can_i_use_list(action):
-  global can_i_use_popup_is_showing
   if action.find("http") >= 0:
     webbrowser.open(action)
     return
   view = sublime.active_window().active_view()
-  can_i_use_popup_is_showing = False
   view.hide_popup()
   if len(action.split(",")) > 1 and action.split(",")[1] == "main-menu" :
     view.run_command("can_i_use", args={"from": "main-menu"})
@@ -76,7 +73,6 @@ def back_to_can_i_use_list(action):
 def show_pop_can_i_use(index):
   global can_i_use_file
   global items_found_can_i_use
-  global can_i_use_popup_is_showing
   if index < 0:
     return
   item = items_found_can_i_use[index]
@@ -179,7 +175,7 @@ def show_pop_can_i_use(index):
 
   view = sublime.active_window().active_view()
   
-  can_i_use_popup_is_showing = True
+  popupManager.setVisible("can_i_use", True)
   view.show_popup("""
     <html>
       <head></head>
@@ -204,7 +200,7 @@ def show_pop_can_i_use(index):
         </div>
       </div>
       </body>
-    </html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 1250, 650, back_to_can_i_use_list)
+    </html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE, -1, 1250, 650, back_to_can_i_use_list, lambda: popupManager.setVisible("can_i_use", False))
 
 class can_i_useCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -251,7 +247,5 @@ class can_i_useCommand(sublime_plugin.TextCommand):
     
 class can_i_use_hide_popupEventListener(sublime_plugin.EventListener):
   def on_selection_modified_async(self, view) :
-    global can_i_use_popup_is_showing
-    if can_i_use_popup_is_showing :
+    if popupManager.isVisible("can_i_use") :
       view.hide_popup()
-      can_i_use_popup_is_showing = False

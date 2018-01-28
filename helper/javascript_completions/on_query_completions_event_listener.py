@@ -108,7 +108,7 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       return
 
     deps = flow_parse_cli_dependencies(view, add_magic_token=True, cursor_pos=locations[0])
-
+    
     flow_cli = "flow"
     is_from_bin = True
     chdir = ""
@@ -208,7 +208,6 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
 
     self.searching = False
 
-
   def on_text_command(self, view, command_name, args):
     sel = view.sel()[0]
     if not view.match_selector(
@@ -230,6 +229,27 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
       if view.sel()[0].begin() < view.word(view.sel()[0].begin()).end():
         self.modified = True
         self.searching = False
+
+    elif command_name == "run_macro_file" and 'file' in args and args.get('file').endswith("Delete Left Right.sublime-macro"):
+      scope = view.scope_name(view.sel()[0].begin()).strip()
+      if popupManager.isVisible("hint_parameters") and ( scope.endswith(" punctuation.section.group.js") or scope.endswith(" meta.group.braces.round.function.arguments.js") ):
+        view.hide_popup()
+
+  def on_post_text_command(self, view, command_name, args):
+    sel = view.sel()[0]
+    if not view.match_selector(
+        sel.begin(),
+        'source.js - comment'
+    ):
+      return
+
+    scope = view.scope_name(view.sel()[0].end()).strip()
+
+    if command_name == "insert_snippet" and ( scope.endswith(" punctuation.section.group.js") or scope.endswith(" meta.group.braces.round.function.arguments.js") ):
+      view.run_command("show_hint_parameters", args={"popup_position_on_point": True})
+
+    elif ( command_name == "commit_completion" or command_name == "next_field" or command_name == "prev_field" ) and ( scope.endswith(" punctuation.section.group.js") or scope.endswith(" punctuation.separator.comma.js") or scope.endswith(" meta.group.braces.round.js") or scope.endswith(" meta.brace.round.end.js") ):
+      view.run_command("show_hint_parameters", args={"popup_position_on_point": True})
 
   def on_selection_modified_async(self, view) :
 

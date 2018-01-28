@@ -25,8 +25,6 @@ class go_to_defCommand(sublime_plugin.TextCommand):
   def find_def(self, view, point) :
     view.sel().add(point)
 
-    deps = flow_parse_cli_dependencies(view)
-    
     flow_cli = "flow"
     is_from_bin = True
     chdir = ""
@@ -40,9 +38,11 @@ class go_to_defCommand(sublime_plugin.TextCommand):
       is_from_bin = False
       chdir = settings["project_dir_name"]
       use_node = False
-      
-    node = NodeJS(check_local=True)
 
+    deps = flow_parse_cli_dependencies(view)
+    
+    node = NodeJS(check_local=True)
+    
     result = node.execute_check_output(
       flow_cli,
       [
@@ -64,20 +64,34 @@ class go_to_defCommand(sublime_plugin.TextCommand):
     )
 
     if result[0] :
-      row = result[1]["line"]-1
-      col = result[1]["start"]-1
+      row = result[1]["line"] - 1
+      col = result[1]["start"] - 1
       if result[1]["path"] != "-" and os.path.isfile(result[1]["path"]) :
         view = sublime.active_window().open_file(result[1]["path"])     
       Util.go_to_centered(view, row, col)
 
-  def is_enabled(self):
+  def is_enabled(self, **args):
     view = self.view
-    if not Util.selection_in_js_scope(view):
+
+    if args and "point" in args :
+      point = args["point"]
+    else :
+      point = view.sel()[0].begin()
+    point = view.word(point).begin()
+
+    if not Util.selection_in_js_scope(view, point):
       return False
     return True
 
-  def is_visible(self):
+  def is_visible(self, **args):
     view = self.view
-    if not Util.selection_in_js_scope(view, -1, "- string - comment"):
+
+    if args and "point" in args :
+      point = args["point"]
+    else :
+      point = view.sel()[0].begin()
+    point = view.word(point).begin()
+
+    if not Util.selection_in_js_scope(view, point, "- string - comment"):
       return False
     return True

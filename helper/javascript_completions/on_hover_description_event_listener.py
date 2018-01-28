@@ -39,6 +39,13 @@ def description_details_html(description):
 
 class on_hover_descriptionEventListener(sublime_plugin.EventListener):
 
+  # def on_modified_async(self, view):
+  #   if not view.match_selector(
+  #       point,
+  #       'source.js - string - constant - comment'
+  #   ):
+  #     return
+
   def on_hover(self, view, point, hover_zone) :
     if not view.match_selector(
         point,
@@ -94,6 +101,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
   bin_path = ""
 
   settings = get_project_settings()
+
   if settings and settings["project_settings"]["flow_cli_custom_path"]:
     flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
     bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
@@ -190,7 +198,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
         '--root', deps.project_root,
         '--path', deps.filename,
         '--json',
-        str(row - deps.row_offset + 1), str(col + 1)
+        str(row + 1), str(col + 1)
       ],
       is_from_bin=is_from_bin,
       use_fp_temp=True, 
@@ -265,11 +273,11 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
   func_action = lambda x: view.run_command("go_to_def", args={"point": point}) if x == "go_to_def" else ""
 
   if html:
-      view.show_popup("""
-      <html><head></head><body class=\""""+("single-result-found" if results_found == 1 else "more-results-found")+"""\">
-      """+js_css+"""
-        <div class=\"container-hint-popup\">
-          """ + html + """    
-        </div>
-      </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80 if results_found == 1 else 160, func_action )
-  
+    popupManager.setVisible("hint_parameters", True)
+    view.show_popup("""
+    <html><head></head><body class=\""""+("single-result-found" if results_found == 1 else "more-results-found")+"""\">
+    """+js_css+"""
+      <div class=\"container-hint-popup\">
+        """ + html + """    
+      </div>
+    </body></html>""", sublime.COOPERATE_WITH_AUTO_COMPLETE | sublime.HIDE_ON_MOUSE_MOVE_AWAY, popup_position, 1150, 80 if results_found == 1 else 160, func_action, lambda: popupManager.setVisible("hint_parameters", False) )
