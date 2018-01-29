@@ -6,7 +6,7 @@ pattern = re.compile("^( *)\$\{include (\.\/)?(([\w\-]+\/)*)([\w\-]+\.[\w\-]+)\}
 start_from = "make/_init.py"
 code = ""
 last_dir_name = ""
-with open(os.path.join(PACKAGE_PATH, start_from)) as data_file :
+with open(os.path.join(PACKAGE_PATH, start_from), encoding="utf-8") as data_file :
   code = data_file.read()
   last_dir_name = os.path.abspath(os.path.dirname(os.path.join(PACKAGE_PATH, start_from)))
 
@@ -34,7 +34,7 @@ def compile_code(code, last_dir_name_ric, whitespace_ric) :
       new_last_dir_name = os.path.abspath(os.path.dirname(full_path))
 
       try :
-        with open(full_path) as file :
+        with open(full_path, encoding="utf-8") as file :
           file_code = file.read()
           code += compile_code(file_code, new_last_dir_name, whitespace)
       except Exception as e:
@@ -54,5 +54,5 @@ for x in os.listdir(PACKAGE_PATH):
     break
 
 file_name_compiled = "_generated_"+time.strftime("%Y_%m_%d_at_%H_%M_%S")+".py"
-with open(os.path.join(PACKAGE_PATH, file_name_compiled), "w+") as data_file :
+with open(os.path.join(PACKAGE_PATH, file_name_compiled), "w+", encoding="utf-8") as data_file :
   data_file.write(compile_code(code, last_dir_name, ""))

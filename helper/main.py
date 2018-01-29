@@ -38,4 +38,6 @@ ${include unused_variables_view_event_listener.py}
 
 ${include sort_javascript_imports_command.py}
 
-${include refactor_command.py}
+${include refactor/main.py}
+
+${include open_terminal_view_here_command.py}

@@ -26,7 +26,7 @@ class Terminal():
       subprocess.Popen( [self.cmd] + 
         ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
         + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
-        + ( [";", "CD", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", self.cwd] ) 
+        + ( [";", "CD", "/d", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", "/d", self.cwd] ) 
         + ( [";"] if self.cmd.startswith("powershell") else ["&&"] ) 
         + cmd_args 
       )

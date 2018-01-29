@@ -74,7 +74,12 @@ class WindowView():
   def addButton(self, text, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
-  def addInput(self, value=" ", key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+  def addCloseButton(self, text, scope, callback=None, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    
+    self.addEventListener("drag_select", key+"."+scope, lambda view: (callback() if callback else False) or self.close())
+
+  def addInput(self, value=" ", label=None, key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
     if not region_id:
       raise Exception("Error: ID isn't setted.")
@@ -82,8 +87,38 @@ class WindowView():
     if region_id in self.region_input_ids:
       raise Exception("Error: ID "+region_id+" already used.")
 
+    if label:
+      self.add(label)
     self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
+
+  def addSelect(self, default_option, options, label=None, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+
+    if not region_id:
+      raise Exception("Error: ID isn't setted.")
+
+    if region_id in self.region_input_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
+    if label:
+      self.add(label)
+    self.add(options[default_option], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.add(" ▼")
+    self.region_input_ids.append(region_id)
+
+    self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.set_timeout_async(lambda: self.view.window().show_quick_panel(options, lambda index: self.updateSelect(index, options, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points))))
+
+  def updateSelect(self, index, options, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+    if index < 0:
+      return
+
+    self.replaceById(region_id, options[index], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.region_input_ids.append(region_id)
+
+  def addLink(self, text, link, scope, key="click", icon="", flags=sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+    self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.active_window().run_command("open_url", args={"url": link}))
 
   def getInput(self, region_input_id):
     region = self.view.get_regions(region_input_id)
@@ -95,7 +130,7 @@ class WindowView():
   def getInputs(self):
     inputs = dict()
     for region_input_id in self.region_input_ids:
-      inputs[region_id] = self.getInput(region_input_id)
+      inputs[region_input_id] = self.getInput(region_input_id)
     return inputs
 
   def replaceById(self, replace_region_id, text, key="", scope="", icon="", flags=sublime.HIDDEN, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
@@ -176,7 +211,7 @@ class WindowView():
   def destroy(self, *args, **kwargs):
     self.__del__()
 
-class insertTextViewCommand(sublime_plugin.TextCommand):
+class InsertTextViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     point = args.get("point")
@@ -195,7 +230,7 @@ class insertTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class replaceRegionViewCommand(sublime_plugin.TextCommand):
+class ReplaceRegionViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     view.erase(edit, sublime.Region(args.get("start"), args.get("end")))
@@ -214,7 +249,7 @@ class replaceRegionViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class replaceTextViewCommand(sublime_plugin.TextCommand):
+class ReplaceTextViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     region = sublime.Region(args.get("start"), args.get("end"))
@@ -232,7 +267,7 @@ class replaceTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class appendTextViewCommand(sublime_plugin.TextCommand):
+class AppendTextViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     point = view.size()
@@ -251,7 +286,7 @@ class appendTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class windowViewKeypressCommand(sublime_plugin.TextCommand):
+class WindowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
 
@@ -283,49 +318,16 @@ class windowViewKeypressCommand(sublime_plugin.TextCommand):
             view.sel().clear()
             view.sel().add(sublime.Region(region.begin()+1, region.end()-1))
 
-class windowViewEventListener(sublime_plugin.EventListener):
+class WindowViewEventListener(sublime_plugin.EventListener):
 
-  def on_modified_async(self, view):
+  def on_activated_async(self, view):
+    self.on_selection_modified(view)
+
+  def on_selection_modified(self, view):
     if view.settings().get("javascript_enhancements_window_view"):
 
       for region in view.get_regions("input.javascriptenhancements.input"):
 
-        # this order is important!
-        
-        if region.contains(view.sel()[0]) and view.substr(region)[0] != " ":
-          view.set_read_only(False)
-          char = view.substr(region)[0]
-          view.run_command("insert_text_view", args={"text": " ", "point": region.begin()+1})
-          view.run_command("replace_text_view", args={"text": " ", "start": region.begin(), "end": region.begin()+1})
-          view.run_command("replace_text_view", args={"text": char, "start": region.begin()+1, "end": region.begin()+2})
-          view.set_read_only(True)
-          view.sel().clear()
-          view.sel().add(region.begin()+1)
-
-        elif region.contains(view.sel()[0]) and view.substr(region)[-1] != " ":
-          view.set_read_only(False)
-          char = view.substr(region)[-1]
-          view.run_command("insert_text_view", args={"text": " ", "point": region.end()-1})
-          view.run_command("replace_text_view", args={"text": " ", "start": region.end(), "end": region.end()+1})
-          view.run_command("replace_text_view", args={"text": char, "start": region.end()-1, "end": region.end()})
-          view.set_read_only(True)
-          view.sel().clear()
-          view.sel().add(region.end())
-
-        elif region.contains(view.sel()[0]) and region.size() == 2:
-          view.set_read_only(False)
-          view.run_command("insert_text_view", args={"text": " ", "point": region.begin()+1})
-          view.set_read_only(True)
-          view.sel().clear()
-          view.sel().add(region.begin()+1)
-          break 
-
-    return
-
-  def on_selection_modified_async(self, view):
-    if view.settings().get("javascript_enhancements_window_view"):
-
-      for region in view.get_regions("input.javascriptenhancements.input"):
         if view.sel()[0].begin() >= region.begin() + 1 and view.sel()[0].end() <= region.end() - 1:
           view.set_read_only(False)
           return
@@ -334,7 +336,7 @@ class windowViewEventListener(sublime_plugin.EventListener):
             view.sel().clear()
             view.sel().add(region.begin()+1)
             return
-          elif view.sel()[0].end() == region.end() :
+          elif view.sel()[0].end() == region.end():
             view.sel().clear()
             view.sel().add(region.end()-1)
             return
@@ -344,6 +346,13 @@ class windowViewEventListener(sublime_plugin.EventListener):
   def on_text_command(self, view, command_name, args):
     if view.settings().get("javascript_enhancements_window_view"):
       Hook.apply(command_name, view, args)
+
+      for region in view.get_regions("input.javascriptenhancements.input"):
+        if view.sel()[0].begin() == view.sel()[0].end():
+          if command_name == "left_delete" and view.sel()[0].begin() == region.begin() + 1:
+            return ("noop", {})
+          elif command_name == "right_delete" and view.sel()[0].end() == region.end() - 1:
+            return ("noop", {})
 
   def on_close(self, view):
     if view.settings().get("javascript_enhancements_window_view"):

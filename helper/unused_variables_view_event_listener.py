@@ -111,8 +111,8 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
           elif "properties" in item:
             for prop in item["properties"]:
-              if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
-                items += [prop["key"]]
+              if prop["type"] == "Property" and "value" in prop and isinstance(prop["value"],dict) and "name" in prop["value"] and prop["value"]["type"] == "Identifier":
+                items += [prop["value"]]
             continue
 
           elif "elements" in item:
@@ -145,7 +145,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
           repetitions[variableName] = [variableRegion]
 
-        items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral"], body)
+        items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral", "ObjectPattern"], body)
         for item in items:
 
           if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
@@ -158,6 +158,12 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
               item = item["object"]
             else:
               continue
+
+          elif "properties" in item:
+            for prop in item["properties"]:
+              if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
+                items += [prop["key"]]
+            continue
 
           elif "callee" in item :    
             if "arguments" in item:

@@ -5,7 +5,7 @@ from threading import Timer
 from os import environ
 from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.13.18"
+PLUGIN_VERSION = "0.14.0"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -24,11 +24,6 @@ HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
 BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
 WINDOWS_BATCH_FOLDER = os.path.join(PACKAGE_PATH, 'windows_batch')
-
-platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
-os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
-PLATFORM = platform_switcher.get(sublime.platform())
-PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
 PROJECT_TYPE_SUPPORTED = [
   ['Empty', 'empty'], 

@@ -97,6 +97,18 @@
          </dict>
       </dict>
 
+      <dict>
+         <key>scope</key>
+         <string>javascriptenhancements.link</string>
+         <key>settings</key>
+         <dict>
+            <key>background</key>
+            <string>#01579B</string>
+            <key>foreground</key>
+            <string>#B3E5FC</string>
+         </dict>
+      </dict>
+
    </array>
 </dict>
 </plist>

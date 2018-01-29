@@ -5,7 +5,7 @@ from threading import Timer
 from os import environ
 from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.13.18"
+PLUGIN_VERSION = "0.14.0"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -24,11 +24,6 @@ HELPER_FOLDER = os.path.join(PACKAGE_PATH, HELPER_FOLDER_NAME)
 BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
 WINDOWS_BATCH_FOLDER = os.path.join(PACKAGE_PATH, 'windows_batch')
-
-platform_switcher = {"osx": "OSX", "linux": "Linux", "windows": "Windows"}
-os_switcher = {"osx": "darwin", "linux": "linux", "windows": "win"}
-PLATFORM = platform_switcher.get(sublime.platform())
-PLATFORM_ARCHITECTURE = "64bit" if platform.architecture()[0] == "64bit" else "32bit" 
 
 PROJECT_TYPE_SUPPORTED = [
   ['Empty', 'empty'], 
@@ -256,7 +251,8 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT, timeout=10
       )
-      
+      #print(output)
+
       if sublime.platform() == "windows" and use_fp_temp: 
         os.remove(fp.name)
 
@@ -615,7 +611,7 @@ class Util(object) :
     scope = Util.find_and_get_pre_string_and_first_match(scope, selector)
     if scope :
       for region in view.find_by_selector(scope) :
-        if region.contains(selection):
+        if region.contains(selection) or region.intersects(selection):
           selection.a = region.begin()
           selection.b = selection.a
           return {
@@ -632,7 +628,7 @@ class Util(object) :
     scope = Util.find_and_get_pre_string_and_matches(scope, selector)
     if scope :
       for region in view.find_by_selector(scope) :
-        if region.contains(selection):
+        if region.contains(selection) or region.intersects(selection):
           selection.a = region.begin()
           selection.b = selection.a
           return {
@@ -719,6 +715,13 @@ class Util(object) :
           "selection": selection
         }
     return None
+
+  @staticmethod
+  def region_contains_scope(view, region, scope) :
+    for region_scope in view.find_by_selector(scope) :
+      if region.contains(region_scope):
+        return True
+    return False
 
   @staticmethod
   def cover_regions(regions) :
@@ -2981,7 +2984,7 @@ class Terminal():
       subprocess.Popen( [self.cmd] + 
         ( ["-NoExit", "-Command"] if self.cmd.startswith("powershell") else ["/K"] )
         + ( ["$Host.UI.RawUI.WindowTitle", "=", self.title] if self.cmd.startswith("powershell") else ["title", self.title] ) 
-        + ( [";", "CD", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", self.cwd] ) 
+        + ( [";", "CD", "/d", self.cwd] if self.cmd.startswith("powershell") else ["&&", "CD", "/d", self.cwd] ) 
         + ( [";"] if self.cmd.startswith("powershell") else ["&&"] ) 
         + cmd_args 
       )
@@ -3063,7 +3066,12 @@ class WindowView():
   def addButton(self, text, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
-  def addInput(self, value=" ", key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+  def addCloseButton(self, text, scope, callback=None, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    
+    self.addEventListener("drag_select", key+"."+scope, lambda view: (callback() if callback else False) or self.close())
+
+  def addInput(self, value=" ", label=None, key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
     if not region_id:
       raise Exception("Error: ID isn't setted.")
@@ -3071,8 +3079,38 @@ class WindowView():
     if region_id in self.region_input_ids:
       raise Exception("Error: ID "+region_id+" already used.")
 
+    if label:
+      self.add(label)
     self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
+
+  def addSelect(self, default_option, options, label=None, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+
+    if not region_id:
+      raise Exception("Error: ID isn't setted.")
+
+    if region_id in self.region_input_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
+    if label:
+      self.add(label)
+    self.add(options[default_option], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.add(" ▼")
+    self.region_input_ids.append(region_id)
+
+    self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.set_timeout_async(lambda: self.view.window().show_quick_panel(options, lambda index: self.updateSelect(index, options, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points))))
+
+  def updateSelect(self, index, options, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+    if index < 0:
+      return
+
+    self.replaceById(region_id, options[index], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.region_input_ids.append(region_id)
+
+  def addLink(self, text, link, scope, key="click", icon="", flags=sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
+    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+    self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.active_window().run_command("open_url", args={"url": link}))
 
   def getInput(self, region_input_id):
     region = self.view.get_regions(region_input_id)
@@ -3084,7 +3122,7 @@ class WindowView():
   def getInputs(self):
     inputs = dict()
     for region_input_id in self.region_input_ids:
-      inputs[region_id] = self.getInput(region_input_id)
+      inputs[region_input_id] = self.getInput(region_input_id)
     return inputs
 
   def replaceById(self, replace_region_id, text, key="", scope="", icon="", flags=sublime.HIDDEN, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
@@ -3165,7 +3203,7 @@ class WindowView():
   def destroy(self, *args, **kwargs):
     self.__del__()
 
-class insertTextViewCommand(sublime_plugin.TextCommand):
+class InsertTextViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     point = args.get("point")
@@ -3184,7 +3222,7 @@ class insertTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class replaceRegionViewCommand(sublime_plugin.TextCommand):
+class ReplaceRegionViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     view.erase(edit, sublime.Region(args.get("start"), args.get("end")))
@@ -3203,7 +3241,7 @@ class replaceRegionViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class replaceTextViewCommand(sublime_plugin.TextCommand):
+class ReplaceTextViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     region = sublime.Region(args.get("start"), args.get("end"))
@@ -3221,7 +3259,7 @@ class replaceTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class appendTextViewCommand(sublime_plugin.TextCommand):
+class AppendTextViewCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     point = view.size()
@@ -3240,7 +3278,7 @@ class appendTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
-class windowViewKeypressCommand(sublime_plugin.TextCommand):
+class WindowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
 
@@ -3272,49 +3310,16 @@ class windowViewKeypressCommand(sublime_plugin.TextCommand):
             view.sel().clear()
             view.sel().add(sublime.Region(region.begin()+1, region.end()-1))
 
-class windowViewEventListener(sublime_plugin.EventListener):
+class WindowViewEventListener(sublime_plugin.EventListener):
 
-  def on_modified_async(self, view):
+  def on_activated_async(self, view):
+    self.on_selection_modified(view)
+
+  def on_selection_modified(self, view):
     if view.settings().get("javascript_enhancements_window_view"):
 
       for region in view.get_regions("input.javascriptenhancements.input"):
 
-        # this order is important!
-        
-        if region.contains(view.sel()[0]) and view.substr(region)[0] != " ":
-          view.set_read_only(False)
-          char = view.substr(region)[0]
-          view.run_command("insert_text_view", args={"text": " ", "point": region.begin()+1})
-          view.run_command("replace_text_view", args={"text": " ", "start": region.begin(), "end": region.begin()+1})
-          view.run_command("replace_text_view", args={"text": char, "start": region.begin()+1, "end": region.begin()+2})
-          view.set_read_only(True)
-          view.sel().clear()
-          view.sel().add(region.begin()+1)
-
-        elif region.contains(view.sel()[0]) and view.substr(region)[-1] != " ":
-          view.set_read_only(False)
-          char = view.substr(region)[-1]
-          view.run_command("insert_text_view", args={"text": " ", "point": region.end()-1})
-          view.run_command("replace_text_view", args={"text": " ", "start": region.end(), "end": region.end()+1})
-          view.run_command("replace_text_view", args={"text": char, "start": region.end()-1, "end": region.end()})
-          view.set_read_only(True)
-          view.sel().clear()
-          view.sel().add(region.end())
-
-        elif region.contains(view.sel()[0]) and region.size() == 2:
-          view.set_read_only(False)
-          view.run_command("insert_text_view", args={"text": " ", "point": region.begin()+1})
-          view.set_read_only(True)
-          view.sel().clear()
-          view.sel().add(region.begin()+1)
-          break 
-
-    return
-
-  def on_selection_modified_async(self, view):
-    if view.settings().get("javascript_enhancements_window_view"):
-
-      for region in view.get_regions("input.javascriptenhancements.input"):
         if view.sel()[0].begin() >= region.begin() + 1 and view.sel()[0].end() <= region.end() - 1:
           view.set_read_only(False)
           return
@@ -3323,7 +3328,7 @@ class windowViewEventListener(sublime_plugin.EventListener):
             view.sel().clear()
             view.sel().add(region.begin()+1)
             return
-          elif view.sel()[0].end() == region.end() :
+          elif view.sel()[0].end() == region.end():
             view.sel().clear()
             view.sel().add(region.end()-1)
             return
@@ -3333,6 +3338,13 @@ class windowViewEventListener(sublime_plugin.EventListener):
   def on_text_command(self, view, command_name, args):
     if view.settings().get("javascript_enhancements_window_view"):
       Hook.apply(command_name, view, args)
+
+      for region in view.get_regions("input.javascriptenhancements.input"):
+        if view.sel()[0].begin() == view.sel()[0].end():
+          if command_name == "left_delete" and view.sel()[0].begin() == region.begin() + 1:
+            return ("noop", {})
+          elif command_name == "right_delete" and view.sel()[0].end() == region.end() - 1:
+            return ("noop", {})
 
   def on_close(self, view):
     if view.settings().get("javascript_enhancements_window_view"):
@@ -5648,8 +5660,8 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
           elif "properties" in item:
             for prop in item["properties"]:
-              if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
-                items += [prop["key"]]
+              if prop["type"] == "Property" and "value" in prop and isinstance(prop["value"],dict) and "name" in prop["value"] and prop["value"]["type"] == "Identifier":
+                items += [prop["value"]]
             continue
 
           elif "elements" in item:
@@ -5682,7 +5694,7 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
 
           repetitions[variableName] = [variableRegion]
 
-        items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral"], body)
+        items = Util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral", "ObjectPattern"], body)
         for item in items:
 
           if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
@@ -5695,6 +5707,12 @@ class unused_variablesViewEventListener(wait_modified_asyncViewEventListener, su
               item = item["object"]
             else:
               continue
+
+          elif "properties" in item:
+            for prop in item["properties"]:
+              if prop["type"] == "Property" and "key" in prop and isinstance(prop["key"],dict) and "name" in prop["key"] and prop["key"]["type"] == "Identifier":
+                items += [prop["key"]]
+            continue
 
           elif "callee" in item :    
             if "arguments" in item:
@@ -5920,70 +5938,167 @@ class sort_javascript_importsCommand(sublime_plugin.TextCommand):
     return False
 
 
-# import sublime, sublime_plugin
-# import re
+import sublime, sublime_plugin
+
+class refactorCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    case = args.get("case")
+    scope = view.scope_name(view.sel()[0].begin())
+
+    if case == "extract_method" :
+      select_options = ['Global scope', 'Current Scope', 'Class method']
+      if not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
+        select_options.remove('Class method')
+      if len(scope.split(" ")) < 2:
+        select_options.remove('Global scope')
+        
+      windowView = WindowView(title="Refactor - Extract Method")
+      windowView.addTitle(text="Refactor - Extract Method")
+      windowView.add(text="\n\n")
+      windowView.addInput(value="func", label="Function Name: ", region_id="function_name")
+      windowView.add(text="\n")
+      windowView.addInput(value="()", label="Parameters: ", region_id="parameters")
+      windowView.add(text="\n")
+      windowView.addSelect(default_option=0, options=select_options, label="Scope: ", region_id="scope")
+      windowView.add(text="\n\n")
+      windowView.addCloseButton(text="OK", scope="javascriptenhancements.button_ok", callback=lambda: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs()}))
+      windowView.add(text="        ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
+
+  def is_enabled(self, **args) :
+
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
+
+import sublime, sublime_plugin
+
+class refactorExtractMethodCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    inputs = args.get("inputs")
+    scope = view.scope_name(view.sel()[0].begin())
+    space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
+
+    if inputs["scope"] == "Class method":
+
+      new_text = Util.replace_with_tab(view, view.sel()[0], "\t\n\t"+inputs["function_name"]+" "+inputs["parameters"]+" {\n\t", "\n\t}\n")
+
+      view.replace(edit, view.sel()[0], "this."+inputs["function_name"]+inputs["parameters"])
+      region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], 'meta.class.js')["region"]
+      view.insert(edit, region_class.end()-1, new_text)
+
+    elif inputs["scope"] == "Current Scope":
+
+      new_text = Util.replace_with_tab(view, view.sel()[0], "function "+inputs["function_name"]+" "+inputs["parameters"]+" {\n"+space, "\n"+space+"}\n"+space)
+
+      if Util.region_contains_scope(view, view.sel()[0], "variable.language.this.js"):
+        view.replace(edit, view.sel()[0], inputs["function_name"]+".call(this"+(", "+inputs["parameters"][1:-1] if inputs["parameters"][1:-1].strip() else "")+")" )
+      else:
+        view.replace(edit, view.sel()[0], inputs["function_name"]+inputs["parameters"])
+      view.insert(edit, view.sel()[0].begin(), new_text)
+
+    elif inputs["scope"] == "Global scope":
+
+      region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], scope.split(" ")[1])["region"]
+      space = Util.get_whitespace_from_line_begin(view, region_class)
+      new_text = Util.replace_with_tab(view, view.sel()[0], "function "+inputs["function_name"]+" "+inputs["parameters"]+" {\n"+space, "\n"+space+"}\n\n"+space)
+
+      if Util.region_contains_scope(view, view.sel()[0], "variable.language.this.js"):
+        view.replace(edit, view.sel()[0], inputs["function_name"]+".call(this"+(", "+inputs["parameters"][1:-1] if inputs["parameters"][1:-1].strip() else "")+")" )
+      else:
+        view.replace(edit, view.sel()[0], inputs["function_name"]+inputs["parameters"])
+      view.insert(edit, region_class.begin(), new_text)
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selections = view.sel()
+    for selection in selections :
+      if view.substr(selection).strip() != "" :
+        return True
+    return False
 
 
-#   { "caption": "-" },
-#   {
-#     "caption": "Refactor (Working on it ...)",
-#     "id": "refactor",
-#     "children": [
-#       {
-#         "caption": "Extract",
-#         "children": [
-#           {
-#             "caption": "Method",
-#             "command": "refactor",
-#             "args": {"case": "extract_method"}
-#           }
-#         ]
-#       }
-#     ]
-#   }
+import sublime, sublime_plugin
+import os 
 
-# class refactorCommand(sublime_plugin.TextCommand):
-#   def run(self, edit, **args):
-#     view = self.view
-#     case = args.get("case")
-#     if not "answer" in args :
-#       caption = ""
-#       initial_text = ""
+class OpenTermivalViewHereCommand(sublime_plugin.WindowCommand):
+  def run(self, **args):
+    window = self.window
+    view = window.active_view()
 
-#       if case == "extract_method" :
-#         caption = "Method:"
-#         initial_text = "func ()"
+    paths = args.get("paths") if "paths" in args else []
 
-#       view.window().show_input_panel(caption, initial_text, lambda answer: view.run_command('refactor', args={"case": case, "answer": answer}), None, None)
-#     else :
-#       answer = args.get("answer").strip()
-#       scope = view.scope_name(view.sel()[0].begin())
-#       space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
-#       if case == "extract_method" :
-#         new_text = Util.replace_with_tab(view, view.sel()[0], "\t\n\t"+answer+" {\n\t", "\n\t}\n")
-#         view.replace(edit, view.sel()[0], "this."+(re.sub('\s+\(', '(', answer)) )
-#         region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], 'meta.class.js')["region"]
-#         view.insert(edit, region_class.end()-1, new_text)
+    path = self.get_path(paths)
+    if not path:
+      return
 
-#   def is_enabled(self, **args) :
-#     view = self.view
-#     if not Util.selection_in_js_scope(view) :
-#       return False
-#     selections = view.sel()
-#     for selection in selections :
-#       if view.substr(selection).strip() != "" :
-#         return True
-#     return False
+    if os.path.isfile(path):
+      path = os.path.dirname(path)
 
-#   def is_visible(self, **args) :
-#     view = self.view
-#     if not Util.selection_in_js_scope(view) :
-#       return False
-#     selections = view.sel()
-#     for selection in selections :
-#       if view.substr(selection).strip() != "" :
-#         return True
-#     return False
+    window.run_command("set_layout", args={"cells": [[0, 0, 1, 1], [0, 1, 1, 2]], "cols": [0.0, 1.0], "rows": [0.0, 0.7, 1.0]})
+    window.focus_group(1)
+    terminal_view = window.new_file() 
+    args = {"cmd": "/bin/bash -l", "title": "JavaScript Enhancements Terminal (bash)", "cwd": path, "syntax": None, "keep_open": False} 
+    terminal_view.run_command('terminal_view_activate', args=args)
+
+  def get_path(self, paths):
+    if paths:
+      return paths[0]
+    elif self.window.active_view() and self.window.active_view().file_name():
+      return self.window.active_view().file_name()
+    elif self.window.folders():
+      return self.window.folders()[0]
+    else:
+      sublime.error_message('JavaScript Enhancements: No place to open TerminalView to')
+      return False
+
+  def is_visible(self):
+    if sublime.platform() != 'windows':
+      try:
+        sys.modules["TerminalView"]
+        return True
+      except Exception as err:
+        pass
+    return False
+
+  def is_enabled(self):
+    if sublime.platform() != 'windows':
+      try:
+        sys.modules["TerminalView"]
+        return True
+      except Exception as err:
+        pass
+    return False
 
 def start():
 

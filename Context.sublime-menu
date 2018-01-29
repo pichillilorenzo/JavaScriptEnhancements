@@ -26,6 +26,11 @@
     "command": "split_string_lines_to_variable",
     "args": {"case": "split"}
   },
+  {
+    "id": "open_termival_view_here",
+    "caption": "Open TerminalView Here…",
+    "command": "open_termival_view_here"
+  },
   {"caption": "-"},
   {
     "caption": "Can I use?",
@@ -64,6 +69,24 @@
     "id": "create_class_from_object_literal"
   },
   { "caption": "-" },
+  {
+    "caption": "Refactor",
+    "id": "refactor",
+    "children": [
+      {
+        "caption": "Extract",
+        "children": [
+          {
+            "caption": "Method",
+            "command": "refactor",
+            "args": {
+              "case": "extract_method"
+            }
+          }
+        ]
+      }
+    ]
+  },
   {
     "caption": "Surround With",
     "id": "surround_with",

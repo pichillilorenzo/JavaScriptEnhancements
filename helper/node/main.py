@@ -112,7 +112,8 @@ class NodeJS(object):
       output = subprocess.check_output(
           args, shell=True, stderr=subprocess.STDOUT, timeout=10
       )
-      
+      #print(output)
+
       if sublime.platform() == "windows" and use_fp_temp: 
         os.remove(fp.name)
 

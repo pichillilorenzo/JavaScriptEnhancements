@@ -165,7 +165,7 @@ class Util(object) :
     scope = Util.find_and_get_pre_string_and_first_match(scope, selector)
     if scope :
       for region in view.find_by_selector(scope) :
-        if region.contains(selection):
+        if region.contains(selection) or region.intersects(selection):
           selection.a = region.begin()
           selection.b = selection.a
           return {
@@ -182,7 +182,7 @@ class Util(object) :
     scope = Util.find_and_get_pre_string_and_matches(scope, selector)
     if scope :
       for region in view.find_by_selector(scope) :
-        if region.contains(selection):
+        if region.contains(selection) or region.intersects(selection):
           selection.a = region.begin()
           selection.b = selection.a
           return {
@@ -269,6 +269,13 @@ class Util(object) :
           "selection": selection
         }
     return None
+
+  @staticmethod
+  def region_contains_scope(view, region, scope) :
+    for region_scope in view.find_by_selector(scope) :
+      if region.contains(region_scope):
+        return True
+    return False
 
   @staticmethod
   def cover_regions(regions) :
