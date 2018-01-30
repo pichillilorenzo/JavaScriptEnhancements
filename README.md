@@ -1,7 +1,7 @@
 # JavaScript Enhancements
 
  [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JavaScriptEnhancements/Lobby)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](/LICENSE.txt)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/LorenzoPichilli)
 [![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate) [![Backers on Open Collective](https://opencollective.com/javascriptenhancements/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/javascriptenhancements/sponsors/badge.svg)](#sponsors)
 
