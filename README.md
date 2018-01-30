@@ -157,7 +157,7 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 ### Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="graphs/contributors"><img src="https://opencollective.com/javascriptenhancements/contributors.svg?width=890" /></a>
+<a href="/../../graphs/contributors"><img src="https://opencollective.com/javascriptenhancements/contributors.svg?width=890" /></a>
 
 
 ## License
