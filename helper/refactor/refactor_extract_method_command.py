@@ -1,8 +1,9 @@
 import sublime, sublime_plugin
 
-class refactorExtractMethodCommand(sublime_plugin.TextCommand):
+class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
+
     inputs = args.get("inputs")
     scope = view.scope_name(view.sel()[0].begin())
     space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
@@ -41,18 +42,12 @@ class refactorExtractMethodCommand(sublime_plugin.TextCommand):
     view = self.view
     if not Util.selection_in_js_scope(view) :
       return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
-    return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
 
   def is_visible(self, **args) :
     view = self.view
     if not Util.selection_in_js_scope(view) :
       return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
-    return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()

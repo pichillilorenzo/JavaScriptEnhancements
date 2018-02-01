@@ -74,6 +74,13 @@
     "id": "refactor",
     "children": [
       {
+        "caption": "Move",
+        "command": "refactor",
+        "args": {
+          "case": "move"
+        }
+      },
+      {
         "caption": "Extract",
         "children": [
           {

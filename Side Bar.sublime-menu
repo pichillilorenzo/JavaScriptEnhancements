@@ -1,7 +1,7 @@
 [
 	{ 
     "id": "open_termival_view_here",
-    "caption": "Open Terminal View Here…", 
+    "caption": "Open TerminalView Here…", 
     "command": "open_termival_view_here" 
   }
 ]

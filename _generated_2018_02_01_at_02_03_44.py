@@ -3063,13 +3063,14 @@ class WindowView():
   def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
-  def addButton(self, text, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+  def addButton(self, text, scope, callback=None, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
+    if callback:
+      self.addEventListener("drag_select", key+"."+scope, lambda view: callback(view))
+
   def addCloseButton(self, text, scope, callback=None, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
-    self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
-    
-    self.addEventListener("drag_select", key+"."+scope, lambda view: (callback() if callback else False) or self.close())
+    self.addButton(text, scope=scope, callback=lambda view: (callback(view) if callback else False) or self.close(), key=key, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
   def addInput(self, value=" ", label=None, key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
@@ -5940,13 +5941,17 @@ class sort_javascript_importsCommand(sublime_plugin.TextCommand):
 
 import sublime, sublime_plugin
 
-class refactorCommand(sublime_plugin.TextCommand):
+class RefactorCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     case = args.get("case")
     scope = view.scope_name(view.sel()[0].begin())
 
     if case == "extract_method" :
+
+      if view.sel()[0].begin() == view.sel()[0].end():
+        return
+
       select_options = ['Global scope', 'Current Scope', 'Class method']
       if not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
         select_options.remove('Class method')
@@ -5962,37 +5967,41 @@ class refactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="\n")
       windowView.addSelect(default_option=0, options=select_options, label="Scope: ", region_id="scope")
       windowView.add(text="\n\n")
-      windowView.addCloseButton(text="OK", scope="javascriptenhancements.button_ok", callback=lambda: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs()}))
+      windowView.addCloseButton(text="OK", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs()}))
       windowView.add(text="        ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
+    elif case == "move" :
+      windowView = WindowView(title="Refactor - Move")
+      windowView.addTitle(text="Refactor - Move")
+      windowView.add(text="\n\n")
+      windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
+      windowView.add(text="\n\n")
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": True}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": False}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
+
+      #view.window().show_input_panel("Move to", view.file_name(), lambda new_path: self.view.run_command("refactor_move", args={"new_path": new_path.strip()}), None, None)
+
   def is_enabled(self, **args) :
 
     view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
-    return False
+    return Util.selection_in_js_scope(view)
 
   def is_visible(self, **args) :
     view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
-    return False
+    return Util.selection_in_js_scope(view)
 
 import sublime, sublime_plugin
 
-class refactorExtractMethodCommand(sublime_plugin.TextCommand):
+class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
+
     inputs = args.get("inputs")
     scope = view.scope_name(view.sel()[0].begin())
     space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
@@ -6031,22 +6040,137 @@ class refactorExtractMethodCommand(sublime_plugin.TextCommand):
     view = self.view
     if not Util.selection_in_js_scope(view) :
       return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
-    return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
 
   def is_visible(self, **args) :
     view = self.view
     if not Util.selection_in_js_scope(view) :
       return False
-    selections = view.sel()
-    for selection in selections :
-      if view.substr(selection).strip() != "" :
-        return True
-    return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
 
+
+import sublime, sublime_plugin
+import os, shutil
+
+class RefactorMoveCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    file_name = view.file_name()
+    inputs = args.get("inputs")
+    new_path = inputs["new_path"]
+    settings = get_project_settings()
+    javascript_files = []
+
+    if new_path == file_name:
+      return
+
+    if settings:
+      for root, dirs, files in os.walk(settings["project_dir_name"]):
+        if "/node_modules" in root:
+          continue
+        for file in files:
+          if file.endswith(".js"):
+            javascript_files.append(os.path.join(root, file))
+
+      if not args.get("preview"):
+        shutil.move(file_name, new_path)
+        new_view = view.window().open_file(new_path)
+      else:
+        preview_view = view.window().new_file()
+        preview_view.set_name("Refactor - Move Preview")
+        preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
+        preview_view.run_command("append_text_view", args={"text": "Refactor - Move Preview\n\n"})
+
+      if javascript_files:
+        imports = self.get_imports(settings, javascript_files)
+        for k, v in imports.items():
+          if v["requirements"]:
+            for req in v["requirements"]:
+              if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
+                with open(k, "r+") as file:
+                  content = file.read()
+                  start_offset = int(req["loc"]["start"]["offset"]) + 1
+                  end_offset = int(req["loc"]["end"]["offset"]) - 1
+                  if os.path.dirname(k) == os.path.dirname(new_path):
+                    rel_new_path = "./" + os.path.basename(new_path)
+                  else:
+                    rel_new_path = os.path.relpath(new_path, start=os.path.dirname(k))
+                  content = content [:start_offset] + rel_new_path + content[end_offset:]
+
+                  if args.get("preview"):
+                    splitted_content = content.splitlines()
+                    preview_content = k + ":\n\n"
+                    line = int(req["line"]) - 1
+                    range_start = max(0, line - 2)
+                    range_end = min(line + 2, len(splitted_content))
+                    while range_start <= range_end:
+                      preview_content += "    " + str(range_start) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
+                      range_start += 1
+                    preview_content +=  "\n"
+                    preview_view.run_command("append_text_view", args={"text": preview_content})
+
+                  else:
+                    file.seek(0)
+                    file.write(content)
+                    file.truncate()
+
+      if not args.get("preview"):
+        # added view.set_scratch(True) and sublime.set_timeout_async in order to not crash Sublime Text 3
+        view.set_scratch(True)
+        sublime.set_timeout_async(lambda: view.close())
+
+  def get_imports(self, settings, javascript_files):
+
+    view = self.view
+
+    flow_cli = "flow"
+    is_from_bin = True
+    chdir = settings["project_dir_name"]
+    use_node = True
+    bin_path = ""
+
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+      is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
+
+    deps = flow_parse_cli_dependencies(view)
+
+    node = NodeJS(check_local=True)
+    
+    result = node.execute_check_output(
+      flow_cli,
+      [
+        'get-imports',
+        '--from', 'sublime_text',
+        '--root', deps.project_root,
+        '--json'
+      ] + javascript_files,
+      is_from_bin=is_from_bin,
+      use_fp_temp=True, 
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
+    )
+
+    if result[0]:
+      return result[1]
+
+    return {}
+
+  def is_enabled(self, **args) :
+    view = self.view
+    return Util.selection_in_js_scope(view)
+
+  def is_visible(self, **args) :
+    view = self.view
+    return Util.selection_in_js_scope(view)
+      
 
 import sublime, sublime_plugin
 import os 
