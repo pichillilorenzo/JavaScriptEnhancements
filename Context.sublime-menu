@@ -84,6 +84,14 @@
         "caption": "Extract",
         "children": [
           {
+            "caption": "Parameter",
+            "command": "refactor",
+            "args": {
+              "case": "extract_parameter"
+            }
+          },
+          { "caption": "-" },
+          {
             "caption": "Method",
             "command": "refactor",
             "args": {

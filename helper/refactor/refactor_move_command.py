@@ -68,6 +68,9 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
         view.set_scratch(True)
         sublime.set_timeout_async(lambda: view.close())
 
+    else:
+      sublime.error_message("Error: can't get project settings")
+      
   def get_imports(self, settings, javascript_files):
 
     view = self.view
@@ -112,9 +115,15 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self, **args) :
     view = self.view
-    return Util.selection_in_js_scope(view)
+    settings = get_project_settings()
+    if not settings or not Util.selection_in_js_scope(view):
+      return False
+    return True
 
   def is_visible(self, **args) :
     view = self.view
-    return Util.selection_in_js_scope(view)
+    settings = get_project_settings()
+    if not settings or not Util.selection_in_js_scope(view):
+      return False
+    return True
       

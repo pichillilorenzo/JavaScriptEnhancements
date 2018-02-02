@@ -612,14 +612,13 @@ class Util(object) :
     if scope :
       for region in view.find_by_selector(scope) :
         if region.contains(selection) or region.intersects(selection):
-          selection.a = region.begin()
-          selection.b = selection.a
+          sel = sublime.Region(region.begin(), region.begin())
           return {
             "scope": scope,
             "region": region,
             "region_string": view.substr(region),
             "region_string_stripped": view.substr(region).strip(),
-            "selection": selection
+            "selection": sel
           }
     return None
 
@@ -629,14 +628,13 @@ class Util(object) :
     if scope :
       for region in view.find_by_selector(scope) :
         if region.contains(selection) or region.intersects(selection):
-          selection.a = region.begin()
-          selection.b = selection.a
+          sel = sublime.Region(region.begin(), region.begin())
           return {
             "scope": scope,
             "region": region,
             "region_string": view.substr(region),
             "region_string_stripped": view.substr(region).strip(),
-            "selection": selection
+            "selection": sel
           }
     return None
 
@@ -650,17 +648,16 @@ class Util(object) :
         while Util.indexOf(scope_splitted, selector) == -1 :
           if selection.a == 0 or len(scope_splitted) < depth_level :
             return list()
-          selection.a = selection.a + add_unit
-          selection.b = selection.a 
-          scope = view.scope_name(selection.begin()).strip()
+          sel = sublime.Region(selection.a + add_unit, selection.a )
+          scope = view.scope_name(sel.begin()).strip()
           scope_splitted = scope.split(" ")
-        region = view.extract_scope(selection.begin())
+        region = view.extract_scope(sel.begin())
         regions.append({
           "scope": scope,
           "region": region,
           "region_string": view.substr(region),
           "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
+          "selection": sel
         })
     return regions
 
@@ -669,15 +666,14 @@ class Util(object) :
     scope = view.scope_name(selection.begin()).strip()
     for region in view.find_by_selector(scope) :
       if region.contains(selection):
-        selection.a = region.begin()
-        selection.b = selection.a
-        return {
-          "scope": scope,
-          "region": region,
-          "region_string": view.substr(region),
-          "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
-        }
+          sel = sublime.Region(region.begin(), region.begin())
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": sel
+          }
     return None
 
   @staticmethod
@@ -686,15 +682,14 @@ class Util(object) :
     scope = " ".join(scope.split(" ")[:-1])
     for region in view.find_by_selector(scope) :
       if region.contains(selection):
-        selection.a = region.begin()
-        selection.b = selection.a
-        return {
-          "scope": scope,
-          "region": region,
-          "region_string": view.substr(region),
-          "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
-        }
+          sel = sublime.Region(region.begin(), region.begin())
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": sel
+          }
     return None
 
   @staticmethod
@@ -705,15 +700,14 @@ class Util(object) :
     scope = " ".join(scope[:index_parent+1])
     for region in view.find_by_selector(scope) :
       if region.contains(selection):
-        selection.a = region.begin()
-        selection.b = selection.a
-        return {
-          "scope": scope,
-          "region": region,
-          "region_string": view.substr(region),
-          "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
-        }
+          sel = sublime.Region(region.begin(), region.begin())
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": sel
+          }
     return None
 
   @staticmethod
@@ -2274,10 +2268,10 @@ def cordova_prepare_project(project_path, cordova_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(cordova_custom_path), "create", "myApp", "com.example.hello", "HelloWorld", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(cordova_custom_path), "create", "my-app", "com.example.hello", "HelloWorld", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([cordova_custom_path, "create", "myApp", "com.example.hello", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([cordova_custom_path, "create", "my-app", "com.example.hello", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 
@@ -2369,10 +2363,10 @@ def ionicv1_prepare_project(project_path, ionicv1_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(ionicv1_custom_path), "start", "myApp", "blank", "--type", "ionic1", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(ionicv1_custom_path), "start", "my-app", "blank", "--type", "ionic1", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([ionicv1_custom_path, "start", "myApp", "blank", "--type", "ionic1", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([ionicv1_custom_path, "start", "my-app", "blank", "--type", "ionic1", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 
@@ -2466,10 +2460,10 @@ def ionicv2_prepare_project(project_path, ionicv2_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(ionicv2_custom_path), "start", "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(ionicv2_custom_path), "start", "my-app", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([ionicv2_custom_path, "start", "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([ionicv2_custom_path, "start", "my-app", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 
@@ -2658,10 +2652,10 @@ def angularv2_prepare_project(project_path, angularv2_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(angularv2_custom_path), "new", "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(angularv2_custom_path), "new", "my-app", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([angularv2_custom_path, "new", "myApp", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([angularv2_custom_path, "new", "my-app", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 
@@ -2753,10 +2747,10 @@ def react_prepare_project(project_path, react_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(react_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(react_custom_path), "my-app", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([react_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([react_custom_path, "my-app", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 
@@ -2824,10 +2818,10 @@ def react_native_prepare_project(project_path, react_native_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(react_native_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(react_native_custom_path), "my-app", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([react_native_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([react_native_custom_path, "my-app", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 
@@ -2917,10 +2911,10 @@ def express_prepare_project(project_path, express_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(express_custom_path), "myApp", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp", ";", NPM().cli_path, "install"] + open_project)
+    terminal.run([shlex.quote(express_custom_path), "my-app", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app", ";", NPM().cli_path, "install"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([express_custom_path, "myApp", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp", "&", NPM().cli_path, "install"])
+    terminal.run([express_custom_path, "my-app", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app", "&", NPM().cli_path, "install"])
     if open_project:
       terminal.run(open_project)
 
@@ -5985,7 +5979,8 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
-      #view.window().show_input_panel("Move to", view.file_name(), lambda new_path: self.view.run_command("refactor_move", args={"new_path": new_path.strip()}), None, None)
+    elif case == "extract_parameter" :
+      self.view.run_command("refactor_extract_parameter")
 
   def is_enabled(self, **args) :
 
@@ -6121,6 +6116,9 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
         view.set_scratch(True)
         sublime.set_timeout_async(lambda: view.close())
 
+    else:
+      sublime.error_message("Error: can't get project settings")
+      
   def get_imports(self, settings, javascript_files):
 
     view = self.view
@@ -6165,12 +6163,182 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self, **args) :
     view = self.view
-    return Util.selection_in_js_scope(view)
+    settings = get_project_settings()
+    if not settings or not Util.selection_in_js_scope(view):
+      return False
+    return True
 
   def is_visible(self, **args) :
     view = self.view
-    return Util.selection_in_js_scope(view)
+    settings = get_project_settings()
+    if not settings or not Util.selection_in_js_scope(view):
+      return False
+    return True
       
+
+import sublime, sublime_plugin
+
+class RefactorExtractParameterCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    selection = view.sel()[0]
+    content = view.substr(selection).strip()
+    content = content[:-1] if content[-1] == ";" else content
+    scope = view.scope_name(selection.begin()).strip()
+    region_scope = None
+    is_babel = False
+
+    if "meta.block.js" in scope:
+      region_scope = Util.get_region_scope_last_match(view, scope, selection, "meta.block.js")
+    else:
+      is_babel = True
+      region_scope = Util.get_region_scope_last_match(view, scope, selection, "meta.group.braces.curly.js")
+
+    if not region_scope:
+      return
+
+    flow_cli = "flow"
+    is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+      is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
+
+    node = NodeJS(check_local=True)
+    
+    result = node.execute_check_output(
+      flow_cli,
+      [
+        'ast',
+        '--from', 'sublime_text'
+      ],
+      is_from_bin=is_from_bin,
+      use_fp_temp=True, 
+      fp_temp_contents=content, 
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
+    )
+
+    if result[0] and not result[1]["errors"] and result[1]["body"] and "type" in result[1]["body"][0] and result[1]["body"][0]["type"] == "ExpressionStatement":
+
+      region = region_scope["region"]
+      point = region.begin()
+      is_arrow_function = False
+      variable_need_brackets = ""
+
+      while not ( 
+        view.scope_name(point).strip().endswith("punctuation.section.group.end.js") if not is_babel else view.scope_name(point).strip().endswith("punctuation.definition.parameters.end.js") 
+        ) and point >= 0:
+
+        point_scope = view.scope_name(point).strip()
+        if point_scope == "source.js":
+          return
+
+        # support for arrow_function
+        if not is_arrow_function:
+          if point_scope.endswith("storage.type.function.arrow.js"):
+            is_arrow_function = True
+        elif point_scope.endswith("variable.parameter.function.js"):
+          variable_need_brackets = view.substr(view.word(point))
+          point = view.word(point).begin()
+          break
+
+        point -= 1
+
+      if point >= 0:
+
+        first_parameter = True
+        point_begin = point
+        while point_begin >= 0:
+          word = view.word(point_begin)
+          str_word = view.substr(view.word(point_begin)).strip()
+          if str_word == "" or str_word == ")":
+            pass
+          elif str_word.startswith("("):
+            break
+          else:
+            first_parameter = False
+            break
+          point_begin = word.begin()
+
+        variable_name = "new_var"
+        str_parameter = (", " if not first_parameter else "") + variable_name + " = " + content
+
+        view.erase(edit, selection)
+        view.insert(edit, selection.begin(), variable_name)
+
+        if variable_need_brackets:
+          str_parameter = "(" + variable_need_brackets + str_parameter + ")"
+          view.erase(edit, sublime.Region(point, point+len(variable_need_brackets)))
+        view.insert(edit, point, str_parameter)
+
+        view.sel().clear()
+        view.sel().add_all([
+
+          sublime.Region(
+            selection.begin()+len(str_parameter)-len(variable_need_brackets), 
+            selection.begin()+len(str_parameter)+len(variable_name)-len(variable_need_brackets)
+          ),
+
+          # +2 is for the ", " string at the begin of str_parameter, +1 is for "(" in case of variable_need_brackets
+          sublime.Region(
+            point + (2 if not first_parameter else 0) + (len(variable_need_brackets)+1 if variable_need_brackets else 0),
+            point + (2 if not first_parameter else 0) + len(variable_name) + (len(variable_need_brackets)+1 if variable_need_brackets else 0)
+          )
+
+        ])
+
+    else:
+      sublime.error_message("Cannot introduce parameter. Selection does not form an ExpressionStatement.")
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+
+    if selection.begin() == selection.end():
+      return False
+
+    scope = view.scope_name(selection.begin()).strip()
+    if "meta.block.js" in scope:
+      region_scope = Util.get_region_scope_last_match(view, scope, selection, "meta.block.js")
+    else:
+      region_scope = Util.get_region_scope_last_match(view, scope, selection, "meta.group.braces.curly.js")
+
+    if not region_scope:
+      return False
+
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+
+    if selection.begin() == selection.end():
+      return False
+
+    scope = view.scope_name(selection.begin()).strip()
+    if "meta.block.js" in scope:
+      region_scope = Util.get_region_scope_last_match(view, scope, selection, "meta.block.js")
+    else:
+      region_scope = Util.get_region_scope_last_match(view, scope, selection, "meta.group.braces.curly.js")
+
+    if not region_scope:
+      return False
+
+    return True
 
 import sublime, sublime_plugin
 import os 

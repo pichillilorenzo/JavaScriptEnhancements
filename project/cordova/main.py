@@ -39,10 +39,10 @@ def cordova_prepare_project(project_path, cordova_custom_path):
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(sublime_executable_path()), shlex.quote(get_project_settings(project_path)["project_file_name"])] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(cordova_custom_path), "create", "myApp", "com.example.hello", "HelloWorld", ";", "mv", "./myApp/{.[!.],}*", "./", ";", "rm", "-rf", "myApp"] + open_project)
+    terminal.run([shlex.quote(cordova_custom_path), "create", "my-app", "com.example.hello", "HelloWorld", ";", "mv", "./my-app/{.[!.],}*", "./", ";", "rm", "-rf", "my-app"] + open_project)
   else:
     open_project = [sublime_executable_path(), get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not is_project_open(get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([cordova_custom_path, "create", "myApp", "com.example.hello", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "myApp", ".", "&", "rd", "/s", "/q", "myApp"])
+    terminal.run([cordova_custom_path, "create", "my-app", "com.example.hello", "HelloWorld", "&", os.path.join(WINDOWS_BATCH_FOLDER, "move_all.bat"), "my-app", ".", "&", "rd", "/s", "/q", "my-app"])
     if open_project:
       terminal.run(open_project)
 

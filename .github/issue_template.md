@@ -5,7 +5,7 @@
 
 
 ### Sublime Text console logs 
-<!-- to see the logs, go to View > Show Console, then copy and paste here eventual errors -->
+<!-- to see the Sublime Text console logs, go to View > Show Console, then copy and paste here eventual errors -->
 
 ### Screenshots
 <!-- post here screenshots/gifs that may help to understand the problem -->

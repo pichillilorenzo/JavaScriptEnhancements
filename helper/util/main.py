@@ -166,14 +166,13 @@ class Util(object) :
     if scope :
       for region in view.find_by_selector(scope) :
         if region.contains(selection) or region.intersects(selection):
-          selection.a = region.begin()
-          selection.b = selection.a
+          sel = sublime.Region(region.begin(), region.begin())
           return {
             "scope": scope,
             "region": region,
             "region_string": view.substr(region),
             "region_string_stripped": view.substr(region).strip(),
-            "selection": selection
+            "selection": sel
           }
     return None
 
@@ -183,14 +182,13 @@ class Util(object) :
     if scope :
       for region in view.find_by_selector(scope) :
         if region.contains(selection) or region.intersects(selection):
-          selection.a = region.begin()
-          selection.b = selection.a
+          sel = sublime.Region(region.begin(), region.begin())
           return {
             "scope": scope,
             "region": region,
             "region_string": view.substr(region),
             "region_string_stripped": view.substr(region).strip(),
-            "selection": selection
+            "selection": sel
           }
     return None
 
@@ -204,17 +202,16 @@ class Util(object) :
         while Util.indexOf(scope_splitted, selector) == -1 :
           if selection.a == 0 or len(scope_splitted) < depth_level :
             return list()
-          selection.a = selection.a + add_unit
-          selection.b = selection.a 
-          scope = view.scope_name(selection.begin()).strip()
+          sel = sublime.Region(selection.a + add_unit, selection.a )
+          scope = view.scope_name(sel.begin()).strip()
           scope_splitted = scope.split(" ")
-        region = view.extract_scope(selection.begin())
+        region = view.extract_scope(sel.begin())
         regions.append({
           "scope": scope,
           "region": region,
           "region_string": view.substr(region),
           "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
+          "selection": sel
         })
     return regions
 
@@ -223,15 +220,14 @@ class Util(object) :
     scope = view.scope_name(selection.begin()).strip()
     for region in view.find_by_selector(scope) :
       if region.contains(selection):
-        selection.a = region.begin()
-        selection.b = selection.a
-        return {
-          "scope": scope,
-          "region": region,
-          "region_string": view.substr(region),
-          "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
-        }
+          sel = sublime.Region(region.begin(), region.begin())
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": sel
+          }
     return None
 
   @staticmethod
@@ -240,15 +236,14 @@ class Util(object) :
     scope = " ".join(scope.split(" ")[:-1])
     for region in view.find_by_selector(scope) :
       if region.contains(selection):
-        selection.a = region.begin()
-        selection.b = selection.a
-        return {
-          "scope": scope,
-          "region": region,
-          "region_string": view.substr(region),
-          "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
-        }
+          sel = sublime.Region(region.begin(), region.begin())
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": sel
+          }
     return None
 
   @staticmethod
@@ -259,15 +254,14 @@ class Util(object) :
     scope = " ".join(scope[:index_parent+1])
     for region in view.find_by_selector(scope) :
       if region.contains(selection):
-        selection.a = region.begin()
-        selection.b = selection.a
-        return {
-          "scope": scope,
-          "region": region,
-          "region_string": view.substr(region),
-          "region_string_stripped": view.substr(region).strip(),
-          "selection": selection
-        }
+          sel = sublime.Region(region.begin(), region.begin())
+          return {
+            "scope": scope,
+            "region": region,
+            "region_string": view.substr(region),
+            "region_string_stripped": view.substr(region).strip(),
+            "selection": sel
+          }
     return None
 
   @staticmethod

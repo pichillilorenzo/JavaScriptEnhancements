@@ -44,7 +44,8 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
-      #view.window().show_input_panel("Move to", view.file_name(), lambda new_path: self.view.run_command("refactor_move", args={"new_path": new_path.strip()}), None, None)
+    elif case == "extract_parameter" :
+      self.view.run_command("refactor_extract_parameter")
 
   def is_enabled(self, **args) :
 
@@ -58,3 +59,5 @@ class RefactorCommand(sublime_plugin.TextCommand):
 ${include refactor_extract_method_command.py}
 
 ${include refactor_move_command.py}
+
+${include refactor_extract_parameter_command.py}

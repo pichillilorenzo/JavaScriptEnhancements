@@ -4,11 +4,15 @@ v0.14.0
 
 - Fixed "Angular 2 project created in wrong folder on Windows" #28
 - Fixed another issue with unused variable
+- Fixed "Create React App - Could not create a project called 'myApp' because of npm naming restrictions" #29, 'myApp' changed to 'my-app'
 
 ## Improvements
 
 - Show hint_parameters tooltip on commit_completion and on insert_snippet "()"
-- Added Refactor command BETA
+- Added Refactor command:
+  * Move
+  * Extract Method (global scope, current scope, class method)
+  * Extract Parameter
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
 
 
