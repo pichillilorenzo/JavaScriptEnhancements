@@ -74,6 +74,13 @@
     "id": "refactor",
     "children": [
       {
+        "caption": "Copy",
+        "command": "refactor",
+        "args": {
+          "case": "copy"
+        }
+      },
+      {
         "caption": "Move",
         "command": "refactor",
         "args": {
@@ -83,6 +90,13 @@
       {
         "caption": "Extract",
         "children": [
+          {
+            "caption": "Variable",
+            "command": "refactor",
+            "args": {
+              "case": "extract_variable"
+            }
+          },
           {
             "caption": "Parameter",
             "command": "refactor",

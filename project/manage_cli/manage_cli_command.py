@@ -118,7 +118,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
     else:
-      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal (bash)")
+      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal (cmd.exe)")
       terminal.run([self.path_cli]+self.command)
 
   def substitute_placeholders(self, variable):

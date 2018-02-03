@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, time
+import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, time, tempfile
 from shutil import copyfile
 from threading import Timer
 from os import environ
@@ -207,11 +207,11 @@ class NodeJS(object):
     if use_fp_temp :
       
       if sublime.platform() == "windows":
-        fp = tempfile.NamedTemporaryFile(delete=False)
+        fp = tempfile.NamedTemporaryFile(prefix="javascript_enhancements_", delete=False)
         fp.write(str.encode(fp_temp_contents))
         fp.close()
       else :
-        fp = tempfile.NamedTemporaryFile()
+        fp = tempfile.NamedTemporaryFile(prefix="javascript_enhancements_")
         fp.write(str.encode(fp_temp_contents))
         fp.flush()
 
@@ -254,7 +254,10 @@ class NodeJS(object):
       #print(output)
 
       if sublime.platform() == "windows" and use_fp_temp: 
-        os.remove(fp.name)
+        try:
+          os.remove(fp.name)
+        except PermissionError as e:
+          pass
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -739,6 +742,9 @@ class Util(object) :
     while(view.substr(new_region).endswith(" ") or view.substr(new_region).startswith("\n")):
       new_region.b = new_region.b - 1
     return new_region
+
+  def prev_line_is_empty(view, region):
+    return view.substr(view.line(view.line(region.begin()).begin()-1)).strip() == ""
 
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
@@ -1775,7 +1781,7 @@ class manage_cliCommand(sublime_plugin.WindowCommand):
         self.window.run_command("terminal_view_send_string", args={"string": self.path_cli+" "+(" ".join(self.command))+"\n"}), 500)
 
     else:
-      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal (bash)")
+      terminal = Terminal(cwd=self.working_directory, title="JavaScript Enhancements Terminal (cmd.exe)")
       terminal.run([self.path_cli]+self.command)
 
   def substitute_placeholders(self, variable):
@@ -2986,10 +2992,40 @@ class Terminal():
 
 import sublime, sublime_plugin
 
+class WindowViewManager():
+
+  window_views = {}
+
+  def add(self, view_id_caller, window_view):
+    if not view_id_caller in self.window_views:
+      self.window_views[view_id_caller] = window_view
+
+  def get(self, view_id_caller):
+    return self.window_views[view_id_caller]
+
+  def remove(self, view_id_caller):
+    if view_id_caller in self.window_views:
+      del self.window_views[view_id_caller]
+
+windowViewManager = WindowViewManager()
+
 class WindowView():
 
-  def __init__(self, title="WindowView", window=None, view=None):
-    self.view = ( sublime.active_window().new_file() if not window else window.new_file() ) if not view else view
+  def __init__(self, title="WindowView", window=None, view=None, use_compare_layout=False):
+    self.view_id_caller = sublime.active_window().active_view().id()
+    self.window = sublime.active_window()
+
+    self.use_compare_layout = use_compare_layout
+
+    if self.use_compare_layout:
+      self.layout_before = self.window.get_layout()
+      self.window.set_layout({'rows': [0.0, 1.0], 'cells': [[0, 0, 1, 1], [1, 0, 2, 1]], 'cols': [0.0, 0.5, 1.0]})
+      self.window.focus_group(1)
+    else:
+      self.layout_before = None
+
+
+    self.view = ( self.window.new_file() if not window else window.new_file() ) if not view else view
     self.view.set_name(title)
     self.view.set_read_only(True)
     self.view.set_scratch(True)
@@ -3008,10 +3044,15 @@ class WindowView():
     self.events = dict()
     self.region_ids = []
     self.region_input_ids = []
-
+    
+    windowViewManager.add(self.view_id_caller, self)
     Hook.add("javascript_enhancements_window_view_close_"+str(self.view.id()), self.destroy)
 
   def __del__(self):
+    if self.use_compare_layout and self.layout_before:
+      self.window.set_layout(self.layout_before)
+      self.window.focus_group(0)
+    windowViewManager.remove(self.view_id_caller)
     Hook.removeAllHook("javascript_enhancements_window_view_close_"+str(self.view.id()))
     for event in self.events.keys():
       for eventRegionKey in self.events[event].keys():
@@ -3089,8 +3130,7 @@ class WindowView():
 
     if label:
       self.add(label)
-    self.add(options[default_option], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
-    self.add(" ▼")
+    self.add(options[default_option] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.set_timeout_async(lambda: self.view.window().show_quick_panel(options, lambda index: self.updateSelect(index, options, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points))))
@@ -3099,7 +3139,7 @@ class WindowView():
     if index < 0:
       return
 
-    self.replaceById(region_id, options[index], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.replaceById(region_id, options[index] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
 
   def addLink(self, text, link, scope, key="click", icon="", flags=sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
@@ -3111,7 +3151,10 @@ class WindowView():
     region = self.view.get_regions(region_input_id)
     if region:
       region = region[0]
-      return self.view.substr(region)[1:-1]
+      content = self.view.substr(region)[1:-1]
+      if content.endswith(" ▼"):
+        content = content[:-len(" ▼")]
+      return content
     return None
 
   def getInputs(self):
@@ -4910,7 +4953,7 @@ class evaluate_javascriptCommand(manage_cliCommand):
     fp.close()
 
     if sublime.platform() == "windows":
-      self.command = ["-p", "<", json.dumps(fp.name), "&", "del", "/f", "/q", json.dumps(fp.name)]
+      self.command = ["-p", "<", fp.name, "&", "del", "/f", "/q", fp.name]
     else :
       self.command = ["-p", "<", shlex.quote(fp.name), ";", "rm", "-rf", shlex.quote(fp.name)]
 
@@ -5941,7 +5984,23 @@ class RefactorCommand(sublime_plugin.TextCommand):
     case = args.get("case")
     scope = view.scope_name(view.sel()[0].begin())
 
-    if case == "extract_method" :
+    if case == "move" :
+      windowView = WindowView(title="Refactor - Move", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Move")
+      windowView.add(text="\n\n")
+      windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
+      windowView.add(text="\n\n")
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": True}))
+      windowView.add(text="  ")
+      windowView.addButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
+
+    elif case == "copy" :
+      self.view.run_command("refactor_copy")
+
+    elif case == "extract_method" :
 
       if view.sel()[0].begin() == view.sel()[0].end():
         return
@@ -5952,7 +6011,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       if len(scope.split(" ")) < 2:
         select_options.remove('Global scope')
         
-      windowView = WindowView(title="Refactor - Extract Method")
+      windowView = WindowView(title="Refactor - Extract Method", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Extract Method")
       windowView.add(text="\n\n")
       windowView.addInput(value="func", label="Function Name: ", region_id="function_name")
@@ -5966,22 +6025,12 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
-    elif case == "move" :
-      windowView = WindowView(title="Refactor - Move")
-      windowView.addTitle(text="Refactor - Move")
-      windowView.add(text="\n\n")
-      windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
-      windowView.add(text="\n\n")
-      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": True}))
-      windowView.add(text="  ")
-      windowView.addCloseButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": False}))
-      windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
-      windowView.add(text=" \n")
-
     elif case == "extract_parameter" :
       self.view.run_command("refactor_extract_parameter")
 
+    elif case == "extract_variable" :
+      self.view.run_command("refactor_extract_variable")
+
   def is_enabled(self, **args) :
 
     view = self.view
@@ -5990,61 +6039,6 @@ class RefactorCommand(sublime_plugin.TextCommand):
   def is_visible(self, **args) :
     view = self.view
     return Util.selection_in_js_scope(view)
-
-import sublime, sublime_plugin
-
-class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
-  def run(self, edit, **args):
-    view = self.view
-
-    inputs = args.get("inputs")
-    scope = view.scope_name(view.sel()[0].begin())
-    space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
-
-    if inputs["scope"] == "Class method":
-
-      new_text = Util.replace_with_tab(view, view.sel()[0], "\t\n\t"+inputs["function_name"]+" "+inputs["parameters"]+" {\n\t", "\n\t}\n")
-
-      view.replace(edit, view.sel()[0], "this."+inputs["function_name"]+inputs["parameters"])
-      region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], 'meta.class.js')["region"]
-      view.insert(edit, region_class.end()-1, new_text)
-
-    elif inputs["scope"] == "Current Scope":
-
-      new_text = Util.replace_with_tab(view, view.sel()[0], "function "+inputs["function_name"]+" "+inputs["parameters"]+" {\n"+space, "\n"+space+"}\n"+space)
-
-      if Util.region_contains_scope(view, view.sel()[0], "variable.language.this.js"):
-        view.replace(edit, view.sel()[0], inputs["function_name"]+".call(this"+(", "+inputs["parameters"][1:-1] if inputs["parameters"][1:-1].strip() else "")+")" )
-      else:
-        view.replace(edit, view.sel()[0], inputs["function_name"]+inputs["parameters"])
-      view.insert(edit, view.sel()[0].begin(), new_text)
-
-    elif inputs["scope"] == "Global scope":
-
-      region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], scope.split(" ")[1])["region"]
-      space = Util.get_whitespace_from_line_begin(view, region_class)
-      new_text = Util.replace_with_tab(view, view.sel()[0], "function "+inputs["function_name"]+" "+inputs["parameters"]+" {\n"+space, "\n"+space+"}\n\n"+space)
-
-      if Util.region_contains_scope(view, view.sel()[0], "variable.language.this.js"):
-        view.replace(edit, view.sel()[0], inputs["function_name"]+".call(this"+(", "+inputs["parameters"][1:-1] if inputs["parameters"][1:-1].strip() else "")+")" )
-      else:
-        view.replace(edit, view.sel()[0], inputs["function_name"]+inputs["parameters"])
-      view.insert(edit, region_class.begin(), new_text)
-
-  def is_enabled(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selection = view.sel()[0]
-    return selection.begin() != selection.end()
-
-  def is_visible(self, **args) :
-    view = self.view
-    if not Util.selection_in_js_scope(view) :
-      return False
-    selection = view.sel()[0]
-    return selection.begin() != selection.end()
-
 
 import sublime, sublime_plugin
 import os, shutil
@@ -6052,14 +6046,17 @@ import os, shutil
 class RefactorMoveCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
+    window = view.window()
     file_name = view.file_name()
     inputs = args.get("inputs")
-    new_path = inputs["new_path"]
+    view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
+    new_path = inputs["new_path"].strip()
     settings = get_project_settings()
     javascript_files = []
 
     if new_path == file_name:
-      return
+      sublime.message_dialog("The file path is the same as before.")
+      return False
 
     if settings:
       for root, dirs, files in os.walk(settings["project_dir_name"]):
@@ -6070,12 +6067,33 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
             javascript_files.append(os.path.join(root, file))
 
       if not args.get("preview"):
+
+        if os.path.isfile(new_path):
+          if not sublime.ok_cancel_dialog(new_path + " already exists.", "Move anyway"):
+            return
+
+        if not os.path.isdir(os.path.dirname(new_path)):
+          os.makedirs(os.path.dirname(new_path))
+
         shutil.move(file_name, new_path)
-        new_view = view.window().open_file(new_path)
+        window.focus_group(0)
+        new_view = window.open_file(new_path)
+        window.focus_group(1)
       else:
-        preview_view = view.window().new_file()
-        preview_view.set_name("Refactor - Move Preview")
-        preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
+        preview_view = None
+        for v in window.views():
+          if v.name() == "Refactor - Move Preview":
+            preview_view = v
+            preview_view.erase(edit, sublime.Region(0, preview_view.size()))
+            window.focus_view(preview_view)
+            break
+
+        if not preview_view:
+          preview_view = window.new_file()
+          preview_view.set_name("Refactor - Move Preview")
+          preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
+          preview_view.set_scratch(True)
+
         preview_view.run_command("append_text_view", args={"text": "Refactor - Move Preview\n\n"})
 
       if javascript_files:
@@ -6092,6 +6110,8 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
                     rel_new_path = "./" + os.path.basename(new_path)
                   else:
                     rel_new_path = os.path.relpath(new_path, start=os.path.dirname(k))
+                    if not rel_new_path.startswith(".."):
+                      rel_new_path = "./" + rel_new_path
                   content = content [:start_offset] + rel_new_path + content[end_offset:]
 
                   if args.get("preview"):
@@ -6105,13 +6125,21 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
                       range_start += 1
                     preview_content +=  "\n"
                     preview_view.run_command("append_text_view", args={"text": preview_content})
-
                   else:
                     file.seek(0)
                     file.write(content)
                     file.truncate()
 
       if not args.get("preview"):
+
+        for v in window.views():
+          if v.name() == "Refactor - Move Preview":
+            v.close()
+            break
+
+        if view_id_caller:
+          windowViewManager.get(view_id_caller).close()
+
         # added view.set_scratch(True) and sublime.set_timeout_async in order to not crash Sublime Text 3
         view.set_scratch(True)
         sublime.set_timeout_async(lambda: view.close())
@@ -6175,6 +6203,108 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
       return False
     return True
       
+
+import sublime, sublime_plugin
+import os, shutil
+
+class RefactorCopyCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    file_name = view.file_name()
+
+    if not file_name:
+      return
+
+    view.window().show_input_panel("Copy to", file_name, self.on_done, None, None)
+
+  def on_done(self, answer):
+    view = self.view
+    file_name = view.file_name()
+    answer = answer.strip()
+
+    if os.path.isfile(answer):
+      if not sublime.ok_cancel_dialog(answer + " already exists.", "Copy anyway"):
+        return
+
+    if not os.path.isdir(os.path.dirname(answer)):
+      os.makedirs(os.path.dirname(answer))
+
+    shutil.copy(file_name, answer)
+
+  def is_enabled(self, **args) :
+    view = self.view
+    file_name = view.file_name()
+    if not file_name or not Util.selection_in_js_scope(view):
+      return False
+    return True
+
+  def is_visible(self, **args) :
+    view = self.view
+    file_name = view.file_name()
+    if not file_name or not Util.selection_in_js_scope(view):
+      return False
+    return True
+
+import sublime, sublime_plugin
+
+class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+
+    inputs = args.get("inputs")
+    scope = view.scope_name(view.sel()[0].begin())
+    space = Util.get_whitespace_from_line_begin(view, view.sel()[0])
+    function_name = inputs["function_name"].strip()
+    parameters = inputs["parameters"].strip()
+    if not parameters.startswith("("):
+      parameters = "(" + parameters
+    if not parameters.endswith(")"):
+      parameters += ")"
+
+    if inputs["scope"] == "Class method":
+
+      view.replace(edit, view.sel()[0], "this."+function_name+parameters)
+      region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], 'meta.class.js')["region"]
+      new_text = Util.replace_with_tab(view, view.sel()[0], ("\t\n" if not Util.prev_line_is_empty(view, sublime.Region(region_class.end(), region_class.end())) else "")+"\t"+function_name+" "+parameters+" {\n\t", "\n\t}\n")
+
+      view.insert(edit, region_class.end()-1, new_text)
+
+    elif inputs["scope"] == "Current Scope":
+
+      new_text = Util.replace_with_tab(view, view.sel()[0], "function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}\n"+space)
+
+      if Util.region_contains_scope(view, view.sel()[0], "variable.language.this.js"):
+        view.replace(edit, view.sel()[0], function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
+      else:
+        view.replace(edit, view.sel()[0], function_name+parameters)
+      view.insert(edit, view.sel()[0].begin(), new_text)
+
+    elif inputs["scope"] == "Global scope":
+
+      region_class = Util.get_region_scope_first_match(view, scope, view.sel()[0], scope.split(" ")[1])["region"]
+      space = Util.get_whitespace_from_line_begin(view, region_class)
+      new_text = Util.replace_with_tab(view, view.sel()[0], "function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}\n\n"+space)
+
+      if Util.region_contains_scope(view, view.sel()[0], "variable.language.this.js"):
+        view.replace(edit, view.sel()[0], function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
+      else:
+        view.replace(edit, view.sel()[0], function_name+parameters)
+      view.insert(edit, region_class.begin(), new_text)
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
+
 
 import sublime, sublime_plugin
 
@@ -6341,6 +6471,117 @@ class RefactorExtractParameterCommand(sublime_plugin.TextCommand):
     return True
 
 import sublime, sublime_plugin
+
+class RefactorExtractVariableCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    selection = view.sel()[0]
+    content = view.substr(selection).strip()
+    content = content[:-1] if content[-1] == ";" else content
+    variable_name = "new_var"
+
+    flow_cli = "flow"
+    is_from_bin = True
+    chdir = ""
+    use_node = True
+    bin_path = ""
+
+    settings = get_project_settings()
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+      is_from_bin = False
+      chdir = settings["project_dir_name"]
+      use_node = False
+
+    node = NodeJS(check_local=True)
+    
+    result = node.execute_check_output(
+      flow_cli,
+      [
+        'ast',
+        '--from', 'sublime_text'
+      ],
+      is_from_bin=is_from_bin,
+      use_fp_temp=True, 
+      fp_temp_contents=content, 
+      is_output_json=True,
+      chdir=chdir,
+      bin_path=bin_path,
+      use_node=use_node
+    )
+
+    if result[0] and not result[1]["errors"] and result[1]["body"] and "type" in result[1]["body"][0] and result[1]["body"][0]["type"] == "ExpressionStatement":
+
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'ast',
+          '--from', 'sublime_text'
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=view.substr(sublime.Region(0, view.size())), 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        if "body" in result[1]:
+          body = result[1]["body"]
+          items = Util.nested_lookup("type", ["VariableDeclaration"], body)
+          for item in items:
+            region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+            if region.contains(selection):
+
+              prev_line_is_empty = Util.prev_line_is_empty(view, region)
+
+              space = Util.get_whitespace_from_line_begin(view, region)
+              str_assignement = ("\n" + space if not prev_line_is_empty else "") + "let " + variable_name + " = " + content + "\n" + space
+
+              view.erase(edit, selection)
+              view.insert(edit, selection.begin(), variable_name)
+              view.insert(edit, region.begin(), str_assignement)
+
+              view.sel().clear()
+              view.sel().add_all([
+
+                sublime.Region(
+                  selection.begin()+len(str_assignement), 
+                  selection.begin()+len(str_assignement)+len(variable_name)
+                ),
+
+                sublime.Region(
+                  region.begin() + len(("\n" + space if not prev_line_is_empty else "") + "let "), region.begin() + len(("\n" + space if not prev_line_is_empty else "") + "let ") + len(variable_name)
+                )
+
+              ])
+
+              break
+      else:
+        sublime.error_message("Cannot introduce variable. Some problems occured.")
+
+    else:
+      sublime.error_message("Cannot introduce variable. Selection does not form an ExpressionStatement.")
+
+  def is_enabled(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
+
+  def is_visible(self, **args) :
+    view = self.view
+    if not Util.selection_in_js_scope(view) :
+      return False
+    selection = view.sel()[0]
+    return selection.begin() != selection.end()
+
+
+import sublime, sublime_plugin
 import os 
 
 class OpenTermivalViewHereCommand(sublime_plugin.WindowCommand):
@@ -6465,6 +6706,9 @@ def getSysPath():
   # the shell we spawn, which re-adds the system path & returns it, leading to duplicate values.
   sysPath = Popen(command, stdout=PIPE, shell=True, env=fixPathOriginalEnv).stdout.read()
 
+  # this line fixes problems of users having an "echo" command in the .bash_profile file or in other similar files.
+  sysPath = sysPath.splitlines()[-1]
+
   sysPathString = sysPath.decode("utf-8")
   # Remove ANSI control characters (see: http://www.commandlinefu.com/commands/view/3584/remove-color-codes-special-characters-with-sed )
   sysPathString = re.sub(r'\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]', '', sysPathString)
@@ -6503,6 +6747,15 @@ def plugin_unloaded():
 ## end - Fix Mac Path plugin code
 ##
 
+def delete_temp_files():
+  temp_dir = tempfile.gettempdir()
+  for file in os.listdir(temp_dir):
+    if file.startswith("javascript_enhancements_"):
+      try:
+        os.remove(os.path.join(temp_dir, file))
+      except Exception as e:
+        pass
+
 def plugin_loaded():
   
   if int(sublime.version()) >= 3124 :
@@ -6519,6 +6772,8 @@ def plugin_loaded():
         fixPathOriginalEnv[key] = environ[key]
 
       fixPath()
+
+    sublime.set_timeout_async(delete_temp_files)
 
     sublime.set_timeout_async(start, 1000)
 

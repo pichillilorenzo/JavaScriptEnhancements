@@ -294,6 +294,9 @@ class Util(object) :
       new_region.b = new_region.b - 1
     return new_region
 
+  def prev_line_is_empty(view, region):
+    return view.substr(view.line(view.line(region.begin()).begin()-1)).strip() == ""
+
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
     try :

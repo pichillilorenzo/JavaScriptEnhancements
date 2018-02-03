@@ -4,14 +4,17 @@ import os, shutil
 class RefactorMoveCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
+    window = view.window()
     file_name = view.file_name()
     inputs = args.get("inputs")
-    new_path = inputs["new_path"]
+    view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
+    new_path = inputs["new_path"].strip()
     settings = get_project_settings()
     javascript_files = []
 
     if new_path == file_name:
-      return
+      sublime.message_dialog("The file path is the same as before.")
+      return False
 
     if settings:
       for root, dirs, files in os.walk(settings["project_dir_name"]):
@@ -22,12 +25,33 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
             javascript_files.append(os.path.join(root, file))
 
       if not args.get("preview"):
+
+        if os.path.isfile(new_path):
+          if not sublime.ok_cancel_dialog(new_path + " already exists.", "Move anyway"):
+            return
+
+        if not os.path.isdir(os.path.dirname(new_path)):
+          os.makedirs(os.path.dirname(new_path))
+
         shutil.move(file_name, new_path)
-        new_view = view.window().open_file(new_path)
+        window.focus_group(0)
+        new_view = window.open_file(new_path)
+        window.focus_group(1)
       else:
-        preview_view = view.window().new_file()
-        preview_view.set_name("Refactor - Move Preview")
-        preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
+        preview_view = None
+        for v in window.views():
+          if v.name() == "Refactor - Move Preview":
+            preview_view = v
+            preview_view.erase(edit, sublime.Region(0, preview_view.size()))
+            window.focus_view(preview_view)
+            break
+
+        if not preview_view:
+          preview_view = window.new_file()
+          preview_view.set_name("Refactor - Move Preview")
+          preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
+          preview_view.set_scratch(True)
+
         preview_view.run_command("append_text_view", args={"text": "Refactor - Move Preview\n\n"})
 
       if javascript_files:
@@ -44,6 +68,8 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
                     rel_new_path = "./" + os.path.basename(new_path)
                   else:
                     rel_new_path = os.path.relpath(new_path, start=os.path.dirname(k))
+                    if not rel_new_path.startswith(".."):
+                      rel_new_path = "./" + rel_new_path
                   content = content [:start_offset] + rel_new_path + content[end_offset:]
 
                   if args.get("preview"):
@@ -57,13 +83,21 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
                       range_start += 1
                     preview_content +=  "\n"
                     preview_view.run_command("append_text_view", args={"text": preview_content})
-
                   else:
                     file.seek(0)
                     file.write(content)
                     file.truncate()
 
       if not args.get("preview"):
+
+        for v in window.views():
+          if v.name() == "Refactor - Move Preview":
+            v.close()
+            break
+
+        if view_id_caller:
+          windowViewManager.get(view_id_caller).close()
+
         # added view.set_scratch(True) and sublime.set_timeout_async in order to not crash Sublime Text 3
         view.set_scratch(True)
         sublime.set_timeout_async(lambda: view.close())

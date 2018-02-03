@@ -42,7 +42,7 @@ class evaluate_javascriptCommand(manage_cliCommand):
     fp.close()
 
     if sublime.platform() == "windows":
-      self.command = ["-p", "<", json.dumps(fp.name), "&", "del", "/f", "/q", json.dumps(fp.name)]
+      self.command = ["-p", "<", fp.name, "&", "del", "/f", "/q", fp.name]
     else :
       self.command = ["-p", "<", shlex.quote(fp.name), ";", "rm", "-rf", shlex.quote(fp.name)]
 

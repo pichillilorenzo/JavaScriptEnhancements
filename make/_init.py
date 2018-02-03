@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, time
+import os, sys, imp, platform, json, traceback, threading, urllib, shutil, re, time, tempfile
 from shutil import copyfile
 from threading import Timer
 from os import environ
@@ -216,6 +216,9 @@ def getSysPath():
   # the shell we spawn, which re-adds the system path & returns it, leading to duplicate values.
   sysPath = Popen(command, stdout=PIPE, shell=True, env=fixPathOriginalEnv).stdout.read()
 
+  # this line fixes problems of users having an "echo" command in the .bash_profile file or in other similar files.
+  sysPath = sysPath.splitlines()[-1]
+
   sysPathString = sysPath.decode("utf-8")
   # Remove ANSI control characters (see: http://www.commandlinefu.com/commands/view/3584/remove-color-codes-special-characters-with-sed )
   sysPathString = re.sub(r'\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]', '', sysPathString)
@@ -254,6 +257,15 @@ def plugin_unloaded():
 ## end - Fix Mac Path plugin code
 ##
 
+def delete_temp_files():
+  temp_dir = tempfile.gettempdir()
+  for file in os.listdir(temp_dir):
+    if file.startswith("javascript_enhancements_"):
+      try:
+        os.remove(os.path.join(temp_dir, file))
+      except Exception as e:
+        pass
+
 def plugin_loaded():
   
   if int(sublime.version()) >= 3124 :
@@ -270,6 +282,8 @@ def plugin_loaded():
         fixPathOriginalEnv[key] = environ[key]
 
       fixPath()
+
+    sublime.set_timeout_async(delete_temp_files)
 
     sublime.set_timeout_async(start, 1000)
 

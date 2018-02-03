@@ -6,7 +6,23 @@ class RefactorCommand(sublime_plugin.TextCommand):
     case = args.get("case")
     scope = view.scope_name(view.sel()[0].begin())
 
-    if case == "extract_method" :
+    if case == "move" :
+      windowView = WindowView(title="Refactor - Move", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Move")
+      windowView.add(text="\n\n")
+      windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
+      windowView.add(text="\n\n")
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": True}))
+      windowView.add(text="  ")
+      windowView.addButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
+
+    elif case == "copy" :
+      self.view.run_command("refactor_copy")
+
+    elif case == "extract_method" :
 
       if view.sel()[0].begin() == view.sel()[0].end():
         return
@@ -17,7 +33,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       if len(scope.split(" ")) < 2:
         select_options.remove('Global scope')
         
-      windowView = WindowView(title="Refactor - Extract Method")
+      windowView = WindowView(title="Refactor - Extract Method", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Extract Method")
       windowView.add(text="\n\n")
       windowView.addInput(value="func", label="Function Name: ", region_id="function_name")
@@ -31,21 +47,11 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
-    elif case == "move" :
-      windowView = WindowView(title="Refactor - Move")
-      windowView.addTitle(text="Refactor - Move")
-      windowView.add(text="\n\n")
-      windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
-      windowView.add(text="\n\n")
-      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": True}))
-      windowView.add(text="  ")
-      windowView.addCloseButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": False}))
-      windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
-      windowView.add(text=" \n")
-
     elif case == "extract_parameter" :
       self.view.run_command("refactor_extract_parameter")
+
+    elif case == "extract_variable" :
+      self.view.run_command("refactor_extract_variable")
 
   def is_enabled(self, **args) :
 
@@ -56,8 +62,12 @@ class RefactorCommand(sublime_plugin.TextCommand):
     view = self.view
     return Util.selection_in_js_scope(view)
 
-${include refactor_extract_method_command.py}
-
 ${include refactor_move_command.py}
 
+${include refactor_copy_command.py}
+
+${include refactor_extract_method_command.py}
+
 ${include refactor_extract_parameter_command.py}
+
+${include refactor_extract_variable_command.py}

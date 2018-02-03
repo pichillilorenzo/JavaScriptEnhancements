@@ -1,9 +1,39 @@
 import sublime, sublime_plugin
 
+class WindowViewManager():
+
+  window_views = {}
+
+  def add(self, view_id_caller, window_view):
+    if not view_id_caller in self.window_views:
+      self.window_views[view_id_caller] = window_view
+
+  def get(self, view_id_caller):
+    return self.window_views[view_id_caller]
+
+  def remove(self, view_id_caller):
+    if view_id_caller in self.window_views:
+      del self.window_views[view_id_caller]
+
+windowViewManager = WindowViewManager()
+
 class WindowView():
 
-  def __init__(self, title="WindowView", window=None, view=None):
-    self.view = ( sublime.active_window().new_file() if not window else window.new_file() ) if not view else view
+  def __init__(self, title="WindowView", window=None, view=None, use_compare_layout=False):
+    self.view_id_caller = sublime.active_window().active_view().id()
+    self.window = sublime.active_window()
+
+    self.use_compare_layout = use_compare_layout
+
+    if self.use_compare_layout:
+      self.layout_before = self.window.get_layout()
+      self.window.set_layout({'rows': [0.0, 1.0], 'cells': [[0, 0, 1, 1], [1, 0, 2, 1]], 'cols': [0.0, 0.5, 1.0]})
+      self.window.focus_group(1)
+    else:
+      self.layout_before = None
+
+
+    self.view = ( self.window.new_file() if not window else window.new_file() ) if not view else view
     self.view.set_name(title)
     self.view.set_read_only(True)
     self.view.set_scratch(True)
@@ -22,10 +52,15 @@ class WindowView():
     self.events = dict()
     self.region_ids = []
     self.region_input_ids = []
-
+    
+    windowViewManager.add(self.view_id_caller, self)
     Hook.add("javascript_enhancements_window_view_close_"+str(self.view.id()), self.destroy)
 
   def __del__(self):
+    if self.use_compare_layout and self.layout_before:
+      self.window.set_layout(self.layout_before)
+      self.window.focus_group(0)
+    windowViewManager.remove(self.view_id_caller)
     Hook.removeAllHook("javascript_enhancements_window_view_close_"+str(self.view.id()))
     for event in self.events.keys():
       for eventRegionKey in self.events[event].keys():
@@ -103,8 +138,7 @@ class WindowView():
 
     if label:
       self.add(label)
-    self.add(options[default_option], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
-    self.add(" ▼")
+    self.add(options[default_option] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.set_timeout_async(lambda: self.view.window().show_quick_panel(options, lambda index: self.updateSelect(index, options, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points))))
@@ -113,7 +147,7 @@ class WindowView():
     if index < 0:
       return
 
-    self.replaceById(region_id, options[index], key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.replaceById(region_id, options[index] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
 
   def addLink(self, text, link, scope, key="click", icon="", flags=sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
@@ -125,7 +159,10 @@ class WindowView():
     region = self.view.get_regions(region_input_id)
     if region:
       region = region[0]
-      return self.view.substr(region)[1:-1]
+      content = self.view.substr(region)[1:-1]
+      if content.endswith(" ▼"):
+        content = content[:-len(" ▼")]
+      return content
     return None
 
   def getInputs(self):

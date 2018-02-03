@@ -68,11 +68,11 @@ class NodeJS(object):
     if use_fp_temp :
       
       if sublime.platform() == "windows":
-        fp = tempfile.NamedTemporaryFile(delete=False)
+        fp = tempfile.NamedTemporaryFile(prefix="javascript_enhancements_", delete=False)
         fp.write(str.encode(fp_temp_contents))
         fp.close()
       else :
-        fp = tempfile.NamedTemporaryFile()
+        fp = tempfile.NamedTemporaryFile(prefix="javascript_enhancements_")
         fp.write(str.encode(fp_temp_contents))
         fp.flush()
 
@@ -115,7 +115,10 @@ class NodeJS(object):
       #print(output)
 
       if sublime.platform() == "windows" and use_fp_temp: 
-        os.remove(fp.name)
+        try:
+          os.remove(fp.name)
+        except PermissionError as e:
+          pass
 
       # reset the PATH environment variable
       os.environ.update(old_env)
