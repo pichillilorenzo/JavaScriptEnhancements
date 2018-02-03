@@ -6531,35 +6531,54 @@ class RefactorExtractVariableCommand(sublime_plugin.TextCommand):
       if result[0]:
         if "body" in result[1]:
           body = result[1]["body"]
-          items = Util.nested_lookup("type", ["VariableDeclaration"], body)
+          items = Util.nested_lookup("type", ["BlockStatement"], body)
+          last_block_statement = None
+          last_item = None
+          region = None
+
           for item in items:
             region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
             if region.contains(selection):
+              last_block_statement = region
+              last_item = item
 
-              prev_line_is_empty = Util.prev_line_is_empty(view, region)
+          if last_block_statement:
+            for item in last_item["body"]:
+              r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+              if r.contains(selection):
+                region = r
+                break
+          else:
+            for item in body:
+              r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+              if r.contains(selection):
+                region = r
+                break
+            
+          if region: 
+            prev_line_is_empty = Util.prev_line_is_empty(view, region)
 
-              space = Util.get_whitespace_from_line_begin(view, region)
-              str_assignement = ("\n" + space if not prev_line_is_empty else "") + "let " + variable_name + " = " + content + "\n" + space
+            space = Util.get_whitespace_from_line_begin(view, region)
+            str_assignement = ("\n" + space if not prev_line_is_empty else "") + "let " + variable_name + " = " + content + "\n" + space
 
-              view.erase(edit, selection)
-              view.insert(edit, selection.begin(), variable_name)
-              view.insert(edit, region.begin(), str_assignement)
+            view.erase(edit, selection)
+            view.insert(edit, selection.begin(), variable_name)
+            view.insert(edit, region.begin(), str_assignement)
 
-              view.sel().clear()
-              view.sel().add_all([
+            view.sel().clear()
+            view.sel().add_all([
 
-                sublime.Region(
-                  selection.begin()+len(str_assignement), 
-                  selection.begin()+len(str_assignement)+len(variable_name)
-                ),
+              sublime.Region(
+                selection.begin()+len(str_assignement), 
+                selection.begin()+len(str_assignement)+len(variable_name)
+              ),
 
-                sublime.Region(
-                  region.begin() + len(("\n" + space if not prev_line_is_empty else "") + "let "), region.begin() + len(("\n" + space if not prev_line_is_empty else "") + "let ") + len(variable_name)
-                )
+              sublime.Region(
+                region.begin() + len(("\n" + space if not prev_line_is_empty else "") + "let "), region.begin() + len(("\n" + space if not prev_line_is_empty else "") + "let ") + len(variable_name)
+              )
 
-              ])
+            ])
 
-              break
       else:
         sublime.error_message("Cannot introduce variable. Some problems occured.")
 
