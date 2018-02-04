@@ -49,7 +49,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       if view.sel()[0].begin() == view.sel()[0].end():
         return
 
-      select_options = ['Global scope', 'Current Scope', 'Class method']
+      select_options = ['Global scope', 'Current scope', 'Class method']
       if not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
         select_options.remove('Class method')
       if len(scope.split(" ")) < 2:
@@ -81,6 +81,24 @@ class RefactorCommand(sublime_plugin.TextCommand):
 
       self.view.run_command("refactor_extract_variable")
 
+    elif case == "extract_field" :
+      if view.sel()[0].begin() == view.sel()[0].end() or not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
+        return
+
+      select_options = ["Current method", "Field declaration", "Class constructor"]
+
+      windowView = WindowView(title="Refactor - Extract Field", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Extract Field")
+      windowView.add(text="\n\n")
+      windowView.addInput(value="new_field", label="Field Name: ", region_id="field_name")
+      windowView.add(text="\n")
+      windowView.addSelect(default_option=0, options=select_options, label="Scope: ", region_id="scope")
+      windowView.add(text="\n\n")
+      windowView.addCloseButton(text="OK", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_field", args={"inputs": windowView.getInputs()}))
+      windowView.add(text="        ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
+
   def is_enabled(self, **args) :
 
     view = self.view
@@ -101,3 +119,5 @@ ${include refactor_extract_method_command.py}
 ${include refactor_extract_parameter_command.py}
 
 ${include refactor_extract_variable_command.py}
+
+${include refactor_extract_field_command.py}

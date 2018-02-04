@@ -11,14 +11,16 @@ v0.14.0
 ## Improvements
 
 - Show hint_parameters tooltip on commit_completion and on insert_snippet "()"
-- Added JavaScript Refactor command:
+- Added JavaScript Refactor commands (added to Context and Side Bar menus):
   * Safe Copy
   * Safe Move
   * Safe Delete
   * Extract Method (global scope, current scope, class method)
   * Extract Parameter
   * Extract Variable
+  * Extract Field
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
+- Forced "auto_complete_delay" option to 0 when showing JavaScript auto-completions
 
 
 =================================================================

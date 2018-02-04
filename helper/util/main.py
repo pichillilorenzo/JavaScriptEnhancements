@@ -374,6 +374,15 @@ class Util(object) :
     return string
 
   @staticmethod
+  def convert_tabs_using_tab_size(view, string):
+    tab_size = view.settings().get("tab_size")
+    
+    if tab_size:
+      return string.replace("\t", " "*tab_size)
+
+    return string.replace("\t", " ")
+
+  @staticmethod
   def go_to_centered(view, row, col):
     while view.is_loading() :
       time.sleep(.1)

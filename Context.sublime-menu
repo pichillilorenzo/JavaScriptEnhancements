@@ -105,6 +105,13 @@
             }
           },
           {
+            "caption": "Field",
+            "command": "refactor",
+            "args": {
+              "case": "extract_field"
+            }
+          },
+          {
             "caption": "Parameter",
             "command": "refactor",
             "args": {
