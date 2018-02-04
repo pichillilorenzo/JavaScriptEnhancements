@@ -82,7 +82,7 @@ class RefactorExtractVariableCommand(sublime_plugin.TextCommand):
               if r.contains(selection):
                 region = r
                 break
-            
+
           if region: 
             prev_line_is_empty = Util.prev_line_is_empty(view, region)
 
@@ -106,6 +106,9 @@ class RefactorExtractVariableCommand(sublime_plugin.TextCommand):
               )
 
             ])
+
+            variable_kind = ["let", "const", "var"]
+            view.window().show_quick_panel(variable_kind, None, 0, 0, lambda index: self.view.run_command("replace_text_view", args={"start": region.begin(), "end": region.begin() + len(view.substr(view.word(region.begin()))) , "text": variable_kind[index]}))
 
       else:
         sublime.error_message("Cannot introduce variable. Some problems occured.")

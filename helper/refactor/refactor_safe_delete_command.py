@@ -1,20 +1,18 @@
 import sublime, sublime_plugin
 import os, shutil
 
-class RefactorMoveCommand(sublime_plugin.TextCommand):
+class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     window = view.window()
     file_name = view.file_name()
-    inputs = args.get("inputs")
     view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
-    new_path = inputs["new_path"].strip()
     settings = get_project_settings()
     javascript_files = []
 
-    if new_path == file_name:
-      sublime.message_dialog("The file path is the same as before.")
-      return False
+    if not file_name:
+      sublime.error_message("Cannot delete this file. File name is empty.")
+      return 
 
     if settings:
       for root, dirs, files in os.walk(settings["project_dir_name"]):
@@ -26,21 +24,14 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
 
       if not args.get("preview"):
 
-        if os.path.isfile(new_path):
-          if not sublime.ok_cancel_dialog(new_path + " already exists.", "Move anyway"):
-            return
+        if not sublime.ok_cancel_dialog("Are you sure you want to delete this file: \""+file_name+"\"?", "Yes"):
+          return
+        os.remove(file_name)
 
-        if not os.path.isdir(os.path.dirname(new_path)):
-          os.makedirs(os.path.dirname(new_path))
-
-        shutil.move(file_name, new_path)
-        window.focus_group(0)
-        new_view = window.open_file(new_path)
-        window.focus_group(1)
       else:
         preview_view = None
         for v in window.views():
-          if v.name() == "Refactor - Move Preview":
+          if v.name() == "Refactor - Safe Delete Preview":
             preview_view = v
             preview_view.erase(edit, sublime.Region(0, preview_view.size()))
             window.focus_view(preview_view)
@@ -48,50 +39,35 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
 
         if not preview_view:
           preview_view = window.new_file()
-          preview_view.set_name("Refactor - Move Preview")
+          preview_view.set_name("Refactor - Safe Delete Preview")
           preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
           preview_view.set_scratch(True)
 
-        preview_view.run_command("append_text_view", args={"text": "Refactor - Move Preview\n\n"})
+        preview_view.run_command("append_text_view", args={"text": "Refactor - Safe Delete Preview\n\nList of files that uses it\n\n"})
 
-      if javascript_files:
-        imports = self.get_imports(settings, javascript_files)
-        for k, v in imports.items():
-          if v["requirements"]:
-            for req in v["requirements"]:
-              if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
-                with open(k, "r+") as file:
-                  content = file.read()
-                  start_offset = int(req["loc"]["start"]["offset"]) + 1
-                  end_offset = int(req["loc"]["end"]["offset"]) - 1
-                  if os.path.dirname(k) == os.path.dirname(new_path):
-                    rel_new_path = "./" + os.path.basename(new_path)
-                  else:
-                    rel_new_path = os.path.relpath(new_path, start=os.path.dirname(k))
-                    if not rel_new_path.startswith(".."):
-                      rel_new_path = "./" + rel_new_path
-                  content = content [:start_offset] + rel_new_path + content[end_offset:]
-
-                  if args.get("preview"):
+        if javascript_files:
+          imports = self.get_imports(settings, javascript_files)
+          for k, v in imports.items():
+            if v["requirements"]:
+              for req in v["requirements"]:
+                if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
+                  with open(k, "r+") as file:
+                    content = file.read()
                     splitted_content = content.splitlines()
                     preview_content = k + ":\n\n"
                     line = int(req["line"]) - 1
                     range_start = max(0, line - 2)
                     range_end = min(line + 2, len(splitted_content))
                     while range_start <= range_end:
-                      preview_content += "    " + str(range_start) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
+                      preview_content += "    " + str(range_start + 1) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
                       range_start += 1
                     preview_content +=  "\n"
                     preview_view.run_command("append_text_view", args={"text": preview_content})
-                  else:
-                    file.seek(0)
-                    file.write(content)
-                    file.truncate()
 
       if not args.get("preview"):
 
         for v in window.views():
-          if v.name() == "Refactor - Move Preview":
+          if v.name() == "Refactor - Safe Delete Preview":
             v.close()
             break
 
@@ -149,6 +125,8 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
 
   def is_enabled(self, **args) :
     view = self.view
+    if not view.file_name():
+      return False
     settings = get_project_settings()
     if not settings or not Util.selection_in_js_scope(view):
       return False
@@ -156,6 +134,8 @@ class RefactorMoveCommand(sublime_plugin.TextCommand):
 
   def is_visible(self, **args) :
     view = self.view
+    if not view.file_name():
+      return False
     settings = get_project_settings()
     if not settings or not Util.selection_in_js_scope(view):
       return False

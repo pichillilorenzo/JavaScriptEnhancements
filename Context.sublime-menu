@@ -74,17 +74,24 @@
     "id": "refactor",
     "children": [
       {
-        "caption": "Copy",
+        "caption": "Safe Copy",
         "command": "refactor",
         "args": {
-          "case": "copy"
+          "case": "safe_copy"
         }
       },
       {
-        "caption": "Move",
+        "caption": "Safe Move",
         "command": "refactor",
         "args": {
-          "case": "move"
+          "case": "safe_move"
+        }
+      },
+      {
+        "caption": "Safe Delete",
+        "command": "refactor",
+        "args": {
+          "case": "safe_delete"
         }
       },
       {

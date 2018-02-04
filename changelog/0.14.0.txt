@@ -12,8 +12,9 @@ v0.14.0
 
 - Show hint_parameters tooltip on commit_completion and on insert_snippet "()"
 - Added Refactor command:
-  * Copy
-  * Move
+  * Safe Copy
+  * Safe Move
+  * Safe Delete
   * Extract Method (global scope, current scope, class method)
   * Extract Parameter
   * Extract Variable

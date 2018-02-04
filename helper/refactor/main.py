@@ -6,21 +6,44 @@ class RefactorCommand(sublime_plugin.TextCommand):
     case = args.get("case")
     scope = view.scope_name(view.sel()[0].begin())
 
-    if case == "move" :
-      windowView = WindowView(title="Refactor - Move", use_compare_layout=True)
-      windowView.addTitle(text="Refactor - Move")
+    if case == "safe_move" :
+      windowView = WindowView(title="Refactor - Safe Move", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Safe Move")
       windowView.add(text="\n\n")
       windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
       windowView.add(text="\n\n")
-      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": True}))
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_safe_move", args={"inputs": windowView.getInputs(), "preview": True}))
       windowView.add(text="  ")
-      windowView.addButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_move", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
+      windowView.addButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_move", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
-    elif case == "copy" :
-      self.view.run_command("refactor_copy")
+    elif case == "safe_copy" :
+      windowView = WindowView(title="Refactor - Safe Copy", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Safe Copy")
+      windowView.add(text="\n\n")
+      windowView.addInput(value=view.file_name(), label="Copy to: ", region_id="new_path")
+      windowView.add(text="\n\n")
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_safe_copy", args={"inputs": windowView.getInputs(), "preview": True}))
+      windowView.add(text="  ")
+      windowView.addButton(text="COPY", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_copy", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
+
+    if case == "safe_delete" :
+      windowView = WindowView(title="Refactor - Safe Delete", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Safe Delete")
+      windowView.add(text="\n\n")
+      windowView.add(text="File to delete: " + view.file_name())
+      windowView.add(text="\n\n")
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_safe_delete", args={"preview": True}))
+      windowView.add(text="  ")
+      windowView.addButton(text="DELETE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_delete", args={"preview": False, "view_id_caller": self.view.id()}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.add(text=" \n")
 
     elif case == "extract_method" :
 
@@ -62,9 +85,11 @@ class RefactorCommand(sublime_plugin.TextCommand):
     view = self.view
     return Util.selection_in_js_scope(view)
 
-${include refactor_move_command.py}
+${include refactor_safe_move_command.py}
 
-${include refactor_copy_command.py}
+${include refactor_safe_copy_command.py}
+
+${include refactor_safe_delete_command.py}
 
 ${include refactor_extract_method_command.py}
 
