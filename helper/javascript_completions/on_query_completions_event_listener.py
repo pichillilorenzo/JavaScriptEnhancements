@@ -237,6 +237,10 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
         view.hide_popup()
 
   def on_post_text_command(self, view, command_name, args):
+
+    if len(view.sel()) <= 0:
+      return
+      
     sel = view.sel()[0]
     if not view.match_selector(
         sel.begin(),

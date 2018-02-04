@@ -22,6 +22,10 @@ v0.14.0
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
 - Forced "auto_complete_delay" option to 0 when showing JavaScript auto-completions
 
+## Misc
+
+- Keymap changed, now you may want use "super" key instead of "ctrl" key
+
 
 =================================================================
 ** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **

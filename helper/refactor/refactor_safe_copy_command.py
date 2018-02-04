@@ -15,6 +15,10 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
       sublime.error_message("Cannot copy this file. File name is empty.")
       return 
 
+    if not new_path:
+      sublime.error_message("The File path is empty.")
+      return 
+
     if new_path == file_name:
       sublime.message_dialog("The file path is the same as before.")
       return

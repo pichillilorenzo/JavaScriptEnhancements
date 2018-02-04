@@ -3005,16 +3005,16 @@ class WindowViewManager():
 
   window_views = {}
 
-  def add(self, view_id_caller, window_view):
-    if not view_id_caller in self.window_views:
-      self.window_views[view_id_caller] = window_view
+  def add(self, view_id, window_view):
+    if not view_id in self.window_views:
+      self.window_views[view_id] = window_view
 
-  def get(self, view_id_caller):
-    return self.window_views[view_id_caller]
+  def get(self, view_id):
+    return self.window_views[view_id] if view_id in self.window_views else None
 
-  def remove(self, view_id_caller):
-    if view_id_caller in self.window_views:
-      del self.window_views[view_id_caller]
+  def remove(self, view_id):
+    if view_id in self.window_views:
+      del self.window_views[view_id]
 
 windowViewManager = WindowViewManager()
 
@@ -3032,7 +3032,6 @@ class WindowView():
       self.window.focus_group(1)
     else:
       self.layout_before = None
-
 
     self.view = ( self.window.new_file() if not window else window.new_file() ) if not view else view
     self.view.set_name(title)
@@ -3053,8 +3052,12 @@ class WindowView():
     self.events = dict()
     self.region_ids = []
     self.region_input_ids = []
+    self.input_state = {}
+    self.undo_state = False
+    self.redo_state = False
     
     windowViewManager.add(self.view_id_caller, self)
+    windowViewManager.add(self.view.id(), self)
     Hook.add("javascript_enhancements_window_view_close_"+str(self.view.id()), self.destroy)
 
   def __del__(self):
@@ -3062,6 +3065,7 @@ class WindowView():
       self.window.set_layout(self.layout_before)
       self.window.focus_group(0)
     windowViewManager.remove(self.view_id_caller)
+    windowViewManager.remove(self.view.id())
     Hook.removeAllHook("javascript_enhancements_window_view_close_"+str(self.view.id()))
     for event in self.events.keys():
       for eventRegionKey in self.events[event].keys():
@@ -3104,6 +3108,9 @@ class WindowView():
     text = space_row+"\n"+space_padding+text+space_padding+"\n"+space_row+" "
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=0, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
+    self.add("\n\nNOTE: See the keymap ")
+    self.addLink("here", "https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki", "link")
+
   def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
@@ -3127,6 +3134,18 @@ class WindowView():
     if label:
       self.add(label)
     self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+    self.region_input_ids.append(region_id)
+
+  def updateInput(self, value, key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+
+    self.replaceById(region_id, value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+    if not region_id:
+      raise Exception("Error: ID isn't setted.")
+
+    if region_id in self.region_input_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
     self.region_input_ids.append(region_id)
 
   def addSelect(self, default_option, options, label=None, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
@@ -3243,6 +3262,58 @@ class WindowView():
     if self.view.settings().get('color_scheme') != color_scheme:
       self.view.settings().set('color_scheme', color_scheme)
 
+  def setInputState(self, delta):
+    self.undo_state = True
+    self.redo_state = True
+
+    for region_input_id in self.region_input_ids:
+      region = self.view.get_regions(region_input_id)
+      if region:
+        region = region[0]
+        if region.contains(self.view.sel()[0]) and region_input_id in self.input_state:
+          if self.input_state[region_input_id]["index"] + delta >= 0 and self.input_state[region_input_id]["index"] + delta < len(self.input_state[region_input_id]["state"]):
+            self.input_state[region_input_id]["index"] = self.input_state[region_input_id]["index"] + delta
+            index = self.input_state[region_input_id]["index"]
+            self.updateInput(self.input_state[region_input_id]["state"][ index ], region_id=region_input_id)
+            if region.contains(self.input_state[region_input_id]["selections"][ index ][0]):
+              self.view.sel().clear()
+              self.view.sel().add_all(self.input_state[region_input_id]["selections"][ index ])
+          break
+
+    self.undo_state = False
+    self.redo_state = False
+
+  def updateInputState(self):
+    if self.undo_state or self.redo_state:
+      return
+    
+    inputs = self.getInputs()
+
+    for k, v in inputs.items():
+
+      if k in self.input_state:
+
+        if self.input_state[k]["index"] != len(self.input_state[k]["state"]) - 1:
+          self.input_state[k]["state"] = self.input_state[k]["state"][:self.input_state[k]["index"]+1]
+          self.input_state[k]["selections"] = self.input_state[k]["selections"][:self.input_state[k]["index"]+1]
+
+        if self.input_state[k]["state"][-1] != v:
+          self.input_state[k]["state"].append(v) 
+          selections = []
+          for sel in self.view.sel():
+            selections.append(sel)
+          self.input_state[k]["selections"].append(selections) 
+          self.input_state[k]["index"] = len(self.input_state[k]["state"]) - 1
+
+      else:
+        self.input_state[k] = {}
+        self.input_state[k]["state"] = [v]
+        selections = []
+        for sel in self.view.sel():
+          selections.append(sel)
+        self.input_state[k]["selections"] = [selections]
+        self.input_state[k]["index"] = len(self.input_state[k]["state"]) - 1
+
   def close(self):
     self.view.close()
     self.destroy()
@@ -3350,7 +3421,7 @@ class WindowViewKeypressCommand(sublime_plugin.TextCommand):
           view.sel().clear()
           view.sel().add(input_regions[0].begin()+1)
 
-      if key == "ctrl+alt+a":
+      if key == "super+alt+a":
         input_regions = view.get_regions("input.javascriptenhancements.input")
         for region in input_regions:
           if region.contains(view.sel()[0]):   
@@ -3361,6 +3432,12 @@ class WindowViewEventListener(sublime_plugin.EventListener):
 
   def on_activated_async(self, view):
     self.on_selection_modified(view)
+
+  def on_modified(self, view):
+    if view.settings().get("javascript_enhancements_window_view"):
+      windowView = windowViewManager.get(view.id())
+      if windowView:
+        windowView.updateInputState()
 
   def on_selection_modified(self, view):
     if view.settings().get("javascript_enhancements_window_view"):
@@ -3386,12 +3463,24 @@ class WindowViewEventListener(sublime_plugin.EventListener):
     if view.settings().get("javascript_enhancements_window_view"):
       Hook.apply(command_name, view, args)
 
+      if command_name == "undo" or command_name == "redo_or_repeat" or command_name == "redo":
+        windowView = windowViewManager.get(view.id())
+        if windowView:
+          windowView.setInputState( (-1 if command_name == "undo" else +1) )
+          self.on_selection_modified(view)
+        return ("noop", {})
+
+      if command_name == "soft_undo" or command_name == "soft_redo":
+        return ("noop", {})
+
       for region in view.get_regions("input.javascriptenhancements.input"):
         if view.sel()[0].begin() == view.sel()[0].end():
           if command_name == "left_delete" and view.sel()[0].begin() == region.begin() + 1:
             return ("noop", {})
           elif command_name == "right_delete" and view.sel()[0].end() == region.end() - 1:
             return ("noop", {})
+        if command_name == "insert":
+          return ("noop", {})
 
   def on_close(self, view):
     if view.settings().get("javascript_enhancements_window_view"):
@@ -4018,6 +4107,10 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
         view.hide_popup()
 
   def on_post_text_command(self, view, command_name, args):
+
+    if len(view.sel()) <= 0:
+      return
+      
     sel = view.sel()[0]
     if not view.match_selector(
         sel.begin(),
@@ -6052,7 +6145,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="\n")
       windowView.addSelect(default_option=0, options=select_options, label="Scope: ", region_id="scope")
       windowView.add(text="\n\n")
-      windowView.addCloseButton(text="OK", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs()}))
+      windowView.addCloseButton(text="CREATE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs()}))
       windowView.add(text="        ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
@@ -6082,7 +6175,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="\n")
       windowView.addSelect(default_option=0, options=select_options, label="Scope: ", region_id="scope")
       windowView.add(text="\n\n")
-      windowView.addCloseButton(text="OK", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_field", args={"inputs": windowView.getInputs()}))
+      windowView.addCloseButton(text="CREATE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_field", args={"inputs": windowView.getInputs()}))
       windowView.add(text="        ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
@@ -6112,6 +6205,10 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
 
     if not file_name:
       sublime.error_message("Cannot move this file. File name is empty.")
+      return 
+
+    if not new_path:
+      sublime.error_message("The File path is empty.")
       return 
 
     if new_path == file_name:
@@ -6333,6 +6430,10 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
 
     if not file_name:
       sublime.error_message("Cannot copy this file. File name is empty.")
+      return 
+
+    if not new_path:
+      sublime.error_message("The File path is empty.")
       return 
 
     if new_path == file_name:
@@ -7000,7 +7101,7 @@ class RefactorExtractFieldCommand(sublime_plugin.TextCommand):
     inputs = args.get("inputs")
     content = view.substr(selection).strip()
     content = content[:-1] if content[-1] == ";" else content
-    field_name = inputs["field_name"]
+    field_name = inputs["field_name"].strip()
 
     flow_cli = "flow"
     is_from_bin = True

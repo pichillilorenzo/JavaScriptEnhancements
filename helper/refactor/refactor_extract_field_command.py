@@ -7,7 +7,7 @@ class RefactorExtractFieldCommand(sublime_plugin.TextCommand):
     inputs = args.get("inputs")
     content = view.substr(selection).strip()
     content = content[:-1] if content[-1] == ";" else content
-    field_name = inputs["field_name"]
+    field_name = inputs["field_name"].strip()
 
     flow_cli = "flow"
     is_from_bin = True
