@@ -46,7 +46,6 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text=" \n")
 
     elif case == "extract_method" :
-
       if view.sel()[0].begin() == view.sel()[0].end():
         return
 
@@ -71,9 +70,15 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text=" \n")
 
     elif case == "extract_parameter" :
+      if view.sel()[0].begin() == view.sel()[0].end():
+        return
+
       self.view.run_command("refactor_extract_parameter")
 
     elif case == "extract_variable" :
+      if view.sel()[0].begin() == view.sel()[0].end():
+        return
+
       self.view.run_command("refactor_extract_variable")
 
   def is_enabled(self, **args) :

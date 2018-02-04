@@ -70,7 +70,7 @@
   },
   { "caption": "-" },
   {
-    "caption": "Refactor",
+    "caption": "JavaScript Refactor",
     "id": "refactor",
     "children": [
       {

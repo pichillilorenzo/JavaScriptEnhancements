@@ -11,7 +11,7 @@ v0.14.0
 ## Improvements
 
 - Show hint_parameters tooltip on commit_completion and on insert_snippet "()"
-- Added Refactor command:
+- Added JavaScript Refactor command:
   * Safe Copy
   * Safe Move
   * Safe Delete
