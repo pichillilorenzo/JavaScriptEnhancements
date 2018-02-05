@@ -54,7 +54,23 @@ class surround_withCommand(sublime_plugin.TextCommand):
           view.replace(edit, selection, new_text)
 
         elif case == "function" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"function func_name () {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "anonymous_function" :
           new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"function () {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "arrow_function" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"() => {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "async_function" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"async function func_name () {\n"+space, "\n"+space+"}\n"+space)
+          view.replace(edit, selection, new_text)
+
+        elif case == "iife_function" :
+          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"(function () {\n"+space, "\n"+space+"})()\n"+space)
           view.replace(edit, selection, new_text)
 
         elif case == "block" :

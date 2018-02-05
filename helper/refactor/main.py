@@ -4,7 +4,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     case = args.get("case")
-    scope = view.scope_name(view.sel()[0].begin())
+    scope = view.scope_name(view.sel()[0].begin()).strip()
 
     if case == "safe_move" :
       windowView = WindowView(title="Refactor - Safe Move", use_compare_layout=True)
@@ -52,7 +52,8 @@ class RefactorCommand(sublime_plugin.TextCommand):
       select_options = ['Global scope', 'Current scope', 'Class method']
       if not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
         select_options.remove('Class method')
-      if len(scope.split(" ")) < 2:
+      print(scope, len(scope.split(" ")))
+      if len(scope.split(" ")) <= 2:
         select_options.remove('Global scope')
         
       windowView = WindowView(title="Refactor - Extract Method", use_compare_layout=True)
@@ -99,6 +100,9 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
 
+    elif case == "convert_to_arrow_function" :
+      self.view.run_command("refactor_convert_to_arrow_function")
+
   def is_enabled(self, **args) :
 
     view = self.view
@@ -121,3 +125,5 @@ ${include refactor_extract_parameter_command.py}
 ${include refactor_extract_variable_command.py}
 
 ${include refactor_extract_field_command.py}
+
+${include refactor_convert_to_arrow_function_command.py}

@@ -25,10 +25,6 @@
       "${1:array}.forEach( function(${2:element}, ${3:index}) {\n\t${4:// statements}\n});"
     ],
     [
-      "function_with_name",
-      "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
-    ],
-    [
       "for",
       "for(let i = 0, length1 = ${1:array}.length; i < length1; i++){\n\t${1:array}[i]${2:}\n}"
     ],
@@ -41,8 +37,24 @@
       "for(let j = 0, length2 = ${1:array}.length; j < length2; j++){\n\t${1:array}[j]${2:}\n}"
     ],
     [
+      "function_with_name",
+      "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
+    ],
+    [
       "anonymous_function",
-      "function (${1:argument}) {\n\t${2:/* body... */}\n}"
+      "function (${1:argument}) {\n\t${2:// body... }\n}"
+    ],
+    [
+      "arrow_function",
+      "(${1:argument}) => {\n\t${2:// body... }\n}"
+    ],
+    [
+      "async_function",
+      "async function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
+    ],
+    [
+      "iife_function",
+      "(function(${1:argument}){\n\t${2:// body... }\n})(${3:argument})"
     ],
     [
       "for_of",
@@ -63,10 +75,6 @@
     [
       "if",
       "if (${1:condition}) {\n\t${2:// statement}\n}"
-    ],
-    [
-      "anonymous_function_wrapper",
-      ";(function(){\n\t$1\n})()"
     ],
     [
       "else_if",
@@ -103,6 +111,14 @@
     [
       "return",
       "return"
+    ],
+    [
+      "await",
+      "await"
+    ],
+    [
+      "async",
+      "async"
     ],
     [
       "false",

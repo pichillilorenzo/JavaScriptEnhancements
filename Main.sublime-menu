@@ -71,6 +71,12 @@
           },
           { "caption": "-" },
           {
+            "caption": ".flowconfig docs",
+            "command": "open_url",
+            "args": {"url": "https://flow.org/en/docs/config/"}
+          },
+          { "caption": "-" },
+          {
             "caption": "GitHub Project",
             "command": "open_url",
             "args": {"url": "https://github.com/pichillilorenzo/JavaScriptEnhancements"}

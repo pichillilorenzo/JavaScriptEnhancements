@@ -19,8 +19,10 @@ v0.14.0
   * Extract Parameter
   * Extract Variable
   * Extract Field
+  * Convert a function to an arrow function
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
 - Forced "auto_complete_delay" option to 0 when showing JavaScript auto-completions
+- Updated default_autocomplete and surround_with_command with more options
 
 ## Misc
 

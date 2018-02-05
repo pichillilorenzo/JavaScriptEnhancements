@@ -74,6 +74,14 @@
     "id": "refactor",
     "children": [
       {
+        "caption": "Converto to arrow function",
+        "command": "refactor",
+        "args": {
+          "case": "convert_to_arrow_function"
+        }
+      },
+      { "caption": "-" },
+      {
         "caption": "Safe Copy",
         "command": "refactor",
         "args": {
@@ -94,6 +102,7 @@
           "case": "safe_delete"
         }
       },
+      { "caption": "-" },
       {
         "caption": "Extract",
         "children": [
@@ -174,15 +183,36 @@
         "command": "surround_with",
         "args": {"case": "try_catch_finally_statement"}
       },
-      {
-        "caption": "block {}",
-        "command": "surround_with",
-        "args": {"case": "block"}
-      },
+      { "caption": "-" },
       {
         "caption": "function",
         "command": "surround_with",
         "args": {"case": "function"}
+      },
+      {
+        "caption": "anonymous function",
+        "command": "surround_with",
+        "args": {"case": "anonymous_function"}
+      },
+      {
+        "caption": "arrow function",
+        "command": "surround_with",
+        "args": {"case": "arrow_function"}
+      },
+      {
+        "caption": "async function",
+        "command": "surround_with",
+        "args": {"case": "async_function"}
+      },
+      {
+        "caption": "iife function",
+        "command": "surround_with",
+        "args": {"case": "iife_function"}
+      },
+      {
+        "caption": "block {}",
+        "command": "surround_with",
+        "args": {"case": "block"}
       }
     ]
   },
