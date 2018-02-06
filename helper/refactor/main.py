@@ -16,7 +16,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_move", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Move Preview"))
       windowView.add(text=" \n")
 
     elif case == "safe_copy" :
@@ -29,7 +29,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addButton(text="COPY", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_copy", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Copy Preview"))
       windowView.add(text=" \n")
 
     if case == "safe_delete" :
@@ -42,7 +42,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addButton(text="DELETE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_delete", args={"preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Delete Preview"))
       windowView.add(text=" \n")
 
     elif case == "extract_method" :
@@ -103,8 +103,14 @@ class RefactorCommand(sublime_plugin.TextCommand):
     elif case == "convert_to_arrow_function" :
       self.view.run_command("refactor_convert_to_arrow_function")
 
-  def is_enabled(self, **args) :
+  def closePreview(self, preview_name):
+    window = self.view.window()
+    for v in window.views():
+      if v.name() == preview_name:
+        v.close()
+        break
 
+  def is_enabled(self, **args) :
     view = self.view
     return Util.selection_in_js_scope(view)
 

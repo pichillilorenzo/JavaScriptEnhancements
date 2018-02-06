@@ -16,7 +16,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
 
     if settings:
       for root, dirs, files in os.walk(settings["project_dir_name"]):
-        if "/node_modules" in root:
+        if os.path.sep + "node_modules" in root:
           continue
         for file in files:
           if file.endswith(".js"):
@@ -26,7 +26,13 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
 
         if not sublime.ok_cancel_dialog("Are you sure you want to delete this file: \""+file_name+"\"?", "Yes"):
           return
-        os.remove(file_name)
+
+        try:
+          os.remove(file_name)
+        except Exception as e:
+          print(traceback.format_exc())
+          sublime.error_message("Cannot delete the file. Some problems occured.")
+          return
 
       else:
         preview_view = None
@@ -38,6 +44,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
             break
 
         if not preview_view:
+          window.focus_group(1)
           preview_view = window.new_file()
           preview_view.set_name("Refactor - Safe Delete Preview")
           preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
@@ -58,7 +65,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
                     line = int(req["line"]) - 1
                     range_start = max(0, line - 2)
                     range_end = min(line + 2, len(splitted_content))
-                    while range_start <= range_end:
+                    while range_start <= range_end and range_start < len(splitted_content):
                       preview_content += "    " + str(range_start + 1) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
                       range_start += 1
                     preview_content +=  "\n"
@@ -102,24 +109,67 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
 
     node = NodeJS(check_local=True)
     
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'get-imports',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--json'
-      ] + javascript_files,
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    if sublime.platform() == "windows":
+      imports = {}
+      javascript_files_temp = ""
+      index = 0
+      for i in range(0, len(javascript_files)):
 
-    if result[0]:
-      return result[1]
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+
+          if not javascript_files_temp:
+            javascript_files_temp = json.dumps(javascript_files[i])
+          else:
+            javascript_files_temp += " " + json.dumps(javascript_files[i])
+        
+          if i < len(javascript_files) - 1:
+            continue
+
+        result = node.execute_check_output(
+          flow_cli,
+          [
+            'get-imports',
+            '--from', 'sublime_text',
+            '--root', deps.project_root,
+            '--json'
+          ] + ( javascript_files[index:i] if i < len(javascript_files) - 1 else javascript_files[index:]),
+          is_from_bin=is_from_bin,
+          use_fp_temp=False, 
+          is_output_json=True,
+          chdir=chdir,
+          bin_path=bin_path,
+          use_node=use_node,
+          command_arg_escape=False
+        )
+
+        if result[0]:
+          imports.update(result[1])
+        else:
+          return {}
+
+        index = i
+        javascript_files_temp = json.dumps(javascript_files[i])
+
+      return imports
+    else:
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'get-imports',
+          '--from', 'sublime_text',
+          '--root', deps.project_root,
+          '--json'
+        ] + javascript_files,
+        is_from_bin=is_from_bin,
+        use_fp_temp=False, 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        return result[1]
 
     return {}
 

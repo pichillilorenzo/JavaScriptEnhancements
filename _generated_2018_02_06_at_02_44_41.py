@@ -199,7 +199,7 @@ class NodeJS(object):
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
-  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True) :
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True, command_arg_escape=True) :
 
     fp = None
     args = ""
@@ -219,7 +219,7 @@ class NodeJS(object):
     for command_arg in command_args :
       if command_arg == ":temp_file":
         command_arg = fp.name
-      command_args_list.append(shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg))
+      command_args_list.append( (shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg)) if command_arg_escape else command_arg )
     command_args = " ".join(command_args_list)
 
     if sublime.platform() == 'windows':
@@ -307,12 +307,22 @@ class NodeJS(object):
       print(traceback.format_exc())
 
       if e.output:
+        print(e.output)
         output_error_message = e.output.decode("utf-8", "ignore").strip()
         output_error_message = output_error_message.split("\n")
-        output_error_message = "\n".join(output_error_message[:-2]) if '{"flowVersion":"' in output_error_message[-1] else "\n".join(output_error_message)
+        final_message = ""
+        flag = False
 
-        print(e.output)
-        sublime.active_window().status_message(output_error_message)
+        for msg in output_error_message:
+          msg = msg.strip()
+          if msg.startswith("{\"flowVersion\":"):
+            flag = True
+            break
+          else:
+            final_message += msg + " "
+
+        if flag:
+          sublime.active_window().status_message(final_message)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -345,7 +355,7 @@ class NodeJS(object):
           fp.close()
       return [False, None]
 
-    except:
+    except Exception as e:
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -746,6 +756,9 @@ class Util(object) :
   def prev_line_is_empty(view, region):
     return view.substr(view.line(view.line(region.begin()).begin()-1)).strip() == ""
 
+  def next_line_is_empty(view, region):
+    return view.substr(view.line(view.line(region.end()).end()+1)).strip() == ""
+
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
     try :
@@ -893,6 +906,14 @@ class Util(object) :
       panel.set_syntax_file(syntax)
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
+
+  @staticmethod
+  def split_path(path):
+    return os.path.normpath(path).split(os.path.sep)
+
+  @staticmethod
+  def convert_path_to_unix(path):
+    return "/".join(Util.split_path(path))
 
   @staticmethod
   def execute(command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
@@ -3048,7 +3069,9 @@ class WindowView():
     self.view.settings().set("draw_indent_guides", False)
     self.view.settings().set("wide_caret", True)
     self.view.settings().set("rulers", "blink")
+    self.view.settings().set("word_wrap", True)
     self.view.settings().add_on_change('color_scheme', lambda: self.setColorScheme())
+    self.setColorScheme()
     self.events = dict()
     self.region_ids = []
     self.region_input_ids = []
@@ -3598,72 +3621,97 @@ class surround_withCommand(sublime_plugin.TextCommand):
         return
 
       sel_1 = Util.trim_Region(view, selections[0])
+      prev_line_is_empty = Util.prev_line_is_empty(view, sel_1)
       space_1 = Util.get_whitespace_from_line_begin(view, sel_1)
-      new_text = Util.replace_with_tab(view, sel_1, space_1+"\n"+space_1+"if (bool) {\n"+space_1, "\n"+space_1+"} ")
-      view.replace(edit, sel_1, new_text.strip())
+      space_before = (space_1 + "\n" + space_1 if not prev_line_is_empty else "")
+      new_text = Util.replace_with_tab(view, sel_1, space_before + "if (bool) {\n" + space_1, "\n" + space_1 + "} ")
+      view.replace(edit, sel_1, new_text)
 
       sel_2 = Util.trim_Region(view, selections[1])
+      next_line_is_empty = Util.next_line_is_empty(view, sel_2)
       space_2 = Util.get_whitespace_from_line_begin(view, sel_2)
-      new_text = Util.replace_with_tab(view, sel_2, " else {\n"+space_2, "\n"+space_2+"}\n"+space_2)
-      view.replace(edit, sel_2, new_text.strip())
+      space_after = ("\n" + space_2 if not next_line_is_empty else "")
+      new_text = Util.replace_with_tab(view, sel_2, " else {\n" + space_2, "\n" + space_2 + "}" + space_after)
+      view.replace(edit, sel_2, new_text)
+
+      new_selection = sublime.Region(sel_1.begin() + len(space_before+"if ("), sel_1.begin() + len(space_before+"if (bool"))
+      view.sel().clear()
+      view.sel().add(new_selection)
+      
     else :
       for selection in selections :
         selection = Util.trim_Region(view, selection)
         if view.substr(selection).strip() == "" :
           continue
+
+        prev_line_is_empty = Util.prev_line_is_empty(view, selection)
+        next_line_is_empty = Util.next_line_is_empty(view, selection)
         space = Util.get_whitespace_from_line_begin(view, selection)
+        space_before = (space + "\n" + space if not prev_line_is_empty else "")
+        space_after = ("\n" + space if not next_line_is_empty else "")
+        new_text = ""
+        new_selection = None
 
         if case == "if_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"if (bool) {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"if (bool) {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"if ("), selection.begin() + len(space_before+"if (bool"))
 
         elif case == "while_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"while (bool) {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"while (bool) {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"while ("), selection.begin() + len(space_before+"while (bool"))
 
         elif case == "do_while_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"do {\n"+space, "\n"+space+"} while (bool);\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"do {\n"+space, "\n"+space+"} while (bool)" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(new_text) - len("ool)"), selection.begin() + len(new_text))
 
         elif case == "for_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"for ( ; bool ; ) {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"for ( ; bool ; ) {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"for ( ; "), selection.begin() + len(space_before+"for ( ; bool"))
 
         elif case == "try_catch_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(new_text) - len(") {\n"+space+"\n"+space+"}" + space_after), selection.begin() + len(new_text) - len(" {\n"+space+"\n"+space+"}" + space_after))
 
         elif case == "try_finally_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"try {\n"+space, "\n"+space+"} finally {\n"+space+"\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"try {"), selection.begin() + len(space_before+"try {"))
 
         elif case == "try_catch_finally_statement" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"try {\n"+space, "\n"+space+"} catch (e) {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(new_text) - len(") {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}" + space_after + space_after), selection.begin() + len(new_text) - len(" {\n"+space+"\n"+space+"} finally {\n"+space+"\n"+space+"}" + space_after + space_after))
 
         elif case == "function" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"function func_name () {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"function func_name () {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"function "), selection.begin() + len(space_before+"function func_name"))
 
         elif case == "anonymous_function" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"function () {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"function () {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"function () {"), selection.begin() + len(space_before+"function () {"))
 
         elif case == "arrow_function" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"() => {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"() => {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"() => {"), selection.begin() + len(space_before+"() => {"))
 
         elif case == "async_function" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"async function func_name () {\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"async function func_name () {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"async function "), selection.begin() + len(space_before+"async function func_name"))
 
         elif case == "iife_function" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"(function () {\n"+space, "\n"+space+"})()\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"(function () {\n"+space, "\n"+space+"})()" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"(function () {"), selection.begin() + len(space_before+"(function () {"))
+
+        elif case == "generator_function" :
+          new_text = Util.replace_with_tab(view, selection, space_before+"function* func_name () {\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"function* "), selection.begin() + len(space_before+"function* func_name"))
 
         elif case == "block" :
-          new_text = Util.replace_with_tab(view, selection, space+"\n"+space+"{\n"+space, "\n"+space+"}\n"+space)
-          view.replace(edit, selection, new_text)
+          new_text = Util.replace_with_tab(view, selection, space_before+"{\n"+space, "\n"+space+"}" + space_after)
+          new_selection = sublime.Region(selection.begin() + len(space_before+"{"), selection.begin() + len(space_before+"{"))
+
+        view.erase(edit, selection)
+        view.insert(edit, selection.begin(), new_text)
+        view.sel().clear()
+        view.sel().add(new_selection)
           
   def is_enabled(self, **args) :
     view = self.view
@@ -3694,7 +3742,7 @@ class delete_surroundedCommand(sublime_plugin.TextCommand):
       scope = view.scope_name(selection.begin()).strip()
       scope_splitted = scope.split(" ")
       if case == "strip_quoted_string" :
-        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
+        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js", "string.quoted.js", "string.interpolated.js"))
         selector = result.get("string")
         item = Util.get_region_scope_first_match(view, scope, selection, selector)
         if item :
@@ -4147,8 +4195,13 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     selections = view.sel()
     if len(selections) == 0:
       return
+    
+    sel = None
+    try:
+      sel = selections[0]
+    except IndexError as e:
+      return
       
-    sel = selections[0]
     if not view.match_selector(
         sel.begin(),
         'source.js - string - comment'
@@ -6113,7 +6166,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addButton(text="MOVE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_move", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Move Preview"))
       windowView.add(text=" \n")
 
     elif case == "safe_copy" :
@@ -6126,7 +6179,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addButton(text="COPY", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_copy", args={"inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Copy Preview"))
       windowView.add(text=" \n")
 
     if case == "safe_delete" :
@@ -6139,7 +6192,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addButton(text="DELETE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_safe_delete", args={"preview": False, "view_id_caller": self.view.id()}))
       windowView.add(text="  ")
-      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Delete Preview"))
       windowView.add(text=" \n")
 
     elif case == "extract_method" :
@@ -6200,8 +6253,14 @@ class RefactorCommand(sublime_plugin.TextCommand):
     elif case == "convert_to_arrow_function" :
       self.view.run_command("refactor_convert_to_arrow_function")
 
-  def is_enabled(self, **args) :
+  def closePreview(self, preview_name):
+    window = self.view.window()
+    for v in window.views():
+      if v.name() == preview_name:
+        v.close()
+        break
 
+  def is_enabled(self, **args) :
     view = self.view
     return Util.selection_in_js_scope(view)
 
@@ -6210,7 +6269,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
     return Util.selection_in_js_scope(view)
 
 import sublime, sublime_plugin
-import os, shutil
+import os, shutil, traceback, json
 
 class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -6219,7 +6278,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
     file_name = view.file_name()
     inputs = args.get("inputs")
     view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
-    new_path = inputs["new_path"].strip()
+    new_path = os.path.normpath(inputs["new_path"].strip())
     settings = get_project_settings()
     javascript_files = [file_name]
 
@@ -6237,7 +6296,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
 
     if settings:
       for root, dirs, files in os.walk(settings["project_dir_name"]):
-        if "/node_modules" in root:
+        if os.path.sep + "node_modules" in root:
           continue
         for file in files:
           if file.endswith(".js"):
@@ -6250,28 +6309,37 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
             return
 
         if not os.path.isdir(os.path.dirname(new_path)):
-          os.makedirs(os.path.dirname(new_path))
-
+          try:
+            os.makedirs(os.path.dirname(new_path))
+          except FileNotFoundError as e:
+            print(traceback.format_exc())
+            sublime.error_message("Cannot create the path. On Windows could be caused by the '[WinError 206] The filename or extension is too long' error.")
+            return
+          except Exception as e:
+            print(traceback.format_exc())
+            sublime.error_message("Cannot create the path. The filename, directory name, or volume label syntax could be incorrect.")
+            return
+          
       else:
         preview_view = None
         for v in window.views():
-          if v.name() == "Refactor - Move Preview":
+          if v.name() == "Refactor - Safe Move Preview":
             preview_view = v
             preview_view.erase(edit, sublime.Region(0, preview_view.size()))
             window.focus_view(preview_view)
             break
 
         if not preview_view:
+          window.focus_group(1)
           preview_view = window.new_file()
-          preview_view.set_name("Refactor - Move Preview")
+          preview_view.set_name("Refactor - Safe Move Preview")
           preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
           preview_view.set_scratch(True)
 
-        preview_view.run_command("append_text_view", args={"text": "Refactor - Move Preview\n\nList of files that will be updated\n\n"})
+        preview_view.run_command("append_text_view", args={"text": "Refactor - Safe Move Preview\n\nList of files that will be updated\n\n"})
 
       if javascript_files:
         imports = self.get_imports(settings, javascript_files)
-
         for k, v in imports.items():
 
           is_same_file = k == file_name
@@ -6284,8 +6352,8 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                 preview_content = ""
 
                 for req in v["requirements"]:
-                  start_offset = int(req["loc"]["start"]["offset"]) + 1
-                  end_offset = int(req["loc"]["end"]["offset"]) - 1
+                  start_offset = view.text_point(int(req["line"]) - 1, int(req["start"]))
+                  end_offset = view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
 
                   req_new_path = req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"])
 
@@ -6293,9 +6361,14 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                     rel_new_path = "./" + os.path.basename(req_new_path)
                   else:
                     rel_new_path = os.path.relpath(req_new_path, start=os.path.dirname(new_path))
+                    
+                    if sublime.platform() == "windows":
+                      rel_new_path = Util.convert_path_to_unix(rel_new_path)
+
                     if not rel_new_path.startswith(".."):
                       rel_new_path = "./" + rel_new_path
-                  content = content [:start_offset] + rel_new_path + content[end_offset:]
+
+                  content = content[:start_offset] + rel_new_path + content[end_offset:]
 
                   if args.get("preview"):
                     splitted_content = content.splitlines()
@@ -6307,7 +6380,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                     line = int(req["line"]) - 1
                     range_start = max(0, line - 2)
                     range_end = min(line + 2, len(splitted_content))
-                    while range_start <= range_end:
+                    while range_start <= range_end and range_start < len(splitted_content):
                       preview_content += "    " + str(range_start + 1) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
                       range_start += 1
                     preview_content +=  "\n\n"
@@ -6319,27 +6392,27 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                   file.write(content)
                   file.truncate()
 
-              if not args.get("preview"):
-                shutil.move(file_name, new_path)
-                window.focus_group(0)
-                new_view = window.open_file(new_path)
-                window.focus_group(1)
-
             else:
               for req in v["requirements"]:
                 if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
+
                   with open(k, "r+") as file:
                     content = file.read()
-                    start_offset = int(req["loc"]["start"]["offset"]) + 1
-                    end_offset = int(req["loc"]["end"]["offset"]) - 1
+                    start_offset = view.text_point(int(req["line"]) - 1, int(req["start"]))
+                    end_offset = view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
                   
                     if os.path.dirname(k) == os.path.dirname(new_path):
                       rel_new_path = "./" + os.path.basename(new_path)
                     else:
                       rel_new_path = os.path.relpath(new_path, start=os.path.dirname(k))
+
+                      if sublime.platform() == "windows":
+                        rel_new_path = Util.convert_path_to_unix(rel_new_path)
+
                       if not rel_new_path.startswith(".."):
                         rel_new_path = "./" + rel_new_path
-                    content = content [:start_offset] + rel_new_path + content[end_offset:]
+
+                    content = content[:start_offset] + rel_new_path + content[end_offset:]
 
                     if args.get("preview"):
                       splitted_content = content.splitlines()
@@ -6347,7 +6420,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                       line = int(req["line"]) - 1
                       range_start = max(0, line - 2)
                       range_end = min(line + 2, len(splitted_content))
-                      while range_start <= range_end:
+                      while range_start <= range_end and range_start < len(splitted_content):
                         preview_content += "    " + str(range_start + 1) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
                         range_start += 1
                       preview_content +=  "\n"
@@ -6357,10 +6430,16 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                       file.write(content)
                       file.truncate()
 
+        if not args.get("preview"):
+          shutil.move(file_name, new_path)
+          window.focus_group(0)
+          new_view = window.open_file(new_path)
+          window.focus_group(1)
+
       if not args.get("preview"):
 
         for v in window.views():
-          if v.name() == "Refactor - Move Preview":
+          if v.name() == "Refactor - Safe Move Preview":
             v.close()
             break
 
@@ -6395,24 +6474,67 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
 
     node = NodeJS(check_local=True)
     
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'get-imports',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--json'
-      ] + javascript_files,
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    if sublime.platform() == "windows":
+      imports = {}
+      javascript_files_temp = ""
+      index = 0
+      for i in range(0, len(javascript_files)):
 
-    if result[0]:
-      return result[1]
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+
+          if not javascript_files_temp:
+            javascript_files_temp = json.dumps(javascript_files[i])
+          else:
+            javascript_files_temp += " " + json.dumps(javascript_files[i])
+        
+          if i < len(javascript_files) - 1:
+            continue
+
+        result = node.execute_check_output(
+          flow_cli,
+          [
+            'get-imports',
+            '--from', 'sublime_text',
+            '--root', deps.project_root,
+            '--json'
+          ] + ( javascript_files[index:i] if i < len(javascript_files) - 1 else javascript_files[index:]),
+          is_from_bin=is_from_bin,
+          use_fp_temp=False, 
+          is_output_json=True,
+          chdir=chdir,
+          bin_path=bin_path,
+          use_node=use_node,
+          command_arg_escape=False
+        )
+
+        if result[0]:
+          imports.update(result[1])
+        else:
+          return {}
+
+        index = i
+        javascript_files_temp = json.dumps(javascript_files[i])
+
+      return imports
+    else:
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'get-imports',
+          '--from', 'sublime_text',
+          '--root', deps.project_root,
+          '--json'
+        ] + javascript_files,
+        is_from_bin=is_from_bin,
+        use_fp_temp=False, 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        return result[1]
 
     return {}
 
@@ -6436,7 +6558,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
       
 
 import sublime, sublime_plugin
-import os, shutil
+import os
 
 class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
@@ -6445,7 +6567,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
     file_name = view.file_name()
     inputs = args.get("inputs")
     view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
-    new_path = inputs["new_path"].strip()
+    new_path = os.path.normpath(inputs["new_path"].strip())
     settings = get_project_settings()
 
     if not file_name:
@@ -6469,24 +6591,34 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
             return
 
         if not os.path.isdir(os.path.dirname(new_path)):
-          os.makedirs(os.path.dirname(new_path))
+          try:
+            os.makedirs(os.path.dirname(new_path))
+          except FileNotFoundError as e:
+            print(traceback.format_exc())
+            sublime.error_message("Cannot create the path. On Windows could be caused by the '[WinError 206] The filename or extension is too long' error.")
+            return
+          except Exception as e:
+            print(traceback.format_exc())
+            sublime.error_message("Cannot create the path. The filename, directory name, or volume label syntax could be incorrect.")
+            return
 
       else:
         preview_view = None
         for v in window.views():
-          if v.name() == "Refactor - Copy Preview":
+          if v.name() == "Refactor - Safe Copy Preview":
             preview_view = v
             preview_view.erase(edit, sublime.Region(0, preview_view.size()))
             window.focus_view(preview_view)
             break
 
         if not preview_view:
+          window.focus_group(1)
           preview_view = window.new_file()
-          preview_view.set_name("Refactor - Copy Preview")
+          preview_view.set_name("Refactor - Safe Copy Preview")
           preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
           preview_view.set_scratch(True)
 
-        preview_view.run_command("append_text_view", args={"text": "Refactor - Copy Preview\n\nList of files that will be updated\n\n"})
+        preview_view.run_command("append_text_view", args={"text": "Refactor - Safe Copy Preview\n\nList of files that will be updated\n\n"})
 
       imports = self.get_imports(settings, [file_name])
 
@@ -6498,8 +6630,8 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
           preview_content = ""
 
           for req in imports[file_name]["requirements"]:
-            start_offset = int(req["loc"]["start"]["offset"]) + 1
-            end_offset = int(req["loc"]["end"]["offset"]) - 1
+            start_offset = view.text_point(int(req["line"]) - 1, int(req["start"]))
+            end_offset = view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
 
             req_new_path = req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(file_name) + os.path.sep + req["import"])
 
@@ -6507,8 +6639,14 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
               rel_new_path = "./" + os.path.basename(req_new_path)
             else:
               rel_new_path = os.path.relpath(req_new_path, start=os.path.dirname(new_path))
+
+              if sublime.platform() == "windows":
+                rel_new_path = Util.convert_path_to_unix(rel_new_path)
+
               if not rel_new_path.startswith(".."):
                 rel_new_path = "./" + rel_new_path
+              
+
             content = content [:start_offset] + rel_new_path + content[end_offset:]
 
             if args.get("preview"):
@@ -6521,7 +6659,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
               line = int(req["line"]) - 1
               range_start = max(0, line - 2)
               range_end = min(line + 2, len(splitted_content))
-              while range_start <= range_end:
+              while range_start <= range_end and range_start < len(splitted_content):
                 preview_content += "    " + str(range_start + 1) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
                 range_start += 1
               preview_content +=  "\n\n"
@@ -6538,7 +6676,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
       if not args.get("preview"):
 
         for v in window.views():
-          if v.name() == "Refactor - Copy Preview":
+          if v.name() == "Refactor - Safe Copy Preview":
             v.close()
             break
 
@@ -6569,24 +6707,67 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
 
     node = NodeJS(check_local=True)
     
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'get-imports',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--json'
-      ] + javascript_files,
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    if sublime.platform() == "windows":
+      imports = {}
+      javascript_files_temp = ""
+      index = 0
+      for i in range(0, len(javascript_files)):
 
-    if result[0]:
-      return result[1]
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+
+          if not javascript_files_temp:
+            javascript_files_temp = json.dumps(javascript_files[i])
+          else:
+            javascript_files_temp += " " + json.dumps(javascript_files[i])
+        
+          if i < len(javascript_files) - 1:
+            continue
+
+        result = node.execute_check_output(
+          flow_cli,
+          [
+            'get-imports',
+            '--from', 'sublime_text',
+            '--root', deps.project_root,
+            '--json'
+          ] + ( javascript_files[index:i] if i < len(javascript_files) - 1 else javascript_files[index:]),
+          is_from_bin=is_from_bin,
+          use_fp_temp=False, 
+          is_output_json=True,
+          chdir=chdir,
+          bin_path=bin_path,
+          use_node=use_node,
+          command_arg_escape=False
+        )
+
+        if result[0]:
+          imports.update(result[1])
+        else:
+          return {}
+
+        index = i
+        javascript_files_temp = json.dumps(javascript_files[i])
+
+      return imports
+    else:
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'get-imports',
+          '--from', 'sublime_text',
+          '--root', deps.project_root,
+          '--json'
+        ] + javascript_files,
+        is_from_bin=is_from_bin,
+        use_fp_temp=False, 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        return result[1]
 
     return {}
 
@@ -6627,7 +6808,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
 
     if settings:
       for root, dirs, files in os.walk(settings["project_dir_name"]):
-        if "/node_modules" in root:
+        if os.path.sep + "node_modules" in root:
           continue
         for file in files:
           if file.endswith(".js"):
@@ -6637,7 +6818,13 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
 
         if not sublime.ok_cancel_dialog("Are you sure you want to delete this file: \""+file_name+"\"?", "Yes"):
           return
-        os.remove(file_name)
+
+        try:
+          os.remove(file_name)
+        except Exception as e:
+          print(traceback.format_exc())
+          sublime.error_message("Cannot delete the file. Some problems occured.")
+          return
 
       else:
         preview_view = None
@@ -6649,6 +6836,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
             break
 
         if not preview_view:
+          window.focus_group(1)
           preview_view = window.new_file()
           preview_view.set_name("Refactor - Safe Delete Preview")
           preview_view.set_syntax_file('Packages/Default/Find Results.hidden-tmLanguage')
@@ -6669,7 +6857,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
                     line = int(req["line"]) - 1
                     range_start = max(0, line - 2)
                     range_end = min(line + 2, len(splitted_content))
-                    while range_start <= range_end:
+                    while range_start <= range_end and range_start < len(splitted_content):
                       preview_content += "    " + str(range_start + 1) + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
                       range_start += 1
                     preview_content +=  "\n"
@@ -6713,24 +6901,67 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
 
     node = NodeJS(check_local=True)
     
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'get-imports',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--json'
-      ] + javascript_files,
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    if sublime.platform() == "windows":
+      imports = {}
+      javascript_files_temp = ""
+      index = 0
+      for i in range(0, len(javascript_files)):
 
-    if result[0]:
-      return result[1]
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+
+          if not javascript_files_temp:
+            javascript_files_temp = json.dumps(javascript_files[i])
+          else:
+            javascript_files_temp += " " + json.dumps(javascript_files[i])
+        
+          if i < len(javascript_files) - 1:
+            continue
+
+        result = node.execute_check_output(
+          flow_cli,
+          [
+            'get-imports',
+            '--from', 'sublime_text',
+            '--root', deps.project_root,
+            '--json'
+          ] + ( javascript_files[index:i] if i < len(javascript_files) - 1 else javascript_files[index:]),
+          is_from_bin=is_from_bin,
+          use_fp_temp=False, 
+          is_output_json=True,
+          chdir=chdir,
+          bin_path=bin_path,
+          use_node=use_node,
+          command_arg_escape=False
+        )
+
+        if result[0]:
+          imports.update(result[1])
+        else:
+          return {}
+
+        index = i
+        javascript_files_temp = json.dumps(javascript_files[i])
+
+      return imports
+    else:
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'get-imports',
+          '--from', 'sublime_text',
+          '--root', deps.project_root,
+          '--json'
+        ] + javascript_files,
+        is_from_bin=is_from_bin,
+        use_fp_temp=False, 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        return result[1]
 
     return {}
 

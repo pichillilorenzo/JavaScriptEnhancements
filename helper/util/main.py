@@ -297,6 +297,9 @@ class Util(object) :
   def prev_line_is_empty(view, region):
     return view.substr(view.line(view.line(region.begin()).begin()-1)).strip() == ""
 
+  def next_line_is_empty(view, region):
+    return view.substr(view.line(view.line(region.end()).end()+1)).strip() == ""
+
   @staticmethod
   def selection_in_js_scope(view, point = -1, except_for = ""):
     try :
@@ -444,6 +447,14 @@ class Util(object) :
       panel.set_syntax_file(syntax)
     window.run_command("show_panel", {"panel": "output."+output_panel_name})
     return panel
+
+  @staticmethod
+  def split_path(path):
+    return os.path.normpath(path).split(os.path.sep)
+
+  @staticmethod
+  def convert_path_to_unix(path):
+    return "/".join(Util.split_path(path))
 
   @staticmethod
   def execute(command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :

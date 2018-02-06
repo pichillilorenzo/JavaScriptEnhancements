@@ -7,7 +7,7 @@ class delete_surroundedCommand(sublime_plugin.TextCommand):
       scope = view.scope_name(selection.begin()).strip()
       scope_splitted = scope.split(" ")
       if case == "strip_quoted_string" :
-        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js"))
+        result = Util.firstIndexOfMultiple(scope_splitted, ("string.quoted.double.js", "string.quoted.single.js", "string.template.js", "string.quoted.js", "string.interpolated.js"))
         selector = result.get("string")
         item = Util.get_region_scope_first_match(view, scope, selection, selector)
         if item :

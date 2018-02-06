@@ -210,6 +210,11 @@
         "args": {"case": "iife_function"}
       },
       {
+        "caption": "generator function",
+        "command": "surround_with",
+        "args": {"case": "generator_function"}
+      },
+      {
         "caption": "block {}",
         "command": "surround_with",
         "args": {"case": "block"}

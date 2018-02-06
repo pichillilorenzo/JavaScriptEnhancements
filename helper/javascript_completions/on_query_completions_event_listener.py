@@ -261,8 +261,13 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     selections = view.sel()
     if len(selections) == 0:
       return
+    
+    sel = None
+    try:
+      sel = selections[0]
+    except IndexError as e:
+      return
       
-    sel = selections[0]
     if not view.match_selector(
         sel.begin(),
         'source.js - string - comment'

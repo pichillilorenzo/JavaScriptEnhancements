@@ -41,6 +41,10 @@
       "function ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
     ],
     [
+      "generator_function",
+      "function* ${1:function_name} (${2:argument}) {\n\t${3:// body... }\n}"
+    ],
+    [
       "anonymous_function",
       "function (${1:argument}) {\n\t${2:// body... }\n}"
     ],
@@ -66,7 +70,7 @@
     ],
     [
       "do_while",
-      "do{\n\t// statement\n} while (${1:condition});"
+      "do{\n\t// statement\n} while (${1:condition})"
     ],
     [
       "while",

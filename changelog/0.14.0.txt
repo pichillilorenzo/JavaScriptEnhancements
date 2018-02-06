@@ -20,9 +20,12 @@ v0.14.0
   * Extract Variable
   * Extract Field
   * Convert a function to an arrow function
+
+  See the Wiki to see how it works https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
 - Forced "auto_complete_delay" option to 0 when showing JavaScript auto-completions
 - Updated default_autocomplete and surround_with_command with more options
+- Show .flowconfig errors in status bar
 
 ## Misc
 

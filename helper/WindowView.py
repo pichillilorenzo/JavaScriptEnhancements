@@ -47,7 +47,9 @@ class WindowView():
     self.view.settings().set("draw_indent_guides", False)
     self.view.settings().set("wide_caret", True)
     self.view.settings().set("rulers", "blink")
+    self.view.settings().set("word_wrap", True)
     self.view.settings().add_on_change('color_scheme', lambda: self.setColorScheme())
+    self.setColorScheme()
     self.events = dict()
     self.region_ids = []
     self.region_input_ids = []

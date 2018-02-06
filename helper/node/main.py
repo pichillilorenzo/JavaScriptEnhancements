@@ -60,7 +60,7 @@ class NodeJS(object):
     
     return Util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
-  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True) :
+  def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True, command_arg_escape=True) :
 
     fp = None
     args = ""
@@ -80,7 +80,7 @@ class NodeJS(object):
     for command_arg in command_args :
       if command_arg == ":temp_file":
         command_arg = fp.name
-      command_args_list.append(shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg))
+      command_args_list.append( (shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg)) if command_arg_escape else command_arg )
     command_args = " ".join(command_args_list)
 
     if sublime.platform() == 'windows':
@@ -168,12 +168,22 @@ class NodeJS(object):
       print(traceback.format_exc())
 
       if e.output:
+        print(e.output)
         output_error_message = e.output.decode("utf-8", "ignore").strip()
         output_error_message = output_error_message.split("\n")
-        output_error_message = "\n".join(output_error_message[:-2]) if '{"flowVersion":"' in output_error_message[-1] else "\n".join(output_error_message)
+        final_message = ""
+        flag = False
 
-        print(e.output)
-        sublime.active_window().status_message(output_error_message)
+        for msg in output_error_message:
+          msg = msg.strip()
+          if msg.startswith("{\"flowVersion\":"):
+            flag = True
+            break
+          else:
+            final_message += msg + " "
+
+        if flag:
+          sublime.active_window().status_message(final_message)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
@@ -206,7 +216,7 @@ class NodeJS(object):
           fp.close()
       return [False, None]
 
-    except:
+    except Exception as e:
 
       # reset the PATH environment variable
       os.environ.update(old_env)
