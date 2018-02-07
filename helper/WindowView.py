@@ -1,4 +1,5 @@
 import sublime, sublime_plugin
+import os
 
 class WindowViewManager():
 
@@ -20,7 +21,8 @@ windowViewManager = WindowViewManager()
 class WindowView():
 
   def __init__(self, title="WindowView", window=None, view=None, use_compare_layout=False):
-    self.view_id_caller = sublime.active_window().active_view().id()
+    self.view_caller = sublime.active_window().active_view()
+    self.view_id_caller = self.view_caller.id()
     self.window = sublime.active_window()
 
     self.use_compare_layout = use_compare_layout
@@ -175,6 +177,48 @@ class WindowView():
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.active_window().run_command("open_url", args={"url": link}))
+
+  def addExplorer(self, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
+    self.addButton("...", callback=lambda view: self.openExplorer(), key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+  def openExplorer(self, path=""):
+
+    path = path.strip()
+    if path:
+      pass
+    elif self.view_caller and self.view_caller.file_name():
+      path = self.view_caller.file_name()
+    elif self.window.folders():
+      path = self.window.folders()[0]
+    else:
+      sublime.error_message('JavaScript Enhancements: No place to open Explorer to')
+      return False
+    
+    if not os.path.isdir(path):
+      path = os.path.dirname(path)
+
+    dirs = []
+    files = []
+
+    for item in os.listdir(path):
+      abspath = os.path.join(path, item)
+      is_dir = os.path.isdir(abspath)
+      if is_dir:
+        dirs.append(abspath)
+      else:
+        files.append(abspath)
+
+    html = "<ul>"
+
+    for d in dirs:
+      html += "<li> DIR: <a>" + os.path.basename(d) + "</a></li>"
+
+    for f in files:
+      html += "<li> FILE: <a>" + os.path.basename(f) + "</a></li>"
+
+    html += "</ul>"
+    html += "<a>Choose</a>"
+    sublime.set_timeout_async(lambda: self.view.show_popup(html, 0, 5, 500, 500), 50)
 
   def getInput(self, region_input_id):
     region = self.view.get_regions(region_input_id)

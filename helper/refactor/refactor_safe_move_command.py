@@ -82,8 +82,8 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                 preview_content = ""
 
                 for req in v["requirements"]:
-                  start_offset = view.text_point(int(req["line"]) - 1, int(req["start"]))
-                  end_offset = view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
+                  start_offset = int(req["loc"]["start"]["offset"]) + 1
+                  end_offset = int(req["loc"]["end"]["offset"]) - 1
 
                   req_new_path = req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"])
 
@@ -128,9 +128,9 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
 
                   with open(k, "r+") as file:
                     content = file.read()
-                    start_offset = view.text_point(int(req["line"]) - 1, int(req["start"]))
-                    end_offset = view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
-                  
+                    start_offset = int(req["loc"]["start"]["offset"]) + 1
+                    end_offset = int(req["loc"]["end"]["offset"]) - 1
+
                     if os.path.dirname(k) == os.path.dirname(new_path):
                       rel_new_path = "./" + os.path.basename(new_path)
                     else:
@@ -142,6 +142,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                       if not rel_new_path.startswith(".."):
                         rel_new_path = "./" + rel_new_path
 
+                    #print(start_offset, end_offset, content[start_offset], content[end_offset])
                     content = content[:start_offset] + rel_new_path + content[end_offset:]
 
                     if args.get("preview"):

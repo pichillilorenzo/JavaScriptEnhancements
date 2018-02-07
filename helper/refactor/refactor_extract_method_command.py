@@ -5,6 +5,7 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
     view = self.view
     selection = view.sel()[0]
     inputs = args.get("inputs")
+    view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
     scope = view.scope_name(selection.begin()).strip()
     function_name = inputs["function_name"].strip()
     parameters = inputs["parameters"].strip()
@@ -12,6 +13,10 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
       parameters = "(" + parameters
     if not parameters.endswith(")"):
       parameters += ")"
+
+    if not function_name:
+      sublime.error_message("Cannot create function. Function name is empty.")
+      return 
 
     if inputs["scope"] == "Class method":
 
@@ -102,6 +107,9 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
       else:
         view.replace(edit, selection, function_name+parameters)
       view.insert(edit, region_class.begin(), new_text)
+
+    if view_id_caller:
+      windowViewManager.get(view_id_caller).close()
 
   def is_enabled(self, **args) :
     view = self.view

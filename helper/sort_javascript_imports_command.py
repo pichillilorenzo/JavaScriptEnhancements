@@ -28,9 +28,9 @@ class sort_javascript_importsCommand(sublime_plugin.TextCommand):
           view.replace(edit, sublime.Region(0,0), "\n".join(sorted(imports)))
 
     else:
-      sublime.set_timeout_async(self.get_imports)
+      sublime.set_timeout_async(self.get_ast_imports)
 
-  def get_imports(self):
+  def get_ast_imports(self):
 
     view = self.view
 

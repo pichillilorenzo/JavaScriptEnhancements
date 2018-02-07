@@ -12,19 +12,24 @@ v0.14.0
 
 - Show hint_parameters tooltip on commit_completion and on insert_snippet "()"
 - Added JavaScript Refactor commands (added to Context and Side Bar menus):
+  * Convert a function to an arrow function
+  * Export:
+    * Function
+    * Class
+    * Variable
   * Safe Copy
   * Safe Move
   * Safe Delete
-  * Extract Method (global scope, current scope, class method)
-  * Extract Parameter
-  * Extract Variable
-  * Extract Field
-  * Convert a function to an arrow function
+  * Extract:
+    * Method (global scope, current scope, class method)
+    * Parameter
+    * Variable
+    * Field
 
-  See the Wiki to see how it works https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki
+  Read the Wiki to see how the Refactor Command works https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
 - Forced "auto_complete_delay" option to 0 when showing JavaScript auto-completions
-- Updated default_autocomplete and surround_with_command with more options
+- Updated default_autocomplete and improved surround_with_command with more options
 - Show .flowconfig errors in status bar
 
 ## Misc

@@ -18,6 +18,8 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Move Preview"))
       windowView.add(text=" \n")
+      windowView.addExplorer(scope="test")
+      windowView.add(text=" \n")
 
     elif case == "safe_copy" :
       windowView = WindowView(title="Refactor - Safe Copy", use_compare_layout=True)
@@ -65,7 +67,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="\n")
       windowView.addSelect(default_option=0, options=select_options, label="Scope: ", region_id="scope")
       windowView.add(text="\n\n")
-      windowView.addCloseButton(text="CREATE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs()}))
+      windowView.addButton(text="CREATE", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_extract_method", args={"inputs": windowView.getInputs(), "view_id_caller": self.view.id()}))
       windowView.add(text="        ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel")
       windowView.add(text=" \n")
@@ -103,6 +105,21 @@ class RefactorCommand(sublime_plugin.TextCommand):
     elif case == "convert_to_arrow_function" :
       self.view.run_command("refactor_convert_to_arrow_function")
 
+    elif case == "export" :
+      tp = args.get("type")
+
+      windowView = WindowView(title="Refactor - Export Function", use_compare_layout=True)
+      windowView.addTitle(text="Refactor - Export Function")
+      windowView.add(text="\n\n")
+      windowView.addInput(value=view.file_name(), label="Export to: ", region_id="new_path")
+      windowView.add(text="\n\n")
+      windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_export_function", args={"type": tp, "inputs": windowView.getInputs(), "preview": True}))
+      windowView.add(text="  ")
+      windowView.addButton(text="EXPORT", scope="javascriptenhancements.button_ok", callback=lambda view: self.view.run_command("refactor_export_function", args={"type": tp, "inputs": windowView.getInputs(), "preview": False, "view_id_caller": self.view.id()}))
+      windowView.add(text="  ")
+      windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Export Function Preview"))
+      windowView.add(text=" \n")
+
   def closePreview(self, preview_name):
     window = self.view.window()
     for v in window.views():
@@ -117,6 +134,10 @@ class RefactorCommand(sublime_plugin.TextCommand):
   def is_visible(self, **args) :
     view = self.view
     return Util.selection_in_js_scope(view)
+
+class RefactorPreview():
+  def __init__(self, title):
+    pass
 
 ${include refactor_safe_move_command.py}
 
@@ -133,3 +154,5 @@ ${include refactor_extract_variable_command.py}
 ${include refactor_extract_field_command.py}
 
 ${include refactor_convert_to_arrow_function_command.py}
+
+${include refactor_export_command.py}

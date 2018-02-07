@@ -82,6 +82,36 @@
       },
       { "caption": "-" },
       {
+        "caption": "Export",
+        "children": [
+          {
+            "caption": "Function",
+            "command": "refactor",
+            "args": {
+              "case": "export",
+              "type": "function"
+            }
+          },
+          {
+            "caption": "Class",
+            "command": "refactor",
+            "args": {
+              "case": "export",
+              "type": "class"
+            }
+          },
+          {
+            "caption": "Variable",
+            "command": "refactor",
+            "args": {
+              "case": "export",
+              "type": "variable"
+            }
+          }
+        ] 
+      },
+      { "caption": "-" },
+      {
         "caption": "Safe Copy",
         "command": "refactor",
         "args": {

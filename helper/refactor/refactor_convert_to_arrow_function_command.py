@@ -44,16 +44,20 @@ class RefactorConvertToArrowFunctionCommand(sublime_plugin.TextCommand):
         region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
         if region.contains(selection):
           text = view.substr(region)
-          
+
           if not text.startswith("function"):
             return
 
-          text = text[8:].lstrip()
+          index_begin_parameter = 8
+          text = text[index_begin_parameter:].lstrip()
+          while text[0] != "(" and len(text) > 0:
+            text = text[1:].lstrip()
+
           block_statement_region = sublime.Region(int(item["body"]["range"][0]), int(item["body"]["range"][1]))
           block_statement = view.substr(block_statement_region)
           index = text.index(block_statement)
 
-          while text[index - 1] == " ":
+          while text[index - 1] == " " and index - 1 >= 0:
              text = text[0:index - 1] + text[index:]
              index = index - 1 
 

@@ -210,7 +210,14 @@ class javascript_completionsEventListener(sublime_plugin.EventListener):
     self.searching = False
 
   def on_text_command(self, view, command_name, args):
-    sel = view.sel()[0]
+    selections = view.sel()
+    sel = None
+    
+    try:
+      sel = selections[0]
+    except IndexError as e:
+      return
+
     if not view.match_selector(
         sel.begin(),
         'source.js - string - comment'
