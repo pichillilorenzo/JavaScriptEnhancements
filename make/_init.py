@@ -25,6 +25,9 @@ BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
 WINDOWS_BATCH_FOLDER = os.path.join(PACKAGE_PATH, 'windows_batch')
 
+IMG_FOLDER_NAME = "img"
+IMG_FOLDER = os.path.join(PACKAGE_PATH, IMG_FOLDER_NAME)
+
 PROJECT_TYPE_SUPPORTED = [
   ['Empty', 'empty'], 
   ['Angular v1', 'angularv1'], 

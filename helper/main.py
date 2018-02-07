@@ -6,6 +6,8 @@ ${include Terminal.py}
 
 ${include WindowView.py}
 
+${include folder_explorer/FolderExplorer.py}
+
 ${include navigate_regions.py}
 
 ${include wait_modified_async_view_event_listener.py}

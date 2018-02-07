@@ -16,8 +16,8 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
       sublime.error_message("Cannot move this file. File name is empty.")
       return 
 
-    if not new_path:
-      sublime.error_message("The File path is empty.")
+    if not new_path or new_path.endswith(os.path.sep) or os.path.isdir(new_path):
+      sublime.error_message("The File path is empty or incorrect.")
       return 
 
     if new_path == file_name:

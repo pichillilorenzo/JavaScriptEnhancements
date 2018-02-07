@@ -25,6 +25,9 @@ BOOKMARKS_FOLDER = os.path.join(HELPER_FOLDER, 'bookmarks')
 
 WINDOWS_BATCH_FOLDER = os.path.join(PACKAGE_PATH, 'windows_batch')
 
+IMG_FOLDER_NAME = "img"
+IMG_FOLDER = os.path.join(PACKAGE_PATH, IMG_FOLDER_NAME)
+
 PROJECT_TYPE_SUPPORTED = [
   ['Empty', 'empty'], 
   ['Angular v1', 'angularv1'], 
@@ -898,13 +901,20 @@ class Util(object) :
     return None
 
   @staticmethod
-  def create_and_show_panel(output_panel_name, window = None, syntax=""):
+  def create_and_show_panel(output_panel_name, window=None, syntax="", read_only=False, return_if_exists=False, unlisted=False):
     window = sublime.active_window() if not window else window
-    panel = window.create_output_panel(output_panel_name, False)
-    panel.set_read_only(True)
-    if syntax :
-      panel.set_syntax_file(syntax)
-    window.run_command("show_panel", {"panel": "output."+output_panel_name})
+    panel = None
+
+    if return_if_exists:
+      panel = window.find_output_panel(output_panel_name)
+
+    if not panel:
+      panel = window.create_output_panel(output_panel_name, unlisted)
+      panel.set_read_only(read_only)
+      if syntax :
+        panel.set_syntax_file(syntax)
+      window.run_command("show_panel", {"panel": "output."+output_panel_name})
+
     return panel
 
   @staticmethod
@@ -1337,7 +1347,7 @@ class PopupManager():
     self.popup_types[popup_type]["visible"] = visible
 
   def isVisible(self, popup_type):
-    return self.popup_types[popup_type]["visible"]
+    return self.popup_types[popup_type]["visible"] and sublime.active_window().active_view().is_popup_visible()
 
   def register(self, popup_type):
     self.popup_types[popup_type] = {
@@ -1351,6 +1361,7 @@ popupManager = PopupManager()
 popupManager.register("hint_parameters")
 popupManager.register("flow_error")
 popupManager.register("can_i_use")
+popupManager.register("folder_explorer")
 
 
 KEYMAP_COMMANDS = []
@@ -3102,6 +3113,9 @@ class WindowView():
     if region_id in self.region_ids:
       raise Exception("Error: ID "+region_id+" already used.")
 
+    if region_id:
+      self.region_ids.append(region_id)
+
     space = (" "*int(padding))
     text = space+text+space
 
@@ -3124,8 +3138,6 @@ class WindowView():
         self.view.run_command("append_text_view", args={"text": "\n", "key": "", "scope": "", "icon": "", "flags": sublime.HIDDEN})
 
     self.view.set_read_only(True)
-    if region_id:
-      self.region_ids.append(region_id)
 
   def addTitle(self, text, key="", scope="javascriptenhancements.title", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=2, display_block=True, insert_point=None, replace_points=[]):
     space_padding = (" "*int(padding))
@@ -3135,6 +3147,7 @@ class WindowView():
 
     self.add("\n\nNOTE: See the keymap ")
     self.addLink("here", "https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki", "link")
+    self.add(" ")
 
   def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
@@ -3158,8 +3171,9 @@ class WindowView():
 
     if label:
       self.add(label)
-    self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
     self.region_input_ids.append(region_id)
+    self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
   def updateInput(self, value, key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
@@ -3172,6 +3186,7 @@ class WindowView():
       raise Exception("Error: ID "+region_id+" already used.")
 
     self.region_input_ids.append(region_id)
+    self.updateInputState()
 
   def addSelect(self, default_option, options, label=None, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
@@ -3183,8 +3198,8 @@ class WindowView():
 
     if label:
       self.add(label)
-    self.add(options[default_option] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
+    self.add(options[default_option] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.set_timeout_async(lambda: self.view.window().show_quick_panel(options, lambda index: self.updateSelect(index, options, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points))))
 
@@ -3193,54 +3208,27 @@ class WindowView():
       return
 
     self.replaceById(region_id, options[index] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+    if not region_id:
+      raise Exception("Error: ID isn't setted.")
+
+    if region_id in self.region_input_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
     self.region_input_ids.append(region_id)
+    self.updateInputState()
 
   def addLink(self, text, link, scope, key="click", icon="", flags=sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.active_window().run_command("open_url", args={"url": link}))
 
-  def addExplorer(self, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
-    self.addButton("...", callback=lambda view: self.openExplorer(), key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+  def addFolderExplorer(self, scope, region_input_id, start_path="", key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[], only_dir=False, only_file=False):
 
-  def openExplorer(self, path=""):
+    folder_explorer = FolderExplorer(self.view, start_path=start_path, callback_choose=lambda path: self.updateInput(path, region_id=region_input_id), only_dir=only_dir, only_file=only_file)
 
-    path = path.strip()
-    if path:
-      pass
-    elif self.view_caller and self.view_caller.file_name():
-      path = self.view_caller.file_name()
-    elif self.window.folders():
-      path = self.window.folders()[0]
-    else:
-      sublime.error_message('JavaScript Enhancements: No place to open Explorer to')
-      return False
-    
-    if not os.path.isdir(path):
-      path = os.path.dirname(path)
-
-    dirs = []
-    files = []
-
-    for item in os.listdir(path):
-      abspath = os.path.join(path, item)
-      is_dir = os.path.isdir(abspath)
-      if is_dir:
-        dirs.append(abspath)
-      else:
-        files.append(abspath)
-
-    html = "<ul>"
-
-    for d in dirs:
-      html += "<li> DIR: <a>" + os.path.basename(d) + "</a></li>"
-
-    for f in files:
-      html += "<li> FILE: <a>" + os.path.basename(f) + "</a></li>"
-
-    html += "</ul>"
-    html += "<a>Choose</a>"
-    sublime.set_timeout_async(lambda: self.view.show_popup(html, 0, 5, 500, 500), 50)
+    self.add(text=" ")
+    self.addButton("...", callback=lambda view: folder_explorer.open( self.getInput(region_input_id) ), key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
   def getInput(self, region_input_id):
     region = self.view.get_regions(region_input_id)
@@ -3463,6 +3451,12 @@ class AppendTextViewCommand(sublime_plugin.TextCommand):
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
 
+class EraseTextViewCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    region = sublime.Region(0, view.size())
+    view.erase(edit, region)
+
 class WindowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
@@ -3552,6 +3546,180 @@ class WindowViewEventListener(sublime_plugin.EventListener):
   def on_close(self, view):
     if view.settings().get("javascript_enhancements_window_view"):
       Hook.apply("javascript_enhancements_window_view_close_"+str(view.id()))
+
+
+import os, traceback
+
+class FolderExplorer:
+
+  view = None
+  start_path = ""
+  current_path = ""
+  selected_dir = ""
+  selected_file = ""
+  callback_choose = None
+  only_dir = False
+  only_file = False
+  closed = False
+  point = 5
+
+  def __init__(self, view, point=5, start_path="", callback_choose=None, only_dir=False, only_file=False):
+
+    self.view = view
+    self.start_path = start_path.strip()
+    self.callback_choose = callback_choose
+    self.only_dir = only_dir
+    self.only_file = only_file
+    self.point = point
+
+    if self.start_path:
+      pass
+    elif self.view and self.view.file_name():
+      self.start_path = self.view.file_name()
+    elif self.view and self.view.window().folders():
+      self.start_path = self.view.window().folders()[0]
+    else:
+      raise Exception('JavaScript Enhancements: No place to open Folder Explorer to')
+
+    if not os.path.isdir(self.start_path):
+      self.start_path = os.path.dirname(self.start_path)
+
+    self.current_path = self.start_path
+
+    self.style_css = ""
+    with open(os.path.join(HELPER_FOLDER, "folder_explorer", "style.css")) as css_file:
+      self.style_css = "<style>"+css_file.read()+"</style>"
+
+  def open(self, path=""):
+
+    dirs = []
+    files = []
+
+    self.current_path = path if path else self.current_path
+
+    if not os.path.isdir(self.current_path):
+      self.current_path = os.path.dirname(self.current_path)
+      
+    try:
+      for item in os.listdir(self.current_path):
+        abspath = os.path.join(self.current_path, item)
+        is_dir = os.path.isdir(abspath)
+        if is_dir:
+          dirs.append(abspath)
+        else:
+          files.append(abspath)
+    except PermissionError as e:
+      sublime.error_message("Permission denied: " + self.current_path)
+      if os.path.dirname(self.current_path) != self.current_path:
+        try:
+          os.listdir(os.path.dirname(self.current_path))
+          self.open(os.path.dirname(self.current_path))
+        except Exception as e2:
+          if self.start_path != self.current_path:
+            self.open(self.start_path)
+      return
+
+    dirs = sorted(dirs)
+    files = sorted(files)
+
+    html = """
+    <html>
+      <head></head>
+      <body>""" + self.style_css + """
+        <div class="content">
+          <p>Folder Explorer """ + (" - Only Directories" if self.only_dir else (" - Only Files" if self.only_file else "")) + """</p>
+          <p class="current-directory">""" + self.current_path + """</p>
+    """
+
+    html += """
+          <div class="item-list">
+    """
+
+    img_directory_src = "file://" + IMG_FOLDER + "/folder.png"
+
+    if self.current_path != os.path.dirname(self.current_path):
+      action = "navigate_dir|" + os.path.dirname(self.current_path)
+      html += "<div class=\"item directory\"><a href=\"" + action + "\"><img class=\"item-image directory-image\" src=\"" + img_directory_src + "\">..</a></div>"
+
+    if not self.only_file:
+      for d in dirs:
+
+        action = "select_dir|" + d
+        html += "<div class=\"item directory\"><a href=\"" + action + "\"><img class=\"item-image directory-image\" src=\"" + img_directory_src + "\">" + os.path.basename(d) + "</a></div>"
+
+    if not self.only_dir:
+      for f in files:
+
+        action = "select_file|" + f
+        html += "<div class=\"item file\"><a href=\"" + action + "\">" + os.path.basename(f) + "</a></div>"
+
+    html += """
+            </div>
+            <a class="button reset-path-button" href=\"navigate_dir|""" + self.start_path + """\">reset path</a>
+            <a class="button choose-button" href=\"choose\">choose</a>
+            <a class="button close-button" href=\"close\">close</a>
+          </div>
+      </body>
+    </html>
+    """
+
+    if not popupManager.isVisible("folder_explorer"):
+      self.closed = False
+      popupManager.setVisible("folder_explorer", True)
+      sublime.set_timeout(lambda:
+        self.view.show_popup(
+          html, 
+          sublime.COOPERATE_WITH_AUTO_COMPLETE, 
+          self.point, 700, 500, 
+          self.action, 
+          lambda: popupManager.setVisible("folder_explorer", False) or ( self.open() if not self.closed else False ))
+      , 50)
+    else:
+      self.view.update_popup(html)
+
+  def action(self, action, parameters=[]):
+
+    if not parameters:
+      action = action.split("|")
+      parameters = action[1:]
+      action = action[0]
+
+    if action == "select_dir":
+      if self.selected_dir == parameters[0]:
+        self.action("navigate_dir", parameters)
+      else:
+        self.selected_dir = parameters[0]
+        self.selected_file = ""
+
+    elif action == "select_file":
+      self.selected_file = parameters[0]
+      self.selected_dir = ""
+
+    elif action == "navigate_dir":
+      self.selected_dir = ""
+      self.selected_file = ""
+      self.open(parameters[0])
+
+    elif action == "choose":
+      if ( self.selected_dir or self.selected_file or self.current_path ) and self.callback_choose:
+        self.callback_choose( self.selected_dir or self.selected_file or self.current_path )
+        self.action("close")
+        return
+
+    elif action == "close":
+      self.closed = True
+      self.selected_dir = ""
+      self.selected_file = ""
+      self.view.hide_popup()
+
+    if self.selected_dir or self.selected_file:
+      panel = Util.create_and_show_panel("folder_explorer_selection", window=self.view.window(), return_if_exists=True, unlisted=True)
+      panel.set_read_only(False)
+      panel.run_command("erase_text_view")
+      panel.run_command("insert_text_view", args={"text": "Selected: " + ( self.selected_dir or self.selected_file ), "point": 0 })
+      panel.set_read_only(True)
+    else:
+      self.view.window().destroy_output_panel("folder_explorer_selection")
 
 
 import sublime, sublime_plugin
@@ -6212,6 +6380,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addTitle(text="Refactor - Safe Move")
       windowView.add(text="\n\n")
       windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
+      windowView.addFolderExplorer(start_path=view.file_name(), region_input_id="new_path", scope="javascriptenhancements.folder_explorer", only_dir=True)
       windowView.add(text="\n\n")
       windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_safe_move", args={"inputs": windowView.getInputs(), "preview": True}))
       windowView.add(text="  ")
@@ -6219,14 +6388,13 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.add(text="  ")
       windowView.addCloseButton(text="CANCEL", scope="javascriptenhancements.button_cancel", callback=lambda view: self.closePreview("Refactor - Safe Move Preview"))
       windowView.add(text=" \n")
-      windowView.addExplorer(scope="test")
-      windowView.add(text=" \n")
 
     elif case == "safe_copy" :
       windowView = WindowView(title="Refactor - Safe Copy", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Copy")
       windowView.add(text="\n\n")
       windowView.addInput(value=view.file_name(), label="Copy to: ", region_id="new_path")
+      windowView.addFolderExplorer(start_path=view.file_name(), region_input_id="new_path", scope="javascriptenhancements.folder_explorer", only_dir=True)
       windowView.add(text="\n\n")
       windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_safe_copy", args={"inputs": windowView.getInputs(), "preview": True}))
       windowView.add(text="  ")
@@ -6313,6 +6481,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView.addTitle(text="Refactor - Export Function")
       windowView.add(text="\n\n")
       windowView.addInput(value=view.file_name(), label="Export to: ", region_id="new_path")
+      windowView.addFolderExplorer(start_path=view.file_name(), region_input_id="new_path", scope="javascriptenhancements.folder_explorer")
       windowView.add(text="\n\n")
       windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_export_function", args={"type": tp, "inputs": windowView.getInputs(), "preview": True}))
       windowView.add(text="  ")
@@ -6358,8 +6527,8 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
       sublime.error_message("Cannot move this file. File name is empty.")
       return 
 
-    if not new_path:
-      sublime.error_message("The File path is empty.")
+    if not new_path or new_path.endswith(os.path.sep) or os.path.isdir(new_path):
+      sublime.error_message("The File path is empty or incorrect.")
       return 
 
     if new_path == file_name:
@@ -6647,8 +6816,8 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
       sublime.error_message("Cannot copy this file. File name is empty.")
       return 
 
-    if not new_path:
-      sublime.error_message("The File path is empty.")
+    if not new_path or new_path.endswith(os.path.sep) or os.path.isdir(new_path):
+      sublime.error_message("The File path is empty or incorrect.")
       return 
 
     if new_path == file_name:
@@ -7885,8 +8054,8 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
       sublime.error_message("Cannot export " + tp + ". File name is empty.")
       return 
 
-    if not new_path:
-      sublime.error_message("The File path is empty.")
+    if not new_path or new_path.endswith(os.path.sep) or os.path.isdir(new_path):
+      sublime.error_message("The File path is empty or incorrect.")
       return 
 
     if new_path == file_name:

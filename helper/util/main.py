@@ -439,13 +439,20 @@ class Util(object) :
     return None
 
   @staticmethod
-  def create_and_show_panel(output_panel_name, window = None, syntax=""):
+  def create_and_show_panel(output_panel_name, window=None, syntax="", read_only=False, return_if_exists=False, unlisted=False):
     window = sublime.active_window() if not window else window
-    panel = window.create_output_panel(output_panel_name, False)
-    panel.set_read_only(True)
-    if syntax :
-      panel.set_syntax_file(syntax)
-    window.run_command("show_panel", {"panel": "output."+output_panel_name})
+    panel = None
+
+    if return_if_exists:
+      panel = window.find_output_panel(output_panel_name)
+
+    if not panel:
+      panel = window.create_output_panel(output_panel_name, unlisted)
+      panel.set_read_only(read_only)
+      if syntax :
+        panel.set_syntax_file(syntax)
+      window.run_command("show_panel", {"panel": "output."+output_panel_name})
+
     return panel
 
   @staticmethod

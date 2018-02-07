@@ -13,7 +13,7 @@ class PopupManager():
     self.popup_types[popup_type]["visible"] = visible
 
   def isVisible(self, popup_type):
-    return self.popup_types[popup_type]["visible"]
+    return self.popup_types[popup_type]["visible"] and sublime.active_window().active_view().is_popup_visible()
 
   def register(self, popup_type):
     self.popup_types[popup_type] = {
@@ -27,3 +27,4 @@ popupManager = PopupManager()
 popupManager.register("hint_parameters")
 popupManager.register("flow_error")
 popupManager.register("can_i_use")
+popupManager.register("folder_explorer")

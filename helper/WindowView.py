@@ -80,6 +80,9 @@ class WindowView():
     if region_id in self.region_ids:
       raise Exception("Error: ID "+region_id+" already used.")
 
+    if region_id:
+      self.region_ids.append(region_id)
+
     space = (" "*int(padding))
     text = space+text+space
 
@@ -102,8 +105,6 @@ class WindowView():
         self.view.run_command("append_text_view", args={"text": "\n", "key": "", "scope": "", "icon": "", "flags": sublime.HIDDEN})
 
     self.view.set_read_only(True)
-    if region_id:
-      self.region_ids.append(region_id)
 
   def addTitle(self, text, key="", scope="javascriptenhancements.title", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=2, display_block=True, insert_point=None, replace_points=[]):
     space_padding = (" "*int(padding))
@@ -113,6 +114,7 @@ class WindowView():
 
     self.add("\n\nNOTE: See the keymap ")
     self.addLink("here", "https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki", "link")
+    self.add(" ")
 
   def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
@@ -136,8 +138,9 @@ class WindowView():
 
     if label:
       self.add(label)
-    self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
     self.region_input_ids.append(region_id)
+    self.add(value, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
   def updateInput(self, value, key="input", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
@@ -150,6 +153,7 @@ class WindowView():
       raise Exception("Error: ID "+region_id+" already used.")
 
     self.region_input_ids.append(region_id)
+    self.updateInputState()
 
   def addSelect(self, default_option, options, label=None, key="select", scope="javascriptenhancements.input", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
 
@@ -161,8 +165,8 @@ class WindowView():
 
     if label:
       self.add(label)
-    self.add(options[default_option] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
     self.region_input_ids.append(region_id)
+    self.add(options[default_option] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.set_timeout_async(lambda: self.view.window().show_quick_panel(options, lambda index: self.updateSelect(index, options, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points))))
 
@@ -171,54 +175,27 @@ class WindowView():
       return
 
     self.replaceById(region_id, options[index] + " ▼", key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+
+    if not region_id:
+      raise Exception("Error: ID isn't setted.")
+
+    if region_id in self.region_input_ids:
+      raise Exception("Error: ID "+region_id+" already used.")
+
     self.region_input_ids.append(region_id)
+    self.updateInputState()
 
   def addLink(self, text, link, scope, key="click", icon="", flags=sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE, region_id="", padding=0, display_block=False, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.addEventListener("drag_select", key+"."+scope, lambda view: sublime.active_window().run_command("open_url", args={"url": link}))
 
-  def addExplorer(self, scope, key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[]):
-    self.addButton("...", callback=lambda view: self.openExplorer(), key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
+  def addFolderExplorer(self, scope, region_input_id, start_path="", key="click", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=False, insert_point=None, replace_points=[], only_dir=False, only_file=False):
 
-  def openExplorer(self, path=""):
+    folder_explorer = FolderExplorer(self.view, start_path=start_path, callback_choose=lambda path: self.updateInput(path, region_id=region_input_id), only_dir=only_dir, only_file=only_file)
 
-    path = path.strip()
-    if path:
-      pass
-    elif self.view_caller and self.view_caller.file_name():
-      path = self.view_caller.file_name()
-    elif self.window.folders():
-      path = self.window.folders()[0]
-    else:
-      sublime.error_message('JavaScript Enhancements: No place to open Explorer to')
-      return False
-    
-    if not os.path.isdir(path):
-      path = os.path.dirname(path)
-
-    dirs = []
-    files = []
-
-    for item in os.listdir(path):
-      abspath = os.path.join(path, item)
-      is_dir = os.path.isdir(abspath)
-      if is_dir:
-        dirs.append(abspath)
-      else:
-        files.append(abspath)
-
-    html = "<ul>"
-
-    for d in dirs:
-      html += "<li> DIR: <a>" + os.path.basename(d) + "</a></li>"
-
-    for f in files:
-      html += "<li> FILE: <a>" + os.path.basename(f) + "</a></li>"
-
-    html += "</ul>"
-    html += "<a>Choose</a>"
-    sublime.set_timeout_async(lambda: self.view.show_popup(html, 0, 5, 500, 500), 50)
+    self.add(text=" ")
+    self.addButton("...", callback=lambda view: folder_explorer.open( self.getInput(region_input_id) ), key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
   def getInput(self, region_input_id):
     region = self.view.get_regions(region_input_id)
@@ -440,6 +417,12 @@ class AppendTextViewCommand(sublime_plugin.TextCommand):
 
       if "region_id" in args and args.get("region_id"):
         view.add_regions(args.get("region_id"), [region], scope, icon, flags)
+
+class EraseTextViewCommand(sublime_plugin.TextCommand):
+  def run(self, edit, **args):
+    view = self.view
+    region = sublime.Region(0, view.size())
+    view.erase(edit, region)
 
 class WindowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
