@@ -10,6 +10,7 @@ v0.14.0
 
 ## Improvements
 
+- Updated flow-bin to 0.65.0
 - Show hint_parameters tooltip on commit_completion and on insert_snippet "()"
 - Added JavaScript Refactor commands (added to Context and Side Bar menus):
   * Convert a function to an arrow function

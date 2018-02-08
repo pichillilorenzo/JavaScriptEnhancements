@@ -3,7 +3,7 @@ import re, os, time, traceback
 PACKAGE_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 
 pattern = re.compile("^( *)\$\{include (\.\/)?(([\w\-]+\/)*)([\w\-]+\.[\w\-]+)\} *$", re.MULTILINE)
-start_from = "make/_init.py"
+start_from = os.path.join("src", "_init.py")
 code = ""
 last_dir_name = ""
 with open(os.path.join(PACKAGE_PATH, start_from), encoding="utf-8") as data_file :
