@@ -414,6 +414,8 @@ class NodeJS(object):
     
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True, command_arg_escape=True) :
 
+    debug_mode = javaScriptEnhancements.get("debug_mode")
+
     fp = None
     args = ""
 
@@ -443,8 +445,9 @@ class NodeJS(object):
     else:
       args = ( shlex.quote(self.node_js_path)+" " if use_node else "")+shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
-    #print(args)
-      
+    if debug_mode:
+      print(args)
+
     old_env = os.environ.copy()
 
     new_env = old_env.copy()
@@ -694,7 +697,7 @@ class Util(object) :
 
   @staticmethod
   def open_json(path):
-    with open(path) as json_file :    
+    with open(path, encoding="utf-8") as json_file :    
       try :
         return json.load(json_file)
       except Exception as e :
@@ -1139,6 +1142,8 @@ class Util(object) :
   @staticmethod
   def execute(command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
+    debug_mode = javaScriptEnhancements.get("debug_mode")
+    
     if sublime.platform() == 'windows':
       args = [command] + command_args
     else :
@@ -1148,7 +1153,8 @@ class Util(object) :
       command_args = " ".join(command_args_list)
       args = shlex.quote(command)+" "+command_args
     
-    #print(args)
+    if debug_mode:
+      print(args)
 
     if wait_terminate :
 
@@ -2193,7 +2199,7 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
     ]
 
     if os.path.isfile(self.path) :
-      with open(self.path, 'r+') as menu:
+      with open(self.path, 'r+', encoding="utf-8") as menu:
         content = menu.read()
         menu.seek(0)
         menu.write(json.dumps(default_value))
@@ -2231,7 +2237,7 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
           menu.truncate()
 
     if os.path.isfile(self.path_disabled) :
-      with open(self.path_disabled, 'w+') as menu:
+      with open(self.path_disabled, 'w+', encoding="utf-8") as menu:
         menu.write(json.dumps(default_value))
 
 class manage_npmCommand(manage_cliCommand):
@@ -2429,7 +2435,7 @@ def add_cordova_settings(working_directory, cordova_custom_path):
 
   cordova_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "cordova_settings.json")
 
-  with open(cordova_settings, 'w+') as file:
+  with open(cordova_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def cordova_prepare_project(project_path, cordova_custom_path):
@@ -2524,7 +2530,7 @@ def add_ionicv1_settings(working_directory, ionicv1_custom_path):
 
   ionicv1_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "ionicv1_settings.json")
 
-  with open(ionicv1_settings, 'w+') as file:
+  with open(ionicv1_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def ionicv1_prepare_project(project_path, ionicv1_custom_path):
@@ -2621,7 +2627,7 @@ def add_ionicv2_settings(working_directory, ionicv2_custom_path):
 
   ionicv2_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "ionicv2_settings.json")
 
-  with open(ionicv2_settings, 'w+') as file:
+  with open(ionicv2_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def ionicv2_prepare_project(project_path, ionicv2_custom_path):
@@ -2725,7 +2731,7 @@ def add_angularv1_settings(working_directory, angularv1_custom_path):
 
   angularv1_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "angularv1_settings.json")
 
-  with open(angularv1_settings, 'w+') as file:
+  with open(angularv1_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def angularv1_prepare_project(project_path, angularv1_custom_path):
@@ -2813,7 +2819,7 @@ def add_angularv2_settings(working_directory, angularv2_custom_path):
 
   angularv2_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "angularv2_settings.json")
 
-  with open(angularv2_settings, 'w+') as file:
+  with open(angularv2_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def angularv2_prepare_project(project_path, angularv2_custom_path):
@@ -2908,7 +2914,7 @@ def add_react_settings(working_directory, react_custom_path):
 
   react_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "react_settings.json")
 
-  with open(react_settings, 'w+') as file:
+  with open(react_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def react_prepare_project(project_path, react_custom_path):
@@ -2979,7 +2985,7 @@ def add_react_native_settings(working_directory, react_native_custom_path):
 
   react_native_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "react_native_settings.json")
 
-  with open(react_native_settings, 'w+') as file:
+  with open(react_native_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def react_native_prepare_project(project_path, react_native_custom_path):
@@ -3072,7 +3078,7 @@ def add_express_settings(working_directory, express_custom_path):
 
   express_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "express_settings.json")
 
-  with open(express_settings, 'w+') as file:
+  with open(express_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def express_prepare_project(project_path, express_custom_path):
@@ -3271,8 +3277,8 @@ class WindowView():
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=0, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.add("\n\nNOTE: See the keymap ")
-    self.addLink("here", "https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki", "link")
-    self.add(" ")
+    self.addLink(text="here", link="https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/WindowView", scope="link")
+    self.add(". ")
 
   def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
@@ -3712,7 +3718,7 @@ class FolderExplorer:
     self.current_path = self.start_path
 
     self.style_css = ""
-    with open(os.path.join(SRC_FOLDER, "folder_explorer", "style.css")) as css_file:
+    with open(os.path.join(SRC_FOLDER, "folder_explorer", "style.css"), encoding="utf-8") as css_file:
       self.style_css = "<style>"+css_file.read()+"</style>"
 
   def open(self, path=""):
@@ -4684,7 +4690,7 @@ class go_to_defCommand(sublime_plugin.TextCommand):
     return True
 
 js_css = ""
-with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
+with open(os.path.join(JC_SETTINGS_FOLDER, "style.css"), encoding="utf-8") as css_file:
   js_css = "<style>"+css_file.read()+"</style>"
 
 default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
@@ -5537,7 +5543,7 @@ def update_bookmarks(set_dot = False, erase_regions = True):
     sublime.error_message("Can't recognize JavaScript Project.")
     return
 
-  with open(path, 'w+') as bookmarks_json:
+  with open(path, 'w+', encoding="utf-8") as bookmarks_json:
     bookmarks_json.write(json.dumps(bookmarks))
 
   if erase_regions:
@@ -5869,14 +5875,14 @@ path_to_test_can_i_use_data = os.path.join(SRC_FOLDER, "can_i_use", "can_i_use_d
 url_can_i_use_json_data = "https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json"
 
 can_i_use_css = ""
-with open(os.path.join(SRC_FOLDER, "can_i_use", "style.css")) as css_file:
+with open(os.path.join(SRC_FOLDER, "can_i_use", "style.css"), encoding="utf-8") as css_file:
   can_i_use_css = "<style>"+css_file.read()+"</style>"
 
 def donwload_can_i_use_json_data() :
   global can_i_use_file
 
   if os.path.isfile(path_to_can_i_use_data) :
-    with open(path_to_can_i_use_data) as json_file:    
+    with open(path_to_can_i_use_data, encoding="utf-8") as json_file:    
       try :
         can_i_use_file = json.load(json_file)
       except Exception as e :
@@ -5907,7 +5913,7 @@ def donwload_can_i_use_json_data() :
           pass
     else :
       os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
-      with open(path_to_can_i_use_data) as json_file :    
+      with open(path_to_can_i_use_data, encoding="utf-8") as json_file :    
         try :
           can_i_use_file = json.load(json_file)
         except Exception as e :
@@ -6516,6 +6522,9 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Move", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Move")
       windowView.add(text="\n\n")
+      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
+      windowView.add(text=".\n\n")
       windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
       windowView.addFolderExplorer(start_path=view.file_name(), region_input_id="new_path", scope="javascriptenhancements.folder_explorer", only_dir=True)
       windowView.add(text="\n\n")
@@ -6530,6 +6539,9 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Copy", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Copy")
       windowView.add(text="\n\n")
+      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
+      windowView.add(text=".\n\n")
       windowView.addInput(value=view.file_name(), label="Copy to: ", region_id="new_path")
       windowView.addFolderExplorer(start_path=view.file_name(), region_input_id="new_path", scope="javascriptenhancements.folder_explorer", only_dir=True)
       windowView.add(text="\n\n")
@@ -6544,6 +6556,9 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Delete", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Delete")
       windowView.add(text="\n\n")
+      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
+      windowView.add(text=".\n\n")
       windowView.add(text="File to delete: " + view.file_name())
       windowView.add(text="\n\n")
       windowView.addButton(text="PREVIEW", scope="javascriptenhancements.button_preview", callback=lambda view: self.view.run_command("refactor_safe_delete", args={"preview": True}))
@@ -6743,7 +6758,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
           if v["requirements"]:
 
             if is_same_file:
-              with open(k, "r+") as file:
+              with open(k, "r+", encoding="utf-8") as file:
                 content = file.read()
                 preview_content = ""
 
@@ -6794,7 +6809,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
               for req in v["requirements"]:
                 if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
 
-                  with open(k, "r+") as file:
+                  with open(k, "r+", encoding="utf-8") as file:
                     content = file.read()
                     start_offset = int(req["loc"]["start"]["offset"]) + 1
                     end_offset = int(req["loc"]["end"]["offset"]) - 1
@@ -7005,7 +7020,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
       if imports[file_name]["requirements"]:
         content = ""
 
-        with open(file_name, "r") as file:
+        with open(file_name, "r", encoding="utf-8") as file:
           content = file.read()
           preview_content = ""
 
@@ -7050,7 +7065,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
             preview_view.append_text(preview_content)
 
         if not args.get("preview"):
-          with open(new_path, "w+") as file:
+          with open(new_path, "w+", encoding="utf-8") as file:
             file.seek(0)
             file.write(content)
             file.truncate()
@@ -7212,7 +7227,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
             if v["requirements"]:
               for req in v["requirements"]:
                 if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
-                  with open(k, "r+") as file:
+                  with open(k, "r+", encoding="utf-8") as file:
                     content = file.read()
                     splitted_content = content.splitlines()
                     preview_content = k + ":\n\n"
@@ -8270,7 +8285,7 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
             export_name = item["id"]["name"]
 
             if file_already_exists:
-              with open(new_path, "r+") as file:
+              with open(new_path, "r+", encoding="utf-8") as file:
                 result_exists = node.execute_check_output(
                   flow_cli,
                   [
@@ -8323,14 +8338,14 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
                   view.erase( edit, sublime.Region(region.begin(), next_variable_declaration_region.begin()) ) 
 
               if file_already_exists:
-                with open(new_path, "r+") as file:
+                with open(new_path, "r+", encoding="utf-8") as file:
                   file_content = file.read().rstrip()
                   file.seek(0)
                   file.write( file_content + "\n\nexport " + content)
                   file.truncate()
 
               else:
-                with open(new_path, "w+") as file:
+                with open(new_path, "w+", encoding="utf-8") as file:
                   file.seek(0)
                   file.write("// @flow \n\nexport" + (" default" if export_to_search != "VariableDeclaration" else "") + " " + content)
                   file.truncate()
@@ -8338,7 +8353,7 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
             else:
               preview_content = "- Export to\n" + new_path + ":\n\n"
               if file_already_exists:
-                with open(new_path, "r+") as file:
+                with open(new_path, "r+", encoding="utf-8") as file:
                   file_content = file.read().rstrip()
                   line = len(file_content.splitlines()) - 1
                   splitted_content = ( file_content + "\n\nexport " + content ).splitlines()
@@ -8554,6 +8569,11 @@ def plugin_loaded():
         fixPathOriginalEnv[key] = environ[key]
 
       fixPath()
+
+    debug_mode = javaScriptEnhancements.get("debug_mode")
+
+    if debug_mode:
+      print(environ)
 
     sublime.set_timeout_async(delete_temp_files)
 

@@ -26,7 +26,7 @@ def add_angularv2_settings(working_directory, angularv2_custom_path):
 
   angularv2_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "angularv2_settings.json")
 
-  with open(angularv2_settings, 'w+') as file:
+  with open(angularv2_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def angularv2_prepare_project(project_path, angularv2_custom_path):

@@ -6,7 +6,7 @@ ${include on_query_completions_event_listener.py}
 ${include go_to_def_command.py}
 
 js_css = ""
-with open(os.path.join(JC_SETTINGS_FOLDER, "style.css")) as css_file:
+with open(os.path.join(JC_SETTINGS_FOLDER, "style.css"), encoding="utf-8") as css_file:
   js_css = "<style>"+css_file.read()+"</style>"
 
 default_completions = Util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')

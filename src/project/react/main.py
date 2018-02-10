@@ -26,7 +26,7 @@ def add_react_settings(working_directory, react_custom_path):
 
   react_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "react_settings.json")
 
-  with open(react_settings, 'w+') as file:
+  with open(react_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def react_prepare_project(project_path, react_custom_path):

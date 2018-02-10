@@ -118,7 +118,7 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
             export_name = item["id"]["name"]
 
             if file_already_exists:
-              with open(new_path, "r+") as file:
+              with open(new_path, "r+", encoding="utf-8") as file:
                 result_exists = node.execute_check_output(
                   flow_cli,
                   [
@@ -171,14 +171,14 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
                   view.erase( edit, sublime.Region(region.begin(), next_variable_declaration_region.begin()) ) 
 
               if file_already_exists:
-                with open(new_path, "r+") as file:
+                with open(new_path, "r+", encoding="utf-8") as file:
                   file_content = file.read().rstrip()
                   file.seek(0)
                   file.write( file_content + "\n\nexport " + content)
                   file.truncate()
 
               else:
-                with open(new_path, "w+") as file:
+                with open(new_path, "w+", encoding="utf-8") as file:
                   file.seek(0)
                   file.write("// @flow \n\nexport" + (" default" if export_to_search != "VariableDeclaration" else "") + " " + content)
                   file.truncate()
@@ -186,7 +186,7 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
             else:
               preview_content = "- Export to\n" + new_path + ":\n\n"
               if file_already_exists:
-                with open(new_path, "r+") as file:
+                with open(new_path, "r+", encoding="utf-8") as file:
                   file_content = file.read().rstrip()
                   line = len(file_content.splitlines()) - 1
                   splitted_content = ( file_content + "\n\nexport " + content ).splitlines()

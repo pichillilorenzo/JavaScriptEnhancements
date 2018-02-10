@@ -52,7 +52,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
       if imports[file_name]["requirements"]:
         content = ""
 
-        with open(file_name, "r") as file:
+        with open(file_name, "r", encoding="utf-8") as file:
           content = file.read()
           preview_content = ""
 
@@ -97,7 +97,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
             preview_view.append_text(preview_content)
 
         if not args.get("preview"):
-          with open(new_path, "w+") as file:
+          with open(new_path, "w+", encoding="utf-8") as file:
             file.seek(0)
             file.write(content)
             file.truncate()

@@ -119,8 +119,8 @@ class WindowView():
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=0, display_block=display_block, insert_point=insert_point, replace_points=replace_points)
 
     self.add("\n\nNOTE: See the keymap ")
-    self.addLink("here", "https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki", "link")
-    self.add(" ")
+    self.addLink(text="here", link="https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/WindowView", scope="link")
+    self.add(". ")
 
   def addSubTitle(self, text, key="", scope="javascriptenhancements.subtitle", icon="", flags=sublime.DRAW_EMPTY | sublime.DRAW_NO_OUTLINE, region_id="", padding=1, display_block=True, insert_point=None, replace_points=[]):
     self.add(text, key=key, scope=scope, icon=icon, flags=flags, region_id=region_id, padding=padding, display_block=display_block, insert_point=insert_point, replace_points=replace_points)

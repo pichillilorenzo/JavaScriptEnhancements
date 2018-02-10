@@ -62,6 +62,8 @@ class NodeJS(object):
     
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True, command_arg_escape=True) :
 
+    debug_mode = javaScriptEnhancements.get("debug_mode")
+
     fp = None
     args = ""
 
@@ -91,8 +93,9 @@ class NodeJS(object):
     else:
       args = ( shlex.quote(self.node_js_path)+" " if use_node else "")+shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
-    #print(args)
-      
+    if debug_mode:
+      print(args)
+
     old_env = os.environ.copy()
 
     new_env = old_env.copy()

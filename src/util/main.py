@@ -21,7 +21,7 @@ class Util(object) :
 
   @staticmethod
   def open_json(path):
-    with open(path) as json_file :    
+    with open(path, encoding="utf-8") as json_file :    
       try :
         return json.load(json_file)
       except Exception as e :
@@ -466,6 +466,8 @@ class Util(object) :
   @staticmethod
   def execute(command, command_args, chdir="", wait_terminate=True, func_stdout=None, args_func_stdout=[]) :
 
+    debug_mode = javaScriptEnhancements.get("debug_mode")
+    
     if sublime.platform() == 'windows':
       args = [command] + command_args
     else :
@@ -475,7 +477,8 @@ class Util(object) :
       command_args = " ".join(command_args_list)
       args = shlex.quote(command)+" "+command_args
     
-    #print(args)
+    if debug_mode:
+      print(args)
 
     if wait_terminate :
 

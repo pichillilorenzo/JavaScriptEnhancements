@@ -31,7 +31,7 @@ def add_ionicv2_settings(working_directory, ionicv2_custom_path):
 
   ionicv2_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "ionicv2_settings.json")
 
-  with open(ionicv2_settings, 'w+') as file:
+  with open(ionicv2_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def ionicv2_prepare_project(project_path, ionicv2_custom_path):

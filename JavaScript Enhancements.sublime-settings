@@ -1,4 +1,6 @@
 {
+  "debug_mode": false,
+
   "PATH": "",
   "node_js_custom_path": "node",
   "npm_custom_path": "npm",

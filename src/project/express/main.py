@@ -26,7 +26,7 @@ def add_express_settings(working_directory, express_custom_path):
 
   express_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "express_settings.json")
 
-  with open(express_settings, 'w+') as file:
+  with open(express_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def express_prepare_project(project_path, express_custom_path):

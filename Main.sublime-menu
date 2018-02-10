@@ -4,6 +4,106 @@
     "id": "tools",
     "children": [
       {
+        "caption": "JavaScript Refactor",
+        "id": "refactor",
+        "children": [
+          {
+            "caption": "Converto to arrow function",
+            "command": "refactor",
+            "args": {
+              "case": "convert_to_arrow_function"
+            }
+          },
+          { "caption": "-" },
+          {
+            "caption": "Export",
+            "children": [
+              {
+                "caption": "Function",
+                "command": "refactor",
+                "args": {
+                  "case": "export",
+                  "type": "function"
+                }
+              },
+              {
+                "caption": "Class",
+                "command": "refactor",
+                "args": {
+                  "case": "export",
+                  "type": "class"
+                }
+              },
+              {
+                "caption": "Variable",
+                "command": "refactor",
+                "args": {
+                  "case": "export",
+                  "type": "variable"
+                }
+              }
+            ] 
+          },
+          { "caption": "-" },
+          {
+            "caption": "Safe Copy",
+            "command": "refactor",
+            "args": {
+              "case": "safe_copy"
+            }
+          },
+          {
+            "caption": "Safe Move",
+            "command": "refactor",
+            "args": {
+              "case": "safe_move"
+            }
+          },
+          {
+            "caption": "Safe Delete",
+            "command": "refactor",
+            "args": {
+              "case": "safe_delete"
+            }
+          },
+          { "caption": "-" },
+          {
+            "caption": "Extract",
+            "children": [
+              {
+                "caption": "Variable",
+                "command": "refactor",
+                "args": {
+                  "case": "extract_variable"
+                }
+              },
+              {
+                "caption": "Field",
+                "command": "refactor",
+                "args": {
+                  "case": "extract_field"
+                }
+              },
+              {
+                "caption": "Parameter",
+                "command": "refactor",
+                "args": {
+                  "case": "extract_parameter"
+                }
+              },
+              { "caption": "-" },
+              {
+                "caption": "Method",
+                "command": "refactor",
+                "args": {
+                  "case": "extract_method"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "caption": "JavaScript Enhancements",
         "mnemonic": "J",
         "id": "javascript_completions_tools",

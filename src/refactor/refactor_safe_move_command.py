@@ -64,7 +64,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
           if v["requirements"]:
 
             if is_same_file:
-              with open(k, "r+") as file:
+              with open(k, "r+", encoding="utf-8") as file:
                 content = file.read()
                 preview_content = ""
 
@@ -115,7 +115,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
               for req in v["requirements"]:
                 if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
 
-                  with open(k, "r+") as file:
+                  with open(k, "r+", encoding="utf-8") as file:
                     content = file.read()
                     start_offset = int(req["loc"]["start"]["offset"]) + 1
                     end_offset = int(req["loc"]["end"]["offset"]) - 1

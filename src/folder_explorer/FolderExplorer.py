@@ -37,7 +37,7 @@ class FolderExplorer:
     self.current_path = self.start_path
 
     self.style_css = ""
-    with open(os.path.join(SRC_FOLDER, "folder_explorer", "style.css")) as css_file:
+    with open(os.path.join(SRC_FOLDER, "folder_explorer", "style.css"), encoding="utf-8") as css_file:
       self.style_css = "<style>"+css_file.read()+"</style>"
 
   def open(self, path=""):

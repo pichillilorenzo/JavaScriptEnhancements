@@ -6,14 +6,14 @@ path_to_test_can_i_use_data = os.path.join(SRC_FOLDER, "can_i_use", "can_i_use_d
 url_can_i_use_json_data = "https://raw.githubusercontent.com/Fyrd/caniuse/master/data.json"
 
 can_i_use_css = ""
-with open(os.path.join(SRC_FOLDER, "can_i_use", "style.css")) as css_file:
+with open(os.path.join(SRC_FOLDER, "can_i_use", "style.css"), encoding="utf-8") as css_file:
   can_i_use_css = "<style>"+css_file.read()+"</style>"
 
 def donwload_can_i_use_json_data() :
   global can_i_use_file
 
   if os.path.isfile(path_to_can_i_use_data) :
-    with open(path_to_can_i_use_data) as json_file:    
+    with open(path_to_can_i_use_data, encoding="utf-8") as json_file:    
       try :
         can_i_use_file = json.load(json_file)
       except Exception as e :
@@ -44,7 +44,7 @@ def donwload_can_i_use_json_data() :
           pass
     else :
       os.rename(path_to_test_can_i_use_data, path_to_can_i_use_data)
-      with open(path_to_can_i_use_data) as json_file :    
+      with open(path_to_can_i_use_data, encoding="utf-8") as json_file :    
         try :
           can_i_use_file = json.load(json_file)
         except Exception as e :

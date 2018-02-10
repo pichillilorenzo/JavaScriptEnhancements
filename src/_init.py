@@ -282,6 +282,11 @@ def plugin_loaded():
 
       fixPath()
 
+    debug_mode = javaScriptEnhancements.get("debug_mode")
+
+    if debug_mode:
+      print(environ)
+
     sublime.set_timeout_async(delete_temp_files)
 
     sublime.set_timeout_async(start, 1000)

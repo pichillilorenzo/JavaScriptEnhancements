@@ -1,6 +1,18 @@
 {
   "completions": [
     [
+      "export",
+      "export"
+    ],
+    [
+      "default",
+      "default"
+    ],
+    [
+      "function",
+      "function"
+    ],
+    [
       "switch",
       "switch (${1:expression}) {\n\tcase ${2:label_1}:\n\t\t${3:// statements_1}\n\t\tbreak;\n\tdefault:\n\t\t${4:// statements_def}\n\t\tbreak;\n}"
     ],

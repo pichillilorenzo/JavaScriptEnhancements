@@ -26,7 +26,7 @@ def add_react_native_settings(working_directory, react_native_custom_path):
 
   react_native_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "react_native_settings.json")
 
-  with open(react_native_settings, 'w+') as file:
+  with open(react_native_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def react_native_prepare_project(project_path, react_native_custom_path):

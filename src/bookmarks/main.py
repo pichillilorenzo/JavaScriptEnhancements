@@ -33,7 +33,7 @@ def update_bookmarks(set_dot = False, erase_regions = True):
     sublime.error_message("Can't recognize JavaScript Project.")
     return
 
-  with open(path, 'w+') as bookmarks_json:
+  with open(path, 'w+', encoding="utf-8") as bookmarks_json:
     bookmarks_json.write(json.dumps(bookmarks))
 
   if erase_regions:

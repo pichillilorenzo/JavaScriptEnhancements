@@ -44,7 +44,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
             if v["requirements"]:
               for req in v["requirements"]:
                 if file_name == ( req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"]) ):
-                  with open(k, "r+") as file:
+                  with open(k, "r+", encoding="utf-8") as file:
                     content = file.read()
                     splitted_content = content.splitlines()
                     preview_content = k + ":\n\n"

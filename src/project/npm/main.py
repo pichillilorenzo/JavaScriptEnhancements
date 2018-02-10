@@ -20,7 +20,7 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
     ]
 
     if os.path.isfile(self.path) :
-      with open(self.path, 'r+') as menu:
+      with open(self.path, 'r+', encoding="utf-8") as menu:
         content = menu.read()
         menu.seek(0)
         menu.write(json.dumps(default_value))
@@ -58,7 +58,7 @@ class enable_menu_npmEventListener(enable_menu_project_typeEventListener):
           menu.truncate()
 
     if os.path.isfile(self.path_disabled) :
-      with open(self.path_disabled, 'w+') as menu:
+      with open(self.path_disabled, 'w+', encoding="utf-8") as menu:
         menu.write(json.dumps(default_value))
 
 class manage_npmCommand(manage_cliCommand):

@@ -30,7 +30,7 @@ def add_cordova_settings(working_directory, cordova_custom_path):
 
   cordova_settings = os.path.join(PROJECT_SETTINGS_FOLDER_PATH, "cordova_settings.json")
 
-  with open(cordova_settings, 'w+') as file:
+  with open(cordova_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
 def cordova_prepare_project(project_path, cordova_custom_path):
