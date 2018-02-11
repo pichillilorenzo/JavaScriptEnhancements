@@ -318,10 +318,11 @@ class Util(object) :
       return False   
   
   @staticmethod
-  def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
-    lines = view.substr(region).split("\n")
+  def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="", lstrip=False) :
+    lines = view.substr(region).splitlines()
     body = list()
     empty_line = 0
+    first_line = False
     for line in lines :
       if line.strip() == "" :
         empty_line = empty_line + 1
@@ -330,7 +331,9 @@ class Util(object) :
           continue
       else :
         empty_line = 0
-      line = "\t"+add_to_each_line_before+line+add_to_each_line_after
+      line = ("\t" if (line and line[0] == " ") or not first_line else "") + add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after
+      if not first_line:
+        first_line = True
       body.append(line)
     if body[len(body)-1].strip() == "" :
       del body[len(body)-1]
@@ -338,7 +341,7 @@ class Util(object) :
     return pre+body+after
 
   @staticmethod
-  def replace_without_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
+  def replace_without_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="", lstrip=False) :
     lines = view.substr(region).split("\n")
     body = list()
     empty_line = 0
@@ -350,7 +353,7 @@ class Util(object) :
           continue
       else :
         empty_line = 0
-      body.append(add_to_each_line_before+line+add_to_each_line_after)
+      body.append(add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after)
     if body[len(body)-1].strip() == "" :
       del body[len(body)-1]
     body = "\n".join(body)
@@ -358,7 +361,8 @@ class Util(object) :
 
   @staticmethod
   def get_whitespace_from_line_begin(view, region) :
-    return " " * ( region.begin() - view.line(region).begin() )
+    n_space = len(view.substr(view.line(region))) - len(view.substr(view.line(region)).lstrip())
+    return " " * n_space
 
   @staticmethod
   def add_whitespace_indentation(view, region, string, replace="\t", add_whitespace_end=True) :
@@ -586,28 +590,28 @@ class Util(object) :
       char = b""
 
   @staticmethod
-  def nested_lookup(key, values, document, wild=False):
+  def nested_lookup(key, values, document, wild=False, return_parent=False):
       """Lookup a key in a nested document, return a list of values"""
-      return list(Util._nested_lookup(key, values, document, wild=wild))
+      return list(Util._nested_lookup(key, values, document, wild=wild, return_parent=return_parent))
 
   @staticmethod
-  def _nested_lookup(key, values, document, wild=False):
+  def _nested_lookup(key, values, document, wild=False, return_parent=False):
       """Lookup a key in a nested document, yield a value"""
       if isinstance(document, list):
           for d in document:
-              for result in Util._nested_lookup(key, values, d, wild=wild):
+              for result in Util._nested_lookup(key, values, d, wild=wild, return_parent=(document if return_parent else False)):
                   yield result
 
       if isinstance(document, dict):
           for k, v in document.items():
               if values and v in values and (key == k or (wild and key.lower() in k.lower())):
-                  yield document
+                  yield (document if not return_parent else return_parent)
               elif not values and key == k or (wild and key.lower() in k.lower()):
-                  yield document
+                  yield (document if not return_parent else return_parent)
               elif isinstance(v, dict):
-                  for result in Util._nested_lookup(key, values, v, wild=wild):
+                  for result in Util._nested_lookup(key, values, v, wild=wild, return_parent=(document if return_parent else False)):
                       yield result
               elif isinstance(v, list):
                   for d in v:
-                      for result in Util._nested_lookup(key, values, d, wild=wild):
+                      for result in Util._nested_lookup(key, values, d, wild=wild, return_parent=(document if return_parent else False)):
                           yield result

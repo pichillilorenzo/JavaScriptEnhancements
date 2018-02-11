@@ -271,8 +271,8 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
         if need_to_import:
           last_import_region = ( import_regions[-1] if import_regions else (sublime.Region(0, 0) if not view.match_selector(0, 'comment') else view.extract_scope(0)) )
 
-          text = "\nimport " + ( "{ " + export_name + " }" if file_already_exists or export_to_search == "VariableDeclaration" else export_name ) + " from '" + rel_new_path + "'\n"
-
+          text = "\nimport " + ( "{ " + export_name + " }" if file_already_exists or export_to_search == "VariableDeclaration" else export_name ) + " from '" + rel_new_path + "'\n" + ("\n" if not Util.next_line_is_empty(view, last_import_region) else "")
+          
           if not args.get("preview"):
             view.insert(edit, last_import_region.end(), text)
           else:

@@ -10,7 +10,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Move", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Move")
       windowView.add(text="\n\n")
-      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.add(text="NOTE: If you want this command checks all the imported/exported JavaScript dependencies and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
       windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
       windowView.add(text=".\n\n")
       windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
@@ -27,7 +27,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Copy", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Copy")
       windowView.add(text="\n\n")
-      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.add(text="NOTE: If you want this command checks all the imported/exported JavaScript dependencies and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
       windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
       windowView.add(text=".\n\n")
       windowView.addInput(value=view.file_name(), label="Copy to: ", region_id="new_path")
@@ -44,7 +44,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Delete", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Delete")
       windowView.add(text="\n\n")
-      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.add(text="NOTE: If you want this command checks all the imported/exported JavaScript dependencies and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
       windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
       windowView.add(text=".\n\n")
       windowView.add(text="File to delete: " + view.file_name())
@@ -63,9 +63,6 @@ class RefactorCommand(sublime_plugin.TextCommand):
       select_options = ['Global scope', 'Current scope', 'Class method']
       if not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
         select_options.remove('Class method')
-      print(scope, len(scope.split(" ")))
-      if len(scope.split(" ")) <= 2:
-        select_options.remove('Global scope')
         
       windowView = WindowView(title="Refactor - Extract Method", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Extract Method")

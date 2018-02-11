@@ -1,4 +1,4 @@
-v0.14.0
+v0.15.0
 
 ## Fixes
 
@@ -23,15 +23,17 @@ v0.14.0
   * Safe Delete
   * Extract:
     * Variable
-    * Field
+    * Field (current method, field declaration, class constructor)
     * Parameter
     * Method (global scope, current scope, class method)
 
   Read the Wiki to see how the Refactor Command works https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Code-Refactoring
 - Added "Open TerminalView Here…" command to Context Menu and Side Bar Menu
 - Forced "auto_complete_delay" option to 0 when showing JavaScript auto-completions
-- Updated default_autocomplete and improved surround_with_command with more options
+- Improved default_autocomplete and surround_with_command with more options
 - Show .flowconfig errors in status bar
+- Added [WindowView](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/WindowView)
+- Added [Folder Explorer](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Folder-Explorer)
 
 ## Misc
 

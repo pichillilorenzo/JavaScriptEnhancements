@@ -5,7 +5,7 @@ from threading import Timer
 from os import environ
 from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.14.0"
+PLUGIN_VERSION = "0.15.0"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)

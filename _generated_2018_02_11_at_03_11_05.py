@@ -5,7 +5,7 @@ from threading import Timer
 from os import environ
 from subprocess import Popen, PIPE
 
-PLUGIN_VERSION = "0.14.0"
+PLUGIN_VERSION = "0.15.0"
 
 PACKAGE_PATH = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_NAME = os.path.basename(PACKAGE_PATH)
@@ -994,10 +994,11 @@ class Util(object) :
       return False   
   
   @staticmethod
-  def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
-    lines = view.substr(region).split("\n")
+  def replace_with_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="", lstrip=False) :
+    lines = view.substr(region).splitlines()
     body = list()
     empty_line = 0
+    first_line = False
     for line in lines :
       if line.strip() == "" :
         empty_line = empty_line + 1
@@ -1006,7 +1007,9 @@ class Util(object) :
           continue
       else :
         empty_line = 0
-      line = "\t"+add_to_each_line_before+line+add_to_each_line_after
+      line = ("\t" if (line and line[0] == " ") or not first_line else "") + add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after
+      if not first_line:
+        first_line = True
       body.append(line)
     if body[len(body)-1].strip() == "" :
       del body[len(body)-1]
@@ -1014,7 +1017,7 @@ class Util(object) :
     return pre+body+after
 
   @staticmethod
-  def replace_without_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="") :
+  def replace_without_tab(view, region, pre="", after="", add_to_each_line_before="", add_to_each_line_after="", lstrip=False) :
     lines = view.substr(region).split("\n")
     body = list()
     empty_line = 0
@@ -1026,7 +1029,7 @@ class Util(object) :
           continue
       else :
         empty_line = 0
-      body.append(add_to_each_line_before+line+add_to_each_line_after)
+      body.append(add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after)
     if body[len(body)-1].strip() == "" :
       del body[len(body)-1]
     body = "\n".join(body)
@@ -1034,7 +1037,8 @@ class Util(object) :
 
   @staticmethod
   def get_whitespace_from_line_begin(view, region) :
-    return " " * ( region.begin() - view.line(region).begin() )
+    n_space = len(view.substr(view.line(region))) - len(view.substr(view.line(region)).lstrip())
+    return " " * n_space
 
   @staticmethod
   def add_whitespace_indentation(view, region, string, replace="\t", add_whitespace_end=True) :
@@ -1262,30 +1266,30 @@ class Util(object) :
       char = b""
 
   @staticmethod
-  def nested_lookup(key, values, document, wild=False):
+  def nested_lookup(key, values, document, wild=False, return_parent=False):
       """Lookup a key in a nested document, return a list of values"""
-      return list(Util._nested_lookup(key, values, document, wild=wild))
+      return list(Util._nested_lookup(key, values, document, wild=wild, return_parent=return_parent))
 
   @staticmethod
-  def _nested_lookup(key, values, document, wild=False):
+  def _nested_lookup(key, values, document, wild=False, return_parent=False):
       """Lookup a key in a nested document, yield a value"""
       if isinstance(document, list):
           for d in document:
-              for result in Util._nested_lookup(key, values, d, wild=wild):
+              for result in Util._nested_lookup(key, values, d, wild=wild, return_parent=(document if return_parent else False)):
                   yield result
 
       if isinstance(document, dict):
           for k, v in document.items():
               if values and v in values and (key == k or (wild and key.lower() in k.lower())):
-                  yield document
+                  yield (document if not return_parent else return_parent)
               elif not values and key == k or (wild and key.lower() in k.lower()):
-                  yield document
+                  yield (document if not return_parent else return_parent)
               elif isinstance(v, dict):
-                  for result in Util._nested_lookup(key, values, v, wild=wild):
+                  for result in Util._nested_lookup(key, values, v, wild=wild, return_parent=(document if return_parent else False)):
                       yield result
               elif isinstance(v, list):
                   for d in v:
-                      for result in Util._nested_lookup(key, values, d, wild=wild):
+                      for result in Util._nested_lookup(key, values, d, wild=wild, return_parent=(document if return_parent else False)):
                           yield result
 
 import time, os, re, threading, socket, traceback, sys, struct
@@ -6522,7 +6526,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Move", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Move")
       windowView.add(text="\n\n")
-      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.add(text="NOTE: If you want this command checks all the imported/exported JavaScript dependencies and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
       windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
       windowView.add(text=".\n\n")
       windowView.addInput(value=view.file_name(), label="Move to: ", region_id="new_path")
@@ -6539,7 +6543,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Copy", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Copy")
       windowView.add(text="\n\n")
-      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.add(text="NOTE: If you want this command checks all the imported/exported JavaScript dependencies and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
       windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
       windowView.add(text=".\n\n")
       windowView.addInput(value=view.file_name(), label="Copy to: ", region_id="new_path")
@@ -6556,7 +6560,7 @@ class RefactorCommand(sublime_plugin.TextCommand):
       windowView = WindowView(title="Refactor - Safe Delete", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Safe Delete")
       windowView.add(text="\n\n")
-      windowView.add(text="NOTE: If you want this command checks all files and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
+      windowView.add(text="NOTE: If you want this command checks all the imported/exported JavaScript dependencies and not just those with @flow, you need to add \"all=true\" into the .flowconfig [options]. See ")
       windowView.addLink(text="here", link="https://flow.org/en/docs/config/options/#toc-all-boolean", scope="flow-toc-all-boolean")
       windowView.add(text=".\n\n")
       windowView.add(text="File to delete: " + view.file_name())
@@ -6575,9 +6579,6 @@ class RefactorCommand(sublime_plugin.TextCommand):
       select_options = ['Global scope', 'Current scope', 'Class method']
       if not view.match_selector(view.sel()[0].begin(), 'meta.class.js'):
         select_options.remove('Class method')
-      print(scope, len(scope.split(" ")))
-      if len(scope.split(" ")) <= 2:
-        select_options.remove('Global scope')
         
       windowView = WindowView(title="Refactor - Extract Method", use_compare_layout=True)
       windowView.addTitle(text="Refactor - Extract Method")
@@ -7362,8 +7363,8 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     selection = view.sel()[0]
+    selection = Util.trim_Region(view, selection)
     inputs = args.get("inputs")
-    view_id_caller = args.get("view_id_caller") if "view_id_caller" in args else None
     scope = view.scope_name(selection.begin()).strip()
     function_name = inputs["function_name"].strip()
     parameters = inputs["parameters"].strip()
@@ -7440,34 +7441,92 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
           else:
             for item in body:
               r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
-              if r.contains(selection):
+              if r.contains(selection) or r.intersects(selection):
+                region = r
+                break
+
+          if region: 
+            prev_line_is_empty = Util.prev_line_is_empty(view, selection)
+            next_line_is_empty = Util.next_line_is_empty(view, selection)
+            space = Util.get_whitespace_from_line_begin(view, selection)
+            space_before = ("\n" + space if not prev_line_is_empty else "")
+            space_after = "\n" + space
+            new_text = Util.replace_with_tab(view, selection, space_before+"function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}" + space_after)
+
+            view.erase(edit, selection)
+            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
+              view.insert(edit, selection.begin(), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
+            else:
+              view.insert(edit, selection.begin(), function_name+parameters)
+            view.insert(edit, region.begin() + (1 if view.substr(region.begin()) == "{" else 0), new_text)
+
+    elif inputs["scope"] == "Global scope":
+
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = ""
+      use_node = True
+      bin_path = ""
+
+      settings = get_project_settings()
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        chdir = settings["project_dir_name"]
+        use_node = False
+
+      node = NodeJS(check_local=True)
+      
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'ast',
+          '--from', 'sublime_text'
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=view.substr(sublime.Region(0, view.size())), 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        if "body" in result[1]:
+          body = result[1]["body"]
+          items = Util.nested_lookup("type", ["BlockStatement"], body, return_parent=True)[::-1]
+          region = None
+
+          for item in items:
+            r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+            if r.contains(selection):
+              region = r
+              break
+          else:
+            for item in body:
+              r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+              if r.contains(selection) or r.intersects(selection):
                 region = r
                 break
 
           if region: 
 
-            space = Util.get_whitespace_from_line_begin(view, region)
-            new_text = Util.replace_with_tab(view, selection, "function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}\n"+space)
-            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
-              view.replace(edit, selection, function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
-            else:
-              view.replace(edit, selection, function_name+parameters)
+            prev_line_is_empty = Util.prev_line_is_empty(view, region)
+            next_line_is_empty = Util.next_line_is_empty(view, region)
+            space_before = ("\n" if not prev_line_is_empty else "")
+
+            new_text = Util.replace_with_tab(view, selection, space_before+"function "+function_name+" "+parameters+" {\n", "\n}\n\n", lstrip=True)
+
+            view.erase(edit, selection)
             view.insert(edit, region.begin(), new_text)
+            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
+              view.insert(edit, selection.begin() + len(Util.convert_tabs_using_tab_size(view, new_text)), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
+            else:
+              view.insert(edit, selection.begin() + len(Util.convert_tabs_using_tab_size(view, new_text)), function_name+parameters)
 
-    elif inputs["scope"] == "Global scope":
-
-      region_class = Util.get_region_scope_first_match(view, scope, selection, scope.split(" ")[1])["region"]
-      space = Util.get_whitespace_from_line_begin(view, region_class)
-      new_text = Util.replace_with_tab(view, selection, "function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}\n\n"+space)
-
-      if Util.region_contains_scope(view, selection, "variable.language.this.js"):
-        view.replace(edit, selection, function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
-      else:
-        view.replace(edit, selection, function_name+parameters)
-      view.insert(edit, region_class.begin(), new_text)
-
-    if view_id_caller:
-      windowViewManager.get(view_id_caller).close()
+    windowViewManager.close(view.id())
 
   def is_enabled(self, **args) :
     view = self.view
@@ -8438,8 +8497,8 @@ class RefactorExportFunctionCommand(sublime_plugin.TextCommand):
         if need_to_import:
           last_import_region = ( import_regions[-1] if import_regions else (sublime.Region(0, 0) if not view.match_selector(0, 'comment') else view.extract_scope(0)) )
 
-          text = "\nimport " + ( "{ " + export_name + " }" if file_already_exists or export_to_search == "VariableDeclaration" else export_name ) + " from '" + rel_new_path + "'\n"
-
+          text = "\nimport " + ( "{ " + export_name + " }" if file_already_exists or export_to_search == "VariableDeclaration" else export_name ) + " from '" + rel_new_path + "'\n" + ("\n" if not Util.next_line_is_empty(view, last_import_region) else "")
+          
           if not args.get("preview"):
             view.insert(edit, last_import_region.end(), text)
           else:
