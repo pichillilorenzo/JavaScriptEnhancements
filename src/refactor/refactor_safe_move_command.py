@@ -13,6 +13,10 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
     javascript_files = [file_name]
     preview_view = None
 
+    if view.is_dirty():
+      sublime.error_message("Cannot move this file. There are unsaved modifications to the buffer. Save the file before use this.")
+      return 
+
     if not file_name:
       sublime.error_message("Cannot move this file. File name is empty.")
       return 
@@ -67,10 +71,14 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
               with open(k, "r+", encoding="utf-8") as file:
                 content = file.read()
                 preview_content = ""
+                delta = 0
+                lines_updated = []
 
-                for req in v["requirements"]:
-                  start_offset = int(req["loc"]["start"]["offset"]) + 1
-                  end_offset = int(req["loc"]["end"]["offset"]) - 1
+                requirements_sorted = sorted(v["requirements"], key=lambda req: int(req["loc"]["start"]["offset"]))
+
+                for req in requirements_sorted:
+                  start_offset = int(req["loc"]["start"]["offset"]) + 1 + delta if sublime.platform() != "windows" else view.text_point(int(req["line"]) - 1, int(req["start"])) + delta
+                  end_offset = int(req["loc"]["end"]["offset"]) - 1 + delta if sublime.platform() != "windows" else view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1) + delta
 
                   req_new_path = req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"])
 
@@ -85,26 +93,33 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                     if not rel_new_path.startswith(".."):
                       rel_new_path = "./" + rel_new_path
 
+                  delta += len(rel_new_path) - len(content[start_offset:end_offset])
                   content = content[:start_offset] + rel_new_path + content[end_offset:]
 
                   if args.get("preview"):
-                    splitted_content = content.splitlines()
-
-                    if not preview_content:
-                      preview_content = "- From:\n" + file_name + "\n\n"
-                      preview_content += "- To:\n" + new_path + "\n\n"
-
                     line = int(req["line"]) - 1
-                    range_start = max(0, line - 2)
-                    range_end = min(line + 2, len(splitted_content) - 1)
-                    while range_start <= range_end:
-                      line_number = str(range_start + 1)
-                      space_before_line_number = " " * ( 5 - len(line_number) )
-                      preview_content += space_before_line_number + line_number + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
-                      range_start += 1
-                    preview_content += "\n\n"
+                    lines_updated.append(line)
                     
                 if args.get("preview"):
+                  splitted_content = content.splitlines()
+
+                  preview_content = "- Move From:\n" + file_name + "\n\n"
+                  preview_content += "- To:\n" + new_path + "\n\n"
+
+                  range_start_before = -1
+                  is_first_range_start = True
+
+                  for range_start in lines_updated:
+                    line_number = str(range_start + 1)
+                    space_before_line_number = " " * ( 5 - len(line_number) )
+                    if range_start - 1 != range_start_before and not is_first_range_start:
+                      space_before_line_number = space_before_line_number + ("." * len(line_number) ) + "\n" + space_before_line_number
+                    is_first_range_start = False
+                    preview_content += space_before_line_number + line_number + (": " if range_start in lines_updated else "  ") + splitted_content[range_start] + "\n"
+                    range_start_before = range_start
+                    range_start += 1
+
+                  preview_content += "\n\n"
                   preview_view.append_text(preview_content)
                 else:
                   file.seek(0)
@@ -117,8 +132,8 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
 
                   with open(k, "r+", encoding="utf-8") as file:
                     content = file.read()
-                    start_offset = int(req["loc"]["start"]["offset"]) + 1
-                    end_offset = int(req["loc"]["end"]["offset"]) - 1
+                    start_offset = int(req["loc"]["start"]["offset"]) + 1 if sublime.platform() != "windows" else view.text_point(int(req["line"]) - 1, int(req["start"]))
+                    end_offset = int(req["loc"]["end"]["offset"]) - 1 if sublime.platform() != "windows" else view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
 
                     if os.path.dirname(k) == os.path.dirname(new_path):
                       rel_new_path = "./" + os.path.basename(new_path)
@@ -195,12 +210,12 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
       index = 0
       for i in range(0, len(javascript_files)):
 
-        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i], ensure_ascii=False)) <= 7500 :
 
           if not javascript_files_temp:
-            javascript_files_temp = json.dumps(javascript_files[i])
+            javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
           else:
-            javascript_files_temp += " " + json.dumps(javascript_files[i])
+            javascript_files_temp += " " + json.dumps(javascript_files[i], ensure_ascii=False)
         
           if i < len(javascript_files) - 1:
             continue
@@ -228,7 +243,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
           return {}
 
         index = i
-        javascript_files_temp = json.dumps(javascript_files[i])
+        javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
 
       return imports
     else:

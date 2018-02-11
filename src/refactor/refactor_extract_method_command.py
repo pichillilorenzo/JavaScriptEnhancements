@@ -20,11 +20,59 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
 
     if inputs["scope"] == "Class method":
 
-      view.replace(edit, selection, "this."+function_name+parameters)
-      region_class = Util.get_region_scope_first_match(view, scope, selection, 'meta.class.js')["region"]
-      new_text = Util.replace_with_tab(view, selection, ("\t\n" if not Util.prev_line_is_empty(view, sublime.Region(region_class.end(), region_class.end())) else "")+"\t"+function_name+" "+parameters+" {\n\t", "\n\t}\n")
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = ""
+      use_node = True
+      bin_path = ""
 
-      view.insert(edit, region_class.end()-1, new_text)
+      settings = get_project_settings()
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        chdir = settings["project_dir_name"]
+        use_node = False
+
+      node = NodeJS(check_local=True)
+      
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'ast',
+          '--from', 'sublime_text'
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=view.substr(sublime.Region(0, view.size())), 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        if "body" in result[1]:
+          body = result[1]["body"]
+          items = Util.nested_lookup("type", ["ClassBody"], body)
+          last_block_statement = None
+          last_item = None
+          region = None
+
+          for item in items:
+            region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+            if region.contains(selection):
+              prev_line_is_empty = Util.prev_line_is_empty(view, sublime.Region(region.end(), region.end()))
+              space = Util.get_whitespace_from_line_begin(view, selection)
+              space_before = ("\n\t" if not prev_line_is_empty else "\t")
+              space_after = "\n\n"
+              new_text = Util.replace_with_tab(view, selection, space_before+function_name+" "+parameters+" {\n", "\n\t}" + space_after, add_to_each_line_before="\t", lstrip=True)
+             
+              view.insert(edit, region.end() - 1, new_text)
+              view.erase(edit, selection)
+              view.insert(edit, selection.begin(), "this." + function_name + parameters)
+
+              break
 
     elif inputs["scope"] == "Current scope":
 
@@ -68,9 +116,9 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
           region = None
 
           for item in items:
-            region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
-            if region.contains(selection):
-              last_block_statement = region
+            r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+            if r.contains(selection):
+              last_block_statement = r
               last_item = item
 
           if last_block_statement:
@@ -79,6 +127,10 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
               if r.contains(selection):
                 region = r
                 break
+
+            if not region:
+              region = last_block_statement
+
           else:
             for item in body:
               r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
@@ -88,18 +140,18 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
 
           if region: 
             prev_line_is_empty = Util.prev_line_is_empty(view, selection)
-            next_line_is_empty = Util.next_line_is_empty(view, selection)
             space = Util.get_whitespace_from_line_begin(view, selection)
-            space_before = ("\n" + space if not prev_line_is_empty else "")
-            space_after = "\n" + space
+            space_before = ("\n" + space if not prev_line_is_empty else ( space if view.substr(region).startswith("{") else ""))
+            space_after = (( "\n" + space if not view.substr(region).startswith("{") else "\n") if not prev_line_is_empty else "\n" + space)
             new_text = Util.replace_with_tab(view, selection, space_before+"function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}" + space_after)
+            contains_this = Util.region_contains_scope(view, selection, "variable.language.this.js")
 
             view.erase(edit, selection)
-            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
+            if contains_this:
               view.insert(edit, selection.begin(), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
             else:
               view.insert(edit, selection.begin(), function_name+parameters)
-            view.insert(edit, region.begin() + (1 if view.substr(region.begin()) == "{" else 0), new_text)
+            view.insert(edit, (view.full_line(region.begin()).end() if view.substr(region).startswith("{") else region.begin()), new_text)
 
     elif inputs["scope"] == "Global scope":
 
@@ -137,15 +189,18 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
       if result[0]:
         if "body" in result[1]:
           body = result[1]["body"]
-          items = Util.nested_lookup("type", ["BlockStatement"], body, return_parent=True)[::-1]
+          items = Util.nested_lookup("type", ["ClassBody", "BlockStatement"], body, return_parent=True)
           region = None
 
-          for item in items:
-            r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
-            if r.contains(selection):
-              region = r
-              break
-          else:
+          if items:
+            items_sorted = sorted(items, key=lambda item: int(item["range"][0]))
+            for item in items_sorted:
+              r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+              if r.contains(selection):
+                region = r
+                break
+
+          if not region:
             for item in body:
               r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
               if r.contains(selection) or r.intersects(selection):
@@ -155,17 +210,16 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
           if region: 
 
             prev_line_is_empty = Util.prev_line_is_empty(view, region)
-            next_line_is_empty = Util.next_line_is_empty(view, region)
             space_before = ("\n" if not prev_line_is_empty else "")
-
             new_text = Util.replace_with_tab(view, selection, space_before+"function "+function_name+" "+parameters+" {\n", "\n}\n\n", lstrip=True)
+            contains_this = Util.region_contains_scope(view, selection, "variable.language.this.js")
 
-            view.erase(edit, selection)
-            view.insert(edit, region.begin(), new_text)
-            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
-              view.insert(edit, selection.begin() + len(Util.convert_tabs_using_tab_size(view, new_text)), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
+            view.erase(edit, selection) 
+            if contains_this:
+              view.insert(edit, selection.begin(), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
             else:
-              view.insert(edit, selection.begin() + len(Util.convert_tabs_using_tab_size(view, new_text)), function_name+parameters)
+              view.insert(edit, selection.begin(), function_name+parameters)
+            view.insert(edit, region.begin(), new_text)
 
     windowViewManager.close(view.id())
 

@@ -96,12 +96,12 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
       index = 0
       for i in range(0, len(javascript_files)):
 
-        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i], ensure_ascii=False)) <= 7500 :
 
           if not javascript_files_temp:
-            javascript_files_temp = json.dumps(javascript_files[i])
+            javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
           else:
-            javascript_files_temp += " " + json.dumps(javascript_files[i])
+            javascript_files_temp += " " + json.dumps(javascript_files[i], ensure_ascii=False)
         
           if i < len(javascript_files) - 1:
             continue
@@ -129,7 +129,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
           return {}
 
         index = i
-        javascript_files_temp = json.dumps(javascript_files[i])
+        javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
 
       return imports
     else:

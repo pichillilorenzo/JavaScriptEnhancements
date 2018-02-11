@@ -48,7 +48,10 @@ class FolderExplorer:
     self.current_path = path if path else self.current_path
 
     if not os.path.isdir(self.current_path):
-      self.current_path = os.path.dirname(self.current_path)
+      prev_path = ""
+      while not os.path.isdir(self.current_path) and prev_path != self.current_path:
+        prev_path = self.current_path
+        self.current_path = os.path.dirname(self.current_path)
       
     try:
       for item in os.listdir(self.current_path):

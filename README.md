@@ -11,7 +11,7 @@ This plugin uses **[Flow](https://github.com/facebook/flow)** (javascript static
 
 This is in **BETA** version for **testing**. 
 
-It offers better **javascript autocomplete** and also a lot of features about creating, developing and managing **javascript projects**, such as:
+It offers better **JavaScript autocomplete** and also a lot of features about creating, developing and managing [**JavaScript projects**](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Creating-a-JavaScript-Project), such as:
 
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 (it includes also v3) projects (same as Cordova projects!)
@@ -20,8 +20,9 @@ It offers better **javascript autocomplete** and also a lot of features about cr
 - React Native projects (only about the creation at this moment. I will add also **NativeScript** support)
 - Express projects (only about the creation at this moment)
 - Yeoman generators
-- Local bookmarks project
-- JavaScript real-time errors
+- [Local bookmarks project](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Features#bookmarks-project)
+- [JavaScript real-time errors](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Errors-and-linting)
+- [Code Refactoring](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Code-Refactoring)
 - etc.
 
 You could use it also in **existing projects** (see the [Wiki](https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project))!

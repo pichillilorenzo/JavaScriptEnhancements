@@ -66,20 +66,17 @@ def sublime_executable_path():
 def subl(args):
   
   executable_path = sublime_executable_path()
-
+  args = [executable_path] + args
   args_list = list()
 
   if sublime.platform() == 'windows' :
-    args = [executable_path] + args
     for arg in args :
-      args_list.append(json.dumps(arg))
-    json.dumps(executable_path)
+      args_list.append(json.dumps(arg, ensure_ascii=False))
   else :
     for arg in args :
       args_list.append(shlex.quote(arg))
-    shlex.quote(executable_path)
   
-  args = executable_path + " " + " ".join(args_list)
+  args = " ".join(args_list)
 
   return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -434,14 +431,14 @@ class NodeJS(object):
     for command_arg in command_args :
       if command_arg == ":temp_file":
         command_arg = fp.name
-      command_args_list.append( (shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg)) if command_arg_escape else command_arg )
+      command_args_list.append( (shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg, ensure_ascii=False)) if command_arg_escape else command_arg )
     command_args = " ".join(command_args_list)
 
     if sublime.platform() == 'windows':
       if is_from_bin :
-        args = json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)+'.cmd')+' '+command_args+(' < '+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
+        args = json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)+'.cmd', ensure_ascii=False)+' '+command_args+(' < '+json.dumps(fp.name, ensure_ascii=False) if fp and not use_only_filename_view_flow else "")
       else :
-        args = ( json.dumps(self.node_js_path)+" " if use_node else "")+json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
+        args = ( json.dumps(self.node_js_path, ensure_ascii=False)+" " if use_node else "")+json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command), ensure_ascii=False)+" "+command_args+(" < "+json.dumps(fp.name, ensure_ascii=False) if fp and not use_only_filename_view_flow else "")
     else:
       args = ( shlex.quote(self.node_js_path)+" " if use_node else "")+shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 
@@ -876,18 +873,18 @@ class Util(object) :
     if len(scope_splitted) >= depth_level :  
       for selector in selectors :
         while Util.indexOf(scope_splitted, selector) == -1 :
-          if selection.a == 0 or len(scope_splitted) < depth_level :
+          if selection.a == 0 or len(scope_splitted) < depth_level:
             return list()
-          sel = sublime.Region(selection.a + add_unit, selection.a )
-          scope = view.scope_name(sel.begin()).strip()
+          selection = sublime.Region(selection.a + add_unit, selection.a + add_unit )
+          scope = view.scope_name(selection.begin()).strip()
           scope_splitted = scope.split(" ")
-        region = view.extract_scope(sel.begin())
+        region = view.extract_scope(selection.begin())
         regions.append({
           "scope": scope,
           "region": region,
           "region_string": view.substr(region),
           "region_string_stripped": view.substr(region).strip(),
-          "selection": sel
+          "selection": selection
         })
     return regions
 
@@ -998,7 +995,6 @@ class Util(object) :
     lines = view.substr(region).splitlines()
     body = list()
     empty_line = 0
-    first_line = False
     for line in lines :
       if line.strip() == "" :
         empty_line = empty_line + 1
@@ -1007,9 +1003,7 @@ class Util(object) :
           continue
       else :
         empty_line = 0
-      line = ("\t" if (line and line[0] == " ") or not first_line else "") + add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after
-      if not first_line:
-        first_line = True
+      line = "\t" + add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after
       body.append(line)
     if body[len(body)-1].strip() == "" :
       del body[len(body)-1]
@@ -3733,7 +3727,10 @@ class FolderExplorer:
     self.current_path = path if path else self.current_path
 
     if not os.path.isdir(self.current_path):
-      self.current_path = os.path.dirname(self.current_path)
+      prev_path = ""
+      while not os.path.isdir(self.current_path) and prev_path != self.current_path:
+        prev_path = self.current_path
+        self.current_path = os.path.dirname(self.current_path)
       
     try:
       for item in os.listdir(self.current_path):
@@ -4179,13 +4176,15 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
         object_literal_region = item_object_literal.get("region")
         selection = item_object_literal.get("selection")
         object_literal = item_object_literal.get("region_string_stripped")
-        node = NodeJS()
+
+        node = NodeJS(check_local=True)
         object_literal = re.sub(r'[\n\r\t]', ' ', object_literal)
-        object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
-        object_literal = [(key, json.dumps(value)) for key, value in object_literal.items()]
+        object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"), encoding="utf-8")
+        object_literal = [(key, json.dumps(value, ensure_ascii=False)) for key, value in object_literal.items()]
 
         list_ordered = ("keyword.operator.assignment.js", "variable.other.readwrite.js", "storage.type.js")
         items = Util.find_regions_on_same_depth_level(view, scope, selection, list_ordered, depth_level, False)
+
         if items :
           last_selection = items[-1:][0].get("selection")
           class_name = items[1].get("region_string_stripped")
@@ -6708,6 +6707,10 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
     javascript_files = [file_name]
     preview_view = None
 
+    if view.is_dirty():
+      sublime.error_message("Cannot move this file. There are unsaved modifications to the buffer. Save the file before use this.")
+      return 
+
     if not file_name:
       sublime.error_message("Cannot move this file. File name is empty.")
       return 
@@ -6762,10 +6765,14 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
               with open(k, "r+", encoding="utf-8") as file:
                 content = file.read()
                 preview_content = ""
+                delta = 0
+                lines_updated = []
 
-                for req in v["requirements"]:
-                  start_offset = int(req["loc"]["start"]["offset"]) + 1
-                  end_offset = int(req["loc"]["end"]["offset"]) - 1
+                requirements_sorted = sorted(v["requirements"], key=lambda req: int(req["loc"]["start"]["offset"]))
+
+                for req in requirements_sorted:
+                  start_offset = int(req["loc"]["start"]["offset"]) + 1 + delta if sublime.platform() != "windows" else view.text_point(int(req["line"]) - 1, int(req["start"])) + delta
+                  end_offset = int(req["loc"]["end"]["offset"]) - 1 + delta if sublime.platform() != "windows" else view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1) + delta
 
                   req_new_path = req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(k) + os.path.sep + req["import"])
 
@@ -6780,26 +6787,33 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
                     if not rel_new_path.startswith(".."):
                       rel_new_path = "./" + rel_new_path
 
+                  delta += len(rel_new_path) - len(content[start_offset:end_offset])
                   content = content[:start_offset] + rel_new_path + content[end_offset:]
 
                   if args.get("preview"):
-                    splitted_content = content.splitlines()
-
-                    if not preview_content:
-                      preview_content = "- From:\n" + file_name + "\n\n"
-                      preview_content += "- To:\n" + new_path + "\n\n"
-
                     line = int(req["line"]) - 1
-                    range_start = max(0, line - 2)
-                    range_end = min(line + 2, len(splitted_content) - 1)
-                    while range_start <= range_end:
-                      line_number = str(range_start + 1)
-                      space_before_line_number = " " * ( 5 - len(line_number) )
-                      preview_content += space_before_line_number + line_number + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
-                      range_start += 1
-                    preview_content += "\n\n"
+                    lines_updated.append(line)
                     
                 if args.get("preview"):
+                  splitted_content = content.splitlines()
+
+                  preview_content = "- Move From:\n" + file_name + "\n\n"
+                  preview_content += "- To:\n" + new_path + "\n\n"
+
+                  range_start_before = -1
+                  is_first_range_start = True
+
+                  for range_start in lines_updated:
+                    line_number = str(range_start + 1)
+                    space_before_line_number = " " * ( 5 - len(line_number) )
+                    if range_start - 1 != range_start_before and not is_first_range_start:
+                      space_before_line_number = space_before_line_number + ("." * len(line_number) ) + "\n" + space_before_line_number
+                    is_first_range_start = False
+                    preview_content += space_before_line_number + line_number + (": " if range_start in lines_updated else "  ") + splitted_content[range_start] + "\n"
+                    range_start_before = range_start
+                    range_start += 1
+
+                  preview_content += "\n\n"
                   preview_view.append_text(preview_content)
                 else:
                   file.seek(0)
@@ -6812,8 +6826,8 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
 
                   with open(k, "r+", encoding="utf-8") as file:
                     content = file.read()
-                    start_offset = int(req["loc"]["start"]["offset"]) + 1
-                    end_offset = int(req["loc"]["end"]["offset"]) - 1
+                    start_offset = int(req["loc"]["start"]["offset"]) + 1 if sublime.platform() != "windows" else view.text_point(int(req["line"]) - 1, int(req["start"]))
+                    end_offset = int(req["loc"]["end"]["offset"]) - 1 if sublime.platform() != "windows" else view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1)
 
                     if os.path.dirname(k) == os.path.dirname(new_path):
                       rel_new_path = "./" + os.path.basename(new_path)
@@ -6890,12 +6904,12 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
       index = 0
       for i in range(0, len(javascript_files)):
 
-        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i], ensure_ascii=False)) <= 7500 :
 
           if not javascript_files_temp:
-            javascript_files_temp = json.dumps(javascript_files[i])
+            javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
           else:
-            javascript_files_temp += " " + json.dumps(javascript_files[i])
+            javascript_files_temp += " " + json.dumps(javascript_files[i], ensure_ascii=False)
         
           if i < len(javascript_files) - 1:
             continue
@@ -6923,7 +6937,7 @@ class RefactorSafeMoveCommand(sublime_plugin.TextCommand):
           return {}
 
         index = i
-        javascript_files_temp = json.dumps(javascript_files[i])
+        javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
 
       return imports
     else:
@@ -6980,6 +6994,10 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
     settings = get_project_settings()
     preview_view = None
 
+    if view.is_dirty():
+      sublime.error_message("Cannot copy this file. There are unsaved modifications to the buffer. Save the file before use this.")
+      return 
+
     if not file_name:
       sublime.error_message("Cannot copy this file. File name is empty.")
       return 
@@ -7024,10 +7042,14 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
         with open(file_name, "r", encoding="utf-8") as file:
           content = file.read()
           preview_content = ""
+          delta = 0
+          lines_updated = []
 
-          for req in imports[file_name]["requirements"]:
-            start_offset = int(req["loc"]["start"]["offset"]) + 1
-            end_offset = int(req["loc"]["end"]["offset"]) - 1
+          requirements_sorted = sorted(imports[file_name]["requirements"], key=lambda req: int(req["loc"]["start"]["offset"]))
+
+          for req in requirements_sorted:
+            start_offset = int(req["loc"]["start"]["offset"]) + 1 + delta if sublime.platform() != "windows" else view.text_point(int(req["line"]) - 1, int(req["start"])) + delta
+            end_offset = int(req["loc"]["end"]["offset"]) - 1 + delta if sublime.platform() != "windows" else view.text_point(int(req["endline"]) - 1, int(req["end"]) - 1) + delta
 
             req_new_path = req["import"] if os.path.isabs(req["import"]) else os.path.abspath(os.path.dirname(file_name) + os.path.sep + req["import"])
 
@@ -7042,27 +7064,33 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
               if not rel_new_path.startswith(".."):
                 rel_new_path = "./" + rel_new_path
               
-
-            content = content [:start_offset] + rel_new_path + content[end_offset:]
+            delta += len(rel_new_path) - len(content[start_offset:end_offset])
+            content = content[:start_offset] + rel_new_path + content[end_offset:]
 
             if args.get("preview"):
-              splitted_content = content.splitlines()
-
-              if not preview_content:
-                preview_content = "- From:\n" + file_name + "\n\n"
-                preview_content += "- To:\n" + new_path + "\n\n"
-
               line = int(req["line"]) - 1
-              range_start = max(0, line - 2)
-              range_end = min(line + 2, len(splitted_content) - 1)
-              while range_start <= range_end:
-                line_number = str(range_start + 1)
-                space_before_line_number = " " * ( 5 - len(line_number) )
-                preview_content += space_before_line_number + line_number + (": " if line == range_start else "  ") + splitted_content[range_start] + "\n"
-                range_start += 1
-              preview_content += "\n\n"
+              lines_updated.append(line)
               
           if args.get("preview"):
+            splitted_content = content.splitlines()
+
+            preview_content = "- Copy From:\n" + file_name + "\n\n"
+            preview_content += "- To:\n" + new_path + "\n\n"
+
+            range_start_before = -1
+            is_first_range_start = True
+
+            for range_start in lines_updated:
+              line_number = str(range_start + 1)
+              space_before_line_number = " " * ( 5 - len(line_number) )
+              if range_start - 1 != range_start_before and not is_first_range_start:
+                space_before_line_number = space_before_line_number + ("." * len(line_number) ) + "\n" + space_before_line_number
+              is_first_range_start = False
+              preview_content += space_before_line_number + line_number + (": " if range_start in lines_updated else "  ") + splitted_content[range_start] + "\n"
+              range_start_before = range_start
+              range_start += 1
+
+            preview_content += "\n\n"
             preview_view.append_text(preview_content)
 
         if not args.get("preview"):
@@ -7105,12 +7133,12 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
       index = 0
       for i in range(0, len(javascript_files)):
 
-        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i], ensure_ascii=False)) <= 7500 :
 
           if not javascript_files_temp:
-            javascript_files_temp = json.dumps(javascript_files[i])
+            javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
           else:
-            javascript_files_temp += " " + json.dumps(javascript_files[i])
+            javascript_files_temp += " " + json.dumps(javascript_files[i], ensure_ascii=False)
         
           if i < len(javascript_files) - 1:
             continue
@@ -7138,7 +7166,7 @@ class RefactorSafeCopyCommand(sublime_plugin.TextCommand):
           return {}
 
         index = i
-        javascript_files_temp = json.dumps(javascript_files[i])
+        javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
 
       return imports
     else:
@@ -7280,12 +7308,12 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
       index = 0
       for i in range(0, len(javascript_files)):
 
-        if len(javascript_files_temp + " " + json.dumps(javascript_files[i])) <= 7500 :
+        if len(javascript_files_temp + " " + json.dumps(javascript_files[i], ensure_ascii=False)) <= 7500 :
 
           if not javascript_files_temp:
-            javascript_files_temp = json.dumps(javascript_files[i])
+            javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
           else:
-            javascript_files_temp += " " + json.dumps(javascript_files[i])
+            javascript_files_temp += " " + json.dumps(javascript_files[i], ensure_ascii=False)
         
           if i < len(javascript_files) - 1:
             continue
@@ -7313,7 +7341,7 @@ class RefactorSafeDeleteCommand(sublime_plugin.TextCommand):
           return {}
 
         index = i
-        javascript_files_temp = json.dumps(javascript_files[i])
+        javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
 
       return imports
     else:
@@ -7379,11 +7407,59 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
 
     if inputs["scope"] == "Class method":
 
-      view.replace(edit, selection, "this."+function_name+parameters)
-      region_class = Util.get_region_scope_first_match(view, scope, selection, 'meta.class.js')["region"]
-      new_text = Util.replace_with_tab(view, selection, ("\t\n" if not Util.prev_line_is_empty(view, sublime.Region(region_class.end(), region_class.end())) else "")+"\t"+function_name+" "+parameters+" {\n\t", "\n\t}\n")
+      flow_cli = "flow"
+      is_from_bin = True
+      chdir = ""
+      use_node = True
+      bin_path = ""
 
-      view.insert(edit, region_class.end()-1, new_text)
+      settings = get_project_settings()
+      if settings and settings["project_settings"]["flow_cli_custom_path"]:
+        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+        is_from_bin = False
+        chdir = settings["project_dir_name"]
+        use_node = False
+
+      node = NodeJS(check_local=True)
+      
+      result = node.execute_check_output(
+        flow_cli,
+        [
+          'ast',
+          '--from', 'sublime_text'
+        ],
+        is_from_bin=is_from_bin,
+        use_fp_temp=True, 
+        fp_temp_contents=view.substr(sublime.Region(0, view.size())), 
+        is_output_json=True,
+        chdir=chdir,
+        bin_path=bin_path,
+        use_node=use_node
+      )
+
+      if result[0]:
+        if "body" in result[1]:
+          body = result[1]["body"]
+          items = Util.nested_lookup("type", ["ClassBody"], body)
+          last_block_statement = None
+          last_item = None
+          region = None
+
+          for item in items:
+            region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+            if region.contains(selection):
+              prev_line_is_empty = Util.prev_line_is_empty(view, sublime.Region(region.end(), region.end()))
+              space = Util.get_whitespace_from_line_begin(view, selection)
+              space_before = ("\n\t" if not prev_line_is_empty else "\t")
+              space_after = "\n\n"
+              new_text = Util.replace_with_tab(view, selection, space_before+function_name+" "+parameters+" {\n", "\n\t}" + space_after, add_to_each_line_before="\t", lstrip=True)
+             
+              view.insert(edit, region.end() - 1, new_text)
+              view.erase(edit, selection)
+              view.insert(edit, selection.begin(), "this." + function_name + parameters)
+
+              break
 
     elif inputs["scope"] == "Current scope":
 
@@ -7427,9 +7503,9 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
           region = None
 
           for item in items:
-            region = sublime.Region(int(item["range"][0]), int(item["range"][1]))
-            if region.contains(selection):
-              last_block_statement = region
+            r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+            if r.contains(selection):
+              last_block_statement = r
               last_item = item
 
           if last_block_statement:
@@ -7438,6 +7514,10 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
               if r.contains(selection):
                 region = r
                 break
+
+            if not region:
+              region = last_block_statement
+
           else:
             for item in body:
               r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
@@ -7447,18 +7527,18 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
 
           if region: 
             prev_line_is_empty = Util.prev_line_is_empty(view, selection)
-            next_line_is_empty = Util.next_line_is_empty(view, selection)
             space = Util.get_whitespace_from_line_begin(view, selection)
-            space_before = ("\n" + space if not prev_line_is_empty else "")
-            space_after = "\n" + space
+            space_before = ("\n" + space if not prev_line_is_empty else ( space if view.substr(region).startswith("{") else ""))
+            space_after = (( "\n" + space if not view.substr(region).startswith("{") else "\n") if not prev_line_is_empty else "\n" + space)
             new_text = Util.replace_with_tab(view, selection, space_before+"function "+function_name+" "+parameters+" {\n"+space, "\n"+space+"}" + space_after)
+            contains_this = Util.region_contains_scope(view, selection, "variable.language.this.js")
 
             view.erase(edit, selection)
-            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
+            if contains_this:
               view.insert(edit, selection.begin(), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
             else:
               view.insert(edit, selection.begin(), function_name+parameters)
-            view.insert(edit, region.begin() + (1 if view.substr(region.begin()) == "{" else 0), new_text)
+            view.insert(edit, (view.full_line(region.begin()).end() if view.substr(region).startswith("{") else region.begin()), new_text)
 
     elif inputs["scope"] == "Global scope":
 
@@ -7496,15 +7576,18 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
       if result[0]:
         if "body" in result[1]:
           body = result[1]["body"]
-          items = Util.nested_lookup("type", ["BlockStatement"], body, return_parent=True)[::-1]
+          items = Util.nested_lookup("type", ["ClassBody", "BlockStatement"], body, return_parent=True)
           region = None
 
-          for item in items:
-            r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
-            if r.contains(selection):
-              region = r
-              break
-          else:
+          if items:
+            items_sorted = sorted(items, key=lambda item: int(item["range"][0]))
+            for item in items_sorted:
+              r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
+              if r.contains(selection):
+                region = r
+                break
+
+          if not region:
             for item in body:
               r = sublime.Region(int(item["range"][0]), int(item["range"][1]))
               if r.contains(selection) or r.intersects(selection):
@@ -7514,17 +7597,16 @@ class RefactorExtractMethodCommand(sublime_plugin.TextCommand):
           if region: 
 
             prev_line_is_empty = Util.prev_line_is_empty(view, region)
-            next_line_is_empty = Util.next_line_is_empty(view, region)
             space_before = ("\n" if not prev_line_is_empty else "")
-
             new_text = Util.replace_with_tab(view, selection, space_before+"function "+function_name+" "+parameters+" {\n", "\n}\n\n", lstrip=True)
+            contains_this = Util.region_contains_scope(view, selection, "variable.language.this.js")
 
-            view.erase(edit, selection)
-            view.insert(edit, region.begin(), new_text)
-            if Util.region_contains_scope(view, selection, "variable.language.this.js"):
-              view.insert(edit, selection.begin() + len(Util.convert_tabs_using_tab_size(view, new_text)), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
+            view.erase(edit, selection) 
+            if contains_this:
+              view.insert(edit, selection.begin(), function_name+".call(this"+(", "+parameters[1:-1] if parameters[1:-1].strip() else "")+")" )
             else:
-              view.insert(edit, selection.begin() + len(Util.convert_tabs_using_tab_size(view, new_text)), function_name+parameters)
+              view.insert(edit, selection.begin(), function_name+parameters)
+            view.insert(edit, region.begin(), new_text)
 
     windowViewManager.close(view.id())
 

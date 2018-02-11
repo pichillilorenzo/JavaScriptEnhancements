@@ -66,20 +66,17 @@ def sublime_executable_path():
 def subl(args):
   
   executable_path = sublime_executable_path()
-
+  args = [executable_path] + args
   args_list = list()
 
   if sublime.platform() == 'windows' :
-    args = [executable_path] + args
     for arg in args :
-      args_list.append(json.dumps(arg))
-    json.dumps(executable_path)
+      args_list.append(json.dumps(arg, ensure_ascii=False))
   else :
     for arg in args :
       args_list.append(shlex.quote(arg))
-    shlex.quote(executable_path)
   
-  args = executable_path + " " + " ".join(args_list)
+  args = " ".join(args_list)
 
   return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 

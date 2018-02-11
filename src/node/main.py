@@ -82,14 +82,14 @@ class NodeJS(object):
     for command_arg in command_args :
       if command_arg == ":temp_file":
         command_arg = fp.name
-      command_args_list.append( (shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg)) if command_arg_escape else command_arg )
+      command_args_list.append( (shlex.quote(command_arg) if sublime.platform() != 'windows' else json.dumps(command_arg, ensure_ascii=False)) if command_arg_escape else command_arg )
     command_args = " ".join(command_args_list)
 
     if sublime.platform() == 'windows':
       if is_from_bin :
-        args = json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)+'.cmd')+' '+command_args+(' < '+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
+        args = json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command)+'.cmd', ensure_ascii=False)+' '+command_args+(' < '+json.dumps(fp.name, ensure_ascii=False) if fp and not use_only_filename_view_flow else "")
       else :
-        args = ( json.dumps(self.node_js_path)+" " if use_node else "")+json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+json.dumps(fp.name) if fp and not use_only_filename_view_flow else "")
+        args = ( json.dumps(self.node_js_path, ensure_ascii=False)+" " if use_node else "")+json.dumps(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command), ensure_ascii=False)+" "+command_args+(" < "+json.dumps(fp.name, ensure_ascii=False) if fp and not use_only_filename_view_flow else "")
     else:
       args = ( shlex.quote(self.node_js_path)+" " if use_node else "")+shlex.quote(os.path.join((bin_path or NODE_MODULES_BIN_PATH), command))+" "+command_args+(" < "+shlex.quote(fp.name) if fp and not use_only_filename_view_flow else "")
 

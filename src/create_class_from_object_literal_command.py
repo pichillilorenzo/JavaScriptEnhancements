@@ -15,13 +15,15 @@ class create_class_from_object_literalCommand(sublime_plugin.TextCommand):
         object_literal_region = item_object_literal.get("region")
         selection = item_object_literal.get("selection")
         object_literal = item_object_literal.get("region_string_stripped")
-        node = NodeJS()
+
+        node = NodeJS(check_local=True)
         object_literal = re.sub(r'[\n\r\t]', ' ', object_literal)
-        object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"))
-        object_literal = [(key, json.dumps(value)) for key, value in object_literal.items()]
+        object_literal = json.loads(node.eval("JSON.stringify("+object_literal+")", "print"), encoding="utf-8")
+        object_literal = [(key, json.dumps(value, ensure_ascii=False)) for key, value in object_literal.items()]
 
         list_ordered = ("keyword.operator.assignment.js", "variable.other.readwrite.js", "storage.type.js")
         items = Util.find_regions_on_same_depth_level(view, scope, selection, list_ordered, depth_level, False)
+
         if items :
           last_selection = items[-1:][0].get("selection")
           class_name = items[1].get("region_string_stripped")

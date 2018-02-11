@@ -7,6 +7,7 @@ v0.15.0
 - Fixed "Create React App - Could not create a project called 'myApp' because of npm naming restrictions" #29, 'myApp' changed to 'my-app'
 - Fixed an issue caused by "echo" command in .bash_profile and similar when loading the system PATH variable of an user
 - Fixed Evaluate Javascript feature not working in Windows - "The filename, directory name, or volume label syntax is incorrect." error #32
+- Fixed ascii conversion of json.dumps call on Windows command arguments #35
 
 ## Improvements
 

@@ -200,18 +200,18 @@ class Util(object) :
     if len(scope_splitted) >= depth_level :  
       for selector in selectors :
         while Util.indexOf(scope_splitted, selector) == -1 :
-          if selection.a == 0 or len(scope_splitted) < depth_level :
+          if selection.a == 0 or len(scope_splitted) < depth_level:
             return list()
-          sel = sublime.Region(selection.a + add_unit, selection.a )
-          scope = view.scope_name(sel.begin()).strip()
+          selection = sublime.Region(selection.a + add_unit, selection.a + add_unit )
+          scope = view.scope_name(selection.begin()).strip()
           scope_splitted = scope.split(" ")
-        region = view.extract_scope(sel.begin())
+        region = view.extract_scope(selection.begin())
         regions.append({
           "scope": scope,
           "region": region,
           "region_string": view.substr(region),
           "region_string_stripped": view.substr(region).strip(),
-          "selection": sel
+          "selection": selection
         })
     return regions
 
@@ -322,7 +322,6 @@ class Util(object) :
     lines = view.substr(region).splitlines()
     body = list()
     empty_line = 0
-    first_line = False
     for line in lines :
       if line.strip() == "" :
         empty_line = empty_line + 1
@@ -331,9 +330,7 @@ class Util(object) :
           continue
       else :
         empty_line = 0
-      line = ("\t" if (line and line[0] == " ") or not first_line else "") + add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after
-      if not first_line:
-        first_line = True
+      line = "\t" + add_to_each_line_before + (line.lstrip() if lstrip else line) + add_to_each_line_after
       body.append(line)
     if body[len(body)-1].strip() == "" :
       del body[len(body)-1]
