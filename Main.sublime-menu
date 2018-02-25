@@ -5,11 +5,11 @@
     "children": [
       {
         "caption": "JavaScript Refactor",
-        "id": "refactor",
+        "id": "javascript_enhancements_refactor",
         "children": [
           {
             "caption": "Converto to arrow function",
-            "command": "refactor",
+            "command": "javascript_enhancements_refactor",
             "args": {
               "case": "convert_to_arrow_function"
             }
@@ -20,7 +20,7 @@
             "children": [
               {
                 "caption": "Function",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "export",
                   "type": "function"
@@ -28,7 +28,7 @@
               },
               {
                 "caption": "Class",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "export",
                   "type": "class"
@@ -36,7 +36,7 @@
               },
               {
                 "caption": "Variable",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "export",
                   "type": "variable"
@@ -47,21 +47,21 @@
           { "caption": "-" },
           {
             "caption": "Safe Copy",
-            "command": "refactor",
+            "command": "javascript_enhancements_refactor",
             "args": {
               "case": "safe_copy"
             }
           },
           {
             "caption": "Safe Move",
-            "command": "refactor",
+            "command": "javascript_enhancements_refactor",
             "args": {
               "case": "safe_move"
             }
           },
           {
             "caption": "Safe Delete",
-            "command": "refactor",
+            "command": "javascript_enhancements_refactor",
             "args": {
               "case": "safe_delete"
             }
@@ -72,21 +72,21 @@
             "children": [
               {
                 "caption": "Variable",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "extract_variable"
                 }
               },
               {
                 "caption": "Field",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "extract_field"
                 }
               },
               {
                 "caption": "Parameter",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "extract_parameter"
                 }
@@ -94,7 +94,7 @@
               { "caption": "-" },
               {
                 "caption": "Method",
-                "command": "refactor",
+                "command": "javascript_enhancements_refactor",
                 "args": {
                   "case": "extract_method"
                 }
@@ -106,28 +106,28 @@
       {
         "caption": "JavaScript Enhancements",
         "mnemonic": "J",
-        "id": "javascript_completions_tools",
+        "id": "javascript_enhancements_tools",
         "children":[    
           {
             "caption": "Use Flow checker on current view (Not used in project)",
-            "id": "use_flow_checker_on_current_view",
+            "id": "javascript_enhancements_use_flow_checker_on_current_view",
             "checkbox": true,
-            "command": "toggle_setting",
+            "command": "javascript_enhancements_toggle_setting",
             "args": {"setting": "use_flow_checker_on_current_view"}
           },
           {
             "caption": "Flow Goto Definition",
-            "id": "go_to_def",
-            "command": "go_to_def"
+            "id": "javascript_enhancements_go_to_definition",
+            "command": "javascript_enhancements_go_to_definition"
           },
           {
             "caption": "Show Hint Parameters",
-            "id": "show_hint_parameters",
-            "command": "show_hint_parameters"
+            "id": "javascript_enhancements_show_hint_parameters",
+            "command": "javascript_enhancements_show_hint_parameters"
           },
           {
             "caption": "Show Completions",
-            "id": "show_completions",
+            "id": "javascript_enhancements_show_completions",
             "command": "auto_complete",
             "args": {
               "disable_auto_insert": true,
@@ -138,28 +138,33 @@
           },
           {
             "caption": "Search on \"Can I use\" list",
-            "id": "can_i_use_list",
-            "command": "can_i_use",
+            "id": "javascript_enhancements_can_i_use_list",
+            "command": "javascript_enhancements_can_i_use",
             "args": {"from": "main-menu"}
           },
           {
             "caption": "Show Bookmarks Options",
-            "id": "show_bookmarks_options",
+            "id": "javascript_enhancements_show_bookmarks_options",
             "command": "show_overlay" ,
             "args": {"overlay": "command_palette", "text": "JavaScript Enhancements Bookmarks: "}
+          },
+          {
+            "caption": "Take a code screenshot (up to 3400 chars)",
+            "id": "javascript_enhancements_carbon",
+            "command": "javascript_enhancements_carbon" 
           },
           { "caption": "-" },
           {
             "caption": "JSDoc",
-            "id": "jsdoc",
+            "id": "javascript_enhancements_jsdoc",
             "children": [
               {
                 "caption": "Generate Documentation",
-                "command": "generate_jsdoc"
+                "command": "javascript_enhancements_generate_jsdoc"
               },
               {
                 "caption": "Add a jsdoc configuration file",
-                "command": "add_jsdoc_conf"
+                "command": "javascript_enhancements_add_jsdoc_conf"
               },
               { "caption": "-" },
               {
@@ -209,18 +214,18 @@
       { "caption": "-" },
       {
         "caption": "Create JavaScript Project",
-        "command": "create_new_project",
-        "id": "create_new_project"
+        "command": "javascript_enhancements_create_new_project",
+        "id": "javascript_enhancements_create_new_project"
       },
       {
         "caption": "Add JavaScript Project type",
-        "command": "add_javascript_project_type",
-        "id": "add_javascript_project_type",
+        "command": "javascript_enhancements_add_project_type",
+        "id": "javascript_enhancements_add_project_type",
       },
       {
         "caption": "Add JavaScript type configuration",
-        "command": "add_javascript_project_type_configuration",
-        "id": "add_javascript_project_type_configuration"
+        "command": "javascript_enhancements_add_project_type_configuration",
+        "id": "javascript_enhancements_add_project_type_configuration"
       }
     ]
   },
@@ -257,7 +262,7 @@
               { "caption": "-" },
               {
                 "caption": "Version",
-                "command": "show_javascript_enhancements_version"
+                "command": "javascript_enhancements_show_version"
               }
             ]
           }

@@ -16,17 +16,7 @@ Working on your first Pull Request? You can learn how from this *free* series, [
 
 ## Submitting code
 
-Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. If necessary, the description should also contain screenshots showing up the new behaviour.
-
-You can notice that in the main folder of the plugin there is a file named something like `_generated_2018_01_28_at_03_01_29.py`. This file is compiled executing `python3 make/setup.py` and it contains the whole plugin code. So, if you want to make changes/updates to this plugin, don't change this file. Instead change the other files that you can find in the `src` folder. The `src/_init.py` file contains the main code to boot up the plugin, with various constants.
-
-Syntax accepted by `make/setup.py`:
-* `${include ./folder/file.py}`: with `./` at the beginning of the path, you are pointing to the root path of the plugin folder, like an "absolute path" 
-* `${include folder/file.py}`: in this case this is a relative path to the current folder
-
-With this, you can separate your code in different files that will be added to the final compiled code.
-
-To test the plugin changes/updates quickly, you can execute `python3 make/watch.py`. So, for every changes that you make in the code, it will call automatically `make/setup.py`. If you add new files while you are using `python3 make/watch.py`, it may require restart the command in order to allow the change/update recognition of these new files.
+Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. If necessary, the description should also contain screenshots showing up the new behaviour. The pull request should also contain tests.
 
 ## Code review process
 

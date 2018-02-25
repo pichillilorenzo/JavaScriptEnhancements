@@ -1,31 +1,31 @@
 [
   {
     "keys": ["super+alt+w"],
-    "command": "can_i_use"
+    "command": "javascript_enhancements_can_i_use"
   },
   {
     "keys": ["super+alt+c"],
-    "command": "navigate_flow_errors",
+    "command": "javascript_enhancements_navigate_flow_errors",
     "args": {
       "type":  "next"
     }
   },
   {
     "keys": ["super+alt+v"],
-    "command": "navigate_flow_errors",
+    "command": "javascript_enhancements_navigate_flow_errors",
     "args": {
       "type":  "previous"
     }
   },
   {
     "keys": ["super+alt+g"],
-    "command": "go_to_def"
+    "command": "javascript_enhancements_go_to_def"
   },
   {
     "keys": ["super+alt+s"],
-    "command": "show_hint_parameters"
+    "command": "javascript_enhancements_show_hint_parameters"
   },
-  {"keys": ["tab"], "command": "window_view_keypress", "args": {"key": "tab"}, "context": [{"key": "setting.javascript_enhancements_window_view"}]},
-  {"keys": ["shift+tab"], "command": "window_view_keypress", "args": {"key": "shift+tab"}, "context": [{"key": "setting.javascript_enhancements_window_view"}]},
-  {"keys": ["super+alt+a"], "command": "window_view_keypress", "args": {"key": "super+alt+a"}, "context": [{"key": "setting.javascript_enhancements_window_view"}]}
+  {"keys": ["tab"], "command": "javascript_enhancements_window_view_keypress", "args": {"key": "tab"}, "context": [{"key": "setting.javascript_enhancements_window_view"}]},
+  {"keys": ["shift+tab"], "command": "javascript_enhancements_window_view_keypress", "args": {"key": "shift+tab"}, "context": [{"key": "setting.javascript_enhancements_window_view"}]},
+  {"keys": ["super+alt+a"], "command": "javascript_enhancements_window_view_keypress", "args": {"key": "super+alt+a"}, "context": [{"key": "setting.javascript_enhancements_window_view"}]}
 ]

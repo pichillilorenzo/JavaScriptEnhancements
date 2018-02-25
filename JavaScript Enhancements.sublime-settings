@@ -19,5 +19,16 @@
   "enable_keymap": true,
 
   "enable_can_i_use_menu_option": true,
-  "enable_unused_variables_feature": true
+  "enable_unused_variables_feature": true,
+
+  // https://carbon.now.sh "Create and share beautiful images of your source code."
+  "carbon_background_color": "rgba(12, 108, 189, 1)",
+  "carbon_theme": "seti",
+  "carbon_language": "",
+  "carbon_drop_shadow": "true",
+  "carbon_window_controls": "true",
+  "carbon_width_adjustment": "true",
+  "carbon_padding_vertical": "48px",
+  "carbon_padding_horizontal": "69px",
+  "carbon_line_numbers": "false"
 }

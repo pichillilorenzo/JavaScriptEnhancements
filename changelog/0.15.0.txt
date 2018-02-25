@@ -71,6 +71,7 @@ developing and managing javascript projects, such as:
 - Yeoman generators
 - Local bookmarks project
 - JavaScript real-time errors
+- Code Refactoring
 - etc.
 
 You could use it also in existing projects (see the Wiki - https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Using-it-with-an-existing-project)!
