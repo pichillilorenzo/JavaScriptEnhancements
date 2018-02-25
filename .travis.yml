@@ -22,7 +22,7 @@ matrix:
           env: PCINSTALL=true
 
 before_install:
-    - curl -OL https://raw.githubusercontent.com/SublimeText/UnitTesting/master/sbin/travis.sh
+    - curl -OL https://raw.githubusercontent.com/pichillilorenzo/JavaScriptEnhancements/master/sbin/travis.sh
     - if [ "$TRAVIS_OS_NAME" == "linux"  ]; then
             export DISPLAY=:99.0;
             sh -e /etc/init.d/xvfb start;
@@ -35,13 +35,14 @@ install:
       fi
     - pip3 install flake8;
     - pip3 install flake8-docstrings;
-    - sh sbin/travis.sh bootstrap
-    - sh sbin/travis.sh install_color_scheme_unit
-    - if [ "$PCINSTALL" == true ]; then sh sbin/travis.sh install_package_control; fi
+    - sh travis.sh bootstrap
+    - sh travis.sh install_color_scheme_unit
+    - if [ "$PCINSTALL" == true ]; then sh travis.sh install_package_control; fi
+    - sh travis.sh install_terminal_view_package
 
 script:
     - flake8 --statistics
-    - sh sbin/travis.sh run_tests --coverage
+    - sh travis.sh run_tests --coverage
 
 after_success:
     - pip3 install codecov;
