@@ -6,7 +6,8 @@ class TestSurroundWith(TestCase):
 
   def setUp(self):
     self.view = sublime.active_window().new_file()
-    # make sure we have a window to work with
+    self.view.settings().set("tab_size", 2)
+    self.view.settings().set("translate_tabs_to_spaces", True)
     self.view.settings().set("syntax", "Packages/JavaScript/JavaScript.sublime-syntax")
 
   def tearDown(self):
