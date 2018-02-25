@@ -1,0 +1,144 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Angular v2",
+        "id": "angularv2",
+        "children":[
+          {
+            "caption": "Serve",
+            "command": "javascript_enhancements_angularv2_cli",
+            "args": {
+              "command": ["serve"]
+            }
+          },
+          {
+            "caption": "Generate",
+            "children": [
+              {
+                "caption": "Class",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "class", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Component",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "component", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Directive",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "directive", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Enum",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "enum", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Guard",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "guard", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Interface",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "interface", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Module",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "module", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Pipe",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "pipe", ":name_and_options"]
+                }
+              },
+              {
+                "caption": "Service",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["generate", "service", ":name_and_options"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Lint",
+            "command": "javascript_enhancements_angularv2_cli",
+            "args": {
+              "command": ["lint"]
+            }
+          },
+          {
+            "caption": "Test",
+            "command": "javascript_enhancements_angularv2_cli",
+            "args": {
+              "command": ["test"]
+            }
+          },
+          {
+            "caption": "e2e",
+            "command": "javascript_enhancements_angularv2_cli",
+            "args": {
+              "command": ["e2e"]
+            }
+          },
+          {
+            "caption": "Build",
+            "command": "javascript_enhancements_angularv2_cli",
+            "children":[
+              {
+                "caption": "Dev",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["build", "run", "--dev"]
+                }
+              },
+              {
+                "caption": "Prod",
+                "command": "javascript_enhancements_angularv2_cli",
+                "args": {
+                  "command": ["build", "run", "--prod"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Eject",
+            "command": "javascript_enhancements_angularv2_cli",
+            "args": {
+              "command": ["eject"]
+            }
+          },
+          {
+            "caption": "xi18n",
+            "command": "javascript_enhancements_angularv2_cli",
+            "args": {
+              "command": ["xi18n"]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

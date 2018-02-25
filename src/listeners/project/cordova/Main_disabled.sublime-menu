@@ -1,0 +1,172 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Cordova",
+        "id": "cordova",
+        "children":[
+          {
+            "caption": "Platform",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["platform", "add", ":platform", "--save"]
+                }
+              },
+              {
+                "caption": "Update",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["platform", "update", ":platform", "--save"]
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["platform", "remove", ":platform", "--save"]
+                }
+              },
+              {
+                "caption": "List",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["platform", "list"]
+                }
+              },
+              {
+                "caption": "Check",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["platform", "check"]
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["platform", "save"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Prepare",
+            "command": "javascript_enhancements_cordova_cli",
+            "args": {
+              "command": ["prepare", ":platform"]
+            }
+          },
+          {
+            "caption": "Compile",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["compile", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["compile", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Build",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["build", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["build", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Run",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["run", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["run", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Serve",
+            "command": "javascript_enhancements_cordova_cli",
+            "args": {
+              "command": ["serve"]
+            }
+          },
+          {
+            "caption": "Clean",
+            "command": "javascript_enhancements_cordova_cli",
+            "args": {
+              "command": ["clean", ":platform"]
+            }
+          },
+          {
+            "caption": "Requirements",
+            "command": "javascript_enhancements_cordova_cli",
+            "args": {
+              "command": ["requirements", ":platform"]
+            }
+          },
+          {
+            "caption": "Info",
+            "command": "javascript_enhancements_cordova_cli",
+            "args": {
+              "command": ["info"]
+            }
+          },
+          {
+            "caption": "Telemetry",
+            "children": [
+              {
+                "caption": "On",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["telemetry", "on"]
+                }
+              },
+              {
+                "caption": "Off",
+                "command": "javascript_enhancements_cordova_cli",
+                "args": {
+                  "command": ["telemetry", "off"]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

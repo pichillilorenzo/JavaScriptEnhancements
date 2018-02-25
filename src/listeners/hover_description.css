@@ -1,0 +1,71 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+body{
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+body.single-result-found{
+  
+}
+body.more-results-found{
+
+}
+.container{
+  background-color: #202A31;
+  padding: 10px; 
+}
+.container-hint-popup{
+  background-color: #202A31;
+  padding: 10px 20px 10px 10px;
+}
+.container-completion-link{
+  margin: 5px 0;
+  font-style: italic;
+}
+.completion-link{
+  font-style: normal;
+  color: #fff;
+}
+.highlighted, .back-button, .container-description .name{
+  color: #69BDBF;
+}
+.label{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.parameter-type, .return-type, .text-pre-params{
+  color: #66BB6A;
+}
+.parameter-name{
+  color: #FFA726;
+}
+.parameter-is-optional{
+  color: #EF5350;
+}
+.url-doc-link{
+  font-style: normal;
+  color: #fff;
+}
+body.single-result-found .container-hint-popup .container-description{
+  margin-bottom: 5px;
+}
+body.more-results-found .container-hint-popup .container-description{
+  margin-bottom: 10px;
+}
+.container-hint-popup .container-info{
+  display: inline;
+  position: relative;
+  left: 10px;
+}
+.container-hint-popup .container-url-doc{
+  margin-top: 5px;
+  font-size: 0.80rem;
+}
+.go-to-def{
+  font-size: 0.80rem;
+  line-height: 2;
+}

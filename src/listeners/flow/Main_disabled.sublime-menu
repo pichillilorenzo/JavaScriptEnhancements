@@ -1,0 +1,28 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Flow",
+        "mnemonic": "F",
+        "id": "flow",
+        "children": [
+          {
+            "caption": "Build Flow",
+            "id": "javascript_enhancements_build_flow",
+            "command": "javascript_enhancements_build_flow",
+            "args": {
+              "command": ["flow-remove-types", ":source_folders", "--out-dir", ":destination_folder"]
+            }
+          },
+          {
+            "caption": "Add Flow definition",
+            "id": "javascript_enhancements_add_flow_definition",
+            "command": "javascript_enhancements_add_flow_definition"
+          }
+        ]
+      }
+    ]
+  }
+]

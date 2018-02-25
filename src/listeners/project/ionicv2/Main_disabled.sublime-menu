@@ -1,0 +1,257 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Ionic v2",
+        "id": "ionicv2",
+        "children":[
+          {
+            "caption": "Platform",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "add", ":platform"]
+                }
+              },
+              {
+                "caption": "Update",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "update", ":platform"]
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "remove", ":platform"]
+                }
+              },
+              {
+                "caption": "List",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "list"]
+                }
+              },
+              {
+                "caption": "Check",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "check"]
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "platform", "save"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Generate",
+            "children": [
+              {
+                "caption": "Component",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["generate", "component"]
+                }
+              },
+              {
+                "caption": "Directive",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["generate", "directive"]
+                }
+              },
+              {
+                "caption": "Page",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["generate", "page"]
+                }
+              },
+              {
+                "caption": "Pipe",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["generate", "pipe"]
+                }
+              },
+              {
+                "caption": "Provider",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["generate", "provider"]
+                }
+              },
+              {
+                "caption": "Tabs",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["generate", "tabs"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Prepare",
+            "command": "javascript_enhancements_ionicv2_cli",
+            "args": {
+              "command": ["cordova", "prepare", ":platform"]
+            }
+          },
+          {
+            "caption": "Compile",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "compile", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "compile", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Build",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "build", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "build", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Emulate",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "emulate", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "emulate", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Run",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "run", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "run", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Serve",
+            "command": "javascript_enhancements_ionicv2_cli",
+            "args": {
+              "command": ["serve"]
+            }
+          },
+          {
+            "caption": "Resources",
+            "children": [
+              {
+                "caption": "All",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "resources"]
+                }
+              },
+              {
+                "caption": "Only Icon",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "resources", "--icon"]
+                }
+              },
+              {
+                "caption": "Only Splash",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["cordova", "resources", "--splash"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Integration",
+            "children": [
+              {
+                "caption": "Enable",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["integrations", "enable", ":integration_id"]
+                }
+              },
+              {
+                "caption": "Disable",
+                "command": "javascript_enhancements_ionicv2_cli",
+                "args": {
+                  "command": ["integrations", "disable", ":integration_id"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Info",
+            "command": "javascript_enhancements_ionicv2_cli",
+            "args": {
+              "command": ["info"]
+            }
+          },
+          {
+            "caption": "Open Docs",
+            "command": "javascript_enhancements_ionicv2_cli",
+            "args": {
+              "command": ["docs"]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

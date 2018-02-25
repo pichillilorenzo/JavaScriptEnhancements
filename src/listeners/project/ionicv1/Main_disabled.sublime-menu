@@ -1,0 +1,210 @@
+[ 
+  {
+    "caption": "Tools",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "Ionic v1",
+        "id": "ionicv1",
+        "children":[
+          {
+            "caption": "Platform",
+            "children": [
+              {
+                "caption": "Add",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["platform", "add", ":platform"]
+                }
+              },
+              {
+                "caption": "Update",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["platform", "update", ":platform"]
+                }
+              },
+              {
+                "caption": "Remove",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["platform", "remove", ":platform"]
+                }
+              },
+              {
+                "caption": "List",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["platform", "list"]
+                }
+              },
+              {
+                "caption": "Check",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["platform", "check"]
+                }
+              },
+              {
+                "caption": "Save",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["platform", "save"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Prepare",
+            "command": "javascript_enhancements_ionicv1_cli",
+            "args": {
+              "command": ["prepare", ":platform"]
+            }
+          },
+          {
+            "caption": "Compile",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["compile", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["compile", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Build",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["build", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["build", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Emulate",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["emulate", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["emulate", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Run",
+            "children": [
+              {
+                "caption": "Debug",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["run", ":platform", "--debug"]
+                }
+              },
+              {
+                "caption": "Release",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["run", ":platform", "--release"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "Serve",
+            "command": "javascript_enhancements_ionicv1_cli",
+            "args": {
+              "command": ["serve"]
+            }
+          },
+          {
+            "caption": "Resources",
+            "children": [
+              {
+                "caption": "All",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["resources"]
+                }
+              },
+              {
+                "caption": "Only Icon",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["resources", "--icon"]
+                }
+              },
+              {
+                "caption": "Only Splash",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["resources", "--splash"]
+                }
+              }
+            ]
+          },
+          {
+            "caption": "State",
+            "children": [
+              {
+                "caption": "Save",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["state", "save"]
+                }
+              },
+              {
+                "caption": "Restore",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["state", "restore"]
+                }
+              },
+              {
+                "caption": "Clear",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["state", "clear"]
+                }
+              },
+              {
+                "caption": "Reset",
+                "command": "javascript_enhancements_ionicv1_cli",
+                "args": {
+                  "command": ["state", "reset"]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

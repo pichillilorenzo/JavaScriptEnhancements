@@ -1,0 +1,14 @@
+{
+  "cli_custom_path": "",
+  "working_directory": "",
+  "serve_options": [],
+  "lint_options": [],
+  "test_options": [],
+  "e2e_options": [],
+  "build_options": {
+    "dev": [],
+    "prod": []
+  },
+  "eject_options": [],
+  "xi18n_options": []
+}
