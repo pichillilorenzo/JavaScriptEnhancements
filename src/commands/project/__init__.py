@@ -11,6 +11,7 @@ from .ionicv2.main import JavascriptEnhancementsIonicv2CliCommand
 from .react.main import *
 from .react_native.main import *
 from .yeoman.main import *
+from .vue.main import *
 
 __all_ = [
   "JavascriptEnhancementsCreateNewProjectCommand",

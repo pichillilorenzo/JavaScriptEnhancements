@@ -54,7 +54,7 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
         if not flow_comment_found :
           flow.hide_errors(view)
           return
-    elif not view.settings().get("use_flow_checker_on_current_view") :
+    elif not view.settings().get("javascript_enhancements_use_flow_checker_on_current_view") :
       flow.hide_errors(view)
       return 
 
@@ -101,7 +101,7 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
         if not flow_comment_found :
           flow.hide_errors(view)
           return
-    elif not view.settings().get("use_flow_checker_on_current_view") :
+    elif not view.settings().get("javascript_enhancements_use_flow_checker_on_current_view") :
       flow.hide_errors(view)
       return 
 
@@ -237,7 +237,7 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
         if not flow_comment_found :
           flow.hide_errors(view)
           return
-    elif not view.settings().get("use_flow_checker_on_current_view") :
+    elif not view.settings().get("javascript_enhancements_use_flow_checker_on_current_view") :
       flow.hide_errors(view)
       return 
 

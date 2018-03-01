@@ -100,7 +100,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
 
   def on_query_completions(self, view, prefix, locations):
     # Return the pending completions and clear them
-
+    # 
     if not view.match_selector(
         locations[0],
         'source.js - string - comment'
@@ -168,7 +168,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       return
 
     node = NodeJS(check_local=True)
-    
+
     result = node.execute_check_output(
       flow_cli,
       [
@@ -186,7 +186,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       bin_path=bin_path,
       use_node=use_node
     )
-
+    
     if result[0]:
 
       if self.modified == True:

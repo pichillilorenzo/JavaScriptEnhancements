@@ -52,6 +52,7 @@ from .project import JavascriptEnhancementsIonicv2CliCommand
 from .project.react.main import *
 from .project.react_native.main import *
 from .project.yeoman.main import *
+from .project.vue.main import *
 from .flow import JavascriptEnhancementsBuildFlowCommand
 from .flow import JavascriptEnhancementsAddFlowDefinitionCommand
 

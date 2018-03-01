@@ -112,8 +112,8 @@
             "caption": "Use Flow checker on current view (Not used in project)",
             "id": "javascript_enhancements_use_flow_checker_on_current_view",
             "checkbox": true,
-            "command": "javascript_enhancements_toggle_setting",
-            "args": {"setting": "use_flow_checker_on_current_view"}
+            "command": "toggle_setting",
+            "args": {"setting": "javascript_enhancements_use_flow_checker_on_current_view"}
           },
           {
             "caption": "Flow Goto Definition",

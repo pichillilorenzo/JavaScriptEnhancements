@@ -1,6 +1,7 @@
 import sublime, sublime_plugin
 import os, tempfile, queue
 from collections import namedtuple
+import xml.etree.ElementTree as ET
 from .. import util
 from .. import global_vars
 
@@ -40,14 +41,41 @@ def parse_cli_dependencies(view, **kwargs):
 
   else :
     scope = view.scope_name(cursor_pos)
+    embedded_regions = []
 
     if scope.startswith("source.js"):
       current_contents = view.substr(
         sublime.Region(0, view.size())
       )
 
-    elif view.find_by_selector("source.js.embedded.html"):
-      embedded_regions = view.find_by_selector("source.js.embedded.html")
+    else:
+      # add vue.js support
+      if view.find_by_selector("text.html.vue source.js.embedded.html"):
+        vue_regions = view.find_by_selector("text.html.vue source.js.embedded.html")
+        for region in vue_regions:
+          old_region = region
+          new_region = util.trim_region(view, old_region)
+
+          # vue.js regions contains <script> and </script> in their contents, so I need to remove it
+          script_str = view.substr(new_region)
+          root = ET.fromstring(script_str)
+          content = root.text
+          offset = script_str.split(content)
+          new_region = sublime.Region(new_region.begin() + len(offset[0]), new_region.end() - len(offset[1]))
+
+          embedded_regions.append(new_region)
+      elif view.find_by_selector("source.js.embedded.html"):
+        embedded_regions = view.find_by_selector("source.js.embedded.html")
+
+      if not embedded_regions:
+        return CLIRequirements(
+            filename=None,
+            project_root=None,
+            contents="",
+            cursor_pos=None,
+            row=None, col=None
+          )
+
       current_contents = ""
       prev_row_offset_end = 0
       prev_col_scope_end = 0
@@ -61,15 +89,6 @@ def parse_cli_dependencies(view, **kwargs):
         prev_row_offset_end = row_offset_end
         prev_col_scope_end = col_scope_end
         current_contents += view.substr(region)
-
-    else:
-      return CLIRequirements(
-          filename=None,
-          project_root=None,
-          contents="",
-          cursor_pos=None,
-          row=None, col=None
-        )
   
   if kwargs.get('add_magic_token'):
     current_lines = current_contents.splitlines()

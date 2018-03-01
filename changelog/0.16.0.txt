@@ -12,6 +12,7 @@ v0.16.0
 - Complete code plugin refactoring
 - Added "code screenshot" feature using [carbon](https://carbon.now.sh/)
 - updated flow-bin to 0.66.0
+- Added support for Vue.js
 - Improved extract method feature
 
 

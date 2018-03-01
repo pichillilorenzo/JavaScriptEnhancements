@@ -17,6 +17,7 @@ Working on your first Pull Request? You can learn how from this *free* series, [
 ## Submitting code
 
 Any code change should be submitted as a pull request. Please, before submit it, run the tests using the [UnitTesting](https://github.com/SublimeText/UnitTesting) Sublime Text package. The description should explain what the code does and give steps to execute it. If necessary, the description should also contain screenshots showing up the new behaviour. The pull request should also contain tests.
+When you are changing the code of this plugin, I recommend to use [AutomaticPackageReloader](https://github.com/randy3k/AutomaticPackageReloader) to test quickly the new changes. It automatically reload submodules while developing a Sublime Text package without the need of reopening the editor.
 
 ## Code review process
 

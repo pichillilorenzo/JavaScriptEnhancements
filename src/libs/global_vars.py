@@ -27,7 +27,8 @@ PROJECT_TYPE_SUPPORTED = [
   ['Ionic v2, v3', 'ionicv2'],
   ['React', 'react'],
   ['React Native', 'react_native'],
-  ['Yeoman', 'yeoman']
+  ['Yeoman', 'yeoman'],
+  ['Vue', 'vue']
 ]
 
 KEYMAP_COMMANDS = []

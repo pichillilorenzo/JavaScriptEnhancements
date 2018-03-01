@@ -182,7 +182,7 @@ class NodeJS():
             final_message += msg + " "
 
         if flag:
-          sublime.active_window().status_message(final_message)
+          sublime.active_window().status_message("Flow CLI Error: " + final_message)
 
       # reset the PATH environment variable
       os.environ.update(old_env)
