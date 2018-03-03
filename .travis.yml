@@ -24,7 +24,7 @@ before_install:
 install:
     - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
             brew update;
-            brew updagre python;
+            brew upgrade python;
       fi
     - sh travis.sh bootstrap
     - sh travis.sh install_color_scheme_unit
