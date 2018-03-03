@@ -95,7 +95,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
       if region.contains(point):
         return
 
-  region = view.word(point)
+  region = util.word_with_dollar_char(view, point)
   word = view.substr(region)
   if not word.strip() :
     return
@@ -218,7 +218,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
       bin_path=bin_path,
       use_node=use_node
     )
-
+    
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
 
       results_found = 1

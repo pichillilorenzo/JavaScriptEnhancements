@@ -86,11 +86,11 @@ class JavascriptEnhancementsAddFlowDefinitionCommand(sublime_plugin.WindowComman
           self.window.status_message("Defintion '" + package_name + "@" + version + "' installed successfully!")
         else:
           print(result)
-          self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
+          self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry! Error: " + result[1])
 
       else:
         print(result)
-        self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry!")
+        self.window.status_message("Can't install '" + package_name + "@" + version + "' definition! Something went wrong, sorry! Error: " + result[1])
 
     else:
       sublime.error_message("Error: can't get project settings")

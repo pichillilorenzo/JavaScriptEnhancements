@@ -6,14 +6,16 @@ v0.16.0
 - Fixed error on refactor safe commands when the file name is empty
 - Fixed export refactor feature preview
 - Fixed some popup colors with different theme color scheme
+- Fixed completions and hover_description that starts with "$"
 
 ## Improvements
 
 - Complete code plugin refactoring
 - Added "code screenshot" feature using [carbon](https://carbon.now.sh/)
 - updated flow-bin to 0.66.0
-- Added support for Vue.js
+- Added initial support for Vue.js
 - Improved extract method feature
+- Improved completions detection from default_autocomplete.json
 
 
 =================================================================

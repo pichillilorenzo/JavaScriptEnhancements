@@ -38,10 +38,10 @@ def create_completion(comp_name, comp_type, comp_details) :
   t = tuple()
   t += (comp_name + '\t' + comp_type, )
   t += (build_completion_snippet(
-      comp_name,
+      comp_name.replace("$", "\\$"),
       comp_details["params"]
     )
-    if comp_details else comp_name, )
+    if comp_details else comp_name.replace("$", "\\$"), )
   return t
 
 default_completions = util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
@@ -62,7 +62,7 @@ def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover 
   for completion in completions: 
     c = completion[0].lower()
     if not isHover:
-      if c.startswith(prefix):
+      if prefix in c:
         completions_to_add.append((completion[0], completion[1]))
     else :
       if len(completion) == 3 and c.startswith(prefix) :
@@ -99,20 +99,26 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
     })
 
   def on_query_completions(self, view, prefix, locations):
-    # Return the pending completions and clear them
-    # 
+
     if not view.match_selector(
         locations[0],
         'source.js - string - comment'
     ):
-      return
-
-    view = sublime.active_window().active_view()
+      return []
 
     scope = view.scope_name(view.sel()[0].begin()-1).strip()
 
     # added "keyword.operator.accessor.js" for JavaScript (Babel) support
-    if not prefix and not (scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js")) :
+    # added "punctuation.dollar.js" and startswith("$") for completions that starts with "$" char
+    # because Sublime Text 3 doesn't recognize it
+    # 
+    # force prefix in case of presence of "$" char
+    if scope.endswith(" punctuation.dollar.js"):
+      prefix = "$"
+    elif view.substr(util.word_with_dollar_char(view, view.sel()[0])).startswith("$"): 
+      prefix = view.substr(util.word_with_dollar_char(view, view.sel()[0]))
+
+    if not prefix and not (scope.endswith(" punctuation.accessor.js") or scope.endswith(" punctuation.dollar.js") or view.substr(util.word_with_dollar_char(view, view.sel()[0].begin()-1)).startswith("$") or scope.endswith(" keyword.operator.accessor.js")) :
       sublime.active_window().active_view().run_command(
         'hide_auto_complete'
       )
@@ -120,6 +126,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
 
     if self.completions_ready and self.completions:
       self.completions_ready = False
+      # Return the pending completions
       return self.completions
 
     if not self.searching:
@@ -186,7 +193,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       bin_path=bin_path,
       use_node=use_node
     )
-    
+
     if result[0]:
 
       if self.modified == True:
@@ -195,9 +202,18 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
 
       result = result[1]
       self.completions = list()
+
+      scope = view.scope_name(view.sel()[0].begin()-1).strip()
+      dollar_prefix = view.substr(util.word_with_dollar_char(view, view.sel()[0]))
+      is_prefix_dollar = (scope.endswith(" punctuation.dollar.js") or scope.endswith(" variable.other.dollar.js") or dollar_prefix.startswith("$"))
+
       for match in result['result'] :
 
         comp_name = match['name']
+
+        if is_prefix_dollar and not comp_name.startswith(dollar_prefix):
+          continue
+
         comp_type = match['type'] if match['type'] else build_type_from_func_details(match.get('func_details'))
 
         if comp_type.startswith("((") or comp_type.find("&") >= 0 :
@@ -233,7 +249,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       view = sublime.active_window().active_view()
       sel = view.sel()[0]
 
-      if view.substr(view.word(sel)).strip() :
+      if view.substr(util.word_with_dollar_char(view, sel)).strip() :
 
         if self.modified == True:
           self.searching = False
@@ -265,7 +281,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       self.modified = True
       self.searching = False
       scope = view.scope_name(view.sel()[0].begin()-1).strip()
-      if scope.endswith(" punctuation.accessor.js") or scope.endswith(" keyword.operator.accessor.js"):
+      if scope.endswith(" punctuation.accessor.js") or scope.endswith(" punctuation.dollar.js") or view.substr(view.word(view.sel()[0].begin()-1)) == " $" or view.substr(view.word(view.sel()[0].begin()-1)) == "\n$" or scope.endswith(" keyword.operator.accessor.js"):
         sublime.active_window().active_view().run_command(
           'hide_auto_complete'
         )
@@ -312,6 +328,28 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
           )) :
       view.run_command("javascript_enhancements_show_hint_parameters", args={"popup_position_on_point": True})
 
+  def on_modified(self, view):
+    # on_modified method added because Sublime Text 3
+    # doesn't call on_query_completions with "$" char at the begin.
+    # In this way I don't need to overwrite user's settings about word_separators option
+    selections = view.sel()
+    sel = None
+    try:
+      sel = selections[0]
+    except IndexError as e:
+      return
+      
+    if not view.match_selector(
+        sel.begin(),
+        'source.js - string - comment'
+    ):
+      return
+
+    scope = view.scope_name(sel.begin()-1).strip()
+
+    if scope.endswith(" punctuation.dollar.js") or view.substr(view.word(sel.begin()-1)) == " $" or view.substr(view.word(sel.begin()-1)) == "\n$":
+      self.run_auto_complete()
+
   def on_selection_modified_async(self, view) :
 
     selections = view.sel()
@@ -332,11 +370,11 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
 
     if ((
           scope1.endswith(" punctuation.accessor.js") or 
-          scope1.endswith(" keyword.operator.accessor.js")
+          scope1.endswith(" keyword.operator.accessor.js") 
         ) and 
         not ( 
           scope2.endswith(" punctuation.accessor.js") or 
-          scope2.endswith(" keyword.operator.accessor.js")
+          scope2.endswith(" keyword.operator.accessor.js") 
         ) and 
         view.substr(sel.begin()-2).strip() 
       ) :

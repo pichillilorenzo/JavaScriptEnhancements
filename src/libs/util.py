@@ -708,3 +708,11 @@ def save_project_setting(setting_file, data):
   if settings :
     with open(os.path.join(settings["settings_dir_name"], setting_file), 'w+', encoding="utf-8") as file :
       file.write(json.dumps(data, indent=2))
+
+def word_with_dollar_char(view, region_or_point):
+  user_setting_word_separators = view.settings().get("word_separators")
+  view.settings().set("word_separators", "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?")
+  word = view.word(region_or_point)
+  view.settings().set("word_separators", user_setting_word_separators)
+  return word
+

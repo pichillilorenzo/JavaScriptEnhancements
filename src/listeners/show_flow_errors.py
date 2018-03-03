@@ -157,6 +157,12 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
         row = -1
         for i in range(len(error['message'])):
           message = error['message'][i]
+
+          # check if the error path is the same file opened on the current view.
+          # this check is done because sometimes flow put errors from other files (for example when defining new flow definitions)
+          if message['path'] != deps.filename:
+            continue
+            
           if i == 0 :
             row = int(message['line']) - 1
             endrow = int(message['endline']) - 1
