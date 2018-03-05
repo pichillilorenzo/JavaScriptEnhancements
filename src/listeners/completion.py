@@ -1,10 +1,12 @@
 import sublime, sublime_plugin
-import os
+import os, json, subprocess, threading
 from ..libs import NodeJS
 from ..libs.global_vars import *
 from ..libs.popup_manager import popup_manager
 from ..libs import util
 from ..libs import flow
+from ..libs.flow.flow import FlowIDEServer
+from ..libs.flow.flow import flow_ide_clients
 
 def build_type_from_func_details(comp_details):
   if comp_details :
@@ -87,6 +89,8 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
   completions_ready = False
   searching = False
   modified = False
+  prefix = ""
+  locations = []
 
   # Used for async completions.
   def run_auto_complete(self):
@@ -118,6 +122,9 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
     elif view.substr(util.word_with_dollar_char(view, view.sel()[0])).startswith("$"): 
       prefix = view.substr(util.word_with_dollar_char(view, view.sel()[0]))
 
+    self.prefix = prefix
+    self.locations = locations
+
     if not prefix and not (scope.endswith(" punctuation.accessor.js") or scope.endswith(" punctuation.dollar.js") or view.substr(util.word_with_dollar_char(view, view.sel()[0].begin()-1)).startswith("$") or scope.endswith(" keyword.operator.accessor.js")) :
       sublime.active_window().active_view().run_command(
         'hide_auto_complete'
@@ -135,130 +142,112 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
     else: 
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
+    # sublime.set_timeout_async(
+    #   lambda: self.on_query_completions_async(
+    #     view, prefix, locations
+    #   )
+    # )
     sublime.set_timeout_async(
-      lambda: self.on_query_completions_async(
-        view, prefix, locations
-      )
+      lambda: self.on_query_completions_async(view)
     )
-    
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
-
-  def on_query_completions_async(self, view, prefix, locations):
-
+      
+  def on_query_completions_async(self, view):
     self.completions = None
 
     if not view.match_selector(
-        locations[0],
+        self.locations[0],
         'source.js - string - comment'
     ):
       return
 
-    deps = flow.parse_cli_dependencies(view, add_magic_token=True, cursor_pos=locations[0])
-    
-    flow_cli = "flow"
-    is_from_bin = True
-    chdir = ""
-    use_node = True
-    bin_path = ""
+    deps = flow.parse_cli_dependencies(view, add_magic_token=True, cursor_pos=self.locations[0])
 
-    settings = util.get_project_settings()
-    if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-      is_from_bin = False
-      chdir = settings["project_dir_name"]
-      use_node = False
+    if not deps.project_root in flow_ide_clients:
+      flow_ide = FlowIDEServer(deps.project_root)
+      flow_ide.start_stdio_server(self.generate_completions, lambda: flow_ide.stop())
+
+    # flow ide command sometimes doesn't work with "\n" only, so I replace it with "\n\r"
+    deps.contents = deps.contents.replace("\n", "\n\r")
+
+    params = [
+      (deps.filename if deps.filename else ""), 
+      deps.row, 
+      deps.col, 
+      deps.contents]
+
+    flow_ide_clients[deps.project_root].autocomplete(params)
+
+  def generate_completions(self, result):
+    
+    view = sublime.active_window().active_view()
+
+    result = json.loads(result)['result']
 
     if self.modified == True:
       self.searching = False
       return
 
-    node = NodeJS(check_local=True)
+    self.completions = list()
 
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'autocomplete',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--json',
-        deps.filename
-      ],
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      fp_temp_contents=deps.contents, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    scope = view.scope_name(view.sel()[0].begin()-1).strip()
+    dollar_prefix = view.substr(util.word_with_dollar_char(view, view.sel()[0]))
+    is_prefix_dollar = (scope.endswith(" punctuation.dollar.js") or scope.endswith(" variable.other.dollar.js") or dollar_prefix.startswith("$"))
 
-    if result[0]:
+    for match in result['result'] :
+
+      comp_name = match['name']
+
+      if is_prefix_dollar and not comp_name.startswith(dollar_prefix):
+        continue
+
+      comp_type = match['type'] if match['type'] else build_type_from_func_details(match.get('func_details'))
+
+      if comp_type.startswith("((") or comp_type.find("&") >= 0 :
+        sub_completions = comp_type.split("&")
+        for sub_comp in sub_completions :
+          sub_comp = sub_comp.strip()
+          sub_type = sub_comp[1:-1] if comp_type.startswith("((") else sub_comp
+          
+          if not match.get('func_details') :
+            text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
+            text_params = text_params.strip()
+            match["func_details"] = dict()
+            match["func_details"]["params"] = list()
+            start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
+            end = text_params.rfind(")")
+            params = text_params[start:end].split(",")
+            for param in params :
+              param_dict = dict()
+              param_info = param.split(":")
+              param_dict["name"] = param_info[0].strip()
+              match['func_details']["params"].append(param_dict)
+
+          completion = create_completion(comp_name, sub_type, match.get('func_details'))
+          self.completions.append(completion)
+      else :
+        completion = create_completion(comp_name, comp_type, match.get('func_details'))
+        self.completions.append(completion)
+
+    self.completions += load_default_autocomplete(view, self.completions, self.prefix, self.locations[0])
+    self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+    self.completions_ready = True
+
+    view = sublime.active_window().active_view()
+    sel = view.sel()[0]
+
+    if view.substr(util.word_with_dollar_char(view, sel)).strip() :
 
       if self.modified == True:
         self.searching = False
         return
+      
+      sublime.active_window().active_view().run_command(
+        'hide_auto_complete'
+      )
 
-      result = result[1]
-      self.completions = list()
-
-      scope = view.scope_name(view.sel()[0].begin()-1).strip()
-      dollar_prefix = view.substr(util.word_with_dollar_char(view, view.sel()[0]))
-      is_prefix_dollar = (scope.endswith(" punctuation.dollar.js") or scope.endswith(" variable.other.dollar.js") or dollar_prefix.startswith("$"))
-
-      for match in result['result'] :
-
-        comp_name = match['name']
-
-        if is_prefix_dollar and not comp_name.startswith(dollar_prefix):
-          continue
-
-        comp_type = match['type'] if match['type'] else build_type_from_func_details(match.get('func_details'))
-
-        if comp_type.startswith("((") or comp_type.find("&") >= 0 :
-          sub_completions = comp_type.split("&")
-          for sub_comp in sub_completions :
-            sub_comp = sub_comp.strip()
-            sub_type = sub_comp[1:-1] if comp_type.startswith("((") else sub_comp
-            
-            if not match.get('func_details') :
-              text_params = sub_type[ : sub_type.rfind(" => ") if sub_type.rfind(" => ") >= 0 else None ]
-              text_params = text_params.strip()
-              match["func_details"] = dict()
-              match["func_details"]["params"] = list()
-              start = 1 if sub_type.find("(") == 0 else sub_type.find("(")+1
-              end = text_params.rfind(")")
-              params = text_params[start:end].split(",")
-              for param in params :
-                param_dict = dict()
-                param_info = param.split(":")
-                param_dict["name"] = param_info[0].strip()
-                match['func_details']["params"].append(param_dict)
-
-            completion = create_completion(comp_name, sub_type, match.get('func_details'))
-            self.completions.append(completion)
-        else :
-          completion = create_completion(comp_name, comp_type, match.get('func_details'))
-          self.completions.append(completion)
-
-      self.completions += load_default_autocomplete(view, self.completions, prefix, locations[0])
-      self.completions = (self.completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
-      self.completions_ready = True
-
-      view = sublime.active_window().active_view()
-      sel = view.sel()[0]
-
-      if view.substr(util.word_with_dollar_char(view, sel)).strip() :
-
-        if self.modified == True:
-          self.searching = False
-          return
-        
-        sublime.active_window().active_view().run_command(
-          'hide_auto_complete'
-        )
-        self.run_auto_complete()
+      self.run_auto_complete()
 
     self.searching = False
 
@@ -388,8 +377,9 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       else: 
         return 
 
+      self.locations = locations
+      self.prefix = ""
+
       sublime.set_timeout_async(
-        lambda: self.on_query_completions_async(
-          view, "", locations
-        )
+        lambda: self.on_query_completions_async(view)
       )
