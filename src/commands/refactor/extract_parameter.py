@@ -1,14 +1,14 @@
 import sublime, sublime_plugin
 import os
 from ...libs import util
-from ...libs import NodeJS
+from ...libs import FlowCLI
 
 class JavascriptEnhancementsRefactorExtractParameterCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     selection = view.sel()[0]
-    content = view.substr(selection).strip()
-    content = content[:-1] if content[-1] == ";" else content
+    contents = view.substr(selection).strip()
+    contents = contents[:-1] if contents[-1] == ";" else contents
     scope = view.scope_name(selection.begin()).strip()
     region_scope = None
     is_babel = False
@@ -22,36 +22,8 @@ class JavascriptEnhancementsRefactorExtractParameterCommand(sublime_plugin.TextC
     if not region_scope:
       return
 
-    flow_cli = "flow"
-    is_from_bin = True
-    chdir = ""
-    use_node = True
-    bin_path = ""
-
-    settings = util.get_project_settings()
-    if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-      is_from_bin = False
-      chdir = settings["project_dir_name"]
-      use_node = False
-
-    node = NodeJS(check_local=True)
-    
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'ast',
-        '--from', 'sublime_text'
-      ],
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      fp_temp_contents=content, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    flow_cli = FlowCLI(view)
+    result = flow_cli.ast(contents=contents)
 
     if result[0] and not result[1]["errors"] and result[1]["body"] and "type" in result[1]["body"][0] and result[1]["body"][0]["type"] == "ExpressionStatement":
 
@@ -96,7 +68,7 @@ class JavascriptEnhancementsRefactorExtractParameterCommand(sublime_plugin.TextC
           point_begin = word.begin()
 
         variable_name = "new_var"
-        str_parameter = (", " if not first_parameter else "") + variable_name + " = " + content
+        str_parameter = (", " if not first_parameter else "") + variable_name + " = " + contents
 
         view.erase(edit, selection)
         view.insert(edit, selection.begin(), variable_name)

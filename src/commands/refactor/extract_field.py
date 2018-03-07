@@ -1,64 +1,23 @@
 import sublime, sublime_plugin
 import os
 from ...libs import util
-from ...libs import NodeJS
+from ...libs import FlowCLI
 
 class JavascriptEnhancementsRefactorExtractFieldCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
     selection = view.sel()[0]
     inputs = args.get("inputs")
-    content = view.substr(selection).strip()
-    content = content[:-1] if content[-1] == ";" else content
+    contents = view.substr(selection).strip()
+    contents = contents[:-1] if contents[-1] == ";" else contents
     field_name = inputs["field_name"].strip()
 
-    flow_cli = "flow"
-    is_from_bin = True
-    chdir = ""
-    use_node = True
-    bin_path = ""
-
-    settings = util.get_project_settings()
-    if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-      is_from_bin = False
-      chdir = settings["project_dir_name"]
-      use_node = False
-
-    node = NodeJS(check_local=True)
-    
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'ast',
-        '--from', 'sublime_text'
-      ],
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      fp_temp_contents=content, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    flow_cli = FlowCLI(view)
+    result = flow_cli.ast(contents=contents)
 
     if result[0] and not result[1]["errors"] and result[1]["body"] and "type" in result[1]["body"][0] and result[1]["body"][0]["type"] == "ExpressionStatement":
 
-      result = node.execute_check_output(
-        flow_cli,
-        [
-          'ast',
-          '--from', 'sublime_text'
-        ],
-        is_from_bin=is_from_bin,
-        use_fp_temp=True, 
-        fp_temp_contents=view.substr(sublime.Region(0, view.size())), 
-        is_output_json=True,
-        chdir=chdir,
-        bin_path=bin_path,
-        use_node=use_node
-      )
+      result = flow_cli.ast()
 
       if result[0]:
         if "body" in result[1]:
@@ -138,7 +97,7 @@ class JavascriptEnhancementsRefactorExtractFieldCommand(sublime_plugin.TextComma
                 if inputs["scope"] == "Class constructor":
                   space += util.convert_tabs_using_tab_size(view, "\t")
 
-              str_assignement = "this." + (field_name + " = " + content if inputs["scope"] == "Current method" or inputs["scope"] == "Class constructor" else field_name)
+              str_assignement = "this." + (field_name + " = " + contents if inputs["scope"] == "Current method" or inputs["scope"] == "Class constructor" else field_name)
 
               is_line_empty = view.substr(view.line(selection)).strip().replace(view.substr(selection), "") == ""
 
@@ -147,7 +106,7 @@ class JavascriptEnhancementsRefactorExtractFieldCommand(sublime_plugin.TextComma
               if not is_line_empty:
                 view.insert(edit, selection.begin(), "this." + field_name)
                 if inputs["scope"] == "Current method":
-                  str_assignement = ("\n" + space if not prev_line_is_empty else "") + "this." + field_name + " = " + content + "\n" + space
+                  str_assignement = ("\n" + space if not prev_line_is_empty else "") + "this." + field_name + " = " + contents + "\n" + space
                   view.insert(edit, region.begin(), str_assignement)
                 else:
                   str_assignement = ""
@@ -158,15 +117,15 @@ class JavascriptEnhancementsRefactorExtractFieldCommand(sublime_plugin.TextComma
                   view.insert(edit, selection.begin(), str_assignement)
 
               if inputs["scope"] == "Class constructor":
-                str_assignement = "\n" + space + "this." + field_name + " = " + content + ("\n" + space if view.substr(constructor_region).splitlines()[0].strip().replace("{", "") != "" else "")
+                str_assignement = "\n" + space + "this." + field_name + " = " + contents + ("\n" + space if view.substr(constructor_region).splitlines()[0].strip().replace("{", "") != "" else "")
                 view.insert(edit, constructor_region.begin() + 1, str_assignement)
 
               str_class_property = ""
               if region_last_class_property:
-                str_class_property = "\n\t" + (field_name if inputs["scope"] == "Current method" or inputs["scope"] == "Class constructor" else field_name + " = " + content) + ";"
+                str_class_property = "\n\t" + (field_name if inputs["scope"] == "Current method" or inputs["scope"] == "Class constructor" else field_name + " = " + contents) + ";"
                 view.insert(edit, region_last_class_property.end(), str_class_property)
               else:
-                str_class_property = "\n\n\t" + (field_name if inputs["scope"] == "Current method" or inputs["scope"] == "Class constructor" else field_name + " = " + content) + ";"
+                str_class_property = "\n\n\t" + (field_name if inputs["scope"] == "Current method" or inputs["scope"] == "Class constructor" else field_name + " = " + contents) + ";"
                 view.insert(edit, int(_class["body"]["range"][0])+1, str_class_property)
 
               str_class_property = util.convert_tabs_using_tab_size(view, str_class_property)

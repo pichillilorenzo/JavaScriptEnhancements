@@ -29,5 +29,6 @@ class PopupManager():
 popup_manager = PopupManager()
 popup_manager.register("javascript_enhancements_hint_parameters")
 popup_manager.register("javascript_enhancements_flow_error")
+popup_manager.register("javascript_enhancements_flow_warning")
 popup_manager.register("javascript_enhancements_can_i_use")
 popup_manager.register("javascript_enhancements_folder_explorer")

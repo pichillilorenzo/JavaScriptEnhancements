@@ -19,7 +19,7 @@
   },
   {
     "keys": ["super+alt+g"],
-    "command": "javascript_enhancements_go_to_def"
+    "command": "javascript_enhancements_go_to_definition"
   },
   {
     "keys": ["super+alt+s"],

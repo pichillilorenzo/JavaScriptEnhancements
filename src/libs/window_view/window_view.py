@@ -334,7 +334,7 @@ class WindowView():
   def destroy(self, *args, **kwargs):
     self.__del__()
 
-class WindowViewKeypressCommand(sublime_plugin.TextCommand):
+class JavascriptEnhancementsWindowViewKeypressCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     view = self.view
 
@@ -366,7 +366,7 @@ class WindowViewKeypressCommand(sublime_plugin.TextCommand):
             view.sel().clear()
             view.sel().add(sublime.Region(region.begin()+1, region.end()-1))
 
-class WindowViewEventListener(sublime_plugin.EventListener):
+class JavascriptEnhancementsWindowViewEventListener(sublime_plugin.EventListener):
 
   def on_activated_async(self, view):
     self.on_selection_modified(view)

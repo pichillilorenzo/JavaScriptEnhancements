@@ -54,4 +54,8 @@ class Hook():
 
     if hook_name in Hook.hook_list :
       Hook.hook_list[hook_name] = []
+
+  @staticmethod
+  def check_exists(hook_name) :
+    return hook_name in Hook.hook_list
       

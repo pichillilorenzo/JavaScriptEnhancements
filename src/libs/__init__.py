@@ -3,7 +3,9 @@ from .javascript_enhancements_settings import javaScriptEnhancements
 from . import util
 from .node import NodeJS
 from .npm import NPM
-from .flow import flow
+from .flow import main as flow
+from .flow.flow_cli import FlowCLI
+from .flow.flow_ide_server import FlowIDEServer, flow_ide_clients, JavascriptEnhancementsStartFlowIDEServerEventListener
 from .animation_loader import AnimationLoader
 from .repeated_timer import RepeatedTimer
 from .hook import Hook
@@ -12,10 +14,7 @@ from .popup_manager import popup_manager
 from .socket import SocketClient
 from .socket import SocketServer
 from .folder_explorer import FolderExplorer
-from .window_view import window_view_manager
-from .window_view import WindowView
-from .window_view import WindowViewKeypressCommand
-from .window_view import WindowViewEventListener
+from .window_view import window_view_manager, WindowView, JavascriptEnhancementsWindowViewKeypressCommand,JavascriptEnhancementsWindowViewEventListener
 from .execute_on_terminal import JavascriptEnhancementsExecuteOnTerminalCommand
 
 __all__ = [
@@ -24,7 +23,6 @@ __all__ = [
   "util",
   "NodeJS",
   "NPM",
-  "flow",
   "AnimationLoader",
   "RepeatedTimer",
   "Hook",
@@ -35,7 +33,12 @@ __all__ = [
   "FolderExplorer",
   "window_view_manager",
   "WindowView",
-  "WindowViewKeypressCommand",
-  "WindowViewEventListener",
-  "JavascriptEnhancementsExecuteOnTerminalCommand"
+  "JavascriptEnhancementsWindowViewKeypressCommand",
+  "JavascriptEnhancementsWindowViewEventListener",
+  "JavascriptEnhancementsExecuteOnTerminalCommand",
+  "flow",
+  "FlowCLI",
+  "FlowIDEServer", 
+  "flow_ide_clients", 
+  "JavascriptEnhancementsStartFlowIDEServerEventListener"
 ]

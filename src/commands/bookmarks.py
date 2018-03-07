@@ -238,4 +238,4 @@ class JavascriptEnhancementsDeleteProjectBookmarksCommand(sublime_plugin.TextCom
     return util.is_javascript_project()
 
 class JavascriptEnhancementsNavigateProjectBookmarksCommand(JavascriptEnhancementsNavigateRegionsCommand, sublime_plugin.TextCommand):
-  region_key = "javascript_enhancements_region_bookmarks" 
+  region_keys = ["javascript_enhancements_region_bookmarks"]

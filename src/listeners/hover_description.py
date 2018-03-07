@@ -3,7 +3,7 @@ import cgi, os, re
 from ..libs import NodeJS
 from ..libs.popup_manager import popup_manager
 from .completion import load_default_autocomplete
-from ..libs import flow
+from ..libs import FlowCLI
 from ..libs import util
 
 hover_description_css = ""
@@ -66,7 +66,7 @@ class JavascriptEnhancementsOnHoverDescriptionEventListener(sublime_plugin.Event
     if hover_zone != sublime.HOVER_TEXT :
       return
 
-    for region in view.get_regions("javascript_enhancements_flow_error"):
+    for region in view.get_regions("javascript_enhancements_flow_error") + view.get_regions("javascript_enhancements_flow_warning"):
       if region.contains(point):
         return
 
@@ -91,7 +91,7 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
     return
 
   if not show_hint:
-    for region in view.get_regions("javascript_enhancements_flow_error"):
+    for region in view.get_regions("javascript_enhancements_flow_error") + view.get_regions("javascript_enhancements_flow_warning"):
       if region.contains(point):
         return
 
@@ -102,42 +102,8 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
 
   cursor_pos = region.end()
 
-  deps = flow.parse_cli_dependencies(view, cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
-
-  flow_cli = "flow"
-  is_from_bin = True
-  chdir = ""
-  use_node = True
-  bin_path = ""
-
-  settings = util.get_project_settings()
-
-  if settings and settings["project_settings"]["flow_cli_custom_path"]:
-    flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-    bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-    is_from_bin = False
-    chdir = settings["project_dir_name"]
-    use_node = False
-
-  node = NodeJS(check_local=True)
-
-  result = node.execute_check_output(
-    flow_cli,
-    [
-      'autocomplete',
-      '--from', 'sublime_text',
-      '--root', deps.project_root,
-      '--json',
-      deps.filename
-    ],
-    is_from_bin=is_from_bin,
-    use_fp_temp=True, 
-    fp_temp_contents=deps.contents, 
-    is_output_json=True,
-    chdir=chdir,
-    bin_path=bin_path,
-    use_node=use_node
-  )
+  flow_cli = FlowCLI(view)
+  result = flow_cli.autocomplete(cursor_pos=cursor_pos, add_magic_token=True, not_add_last_part_tokenized_line=True)
 
   html = ""
   results_found = 0
@@ -181,43 +147,10 @@ def on_hover_description_async(view, point, hover_zone, popup_position, show_hin
           html += description_details_html(description)
 
   if not html :
-    deps = flow.parse_cli_dependencies(view)
 
     row, col = view.rowcol(point)
 
-    flow_cli = "flow"
-    is_from_bin = True
-    chdir = ""
-    use_node = True
-    bin_path = ""
-
-    settings = util.get_project_settings()
-    if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-      is_from_bin = False
-      chdir = settings["project_dir_name"]
-      use_node = False
-      
-    node = NodeJS(check_local=True)
-    result = node.execute_check_output(
-      flow_cli,
-      [
-        'type-at-pos',
-        '--from', 'sublime_text',
-        '--root', deps.project_root,
-        '--path', deps.filename,
-        '--json',
-        str(row + 1), str(col + 1)
-      ],
-      is_from_bin=is_from_bin,
-      use_fp_temp=True, 
-      fp_temp_contents=deps.contents, 
-      is_output_json=True,
-      chdir=chdir,
-      bin_path=bin_path,
-      use_node=use_node
-    )
+    result = flow_cli.type_at_pos(options=[str(row + 1), str(col + 1)])
     
     if result[0] and result[1].get("type") and result[1]["type"] != "(unknown)":
 

@@ -2,13 +2,18 @@ from ..libs import util
 
 class JavascriptEnhancementsNavigateRegionsCommand():
 
-  region_key = ""
+  region_keys = []
 
   def run(self, edit, **args) :
     
     view = self.view
+    regions = []
 
-    regions = view.get_regions(self.region_key)
+    for region_key in self.region_keys:
+      regions += view.get_regions(region_key)
+
+    regions = sorted(regions, key=lambda region: region.begin())
+    
     if not regions:
       return
       

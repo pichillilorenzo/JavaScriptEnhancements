@@ -2,8 +2,7 @@ import sublime, sublime_plugin
 import os, shutil, traceback, json
 from ...libs import util
 from ...libs import window_view_manager
-from ...libs import NodeJS
-from ...libs import flow
+from ...libs import FlowCLI
 from .refactor_preview import RefactorPreview
 
 class JavascriptEnhancementsRefactorSafeCopyCommand(sublime_plugin.TextCommand):
@@ -127,91 +126,6 @@ class JavascriptEnhancementsRefactorSafeCopyCommand(sublime_plugin.TextCommand):
 
     else:
       sublime.error_message("Error: can't get project settings.")
-      
-  def get_imports(self, settings, javascript_files):
-
-    view = self.view
-
-    flow_cli = "flow"
-    is_from_bin = True
-    chdir = settings["project_dir_name"]
-    use_node = True
-    bin_path = ""
-
-    if settings and settings["project_settings"]["flow_cli_custom_path"]:
-      flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-      bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-      is_from_bin = False
-      chdir = settings["project_dir_name"]
-      use_node = False
-
-    deps = flow.parse_cli_dependencies(view)
-
-    node = NodeJS(check_local=True)
-    
-    if sublime.platform() == "windows":
-      imports = {}
-      javascript_files_temp = ""
-      index = 0
-      for i in range(0, len(javascript_files)):
-
-        if len(javascript_files_temp + " " + json.dumps(javascript_files[i], ensure_ascii=False)) <= 7500 :
-
-          if not javascript_files_temp:
-            javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
-          else:
-            javascript_files_temp += " " + json.dumps(javascript_files[i], ensure_ascii=False)
-        
-          if i < len(javascript_files) - 1:
-            continue
-
-        result = node.execute_check_output(
-          flow_cli,
-          [
-            'get-imports',
-            '--from', 'sublime_text',
-            '--root', deps.project_root,
-            '--json'
-          ] + ( javascript_files[index:i] if i < len(javascript_files) - 1 else javascript_files[index:]),
-          is_from_bin=is_from_bin,
-          use_fp_temp=False, 
-          is_output_json=True,
-          chdir=chdir,
-          bin_path=bin_path,
-          use_node=use_node,
-          command_arg_escape=False
-        )
-
-        if result[0]:
-          imports.update(result[1])
-        else:
-          return {}
-
-        index = i
-        javascript_files_temp = json.dumps(javascript_files[i], ensure_ascii=False)
-
-      return imports
-    else:
-      result = node.execute_check_output(
-        flow_cli,
-        [
-          'get-imports',
-          '--from', 'sublime_text',
-          '--root', deps.project_root,
-          '--json'
-        ] + javascript_files,
-        is_from_bin=is_from_bin,
-        use_fp_temp=False, 
-        is_output_json=True,
-        chdir=chdir,
-        bin_path=bin_path,
-        use_node=use_node
-      )
-
-      if result[0]:
-        return result[1]
-
-    return {}
 
   def is_enabled(self, **args) :
     view = self.view

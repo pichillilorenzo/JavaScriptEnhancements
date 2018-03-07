@@ -1,7 +1,7 @@
 import sublime, sublime_plugin
 import os, traceback
 from ...libs import util
-from ...libs import NodeJS
+from ...libs import FlowCLI
 from ...libs import window_view_manager
 from .refactor_preview import RefactorPreview
 
@@ -59,36 +59,8 @@ class JavascriptEnhancementsRefactorExportCommand(sublime_plugin.TextCommand):
         preview_view = RefactorPreview("Refactor - Export " + tp.title() + " Preview")
         preview_view.append_text("Refactor - Export " + tp.title() + " Preview\n\n")
 
-      flow_cli = "flow"
-      is_from_bin = True
-      chdir = ""
-      use_node = True
-      bin_path = ""
-
-      settings = util.get_project_settings()
-      if settings and settings["project_settings"]["flow_cli_custom_path"]:
-        flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
-        bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
-        is_from_bin = False
-        chdir = settings["project_dir_name"]
-        use_node = False
-
-      node = NodeJS(check_local=True)
-      
-      result = node.execute_check_output(
-        flow_cli,
-        [
-          'ast',
-          '--from', 'sublime_text'
-        ],
-        is_from_bin=is_from_bin,
-        use_fp_temp=True, 
-        fp_temp_contents=view.substr(sublime.Region(0, view.size())), 
-        is_output_json=True,
-        chdir=chdir,
-        bin_path=bin_path,
-        use_node=use_node
-      )
+      flow_cli = FlowCLI(view)
+      result = flow_cli.ast()
 
       if result[0]:
 
@@ -127,20 +99,7 @@ class JavascriptEnhancementsRefactorExportCommand(sublime_plugin.TextCommand):
 
             if file_already_exists:
               with open(new_path, "r+", encoding="utf-8") as file:
-                result_exists = node.execute_check_output(
-                  flow_cli,
-                  [
-                    'ast',
-                    '--from', 'sublime_text'
-                  ],
-                  is_from_bin=is_from_bin,
-                  use_fp_temp=True, 
-                  fp_temp_contents=file.read(), 
-                  is_output_json=True,
-                  chdir=chdir,
-                  bin_path=bin_path,
-                  use_node=use_node
-                )
+                result_exists = flow_cli.ast(contents=file.read())
               if result_exists[0]:
                 body2 = result_exists[1]["body"]
                 items2 = util.nested_lookup("type", ["ExportDefaultDeclaration"], body2)

@@ -1,5 +1,4 @@
 import sublime
-import sys
 from unittest import TestCase
 
 class TestSurroundWith(TestCase):
@@ -16,7 +15,7 @@ class TestSurroundWith(TestCase):
       self.view.window().focus_view(self.view)
       self.view.window().run_command("close_file")
 
-  def test_surround_with_case_if_1(self):
+  def test_surround_with_case_if(self):
     self.view.run_command("insert", {"characters": "let a = 3;"})
     self.view.sel().clear()
     self.view.sel().add(sublime.Region(0, self.view.size()))
@@ -28,7 +27,8 @@ if (bool) {
 """ 
     self.assertEqual(self.view.substr(sublime.Region(0, self.view.size())), need_to_be_equal)
 
-  def test_surround_with_case_if_2(self):
+    self.view.run_command("javascript_enhancements_erase_text_view")
+
     self.view.run_command("insert", {"characters": "\tlet a = 3;"})
     self.view.sel().clear()
     self.view.sel().add(sublime.Region(0, self.view.size()))

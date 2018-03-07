@@ -2,11 +2,11 @@ import sublime, sublime_plugin
 import os, platform, shutil, tempfile, json, re, sys
 from subprocess import Popen, PIPE
 from .src.libs.global_vars import *
-from .src.libs.flow import *
 from .src.libs import util
 from .src.libs import *
 from .src.commands import *
 from .src.listeners import *
+from .tests import *
 
 keymaps = util.open_json(os.path.join(PACKAGE_PATH, 'Default.sublime-keymap'))
 for keymap in keymaps:
@@ -87,6 +87,8 @@ def start():
         shutil.rmtree(node_modules_path)
       sublime.error_message("Error during installation: can't install npm dependencies for JavaScript Enhancements plugin.\n\nThe error COULD be caused by the npm permission access (EACCES error), so in this case you need to repair/install node.js and npm in a way that doesn't require \"sudo\" command.\n\nFor example you could use a Node Version Manager, such as \"nvm\" or \"nodenv\".\n\nTry to run \"npm install\" inside the package of this plugin to see what you get.")
       return
+
+  Hook.apply('plugin_ready')
   
   sublime.set_timeout_async(lambda: util.overwrite_default_javascript_snippet())
 

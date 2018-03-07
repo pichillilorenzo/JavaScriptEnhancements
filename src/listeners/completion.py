@@ -4,47 +4,9 @@ from ..libs import NodeJS
 from ..libs.global_vars import *
 from ..libs.popup_manager import popup_manager
 from ..libs import util
-from ..libs import flow
-from ..libs.flow.flow import FlowIDEServer
-from ..libs.flow.flow import flow_ide_clients
-
-def build_type_from_func_details(comp_details):
-  if comp_details :
-
-    paramText = ""
-    for param in comp_details["params"]:
-      if not paramText:
-        paramText += param['name'] + (": " + param['type'] if param['type'] else "")
-      else:
-        paramText += ", " + param['name'] + (": " + param['type'] if param['type'] else "")
-
-    return ("("+paramText+")" if paramText else "()") + " => " + comp_details["return_type"]
-
-  return ""
-
-def build_completion_snippet(name, params):
-  snippet = name + '({})'
-  paramText = ''
-
-  count = 1
-  for param in params:
-    if not paramText:
-      paramText += "${" + str(count) + ":" + param['name'] + "}"
-    else:
-      paramText += ', ' + "${" + str(count) + ":" + param['name'] + "}"
-    count = count + 1
-
-  return snippet.format(paramText)
-
-def create_completion(comp_name, comp_type, comp_details) :
-  t = tuple()
-  t += (comp_name + '\t' + comp_type, )
-  t += (build_completion_snippet(
-      comp_name.replace("$", "\\$"),
-      comp_details["params"]
-    )
-    if comp_details else comp_name.replace("$", "\\$"), )
-  return t
+from ..libs import Hook
+from ..libs import FlowCLI
+from ..libs import flow_ide_clients
 
 default_completions = util.open_json(os.path.join(PACKAGE_PATH, 'default_autocomplete.json')).get('completions')
 
@@ -142,14 +104,10 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
     else: 
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-    # sublime.set_timeout_async(
-    #   lambda: self.on_query_completions_async(
-    #     view, prefix, locations
-    #   )
-    # )
     sublime.set_timeout_async(
       lambda: self.on_query_completions_async(view)
     )
+
     if not self.completions_ready or not self.completions:
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       
@@ -162,28 +120,64 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
     ):
       return
 
-    deps = flow.parse_cli_dependencies(view, add_magic_token=True, cursor_pos=self.locations[0])
+    deps = FlowCLI.parse_cli_dependencies(view, add_magic_token=True, cursor_pos=self.locations[0])
 
     if not deps.project_root in flow_ide_clients:
-      flow_ide = FlowIDEServer(deps.project_root)
-      flow_ide.start_stdio_server(self.generate_completions, lambda: flow_ide.stop())
-
-    # flow ide command sometimes doesn't work with "\n" only, so I replace it with "\n\r"
-    deps.contents = deps.contents.replace("\n", "\n\r")
-
+      return
+      
     params = [
       (deps.filename if deps.filename else ""), 
-      deps.row, 
-      deps.col, 
-      deps.contents]
+      deps.row + 1, 
+      deps.col + 1, 
+      deps.contents
+    ]
 
+    if not Hook.check_exists("flow_ide_server.autocomplete"):
+      Hook.add("flow_ide_server.autocomplete", self.generate_completions)
+      
     flow_ide_clients[deps.project_root].autocomplete(params)
+
+  def build_type_from_func_details(self, comp_details):
+    if comp_details :
+
+      paramText = ""
+      for param in comp_details["params"]:
+        if not paramText:
+          paramText += param['name'] + (": " + param['type'] if param['type'] else "")
+        else:
+          paramText += ", " + param['name'] + (": " + param['type'] if param['type'] else "")
+
+      return ("("+paramText+")" if paramText else "()") + " => " + comp_details["return_type"]
+
+    return ""
+
+  def build_completion_snippet(self, name, params):
+    snippet = name + '({})'
+    paramText = ''
+
+    count = 1
+    for param in params:
+      if not paramText:
+        paramText += "${" + str(count) + ":" + param['name'] + "}"
+      else:
+        paramText += ', ' + "${" + str(count) + ":" + param['name'] + "}"
+      count = count + 1
+
+    return snippet.format(paramText)
+
+  def create_completion(self, comp_name, comp_type, comp_details) :
+    t = tuple()
+    t += (comp_name + '\t' + comp_type, )
+    t += (self.build_completion_snippet(
+        comp_name.replace("$", "\\$"),
+        comp_details["params"]
+      )
+      if comp_details else comp_name.replace("$", "\\$"), )
+    return t
 
   def generate_completions(self, result):
     
     view = sublime.active_window().active_view()
-
-    result = json.loads(result)['result']
 
     if self.modified == True:
       self.searching = False
@@ -199,10 +193,10 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
 
       comp_name = match['name']
 
-      if is_prefix_dollar and not comp_name.startswith(dollar_prefix):
+      if (is_prefix_dollar and not comp_name.startswith(dollar_prefix)) or "AUTO332" in comp_name:
         continue
 
-      comp_type = match['type'] if match['type'] else build_type_from_func_details(match.get('func_details'))
+      comp_type = match['type'] if match['type'] else self.build_type_from_func_details(match.get('func_details'))
 
       if comp_type.startswith("((") or comp_type.find("&") >= 0 :
         sub_completions = comp_type.split("&")
@@ -224,10 +218,10 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
               param_dict["name"] = param_info[0].strip()
               match['func_details']["params"].append(param_dict)
 
-          completion = create_completion(comp_name, sub_type, match.get('func_details'))
+          completion = self.create_completion(comp_name, sub_type, match.get('func_details'))
           self.completions.append(completion)
       else :
-        completion = create_completion(comp_name, comp_type, match.get('func_details'))
+        completion = self.create_completion(comp_name, comp_type, match.get('func_details'))
         self.completions.append(completion)
 
     self.completions += load_default_autocomplete(view, self.completions, self.prefix, self.locations[0])
