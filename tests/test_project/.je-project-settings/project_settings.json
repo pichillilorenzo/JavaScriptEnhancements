@@ -1,0 +1,18 @@
+{
+  "node_js_custom_path": "", 
+  "npm_custom_path": "", 
+  "yarn_custom_path": "", 
+  "use_yarn": false, 
+  "build_flow": {
+    "source_folders": [], 
+    "destination_folder": "", 
+    "options": [], 
+    "on_save": true
+  }, 
+  "flow_checker_enabled": true, 
+  "flow_cli_custom_path": "", 
+  "flow_remove_types_custom_path": "", 
+  "jsdoc": {
+    "conf_file": ""
+  }
+}

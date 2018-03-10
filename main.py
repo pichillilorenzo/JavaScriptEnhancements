@@ -6,7 +6,6 @@ from .src.libs import util
 from .src.libs import *
 from .src.commands import *
 from .src.listeners import *
-from .tests import *
 
 keymaps = util.open_json(os.path.join(PACKAGE_PATH, 'Default.sublime-keymap'))
 for keymap in keymaps:

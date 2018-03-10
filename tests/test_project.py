@@ -4,6 +4,7 @@ from collections import OrderedDict
 from unittesting import DeferrableTestCase
 JavaScriptEnhancements = __import__('JavaScript Enhancements')
 util = JavaScriptEnhancements.src.libs.util
+PACKAGE_PATH = JavaScriptEnhancements.src.libs.global_vars.PACKAGE_PATH
 
 project_path = os.path.join(os.path.expanduser("~"), "javascript_enhancements_project_test")
 project_settings = {
@@ -15,20 +16,36 @@ project_settings = {
   'bookmarks': []
 }
 
+def plugin_ready():
+  return os.path.exists(os.path.join(PACKAGE_PATH, "node_modules", ".bin"))
+
+timeout = 30
+
 class TestProject(DeferrableTestCase):
 
   def setUp(self):
-    self.window = sublime.active_window()
+    sublime.run_command('new_window')
+    self.view = sublime.active_window().new_file()
+    self.window = self.view.window()
     if os.path.isdir(project_path):
       shutil.rmtree(project_path)
 
   def tearDown(self):
     global project_path
     sublime.active_window().run_command("close")
+    sublime.active_window().run_command("close")
     if os.path.isdir(project_path):
       shutil.rmtree(project_path)
 
   def test_project(self):
+    start_time = time.time()
+
+    while not plugin_ready():
+      if time.time() - start_time <= timeout:
+        yield 200
+      else:
+        raise TimeoutError("plugin is not ready in " + str(timeout) + " seconds")
+
     self.window.run_command("javascript_enhancements_create_new_project")
     yield 1000
     self.window.run_command("insert", {"characters": "empty"})

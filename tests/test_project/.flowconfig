@@ -1,0 +1,12 @@
+[ignore]
+<PROJECT_ROOT>/.je-project-settings/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]

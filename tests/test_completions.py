@@ -1,9 +1,13 @@
 import sublime
-import time
+import time, os
 from unittesting import DeferrableTestCase
 JavaScriptEnhancements = __import__('JavaScript Enhancements')
 flow_ide_clients = JavaScriptEnhancements.src.libs.flow_ide_clients
 JavascriptEnhancementsStartFlowIDEServerEventListener = JavaScriptEnhancements.src.libs.JavascriptEnhancementsStartFlowIDEServerEventListener
+PACKAGE_PATH = JavaScriptEnhancements.src.libs.global_vars.PACKAGE_PATH
+
+def plugin_ready():
+  return os.path.exists(os.path.join(PACKAGE_PATH, "node_modules", ".bin"))
 
 timeout = 30
 
@@ -22,12 +26,15 @@ class TestCompletions(DeferrableTestCase):
       self.view.window().run_command("close_file")
 
   def test_completions(self):
+    
+    start_time = time.time()
 
-    for x in JavaScriptEnhancements.tests.wait_plugin_ready():
-      if not x:
-        yield 100
+    while not plugin_ready():
+      if time.time() - start_time <= timeout:
+        yield 200
       else:
-        break
+        raise TimeoutError("plugin is not ready in " + str(timeout) + " seconds")
+
     self.view.run_command("insert", {"characters": "\ndocument."})
 
     JavascriptEnhancementsStartFlowIDEServerEventListener().start_server(self.view)
@@ -46,7 +53,6 @@ class TestCompletions(DeferrableTestCase):
 
       else:
         raise TimeoutError("auto_complete popup doesn't show up in " + str(timeout) + " seconds")
-        break
 
     self.view.run_command("commit_completion")
     
