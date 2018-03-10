@@ -31,14 +31,14 @@ class TestProject(DeferrableTestCase):
   def test_project(self):
     self.window.run_command("javascript_enhancements_create_new_project")
     self.window.run_command("insert", {"characters": "empty"})
-    yield 200
-    self.window.run_command("keypress", {"key": "enter"})
-    yield 200
-    self.window.run_command("insert", {"characters": "javascript_enhancements_project_test"})
-    yield 200
-    self.window.run_command("keypress", {"key": "enter"})
-    yield 200
+    yield 500
     self.window.run_command("keypress", {"key": "enter"})
     yield 500
-    self.assertEqual(project_settings, util.get_project_settings())
+    self.window.run_command("insert", {"characters": "javascript_enhancements_project_test"})
+    yield 500
+    self.window.run_command("keypress", {"key": "enter"})
+    yield 500
+    self.window.run_command("keypress", {"key": "enter"})
+    yield 500
+    self.assertDictEqual(project_settings, util.get_project_settings())
 
