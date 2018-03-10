@@ -164,9 +164,11 @@ def plugin_unloaded():
     global fixPathSettings
     fixPathSettings.clear_on_change('fixpath-reload')
 
-  node = NodeJS(check_local=True)
-  sublime.set_timeout_async(lambda: node.execute("flow", ["stop"], is_from_bin=True, chdir=FLOW_DEFAULT_CONFIG_PATH))
-
+  flow_ide_clients_copy = flow_ide_clients.copy()
+  for root, client in flow_ide_clients_copy.items():
+    flow_ide_clients[root].stop()
+    flow_cli = FlowCLI(None)
+    flow_cli.stop(root=root)
 
 def plugin_loaded():
 

@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, shutil, traceback, json
+import os, traceback, json
 from ...libs import util
 from ...libs import window_view_manager
 from ...libs import FlowCLI

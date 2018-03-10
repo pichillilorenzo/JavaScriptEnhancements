@@ -19,6 +19,8 @@ v0.16.0
 - Improved completions detection from default_autocomplete.json
 - Added flow warnings
 
+## Misc
+- Changed gutter color (using other available sublime scopes) for errors and unused variable features.
 
 =================================================================
 ** THIS PLUGIN IS IN BETA! Thanks for your support in advance! **

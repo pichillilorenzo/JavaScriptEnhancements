@@ -53,7 +53,7 @@ class NodeJS():
         args = ([self.node_js_path] if use_node else []) + [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
     else :
       args = ([self.node_js_path] if use_node else []) + [os.path.join( (bin_path or NODE_MODULES_BIN_PATH), command)] + command_args
-    
+
     return util.execute(args[0], args[1:], chdir=chdir, wait_terminate=wait_terminate, func_stdout=func_stdout, args_func_stdout=args_func_stdout)
     
   def execute_check_output(self, command, command_args, is_from_bin=False, use_fp_temp=False, use_only_filename_view_flow=False, fp_temp_contents="", is_output_json=False, chdir="", clean_output_flow=False, bin_path="", use_node=True, command_arg_escape=True) :

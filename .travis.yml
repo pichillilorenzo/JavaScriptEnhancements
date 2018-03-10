@@ -25,6 +25,7 @@ install:
       fi
     - sh travis.sh bootstrap
     - sh travis.sh install_color_scheme_unit
+    - sh travis.sh install_keypress
     - sh travis.sh install_terminal_view_package
 
 script:

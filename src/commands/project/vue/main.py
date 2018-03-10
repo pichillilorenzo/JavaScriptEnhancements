@@ -7,7 +7,11 @@ from ....libs import Terminal
 from ....libs import Hook
 
 def vue_ask_custom_path(project_path, type):
-    sublime.active_window().show_input_panel("Vue CLI custom path", "vue", lambda vue_custom_path: vue_prepare_project(project_path, vue_custom_path) if type == "create_new_project" or type == "add_project_type" else add_vue_settings(project_path, vue_custom_path), None, None)
+
+  def vue_ask_project_template(project_path, vue_custom_path):
+    sublime.active_window().show_input_panel("Vue project template", "webpack", lambda vue_project_template: vue_prepare_project(project_path, vue_custom_path, vue_project_template), None, None)
+
+  sublime.active_window().show_input_panel("Vue CLI custom path", "vue", lambda vue_custom_path: vue_ask_project_template(project_path, vue_custom_path) if type == "create_new_project" or type == "add_project_type" else add_vue_settings(project_path, vue_custom_path), None, None)
 
 def add_vue_settings(working_directory, vue_custom_path):
   project_path = working_directory
@@ -44,16 +48,16 @@ module.name_mapper='vue' -> 'js'""")
   with open(vue_settings, 'w+', encoding="utf-8") as file:
     file.write(json.dumps(default_config, indent=2))
 
-def vue_prepare_project(project_path, vue_custom_path):
+def vue_prepare_project(project_path, vue_custom_path, vue_project_template):
 
   terminal = Terminal(cwd=project_path)
   
   if sublime.platform() != "windows": 
     open_project = ["&&", shlex.quote(util.sublime_executable_path()), shlex.quote(util.get_project_settings(project_path)["project_file_name"])] if not util.is_project_open(util.get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([shlex.quote(vue_custom_path), "init", "webpack", "."] + open_project)
+    terminal.run([shlex.quote(vue_custom_path), "init", vue_project_template, "."] + open_project)
   else:
     open_project = [util.sublime_executable_path(), util.get_project_settings(project_path)["project_file_name"], "&&", "exit"] if not util.is_project_open(util.get_project_settings(project_path)["project_file_name"]) else []
-    terminal.run([vue_custom_path, "init", "webpack", "."])
+    terminal.run([vue_custom_path, "init", vue_project_template, "."])
     if open_project:
       terminal.run(open_project)
 

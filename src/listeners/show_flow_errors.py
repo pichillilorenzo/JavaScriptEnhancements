@@ -13,7 +13,6 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "show_flow_er
 
 class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancementsWaitModifiedAsyncViewEventListener, sublime_plugin.ViewEventListener):
 
-  description_by_row = {}
   description_by_row_column = {}
   diagnostics = {
     "error": [],
@@ -22,6 +21,10 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
   diagnostic_regions = {
     "error": [],
     "warning": []
+  }
+  diagnostic_scope = {
+    "error": "storage",
+    "warning": "keyword"
   }
   callback_setted_use_flow_checker_on_current_view = False
   prefix_thread_name = "javascript_enhancements_show_flow_errors_view_event_listener"
@@ -128,7 +131,6 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
         "error": [],
         "warning": []
      }
-    self.description_by_row = {}
     self.description_by_row_column = {}
 
     if result[0] and len(result[1]['errors']) > 0:
@@ -166,15 +168,6 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
             description += " " + message['descr']
 
         if row >= 0 :
-          row_description = self.description_by_row.get(row)
-          if not row_description:
-            self.description_by_row[row] = {
-              "col": col,
-              "description": description
-            }
-          if row_description and description not in row_description:
-            self.description_by_row[row]["description"] += '; ' + description
-
           self.description_by_row_column[str(row)+":"+str(endrow)+":"+str(col)+":"+str(endcol)+":"+error_level] = description
 
     if not self.modified :
@@ -186,7 +179,7 @@ class JavascriptEnhancementsShowFlowErrorsViewEventListener(JavascriptEnhancemen
 
         if value:
 
-          view.add_regions( 'javascript_enhancements_flow_' + key, value, 'keyword', 'dot', sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE )
+          view.add_regions( 'javascript_enhancements_flow_' + key, value, self.diagnostic_scope[key], 'dot', sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE )
 
           if not need_update_sublime_status:
             need_update_sublime_status = True

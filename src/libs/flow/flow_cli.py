@@ -246,11 +246,45 @@ class FlowCLI():
 
     return result
 
+  def stop(self, root=FLOW_DEFAULT_CONFIG_PATH, options=[], **kwargs):
+
+    self.flow_cli = "flow"
+    self.is_from_bin = True
+    self.chdir = root
+    self.use_node = True
+    self.bin_path = ""
+
+    settings = util.get_project_settings(project_dir_name=root)
+    if settings and settings["project_settings"]["flow_cli_custom_path"]:
+      self.flow_cli = os.path.basename(settings["project_settings"]["flow_cli_custom_path"])
+      self.bin_path = os.path.dirname(settings["project_settings"]["flow_cli_custom_path"])
+      self.is_from_bin = False
+      self.chdir = settings["project_dir_name"]
+      self.use_node = False
+
+    node = NodeJS(check_local=True)
+    
+    result = node.execute(
+      self.flow_cli,
+      [
+        'stop',
+        '--from', 'sublime_text',
+        './'
+      ] + options,
+      is_from_bin=self.is_from_bin,
+      chdir=self.chdir,
+      bin_path=self.bin_path,
+      use_node=self.use_node
+    )
+    
+    return result
+
   @staticmethod
   def parse_cli_dependencies(view, **kwargs):
+
     filename = view.file_name()
-    
     project_settings = util.get_project_settings()
+
     if project_settings:
       project_root = project_settings["project_dir_name"]
     else:

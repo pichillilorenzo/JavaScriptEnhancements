@@ -28,7 +28,6 @@ class TestCompletions(DeferrableTestCase):
         yield 100
       else:
         break
-
     self.view.run_command("insert", {"characters": "\ndocument."})
 
     JavascriptEnhancementsStartFlowIDEServerEventListener().start_server(self.view)
@@ -46,6 +45,7 @@ class TestCompletions(DeferrableTestCase):
         yield 500
 
       else:
+        raise TimeoutError("auto_complete popup doesn't show up in " + str(timeout) + " seconds")
         break
 
     self.view.run_command("commit_completion")

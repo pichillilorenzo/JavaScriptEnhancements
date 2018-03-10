@@ -20,9 +20,9 @@ def wait_plugin_ready():
     if time.time() - start_time <= timeout:
       yield False
     else:
-      return False
+      raise TimeoutError("plugin is not ready in " + str(timeout) + " seconds")
 
-  return  True
+  return True
 
 def set_plugin_ready(*args):
   global plugin_ready

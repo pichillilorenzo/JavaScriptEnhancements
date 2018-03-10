@@ -13,6 +13,9 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
   wait_time = .15
   modified = False
 
+  def on_load_async(self):
+    self.on_modified_async()
+
   def on_activated_async(self):
     self.on_modified_async()
 
@@ -32,7 +35,7 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
       return 
     elif view.find_by_selector('source.js.embedded.html'):
       pass
-    elif not util.selection_in_js_scope(view):
+    elif not util.selection_in_js_scope(view) or not (self.unused_variable_regions or view.get_regions("javascript_enhancements_unused_variable")):
       view.erase_status("javascript_enhancements_unused_variable")
       view.erase_regions("javascript_enhancements_unused_variable")
       return
@@ -231,7 +234,7 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
     if not self.modified :
       view.erase_regions("javascript_enhancements_unused_variable")
       if self.unused_variable_regions:
-        view.add_regions("javascript_enhancements_unused_variable", self.unused_variable_regions, "string", "dot", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SQUIGGLY_UNDERLINE)
+        view.add_regions("javascript_enhancements_unused_variable", self.unused_variable_regions, "comment", "dot", sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SQUIGGLY_UNDERLINE)
       else:
         view.erase_status("javascript_enhancements_unused_variable")
     elif (recheck) :
