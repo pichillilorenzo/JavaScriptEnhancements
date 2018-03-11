@@ -16,7 +16,6 @@ before_install:
     - if [ "$TRAVIS_OS_NAME" == "linux"  ]; then
             export DISPLAY=:99.0;
             sh -e /etc/init.d/xvfb start;
-            /etc/init.d/xvfb -screen 0 1024x768x24 +extension RANDR;
       fi
 
 install:
