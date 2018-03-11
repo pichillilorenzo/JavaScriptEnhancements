@@ -112,7 +112,7 @@ class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListene
       return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
       
   def on_query_completions_async(self, view):
-    self.completions = None
+    self.completions = list()
 
     if not view.match_selector(
         self.locations[0],
