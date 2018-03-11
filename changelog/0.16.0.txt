@@ -7,6 +7,7 @@ v0.16.0
 - Fixed export refactor feature preview
 - Fixed some popup colors with different theme color scheme
 - Fixed completions and hover_description that starts with "$"
+- Fixed issue #36, keymap of next flow error feature changed from "super+alt+c" to "super+alt+b"
 
 ## Improvements
 
@@ -14,7 +15,7 @@ v0.16.0
 - Improved completions performance using 'flow ide' command
 - Added "code screenshot" feature using [carbon](https://carbon.now.sh/)
 - updated flow-bin to 0.67.1
-- Added initial support for Vue.js
+- Added initial support for Vue.js (see https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Example-Vue.js-project)
 - Improved extract method feature
 - Improved completions detection from default_autocomplete.json
 - Added flow warnings
@@ -45,6 +46,7 @@ developing and managing javascript projects, such as:
 - Cordova projects (run cordova emulate, build, compile, serve, etc. directly from Sublime Text!)
 - Ionic v1 and v2 (it includes also v3) projects (same as Cordova projects!)
 - Angular v1 and v2 (it includes also v4 and v5) projects
+- Vue projects (only about the creation at this moment, see https://github.com/pichillilorenzo/JavaScriptEnhancements/wiki/Example-Vue.js-project)
 - React projects (only about the creation at this moment)
 - React Native projects (only about the creation at this moment. I will add also NativeScript support)
 - Express projects (only about the creation at this moment)

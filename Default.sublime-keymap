@@ -4,7 +4,7 @@
     "command": "javascript_enhancements_can_i_use"
   },
   {
-    "keys": ["super+alt+c"],
+    "keys": ["super+alt+b"],
     "command": "javascript_enhancements_navigate_flow_errors",
     "args": {
       "type":  "next"
