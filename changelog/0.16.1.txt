@@ -1,3 +1,11 @@
+v0.16.1
+
+# Fixes
+
+- Fixed NameError: global name 'subprocess' is not defined on /src/libs/terminal.py - Windows OS
+- Fixed NoneType error on self.completions.append(completion) in /src/listeners/completion.py
+
+
 v0.16.0
 
 ## Fixes

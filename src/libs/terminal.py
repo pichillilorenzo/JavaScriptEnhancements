@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import shlex, json, os
+import shlex, json, os, subprocess
 from os.path import expanduser
 
 class Terminal():

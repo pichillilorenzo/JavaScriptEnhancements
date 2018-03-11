@@ -47,7 +47,7 @@ def load_default_autocomplete(view, comps_to_campare, prefix, location, isHover 
   return final_completions
 
 class JavascriptEnhancementsCompletionsEventListener(sublime_plugin.EventListener):
-  completions = None
+  completions = list()
   completions_ready = False
   searching = False
   modified = False
