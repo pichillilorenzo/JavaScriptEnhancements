@@ -32,6 +32,7 @@ class FlowIDEServer():
 
     args = flow_path + ["ide", "--protocol", "very-unstable", "--from", "sublime_text"] + options + ["--root", self.root]
     print("starting flow ide server: " + str(args))
+    sublime.status_message('Starting flow ide server, root: ' + self.root)
 
     try:
       self.process = subprocess.Popen(
@@ -69,8 +70,7 @@ class FlowIDEServer():
 
   def prepare_json_rpc_message(self, json_rpc):
     json_rpc = json.dumps(json_rpc)
-    message = """
-Content-Length: """ + str(len(json_rpc) + 1) + """
+    message = """Content-Length: """ + str(len(json_rpc) + 1) + """
 
 """ + json_rpc + """
 """
@@ -129,7 +129,6 @@ class StdioTransport():
 
                 if (content_length > 0):
                     content = self.process.stdout.read(content_length)
-
                     self.on_receive(content.decode("UTF-8"))
 
             except IOError as err:
@@ -137,17 +136,23 @@ class StdioTransport():
                 print("Failure reading stdout", err)
                 break
 
-        print("flow ide stdout process ended.")
+        print("flow ide stdout process ended. Possible errors:")
+        # print possible errors
+        error = self.process.stderr.readline()
+        while error:
+          print(error.decode("UTF-8").strip())
+          error = self.process.stderr.readline()
+
         self.close()
 
     def send(self, message):
-        if self.process:
-            try:
-                self.process.stdin.write(bytes(message, 'UTF-8'))
-                self.process.stdin.flush()
-            except (BrokenPipeError, OSError) as err:
-                print("Failure writing to stdout", err)
-                self.close()
+      if self.process:
+        try:
+          self.process.stdin.write(bytes(message, 'UTF-8'))
+          self.process.stdin.flush()
+        except (BrokenPipeError, OSError) as err:
+          print("Failure writing to flow ide stdout", err)
+          self.close()
 
 class JavascriptEnhancementsStartFlowIDEServerEventListener(sublime_plugin.EventListener):
   

@@ -104,10 +104,13 @@ class JavascriptEnhancementsCarbonCommand(sublime_plugin.TextCommand):
         language = javaScriptEnhancements.get('carbon_language')
 
         if not language:
+            # get current view syntax
             syntax = os.path.splitext(os.path.basename(view.settings().get("syntax")))[0]
             if syntax in LANGUAGE_MAPPING:
+                # set language from the mapping
                 language = LANGUAGE_MAPPING[syntax]
             else:
+                # otherwise set 'auto': Carbon will try to understand which language is used.
                 language = 'auto'
 
         query = {
