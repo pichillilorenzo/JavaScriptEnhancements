@@ -5,7 +5,17 @@ v0.16.11
 - Trying to fix #41
 
 ## Improvements
+
 - Updated flow-bin to 0.68.0
+
+
+v0.16.1
+
+## Fixes
+
+- Fixed NameError: global name 'subprocess' is not defined on /src/libs/terminal.py - Windows OS
+- Fixed NoneType error on self.completions.append(completion) in /src/listeners/completion.py
+
 
 v0.16.0
 
