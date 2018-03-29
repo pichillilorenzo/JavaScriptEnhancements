@@ -187,7 +187,7 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
               items += [item["alternate"]]
             if isinstance(item["test"],dict) and "name" in item["test"] and item["test"]["type"] == "Identifier":
               item = item["test"]
-            if isinstance(item["test"],dict) and item["test"]["type"] == "UnaryExpression" and "argument" in item["test"] and "name" in item["test"]["argument"] and item["test"]["argument"]["type"] == "Identifier":
+            elif isinstance(item["test"],dict) and item["test"]["type"] == "UnaryExpression" and "argument" in item["test"] and "name" in item["test"]["argument"] and item["test"]["argument"]["type"] == "Identifier":
               item = item["test"]["argument"]
             else:
               continue
