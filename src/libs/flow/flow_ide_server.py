@@ -4,6 +4,7 @@ from ..hook import Hook
 from .flow_cli import FlowCLI
 from .main import get_flow_path
 from ..node import NodeJS
+from ..javascript_enhancements_settings import *
 
 flow_ide_clients = {}
 
@@ -40,6 +41,14 @@ class FlowIDEServer():
     print("starting flow ide server: " + str(args))
     sublime.status_message('Starting flow ide server, root: ' + self.root)
 
+    old_env = os.environ.copy()
+
+    new_env = old_env.copy()
+    new_env["PATH"] = new_env["PATH"] + javaScriptEnhancements.get("PATH")
+
+    # update the PATH environment variable
+    os.environ.update(new_env)
+
     try:
       self.process = subprocess.Popen(
           args,
@@ -58,6 +67,9 @@ class FlowIDEServer():
 
     except Exception as err:
       print("Failed to start flow ide server: " + str(args), err)
+
+    # reset the PATH environment variable
+    os.environ.update(old_env)
 
   def send(self, message):
     if self.stdio_transport:
