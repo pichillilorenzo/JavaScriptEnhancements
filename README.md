@@ -141,7 +141,7 @@ For feature requests/enhancement, create an issue or use [![Gitter](https://img.
 If this project helps you reduce time to develop and also you like it, please support it with a donation on [Patreon](https://www.patreon.com/bePatron?u=9269604), [Open Collective](https://opencollective.com/javascriptenhancements/donate) or using [PayPal](https://www.paypal.me/LorenzoPichilli) 😄👍. Thanks!
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/LorenzoPichilli)
-[![Become a Patron](https://img.shields.io/badge/-Becoma%20a%20Patron!-red.svg?style=for-the-badge)](https://www.patreon.com/bePatron?u=9269604)
+[![Become a Patron](https://img.shields.io/badge/-Become%20a%20Patron!-red.svg?style=for-the-badge)](https://www.patreon.com/bePatron?u=9269604)
 <a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
   <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
 </a>
