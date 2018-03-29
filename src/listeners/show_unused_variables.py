@@ -124,10 +124,18 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
 
           repetitions[variable_name] = [variable_region]
 
-        items = util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral", "ObjectPattern", "ObjectExpression"], body)
+        items = util.nested_lookup("type", ["VariableDeclarator", "MemberExpression", "CallExpression", "BinaryExpression", "ExpressionStatement", "Property", "ArrayExpression", "ObjectPattern", "AssignmentExpression", "IfStatement", "ForStatement", "WhileStatement", "ForInStatement", "ForOfStatement", "LogicalExpression", "UpdateExpression", "ArrowFunctionExpression", "ConditionalExpression", "JSXIdentifier", "ExportDefaultDeclaration", "JSXExpressionContainer", "NewExpression", "ReturnStatement", "SpreadProperty", "TemplateLiteral", "ObjectPattern", "ObjectExpression", "TypeAnnotation", "ClassDeclaration"], body)
         for item in items:
 
-          if "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
+          if item["type"] == "ClassDeclaration":
+            if "superClass" in item and isinstance(item["superClass"],dict) and "name" in item["superClass"] and item["superClass"]["type"] == "Identifier":
+              item = item["superClass"]
+            elif "implements" in item and item["implements"]:
+              for interface in item["implements"]:
+                if "id" in interface and isinstance(interface["id"],dict) and "name" in interface["id"] and interface["id"]["type"] == "Identifier":
+                  items += [interface["id"]]
+
+          elif "exportKind" in item and "declaration" in item and isinstance(item["declaration"],dict) and "name" in item["declaration"] and item["declaration"]["type"] == "Identifier":
             item = item["declaration"]
 
           elif "object" in item :
@@ -156,6 +164,9 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
 
             item = item["callee"]
 
+          elif "typeAnnotation" in item and isinstance(item["typeAnnotation"],dict) and "id" in item["typeAnnotation"] and "name" in item["typeAnnotation"]["id"] and item["typeAnnotation"]["id"]["type"] == "Identifier":
+            item = item["typeAnnotation"]["id"]
+
           elif "expressions" in item and item["expressions"]:
             for expression in item["expressions"]:
               if isinstance(expression,dict) and "name" in expression and expression["type"] == "Identifier":
@@ -176,6 +187,8 @@ class JavascriptEnhancementsShowUnusedVariablesViewEventListener(JavascriptEnhan
               items += [item["alternate"]]
             if isinstance(item["test"],dict) and "name" in item["test"] and item["test"]["type"] == "Identifier":
               item = item["test"]
+            if isinstance(item["test"],dict) and item["test"]["type"] == "UnaryExpression" and "argument" in item["test"] and "name" in item["test"]["argument"] and item["test"]["argument"]["type"] == "Identifier":
+              item = item["test"]["argument"]
             else:
               continue
 

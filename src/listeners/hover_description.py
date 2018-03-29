@@ -60,7 +60,7 @@ class JavascriptEnhancementsOnHoverDescriptionEventListener(sublime_plugin.Event
     if not view.match_selector(
         point,
         'source.js - string - constant - comment'
-    ):
+    ) or not view.settings().get("show_definitions"):
       return
 
     if hover_zone != sublime.HOVER_TEXT :

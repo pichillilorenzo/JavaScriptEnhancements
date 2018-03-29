@@ -8,6 +8,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](/LICENSE.txt)
 
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/LorenzoPichilli)
+[![Donate to this project using Patreon](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/bePatron?u=9269604)
 [![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate) [![Backers on Open Collective](https://opencollective.com/javascriptenhancements/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/javascriptenhancements/sponsors/badge.svg)](#sponsors)
 
 **JavaScript Enhancements** is a plugin for **Sublime Text 3**.
@@ -51,7 +52,7 @@ If you want use this plugin, you may want **uninstall/disable** the **JavaScript
 In order to work properly, this plugin has some dependencies:
 
 - **Sublime Text 3** (build **3124** or newer)
-- **Node.js** (6 or upper) and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
+- **Node.js** (6 or newer) and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
 - **TerminalView** (only for _Linux_ and _Mac OS X_) sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 
 **Not required**, but **useful** for typescript files (Flow wont work on this type of files):
@@ -137,9 +138,10 @@ For feature requests/enhancement, create an issue or use [![Gitter](https://img.
 
 ### Financial contributions
 
-If this project help you reduce time to develop and also you like it, please support it with a donation on [Open Collective](https://opencollective.com/javascriptenhancements) or using [PayPal](https://www.paypal.me/LorenzoPichilli) 😄👍. Thanks!
+If this project helps you reduce time to develop and also you like it, please support it with a donation on [Patreon](https://www.patreon.com/bePatron?u=9269604), [Open Collective](https://opencollective.com/javascriptenhancements/donate) or using [PayPal](https://www.paypal.me/LorenzoPichilli) 😄👍. Thanks!
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/LorenzoPichilli)
+[![Become a Patron](https://img.shields.io/badge/-Becoma%20a%20Patron!-red.svg?style=for-the-badge)](https://www.patreon.com/bePatron?u=9269604)
 <a href="https://opencollective.com/javascriptenhancements/donate" target="_blank">
   <img alt="opencollective" src="https://opencollective.com/javascriptenhancements/donate/button@2x.png?color=blue" width=300 />
 </a>

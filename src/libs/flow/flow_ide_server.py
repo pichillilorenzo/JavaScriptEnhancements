@@ -3,6 +3,7 @@ import os, subprocess, threading, json
 from ..hook import Hook
 from .flow_cli import FlowCLI
 from .main import get_flow_path
+from ..node import NodeJS
 
 flow_ide_clients = {}
 
@@ -24,13 +25,18 @@ class FlowIDEServer():
       return
 
     flow_path = get_flow_path()
-  
+    node_path = []
+
+    if sublime.platform() != 'windows':
+      node = NodeJS()
+      node_path = [node.node_js_path]
+
     si = None
     if os.name == "nt":
         si = subprocess.STARTUPINFO()  # type: ignore
         si.dwFlags |= subprocess.SW_HIDE | subprocess.STARTF_USESHOWWINDOW  # type: ignore
 
-    args = flow_path + ["ide", "--protocol", "very-unstable", "--from", "sublime_text"] + options + ["--root", self.root]
+    args = node_path + flow_path + ["ide", "--protocol", "very-unstable", "--from", "sublime_text"] + options + ["--root", self.root]
     print("starting flow ide server: " + str(args))
     sublime.status_message('Starting flow ide server, root: ' + self.root)
 
