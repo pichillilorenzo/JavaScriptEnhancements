@@ -635,17 +635,18 @@ def is_project_open(project):
 def is_javascript_project():
   project_file_name = sublime.active_window().project_file_name()
   project_dir_name = ""
-  if project_file_name :
+  if project_file_name:
     project_dir_name = os.path.dirname(project_file_name)
     settings_dir_name = os.path.join(project_dir_name, PROJECT_SETTINGS_FOLDER_NAME)
     return os.path.isdir(settings_dir_name)
-  else :
-    # try to look at window.folders()
-    folders = sublime.active_window().folders()   
-    if len(folders) > 0:
-      folders = folders[0]
-      settings_dir_name = os.path.join(folders, PROJECT_SETTINGS_FOLDER_NAME)
-      return os.path.isdir(settings_dir_name)
+
+  # If not found at the location of the .sublime-project file, try to look in the open folders.
+  folders = sublime.active_window().folders()
+  if len(folders) > 0:
+    folders = folders[0]
+    settings_dir_name = os.path.join(folders, PROJECT_SETTINGS_FOLDER_NAME)
+    return os.path.isdir(settings_dir_name)
+
   return False
 
 def is_type_javascript_project(type):
