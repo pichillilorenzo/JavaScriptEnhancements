@@ -6,7 +6,7 @@
       {
         "caption": "Flow",
         "mnemonic": "F",
-        "id": "flow",
+        "id": "javascript_enhancements_flow",
         "children": [
           {
             "caption": "Build Flow",
