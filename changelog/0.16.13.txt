@@ -7,6 +7,7 @@ v0.16.13
 ## Improvements
 
 - Updated flow-bin to 0.70.0
+- Updated flow-typed to 2.4.0
 
 
 v0.16.12
