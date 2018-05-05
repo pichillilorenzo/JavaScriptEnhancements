@@ -70,6 +70,17 @@ class JavascriptEnhancementsOnHoverDescriptionEventListener(sublime_plugin.Event
       if region.contains(point):
         return
 
+    try:
+      # fix for #47 - "Interoperability with sublimelinter" 
+      import SublimeLinter
+      regions_key = SublimeLinter.highlight_view.get_regions_keys(view)
+      for key in regions_key:
+        region = view.get_regions(key)[0]
+        if region.contains(point):
+          return
+    except Exception as e:
+      pass
+
     region = view.word(point)
     word = view.substr(region)
     if not word.strip() :
