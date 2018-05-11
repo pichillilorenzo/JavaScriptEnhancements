@@ -4,3 +4,4 @@ node_modules/
 **/__pycache__
 /helper/bookmarks/bookmarks.json
 package-lock.json
+/tests/test_project/test_project.sublime-workspace

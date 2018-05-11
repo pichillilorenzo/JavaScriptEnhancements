@@ -1,6 +1,6 @@
 import os
 
-PLUGIN_VERSION = "0.16.14"
+PLUGIN_VERSION = "0.16.15"
 DEVELOPER_MODE = False
 
 PACKAGE_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
