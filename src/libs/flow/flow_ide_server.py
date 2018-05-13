@@ -87,8 +87,10 @@ class FlowIDEServer():
       del flow_ide_clients[self.root]
 
   def prepare_json_rpc_message(self, json_rpc):
-    json_rpc = json.dumps(json_rpc)
-    message = """Content-Length: """ + str(len(json_rpc) + 1) + """
+    json_rpc = json.dumps(json_rpc, ensure_ascii=False)
+    # number of bytes in a string
+    json_rpc_length = len(json_rpc.encode('utf-8'))
+    message = """Content-Length: """ + str(json_rpc_length + 1) + """
 
 """ + json_rpc + """
 """

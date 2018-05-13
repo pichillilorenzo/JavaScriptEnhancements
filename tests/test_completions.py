@@ -35,7 +35,7 @@ class TestCompletions(DeferrableTestCase):
       else:
         raise TimeoutError("plugin is not ready in " + str(timeout) + " seconds")
 
-    self.view.run_command("insert", {"characters": "\ndocument."})
+    self.view.run_command("insert", {"characters": "document.querySelector('嗨');\ndocument."})
 
     JavascriptEnhancementsStartFlowIDEServerEventListener().start_server(self.view)
     self.view.run_command("auto_complete")
@@ -56,6 +56,6 @@ class TestCompletions(DeferrableTestCase):
 
     self.view.run_command("commit_completion")
     
-    content = self.view.substr(sublime.Region(1, self.view.size()))
+    content = self.view.substr(sublime.Region(0, self.view.size()))
 
-    self.assertEqual(content, "document.URL")
+    self.assertEqual(content, "document.querySelector('嗨');\ndocument.URL")
