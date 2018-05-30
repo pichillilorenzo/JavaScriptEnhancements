@@ -1,4 +1,4 @@
-# JavaScript Enhancements
+# JavaScript Enhancements [![Share on Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Turn%20Sublime%20Text%203%20into%20a%20JavaScript%20IDE%20&url=https://github.com/pichillilorenzo/JavaScriptEnhancements&hashtags=javascript,ide,plugin,sublimetext3,editor) [![Share on Facebook](https://img.shields.io/badge/share-facebook-blue.svg?longCache=true&style=flat&colorB=%234267b2)](hhttp://www.facebook.com/sharer.php?u=https://github.com/pichillilorenzo/JavaScriptEnhancements)
 
 [![Minimum Sublime Build Version](https://img.shields.io/badge/sublime%20build-%3E%3D%203124-brightgreen.svg?style=flat)](https://sublimetext.com)
 [![GitHub stars](https://img.shields.io/github/stars/pichillilorenzo/JavaScriptEnhancements.svg?style=flat)](https://github.com/pichillilorenzo/JavaScriptEnhancements/stargazers)
@@ -12,6 +12,8 @@
 [![Donate to this project using Open Collective](https://img.shields.io/badge/open%20collective-donate-yellow.svg)](https://opencollective.com/javascriptenhancements/donate) [![Backers on Open Collective](https://opencollective.com/javascriptenhancements/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/javascriptenhancements/sponsors/badge.svg)](#sponsors)
 
 **JavaScript Enhancements** is a plugin for **Sublime Text 3**.
+
+> A little introduction to this plugin could be found in this css-tricks.com article: [**Turn Sublime Text 3 into a JavaScript IDE**](https://css-tricks.com/turn-sublime-text-3-into-a-javascript-ide/)
 
 This plugin uses **[Flow](https://github.com/facebook/flow)** (javascript static type checker from Facebook) under the hood.
 
@@ -45,7 +47,7 @@ If you want use this plugin, you may want **uninstall/disable** the **JavaScript
 
 - Linux (64-bit)
 - Mac OS X
-- Windows (64-bit): released without the use of [TerminalView](https://github.com/Wramberg/TerminalView) plugin. For each feature (like also creating a project) will be used the `cmd.exe` shell (so during the creation of a project **don't close it** until it finishes!). Unfortunately the TerminalView plugin supports only **Linux-based OS** 😞 . Has someone any advice or idea about that? Is there something similar to the TerminalView plugin for Windows?? Thanks!
+- Windows (64-bit): released without the use of [TerminalView](https://github.com/Wramberg/TerminalView) plugin. For each feature (like also creating a project) will be used the `cmd.exe` shell (so during the creation of a project **don't close it** until it finishes!). Unfortunately the TerminalView plugin supports only **Linux-based OS** 😞 . See [this](https://github.com/Wramberg/TerminalView/issues/3#issuecomment-390434623) workaround using WSL (Windows Subsystem for Linux).
 
 ## Dependencies
 

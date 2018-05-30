@@ -166,7 +166,8 @@ def plugin_unloaded():
   if platform.system() == "Darwin" or platform.system() == "Linux":
     # When we unload, reset PATH to original value. Otherwise, reloads of this plugin will cause
     # the PATH to be duplicated.
-    os.environ['PATH'] = fixPathOriginalEnv['PATH']
+    if 'PATH' in fixPathOriginalEnv:
+      os.environ['PATH'] = fixPathOriginalEnv['PATH']
 
     global fixPathSettings
     fixPathSettings.clear_on_change('fixpath-reload')

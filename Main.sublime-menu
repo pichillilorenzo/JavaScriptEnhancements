@@ -187,12 +187,22 @@
             "args": {"url": "https://github.com/pichillilorenzo/JavaScriptEnhancements"}
           },
           {
+            "caption": "Plugin introduction",
+            "command": "open_url",
+            "args": {"url": "https://css-tricks.com/turn-sublime-text-3-into-a-javascript-ide"}
+          },
+          {
             "caption": "Donate to this Project",
             "children": [
               {
                 "caption": "PayPal",
                 "command": "open_url",
                 "args": {"url": "https://www.paypal.me/LorenzoPichilli"}
+              },
+              {
+                "caption": "Patreon",
+                "command": "open_url",
+                "args": {"url": "https://www.patreon.com/bePatron?u=9269604"}
               },
               {
                 "caption": "Open Collective",
