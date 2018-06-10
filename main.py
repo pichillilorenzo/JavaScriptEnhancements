@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import os, platform, shutil, tempfile, json, re, sys
+import os, platform, shutil, tempfile, json, re, sys, shellenv
 from subprocess import Popen, PIPE
 from .src.libs.global_vars import *
 from .src.libs import util
@@ -111,32 +111,8 @@ def start():
 fixPathSettings = None
 fixPathOriginalEnv = {}
 
-def getSysPath():
-  command = ""
-  if platform.system() == "Darwin":
-    command = "env TERM=ansi CLICOLOR=\"\" SUBLIME=1 /usr/bin/login -fqpl $USER $SHELL -l -c 'TERM=ansi CLICOLOR=\"\" SUBLIME=1 printf \"%s\" \"$PATH\"'"
-  elif platform.system() == "Linux":
-    command = "env TERM=ansi CLICOLOR=\"\" SUBLIME=1 $SHELL --login -c 'TERM=ansi CLICOLOR=\"\" printf \"%s\" $PATH'"
-  else:
-    return ""
-
-  # Execute command with original environ. Otherwise, our changes to the PATH propogate down to
-  # the shell we spawn, which re-adds the system path & returns it, leading to duplicate values.
-  sysPath = Popen(command, stdout=PIPE, shell=True, env=fixPathOriginalEnv).stdout.read()
-
-  # this line fixes problems of users having an "echo" command in the .bash_profile file or in other similar files.
-  sysPath = sysPath.splitlines()[-1]
-
-  sysPathString = sysPath.decode("utf-8")
-  # Remove ANSI control characters (see: http://www.commandlinefu.com/commands/view/3584/remove-color-codes-special-characters-with-sed )
-  sysPathString = re.sub(r'\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]', '', sysPathString)
-  sysPathString = sysPathString.strip().rstrip(':')
-
-  # Decode the byte array into a string, remove trailing whitespace, remove trailing ':'
-  return sysPathString
-
 def fixPath():
-  currSysPath = getSysPath()
+  currSysPath = ':'.join(shellenv.get_path()[1])
   # Basic sanity check to make sure our new path is not empty
   if len(currSysPath) < 1:
     return False
