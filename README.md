@@ -57,7 +57,7 @@ In order to work properly, this plugin has some dependencies:
 - **Node.js** (6 or newer) and **npm** ([nodejs.org](https://nodejs.org) or [nvm](https://github.com/creationix/nvm))
 - **TerminalView** (only for _Linux_ and _Mac OS X_) sublime text plugin ([TerminalView](https://github.com/Wramberg/TerminalView)) 
 
-**Not required**, but **useful** for typescript files (Flow wont work on this type of files):
+**Not Required**, but **Useful** for typescript files (Flow wont work on this type of files):
 
 - **TypeScript** sublime text plugin ([TypeScript](https://github.com/Microsoft/TypeScript-Sublime-Plugin)) 
 
