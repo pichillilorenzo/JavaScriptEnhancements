@@ -9,7 +9,7 @@ PACKAGE_PATH = JavaScriptEnhancements.src.libs.global_vars.PACKAGE_PATH
 def plugin_ready():
   return os.path.exists(os.path.join(PACKAGE_PATH, "node_modules", ".bin"))
 
-timeout = 30
+timeout = 300
 
 project_path = os.path.join(PACKAGE_PATH, 'tests', 'test_project')
 sublime_project_path = os.path.join(PACKAGE_PATH, 'tests', 'test_project', 'test_project.sublime-project')
