@@ -14,7 +14,7 @@ for keymap in keymaps:
 
 def start():
 
-  print("JavaScript Enhancements plugin version: "+PLUGIN_VERSION)
+  rint("JavaScript Enhancements plugin version: "+PLUGIN_VERSION)
 
   if platform.architecture()[0] != "64bit":
     print(platform.architecture())
